@@ -18,7 +18,9 @@ const CURVE = [
   `C ${OX + 140},${OY - 122} ${OX + 155},${OY - 108} ${OX + 168},${OY - 108}`,
   `C ${OX + 188},${OY - 108} ${OX + 198},${OY - 5}  ${OX + 213},${OY - 5}`,
   `C ${OX + 228},${OY - 5}  ${OX + 243},${OY - 178} ${OX + 268},${OY - 183}`,
-  `C ${OX + 320},${OY - 198} ${OX + 375},${OY - 212} ${W - 48},${OY - 220}`,
+  // Post-valley: rises steeply then levels to a horizontal plateau (second control and
+  // endpoint share the same y → zero slope at the right edge, matching Mori's curve)
+  `C ${OX + 305},${OY - 205} ${OX + 365},${OY - 220} ${W - 48},${OY - 220}`,
 ].join(' ');
 
 // Approximate pixel positions for key points on the far slope
@@ -26,17 +28,60 @@ const FILM_X  = OX + 268;   // ≈ 323
 const FILM_Y  = OY - 183;   // ≈ 82
 
 // Data points for step 9 — plotted along the post-valley ascent
+// x/y positions recalculated to follow the revised plateau curve
 const MEDIA_POINTS = [
-  { x: FILM_X,       y: FILM_Y,       label: 'Early film' },
-  { x: FILM_X + 38,  y: FILM_Y - 16,  label: 'Sound / color' },
-  { x: FILM_X + 72,  y: FILM_Y - 26,  label: 'CG' },
-  { x: FILM_X + 100, y: FILM_Y - 32,  label: 'VR' },
+  { x: FILM_X,       y: FILM_Y,       label: 'Early film' },      // ≈ t=0  (323, 82)
+  { x: FILM_X + 32,  y: FILM_Y - 16,  label: 'Sound / color' },   // ≈ t=0.25 (355, 66)
+  { x: FILM_X + 64,  y: FILM_Y - 28,  label: 'CG' },              // ≈ t=0.5  (387, 54)
+  { x: FILM_X + 92,  y: FILM_Y - 36,  label: 'VR' },              // ≈ t=0.75 (415, 46)
 ];
+
+// ── Zoomed graph for step 9 ───────────────────────────────────────────────
+// Crops the SVG viewBox to the top-right ascending section so the media-point
+// labels have room to spread out without crowding or crossing the curve line.
+
+function buildGraphZoomed() {
+  // Viewport: x=265→475, y=18→133 — just the post-valley far slope
+  const vbX = 265, vbY = 18, vbW = 210, vbH = 115;
+  const asymY = OY - 224;  // 41 — the plateau asymptote
+
+  // Labels alternate below / above as we move along the slope so they
+  // never crowd each other or the "healthy human" asymptote annotation.
+  // Below-dot labels fall in the space under the rising curve;
+  // above-dot labels clear the curve line upward.
+  const pts = [
+    { x: FILM_X,      y: FILM_Y,      label: 'Early film',    dx: 12, dy: 20  },  // below
+    { x: FILM_X + 32, y: FILM_Y - 16, label: 'Sound / color', dx: 12, dy: -15 },  // above
+    { x: FILM_X + 64, y: FILM_Y - 28, label: 'CG',            dx: 12, dy: 20  },  // below
+    { x: FILM_X + 92, y: FILM_Y - 36, label: 'VR',            dx: 12, dy: -14 },  // above
+  ];
+
+  const dots = pts.map(pt => `
+    <circle class="g-dot" cx="${pt.x}" cy="${pt.y}" r="5"/>
+    <text class="g-dlabel" x="${pt.x + pt.dx}" y="${pt.y + pt.dy}">${pt.label}</text>
+  `).join('');
+
+  return `
+    <div class="graph-wrap">
+      <p class="graph-heading">The Far Side of the Valley</p>
+      <svg class="graph-svg" viewBox="${vbX} ${vbY} ${vbW} ${vbH}"
+           xmlns="http://www.w3.org/2000/svg">
+        <line class="g-asym"
+              x1="${vbX}" y1="${asymY}" x2="${vbX + vbW}" y2="${asymY}"/>
+        <text class="g-valley" text-anchor="end"
+              x="${vbX + vbW - 2}" y="${asymY - 4}">healthy human</text>
+        <path class="g-curve" d="${CURVE}"/>
+        ${dots}
+      </svg>
+    </div>
+  `;
+}
 
 // ── Graph builder ──────────────────────────────────────────────────────────
 
 function buildGraph(state) {
   // state: 'initial' | 'film' | 'full'
+  if (state === 'full') return buildGraphZoomed();
 
   const asymptoteY = OY - 224;
 
@@ -55,16 +100,18 @@ function buildGraph(state) {
   ` : '';
 
   // Film dot + label — shown in film state only
+  // Label above the dot so it clears the curve line
   const filmDot = (state === 'film') ? `
-    <circle class="g-dot" cx="${FILM_X}" cy="${FILM_Y}" r="4.5"/>
-    <line class="g-drop" x1="${FILM_X}" y1="${FILM_Y + 2}" x2="${FILM_X}" y2="${OY}"/>
-    <text class="g-dlabel" x="${FILM_X + 9}" y="${FILM_Y - 6}">Film (La Ciotat effect)</text>
+    <circle class="g-dot" cx="${FILM_X}" cy="${FILM_Y}" r="7"/>
+    <line class="g-drop" x1="${FILM_X}" y1="${FILM_Y + 5}" x2="${FILM_X}" y2="${OY}"/>
+    <text class="g-dlabel" x="${FILM_X + 10}" y="${FILM_Y - 14}">Film (La Ciotat effect)</text>
   ` : '';
 
   // All media points — shown in full state
+  // r=7, labels placed above the dot (y - 14) with dark halo via CSS paint-order
   const allPoints = (state === 'full') ? MEDIA_POINTS.map((pt, i) => `
-    <circle class="g-dot" cx="${pt.x}" cy="${pt.y}" r="${i === 0 ? 4.5 : 3.8}"/>
-    <text class="g-dlabel" x="${pt.x + 7}" y="${pt.y + 4}">${pt.label}</text>
+    <circle class="g-dot" cx="${pt.x}" cy="${pt.y}" r="7"/>
+    <text class="g-dlabel" x="${pt.x + 8}" y="${pt.y - 14}">${pt.label}</text>
   `).join('') : '';
 
   return `
