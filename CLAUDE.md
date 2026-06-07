@@ -45,7 +45,7 @@ uncanny_doubles/
 ```
 
 - **Local preview**: `python -m http.server` or `npx live-server`
-- **Repo**: GitHub at /Users/jaybolter/Documents/GitHub/uncanny_doubles
+- **Repo**: GitHub at /Users/jaybolter/Documents/GitHub/distant-writing/interactive-books/uncanny_doubles
 
 ## Source Text
 
