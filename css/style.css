@@ -217,6 +217,38 @@ header h1 {
   z-index: 2;
 }
 
+/* ── Blockquotes in text steps ── */
+
+.step blockquote {
+  border-left: 2px solid var(--gold-dim);
+  padding-left: 1.2rem;
+  margin: 1.2rem 0;
+  color: var(--muted);
+  font-style: italic;
+  font-size: 1.0rem;
+  line-height: 1.82;
+}
+
+/* ── Placeholder panels (image not yet assigned) ── */
+
+.placeholder-panel {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder-text {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white-lo);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  padding: 0.55em 1.2em;
+}
+
 /* ── Graph panels (steps 1, 6, 9) ── */
 
 .graph-wrap {
