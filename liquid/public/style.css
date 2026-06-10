@@ -1,0 +1,141 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --text: #1a1a1a;
+  --muted: #666;
+  --border: #ddd;
+  --bg: #fafaf8;
+  --reader-label: #999;
+  --guide-label: #444;
+  --line: 65ch;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  width: 100%;
+  max-width: var(--line);
+  padding: 3rem 1rem 1.5rem;
+}
+
+header h1 {
+  font-size: 0.85rem;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+#conversation {
+  flex: 1;
+  width: 100%;
+  max-width: var(--line);
+  padding: 0 1rem 2rem;
+  overflow-y: auto;
+}
+
+.turn {
+  margin-bottom: 2rem;
+}
+
+.turn-label {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+
+.turn.reader .turn-label { color: var(--reader-label); }
+.turn.guide  .turn-label { color: var(--guide-label); }
+
+.turn-body {
+  white-space: pre-wrap;
+}
+
+.turn.reader .turn-body {
+  color: var(--muted);
+  font-style: italic;
+}
+
+#input-area {
+  width: 100%;
+  max-width: var(--line);
+  padding: 0 1rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+#divider {
+  width: 100%;
+  max-width: var(--line);
+  border: none;
+  border-top: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+
+#message-input {
+  width: 100%;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  padding: 0.4rem 0;
+  resize: none;
+  outline: none;
+  min-height: 2.8rem;
+}
+
+#message-input::placeholder {
+  color: var(--border);
+  font-style: italic;
+}
+
+#send-btn {
+  align-self: flex-end;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: 1px solid var(--border);
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+#send-btn:hover:not(:disabled) {
+  color: var(--text);
+  border-color: #aaa;
+}
+
+#send-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.thinking {
+  color: var(--muted);
+  font-style: italic;
+  font-size: 0.9em;
+  margin-bottom: 2rem;
+}
