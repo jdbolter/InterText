@@ -1,9 +1,10 @@
 const conv = document.getElementById('conversation');
 const input = document.getElementById('message-input');
 const btn = document.getElementById('send-btn');
+const intro = document.getElementById('intro');
 
-// Conversation history lives here in the browser
 let history = [];
+let firstSend = true;
 
 function appendTurn(role, text) {
   const turn = document.createElement('div');
@@ -44,6 +45,12 @@ async function send() {
   input.value = '';
   input.style.height = 'auto';
   btn.disabled = true;
+
+  if (firstSend && intro) {
+    firstSend = false;
+    intro.classList.add('is-hiding');
+    intro.addEventListener('transitionend', () => intro.remove(), { once: true });
+  }
 
   appendTurn('reader', text);
   showThinking();
