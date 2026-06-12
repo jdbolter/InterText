@@ -9,8 +9,24 @@ beats/
 │                           quotations, depth material, deferrals, exits, exhibits)
 ├── system-prompt.md       (persona, quotation-first rule, deferral protocol,
 │                           banned moves, 4 exemplar exchanges)
-└── sample-transcript.md   (hand-written annotated demonstration of intended behavior)
+├── sample-transcript.md   (hand-written annotated demonstration of intended behavior)
+└── public/
+    └── index.html         (minimal chat page for testing)
+
+../api/beats-chat.js       (serverless endpoint — composes per-beat context,
+                            handles advance detection; liquid untouched)
 ```
+
+## Run it
+
+Same setup as liquid: `ANTHROPIC_API_KEY` in `.env.local` at the repo root, no new npm dependencies, then:
+
+```bash
+vercel dev
+# open http://localhost:3000/beats/public/index.html
+```
+
+The chip under the title shows the active beat (debugging aid — remove for any real reader test). A `· · ·` divider marks each advance. Advance detection is the model self-reporting the exit condition via a hidden marker (`[ADVANCE]`), stripped server-side — see "deliberately unresolved" below. Traversal in v0.1 is the fixed linear order; the aura/freud branch is not yet reader-choosable.
 
 ## How this differs from liquid
 
