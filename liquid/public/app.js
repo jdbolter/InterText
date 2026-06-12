@@ -5,6 +5,16 @@ const intro = document.getElementById('intro');
 
 let history = [];
 let firstSend = true;
+let sectionIndex = 0;
+
+// TOC navigation
+document.querySelectorAll('.toc-item').forEach(item => {
+  item.addEventListener('click', () => {
+    sectionIndex = parseInt(item.dataset.section, 10);
+    document.querySelectorAll('.toc-item').forEach(el => el.classList.remove('active'));
+    item.classList.add('active');
+  });
+});
 
 function appendTurn(role, text) {
   const turn = document.createElement('div');
@@ -16,7 +26,14 @@ function appendTurn(role, text) {
 
   const body = document.createElement('div');
   body.className = 'turn-body';
-  body.textContent = text;
+  text.split(/\n\n+/).forEach(para => {
+    const trimmed = para.trim();
+    if (trimmed) {
+      const p = document.createElement('p');
+      p.textContent = trimmed;
+      body.appendChild(p);
+    }
+  });
 
   turn.appendChild(label);
   turn.appendChild(body);
@@ -59,7 +76,7 @@ async function send() {
     const res = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: text, history })
+      body: JSON.stringify({ message: text, history, sectionIndex })
     });
 
     const data = await res.json();

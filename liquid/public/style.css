@@ -8,6 +8,7 @@
   --reader-label: #999;
   --guide-label: #444;
   --line: 65ch;
+  --toc-width: 13rem;
 }
 
 html, body {
@@ -24,6 +25,59 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
+/* ── TOC sidebar ── */
+
+#toc {
+  position: fixed;
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--toc-width);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  z-index: 10;
+}
+
+.toc-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.63rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c0bdb6;
+  line-height: 1.5;
+  transition: color 0.2s;
+}
+
+.toc-item:hover {
+  color: #999;
+}
+
+.toc-item.active {
+  color: var(--guide-label);
+}
+
+.toc-num {
+  flex-shrink: 0;
+  opacity: 0.7;
+  min-width: 1.1em;
+}
+
+/* Hide TOC when viewport is too narrow to show it beside the column */
+@media (max-width: 960px) {
+  #toc { display: none; }
+}
+
+/* ── Main content ── */
 
 header {
   width: 100%;
@@ -83,7 +137,15 @@ header h1 {
 .turn.guide  .turn-label { color: var(--guide-label); }
 
 .turn-body {
-  white-space: pre-wrap;
+  line-height: 1.58;
+}
+
+.turn-body p {
+  margin-bottom: 0.55em;
+}
+
+.turn-body p:last-child {
+  margin-bottom: 0;
 }
 
 .turn.reader .turn-body {
