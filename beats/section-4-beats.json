@@ -1,0 +1,122 @@
+{
+  "section": "uncanny-avatars-in-mirror-worlds",
+  "source": "source_texts/sections/section-4.md",
+  "version": "0.1",
+  "note": "Beat graph for section 4. The runtime injects the ACTIVE beat in full, the 'summary' field of GROUNDED beats, and nothing from LOCKED beats.",
+  "order": [
+    "avatar-double-par-excellence",
+    "two-kinds-of-doubles",
+    "vr-documentary",
+    "metaverse-mirror-world",
+    "vr-embodiment-gap"
+  ],
+  "beats": [
+    {
+      "id": "avatar-double-par-excellence",
+      "move": "claim",
+      "requires": [],
+      "summary": "The avatar is the uncanny double par excellence in digital media — a real-time extension of the self. NPCs in games are uncanny doubles of a different kind: the menacing other that the player, through their avatar, is meant to destroy.",
+      "canonical": "The avatar is the uncanny double par excellence in digital media. The avatar is your visual persona as you engage in a digital video game or in a social media environment such as Meta's Horizon Worlds. It functions as a real-time extension of yourself, one which you can often style to suit your own fancy. Depending on the system and game world mechanics, you can speak, move, and interact with objects, non-player characters (NPCs) or other people's avatars. It is not surprising that NPCs as enemies in first-person shooter games are often in the shape of zombies or aliens. They are uncanny doubles too. Such menacing uncanny doubles become the enemies that the player, through their avatar, are meant to destroy.",
+      "quotations": [],
+      "depth": [
+        {
+          "trigger": "Reader asks what makes the avatar specifically uncanny rather than just a representation",
+          "material": "The uncanniness lies in the real-time coupling. A portrait represents you; an avatar responds to you — it moves when you move, speaks when you speak, inhabits space as you do. It is a double in the operative sense: a thing that stands in for you and acts in your place. That substitution is simultaneously enabling and eerie. You are and are not the avatar."
+        }
+      ],
+      "deferrals": {
+        "metaverse": "The metaverse as mirror world — and what it means to be scanned into the system — comes after the basic distinction between the two kinds of doubles in games."
+      },
+      "exit": "Reader holds the double structure: the avatar as the player's own double, and NPCs as the uncanny other — both kinds of double inhabiting the same virtual world."
+    },
+    {
+      "id": "two-kinds-of-doubles",
+      "move": "grounds",
+      "requires": ["avatar-double-par-excellence"],
+      "summary": "There are at least two kinds of doubles in games: the NPC that haunts the virtual world as adversary or guide, and the player's own avatar — which is sometimes a full CG body, sometimes only a first-person point of view and a pair of hands.",
+      "canonical": "There are in fact at least two kinds of doubles in computer games. The NPCs are the most obvious case of an uncanny double that stalks and haunts the virtual worlds. These AI-steered characters are often what the player interacts with and often seeks to destroy, although the NPCs are no less uncanny when they are helpful to the player. The second double is the player in the virtual world, or rather the avatar that the player embodies with some part of their physical being, physiognomy, movements, and also intelligence and emotional capacities. At times, this double is fully realized with a CG body; at other times it is merely made up of a first-person point-of-view and hands.",
+      "quotations": [],
+      "depth": [
+        {
+          "trigger": "Reader asks about the disembodied first-person avatar — just hands",
+          "material": "The partial body is its own kind of uncanny. In many VR shooters all you see of yourself is a pair of hands. This is not a representation of a body — it is the minimum avatar required for interaction. The absence of the rest of the body does not make the experience less uncanny; it may make it more so, because what is missing is conspicuous. You are present enough to act, not present enough to be."
+        }
+      ],
+      "deferrals": {
+        "embodiment": "The kinesthetic and proprioceptive dimensions of VR embodiment — what happens when the whole body is implicated — come later in the argument."
+      },
+      "exit": "Reader distinguishes the two kinds: the NPC double that stalks the world, and the player's own avatar — which may be a full body, a pair of hands, or only a point of view."
+    },
+    {
+      "id": "vr-documentary",
+      "move": "complication",
+      "requires": ["two-kinds-of-doubles"],
+      "summary": "VR documentaries like On the Morning You Wake use CGI to make real footage eerie, placing the viewer as bodiless witness. This is a different relationship to the double — observation without embodiment, presence without a body to inhabit.",
+      "canonical": "There are several VR applications and experiences that play with the doubling of avatars and the human, as a threshold between two worlds. On the Morning You Wake (to the End of the World) from 2022 is about the moment on 13 January 2018 when every person on Hawaii received a text message warning of an imminent ballistic missile. In this experience, we are not scanned into a system, nor do we choose an avatar. Instead, we are asked to witness the inhabitants of Hawaii and their stories of that day. The videos of them are treated with CGI rendering both humans and the natural setting eerie, other-worldly. Almost real, but not quite. The viewer is sometimes a bodiless set of eyes that can do nothing but observe yet can move around in the space. Sometimes, there is a set of hands, or parts of a body.",
+      "quotations": [],
+      "depth": [
+        {
+          "trigger": "Reader asks why the CGI treatment makes real footage eerie",
+          "material": "Because it applies the uncanny valley to documentary material — to real people who actually lived through the event. The CGI rendering pulls the footage toward the threshold: the faces and bodies are recognizable as real, but processed into something subtly other. This is the La Ciotat effect working in reverse: instead of a mechanical recording that looks almost real, here is real material that has been made to look almost synthetic. The gap is reopened from the other direction."
+        }
+      ],
+      "deferrals": {
+        "embodiment": "The larger question of VR embodiment — what it means to have or not have a body in virtual space — is where this leads."
+      },
+      "exit": "Reader has the documentary example: a VR form where the viewer has no body, only eyes, and where the uncanny is produced by CGI treatment of the real rather than the other way around."
+    },
+    {
+      "id": "metaverse-mirror-world",
+      "move": "extension",
+      "requires": ["vr-documentary"],
+      "summary": "Zuckerberg and Fridman's pixel codec avatar interview stages a performative claim that the uncanny valley has been crossed. The most uncanny moment is Zuckerberg's offhand remark: 'We want to get more people scanned and into the system.'",
+      "canonical": "In a podcast interview with Lex Fridman in September 2023, Mark Zuckerberg appeared in a photorealistic avatar shape that Meta calls pixel codec avatars. Fridman and Zuckerberg both appear as truncated floating figures in high resolution as they meet inside a virtual environment, while actually sitting miles apart. Fridman suggests that the uncanny valley has been crossed, and Zuckerberg agrees although he also admits there remains fine-tuning to do when it comes to emotiveness of the avatars. Zuckerberg says 'It does feel like you; it doesn't feel weird or anything like that' although their avatars are made up of their faces and parts of their torso, without hands, suspended in a black space. Fridman repeats throughout: 'this is incredible. The realism here is just incredible.' With their repeated and performative comments on the realism of this experience, they are aligning VR with the most traditional form of cinematic realism. The only uncanny statement in the interview is Zuckerberg's offhand remark: 'We want to get more people scanned and into the system.'",
+      "quotations": [
+        {
+          "source": "Mark Zuckerberg, Lex Fridman Podcast, September 2023",
+          "text": "It does feel like you; it doesn't feel weird or anything like that."
+        },
+        {
+          "source": "Lex Fridman, ibid.",
+          "text": "this is incredible. The realism here is just incredible."
+        },
+        {
+          "source": "Mark Zuckerberg, ibid.",
+          "text": "We want to get more people scanned and into the system."
+        }
+      ],
+      "depth": [
+        {
+          "trigger": "Reader notes the irony of floating torsos claiming to have crossed the valley",
+          "material": "Exactly — truncated floating figures in a black space, without hands, insisting on their own realism. The claim and the evidence are in tension, and that tension is the point. They are performing the myth: insisting that the gap has closed while demonstrating that it has not. The rhetoric is the La Ciotat myth updated for the metaverse. And Zuckerberg's throwaway line about being scanned into the system is the one moment where the language slips — where the infrastructure of the project becomes briefly visible."
+        }
+      ],
+      "deferrals": {
+        "embodiment": "The question of what happens to the body in VR — the kinesthetic and proprioceptive dimensions — is where the argument goes next."
+      },
+      "exit": "Reader has the metaverse example: the performative claim that the valley is crossed, the persistence of the gap, and the unsettling undertone of Zuckerberg's remark about scanning people into the system."
+    },
+    {
+      "id": "vr-embodiment-gap",
+      "move": "theoretical-deepening",
+      "requires": ["metaverse-mirror-world"],
+      "summary": "VR's kinesthetic and proprioceptive immersion opens a new gap parallel to the visual one — between mediated embodied vision and actual embodiment. The La Ciotat effect remains operative; VR embodiment adds a dimension to the uncanny rather than resolving it.",
+      "canonical": "VR is immersive in a way different from cinema and engages the kinesthetic and proprioceptive senses differently. This embodiment does not raise VR beyond the realm of mediation. Rather it opens a new gap parallel to the visual gap — this one between a particular mediation of embodied vision and the embodiment that we experience when we take off the headset. VR embodiment fashions its own uncanny valley, or we could say that the uncanny valley of VR embodied spectatorship is multimodal. In either case, the La Ciotat effect is still operative. VR embodiment does not erase the uncanny quality of the experience; it adds another dimension to the uncanny.",
+      "quotations": [
+        {
+          "source": "Ceuterick, in this volume",
+          "text": "oscillation between content, the device and a potentially distracting physical environment forms an integral part of what virtual reality spectatorship is."
+        }
+      ],
+      "depth": [
+        {
+          "trigger": "Reader asks whether full-body haptic suits would finally close the gap",
+          "material": "The closer the haptic feedback approaches the sensation of physical reality, the more acute the discrepancy between what is simulated and what cannot be simulated becomes. A suit that reproduces touch perfectly would heighten rather than dissolve the awareness that the touch is mediated. The gap might narrow technically while deepening experientially. The uncanny is not a problem of insufficient fidelity; it is structural to the relationship between any medium and the reality it represents."
+        }
+      ],
+      "deferrals": {},
+      "exit": "Reader holds the multimodal argument: VR's kinesthetic immersion does not escape the uncanny — it adds a new register in which the La Ciotat effect operates. The uncanny valley is not only visual."
+    }
+  ],
+  "section_exit": "All beats grounded. The argument has moved from avatar-as-double through the metaverse's performative realism to the multimodal uncanny. The final section draws the conclusion."
+}

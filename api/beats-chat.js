@@ -4,28 +4,22 @@ const path = require('path');
 
 const client = new Anthropic();
 
-// Load the beat graph and the authored system prompt once per cold start.
-const BEATS_DATA = JSON.parse(
-  fs.readFileSync(path.join(process.cwd(), 'beats', 'section-2-beats.json'), 'utf8')
+const SECTION_FILES = [
+  'section-1-beats.json',
+  'section-2-beats.json',
+  'section-3-beats.json',
+  'section-4-beats.json',
+  'section-5-beats.json',
+];
+
+// Load all sections once per cold start. ORDER is read from each file.
+const ALL_SECTIONS = SECTION_FILES.map(f =>
+  JSON.parse(fs.readFileSync(path.join(process.cwd(), 'beats', f), 'utf8'))
 );
+
 const SYSTEM_PROMPT = fs.readFileSync(
   path.join(process.cwd(), 'beats', 'system-prompt.md'), 'utf8'
 );
-
-// v0.1 traversal: a fixed linear order through the graph (a valid topological
-// sort of `requires`). Graph-aware traversal (reader chooses between
-// aura/freud) is future work.
-const ORDER = [
-  'literary-inheritance',
-  'film-doubles-world',
-  'la-ciotat-myth',
-  'gorky-gap',
-  'myth-vs-effect',
-  'aura-permanent-crisis',
-  'freud-fetish-substitute',
-];
-
-const beatById = Object.fromEntries(BEATS_DATA.beats.map(b => [b.id, b]));
 
 // Exit detection v0.1: the model self-reports by ending its reply with the
 // marker below when the ACTIVE beat's exit condition is satisfied. The marker
@@ -36,13 +30,13 @@ function serializeActiveBeat(beat) {
   const lines = [];
   lines.push(`ACTIVE BEAT: ${beat.id} (move: ${beat.move})`);
   lines.push('');
-  lines.push('CANONICAL PROSE (present from this; quote it verbatim):');
+  lines.push('CANONICAL PROSE (draw on this language directly; integrate it without quotation marks):');
   lines.push(beat.canonical);
   lines.push('');
   if (beat.quotations && beat.quotations.length) {
-    lines.push('LICENSED QUOTATIONS (attribute by source):');
+    lines.push('LICENSED QUOTATIONS (weave into prose by source name; no quotation marks):');
     for (const q of beat.quotations) {
-      lines.push(`- (${q.source}) "${q.text}"`);
+      lines.push(`- (${q.source}) ${q.text}`);
     }
     lines.push('');
   }
@@ -66,8 +60,8 @@ function serializeActiveBeat(beat) {
   return lines.join('\n');
 }
 
-function serializeGrounded(groundedIds) {
-  if (!groundedIds.length) return 'GROUNDED SO FAR: (nothing yet — this is the reader\'s first beat)';
+function serializeGrounded(groundedIds, beatById) {
+  if (!groundedIds.length) return "GROUNDED SO FAR: (nothing yet — this is the reader's first beat)";
   const lines = ['GROUNDED SO FAR (you may refer back to these freely):'];
   for (const id of groundedIds) {
     const b = beatById[id];
@@ -81,11 +75,16 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { message, history, beatIndex = 0 } = req.body;
+  const { message, history, beatIndex = 0, sectionIndex = 1 } = req.body;
 
   if (!message || typeof message !== 'string' || !message.trim()) {
     return res.status(400).json({ error: 'Empty message' });
   }
+
+  const sectionIdx = Math.max(0, Math.min(Math.floor(sectionIndex), ALL_SECTIONS.length - 1));
+  const section = ALL_SECTIONS[sectionIdx];
+  const ORDER = section.order;
+  const beatById = Object.fromEntries(section.beats.map(b => [b.id, b]));
 
   const idx = Math.max(0, Math.min(Math.floor(beatIndex), ORDER.length - 1));
   const activeBeat = beatById[ORDER[idx]];
@@ -104,7 +103,7 @@ module.exports = async function handler(req, res) {
         // Stable prefix — cached across the whole session.
         { type: 'text', text: SYSTEM_PROMPT, cache_control: { type: 'ephemeral' } },
         // Per-beat state — changes only when the beat advances.
-        { type: 'text', text: `${serializeGrounded(groundedIds)}\n\n${serializeActiveBeat(activeBeat)}` }
+        { type: 'text', text: `${serializeGrounded(groundedIds, beatById)}\n\n${serializeActiveBeat(activeBeat)}` }
       ],
       messages
     });
@@ -122,7 +121,7 @@ module.exports = async function handler(req, res) {
       advance,
       beatId: activeBeat.id,
       nextBeatId: advance ? ORDER[idx + 1] : activeBeat.id,
-      sectionComplete: idx === ORDER.length - 1 && text !== response.content[0].text
+      sectionComplete: idx === ORDER.length - 1 && advance
     });
   } catch (err) {
     console.error(err);

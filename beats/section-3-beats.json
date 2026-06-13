@@ -1,0 +1,136 @@
+{
+  "section": "the-double-in-film",
+  "source": "source_texts/sections/section-3.md",
+  "version": "0.1",
+  "note": "Beat graph for section 3. The runtime injects the ACTIVE beat in full, the 'summary' field of GROUNDED beats, and nothing from LOCKED beats.",
+  "order": [
+    "film-uncanny-explains-doubling",
+    "body-snatchers-valley",
+    "us-repressed",
+    "todorov-hesitation",
+    "doubles-as-allegory",
+    "authenticity-claim"
+  ],
+  "beats": [
+    {
+      "id": "film-uncanny-explains-doubling",
+      "move": "claim",
+      "requires": [],
+      "summary": "Film's own uncanny status — its reception as a doubling of the world — explains why filmmakers find the double so irresistible as a theme, especially in horror and detective genres.",
+      "canonical": "The fact that film itself can be received as an uncanny doubling of the world helps to explain why filmmakers have found the theme of doubling so appealing, especially in the genres of horror and detective film. Film's ambiguous status also explains the ambivalent way in which doubles are depicted — often as a source of revulsion or at least anxiety and fear, but also fascination.",
+      "quotations": [],
+      "depth": [
+        {
+          "trigger": "Reader asks why horror and detective specifically",
+          "material": "Horror resolves the uncanny hesitation by abandoning rational explanation — the double is irreducibly strange, and the genre licenses that strangeness. Detective film goes the other way: the detective's job is to find a rational account, to uncover a hidden truth. Both genres are structured by the uncanny, but they dispose of it differently. Film is comfortable in both positions because it shares the ambivalence — it is itself an image that is both real and not real."
+        }
+      ],
+      "deferrals": {
+        "todorov": "Todorov's distinction between the fantastic and the uncanny gives this a sharper theoretical frame — but let the films illustrate it first."
+      },
+      "exit": "Reader holds the claim: film's own uncanny nature makes doubling a natural thematic obsession, and the ambivalence — revulsion and fascination — is structural, not incidental."
+    },
+    {
+      "id": "body-snatchers-valley",
+      "move": "grounds",
+      "requires": ["film-uncanny-explains-doubling"],
+      "summary": "In Invasion of the Body Snatchers the pod double is explicitly described as situated in the uncanny valley — all the features, no detail or character. The defining idea across all the remakes is loss of authenticity, which could be called loss of aura.",
+      "canonical": "In The Invasion of the Body Snatchers (1956), aliens are seeking to replace humans with their physical doubles. When they examine the body, they note that it resembles a human, and yet something is missing. Jack notes that 'It's like the first impression that's stamped on a coin. It isn't finished,' and Miles agrees 'You're right, it has all the features but no details, no character, no lines.' The pod, which is designed to replace Jack, is situated in the uncanny valley. The motif of the loss of authenticity — we could say aura — is carried across all three of the remakes of the 1956 film as well. It is the defining idea of all the films, the difference that the alien pods cannot erase.",
+      "quotations": [
+        {
+          "source": "Invasion of the Body Snatchers (1956)",
+          "text": "It's like the first impression that's stamped on a coin. It isn't finished."
+        },
+        {
+          "source": "Invasion of the Body Snatchers (1956)",
+          "text": "You're right, it has all the features but no details, no character, no lines."
+        }
+      ],
+      "depth": [
+        {
+          "trigger": "Reader connects to contemporary CG",
+          "material": "The connection is direct: the pod double is where CG modeling of humans was perhaps ten years ago, when CG faces lacked convincing lines and imperfections. More recently, characters in highly photorealistic video games like Ellie in The Last of Us II look considerably more human, but still lack an authentic sense of character, especially when in motion — smiling, frowning, talking. The lack of emotion and authenticity is exactly what the human characters identify in their replaced relatives in Body Snatchers."
+        },
+        {
+          "trigger": "Reader asks about Benjamin's aura in this context",
+          "material": "The word aura is not used in the film, but the concept is exact. Benjamin described aura as the quality of presence that mechanical reproduction cannot capture. The alien pods are a kind of mechanical reproduction — perfect in outline, empty of the life that gave the original its singularity. Loss of aura is the horror."
+        }
+      ],
+      "deferrals": {
+        "us": "Jordan Peele's US takes the same structure further — the repressed made literal. That film is next."
+      },
+      "exit": "Reader has the Body Snatchers argument: the pod double sits in the uncanny valley, and the films' defining concern is the loss of authenticity — the difference the pods cannot copy."
+    },
+    {
+      "id": "us-repressed",
+      "move": "complication",
+      "requires": ["body-snatchers-valley"],
+      "summary": "In Jordan Peele's US, doubles live underground mimicking their twins, sharing one soul. They act out the Freudian logic of the fetish and the repressed — until they murder their originals and take their place.",
+      "canonical": "In Jordan Peele's US, one double exists for each human subject, and one ultimately succeeds in replacing the main character. US realizes the metaphor of the repressed literally, as these doubles live underground, condemned to an empty life mimicking the actions of their twins above ground. We learn that they do not have their own soul, but must share the soul of their twin. They are othered, not fully human, and glimpses of their subterranean lives suggest that they are drained of their own affect — until they break out and, at least in some cases, are prepared to brutally murder their doubles and take their place. They act out the danger that is implied in Freud's analyses of the fetish or of the uncanny.",
+      "quotations": [],
+      "depth": [
+        {
+          "trigger": "Reader asks about the Freudian structure more specifically",
+          "material": "Freud's uncanny is the return of something repressed — something once familiar that has been hidden and now comes back in a disturbing form. US makes this literal: the underground doubles are what has been pushed below, denied, and they return with violence proportional to the length of their suppression. The shared soul is the twist: there is not enough humanity to go around. One of them has to be less than human, and the film eventually refuses to tell you which."
+        }
+      ],
+      "deferrals": {
+        "freud": "Freud's analysis of the uncanny and the fetish gets its fuller treatment later — this is only its appearance in the films themselves."
+      },
+      "exit": "Reader holds the US argument: the underground doubles literalize the Freudian repressed, and the shared soul makes the question of authenticity existential rather than merely visual."
+    },
+    {
+      "id": "todorov-hesitation",
+      "move": "distinction",
+      "requires": ["us-repressed"],
+      "summary": "Todorov's distinction between the fantastic and the uncanny maps onto how genre films handle the double: horror abandons rational explanation, detective film resolves it. Vertigo is the classic case of near-fatal hesitation followed by rational, tragic resolution.",
+      "canonical": "Todorov made a distinction between the fantastic and the uncanny. For Todorov, a narrative is uncanny if the events, while seeming supernatural, can ultimately be explained. The fantastic is the state of ambiguity between the uncanny and the marvelous — supernatural events that cannot be rationalized. What Todorov calls the fantastic, the hesitation between rational explanation and the miraculous, fits so well with the psychology of the uncanny and with the experience of filmic doubles. Horror and fantasy films involving doubles resolve the uncanny hesitation by abandoning rational explanation. Detective and mystery films go the other way. Vertigo is a classic example in which the uncanny hesitation over the nature of the Madeleine/Judy double — a hesitation that almost costs the detective his sanity — eventually resolves in a rational, if tragic, conclusion.",
+      "quotations": [],
+      "depth": [
+        {
+          "trigger": "Reader pushes on Vertigo specifically",
+          "material": "Scottie spends most of the film in the fantastic — he cannot determine whether Madeleine is a real person, a ghost, a double. The hesitation is the film. When the rational explanation arrives — Judy is Madeleine, Gavin Elster used her to fake his wife's death — it does not dispel the uncanny, it deepens it. The double was real, the original was murdered, and the detective was the tool. Resolution here is not relief; it is horror with a cause."
+        }
+      ],
+      "deferrals": {
+        "allegory": "These films are also allegorical — the double that supplants the human stands in for a newer medium that might supplant film itself. That reading comes next."
+      },
+      "exit": "Reader can distinguish how horror and detective film differently resolve the uncanny hesitation, and has Vertigo as the exemplary case of hesitation that survives even rational resolution."
+    },
+    {
+      "id": "doubles-as-allegory",
+      "move": "extension",
+      "requires": ["todorov-hesitation"],
+      "summary": "Films featuring doubles who supplant humans are allegories for film's own fear of being superseded by newer media — television, video games, VR. Hollywood's anxiety about each new technology is refracted through the theme of replacement.",
+      "canonical": "In any genre, films that feature doubles who supplant human characters symbolically or in fact can be read as allegories for the possibility that film itself might be superseded by other media. The concern is both for the economic future of mainstream cinema and for the cultural impact. Hollywood's insecurity in the face of new media technologies dates back at least to the advent of broadcast television in the 1950s, when film attendance did fall. In the 1990s, the rise of video games posed the first challenge from digital technologies. Hollywood responded with a series of films that explore the dystopian threat of games — Lawnmower Man, Strange Days, ExistenZ, and most famously the Matrix films. Even while filmmakers were thematizing the danger of CG-based media, film studios came to embrace the visual techniques of video games in some of their most lucrative films.",
+      "quotations": [],
+      "depth": [
+        {
+          "trigger": "Reader asks about the Matrix specifically",
+          "material": "The Matrix is the clearest case: the double world — the simulation — is a digital construct indistinguishable from reality, and the horror is that most people prefer it. It is a film about VR made at the moment when VR was first becoming a cultural anxiety. The film both expresses the fear and demonstrates Hollywood's capacity to incorporate the threat — to make the danger of the new medium into profitable narrative."
+        }
+      ],
+      "deferrals": {
+        "authenticity": "The flip side of this anxiety is film's claim to authenticity — which is where this argument lands."
+      },
+      "exit": "Reader sees the allegorical dimension: the supplanting double in horror is also a figure for the medium that might replace cinema, and Hollywood's response oscillates between thematizing and incorporating the threat."
+    },
+    {
+      "id": "authenticity-claim",
+      "move": "conclusion",
+      "requires": ["doubles-as-allegory"],
+      "summary": "Film's insistence on authenticity — real emotions, authentic human problems — is a defensive response to the representational gap that newer media expose. The gap remains; the claim to authenticity is film's way of holding the line.",
+      "canonical": "Each of these technological innovations and their perceived threat reminds us of filmmakers' fundamental uncertainty about the status of film as a reality medium. That uncertainty is the product not only of their fear of film's replacement by a newer medium but also of the concern over the gap between film's representational capacity and the real world. Each new technology aims to fill that gap. If the danger posed by some genres of video games and VR is that they threaten to blur the line between visual reality and illusion, then film itself was always liable to the same critique. As we are told every March at the Oscar ceremony, mainstream narrative films do not merely offer their viewers a faithful visual representation of reality; they depict 'real emotions' and confront authentic human problems.",
+      "quotations": [],
+      "depth": [
+        {
+          "trigger": "Reader asks whether film's authenticity claim is sincere",
+          "material": "It is both sincere and strategic. Sincere because filmmakers genuinely believe in cinema's capacity to reveal human truth — the tradition of Italian neorealism, the New Waves, documentary, all attest to this. Strategic because the claim is renewed precisely when a new medium threatens to make film look insufficient. The Oscar rhetoric about 'real emotions' intensified in the 1990s as video games grew in cultural status. The claim is the defense."
+        }
+      ],
+      "deferrals": {},
+      "exit": "Reader holds the full argument: film's thematic fascination with doubles is rooted in its own uncanny status, and its insistence on authenticity is a response to the gap that status entails."
+    }
+  ],
+  "section_exit": "All beats grounded. The next section (Uncanny Avatars in Mirror Worlds) moves from film doubles to their digital successors."
+}

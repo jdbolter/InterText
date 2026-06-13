@@ -27,6 +27,18 @@
       padding: 2.5rem 1.5rem;
     }
     .wrap { width: 100%; max-width: 680px; display: flex; flex-direction: column; flex: 1; }
+    nav {
+      display: flex; gap: 0.4rem; flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .nav-btn {
+      font-family: var(--sans); font-size: 0.62rem; letter-spacing: 0.12em;
+      text-transform: uppercase; background: transparent; border: 1px solid var(--border);
+      color: var(--muted); padding: 0.35rem 0.7rem; cursor: pointer;
+    }
+    .nav-btn.active {
+      background: var(--panel); color: var(--bg); border-color: var(--panel);
+    }
     header { text-align: center; margin-bottom: 1.8rem; }
     .eyebrow {
       font-family: var(--sans); font-size: 0.62rem; letter-spacing: 0.22em;
@@ -53,19 +65,27 @@
       color: var(--text);
     }
     textarea:focus { outline: none; border-color: var(--gold); }
-    button {
+    button[type="submit"] {
       font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
       background: var(--panel); color: var(--bg); border: none; padding: 0 1.4rem; cursor: pointer;
     }
-    button:disabled { opacity: 0.4; cursor: default; }
+    button[type="submit"]:disabled { opacity: 0.4; cursor: default; }
   </style>
 </head>
 <body>
   <div class="wrap">
+    <nav id="section-nav" aria-label="Essay sections">
+      <button class="nav-btn" data-section="0">I</button>
+      <button class="nav-btn active" data-section="1">II</button>
+      <button class="nav-btn" data-section="2">III</button>
+      <button class="nav-btn" data-section="3">IV</button>
+      <button class="nav-btn" data-section="4">V</button>
+    </nav>
+
     <header>
       <div class="eyebrow">A probe, not a product</div>
-      <h1>Film and the Uncanny</h1>
-      <div id="beat-chip">beat: literary-inheritance</div>
+      <h1 id="section-title">Film and the Uncanny</h1>
+      <div id="beat-chip">literary-inheritance</div>
     </header>
     <div id="transcript">
       <div class="turn book">This is one section of an argument about media and the double. Begin wherever you like — ask, object, or simply say: go on.</div>
@@ -82,9 +102,46 @@
     const input = document.getElementById('input');
     const send = document.getElementById('send');
     const chip = document.getElementById('beat-chip');
+    const titleEl = document.getElementById('section-title');
+
+    const SECTION_TITLES = [
+      'The Uncanny Valley & the Double',
+      'Film and the Uncanny',
+      'The Double in Film',
+      'Uncanny Avatars in Mirror Worlds',
+      'Feature, not a Bug',
+    ];
+
+    const SECTION_FIRST_BEATS = [
+      'vr-ultimate-medium',
+      'literary-inheritance',
+      'film-uncanny-explains-doubling',
+      'avatar-double-par-excellence',
+      'remediation-claim',
+    ];
 
     let history = [];
     let beatIndex = 0;
+    let sectionIndex = 1;
+
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const newSection = parseInt(btn.dataset.section, 10);
+        if (newSection === sectionIndex) return;
+        sectionIndex = newSection;
+        beatIndex = 0;
+        history = [];
+
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        titleEl.textContent = SECTION_TITLES[sectionIndex];
+        chip.textContent = SECTION_FIRST_BEATS[sectionIndex];
+
+        transcript.innerHTML = '<div class="turn book">This is one section of an argument about media and the double. Begin wherever you like — ask, object, or simply say: go on.</div>';
+        input.focus();
+      });
+    });
 
     function addTurn(role, text) {
       const div = document.createElement('div');
@@ -113,7 +170,7 @@
         const res = await fetch('/api/beats-chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: text, history, beatIndex })
+          body: JSON.stringify({ message: text, history, beatIndex, sectionIndex })
         });
         const data = await res.json();
         if (data.error) throw new Error(data.error);
@@ -126,7 +183,7 @@
           beatIndex += 1;
           addDivider();
         }
-        chip.textContent = 'beat: ' + (data.advance ? data.nextBeatId : data.beatId);
+        chip.textContent = data.advance ? data.nextBeatId : data.beatId;
       } catch (err) {
         addTurn('book', '[The book is unavailable: ' + err.message + ']');
       } finally {

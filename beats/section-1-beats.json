@@ -1,0 +1,107 @@
+{
+  "section": "the-uncanny-valley-and-the-uncanny-double",
+  "source": "source_texts/sections/section-1.md",
+  "version": "0.1",
+  "note": "Beat graph for section 1. The runtime injects the ACTIVE beat in full, the 'summary' field of GROUNDED beats, and nothing from LOCKED beats.",
+  "order": [
+    "vr-ultimate-medium",
+    "mori-valley",
+    "cg-borrows-term",
+    "film-as-benchmark",
+    "film-vr-continuity"
+  ],
+  "beats": [
+    {
+      "id": "vr-ultimate-medium",
+      "move": "claim",
+      "requires": [],
+      "summary": "VR is promoted as the ultimate medium that can reproduce or replace reality; photorealism — achieved through 3D CG — is its operative goal.",
+      "canonical": "Virtual reality (VR) is often promoted as the ultimate medium in its capacity to reproduce or indeed replace reality. The representational techniques underlying VR as a reality medium are those of 3D computer graphics (3D CG). In the quest for photorealism, computer graphics artists and even some computer scientists refer to the task of crossing the 'uncanny valley.'",
+      "quotations": [],
+      "depth": [
+        {
+          "trigger": "Reader asks what photorealism means as a goal",
+          "material": "Photorealism means the image is indistinguishable from a photograph of the physical world — its textures, lighting, and human figures look as though they were recorded, not computed. This is the standard that live-action film set. It is not merely a technical benchmark; it carries a claim about the medium's relationship to reality."
+        }
+      ],
+      "deferrals": {
+        "film": "The connection to film is coming — but let the valley take shape first.",
+        "ai": "Generative AI and chatbots belong to the same argument, but they enter later. The claim begins with VR and CG."
+      },
+      "exit": "Reader has grasped the basic situation: VR markets itself as a reality medium, and photorealism is its operative ambition."
+    },
+    {
+      "id": "mori-valley",
+      "move": "grounds",
+      "requires": ["vr-ultimate-medium"],
+      "summary": "Masahiro Mori coined 'uncanny valley' in robotics: as robots approach human likeness, affinity rises then plummets before recovering — the valley is the zone of near-but-not-perfect resemblance.",
+      "canonical": "The 'uncanny valley' is a term coined in the 1970s by a roboticist, Masahiro Mori. Mori illustrated his concept with a graph in which 'human likeness' is plotted on the x-axis and what was translated as 'affinity' on the y-axis. He proposed that as robots become more human-like, our affinity for them increases, but only up to a point. Robots or artifacts that bear a close but not perfect resemblance to humans instead evoke a feeling of unease or uncanniness. Affinity plummets. As a robot or artifact achieves something closer to perfect realism, it moves back up the affinity curve. There is then an 'uncanny valley' that roboticists could avoid either by staying in the realm of the not-very-human or by achieving a perfect resemblance to the human.",
+      "quotations": [],
+      "depth": [
+        {
+          "trigger": "Reader asks where the word 'uncanny' comes from in Mori",
+          "material": "Mori used the Japanese bukimi no tani — literally 'eerie valley.' The English translation 'uncanny' imports a much richer tradition: Freud's unheimlich, the familiar-made-strange. Mori himself was a roboticist interested in practical design, not psychoanalysis. The convergence of his engineering concept with Freud's literary term is part of what makes the uncanny valley so productive — it names a real perceptual effect and connects it to a long tradition of thinking about strangeness."
+        },
+        {
+          "trigger": "Reader asks for concrete examples of the valley",
+          "material": "The clearest cases are humanoid robots — the closer they get to human appearance, the more disturbing small imperfections become. A prosthetic hand that looks almost but not quite real. A CGI face that convinces until it smiles. Mori also placed a moving corpse on his graph — the most extreme case of near-human resemblance without life. The valley is not about the obviously artificial; it is about the almost-convincing."
+        }
+      ],
+      "deferrals": {
+        "film": "Film's position in the valley is exactly what this will get to — but let the valley's geometry settle first."
+      },
+      "exit": "Reader understands the valley's shape: affinity rises, plummets at near-human resemblance, then rises again toward perfect realism."
+    },
+    {
+      "id": "cg-borrows-term",
+      "move": "pivot-claim",
+      "requires": ["mori-valley"],
+      "summary": "CG borrowed the uncanny valley from robotics because realistic-but-imperfect 3D humans produce the same eerie effect; both fields share the ambition to recreate the human — to make a double.",
+      "canonical": "Computer graphics borrowed the term from robotics, because realistic, but imperfect 3D CG humans and animals too can become less rather than more sympathetic. Although they do not necessarily acknowledge it, both artists and researchers understand the phenomenon of the uncanny valley in terms of the earlier media of photography and film. The uncanny valley problem is almost always posed in the context of rendering human-like figures. It arises, then, that the challenge of CG is to recreate the human, or in other words, to make a human double. This is an ambition that CG shares with robotics.",
+      "quotations": [],
+      "depth": [
+        {
+          "trigger": "Reader asks why the valley is almost always about human figures rather than landscapes",
+          "material": "Humans are calibrated to read other humans — micro-expressions, skin texture, the physics of movement. Any deviation from authentic human appearance registers as wrongness in a way that deviation from a realistic tree or rock does not. The valley is a measure of how specifically attuned human perception is to the human form. A 3D landscape could in principle be uncanny in a loose sense, but it lacks the referent that makes the valley so acute: the human body, which every viewer knows from the inside."
+        }
+      ],
+      "deferrals": {
+        "avatar": "Avatars in VR are exactly this kind of double — but that argument comes after the film tradition is established."
+      },
+      "exit": "Reader sees why CG adopted the term and grasps the shared ambition: both robotics and CG are in the business of making human doubles."
+    },
+    {
+      "id": "film-as-benchmark",
+      "move": "distinction",
+      "requires": ["cg-borrows-term"],
+      "summary": "The far side of the valley — perfect realism — is identified with live-action film and photography; film becomes the aesthetic standard that CG and VR are measured against and inheriting from.",
+      "canonical": "The far side of the valley would be realistic photography and live-action film. The allure of the photorealistic and the 'real' is still an important driver behind both technological and content development for VR experiences. Photorealism is not the whole story of CG and VR today, any more than realism is the whole story of film. Many videogames offer their players cartoon-like worlds that remain safely on the near side of the uncanny valley. However, the dominant drive in mainstream development continues to pursue the same photorealistic goal.",
+      "quotations": [],
+      "depth": [
+        {
+          "trigger": "Reader asks whether games or VR are pursuing photorealism differently from film",
+          "material": "Games have the option of cartoon-like worlds — and many take it, safely on the near side of the valley. Film did not have that option in its mainstream form; its medium was always a recording of the real. CG and VR could theoretically escape the valley by embracing abstraction — and some digital art does exactly this. What is striking is how much of the mainstream industry declines to: it chases the photorealistic goal that film set, even when it need not."
+        }
+      ],
+      "deferrals": {},
+      "exit": "Reader holds the identification: film and photography are the far side — the target that CG and VR measure themselves against."
+    },
+    {
+      "id": "film-vr-continuity",
+      "move": "thesis",
+      "requires": ["film-as-benchmark"],
+      "summary": "The central thesis: clear continuity runs between uncanny doubles in film and in digital media; both are technologies of illusion claiming to reproduce reality; uncanny oscillation between illusion and reality is the key aesthetic of both.",
+      "canonical": "There is a clear continuity between the tradition of uncanny doubles in film and the uncanny doubles in digital media, such as avatars in VR and more recently AI generated imagery and even chatbots. VR shares with or indeed inherits from film an ambivalence about its status as a medium. Both VR and mainstream film are technologies of illusion and yet both claim in some sense to reproduce or appropriate reality. The uncanny oscillation between illusion and reality is a key feature of the aesthetics of both film and digital media.",
+      "quotations": [],
+      "depth": [
+        {
+          "trigger": "Reader asks about AI chatbots specifically",
+          "material": "Chatbots and AI-generated text are the most recent instance of the same pattern: a technology that seems to reproduce human thought and expression, while everyone knows it does not. The uncanny oscillation — knowing it is not real, experiencing it as if it were — applies as much to a convincing conversation as to a convincing face. The valley is not only visual. The thing now answering you belongs to this lineage."
+        }
+      ],
+      "deferrals": {},
+      "exit": "Reader can state the thesis: film and VR/CG share a structural ambivalence — technologies of illusion that claim reality — and uncanny doubling is the key aesthetic of both."
+    }
+  ],
+  "section_exit": "All beats grounded. The thesis — continuity between film and digital media through uncanny doubling — is established. The next section develops the film tradition in depth."
+}

@@ -1,0 +1,146 @@
+{
+  "section": "the-uncanny-is-a-feature-not-a-bug",
+  "source": "source_texts/sections/section-5.md",
+  "version": "0.1",
+  "note": "Beat graph for section 5. The runtime injects the ACTIVE beat in full, the 'summary' field of GROUNDED beats, and nothing from LOCKED beats.",
+  "order": [
+    "remediation-claim",
+    "film-enters-landscape",
+    "la-ciotat-essence",
+    "film-survives-and-incorporates",
+    "cg-inherits-anxiety",
+    "thought-experiment",
+    "feature-not-bug"
+  ],
+  "beats": [
+    {
+      "id": "remediation-claim",
+      "move": "claim",
+      "requires": [],
+      "summary": "CG and VR belong to and remediate the representational practices of live-action film; their preoccupation with the uncanny valley reflects the same concern that has defined film — whether the medium is a mere substitute for the real.",
+      "canonical": "CG and VR should be understood as belonging to and remediating the representational practices of live-action film. CG and VR's preoccupation with the uncanny valley indicates a similar concern to the one that has defined film as a medium — the concern whether their medium is a mere substitution for the real and the authentic. Yet, film and VR each occupy or have occupied a different position in the contemporary media landscape.",
+      "quotations": [],
+      "depth": [
+        {
+          "trigger": "Reader invokes Uricchio's counter-claim that VR is antithetical to cinema",
+          "material": "Uricchio argues that VR is antithetical to cinema in its visual constructions, organization of time, and possibilities of story — and those insights are valuable. But they do not necessarily contradict the quality that most closely connects them: their ambivalent and uncanny claim to capture reality. Two media can differ radically in how they construct time and story and still share the same fundamental anxiety about their relationship to the real. That shared anxiety is the argument's territory."
+        }
+      ],
+      "deferrals": {
+        "ai": "Generative AI belongs to this same lineage — the argument earns that claim through the thought experiment that comes at the end."
+      },
+      "exit": "Reader holds the remediation claim: CG and VR inherit from film the same preoccupation with the uncanny gap between representation and reality."
+    },
+    {
+      "id": "film-enters-landscape",
+      "move": "grounds",
+      "requires": ["remediation-claim"],
+      "summary": "As a new medium at the turn of the 20th century, film entered a landscape of rivals — painting, photography, stage. It claimed superiority over each, but remained an uncanny substitute for the real.",
+      "canonical": "As a new visual medium at the turn of the 20th century, film entered a media landscape that included painting and photography. As a mode of entertainment, it was consumed by audiences in a fashion similar to stage productions including live drama and popular entertainments such as magic shows. Ontologically, film competed with painting and photography in representing the real. As a technology of mechanical reproduction, it could claim to be better than painting because it recorded the world without the invention of the artist. It could claim to be better than photography, because it captured the world in motion. But it remained an uncanny substitute for the real.",
+      "quotations": [],
+      "depth": [
+        {
+          "trigger": "Reader asks about film's relationship to magic shows",
+          "material": "The connection is not incidental. Early film was literally exhibited in the same venues as magic acts, and the Lumière brothers and Méliès both understood film as a new kind of magic. Méliès had owned a magic theater before turning to film. The audience came prepared to witness the apparently impossible. What film offered was not credulity but astonishment in full knowledge of the trick — which is precisely the uncanny structure of the La Ciotat effect."
+        }
+      ],
+      "deferrals": {
+        "la-ciotat": "The La Ciotat story becomes the argument's key exhibit — but the media landscape needs to be in place first."
+      },
+      "exit": "Reader holds film's position in 1900: a new technology that claimed to outdo its rivals, but could not escape its own substitutional status."
+    },
+    {
+      "id": "la-ciotat-essence",
+      "move": "pivot-claim",
+      "requires": ["film-enters-landscape"],
+      "summary": "The La Ciotat story encodes the essence of film: the audience could only be astonished at the train because they knew it was a projection. Uncanny doubling — knowing and not-knowing — is not a flaw in film; it is its defining condition.",
+      "canonical": "The audience must always be aware at some level that they were watching images projected on a screen, which is the real point of the La Ciotat story. The audience could only be astonished at how much the train on the screen looked like a real train if they knew that it was only a moving image. This uncanny doubling is the essence of film, which helps to explain filmmakers' and audiences' fear and fascination with themes of doubling and substitution.",
+      "quotations": [],
+      "depth": [
+        {
+          "trigger": "Reader asks whether digital streaming or home viewing changes this",
+          "material": "The medium changes; the structure does not. Watching a film on a laptop in bed, you are no less aware that the image on the screen is a projection — even if the screen is small and the device is familiar. The La Ciotat effect does not depend on the theater or the darkness. It depends on the gap between the image and the world it represents, and that gap travels with the film wherever it goes."
+        }
+      ],
+      "deferrals": {},
+      "exit": "Reader holds the pivot: the La Ciotat structure — astonishment predicated on knowledge — is the essence of film, not a feature of its early naivety. Uncanny doubling is constitutive."
+    },
+    {
+      "id": "film-survives-and-incorporates",
+      "move": "extension",
+      "requires": ["la-ciotat-essence"],
+      "summary": "Film has survived television, video games, and VR — partly by incorporating their aesthetic techniques. The result is that contemporary blockbusters are hybrids in which mainstream film has become more game-like than VR itself.",
+      "canonical": "After more than a century, film today remains an important medium, having successfully negotiated the challenge posed by television in the middle and video games in the second half of the 20th century. Videogames and related forms of CG/VR constitute a new challenge to film's cultural and ontological status. They make a virtue of the fact that they are not limited to recording the world but can immerse their users in an infinite space of imaginary 3D worlds. At least since the 1990s, mainstream filmmakers have responded to CG/VR with anxiety but also fascination, and that fascination has led them to incorporate or imitate digital styles from video games — with the result that film may now often be more post-cinematic than VR itself.",
+      "quotations": [],
+      "depth": [
+        {
+          "trigger": "Reader asks what 'more post-cinematic than VR' means",
+          "material": "Contemporary blockbusters are hybrids: live action combined with extensive CGI postproduction, action sequences with rhythms borrowed from first-person shooters, protagonist movement and camera work derived from gaming. VR, meanwhile, often pursues a cinematic aesthetic — it shoots to look like film. The irony is that film moved toward games while games and VR moved toward film, and they met somewhere in the middle, each wearing some of the other's clothes."
+        }
+      ],
+      "deferrals": {
+        "cg-anxiety": "The anxiety that CG inherits from film — specifically about photorealism and the real — is the next move."
+      },
+      "exit": "Reader holds the survival argument: film incorporated its rivals' aesthetics and outlasted them, but the process left it transformed — and left CG/VR with film's own representational anxieties."
+    },
+    {
+      "id": "cg-inherits-anxiety",
+      "move": "theoretical-deepening",
+      "requires": ["film-survives-and-incorporates"],
+      "summary": "CG is in principle freed from the need to represent the physical world, yet it continues to pursue photorealism as a key measure — inheriting film's anxiety about the real. Uncanny doubling is as essential to CG and VR as it is to film.",
+      "canonical": "In principle, CG (like cel animation) is freed of the need to faithfully represent the physical world. Yet CG continues to make photorealism one of its key measures and so inherits film's anxiety about representing the real. Uncanny doubling is as much a fascination and concern for video games as it is for traditional film, and many VR experiences and other digital forms that depend on CG continue to pursue realistic representation. The uncanny valley is a term borrowed from robotics, but it also invokes the long tradition of the uncanny in film. Thus the uncanny is as essential to CG/VR as it is to film.",
+      "quotations": [],
+      "depth": [
+        {
+          "trigger": "Reader asks why CG doesn't just embrace abstraction and skip the valley entirely",
+          "material": "Some do — and those traditions are real and valuable. But the mainstream consistently returns to photorealism, and the reason is cultural as much as technical. The aspiration to reproduce the real carries prestige; abstraction reads as a retreat. More importantly, the uncanny gap is where the audience's interest lives. The valley is not a problem the industry keeps failing to solve; it is the condition the industry keeps returning to because the feeling it generates — the astonishment, the unease — is what draws audiences in."
+        }
+      ],
+      "deferrals": {
+        "thought-experiment": "The thought experiment that follows asks what would actually happen if the valley were finally crossed."
+      },
+      "exit": "Reader holds the inheritance: CG did not have to pursue photorealism but did, taking on film's anxiety as its own. The uncanny is structural to digital media, not an engineering problem awaiting solution."
+    },
+    {
+      "id": "thought-experiment",
+      "move": "complication",
+      "requires": ["cg-inherits-anxiety"],
+      "summary": "Imagine perfect photorealism achieved — NPCs indistinguishable from humans, AI conversations indistinguishable from human speech. The uncanny valley would have been crossed; the world would be more uncanny than ever. The only exit from the uncanny is forgetting that the outside world exists.",
+      "canonical": "Imagine a time in the future when CG/VR developers do manage to achieve perfect photorealism of human figures. Imagine the metaverse in which we as users could interact with NPCs that were visually indistinguishable from humans and through advances in generative AI, could hold convincing conversations. The uncanny valley would have been crossed, yet these characters and this world would be more uncanny than ever. We would still know that this world was synthetic — that it had a different ontological status than the world that we experience when we take off the headset. The only way that the metaverse could lose the quality of the uncanny would be if human users were to forget the existence of the world outside.",
+      "quotations": [],
+      "depth": [
+        {
+          "trigger": "Reader says we already have AI that holds convincing conversations",
+          "material": "Yes — and the experience is uncanny in exactly the way predicted. You know the responses are generated; the conversation feels as though it is not. Both things are true simultaneously. The valley has been narrowed in the domain of language while the uncanny has intensified. Crossing the valley does not resolve the uncanny; it deepens it. The gap is not between the fake and the real at the level of surface appearance — it is between two different ontological statuses, and that gap cannot be closed by any improvement in fidelity."
+        },
+        {
+          "trigger": "Reader asks about the forgetting scenario — is it even possible?",
+          "material": "It is the dystopian scenario that some VR enthusiasts approach as an aspiration and some critics treat as a warning. But it presupposes something harder than total immersion: it requires the user to lose the concept of a world outside — not just to stop attending to it but to stop knowing it exists. That is not immersion; that is a different kind of consciousness. Short of that, the uncanny remains."
+        }
+      ],
+      "deferrals": {},
+      "exit": "Reader has worked through the thought experiment and grasped its conclusion: crossing the valley intensifies rather than dissolves the uncanny, because knowledge of the gap is structural to the experience."
+    },
+    {
+      "id": "feature-not-bug",
+      "move": "conclusion",
+      "requires": ["thought-experiment"],
+      "summary": "The conclusion: the uncanny is a feature, not a bug — for film and CG alike. The gap between medium and reality is not a failure to be corrected but the condition that generates the experience.",
+      "canonical": "For both film and CG, the uncanny is a feature, not a bug.",
+      "quotations": [],
+      "depth": [
+        {
+          "trigger": "Reader asks what 'feature not bug' means practically for developers",
+          "material": "It means the uncanny valley is not a design problem with an engineering solution. If crossing the valley only deepens the uncanny — as the thought experiment shows — then the valley is not a threshold between inadequacy and success. It is the territory in which the interesting work happens: the astonishment, the unease, the hesitation between real and not-real. A developer who treats the uncanny as a bug to be fixed is working against the medium's own deepest tendency."
+        },
+        {
+          "trigger": "Reader asks whether this applies to the AI they are speaking with right now",
+          "material": "The argument has been leading here. A system that generates language that sounds human, while everyone knows it is not human — that is uncanny doubling in the domain of voice and thought. The valley is not only visual. And if the uncanny is a feature rather than a bug, then this conversation is not in spite of the gap between what this system is and what it sounds like. It is because of it."
+        }
+      ],
+      "deferrals": {},
+      "exit": "The argument is complete. The uncanny is constitutive of film, CG, VR, and the system now speaking — a feature of any medium that doubles the world while everyone knows better."
+    }
+  ],
+  "section_exit": "All beats grounded. The argument has arrived at its conclusion: the uncanny is a feature, not a bug, for every medium that doubles the world."
+}

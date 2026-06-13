@@ -3,6 +3,15 @@
   "source": "source_texts/full-uncanny.md — section 'Film and the Uncanny'",
   "version": "0.1",
   "note": "Beat graph for one section. The runtime injects into the model's context: the ACTIVE beat in full, the 'summary' field of GROUNDED beats, and nothing from LOCKED beats. The model presents FROM the canonical prose and quotations; the JSON structure itself is never shown to the reader.",
+  "order": [
+    "literary-inheritance",
+    "film-doubles-world",
+    "la-ciotat-myth",
+    "gorky-gap",
+    "myth-vs-effect",
+    "aura-permanent-crisis",
+    "freud-fetish-substitute"
+  ],
   "beats": [
     {
       "id": "literary-inheritance",
