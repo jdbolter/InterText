@@ -16,7 +16,7 @@ const SECTION_INTROS = [
 
   `<p>In September 2023, Mark Zuckerberg sat across from podcaster Lex Fridman for an interview. They were not in the same room. They appeared as photorealistic avatars &mdash; truncated floating figures, torsos only, suspended in a black space. Fridman kept repeating: &ldquo;This is incredible. The realism here is just incredible.&rdquo; Near the end, Zuckerberg said something almost offhand: &ldquo;We want to get more people scanned and into the system.&rdquo;</p>`,
 
-  `<p>Film is more than a century old. It has survived and flourished in a media economy that includesphotography, radio, television, video games, streaming. Each has flourished not by winning the argument about realism, but by refusing to settle it.</p>`,
+  `<p>Film is more than a century old. It has survived and flourished in a media economy that includes photography, radio, television, video games, streaming. Each has flourished not by winning the argument about realism, but by refusing to settle it.</p>`,
 ];
 
 // Set initial intro for the default active section
