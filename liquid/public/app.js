@@ -8,6 +8,16 @@ let history = [];
 let firstSend = true;
 let sectionIndex = 0;
 
+const SECTION_NUMERALS = ['I', 'II', 'III', 'IV', 'V'];
+
+const SECTION_TITLES = [
+  'The Uncanny Valley & the Double',
+  'Film and the Uncanny',
+  'The Double in Film',
+  'Uncanny Avatars in Mirror Worlds',
+  'Feature, not a Bug',
+];
+
 const SECTION_INTROS = [
   `<p>In 1970, Japanese roboticist Masahiro Mori drew a graph. On one axis: how human-like a robot looks. On the other: how much affinity people feel toward it. The line rises steadily — then suddenly plummets. There is a valley right at the point of near-human resemblance. He called it the uncanny valley. It was an observation about robots, but it also applied to computer graphics and other media forms.</p>`,
 
@@ -21,6 +31,8 @@ const SECTION_INTROS = [
 ];
 
 intro.innerHTML = SECTION_INTROS[sectionIndex];
+intro.classList.add('is-hiding');
+appendSectionBreak(0, false);
 
 // TOC navigation
 document.querySelectorAll('.toc-item').forEach(item => {
@@ -29,10 +41,43 @@ document.querySelectorAll('.toc-item').forEach(item => {
     document.querySelectorAll('.toc-item').forEach(el => el.classList.remove('active'));
     item.classList.add('active');
     intro.innerHTML = SECTION_INTROS[sectionIndex];
-    intro.classList.remove('is-hiding');
     firstSend = true;
+
+    if (conv.children.length > 0) {
+      appendSectionBreak(sectionIndex);
+    } else {
+      intro.classList.remove('is-hiding');
+    }
   });
 });
+
+function appendSectionBreak(idx, scroll = true) {
+  const el = document.createElement('div');
+  el.className = 'section-break';
+
+  const header = document.createElement('div');
+  header.className = 'section-break-header';
+
+  const num = document.createElement('span');
+  num.className = 'section-break-num';
+  num.textContent = SECTION_NUMERALS[idx];
+
+  const title = document.createElement('span');
+  title.textContent = SECTION_TITLES[idx];
+
+  header.appendChild(num);
+  header.appendChild(title);
+
+  const introBox = document.createElement('div');
+  introBox.className = 'section-break-intro';
+  introBox.innerHTML = SECTION_INTROS[idx];
+
+  el.appendChild(header);
+  el.appendChild(introBox);
+  conv.appendChild(el);
+
+  if (scroll) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
 function appendGuideResponse(text) {
   const turn = document.createElement('div');
@@ -56,7 +101,7 @@ function appendGuideResponse(text) {
   turn.appendChild(label);
   turn.appendChild(body);
   conv.appendChild(turn);
-  leftCol.scrollTo({ top: leftCol.scrollHeight, behavior: 'smooth' });
+  turn.scrollIntoView({ behavior: 'smooth', block: 'end' });
 }
 
 function appendReaderMessage(text) {
@@ -75,7 +120,7 @@ function showThinking() {
   spinner.className = 'thinking-spinner';
   el.appendChild(spinner);
   conv.appendChild(el);
-  leftCol.scrollTo({ top: leftCol.scrollHeight, behavior: 'smooth' });
+  el.scrollIntoView({ behavior: 'smooth', block: 'end' });
 }
 
 function removeThinking() {
@@ -90,11 +135,7 @@ async function send() {
   input.value = '';
   input.style.height = 'auto';
 
-  if (firstSend) {
-    firstSend = false;
-    intro.classList.add('is-hiding');
-  }
-
+  firstSend = false;
   appendReaderMessage(text);
   showThinking();
 

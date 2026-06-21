@@ -13,6 +13,7 @@
 
 html, body {
   height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -229,6 +230,36 @@ header h1 {
   margin-bottom: 0;
 }
 
+.section-break {
+  margin: 2.5rem 0 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.section-break-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.63rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--guide-label);
+  margin-bottom: 1.25rem;
+}
+
+.section-break-num {
+  opacity: 0.7;
+}
+
+.section-break-intro {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--text);
+  border: 2px solid #333;
+  padding: 1.5rem 1rem 2rem;
+}
+
 .thinking {
   display: flex;
   align-items: center;
@@ -251,6 +282,10 @@ header h1 {
 /* ── Responsive ── */
 
 @media (max-width: 960px) {
+  html, body {
+    overflow: auto;
+  }
+
   #layout {
     display: block;
     height: auto;
