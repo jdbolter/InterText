@@ -1,7 +1,8 @@
 const conv = document.getElementById('conversation');
 const input = document.getElementById('message-input');
-const btn = document.getElementById('send-btn');
 const intro = document.getElementById('intro');
+const leftCol = document.getElementById('left-col');
+const readerHistory = document.getElementById('reader-history');
 
 let history = [];
 let firstSend = true;
@@ -19,7 +20,6 @@ const SECTION_INTROS = [
   `<p>Film is more than a century old. It has survived and flourished in a media economy that includes photography, radio, television, video games, streaming. Each has flourished not by winning the argument about realism, but by refusing to settle it.</p>`,
 ];
 
-// Set initial intro for the default active section
 intro.innerHTML = SECTION_INTROS[sectionIndex];
 
 // TOC navigation
@@ -34,13 +34,13 @@ document.querySelectorAll('.toc-item').forEach(item => {
   });
 });
 
-function appendTurn(role, text) {
+function appendGuideResponse(text) {
   const turn = document.createElement('div');
-  turn.className = `turn ${role}`;
+  turn.className = 'turn';
 
   const label = document.createElement('div');
   label.className = 'turn-label';
-  label.textContent = role === 'reader' ? 'Reader' : 'Guide';
+  label.textContent = 'Guide';
 
   const body = document.createElement('div');
   body.className = 'turn-body';
@@ -56,16 +56,26 @@ function appendTurn(role, text) {
   turn.appendChild(label);
   turn.appendChild(body);
   conv.appendChild(turn);
-  turn.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  leftCol.scrollTo({ top: leftCol.scrollHeight, behavior: 'smooth' });
+}
+
+function appendReaderMessage(text) {
+  const entry = document.createElement('div');
+  entry.className = 'reader-entry';
+  entry.textContent = text;
+  readerHistory.appendChild(entry);
+  readerHistory.scrollTop = readerHistory.scrollHeight;
 }
 
 function showThinking() {
   const el = document.createElement('div');
   el.className = 'thinking';
   el.id = 'thinking';
-  el.textContent = '…';
+  const spinner = document.createElement('div');
+  spinner.className = 'thinking-spinner';
+  el.appendChild(spinner);
   conv.appendChild(el);
-  el.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  leftCol.scrollTo({ top: leftCol.scrollHeight, behavior: 'smooth' });
 }
 
 function removeThinking() {
@@ -79,14 +89,13 @@ async function send() {
 
   input.value = '';
   input.style.height = 'auto';
-  btn.disabled = true;
 
   if (firstSend) {
     firstSend = false;
     intro.classList.add('is-hiding');
   }
 
-  appendTurn('reader', text);
+  appendReaderMessage(text);
   showThinking();
 
   try {
@@ -102,20 +111,17 @@ async function send() {
     if (data.response) {
       history.push({ role: 'user', content: text });
       history.push({ role: 'assistant', content: data.response });
-      appendTurn('guide', data.response);
+      appendGuideResponse(data.response);
     } else {
-      appendTurn('guide', '[No response]');
+      appendGuideResponse('[No response]');
     }
   } catch (err) {
     removeThinking();
-    appendTurn('guide', '[Error reaching server]');
+    appendGuideResponse('[Error reaching server]');
   }
 
-  btn.disabled = false;
   input.focus();
 }
-
-btn.addEventListener('click', send);
 
 input.addEventListener('keydown', e => {
   if (e.key === 'Enter' && !e.shiftKey) {

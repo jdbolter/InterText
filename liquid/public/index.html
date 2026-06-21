@@ -8,42 +8,51 @@
 </head>
 <body>
 
-  <nav id="toc" aria-label="Essay sections">
-    <button class="toc-item active" data-section="0">
-      <span class="toc-num">I</span>
-      <span class="toc-title">The Uncanny Valley &amp; the Double</span>
-    </button>
-    <button class="toc-item" data-section="1">
-      <span class="toc-num">II</span>
-      <span class="toc-title">Film and the Uncanny</span>
-    </button>
-    <button class="toc-item" data-section="2">
-      <span class="toc-num">III</span>
-      <span class="toc-title">The Double in Film</span>
-    </button>
-    <button class="toc-item" data-section="3">
-      <span class="toc-num">IV</span>
-      <span class="toc-title">Uncanny Avatars in Mirror Worlds</span>
-    </button>
-    <button class="toc-item" data-section="4">
-      <span class="toc-num">V</span>
-      <span class="toc-title">Feature, not a Bug</span>
-    </button>
-  </nav>
+  <div id="layout">
 
-  <header>
-    <h1>A conversation about the uncanny</h1>
-  </header>
+    <div id="left-col">
+      <header>
+        <h1>A conversation about the uncanny</h1>
+      </header>
+      <div id="intro"></div>
+      <div id="conversation"></div>
+    </div>
 
-  <div id="intro"></div>
+    <div id="right-col">
 
-  <div id="conversation"></div>
+      <nav id="toc" aria-label="Essay sections">
+        <button class="toc-item active" data-section="0">
+          <span class="toc-num">I</span>
+          <span class="toc-title">The Uncanny Valley &amp; the Double</span>
+        </button>
+        <button class="toc-item" data-section="1">
+          <span class="toc-num">II</span>
+          <span class="toc-title">Film and the Uncanny</span>
+        </button>
+        <button class="toc-item" data-section="2">
+          <span class="toc-num">III</span>
+          <span class="toc-title">The Double in Film</span>
+        </button>
+        <button class="toc-item" data-section="3">
+          <span class="toc-num">IV</span>
+          <span class="toc-title">Uncanny Avatars in Mirror Worlds</span>
+        </button>
+        <button class="toc-item" data-section="4">
+          <span class="toc-num">V</span>
+          <span class="toc-title">Feature, not a Bug</span>
+        </button>
+      </nav>
 
-  <hr id="divider">
+      <div id="input-panel">
+        <div id="reader-history"></div>
+        <p id="reader-instruction">Type your questions or comments below.</p>
+        <div id="input-area">
+          <textarea id="message-input" rows="2"></textarea>
+        </div>
+      </div>
 
-  <div id="input-area">
-    <textarea id="message-input" rows="2" placeholder="What strikes you about it?"></textarea>
-    <button id="send-btn">Send</button>
+    </div>
+
   </div>
 
   <script src="app.js"></script>
