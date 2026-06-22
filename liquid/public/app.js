@@ -18,6 +18,14 @@ const SECTION_TITLES = [
   'Feature, not a Bug',
 ];
 
+const SECTION_IMAGES = [
+  { src: '../images/uncanny-valley-graph.png', alt: 'Masahiro Mori\'s uncanny valley graph (1970)' },
+  { src: '../images/train.jpeg', alt: 'The Arrival of the Train at la Ciotat Station (1896)' },
+  null,
+  null,
+  null,
+];
+
 const SECTION_INTROS = [
   `<p>In 1970, Japanese roboticist Masahiro Mori drew a graph. On one axis: how human-like a robot looks. On the other: how much affinity people feel toward it. The line rises steadily — then suddenly plummets. There is a valley right at the point of near-human resemblance. He called it the uncanny valley. It was an observation about robots, but it also applied to computer graphics and other media forms.</p>`,
 
@@ -74,6 +82,14 @@ function appendSectionBreak(idx, scroll = true) {
 
   el.appendChild(header);
   el.appendChild(introBox);
+
+  if (SECTION_IMAGES[idx]) {
+    const img = document.createElement('img');
+    img.src = SECTION_IMAGES[idx].src;
+    img.alt = SECTION_IMAGES[idx].alt;
+    img.className = 'section-image';
+    el.appendChild(img);
+  }
   conv.appendChild(el);
 
   if (scroll) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
