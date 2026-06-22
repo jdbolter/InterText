@@ -280,6 +280,13 @@ header h1 {
   margin: 1.25rem 0 1rem;
 }
 
+.response-image {
+  display: block;
+  width: 75%;
+  height: auto;
+  margin: 1rem 0;
+}
+
 .section-break-intro {
   font-size: 1.05rem;
   line-height: 1.85;

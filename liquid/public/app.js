@@ -7,6 +7,7 @@ const readerHistory = document.getElementById('reader-history');
 let history = [];
 let firstSend = true;
 let sectionIndex = 0;
+let shownImages = new Set();
 
 const SECTION_NUMERALS = ['I', 'II', 'III', 'IV', 'V'];
 
@@ -19,12 +20,24 @@ const SECTION_TITLES = [
 ];
 
 const SECTION_IMAGES = [
-  { src: '../images/uncanny-valley-graph.png', alt: 'Masahiro Mori\'s uncanny valley graph (1970)' },
-  { src: '../images/train.jpeg', alt: 'The Arrival of the Train at la Ciotat Station (1896)' },
-  null,
+  [
+    { id: 'valley-graph', src: '../images/uncanny-valley-graph.png', alt: 'Masahiro Mori\'s uncanny valley graph (1970)' },
+  ],
+  [
+    { id: 'train', src: '../images/train.jpeg', alt: 'The Arrival of the Train at La Ciotat Station (1896)' },
+  ],
+  [
+    {id: 'freud',src: '/images/freud.jpg', alt: 'The Uncanny (1919)'}
+  ],
   null,
   null,
 ];
+
+// Flat lookup map for inline image tokens
+const IMAGE_MAP = {};
+SECTION_IMAGES.forEach(section => {
+  if (section) section.forEach(img => { IMAGE_MAP[img.id] = img; });
+});
 
 const SECTION_INTROS = [
   `<p>In 1970, Japanese roboticist Masahiro Mori drew a graph. On one axis: how human-like a robot looks. On the other: how much affinity people feel toward it. The line rises steadily — then suddenly plummets. There is a valley right at the point of near-human resemblance. He called it the uncanny valley. It was an observation about robots, but it also applied to computer graphics and other media forms.</p>`,
@@ -82,14 +95,6 @@ function appendSectionBreak(idx, scroll = true) {
 
   el.appendChild(header);
   el.appendChild(introBox);
-
-  if (SECTION_IMAGES[idx]) {
-    const img = document.createElement('img');
-    img.src = SECTION_IMAGES[idx].src;
-    img.alt = SECTION_IMAGES[idx].alt;
-    img.className = 'section-image';
-    el.appendChild(img);
-  }
   conv.appendChild(el);
 
   if (scroll) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -105,12 +110,30 @@ function appendGuideResponse(text) {
 
   const body = document.createElement('div');
   body.className = 'turn-body';
-  text.split(/\n\n+/).forEach(para => {
-    const trimmed = para.trim();
-    if (trimmed) {
-      const p = document.createElement('p');
-      p.textContent = trimmed;
-      body.appendChild(p);
+
+  // Split on [[IMAGE:id]] tokens; odd-indexed parts are image ids
+  const parts = text.split(/\[\[IMAGE:([^\]]+)\]\]/);
+  parts.forEach((part, i) => {
+    if (i % 2 === 0) {
+      part.split(/\n\n+/).forEach(para => {
+        const trimmed = para.trim();
+        if (trimmed) {
+          const p = document.createElement('p');
+          p.textContent = trimmed;
+          body.appendChild(p);
+        }
+      });
+    } else {
+      const id = part.trim();
+      const imgData = IMAGE_MAP[id];
+      if (imgData) {
+        shownImages.add(id);
+        const img = document.createElement('img');
+        img.src = imgData.src;
+        img.alt = imgData.alt;
+        img.className = 'response-image';
+        body.appendChild(img);
+      }
     }
   });
 
@@ -159,7 +182,7 @@ async function send() {
     const res = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: text, history, sectionIndex })
+      body: JSON.stringify({ message: text, history, sectionIndex, shownImages: Array.from(shownImages) })
     });
 
     const data = await res.json();

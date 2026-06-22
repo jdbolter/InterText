@@ -36,6 +36,14 @@ const SECTION_INTROS = [
   'Film is more than a century old. It has outlived the predictions of its rivals at every stage — photography, radio, television, video games, streaming. Each new medium threatened to make it obsolete. Each time, it survived. Not by winning the argument about realism, but by refusing to settle it.',
 ];
 
+const SECTION_IMAGE_PROMPTS = [
+  [{ id: 'valley-graph', prompt: 'An image of Masahiro Mori\'s original uncanny valley graph is available. When you are specifically discussing the graph — its shape, the valley, the axes, the curve — embed the token [[IMAGE:valley-graph]] at the natural point in your response where the image would be most illuminating.' }],
+  [{ id: 'train', prompt: 'A still from the Lumière brothers\' film "The Arrival of the Train at La Ciotat Station" is available. When you are specifically discussing this film or the audience\'s reaction to it, embed the token [[IMAGE:train]] at the natural point in your response.' }],
+  [{ id: 'freud', prompt: 'A photo of Freud"s essay is available. Embed [[IMAGE:freud]] when discussing his concept of the unheimlich.' }],
+  null,
+  null,
+];
+
 const BEHAVIORAL_INSTRUCTIONS = `You are presenting an essay on the uncanny in film, literature, and digital media. The current section of the essay is provided below.
 
 Engage the reader's ideas with intellectual precision and authority. Do not be chatty or conversational. Speak in the third person. Keep the tone that of a serious verbal discussion.
@@ -56,7 +64,7 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { message, history, sectionIndex = 0 } = req.body;
+  const { message, history, sectionIndex = 0, shownImages = [] } = req.body;
 
   if (!message || typeof message !== 'string' || !message.trim()) {
     return res.status(400).json({ error: 'Empty message' });
@@ -76,7 +84,15 @@ module.exports = async function handler(req, res) {
       model: 'claude-sonnet-4-6',
       max_tokens: 1024,
       system: [
-        { type: 'text', text: `${BEHAVIORAL_INSTRUCTIONS}\n\nCurrent section: ${sectionName}\n\nThe reader has just been shown this framing before their first message: "${SECTION_INTROS[idx]}"` },
+        { type: 'text', text: [
+            BEHAVIORAL_INSTRUCTIONS,
+            (SECTION_IMAGE_PROMPTS[idx] || [])
+              .filter(({ id }) => !shownImages.includes(id))
+              .map(({ prompt }) => prompt)
+              .join('\n\n') || null,
+            `Current section: ${sectionName}`,
+            `The reader has just been shown this framing before their first message: "${SECTION_INTROS[idx]}"`,
+          ].filter(Boolean).join('\n\n') },
         { type: 'text', text: sectionText, cache_control: { type: 'ephemeral' } }
       ],
       messages
