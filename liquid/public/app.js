@@ -27,7 +27,8 @@ const SECTION_IMAGES = [
     { id: 'train', src: '../images/train.jpeg', alt: 'The Arrival of the Train at La Ciotat Station (1896)' },
   ],
   [
-    {id: 'freud',src: '/images/freud.jpg', alt: 'The Uncanny (1919)'}
+    {id: 'freud',src: '../images/freud.jpg', alt: 'Das Unheimliche (The Uncanny) (1919)'},
+    {id: 'pod',src: '../images/gemini-pod.png', alt: 'Gemini\'s representation of the pod described in Invasion of the Body Snatchers (1956)'},
   ],
   null,
   null,

@@ -19,7 +19,7 @@ const ESSAY_SECTIONS = SECTION_FILES.map(file =>
 const SECTION_NAMES = [
   'The Uncanny Valley and the Uncanny Double',
   'Film and the Uncanny',
-  'The Double in Film',
+  'The Double in Film',   
   'Uncanny Avatars in Mirror Worlds',
   'The Uncanny is a Feature, not a Bug',
 ];
@@ -39,7 +39,10 @@ const SECTION_INTROS = [
 const SECTION_IMAGE_PROMPTS = [
   [{ id: 'valley-graph', prompt: 'An image of Masahiro Mori\'s original uncanny valley graph is available. When you are specifically discussing the graph — its shape, the valley, the axes, the curve — embed the token [[IMAGE:valley-graph]] at the natural point in your response where the image would be most illuminating.' }],
   [{ id: 'train', prompt: 'A still from the Lumière brothers\' film "The Arrival of the Train at La Ciotat Station" is available. When you are specifically discussing this film or the audience\'s reaction to it, embed the token [[IMAGE:train]] at the natural point in your response.' }],
-  [{ id: 'freud', prompt: 'A photo of Freud"s essay is available. Embed [[IMAGE:freud]] when discussing his concept of the unheimlich.' }],
+  [
+    { id: 'freud', prompt: 'A photo of the publication page of Freud\'s essay is available. Embed the token [[IMAGE:freud]] when discussing his concept of the unheimlich.' },
+    { id: 'pod', prompt: 'An image of the pod from Invasion of the Body Snatchers is available. When discussing the pod double or its uncanny qualities, embed the token [[IMAGE:pod]] at the natural point in your response.' },
+  ],
   null,
   null,
 ];

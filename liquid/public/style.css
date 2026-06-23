@@ -241,6 +241,7 @@ header h1 {
 
 .turn-body {
   line-height: 1.58;
+  overflow: hidden;
 }
 
 .turn-body p {
@@ -274,17 +275,17 @@ header h1 {
 }
 
 .section-image {
-  display: block;
-  width: 75%;
+  float: right;
+  width: 50%;
   height: auto;
-  margin: 1.25rem 0 1rem;
+  margin: 0.25rem 0 1rem 1.5rem;
 }
 
 .response-image {
-  display: block;
-  width: 75%;
+  float: right;
+  width: 50%;
   height: auto;
-  margin: 1rem 0;
+  margin: 0.25rem 0 1rem 1.5rem;
 }
 
 .section-break-intro {
