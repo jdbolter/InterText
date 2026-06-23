@@ -252,6 +252,15 @@ header h1 {
   margin-bottom: 0;
 }
 
+.system-message {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-align: center;
+  margin: 1rem 0;
+}
+
 .section-break {
   margin: 2.5rem 0 2rem;
   padding-top: 2rem;

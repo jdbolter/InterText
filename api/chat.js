@@ -62,6 +62,16 @@ Keep each response to at most 250 words. Do not reveal the whole section at once
 Focus on the ideas in the current section. Do not pre-empt or summarize ideas from other sections.`;
 
 
+function loadEvolvedSections() {
+  if (process.env.NODE_ENV !== 'development') return {};
+  try {
+    const raw = fs.readFileSync(path.join(process.cwd(), 'evolved_sections.json'), 'utf8');
+    return JSON.parse(raw);
+  } catch {
+    return {};
+  }
+}
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -74,7 +84,8 @@ module.exports = async function handler(req, res) {
   }
 
   const idx = Math.max(0, Math.min(Math.floor(sectionIndex), ESSAY_SECTIONS.length - 1));
-  const sectionText = ESSAY_SECTIONS[idx];
+  const evolved = loadEvolvedSections();
+  const sectionText = evolved[idx] ?? ESSAY_SECTIONS[idx];
   const sectionName = SECTION_NAMES[idx];
 
   const messages = [

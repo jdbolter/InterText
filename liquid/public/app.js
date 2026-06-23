@@ -168,12 +168,49 @@ function removeThinking() {
   if (el) el.remove();
 }
 
+function appendSystemMessage(text) {
+  const el = document.createElement('div');
+  el.className = 'system-message';
+  el.textContent = text;
+  conv.appendChild(el);
+  el.scrollIntoView({ behavior: 'smooth', block: 'end' });
+}
+
+async function evolve() {
+  if (history.length === 0) {
+    appendSystemMessage('No conversation to evolve from.');
+    return;
+  }
+  appendSystemMessage('Evolving section…');
+  try {
+    const res = await fetch('/api/evolve', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sectionIndex, conversationHistory: history })
+    });
+    const data = await res.json();
+    if (data.revised) {
+      appendSystemMessage('Section evolved. The guide will use the updated text from the next message.');
+    } else {
+      appendSystemMessage('Evolution failed: ' + (data.error || 'unknown error'));
+    }
+  } catch (err) {
+    appendSystemMessage('Evolution failed: could not reach server.');
+  }
+}
+
 async function send() {
   const text = input.value.trim();
   if (!text) return;
 
   input.value = '';
   input.style.height = 'auto';
+
+  if (text === '@@@') {
+    await evolve();
+    input.focus();
+    return;
+  }
 
   firstSend = false;
   appendReaderMessage(text);
