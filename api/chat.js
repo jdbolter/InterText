@@ -13,7 +13,7 @@ const SECTION_FILES = [
 ];
 
 const ESSAY_SECTIONS = SECTION_FILES.map(file =>
-  fs.readFileSync(path.join(process.cwd(), 'source_texts', 'sections', file), 'utf8')
+  fs.readFileSync(path.join(process.cwd(), 'liquid', 'source_texts', 'sections', file), 'utf8')
 );
 
 const SECTION_NAMES = [

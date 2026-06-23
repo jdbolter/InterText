@@ -14,16 +14,16 @@ Anthropic prompt caching is used on the active section block. The cache re-warms
 uncanny_doubles/           (project root — Vercel serves from here)
 ├── api/
 │   └── chat.js            (Vercel serverless function — handles API calls)
-├── source_texts/
-│   ├── full-uncanny.md    (complete essay — reference copy, not loaded by the API)
-│   └── sections/
-│       ├── section-1.md   (The Uncanny Valley and the Uncanny Double)
-│       ├── section-2.md   (Film and the Uncanny)
-│       ├── section-3.md   (The Double in Film)
-│       ├── section-4.md   (Uncanny Avatars in Mirror Worlds)
-│       └── section-5.md   (The Uncanny is a Feature, not a Bug)
 ├── liquid/
 │   ├── CLAUDE.md
+│   ├── source_texts/
+│   │   ├── full-uncanny.md    (complete essay — reference copy, not loaded by the API)
+│   │   └── sections/
+│   │       ├── section-1.md   (The Uncanny Valley and the Uncanny Double)
+│   │       ├── section-2.md   (Film and the Uncanny)
+│   │       ├── section-3.md   (The Double in Film)
+│   │       ├── section-4.md   (Uncanny Avatars in Mirror Worlds)
+│   │       └── section-5.md   (The Uncanny is a Feature, not a Bug)
 │   ├── images/            (section images — served at /liquid/images/)
 │   │   ├── uncanny-valley-graph.png   (Section I)
 │   │   ├── train.jpeg                 (Section II)
@@ -36,6 +36,8 @@ uncanny_doubles/           (project root — Vercel serves from here)
 ├── package.json
 └── vercel.json
 ```
+
+Note: `api/chat.js` lives at the project root rather than inside `liquid/` because Vercel requires serverless functions to be in a top-level `api/` directory.
 
 ## Prerequisites
 

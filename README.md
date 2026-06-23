@@ -4,8 +4,16 @@ Two experiments in adaptive reading about the uncanny.
 
 ```
 uncanny_doubles/
-├── scrolly/    — scroll-driven visual essay (HTML/CSS/JS prototype)
-└── liquid/     — multi-turn conversation interface (Flask + Anthropic API)
+├── index.html          — landing page (links to both apps)
+├── api/
+│   └── chat.js         — Vercel serverless function (used by liquid)
+├── package.json
+├── vercel.json
+├── scrolly/            — scroll-driven visual essay (HTML/CSS/JS, no backend)
+└── liquid/             — multi-turn conversation interface (Vercel + Anthropic API)
+    └── source_texts/
+        ├── sections/   — essay sections loaded by the serverless function
+        └── full-uncanny.md
 ```
 
 ## scrolly
