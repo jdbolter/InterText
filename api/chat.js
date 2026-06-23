@@ -63,11 +63,11 @@ Focus on the ideas in the current section. Do not pre-empt or summarize ideas fr
 
 
 function loadEvolvedSections() {
-  if (process.env.NODE_ENV !== 'development') return {};
   try {
     const raw = fs.readFileSync(path.join(process.cwd(), 'evolved_sections.json'), 'utf8');
     return JSON.parse(raw);
   } catch {
+    // TODO: replace with kv.get() when Vercel KV is enabled for production
     return {};
   }
 }

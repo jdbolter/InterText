@@ -19,10 +19,6 @@ const ESSAY_SECTIONS = SECTION_FILES.map(file =>
 const EVOLVED_PATH = path.join(process.cwd(), 'evolved_sections.json');
 
 function readEvolved() {
-  if (process.env.NODE_ENV !== 'development') {
-    // TODO: replace with kv.get() when Vercel KV is enabled
-    return {};
-  }
   try {
     return JSON.parse(fs.readFileSync(EVOLVED_PATH, 'utf8'));
   } catch {
@@ -31,11 +27,12 @@ function readEvolved() {
 }
 
 function writeEvolved(data) {
-  if (process.env.NODE_ENV !== 'development') {
-    // TODO: replace with kv.set() when Vercel KV is enabled
-    return;
+  try {
+    fs.writeFileSync(EVOLVED_PATH, JSON.stringify(data, null, 2));
+  } catch (err) {
+    // TODO: replace with kv.set() when Vercel KV is enabled for production
+    console.error('writeEvolved failed (expected in production):', err.message);
   }
-  fs.writeFileSync(EVOLVED_PATH, JSON.stringify(data, null, 2));
 }
 
 const SYNTHESIS_INSTRUCTIONS = `You are a scholarly editor working on an essay about the uncanny in film, literature, and digital media.
@@ -52,6 +49,8 @@ Rules:
 - Preserve sentence rhythm and register. This is a serious, intellectually precise essay — not a blog post.
 - Incorporate insights from the conversation only where they genuinely strengthen the section.
 - If the conversation produced nothing useful, return the section unchanged.
+- Keep the output roughly the same length as the input. Do not expand it significantly.
+- Always end on a complete sentence. Never cut off mid-sentence or mid-thought.
 - Output only the revised section text, with no preamble or explanation.`;
 
 module.exports = async function handler(req, res) {
