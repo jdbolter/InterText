@@ -8,6 +8,8 @@ let history = [];
 let firstSend = true;
 let sectionIndex = 0;
 let shownImages = new Set();
+let saveConsent = false;
+let sectionHistoryStart = 0;
 
 const SECTION_NUMERALS = ['I', 'II', 'III', 'IV', 'V'];
 
@@ -52,14 +54,35 @@ const SECTION_INTROS = [
   `<p>Film is more than a century old. It has survived and flourished in a media economy that includes photography, radio, television, video games, streaming. Each has flourished not by winning the argument about realism, but by refusing to settle it.</p>`,
 ];
 
+// ── Consent dialog ──
+
+document.getElementById('consent-yes').addEventListener('click', () => {
+  saveConsent = true;
+  document.getElementById('consent-overlay').style.display = 'none';
+});
+
+document.getElementById('consent-no').addEventListener('click', () => {
+  saveConsent = false;
+  document.getElementById('consent-overlay').style.display = 'none';
+});
+
+// ── Initialise first section ──
+
 intro.innerHTML = SECTION_INTROS[sectionIndex];
 intro.classList.add('is-hiding');
 appendSectionBreak(0, false);
 
-// TOC navigation
+// ── TOC navigation ──
+
 document.querySelectorAll('.toc-item').forEach(item => {
   item.addEventListener('click', () => {
-    sectionIndex = parseInt(item.dataset.section, 10);
+    const newIdx = parseInt(item.dataset.section, 10);
+    if (newIdx === sectionIndex) return;
+
+    saveCurrentSection(); // fire and forget — does not block navigation
+    sectionHistoryStart = history.length;
+
+    sectionIndex = newIdx;
     document.querySelectorAll('.toc-item').forEach(el => el.classList.remove('active'));
     item.classList.add('active');
     intro.innerHTML = SECTION_INTROS[sectionIndex];
@@ -72,6 +95,40 @@ document.querySelectorAll('.toc-item').forEach(item => {
     }
   });
 });
+
+// ── Finish button ──
+
+document.getElementById('finish-btn').addEventListener('click', async () => {
+  const btn = document.getElementById('finish-btn');
+  btn.disabled = true;
+  btn.textContent = saveConsent ? 'Saving…' : 'Finishing…';
+  await saveCurrentSection();
+  showFarewell();
+});
+
+// ── Save and farewell ──
+
+async function saveCurrentSection() {
+  if (!saveConsent) return;
+  const slice = history.slice(sectionHistoryStart);
+  if (slice.length === 0) return;
+  try {
+    await fetch('/api/evolve', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sectionIndex, conversationHistory: slice })
+    });
+  } catch {
+    // silent failure — saving is best-effort
+  }
+}
+
+function showFarewell() {
+  document.getElementById('layout').style.display = 'none';
+  document.getElementById('farewell').style.display = 'flex';
+}
+
+// ── DOM helpers ──
 
 function appendSectionBreak(idx, scroll = true) {
   const el = document.createElement('div');
@@ -176,28 +233,7 @@ function appendSystemMessage(text) {
   el.scrollIntoView({ behavior: 'smooth', block: 'end' });
 }
 
-async function evolve() {
-  if (history.length === 0) {
-    appendSystemMessage('No conversation to evolve from.');
-    return;
-  }
-  appendSystemMessage('Evolving section…');
-  try {
-    const res = await fetch('/api/evolve', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ sectionIndex, conversationHistory: history })
-    });
-    const data = await res.json();
-    if (data.revised) {
-      appendSystemMessage('Section evolved. The guide will use the updated text from the next message.');
-    } else {
-      appendSystemMessage('Evolution failed: ' + (data.error || 'unknown error'));
-    }
-  } catch (err) {
-    appendSystemMessage('Evolution failed: could not reach server.');
-  }
-}
+// ── Send ──
 
 async function send() {
   const text = input.value.trim();
@@ -205,12 +241,6 @@ async function send() {
 
   input.value = '';
   input.style.height = 'auto';
-
-  if (text === '@@@') {
-    await evolve();
-    input.focus();
-    return;
-  }
 
   firstSend = false;
   appendReaderMessage(text);
