@@ -18,7 +18,20 @@ const ESSAY_SECTIONS = SECTION_FILES.map(file =>
 
 const EVOLVED_PATH = path.join(process.cwd(), 'evolved_sections.json');
 
-function readEvolved() {
+function getRedis() {
+  const { Redis } = require('@upstash/redis');
+  return new Redis({ url: process.env.KV_REST_API_URL, token: process.env.KV_REST_API_TOKEN });
+}
+
+async function readEvolved() {
+  if (process.env.KV_REST_API_URL) {
+    try {
+      return (await getRedis().get('evolved_sections')) || {};
+    } catch (err) {
+      console.error('KV read failed:', err.message);
+      return {};
+    }
+  }
   try {
     return JSON.parse(fs.readFileSync(EVOLVED_PATH, 'utf8'));
   } catch {
@@ -26,12 +39,15 @@ function readEvolved() {
   }
 }
 
-function writeEvolved(data) {
+async function writeEvolved(data) {
+  if (process.env.KV_REST_API_URL) {
+    await getRedis().set('evolved_sections', data);
+    return;
+  }
   try {
     fs.writeFileSync(EVOLVED_PATH, JSON.stringify(data, null, 2));
   } catch (err) {
-    // TODO: replace with kv.set() when Vercel KV is enabled for production
-    console.error('writeEvolved failed (expected in production):', err.message);
+    console.error('writeEvolved failed (local dev, file not writable):', err.message);
   }
 }
 
@@ -65,7 +81,7 @@ module.exports = async function handler(req, res) {
   }
 
   const idx = Math.max(0, Math.min(Math.floor(sectionIndex), ESSAY_SECTIONS.length - 1));
-  const evolved = readEvolved();
+  const evolved = await readEvolved();
   const currentText = evolved[idx] ?? ESSAY_SECTIONS[idx];
 
   const conversationTranscript = conversationHistory
@@ -87,7 +103,7 @@ module.exports = async function handler(req, res) {
 
     const revised = response.content[0].text.trim();
     evolved[idx] = revised;
-    writeEvolved(evolved);
+    await writeEvolved(evolved);
 
     return res.status(200).json({ revised });
   } catch (err) {

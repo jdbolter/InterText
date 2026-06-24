@@ -62,12 +62,21 @@ Keep each response to at most 250 words. Do not reveal the whole section at once
 Focus on the ideas in the current section. Do not pre-empt or summarize ideas from other sections.`;
 
 
-function loadEvolvedSections() {
+async function loadEvolvedSections() {
+  if (process.env.KV_REST_API_URL) {
+    try {
+      const { Redis } = require('@upstash/redis');
+      const redis = new Redis({ url: process.env.KV_REST_API_URL, token: process.env.KV_REST_API_TOKEN });
+      return (await redis.get('evolved_sections')) || {};
+    } catch (err) {
+      console.error('KV read failed:', err.message);
+      return {};
+    }
+  }
   try {
     const raw = fs.readFileSync(path.join(process.cwd(), 'evolved_sections.json'), 'utf8');
     return JSON.parse(raw);
   } catch {
-    // TODO: replace with kv.get() when Vercel KV is enabled for production
     return {};
   }
 }
@@ -84,7 +93,7 @@ module.exports = async function handler(req, res) {
   }
 
   const idx = Math.max(0, Math.min(Math.floor(sectionIndex), ESSAY_SECTIONS.length - 1));
-  const evolved = loadEvolvedSections();
+  const evolved = await loadEvolvedSections();
   const sectionText = evolved[idx] ?? ESSAY_SECTIONS[idx];
   const sectionName = SECTION_NAMES[idx];
 
