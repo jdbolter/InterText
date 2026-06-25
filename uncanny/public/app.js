@@ -116,7 +116,7 @@ async function saveCurrentSection() {
     await fetch('/api/evolve', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ sectionIndex, conversationHistory: slice })
+      body: JSON.stringify({ sectionIndex, conversationHistory: slice, textId: 'uncanny' })
     });
   } catch {
     // silent failure — saving is best-effort
@@ -250,7 +250,7 @@ async function send() {
     const res = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: text, history, sectionIndex, shownImages: Array.from(shownImages) })
+      body: JSON.stringify({ message: text, history, sectionIndex, shownImages: Array.from(shownImages), textId: 'uncanny' })
     });
 
     const data = await res.json();

@@ -1,25 +1,26 @@
-# uncanny_doubles
+# InterText
 
-Two experiments in adaptive reading about the uncanny.
+A platform for AI-mediated interactive reading experiences. Each text lives in its own folder with a config file; a shared generic API engine serves all of them.
 
 ```
-uncanny_doubles/
-├── index.html          — landing page (links to both apps)
+InterText/
+├── index.html          — landing page
 ├── api/
-│   └── chat.js         — Vercel serverless function (used by liquid)
+│   ├── chat.js         — generic Vercel serverless function (config-driven by textId)
+│   └── evolve.js       — generic Vercel serverless function (config-driven by textId)
 ├── package.json
 ├── vercel.json
-├── scrolly/            — scroll-driven visual essay (HTML/CSS/JS, no backend)
-└── liquid/             — multi-turn conversation interface (Vercel + Anthropic API)
+└── uncanny/            — "The Uncanny Double" essay (textId: 'uncanny')
+    ├── config.js       — all text-specific content
     └── source_texts/
-        ├── sections/   — essay sections loaded by the serverless function
+        ├── sections/   — essay sections loaded by the API
         └── full-uncanny.md
 ```
 
-## scrolly
+## uncanny
 
-A scroll-driven visual essay format. See `scrolly/CLAUDE.md` for build and editing instructions.
+A web-based prototype for multi-turn conversation about an essay on the uncanny in film, literature, and digital media. Readers converse with an AI guide that reveals the argument section by section. Conversations can be contributed back to evolve the text for future readers. See `uncanny/CLAUDE.md` for setup and run instructions.
 
-## liquid
+## Adding a new text
 
-A web-based prototype for multi-turn conversation about the essay, using Anthropic prompt caching to load the essay once per session. See `liquid/CLAUDE.md` for setup and run instructions.
+See the "Adding a New Text" section in `uncanny/CLAUDE.md` for the step-by-step pattern.
