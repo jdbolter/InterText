@@ -299,28 +299,41 @@ body {
 #farewell {
   position: fixed;
   inset: 0;
-  background: var(--bg);
+  background: rgba(250, 250, 248, 0.88);
+  backdrop-filter: blur(3px);
   display: none;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
   z-index: 200;
-  padding: 4rem 2rem;
+  padding: 2rem;
 }
 
-.farewell-text {
-  font-size: 1.05rem;
-  line-height: 1.85;
+#farewell-dialog {
+  background: var(--bg);
+  border: 2px solid #333;
+  padding: 3rem 3.5rem;
+  max-width: 40rem;
+  width: 100%;
+}
+
+#farewell-saving {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.farewell-body {
+  font-size: 0.97rem;
+  line-height: 1.75;
   color: var(--text);
 }
 
 .farewell-sub {
-  font-size: 0.75rem;
+  font-size: 0.63rem;
   color: var(--muted);
-  margin-top: 1.5rem;
+  margin-top: 1.75rem;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -456,6 +469,16 @@ header h1 {
   border-top-color: var(--guide-label);
   border-radius: 50%;
   animation: spin 0.75s linear infinite;
+}
+
+.farewell-spinner {
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--border);
+  border-top-color: var(--guide-label);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+  margin-bottom: 2rem;
 }
 
 @keyframes spin {

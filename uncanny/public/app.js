@@ -99,11 +99,13 @@ document.querySelectorAll('.toc-item').forEach(item => {
 // ── Finish button ──
 
 document.getElementById('finish-btn').addEventListener('click', async () => {
-  const btn = document.getElementById('finish-btn');
-  btn.disabled = true;
-  btn.textContent = saveConsent ? 'Saving…' : 'Finishing…';
-  await saveCurrentSection();
-  showFarewell();
+  if (saveConsent) {
+    showFarewellSaving();
+    await saveCurrentSection();
+    showFarewellDone();
+  } else {
+    showFarewellDone();
+  }
 });
 
 // ── Save and farewell ──
@@ -123,8 +125,15 @@ async function saveCurrentSection() {
   }
 }
 
-function showFarewell() {
-  document.getElementById('layout').style.display = 'none';
+function showFarewellSaving() {
+  document.getElementById('farewell-saving').style.display = '';
+  document.getElementById('farewell-done').style.display = 'none';
+  document.getElementById('farewell').style.display = 'flex';
+}
+
+function showFarewellDone() {
+  document.getElementById('farewell-saving').style.display = 'none';
+  document.getElementById('farewell-done').style.display = '';
   document.getElementById('farewell').style.display = 'flex';
 }
 

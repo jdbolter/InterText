@@ -11,9 +11,9 @@
   <div id="consent-overlay">
     <div id="consent-dialog">
       <p class="consent-kicker">Before you begin</p>
-      <p class="consent-body">What you are about to read has already been shaped, in part, by the readers who came before you. When a conversation with the guide opens up the argument, takes it somewhere the text hadn't gone, or surfaces a connection it hadn't made, that exchange can be folded back into the essay itself. The version the next reader finds will have been quietly changed by someone they will never meet.</p>
-      <p class="consent-body">You can choose to be part of that. If you agree, your conversation today will be used to enrich the sections you engage with — anonymously, as one contribution among many to a text that continues to evolve with its readers.</p>
-      <p class="consent-body">You can also choose not to. The reading experience will be the same either way.</p>
+      <p class="consent-body">What you are about to read has already been shaped, in part, by the readers who came before you. When your conversation with the guide opens up the argument, takes it somewhere the text hadn't gone, or surfaces a connection it hadn't made, that exchange can be folded back into the essay itself. The version the next reader finds will have been quietly changed by someone they will never meet.</p>
+      <p class="consent-body">If you agree, your conversation today will be used to enrich the sections you engage with — anonymously, as one contribution among many to a text that continues to evolve with its readers.</p>
+      <p class="consent-body">You can of course decline. The reading experience will be the same either way.</p>
       <div id="consent-buttons">
         <button id="consent-yes">Yes — let my conversation become part of the collective</button>
         <button id="consent-no">Continue without contributing</button>
@@ -73,8 +73,16 @@
   </div>
 
   <div id="farewell">
-    <p class="farewell-text">Thank you for reading.</p>
-    <p class="farewell-sub">Close this window whenever you are ready.</p>
+    <div id="farewell-dialog">
+      <div id="farewell-saving">
+        <div class="farewell-spinner"></div>
+        <p class="farewell-body">The text is being configured to reflect your contribution. This may take a few minutes. Please leave this window open until the operation is complete.</p>
+      </div>
+      <div id="farewell-done" style="display:none">
+        <p class="farewell-body">Thank you for reading.</p>
+        <p class="farewell-sub">Close this window whenever you are ready.</p>
+      </div>
+    </div>
   </div>
 
   <script src="app.js"></script>
