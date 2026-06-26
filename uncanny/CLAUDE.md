@@ -8,6 +8,18 @@ The essay is divided into five sections. The interface shows a persistent TOC si
 
 The text is not fixed. Each reader who engages deeply enough can contribute to a living revision of the section they are reading — and the version that the next reader encounters will have been shaped by those who came before. The essay evolves as a cumulative record of its readers' thinking. This is the central premise of the project: the text is genuinely interactive, changed by the collective experience of everyone who has read it.
 
+## The Design Problem: Constraint and Identity
+
+The central tension in the project is between the essay having a fixed character — a voice, an argument, a force of its own — and being genuinely open to expansion by readers. The analogy is the sonnet: the constraint of the form is what gives it pressure and identity, not what limits it. The question is what the equivalent formal constraint is for a living text.
+
+A few design principles to keep in mind as the project develops:
+
+**The guide must inhabit the argument, not narrate it.** The model's default is the explainer role — standing outside the text and describing it ("the essay argues...", "this is what makes the argument important..."). This is the path of least resistance given its training. The system prompt needs to give it a strong positive identity instead: it is the intelligence behind the argument, not a guide to a document. Prohibitions alone don't work; the model needs a role to inhabit.
+
+**Evolution should be structurally constrained, not just editorially.** Currently the evolve prompt says "deepen and extend without changing the argument" — which is loose. Worth considering whether evolution should be more like musical variation: a new example can be added, an objection sharpened, a connection made explicit, but the core sentence-level argument is frozen. This would preserve the essay's identity across many readers.
+
+**The reader's trace is currently invisible.** When a reader's conversation evolves a section, that contribution dissolves into the text — the next reader can't see where previous readers pushed. Making the shape of change visible (not the conversation, but what shifted) could make the uncanny dimension of the project explicit rather than incidental: the reader encounters a text already marked by minds they'll never meet.
+
 Anthropic prompt caching is used on the active section block. The cache re-warms when the reader switches sections (one cache write per transition). Within a section, subsequent turns hit the cache at ~10% cost.
 
 ## File Structure
