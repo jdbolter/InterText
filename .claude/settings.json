@@ -11,7 +11,10 @@
       "Bash(git -C /Users/jaybolter/Documents/GitHub/distant-writing/interactive-books/InterText log --oneline -15)",
       "Bash(git -C /Users/jaybolter/Documents/GitHub/distant-writing/interactive-books/InterText mv liquid uncanny)",
       "Bash(mkdir -p /Users/jaybolter/.claude/projects/-Users-jaybolter-Documents-GitHub-distant-writing-interactive-books-InterText/memory)",
-      "Bash(python3 -c \"import json; d=json.load\\(open\\('/Users/jaybolter/Documents/GitHub/distant-writing/interactive-books/InterText/evolved_sections.json'\\)\\); print\\(list\\(d.keys\\(\\)\\)\\)\")"
+      "Bash(python3 -c \"import json; d=json.load\\(open\\('/Users/jaybolter/Documents/GitHub/distant-writing/interactive-books/InterText/evolved_sections.json'\\)\\); print\\(list\\(d.keys\\(\\)\\)\\)\")",
+      "Bash(mkdir -p /Users/jaybolter/Documents/GitHub/distant-writing/interactive-books/InterText/plenitude/source_texts/sections)",
+      "Bash(mkdir -p /Users/jaybolter/Documents/GitHub/distant-writing/interactive-books/InterText/plenitude/public)",
+      "Bash(mkdir -p /Users/jaybolter/Documents/GitHub/distant-writing/interactive-books/InterText/plenitude/images)"
     ],
     "additionalDirectories": [
       "/Users/jaybolter/.claude/projects/-Users-jaybolter-Documents-GitHub-distant-writing-interactive-books-InterText"

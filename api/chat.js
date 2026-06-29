@@ -4,7 +4,7 @@ const path = require('path');
 
 const client = new Anthropic();
 
-const ALLOWED_TEXT_IDS = ['uncanny'];
+const ALLOWED_TEXT_IDS = ['uncanny', 'plenitude'];
 const configCache = {};
 const sectionCache = {};
 
