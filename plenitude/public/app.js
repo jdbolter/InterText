@@ -49,7 +49,7 @@ SECTION_IMAGES.forEach(section => {
 });
 
 const SECTION_INTROS = [
-  `<p>In June 2013, Jay Z performed for six hours at the Pace Gallery in Manhattan &mdash; one of the city&rsquo;s most prestigious white-box art spaces. Art-world figures and fans rotated through to stand across from him while he rapped. Marina Abramović, who had spent 30 days sitting motionless at MOMA staring at strangers, appeared as one of his partners. Everyone was delighted. What the delight couldn&rsquo;t settle was what it meant.</p>`,
+  `<p>In June 2013, Jay Z performed for six hours at the Pace Gallery in Manhattan &mdash; one of the city&rsquo;s most prestigious white-box art spaces. Art-world figures and fans rotated through to stand across from him while he rapped. Marina Abramović, who had spent 30 days sitting motionless at MOMA staring at strangers, appeared as one of his partners. Everyone was delighted.</p>`,
 
   `<p>In April 2011, the Philadelphia Symphony Orchestra filed for Chapter 11 bankruptcy &mdash; the first of America&rsquo;s &ldquo;Big Five&rdquo; orchestras ever to do so. It had been playing for over a century. In 1939, its director Leopold Stokowski appeared as a silhouetted figure in Disney&rsquo;s <em>Fantasia</em>, where Mickey Mouse greeted him with nervous reverence. By 2011, the orchestra&rsquo;s problem was not reverence but revenue.</p>`,
 
@@ -109,11 +109,13 @@ document.querySelectorAll('.toc-item').forEach(item => {
 // ── Finish button ──
 
 document.getElementById('finish-btn').addEventListener('click', async () => {
-  const btn = document.getElementById('finish-btn');
-  btn.disabled = true;
-  btn.textContent = saveConsent ? 'Saving…' : 'Finishing…';
-  await saveCurrentSection();
-  showFarewell();
+  if (saveConsent) {
+    showFarewellSaving();
+    await saveCurrentSection();
+    showFarewellDone();
+  } else {
+    showFarewellDone();
+  }
 });
 
 // ── Save and farewell ──
@@ -133,8 +135,15 @@ async function saveCurrentSection() {
   }
 }
 
-function showFarewell() {
-  document.getElementById('layout').style.display = 'none';
+function showFarewellSaving() {
+  document.getElementById('farewell-saving').style.display = '';
+  document.getElementById('farewell-done').style.display = 'none';
+  document.getElementById('farewell').style.display = 'flex';
+}
+
+function showFarewellDone() {
+  document.getElementById('farewell-saving').style.display = 'none';
+  document.getElementById('farewell-done').style.display = '';
   document.getElementById('farewell').style.display = 'flex';
 }
 

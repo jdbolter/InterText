@@ -24,7 +24,7 @@ module.exports = {
   ],
 
   sectionIntros: [
-    `In June 2013, Jay Z performed for six hours at the Pace Gallery in Manhattan — one of the city's most prestigious white-box art spaces. Art-world figures and fans rotated through to stand across from him while he rapped. Marina Abramović, who had spent 30 days sitting motionless at MOMA staring at strangers, appeared as one of his partners. Everyone was delighted. What the delight couldn't settle was what it meant.`,
+    `In June 2013, Jay Z performed for six hours at the Pace Gallery in Manhattan — one of the city's most prestigious white-box art spaces. Art-world figures and fans rotated through to stand across from him while he rapped. Marina Abramović, who had spent 30 days sitting motionless at MOMA staring at strangers, appeared as one of his partners. Everyone was delighted.`,
 
     `In April 2011, the Philadelphia Symphony Orchestra filed for Chapter 11 bankruptcy — the first of America's "Big Five" orchestras ever to do so. It had been playing for over a century. In 1939, its director Leopold Stokowski appeared as a silhouetted figure in Disney's Fantasia, where Mickey Mouse greeted him with nervous reverence. By 2011, the orchestra's problem was not reverence but revenue.`,
 
