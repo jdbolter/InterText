@@ -85,10 +85,29 @@ module.exports = async function handler(req, res) {
           ].filter(Boolean).join('\n\n') },
         { type: 'text', text: sectionText, cache_control: { type: 'ephemeral' } }
       ],
+      tools: [{ type: 'web_search_20260318', name: 'web_search', max_uses: 5 }],
       messages
     });
 
-    return res.status(200).json({ response: response.content[0].text });
+    const lastNonTextIdx = response.content.reduce((acc, b, i) => b.type !== 'text' ? i : acc, -1);
+    const postBlocks = response.content.filter((b, i) => b.type === 'text' && i > lastNonTextIdx);
+    const seen = new Set();
+    const citations = [];
+    response.content.forEach(b => {
+      if (b.type === 'web_search_tool_result') {
+        (b.content || []).forEach(r => {
+          if (r.url && !seen.has(r.url)) {
+            seen.add(r.url);
+            citations.push({ title: r.title || r.url, url: r.url });
+          }
+        });
+      }
+    });
+    let text = postBlocks.map(b => b.text).join('');
+    if (citations.length > 0) {
+      text += '\n\nSources: ' + citations.map(c => `[${c.title}](${c.url})`).join(' · ');
+    }
+    return res.status(200).json({ response: text });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: 'API error' });

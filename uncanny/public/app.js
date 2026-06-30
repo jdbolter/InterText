@@ -167,6 +167,22 @@ function appendSectionBreak(idx, scroll = true) {
   if (scroll) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
+function renderText(container, text) {
+  const re = /\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g;
+  let last = 0, m;
+  while ((m = re.exec(text)) !== null) {
+    if (m.index > last) container.appendChild(document.createTextNode(text.slice(last, m.index)));
+    const a = document.createElement('a');
+    a.href = m[2];
+    a.textContent = m[1];
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    container.appendChild(a);
+    last = re.lastIndex;
+  }
+  if (last < text.length) container.appendChild(document.createTextNode(text.slice(last)));
+}
+
 function appendGuideResponse(text) {
   const turn = document.createElement('div');
   turn.className = 'turn';
@@ -186,7 +202,8 @@ function appendGuideResponse(text) {
         const trimmed = para.trim();
         if (trimmed) {
           const p = document.createElement('p');
-          p.textContent = trimmed;
+          if (trimmed.startsWith('Sources: ')) p.className = 'turn-sources';
+          renderText(p, trimmed);
           body.appendChild(p);
         }
       });

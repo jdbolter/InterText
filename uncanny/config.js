@@ -68,9 +68,9 @@ Rules:
 - Do not change the argument. Only deepen, clarify, or extend it.
 - Do not add material that contradicts the original.
 - Preserve sentence rhythm and register. This is a serious, intellectually precise essay — not a blog post.
-- Incorporate insights from the conversation only where they genuinely strengthen the section.
-- If the conversation produced nothing useful, return the section unchanged.
-- Keep the output roughly the same length as the input. Do not expand it significantly.
+- Incorporate insights, examples, and threads from the conversation wherever they illuminate the essay's themes — even by extension or analogy. Be willing to add a new sentence, example, or short passage if the conversation warrants it.
+- If the conversation produced nothing relevant to the essay's argument, return the section unchanged.
+- Do not exceed {{WORD_LIMIT}} words total. Within that limit, feel free to add substantive new material where the conversation warrants it.
 - Always end on a complete sentence. Never cut off mid-sentence or mid-thought.
 - Output only the revised section text, with no preamble or explanation.`,
 };

@@ -403,6 +403,12 @@ header h1 {
   margin-bottom: 0;
 }
 
+.turn-sources {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 0.4em;
+}
+
 .system-message {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.75rem;

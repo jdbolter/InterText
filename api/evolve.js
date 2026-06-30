@@ -88,10 +88,14 @@ module.exports = async function handler(req, res) {
     .join('\n\n');
 
   try {
+    const originalWords = sections[idx].split(/\s+/).filter(Boolean).length;
+    const wordLimit = Math.round(originalWords * 1.3);
+    const systemPrompt = config.synthesisInstructions.replace('{{WORD_LIMIT}}', wordLimit);
+
     const response = await client.messages.create({
       model: 'claude-sonnet-4-6',
       max_tokens: 4096,
-      system: config.synthesisInstructions,
+      system: systemPrompt,
       messages: [
         {
           role: 'user',
