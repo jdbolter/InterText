@@ -93,7 +93,7 @@ module.exports = async function handler(req, res) {
     const systemPrompt = config.synthesisInstructions.replace('{{WORD_LIMIT}}', wordLimit);
 
     const response = await client.messages.create({
-      model: 'claude-sonnet-4-6',
+      model: 'claude-sonnet-5',
       max_tokens: 4096,
       system: systemPrompt,
       messages: [
