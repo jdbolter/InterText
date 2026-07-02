@@ -104,7 +104,11 @@ module.exports = async function handler(req, res) {
       ]
     });
 
-    const revised = response.content[0].text.trim();
+    const revised = response.content
+      .filter(b => b.type === 'text')
+      .map(b => b.text)
+      .join('')
+      .trim();
     evolved[idx] = revised;
     await writeEvolved(textId, evolved);
 
