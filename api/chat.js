@@ -72,7 +72,10 @@ module.exports = async function handler(req, res) {
   try {
     const response = await client.messages.create({
       model: 'claude-sonnet-5',
-      max_tokens: 1024,
+      max_tokens: 2048,
+      // Sonnet 5 runs adaptive thinking by default when this is omitted (Sonnet 4.6 didn't) —
+      // pinned explicitly so behavior doesn't shift silently on a future model swap.
+      thinking: { type: 'adaptive' },
       system: [
         { type: 'text', text: [
             config.behavioralInstructions,
@@ -105,7 +108,7 @@ module.exports = async function handler(req, res) {
     });
     let text = postBlocks.map(b => b.text).join('');
     if (citations.length > 0) {
-      text += '\n\nSources: ' + citations.map(c => `[${c.title}](${c.url})`).join(' · ');
+      text += '\n\nSources: ' + citations.slice(0, 5).map(c => `[${c.title}](${c.url})`).join(' · ');
     }
     return res.status(200).json({ response: text });
   } catch (err) {
