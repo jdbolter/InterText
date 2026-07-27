@@ -91,10 +91,16 @@ module.exports = async function handler(req, res) {
     const originalWords = sections[idx].split(/\s+/).filter(Boolean).length;
     const wordLimit = Math.round(originalWords * 1.3);
     const systemPrompt = config.synthesisInstructions.replace('{{WORD_LIMIT}}', wordLimit);
+    // Budget must cover the full revised section as plain text; this is a rewrite
+    // task with no need for extended reasoning, so thinking is disabled rather than
+    // left to consume part of a fixed max_tokens budget (Sonnet 5 defaults to
+    // adaptive thinking when the param is omitted).
+    const maxTokens = Math.min(8192, Math.round(wordLimit * 2));
 
     const response = await client.messages.create({
       model: 'claude-sonnet-5',
-      max_tokens: 4096,
+      max_tokens: maxTokens,
+      thinking: { type: 'disabled' },
       system: systemPrompt,
       messages: [
         {
@@ -109,6 +115,15 @@ module.exports = async function handler(req, res) {
       .map(b => b.text)
       .join('')
       .trim();
+
+    // Guard against ever overwriting a good section with a failed/truncated/refused
+    // response — this must never silently persist, since evolved[idx] is treated as
+    // authoritative over the original file once set (see the `??` fallback below).
+    if (revised.length < originalWords) {
+      console.error(`evolve produced suspiciously short output for ${textId}[${idx}]: ${revised.length} chars`);
+      return res.status(502).json({ error: 'Synthesis failed, nothing saved' });
+    }
+
     evolved[idx] = revised;
     await writeEvolved(textId, evolved);
 

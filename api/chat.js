@@ -107,6 +107,16 @@ module.exports = async function handler(req, res) {
       }
     });
     let text = postBlocks.map(b => b.text).join('');
+
+    // An empty completion (e.g. thinking consuming the whole max_tokens budget on a
+    // hard turn) is a failure, not a valid reply — must not return 200 with empty
+    // text, since the client only pushes successful turns into `history`, and a
+    // silent empty-but-200 response causes that turn to vanish from context.
+    if (!text.trim()) {
+      console.error(`chat produced empty completion for ${textId}[${idx}]`);
+      return res.status(502).json({ error: 'Empty completion' });
+    }
+
     if (citations.length > 0) {
       text += '\n\nSources: ' + citations.slice(0, 5).map(c => `[${c.title}](${c.url})`).join(' · ');
     }
