@@ -119,8 +119,9 @@ module.exports = async function handler(req, res) {
     // Guard against ever overwriting a good section with a failed/truncated/refused
     // response — this must never silently persist, since evolved[idx] is treated as
     // authoritative over the original file once set (see the `??` fallback below).
-    if (revised.length < originalWords) {
-      console.error(`evolve produced suspiciously short output for ${textId}[${idx}]: ${revised.length} chars`);
+    const revisedWords = revised.split(/\s+/).filter(Boolean).length;
+    if (revisedWords < originalWords) {
+      console.error(`evolve produced suspiciously short output for ${textId}[${idx}]: ${revisedWords} words vs ${originalWords} original`);
       return res.status(502).json({ error: 'Synthesis failed, nothing saved' });
     }
 

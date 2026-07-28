@@ -104,7 +104,7 @@ vercel dev
 
 - **Serverless functions**: Node.js (`api/chat.js`, `api/evolve.js`) via Vercel — generic, config-driven
 - **Frontend**: HTML, CSS, vanilla JS (no framework)
-- **Model**: `claude-sonnet-4-6`
+- **Model**: `claude-sonnet-5`
 - **Text config**: `uncanny/config.js` — all text-specific data lives here
 - **Section management**: `sectionIndex` (0–4) tracked client-side, sent with every request; API loads only the active section's file
 - **Caching**: ephemeral prompt cache on the active section block — invalidates on section change, warm within a section
@@ -143,7 +143,7 @@ Edit `behavioralInstructions` in `uncanny/config.js` to change how the guide res
 
 After a rich conversation, the reader can trigger evolution by clicking "Finish" (if they opted in at the start). This calls `api/evolve.js`, which:
 1. Loads the current section text (evolved version if one exists, otherwise original)
-2. Passes it to `claude-sonnet-4-6` along with the full conversation transcript
+2. Passes it to `claude-sonnet-5` along with the full conversation transcript
 3. The model acts as a scholarly editor, revising the section per `synthesisInstructions`
 4. The revised text is written back to KV under `evolved:uncanny`
 
