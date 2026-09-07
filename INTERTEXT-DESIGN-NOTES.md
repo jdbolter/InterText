@@ -26,7 +26,19 @@ Earlier discussion compared this with the Shakespeare workshop in Ships of Thesp
 - Design for a satisfying, extended reading of a complete essay or book, rather than only a short encounter with an excerpt.
 - Make no code changes during this discussion. Preserve ideas and eventual decisions in a Markdown document for later sessions.
 
-## 3. Two reading paths
+## 3. Three reading paths
+
+**Implemented 2026** (revises the original two-path design below): entry now offers three choices, not two, presented together on one screen as parallel toggle buttons rather than a two-step flow:
+
+1. **Contribute** — read the evolving edition; this session's conversation may be folded into later versions.
+2. **Read the current text** — read the same evolving edition, but without contributing; nothing in this session changes it.
+3. **Read the original** — read the untouched authored baseline, unaffected by any reader's evolution; nothing in this session changes it either.
+
+This intentionally reopens the "evolved-but-noncontributing" path that the original design explicitly left out (see below) — Jay's call, on the reasoning that a reader who declines to contribute should still get to choose *which* text they're reading, not just whether they affect it. All three paths persist nothing for that session regardless of choice; only "Contribute" additionally offers to fold the conversation into the shared work via the existing Finish-reading consent flow. This is still consistent with the standing preference against a reading-time comparison view or mid-session edition switcher (§12) — the choice is made once, at entry, not exposed as an ongoing toggle.
+
+Server-side, `api/chat.js` now accepts an `edition` field (`'original'` skips the evolved-text lookup entirely and always serves the authored section); omitting it defaults to the evolving edition, preserving old behavior for any caller that doesn't send it.
+
+### Original two-path design (superseded above, kept for context)
 
 Proposed opening choices:
 
@@ -44,7 +56,7 @@ The second path gives permission for the model to decide what merits incorporati
 
 Both paths should provide the full reading experience. Contribution should not be framed as the price of a richer conversation.
 
-The original/evolving distinction can be explained at entry. Once reading begins, the selected edition is simply the current text. Do not assume a persistent edition label, comparison view, or back-and-forth edition switcher. Jay leans against those reading-time comparisons, although the final navigation choice remains tentative. Preserve original/evolving selection at entry unless a later decision changes it. Starting with exactly two choices intentionally does not offer an evolved-but-noncontributing path.
+The original/evolving distinction can be explained at entry. Once reading begins, the selected edition is simply the current text. Do not assume a persistent edition label, comparison view, or back-and-forth edition switcher. Jay leans against those reading-time comparisons, although the final navigation choice remains tentative. Preserve original/evolving selection at entry unless a later decision changes it.
 
 “No saved queries” should mean no durable application record of original-mode conversations. It does not mean that generating replies avoids sending messages to the model provider. Contribution permission and permission to retain a personal reading history are separate decisions.
 
@@ -66,7 +78,7 @@ No mockups or interface implementation have yet been authorized by this document
 
 Jay's intended interaction already allows continuation by hitting Return or choosing the next section. Treat that as the working interaction model, rather than assuming a separate Continue button or requiring the reader to invent a question.
 
-Implementation observation to retain for later: in the inspected Plenitude `app.js`, an empty input currently returns early from `send()`. Thus blank-Return continuation must be verified or implemented in a future coding task; it has not been confirmed working in this checkout. Next-section navigation already exists. This is an implementation gap to check, not a reason to redesign Jay's intended interaction.
+**Implemented and verified 2026.** Blank-Return continuation now works across all three texts: an empty submission sends a `continue` action instead of returning early, the model presents unread material from the current section, and a `[[SECTION_COMPLETE]]` marker (stripped before display) tells the client when to auto-advance to the next section — tested end-to-end in a live browser session walking through several sections via repeated empty Enter, with no console errors. The client tracks per-section conversation history separately from the reader's actual contributions, so continuation turns are never mistaken for reader interventions when deciding what to fold into an evolution.
 
 Proposed rhythm:
 
@@ -185,10 +197,10 @@ Settled direction for this revision: model-selected integration or omission; sea
 
 ## 13. Implementation references and current limitations
 
-- `plenitude/config.js`: section definitions, conversational instructions, and the restrictive synthesis policy to reconsider.
-- `plenitude/public/app.js` and `style.css`: separate guide/reader columns, consent flag, section transitions, and save triggers.
-- `api/chat.js`: currently always prefers evolved text when available; there is no original-edition reading selector.
-- `api/evolve.js`: one full-section rewrite; stores latest prose; no revision archive or contribution review. Current checks reject shorter-than-original output but do not verify substantive fidelity or enforce the requested upper word limit.
+- `plenitude/config.js`, `uncanny/config.js`: added an explicit instruction against meta-commentary on the essay's own structure/rhetoric (e.g. "this marks the point where the argument turns," "not rhetorical flourish") after a live reader session produced exactly that failure mode. `blood-on-the-wall/config.js` intentionally left untouched.
+- `plenitude/public/app.js`, `uncanny/public/app.js`, `blood-on-the-wall/public/app.js` (and matching `index.html`/`style.css`): separate guide/reader columns, three-way entry consent (see §3), section transitions, and save triggers. All three texts share identical interaction code now — only per-text data (section titles, images, intros, textId, guide/historian label, and the entry-screen wording's nouns) differs.
+- `api/chat.js`: now accepts an `edition` field (`'original'` bypasses the evolved-text lookup entirely); omitted or any other value defaults to preferring evolved text as before.
+- `api/evolve.js`: still one full-section rewrite with no revision archive or contribution review. The length guard was insufficient in practice — a real evolution ran past its word target and got cut off mid-sentence by `max_tokens`, but still passed the "at least as long as original" check and was published to the live database. Fixed: `max_tokens` budget widened (2x → 4x word target) and a completeness check now rejects any output not ending in terminal punctuation, regardless of length. Substantive-fidelity and hard upper-limit enforcement are still not verified.
 - `evolved_sections.json`: local fallback data, separate from the live production store. Its saved Plenitude opening demonstrates substantial expansion; it does not preserve how or why that expansion occurred.
 - Current saves overwrite an entire text's section object, so overlapping requests can lose updates. Client save failures are not reported reliably. Address these before treating collective contributions as durable.
 

@@ -9,6 +9,10 @@ let firstSend = true;
 let sectionIndex = 0;
 let shownImages = new Set();
 let saveConsent = false;
+// Which text this session reads when not contributing: the collectively-evolved
+// edition as it stands today, or the untouched original. Contributing always means
+// reading (and building on) the evolving edition.
+let readingEdition = 'evolving';
 let sectionHistoryStart = 0;
 const contributionHistory = [];
 const sectionHistories = new Map();
@@ -46,15 +50,15 @@ const SECTION_INTROS = [
 
 // ── Consent dialog ──
 
-document.getElementById('consent-yes').addEventListener('click', () => {
-  saveConsent = true;
+function chooseEntry(consent, edition) {
+  saveConsent = consent;
+  readingEdition = edition;
   document.getElementById('consent-overlay').style.display = 'none';
-});
+}
 
-document.getElementById('consent-no').addEventListener('click', () => {
-  saveConsent = false;
-  document.getElementById('consent-overlay').style.display = 'none';
-});
+document.getElementById('consent-contribute').addEventListener('click', () => chooseEntry(true, 'evolving'));
+document.getElementById('consent-current').addEventListener('click', () => chooseEntry(false, 'evolving'));
+document.getElementById('consent-original').addEventListener('click', () => chooseEntry(false, 'original'));
 
 // ── Initialise first section ──
 
@@ -291,7 +295,7 @@ async function send() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message: text, history, sectionIndex: activeSection,
-          shownImages: Array.from(shownImages), textId: 'blood-on-the-wall',
+          shownImages: Array.from(shownImages), textId: 'blood-on-the-wall', edition: readingEdition,
           ...(continuing ? { action: 'continue', sectionHistory: sectionHistories.get(activeSection) || [] } : {})
         })
       });

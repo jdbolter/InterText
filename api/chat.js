@@ -47,8 +47,11 @@ async function loadEvolved(textId) {
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { message, history, sectionIndex = 0, shownImages = [], textId, action, sectionHistory = [] } = req.body;
+  const { message, history, sectionIndex = 0, shownImages = [], textId, action, sectionHistory = [], edition } = req.body;
   const continuing = action === 'continue';
+  // A reader who declined to contribute can still ask to see the original rather
+  // than the collectively-evolved edition. Either way this session changes nothing.
+  const useOriginal = edition === 'original';
 
   if (!ALLOWED_TEXT_IDS.includes(textId)) {
     return res.status(400).json({ error: 'Unknown text' });
@@ -61,7 +64,7 @@ module.exports = async function handler(req, res) {
   const config = getConfig(textId);
   const sections = getSections(textId);
   const idx = Math.max(0, Math.min(Math.floor(sectionIndex), sections.length - 1));
-  const evolved = await loadEvolved(textId);
+  const evolved = useOriginal ? {} : await loadEvolved(textId);
   const sectionText = evolved[idx] ?? sections[idx];
   const sectionName = config.sectionNames[idx];
 

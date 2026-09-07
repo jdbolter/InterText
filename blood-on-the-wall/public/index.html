@@ -11,12 +11,21 @@
   <div id="consent-overlay">
     <div id="consent-dialog">
       <p class="consent-kicker">Before you begin</p>
-      <p class="consent-body">What you are about to read has already been shaped, in part, by the readers who came before you. When your conversation with the historian surfaces a plausible consequence, a named figure, or a connection the record hadn't drawn, that exchange can be folded back into the archive itself. The version the next reader finds will have been quietly changed by someone they will never meet.</p>
-      <p class="consent-body">If you agree, your conversation today will be used to enrich the sections you engage with — anonymously, as one contribution among many to a record that continues to evolve with its readers.</p>
-      <p class="consent-body">You can of course decline. The reading experience will be the same either way.</p>
+      <p class="consent-body">What you are about to read has already been shaped, in part, by the readers who came before you. When your conversation with the historian surfaces a plausible consequence, a named figure, or a connection the record hadn't drawn, that exchange can be folded back into the archive itself. You can choose to be part of that. If you agree, your conversation today will be used to enrich the sections you engage with — anonymously, as one contribution among many to a record that continues to evolve with its readers.</p>
+      <p class="consent-body">If you'd rather not contribute, you can still read freely — either the record as it stands today, or the version as it was first written. Either way, nothing about your visit will change what the next reader finds.</p>
       <div id="consent-buttons">
-        <button id="consent-yes">Yes — let my conversation become part of the record</button>
-        <button id="consent-no">Continue without contributing</button>
+        <button id="consent-contribute" class="consent-btn consent-btn-primary">
+          <span class="consent-btn-title">Contribute</span>
+          <span class="consent-btn-caption">Yes, let my conversation become part of the record.</span>
+        </button>
+        <button id="consent-current" class="consent-btn">
+          <span class="consent-btn-title">Read the current text</span>
+          <span class="consent-btn-caption">No — read it as previous readers have already shaped it.</span>
+        </button>
+        <button id="consent-original" class="consent-btn">
+          <span class="consent-btn-title">Read the original</span>
+          <span class="consent-btn-caption">No — read it exactly as first written, before any reader's changes.</span>
+        </button>
       </div>
     </div>
   </div>

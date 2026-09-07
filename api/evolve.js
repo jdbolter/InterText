@@ -94,8 +94,12 @@ module.exports = async function handler(req, res) {
     // Budget must cover the full revised section as plain text; this is a rewrite
     // task with no need for extended reasoning, so thinking is disabled rather than
     // left to consume part of a fixed max_tokens budget (Sonnet 5 defaults to
-    // adaptive thinking when the param is omitted).
-    const maxTokens = Math.min(8192, Math.round(wordLimit * 2));
+    // adaptive thinking when the param is omitted). A 2x words-to-tokens multiplier
+    // measured short in practice (quotes, em-dashes, and contractions push English
+    // prose past ~1.3 tokens/word) and let a real response get cut off mid-sentence
+    // while still passing the length-only check below — hence the wider margin here
+    // and the completeness check on the result.
+    const maxTokens = Math.min(8192, Math.round(wordLimit * 4));
 
     const response = await client.messages.create({
       model: 'claude-sonnet-5',
@@ -119,9 +123,12 @@ module.exports = async function handler(req, res) {
     // Guard against ever overwriting a good section with a failed/truncated/refused
     // response — this must never silently persist, since evolved[idx] is treated as
     // authoritative over the original file once set (see the `??` fallback below).
+    // Word count alone doesn't catch a response cut off mid-sentence by max_tokens —
+    // that can still be longer than the original, so also require a clean ending.
     const revisedWords = revised.split(/\s+/).filter(Boolean).length;
-    if (revisedWords < originalWords) {
-      console.error(`evolve produced suspiciously short output for ${textId}[${idx}]: ${revisedWords} words vs ${originalWords} original`);
+    const endsCleanly = /[.!?]['"’”)]*$/.test(revised);
+    if (revisedWords < originalWords || !endsCleanly) {
+      console.error(`evolve produced invalid output for ${textId}[${idx}]: ${revisedWords} words vs ${originalWords} original, endsCleanly=${endsCleanly}`);
       return res.status(502).json({ error: 'Synthesis failed, nothing saved' });
     }
 
