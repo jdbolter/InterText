@@ -1,5 +1,7 @@
 # plenitude — CLAUDE.md
 
+Follows the standard engine pattern — see the root `README.md` and `uncanny/CLAUDE.md` for the shared architecture (KV storage, entry consent flow, blank-Return continuation, evolve step, adding a new text). This file only covers what's specific to Plenitude.
+
 ## Status: Complete (images pending)
 
 ### Completed
@@ -28,4 +30,5 @@
 - Section 5 contains academic descriptions of explicit avant-garde performance art. This caused repeated content filter blocks during this session. The fix: remove the most explicit references from section-5.md (the Schneemann and Burden descriptions), then resume in a fresh session.
 - Images in section 2 were: *A Night at the Opera* (1935) and *What's Opera, Doc?* (1957)
 - Images in section 5 were: Olmstead painting and Kandinsky *Composition IV* (1911)
-- The `behavioralInstructions` and `synthesisInstructions` in config.js should be adapted from uncanny's versions but reframed for a cultural argument (not a literary essay on the uncanny)
+- `behavioralInstructions` and `synthesisInstructions` in `config.js` were adapted from uncanny's versions, reframed for a cultural argument rather than a literary essay on the uncanny. `behavioralInstructions` later gained an explicit instruction against meta-commentary on the essay's own structure/rhetoric (e.g. "this marks the point where the argument turns," "not rhetorical flourish") after a live reader session produced exactly that failure mode — see `INTERTEXT-DESIGN-NOTES.md` in the project root.
+- `public/index.html`, `style.css`, `app.js` are kept in lockstep with `uncanny/public/` and `blood-on-the-wall/public/` — see uncanny's CLAUDE.md, "Adding a New Text," for what's shared vs. per-text.

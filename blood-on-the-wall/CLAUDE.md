@@ -8,7 +8,7 @@ The guide is a historian who has lived entirely inside this history — never "a
 
 ## Status
 
-Current section text (`source_texts/sections/*.md`) is hand-written prose, same as uncanny/plenitude. Follows the standard engine pattern — see the root `README.md` and `uncanny/CLAUDE.md` for the shared architecture (KV storage, evolve step, adding a new text).
+Current section text (`source_texts/sections/*.md`) is hand-written prose, same as uncanny/plenitude. Follows the standard engine pattern — see the root `README.md` and `uncanny/CLAUDE.md` for the shared architecture (KV storage, entry consent flow, blank-Return continuation, evolve step, adding a new text). `public/index.html`, `style.css`, `app.js` are kept in lockstep with the other two texts' `public/` folders — only the historian-specific labels, section data, and consent-paragraph wording differ.
 
 ## Future work: generate from Monte Carlo Fiction timeline JSON
 

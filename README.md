@@ -26,7 +26,7 @@ Model in use: `claude-sonnet-5` (both `api/chat.js` and `api/evolve.js`).
 - **plenitude** — companion essay on the collapse of cultural hierarchy and the rise of media plenitude. See `plenitude/CLAUDE.md`.
 - **blood-on-the-wall** — a counterfactual narrative history (JFK assassinated in Berlin, 1963) told by a historian who has never known any other timeline. The guide is instructed never to acknowledge an "other" version of events exists. See `blood-on-the-wall/CLAUDE.md`.
 
-All three share the same conversational pattern: an AI guide voice per section, plus an opt-in "evolve" step where a reader's conversation can rewrite the section for future readers (see `api/evolve.js` and each config's `synthesisInstructions`).
+All three share the same conversational pattern: an AI guide voice per section, plus an opt-in "evolve" step where a reader's conversation can rewrite the section for future readers (see `api/evolve.js` and each config's `synthesisInstructions`). Before reading begins, every text offers the same three-way entry choice — contribute (read and possibly shape the evolving edition), read the current evolving edition without contributing, or read the untouched original — and the same blank-Return continuation (an empty Enter keeps reading instead of requiring a question). See `uncanny/CLAUDE.md`, "Entry Consent" and "Reading On," for how these work; they're identical across all three texts.
 
 ## Adding a new text
 

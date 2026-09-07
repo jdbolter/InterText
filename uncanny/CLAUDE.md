@@ -2,7 +2,7 @@
 
 ## What This Is
 
-A web-based prototype for multi-turn conversation about an essay on the uncanny in film, literature, and digital media. The reader types into an input field and receives responses that gradually reveal the essay's argument section by section.
+A web-based prototype for multi-turn conversation about an essay on the uncanny in film, literature, and digital media. The reader types into an input field and receives responses that gradually reveal the essay's argument section by section. An empty Return continues the reading instead of requiring a question — see "Reading On: Blank-Return Continuation" below.
 
 The essay is divided into five sections. The interface shows a persistent TOC sidebar; clicking a section loads that section's text into the model's context. The model only ever sees the currently active section — this prevents it from pre-empting later parts of the argument. Conversation history carries over across section changes.
 
@@ -62,8 +62,10 @@ Note: `api/chat.js` and `api/evolve.js` live at the project root because Vercel 
 1. Create a new folder at the project root (e.g. `mytext/`)
 2. Add `mytext/config.js` — copy `uncanny/config.js` and replace all content with the new text's data
 3. Add `mytext/source_texts/sections/` with the section `.md` files
-4. Add `mytext/public/` with `index.html`, `style.css`, `app.js` — update `app.js` to send `textId: 'mytext'`
+4. Add `mytext/public/` — copy `uncanny/public/index.html`, `style.css`, `app.js` verbatim as a starting point rather than writing from scratch. All three texts now share *identical* interaction code (consent flow, continuation, section navigation); only per-text data differs: `SECTION_NUMERALS`/`TITLES`/`IMAGES`/`INTROS` and the `textId` string in `app.js`, the TOC list / title / `<h1>` / consent-paragraph nouns and the "Guide"/"Historian"-equivalent labels in `index.html` and `app.js`, and the consent-paragraph wording (adapt "the collective" / "essay" to whatever this text calls its shared work and its guide voice — see the three existing consent overlays for the range already in use). `style.css` should need no changes at all.
 5. Add `'mytext'` to `ALLOWED_TEXT_IDS` in both `api/chat.js` and `api/evolve.js`
+
+Because the JS/CSS are meant to stay identical across texts, if you ever change the shared interaction behavior (continuation, consent flow, section navigation) for one text, port the same edit to the other two — see the "Reading On" and "Entry Consent" sections below for what's currently shared.
 
 ## KV Storage (Evolved Sections)
 
@@ -109,7 +111,8 @@ vercel dev
 - **Section management**: `sectionIndex` (0–4) tracked client-side, sent with every request; API loads only the active section's file
 - **Caching**: ephemeral prompt cache on the active section block — invalidates on section change, warm within a section
 - **History**: full conversation history stored in the browser, sent with each request; persists across section switches
-- **Evolved sections**: KV key `evolved:uncanny` stores reader-contributed revisions; `api/chat.js` prefers evolved text over original when one exists
+- **Evolved sections**: KV key `evolved:uncanny` stores reader-contributed revisions; `api/chat.js` prefers evolved text over original when one exists, unless the reader chose "Read the original" at entry (see "Entry Consent" below)
+- **Continuation**: an empty Return continues reading rather than requiring a question — see "Reading On" below
 
 ## The Five Sections
 
@@ -148,3 +151,23 @@ After a rich conversation, the reader can trigger evolution by clicking "Finish"
 4. The revised text is written back to KV under `evolved:uncanny`
 
 Evolution is cumulative — each call works from the current evolved state, not the original.
+
+The rewrite is guarded against being silently corrupted: `api/evolve.js` rejects (HTTP 502, nothing saved) any output shorter than the original *or* not ending in terminal punctuation. The latter check exists because a response can be cut off mid-sentence by the `max_tokens` budget while still being longer than the original — that happened once in production (Plenitude section 1) and passed the length-only check before the completeness check was added. `max_tokens` itself is sized generously (`wordLimit * 4`, capped at 8192) rather than tightly, since a real English rewrite runs closer to ~1.5–1.8 tokens/word than the ~1.3 you'd assume from a naive estimate — quotes, em-dashes, and contractions push it up.
+
+## Entry Consent: Three Reading Paths
+
+The consent overlay (shown once, before reading begins) offers three choices, not a simple yes/no:
+
+1. **Contribute** — read the evolving edition; this session's conversation may be folded into a later version via the Finish-reading flow.
+2. **Read the current text** — read the same evolving edition, but decline to contribute; nothing in this session is saved.
+3. **Read the original** — read the untouched authored text, bypassing any reader-evolved version entirely; also not saved.
+
+Client-side (`app.js`), this sets two independent variables: `saveConsent` (only true for path 1) and `readingEdition` (`'evolving'` for paths 1–2, `'original'` for path 3). `readingEdition` is sent as `edition` on every `/api/chat` request. Server-side (`api/chat.js`), `edition === 'original'` skips the KV lookup entirely and always serves `sections[idx]`; anything else (including an omitted field, for backward compatibility) preserves the old "prefer evolved when available" behavior.
+
+This is an entry-time choice only — there's no reading-time toggle or original-vs-evolved comparison view, by design (see `INTERTEXT-DESIGN-NOTES.md` §3 and §12 in the project root for the fuller reasoning and the design history this revises).
+
+## Reading On: Blank-Return Continuation
+
+Hitting Enter with an empty input box continues the reading instead of doing nothing — the client sends `{ action: 'continue', sectionHistory: [...] }` instead of a `message`. Server-side, this swaps in a separate continuation instruction (`continuationInstructions` in `api/chat.js`) telling the model to present unread material from the current section rather than answering a question, and to append a `[[SECTION_COMPLETE]]` marker (stripped before the reader ever sees it) once the section's substantive material is exhausted.
+
+Client-side (`app.js`), `completedSections` tracks which sections have signaled completion; a further empty Enter on a completed section auto-advances to the next one in the same keystroke (via `selectSection`), or shows "End of the final section." on the last one. Continuation turns are tracked in `sectionHistories` (per-section context, so a continuation doesn't drag in an unrelated earlier chapter's exchange) and are deliberately kept out of `contributionHistory` — reading on is navigation, not a reader intervention, so it's never sent to `api/evolve.js` as something worth folding into the text.
