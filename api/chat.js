@@ -47,13 +47,14 @@ async function loadEvolved(textId) {
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { message, history, sectionIndex = 0, shownImages = [], textId } = req.body;
+  const { message, history, sectionIndex = 0, shownImages = [], textId, action, sectionHistory = [] } = req.body;
+  const continuing = action === 'continue';
 
   if (!ALLOWED_TEXT_IDS.includes(textId)) {
     return res.status(400).json({ error: 'Unknown text' });
   }
 
-  if (!message || typeof message !== 'string' || !message.trim()) {
+  if (!continuing && (!message || typeof message !== 'string' || !message.trim())) {
     return res.status(400).json({ error: 'Empty message' });
   }
 
@@ -64,10 +65,14 @@ module.exports = async function handler(req, res) {
   const sectionText = evolved[idx] ?? sections[idx];
   const sectionName = config.sectionNames[idx];
 
+  // Continuation uses this section's exchanges, not the previous chapter's ending.
+  const context = continuing ? sectionHistory : history;
   const messages = [
-    ...(Array.isArray(history) ? history : []),
-    { role: 'user', content: message.trim() }
+    ...(Array.isArray(context) ? context : []),
+    { role: 'user', content: continuing ? 'Continue reading from where we have reached in this section.' : message.trim() }
   ];
+  const continuationInstructions = continuing ? `The reader pressed Enter to continue reading. Follow the supplied current section's sequence of ideas, using the exchanges below to locate what has already been presented. Resume substantive material not yet covered rather than repeating the opening or continuing a digression indefinitely. Present the current text directly, with its voice and concrete details; do not summarize the entire section, describe your process, announce that you are continuing, ask a question, or say what the essay or author argues. A natural passage of up to 250 words is enough for this turn. Brief elaboration may connect the passage to the reader's interests, but return to the section's remaining material.
+When ALL the section's substantive material and useful elaboration have been covered, append [[SECTION_COMPLETE]] on a line by itself after the final passage. If they were already covered, return only [[SECTION_COMPLETE]]. Otherwise do not emit this marker. Do not move into the next section yourself or invent additional material merely to keep going. This is an internal navigation signal, never prose for the reader.` : null;
 
   try {
     const response = await client.messages.create({
@@ -79,6 +84,7 @@ module.exports = async function handler(req, res) {
       system: [
         { type: 'text', text: [
             config.behavioralInstructions,
+            continuationInstructions,
             (config.sectionImagePrompts[idx] || [])
               .filter(({ id }) => !shownImages.includes(id))
               .map(({ prompt }) => prompt)
@@ -107,12 +113,14 @@ module.exports = async function handler(req, res) {
       }
     });
     let text = postBlocks.map(b => b.text).join('');
+    const sectionComplete = continuing && /\[\[SECTION_COMPLETE\]\]\s*$/.test(text);
+    text = text.replace(/\[\[SECTION_COMPLETE\]\]/g, '').trim();
 
     // An empty completion (e.g. thinking consuming the whole max_tokens budget on a
     // hard turn) is a failure, not a valid reply — must not return 200 with empty
     // text, since the client only pushes successful turns into `history`, and a
     // silent empty-but-200 response causes that turn to vanish from context.
-    if (!text.trim()) {
+    if (!text.trim() && !sectionComplete) {
       console.error(`chat produced empty completion for ${textId}[${idx}]`);
       return res.status(502).json({ error: 'Empty completion' });
     }
@@ -120,7 +128,7 @@ module.exports = async function handler(req, res) {
     if (citations.length > 0) {
       text += '\n\nSources: ' + citations.slice(0, 5).map(c => `[${c.title}](${c.url})`).join(' · ');
     }
-    return res.status(200).json({ response: text });
+    return res.status(200).json({ response: text, ...(continuing ? { sectionComplete } : {}) });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: 'API error' });

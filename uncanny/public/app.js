@@ -10,6 +10,12 @@ let sectionIndex = 0;
 let shownImages = new Set();
 let saveConsent = false;
 let sectionHistoryStart = 0;
+const contributionHistory = [];
+const sectionHistories = new Map();
+const completedSections = new Set();
+let sending = false;
+let endShown = false;
+const CONTINUE_MESSAGE = 'Continue reading from where we have reached in this section.';
 
 const SECTION_NUMERALS = ['I', 'II', 'III', 'IV', 'V'];
 
@@ -74,25 +80,22 @@ appendSectionBreak(0, false);
 
 // ── TOC navigation ──
 
+function selectSection(newIdx) {
+  if (newIdx === sectionIndex) return;
+  saveCurrentSection();
+  sectionHistoryStart = contributionHistory.length;
+  sectionIndex = newIdx;
+  document.querySelectorAll('.toc-item').forEach(el => {
+    el.classList.toggle('active', Number(el.dataset.section) === newIdx);
+  });
+  intro.innerHTML = SECTION_INTROS[sectionIndex];
+  firstSend = true;
+  appendSectionBreak(sectionIndex);
+}
+
 document.querySelectorAll('.toc-item').forEach(item => {
   item.addEventListener('click', () => {
-    const newIdx = parseInt(item.dataset.section, 10);
-    if (newIdx === sectionIndex) return;
-
-    saveCurrentSection(); // fire and forget — does not block navigation
-    sectionHistoryStart = history.length;
-
-    sectionIndex = newIdx;
-    document.querySelectorAll('.toc-item').forEach(el => el.classList.remove('active'));
-    item.classList.add('active');
-    intro.innerHTML = SECTION_INTROS[sectionIndex];
-    firstSend = true;
-
-    if (conv.children.length > 0) {
-      appendSectionBreak(sectionIndex);
-    } else {
-      intro.classList.remove('is-hiding');
-    }
+    if (!sending) selectSection(Number(item.dataset.section));
   });
 });
 
@@ -112,7 +115,7 @@ document.getElementById('finish-btn').addEventListener('click', async () => {
 
 async function saveCurrentSection() {
   if (!saveConsent) return;
-  const slice = history.slice(sectionHistoryStart);
+  const slice = contributionHistory.slice(sectionHistoryStart);
   if (slice.length === 0) return;
   try {
     await fetch('/api/evolve', {
@@ -259,52 +262,97 @@ function appendSystemMessage(text) {
   el.scrollIntoView({ behavior: 'smooth', block: 'end' });
 }
 
+// Keep the writing position visible even while the reader looks elsewhere.
+function updateCaretMarker() {
+  input.parentElement.classList.toggle('show-caret', input.value === '' && input.placeholder === '');
+}
+
 // ── Send ──
 
+function setSending(value) {
+  sending = value;
+  document.querySelectorAll('.toc-item').forEach(el => { el.disabled = value; });
+  document.getElementById('finish-btn').disabled = value;
+  input.setAttribute('aria-busy', String(value));
+}
+
 async function send() {
+  if (sending) return;
   const text = input.value.trim();
-  if (!text) return;
-
+  const continuing = !text;
   input.value = '';
+  input.placeholder = '';
+  updateCaretMarker();
   input.style.height = 'auto';
-
   firstSend = false;
-  appendReaderMessage(text);
+  if (!continuing) appendReaderMessage(text);
+  input.focus();
+  setSending(true);
   showThinking();
 
   try {
-    const res = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: text, history, sectionIndex, shownImages: Array.from(shownImages), textId: 'uncanny' })
-    });
-
-    const data = await res.json();
-    removeThinking();
-
-    if (data.response) {
-      history.push({ role: 'user', content: text });
-      history.push({ role: 'assistant', content: data.response });
-      appendGuideResponse(data.response);
-    } else {
-      appendGuideResponse('[No response]');
+    // An exhausted section with no new prose advances in this same Enter press.
+    for (;;) {
+      if (continuing && completedSections.has(sectionIndex)) {
+        if (sectionIndex === SECTION_TITLES.length - 1) {
+          if (!endShown) appendSystemMessage('End of the final section.');
+          endShown = true;
+          break;
+        }
+        selectSection(sectionIndex + 1);
+      }
+      const activeSection = sectionIndex;
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: text, history, sectionIndex: activeSection,
+          shownImages: Array.from(shownImages), textId: 'uncanny',
+          ...(continuing ? { action: 'continue', sectionHistory: sectionHistories.get(activeSection) || [] } : {})
+        })
+      });
+      const data = await res.json();
+      if (!res.ok || (!data.response && !(continuing && data.sectionComplete === true))) {
+        throw new Error('No reading response');
+      }
+      if (data.response) {
+        const turns = [
+          { role: 'user', content: continuing ? CONTINUE_MESSAGE : text },
+          { role: 'assistant', content: data.response }
+        ];
+        history.push(...turns);
+        sectionHistories.set(activeSection, [...(sectionHistories.get(activeSection) || []), ...turns]);
+        // Reading on is navigation, not a reader intervention for synthesis.
+        if (!continuing) contributionHistory.push(...turns);
+        appendGuideResponse(data.response);
+      }
+      if (continuing && data.sectionComplete === true) completedSections.add(activeSection);
+      if (data.response) break;
     }
   } catch (err) {
+    appendSystemMessage('Could not continue the conversation. Please try again.');
+    if (!continuing && !input.value) input.value = text;
+  } finally {
     removeThinking();
-    appendGuideResponse('[Error reaching server]');
+    setSending(false);
+    updateCaretMarker();
+    input.focus();
   }
-
-  input.focus();
 }
 
 input.addEventListener('keydown', e => {
-  if (e.key === 'Enter' && !e.shiftKey) {
+  if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) {
     e.preventDefault();
     send();
   }
 });
 
 input.addEventListener('input', () => {
+  // This hint is only for the first use, not each newly cleared draft.
+  if (input.value.length > 0) input.placeholder = '';
+  updateCaretMarker();
+  const atLatest = readerHistory.scrollTop + readerHistory.clientHeight >= readerHistory.scrollHeight - 2;
   input.style.height = 'auto';
   input.style.height = input.scrollHeight + 'px';
+  if (atLatest) readerHistory.scrollTop = readerHistory.scrollHeight;
 });

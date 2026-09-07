@@ -5,6 +5,6 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
     "@upstash/redis": "^1.38.0",
-    "vercel": "^54.14.0"
+    "vercel": "^59.11.7"
   }
 }

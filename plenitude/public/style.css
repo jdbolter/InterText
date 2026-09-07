@@ -176,6 +176,7 @@ body {
 
 #input-panel {
   flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -183,20 +184,9 @@ body {
   border-top: 1px solid var(--guide-label);
 }
 
-#reader-instruction {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 0.82rem;
-  line-height: 1.5;
-  color: var(--guide-label);
-  flex-shrink: 0;
-  border-top: 1px solid var(--guide-label);
-  padding-top: 1rem;
-  margin-top: 1rem;
-  margin-bottom: 0.6rem;
-}
-
 #reader-history {
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -204,14 +194,19 @@ body {
 }
 
 .reader-entry {
+  flex-shrink: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 0.88rem;
-  line-height: 1.55;
-  color: var(--muted);
+  font-size: 0.97rem;
+  line-height: 1.6;
+  color: var(--guide-label);
   font-style: italic;
 }
 
 #input-area {
+  margin-top: 1rem;
+  padding-left: 1.1rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -219,36 +214,35 @@ body {
   position: relative;
 }
 
-#input-area::before {
-  content: '_';
+.input-prompt {
   position: absolute;
-  left: 0;
   top: 0.4rem;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 16px;
+  left: 0;
+  font-size: 0.97rem;
+  line-height: 1.6;
   color: var(--guide-label);
-  animation: blink 1s step-end infinite;
   pointer-events: none;
 }
 
-#input-area:focus-within::before {
-  display: none;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
+/* When focused, the textarea supplies its own caret. */
+#input-area.show-caret:not(:focus-within)::before {
+  content: '';
+  position: absolute;
+  top: 0.65rem;
+  left: 1.1rem;
+  height: 1.1rem;
+  border-left: 1px solid var(--text);
+  pointer-events: none;
 }
 
 #message-input {
   width: 100%;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 16px;
+  font-size: 0.97rem;
   line-height: 1.6;
   color: var(--text);
   background: transparent;
   border: none;
-  border-bottom: 1px solid var(--guide-label);
   padding: 0.4rem 0;
   resize: none;
   outline: none;
@@ -258,8 +252,8 @@ body {
 }
 
 #message-input::placeholder {
-  color: var(--border);
-  font-style: italic;
+  color: var(--muted);
+  opacity: 1;
 }
 
 /* ── Finish bar — bottom of right column, never scrolls ── */
