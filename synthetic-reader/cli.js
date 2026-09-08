@@ -70,7 +70,9 @@ async function main(argv) {
           ? turn.navigatedTo
             ? `navigated to section ${turn.navigatedTo}`
             : `tried an invalid navigation`
-          : `finished: ${turn.stopReason}`;
+          : turn.action === 'finish'
+          ? `finished: ${turn.stopReason}`
+          : `FAILED — ${turn.note}`;
       process.stdout.write(`  turn ${turn.turn} (section ${turn.sectionNumber}): ${summary}\n`);
     },
   });
@@ -90,6 +92,16 @@ async function main(argv) {
 
   const outDir = opts.out || DEFAULT_OUT_DIR;
   const { dir } = writeRun(outDir, meta, result);
+
+  if (result.stopReason === 'error') {
+    process.stdout.write(
+      `\nRun stopped early after a failure: ${result.stopDetail}\n` +
+        `${result.turns.length} turn(s) were still recorded before the failure.\n` +
+        `Transcript written to: ${dir}\n`
+    );
+    process.exitCode = 1;
+    return;
+  }
 
   process.stdout.write(
     `\nDone. Stop reason: ${result.stopReason}. ${result.turns.length} turn(s) recorded.\n` +

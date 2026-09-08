@@ -83,96 +83,107 @@ async function runSession(opts) {
   appendSectionIntro(sectionIndex);
 
   let turnNumber = 0;
-  while (turnNumber < maxTurns) {
+  turnLoop: while (turnNumber < maxTurns) {
     turnNumber += 1;
-    const visibleContext = buildVisibleContext();
-    const action = await reader.chooseAction(visibleContext);
-    const turnRecord = {
-      turn: turnNumber,
-      sectionNumber: currentSection().number,
-      action: action.action,
-      privateReflection: action.private_reflection,
-      timestamp: new Date().toISOString(),
-    };
+    const turnRecord = { turn: turnNumber, sectionNumber: currentSection().number, timestamp: new Date().toISOString() };
 
-    if (action.action === 'message') {
-      visibleTranscript.push({ type: 'reader', text: action.message });
-      const data = await chatClient.postChat(baseUrl, {
-        message: action.message,
-        history,
-        sectionIndex,
-        shownImages: Array.from(shownImages),
-        textId: textEntry.id,
-        edition,
-      });
-      const responseText = data.response || '';
-      recordHistoryTurn(action.message, responseText);
-      extractImageIds(responseText).forEach((id) => shownImages.add(id));
-      turnRecord.readerMessage = action.message;
-      // Record and display what the reader actually saw, not the server's raw
-      // [[IMAGE:id]] token — that's an internal rendering instruction, never prose.
-      turnRecord.guideResponse = stripImageTokens(responseText);
-      visibleTranscript.push({ type: 'guide', text: turnRecord.guideResponse });
-    } else if (action.action === 'continue') {
-      let advanced = false;
-      for (;;) {
-        if (completedSections.has(sectionIndex)) {
-          if (sectionIndex === sections.length - 1) {
-            visibleTranscript.push({ type: 'system', text: 'End of the final section.' });
-            turnRecord.note = 'reached end of final section; no further content to read';
-            break;
-          }
-          sectionIndex += 1;
-          appendSectionIntro(sectionIndex);
-          advanced = true;
-          continue;
-        }
+    try {
+      const visibleContext = buildVisibleContext();
+      const action = await reader.chooseAction(visibleContext);
+      turnRecord.action = action.action;
+      turnRecord.privateReflection = action.private_reflection;
+
+      if (action.action === 'message') {
+        visibleTranscript.push({ type: 'reader', text: action.message });
         const data = await chatClient.postChat(baseUrl, {
-          message: '',
+          message: action.message,
           history,
           sectionIndex,
           shownImages: Array.from(shownImages),
           textId: textEntry.id,
           edition,
-          action: 'continue',
-          sectionHistory: sectionHistories.get(sectionIndex) || [],
         });
-        if (data.sectionComplete === true) completedSections.add(sectionIndex);
-        if (data.response) {
-          const responseText = data.response;
-          recordHistoryTurn('Continue reading from where we have reached in this section.', responseText);
-          extractImageIds(responseText).forEach((id) => shownImages.add(id));
-          turnRecord.guideResponse = stripImageTokens(responseText);
-          visibleTranscript.push({ type: 'guide', text: turnRecord.guideResponse });
-          break;
+        const responseText = data.response || '';
+        recordHistoryTurn(action.message, responseText);
+        extractImageIds(responseText).forEach((id) => shownImages.add(id));
+        turnRecord.readerMessage = action.message;
+        // Record and display what the reader actually saw, not the server's raw
+        // [[IMAGE:id]] token — that's an internal rendering instruction, never prose.
+        turnRecord.guideResponse = stripImageTokens(responseText);
+        visibleTranscript.push({ type: 'guide', text: turnRecord.guideResponse });
+      } else if (action.action === 'continue') {
+        let advanced = false;
+        for (;;) {
+          if (completedSections.has(sectionIndex)) {
+            if (sectionIndex === sections.length - 1) {
+              visibleTranscript.push({ type: 'system', text: 'End of the final section.' });
+              turnRecord.note = 'reached end of final section; no further content to read';
+              break;
+            }
+            sectionIndex += 1;
+            appendSectionIntro(sectionIndex);
+            advanced = true;
+            continue;
+          }
+          const data = await chatClient.postChat(baseUrl, {
+            message: '',
+            history,
+            sectionIndex,
+            shownImages: Array.from(shownImages),
+            textId: textEntry.id,
+            edition,
+            action: 'continue',
+            sectionHistory: sectionHistories.get(sectionIndex) || [],
+          });
+          if (data.sectionComplete === true) completedSections.add(sectionIndex);
+          if (data.response) {
+            const responseText = data.response;
+            recordHistoryTurn('Continue reading from where we have reached in this section.', responseText);
+            extractImageIds(responseText).forEach((id) => shownImages.add(id));
+            turnRecord.guideResponse = stripImageTokens(responseText);
+            visibleTranscript.push({ type: 'guide', text: turnRecord.guideResponse });
+            break;
+          }
+          if (!data.sectionComplete) {
+            // Defensive: the server contract guarantees a response unless sectionComplete
+            // is true (see api/chat.js), but never loop forever on an unexpected reply.
+            turnRecord.note = 'continue produced no response and no section-complete signal';
+            break;
+          }
+          // sectionComplete with no response on a non-final section: loop advances above.
         }
-        if (!data.sectionComplete) {
-          // Defensive: the server contract guarantees a response unless sectionComplete
-          // is true (see api/chat.js), but never loop forever on an unexpected reply.
-          turnRecord.note = 'continue produced no response and no section-complete signal';
-          break;
+        turnRecord.sectionAfter = currentSection().number;
+        turnRecord.advancedSection = advanced;
+      } else if (action.action === 'navigate') {
+        const targetIdx = action.target_section - 1;
+        if (!Number.isInteger(targetIdx) || targetIdx < 0 || targetIdx >= sections.length || targetIdx === sectionIndex) {
+          visibleTranscript.push({ type: 'system', text: `Section ${action.target_section} is not available.` });
+          turnRecord.note = `invalid navigate target: ${action.target_section}`;
+        } else {
+          sectionIndex = targetIdx;
+          appendSectionIntro(sectionIndex);
+          turnRecord.navigatedTo = currentSection().number;
         }
-        // sectionComplete with no response on a non-final section: loop advances above.
+      } else if (action.action === 'finish') {
+        stopReason = 'reader_finished';
+        stopDetail = action.stop_reason;
+        turnRecord.stopReason = action.stop_reason;
+        turns.push(turnRecord);
+        if (onTurn) onTurn(turnRecord);
+        break turnLoop;
       }
-      turnRecord.sectionAfter = currentSection().number;
-      turnRecord.advancedSection = advanced;
-    } else if (action.action === 'navigate') {
-      const targetIdx = action.target_section - 1;
-      if (!Number.isInteger(targetIdx) || targetIdx < 0 || targetIdx >= sections.length || targetIdx === sectionIndex) {
-        visibleTranscript.push({ type: 'system', text: `Section ${action.target_section} is not available.` });
-        turnRecord.note = `invalid navigate target: ${action.target_section}`;
-      } else {
-        sectionIndex = targetIdx;
-        appendSectionIntro(sectionIndex);
-        turnRecord.navigatedTo = currentSection().number;
-      }
-    } else if (action.action === 'finish') {
-      stopReason = 'reader_finished';
-      stopDetail = action.stop_reason;
-      turnRecord.stopReason = action.stop_reason;
+    } catch (err) {
+      // A request failure (e.g. the Text model returning a 502) must not discard
+      // every turn recorded so far — that's exactly the kind of thing this harness
+      // exists to surface, so it gets written out like any other outcome instead of
+      // being thrown away.
+      turnRecord.action = turnRecord.action || 'error';
+      turnRecord.note = `turn failed: ${err.message}`;
       turns.push(turnRecord);
       if (onTurn) onTurn(turnRecord);
-      break;
+      stopReason = 'error';
+      stopDetail = err.message;
+      break turnLoop;
     }
 
     turns.push(turnRecord);

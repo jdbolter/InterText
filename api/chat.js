@@ -80,7 +80,12 @@ When ALL the section's substantive material and useful elaboration have been cov
   try {
     const response = await client.messages.create({
       model: 'claude-sonnet-5',
-      max_tokens: 2048,
+      // 2048 was too tight: adaptive thinking can consume the whole budget on a hard
+      // turn, leaving no tokens for the actual reply and forcing the empty-completion
+      // 502 below — confirmed in practice by several consecutive real turns. Response
+      // text itself is short (config.behavioralInstructions caps it around 250 words),
+      // so this is headroom for thinking, not an invitation to write longer replies.
+      max_tokens: 4096,
       // Sonnet 5 runs adaptive thinking by default when this is omitted (Sonnet 4.6 didn't) —
       // pinned explicitly so behavior doesn't shift silently on a future model swap.
       thinking: { type: 'adaptive' },

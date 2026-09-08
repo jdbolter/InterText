@@ -257,6 +257,69 @@ test('private reflections are recorded but never sent in any request body', asyn
   }
 });
 
+test('a mid-run request failure is recorded, not thrown — prior turns are preserved', async () => {
+  let call = 0;
+  const chatClient = {
+    postChat: async (baseUrl, body) => {
+      call += 1;
+      if (call <= 2) return { response: `ok ${call}` };
+      const err = new Error('http://localhost:3000/api/chat returned 502: Empty completion');
+      throw err;
+    },
+  };
+  const reader = scriptedReader([
+    { action: 'message', message: 'Q1', target_section: null, stop_reason: null, private_reflection: privateReflection() },
+    { action: 'message', message: 'Q2', target_section: null, stop_reason: null, private_reflection: privateReflection() },
+    { action: 'message', message: 'Q3 (will fail)', target_section: null, stop_reason: null, private_reflection: privateReflection() },
+  ]);
+
+  const result = await runSession({
+    textEntry: TEXT_ENTRY,
+    sections: SECTIONS,
+    startSectionIndex: 0,
+    edition: 'evolving',
+    maxTurns: 5,
+    baseUrl: 'http://localhost:3000',
+    reader,
+    chatClient,
+  });
+
+  assert.equal(result.stopReason, 'error');
+  assert.match(result.stopDetail, /502.*Empty completion/);
+  assert.equal(result.turns.length, 3);
+  assert.equal(result.turns[0].guideResponse, 'ok 1');
+  assert.equal(result.turns[1].guideResponse, 'ok 2');
+  assert.equal(result.turns[2].action, 'message'); // action was already chosen before the request failed
+  assert.match(result.turns[2].note, /turn failed.*502/);
+  // The failed turn's own private reflection is still preserved.
+  assert.equal(result.turns[2].privateReflection.note, 'fine');
+});
+
+test('a failure while the reader model itself is choosing an action is also recorded, not thrown', async () => {
+  const chatClient = { postChat: async () => ({ response: 'unused' }) };
+  const reader = {
+    chooseAction: async () => {
+      throw new Error('OpenAI request failed: network error');
+    },
+  };
+
+  const result = await runSession({
+    textEntry: TEXT_ENTRY,
+    sections: SECTIONS,
+    startSectionIndex: 0,
+    edition: 'evolving',
+    maxTurns: 5,
+    baseUrl: 'http://localhost:3000',
+    reader,
+    chatClient,
+  });
+
+  assert.equal(result.stopReason, 'error');
+  assert.equal(result.turns.length, 1);
+  assert.equal(result.turns[0].action, 'error'); // no action was ever chosen
+  assert.match(result.turns[0].note, /OpenAI request failed/);
+});
+
 test('image tokens in a guide response are stripped from the visible transcript and tracked as shown', async () => {
   const chatClient = recordingChatClient((_body, n) =>
     n === 1 ? { response: 'Look: [[IMAGE:kandinsky]] interesting.' } : { response: 'ok' }
