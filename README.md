@@ -28,6 +28,17 @@ Model in use: `claude-sonnet-5` (both `api/chat.js` and `api/evolve.js`).
 
 All three share the same conversational pattern: an AI guide voice per section, plus an opt-in "evolve" step where a reader's conversation can rewrite the section for future readers (see `api/evolve.js` and each config's `synthesisInstructions`). Before reading begins, every text offers the same three-way entry choice — contribute (read and possibly shape the evolving edition), read the current evolving edition without contributing, or read the untouched original — and the same blank-Return continuation (an empty Enter keeps reading instead of requiring a question). See `uncanny/CLAUDE.md`, "Entry Consent" and "Reading On," for how these work; they're identical across all three texts.
 
+## Testing with a synthetic reader
+
+`synthetic-reader/` is a CLI-only harness that drives the real `/api/chat` endpoint
+with an OpenAI model role-playing a reader (curious, skeptical, impatient, or
+passive), instead of a human. It never touches the web interface and never calls
+`/api/evolve`. See `synthetic-reader/README.md` for setup and usage; quick start:
+
+```bash
+npm run synthetic-reader -- --profile curious --section 1 --turns 10
+```
+
 ## Adding a new text
 
 See the "Adding a New Text" section in `uncanny/CLAUDE.md` for the step-by-step pattern.

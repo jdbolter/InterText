@@ -2,9 +2,14 @@
   "name": "intertext",
   "version": "1.0.0",
   "private": true,
+  "scripts": {
+    "synthetic-reader": "node --env-file-if-exists=.env.local synthetic-reader/cli.js",
+    "test": "node --test synthetic-reader/test/"
+  },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
     "@upstash/redis": "^1.38.0",
+    "openai": "^5.23.2",
     "vercel": "^59.11.7"
   }
 }
