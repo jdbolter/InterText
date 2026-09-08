@@ -23,6 +23,11 @@ function buildJson(meta, result) {
     stopDetail: result.stopDetail,
     finalSectionNumber: result.finalSectionIndex + 1,
     turns: result.turns,
+    // Actual reader contributions only (never continuation turns), keyed by
+    // 1-based section number — what a later, separate evolve step reads back out
+    // to preview a synthesis without ever touching production data. See
+    // synthetic-reader/lib/evolveClient.js and evolve-cli.js.
+    contributionsBySection: result.contributionsBySection || {},
   };
 }
 
@@ -63,9 +68,16 @@ function buildMarkdown(meta, result) {
     '',
     `**Stop reason:** ${result.stopReason}${result.stopDetail ? ` — ${result.stopDetail}` : ''}`,
     '',
-    '## Turns',
-    '',
   ];
+  const contributedSections = Object.keys(result.contributionsBySection || {});
+  lines.push(
+    contributedSections.length > 0
+      ? `Sections with actual reader contributions (evolvable): ${contributedSections.join(', ')}.`
+      : 'No actual reader contributions were made this run (continuation-only, or navigation-only) — nothing here to evolve.',
+    '',
+    '## Turns',
+    ''
+  );
   for (const turn of result.turns) {
     lines.push(formatTurnMarkdown(turn), '');
   }
@@ -88,4 +100,39 @@ function writeRun(outDir, meta, result) {
   return { dir, jsonPath, mdPath };
 }
 
-module.exports = { writeRun, buildJson, buildMarkdown, runDirName };
+/**
+ * Writes one dry-run evolution attempt as a self-contained, timestamped subfolder
+ * of {sessionDir} (the directory holding that session's session.json/transcript.md)
+ * — original.md, evolved.md, and evolve.json. Never overwrites a prior attempt:
+ * the synthesis call isn't deterministic, so re-running against the same session
+ * is expected to produce a folder per attempt, not a single file that clobbers the
+ * last result.
+ */
+function writeEvolveRun(sessionDir, evolveMeta, original, revised) {
+  const stamp = evolveMeta.startedAt.replace(/[:.]/g, '-');
+  const dir = path.join(sessionDir, `evolve-${stamp}`);
+  fs.mkdirSync(dir, { recursive: true });
+
+  const originalPath = path.join(dir, 'original.md');
+  const revisedPath = path.join(dir, 'evolved.md');
+  const metaPath = path.join(dir, 'evolve.json');
+
+  fs.writeFileSync(originalPath, original);
+  fs.writeFileSync(revisedPath, revised);
+  fs.writeFileSync(
+    metaPath,
+    JSON.stringify(
+      {
+        ...evolveMeta,
+        originalWordCount: original.split(/\s+/).filter(Boolean).length,
+        revisedWordCount: revised.split(/\s+/).filter(Boolean).length,
+      },
+      null,
+      2
+    ) + '\n'
+  );
+
+  return { dir, originalPath, revisedPath, metaPath };
+}
+
+module.exports = { writeRun, writeEvolveRun, buildJson, buildMarkdown, runDirName };

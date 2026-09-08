@@ -67,7 +67,8 @@ async function writeEvolved(textId, data) {
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { sectionIndex, conversationHistory, textId } = req.body;
+  const { sectionIndex, conversationHistory, textId, dryRun } = req.body;
+  const isDryRun = dryRun === true;
 
   if (!ALLOWED_TEXT_IDS.includes(textId)) {
     return res.status(400).json({ error: 'Unknown text' });
@@ -80,8 +81,13 @@ module.exports = async function handler(req, res) {
   const config = getConfig(textId);
   const sections = getSections(textId);
   const idx = Math.max(0, Math.min(Math.floor(sectionIndex), sections.length - 1));
-  const evolved = await readEvolved(textId);
-  const currentText = evolved[idx] ?? sections[idx];
+  // A dry run (synthetic-reader's evolve preview — see synthetic-reader/lib/evolveClient.js)
+  // never reads or writes KV at all: it always starts from the pristine authored text,
+  // regardless of what real readers may have already evolved it into, so that repeated
+  // synthetic runs are comparable against the same fixed baseline instead of a moving
+  // target. It must never persist anything — see the isDryRun guard near the bottom.
+  const evolved = isDryRun ? {} : await readEvolved(textId);
+  const currentText = isDryRun ? sections[idx] : (evolved[idx] ?? sections[idx]);
 
   const conversationTranscript = conversationHistory
     .map(m => `${m.role === 'user' ? 'Reader' : 'Guide'}: ${m.content}`)
@@ -132,10 +138,12 @@ module.exports = async function handler(req, res) {
       return res.status(502).json({ error: 'Synthesis failed, nothing saved' });
     }
 
-    evolved[idx] = revised;
-    await writeEvolved(textId, evolved);
+    if (!isDryRun) {
+      evolved[idx] = revised;
+      await writeEvolved(textId, evolved);
+    }
 
-    return res.status(200).json({ revised });
+    return res.status(200).json({ revised, original: currentText });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: 'API error' });

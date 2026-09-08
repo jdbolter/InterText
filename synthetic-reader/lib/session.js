@@ -45,6 +45,12 @@ async function runSession(opts) {
   let sectionIndex = startSectionIndex;
   const history = [];
   const sectionHistories = new Map();
+  // Mirrors app.js's contributionHistory: only actual reader contributions
+  // ('message' turns), scoped per section — never continuation turns, since
+  // reading on is navigation, not something to feed back into an evolution. This
+  // is what a later, separate evolve step (see evolveClient.js) reads back out of
+  // the saved session; runSession itself still never calls anything evolve-related.
+  const sectionContributions = new Map();
   const completedSections = new Set();
   const shownImages = new Set();
   const visibleTranscript = [];
@@ -70,7 +76,7 @@ async function runSession(opts) {
     };
   }
 
-  function recordHistoryTurn(userContent, assistantContent) {
+  function recordHistoryTurn(userContent, assistantContent, isContribution) {
     const pair = [
       { role: 'user', content: userContent },
       { role: 'assistant', content: assistantContent },
@@ -78,6 +84,10 @@ async function runSession(opts) {
     history.push(...pair);
     const existing = sectionHistories.get(sectionIndex) || [];
     sectionHistories.set(sectionIndex, [...existing, ...pair]);
+    if (isContribution) {
+      const existingContrib = sectionContributions.get(sectionIndex) || [];
+      sectionContributions.set(sectionIndex, [...existingContrib, ...pair]);
+    }
   }
 
   appendSectionIntro(sectionIndex);
@@ -104,7 +114,7 @@ async function runSession(opts) {
           edition,
         });
         const responseText = data.response || '';
-        recordHistoryTurn(action.message, responseText);
+        recordHistoryTurn(action.message, responseText, true);
         extractImageIds(responseText).forEach((id) => shownImages.add(id));
         turnRecord.readerMessage = action.message;
         // Record and display what the reader actually saw, not the server's raw
@@ -195,6 +205,11 @@ async function runSession(opts) {
     stopDetail = `Reached the ${maxTurns}-turn limit for this run without the reader choosing to finish.`;
   }
 
+  // 1-based section numbers as keys, matching the convention KV storage already
+  // uses for evolved sections (`evolved:<textId>` → { "1": "...", "2": "..." }).
+  const contributionsBySection = {};
+  for (const [idx, pairs] of sectionContributions.entries()) contributionsBySection[idx + 1] = pairs;
+
   return {
     textId: textEntry.id,
     startSectionIndex,
@@ -203,6 +218,7 @@ async function runSession(opts) {
     turns,
     stopReason,
     stopDetail,
+    contributionsBySection,
   };
 }
 

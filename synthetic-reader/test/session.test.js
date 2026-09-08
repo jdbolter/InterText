@@ -344,3 +344,72 @@ test('image tokens in a guide response are stripped from the visible transcript 
   assert.doesNotMatch(result.turns[0].guideResponse, /\[\[IMAGE/); // recorded as the reader actually saw it...
   assert.equal(chatClient.calls[1].body.shownImages.includes('kandinsky'), true); // ...but still tracked for the next request
 });
+
+test('contributionsBySection records only message turns, keyed by 1-based section number', async () => {
+  const chatClient = recordingChatClient(() => ({ response: 'ok' }));
+  const reader = scriptedReader([
+    { action: 'message', message: 'A real question.', target_section: null, stop_reason: null, private_reflection: privateReflection() },
+    { action: 'continue', message: null, target_section: null, stop_reason: null, private_reflection: privateReflection() },
+    { action: 'finish', message: null, target_section: null, stop_reason: 'done', private_reflection: privateReflection() },
+  ]);
+
+  const result = await runSession({
+    textEntry: TEXT_ENTRY,
+    sections: SECTIONS,
+    startSectionIndex: 0,
+    edition: 'evolving',
+    maxTurns: 5,
+    baseUrl: 'http://localhost:3000',
+    reader,
+    chatClient,
+  });
+
+  assert.deepEqual(Object.keys(result.contributionsBySection), ['1']);
+  const pairs = result.contributionsBySection[1];
+  assert.equal(pairs.length, 2); // one user/assistant pair — the continue turn added nothing
+  assert.equal(pairs[0].content, 'A real question.');
+  assert.equal(pairs[1].content, 'ok');
+});
+
+test('contributionsBySection keys contributions to whichever section they were actually made in', async () => {
+  const chatClient = recordingChatClient(() => ({ response: 'ok' }));
+  const reader = scriptedReader([
+    { action: 'navigate', message: null, target_section: 2, stop_reason: null, private_reflection: privateReflection() },
+    { action: 'message', message: 'A question about section 2.', target_section: null, stop_reason: null, private_reflection: privateReflection() },
+    { action: 'finish', message: null, target_section: null, stop_reason: 'done', private_reflection: privateReflection() },
+  ]);
+
+  const result = await runSession({
+    textEntry: TEXT_ENTRY,
+    sections: SECTIONS,
+    startSectionIndex: 0,
+    edition: 'evolving',
+    maxTurns: 5,
+    baseUrl: 'http://localhost:3000',
+    reader,
+    chatClient,
+  });
+
+  assert.deepEqual(Object.keys(result.contributionsBySection), ['2']);
+});
+
+test('a run with only continue/navigate actions has an empty contributionsBySection', async () => {
+  const chatClient = recordingChatClient(() => ({ response: 'ok' }));
+  const reader = scriptedReader([
+    { action: 'continue', message: null, target_section: null, stop_reason: null, private_reflection: privateReflection() },
+    { action: 'finish', message: null, target_section: null, stop_reason: 'done', private_reflection: privateReflection() },
+  ]);
+
+  const result = await runSession({
+    textEntry: TEXT_ENTRY,
+    sections: SECTIONS,
+    startSectionIndex: 0,
+    edition: 'evolving',
+    maxTurns: 5,
+    baseUrl: 'http://localhost:3000',
+    reader,
+    chatClient,
+  });
+
+  assert.deepEqual(result.contributionsBySection, {});
+});

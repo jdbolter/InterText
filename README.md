@@ -32,11 +32,15 @@ All three share the same conversational pattern: an AI guide voice per section, 
 
 `synthetic-reader/` is a CLI-only harness that drives the real `/api/chat` endpoint
 with an OpenAI model role-playing a reader (curious, skeptical, impatient, or
-passive), instead of a human. It never touches the web interface and never calls
-`/api/evolve`. See `synthetic-reader/README.md` for setup and usage; quick start:
+passive), instead of a human. It never touches the web interface, and the reading
+command never calls `/api/evolve` — a separate `synthetic-reader-evolve` command
+can preview what a session's real contributions would do to a section, but only in
+a dry-run mode that never reads or writes the live database. See
+`synthetic-reader/README.md` for setup and usage; quick start:
 
 ```bash
 npm run synthetic-reader -- --profile curious --section 1 --turns 10
+npm run synthetic-reader-evolve -- --session synthetic-reader/output/<run-folder>
 ```
 
 ## Adding a new text

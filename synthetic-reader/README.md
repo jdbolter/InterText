@@ -2,8 +2,12 @@
 
 A CLI-only testing harness that drives InterText's real `/api/chat` conversation
 endpoint with a simulated reader — an OpenAI model role-playing one of a few reader
-personas — instead of a human. It never touches the reader-facing web interface and
-never calls `/api/evolve`, so a run can't modify production or evolving text data.
+personas — instead of a human. It never touches the reader-facing web interface,
+and the reading command (`synthetic-reader`) never calls `/api/evolve` at all — a
+run can't modify production or evolving text data. A separate, explicit follow-up
+command, `synthetic-reader-evolve`, *does* call the evolve endpoint, but only in a
+dry-run mode that never reads or writes the live database — see "Previewing an
+evolution" below.
 
 ## Why this exists
 
@@ -89,8 +93,45 @@ exactly this.
 
 A run produces a timestamped folder under `synthetic-reader/output/` (or `--out`)
 containing:
-- `session.json` — full structured record: run metadata, every turn, every private reflection, and the final stop reason.
-- `transcript.md` — the same information laid out for a human to skim, with private reflections set off as blockquotes.
+- `session.json` — full structured record: run metadata, every turn, every private reflection, the final stop reason, and `contributionsBySection` — the reader's actual contributions (never continuation turns), keyed by 1-based section number, in the same `{role, content}` shape `/api/evolve` expects. This is what `synthetic-reader-evolve` (below) reads back out.
+- `transcript.md` — the same information laid out for a human to skim, with private reflections set off as blockquotes, plus a line naming which sections (if any) had real contributions worth evolving.
+
+## Previewing an evolution
+
+After reading a transcript and deciding a session is worth exploring further:
+
+```bash
+npm run synthetic-reader-evolve -- --session synthetic-reader/output/<run-folder>
+```
+
+This takes that session's actual recorded contributions for a section (defaulting
+to the section the reading started in — pass `--section <n>` to pick a different
+one) and sends them through the **real** `synthesisInstructions` prompt and model —
+the exact same code path a real "Contribute" reader's session hits — but with
+`dryRun: true`, which makes `api/evolve.js` skip its KV read/write entirely.
+Concretely:
+- **The baseline is always the pristine authored text**, never whatever's currently
+  live in production — so different sessions and profiles are evolving against the
+  same fixed starting point and are actually comparable to each other, not to a
+  moving target that depends on real reader traffic.
+- **Nothing is persisted, ever**, regardless of how the synthesis turns out.
+- Writes a self-contained, timestamped subfolder next to that session's own
+  `session.json` — `evolve-<timestamp>/original.md`, `evolved.md`, and
+  `evolve.json` (model, word counts, timestamps). Each attempt gets its own
+  subfolder rather than overwriting the last one, since the synthesis call isn't
+  deterministic — running it twice on the same session can genuinely produce two
+  different revisions, and that variance is worth being able to see.
+
+If the session has no recorded contributions for the requested section (e.g. a
+`passive`-profile run that only ever pressed Return), it says so and lists which
+sections (if any) do have contributions, rather than sending an empty conversation
+to the synthesis prompt.
+
+Only `lib/evolveClient.js` and `evolve-cli.js` are allowed to reference the evolve
+endpoint at all — enforced by a repo-wide test — and every call they make is
+checked to literally include `dryRun: true`. The main reading path (`chatClient.js`,
+`session.js`, the `synthetic-reader` command) remains structurally incapable of
+reaching that endpoint, exactly as before.
 
 ## Offline tests (no live API calls, no running server)
 
@@ -99,26 +140,32 @@ npm test
 ```
 
 This runs `synthetic-reader/test/` under Node's built-in test runner. It covers:
-argument parsing and validation, the reader-action JSON Schema and its
-per-action validation rules, all four profiles, the section-metadata extractor
-(against the real `app.js` files — this is the one place these tests touch the
-real repo, and only ever reads, never writes), the HTTP client's error handling
-(server unreachable, non-2xx, non-JSON — via a stubbed `fetch`), the OpenAI reader
-wrapper (via a fake client with a scripted `.responses.create`, including the
-retry-on-invalid-action path and 401/404 error wrapping), the full session state
-machine (message/continue/navigate/finish, section auto-advance, image-token
-handling — via a scripted fake reader and a recording fake chat client), the
-transcript writer, and a repository-wide guard asserting no implementation file
-under `synthetic-reader/` ever mentions the evolve endpoint.
+argument parsing and validation for both commands, the reader-action JSON Schema
+and its per-action validation rules, all four profiles, the section-metadata
+extractor (against the real `app.js` files — this is the one place these tests
+touch the real repo, and only ever reads, never writes), the HTTP client's error
+handling (server unreachable, non-2xx, non-JSON — via a stubbed `fetch`), the
+OpenAI reader wrapper (via a fake client with a scripted `.responses.create`,
+including the retry-on-invalid-action path and 401/404 error wrapping), the full
+session state machine (message/continue/navigate/finish, section auto-advance,
+image-token handling, per-section contribution tracking, and graceful recovery
+from a mid-run request failure — via a scripted fake reader and a recording fake
+chat client), the transcript writer (including the evolve-preview file writer),
+the session-file loader used by `synthetic-reader-evolve`, the dry-run evolve
+client, and a repository-wide guard asserting no implementation file under
+`synthetic-reader/` mentions the evolve endpoint except the two files that
+deliberately implement the dry-run preview — and that every call they make is
+checked to actually be dry-run.
 
 None of this needs `OPENAI_API_KEY`, a running server, or network access.
 
 ## Running a live session
 
 1. From the project root: `vercel dev` (leave it running).
-2. In another shell: `export OPENAI_API_KEY=sk-...` (and optionally `OPENAI_READER_MODEL=...`).
+2. Make sure `OPENAI_API_KEY` is in `.env.local` (see "Quick start" above) — or `export OPENAI_API_KEY=sk-...` in your shell for a one-off override.
 3. `npm run synthetic-reader -- --profile skeptical --text uncanny --section 3 --turns 15`
 4. Read the printed per-turn summary as it runs, then open the written `transcript.md` under `synthetic-reader/output/`.
+5. Optionally, preview an evolution from that session: `npm run synthetic-reader-evolve -- --session synthetic-reader/output/<run-folder>` (see "Previewing an evolution" above).
 
 If the server isn't running, or the API key is missing/invalid, the harness fails
 fast with a specific, actionable message rather than a stack trace — see
@@ -126,7 +173,8 @@ fast with a specific, actionable message rather than a stack trace — see
 
 ## What this harness will never do
 
-- Call `/api/evolve`, under any flag or code path (enforced by a repo-wide test, not just by convention).
-- Send a reader's private reflection to `/api/chat`.
+- Let the `synthetic-reader` reading command call `/api/evolve`, under any flag or code path (enforced by a repo-wide test, not just by convention) — evolution is only ever reachable via the separate `synthetic-reader-evolve` command.
+- Let *any* evolve-endpoint call, from either command, actually persist anything — `synthetic-reader-evolve` always sends `dryRun: true`, which `api/evolve.js` guarantees skips its KV read and write entirely (also enforced by a repo-wide test).
+- Send a reader's private reflection to `/api/chat` or `/api/evolve`.
 - Read a text's `config.js` or `source_texts/` to build the reader model's context — only the same `public/app.js` a browser loads.
 - Modify anything under a text's `public/` folder — this is a read-only consumer of the existing web interface.

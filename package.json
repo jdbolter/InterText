@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "synthetic-reader": "node --env-file-if-exists=.env.local synthetic-reader/cli.js",
+    "synthetic-reader-evolve": "node --env-file-if-exists=.env.local synthetic-reader/evolve-cli.js",
     "test": "node --test synthetic-reader/test/"
   },
   "dependencies": {
