@@ -125,7 +125,10 @@ test('writeEvolveRun writes original.md, evolved.md, and evolve.json as a self-c
   assert.ok(dir.startsWith(sessionDir));
   assert.match(path.basename(dir), /^evolve-2026-01-01T00-10-00-000Z$/);
   assert.equal(fs.readFileSync(originalPath, 'utf8'), original);
-  assert.equal(fs.readFileSync(revisedPath, 'utf8'), revised);
+  assert.equal(
+    fs.readFileSync(revisedPath, 'utf8'),
+    'This is the pristine original section text, **now with one more clause added**.'
+  );
 
   const meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
   assert.equal(meta.textId, 'plenitude');
@@ -142,6 +145,6 @@ test('writeEvolveRun does not overwrite a prior attempt against the same session
   const second = writeEvolveRun(sessionDir, metaAt('2026-01-01T00:20:00.000Z'), 'orig', 'revised two');
 
   assert.notEqual(first.dir, second.dir);
-  assert.equal(fs.readFileSync(first.revisedPath, 'utf8'), 'revised one');
-  assert.equal(fs.readFileSync(second.revisedPath, 'utf8'), 'revised two');
+  assert.equal(fs.readFileSync(first.revisedPath, 'utf8'), '**revised one**');
+  assert.equal(fs.readFileSync(second.revisedPath, 'utf8'), '**revised two**');
 });

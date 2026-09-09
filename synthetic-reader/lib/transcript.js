@@ -6,6 +6,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { formatAdditionsBold } = require('./markdownDiff');
 
 function sanitizeForFilename(s) {
   return String(s).replace(/[^a-zA-Z0-9-]+/g, '-').replace(/^-+|-+$/g, '');
@@ -118,7 +119,9 @@ function writeEvolveRun(sessionDir, evolveMeta, original, revised) {
   const metaPath = path.join(dir, 'evolve.json');
 
   fs.writeFileSync(originalPath, original);
-  fs.writeFileSync(revisedPath, revised);
+  // Keep the API's raw revised prose unchanged, but make this human-facing
+  // comparison copy show additions in portable Markdown boldface.
+  fs.writeFileSync(revisedPath, formatAdditionsBold(original, revised));
   fs.writeFileSync(
     metaPath,
     JSON.stringify(
