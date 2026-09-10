@@ -2,12 +2,30 @@
 
 Follows the standard engine pattern — see the root `README.md` and `uncanny/CLAUDE.md` for the shared architecture (KV storage, entry consent flow, blank-Return continuation, evolve step, adding a new text). This file only covers what's specific to Plenitude.
 
-## Status: Complete (images pending)
+## Status: Application implemented; manuscript under iterative editorial development
+
+The seven-section version is a working structure, not a settled final form. The
+current priority is to use repeated runs of `synthetic-reader/` to improve the quality
+of *Plenitude* as a text and as a reader encounter. Transcripts and private reflections
+should be compared across profiles and repeated runs to identify unclear or repetitive
+passages, weak transitions, unanswered objections, losses of interest, and section
+boundaries that do not serve the argument.
+
+Findings may lead to manual changes in `source_texts/sections/*.md`, including cuts,
+rewriting, reordering, or joining and splitting sections. They may also justify changes
+to section introductions or the guide's behavior when the problem lies in how the text
+meets the reader rather than in the prose alone. After a change, rerun comparable
+synthetic sessions to see whether the hypothesis holds. A dry-run automatic evolution
+is an optional comparison, not the default definition of an improved text.
+
+This iterative use may later inform human user testing, but it does not replace it.
+See the root `README.md`, `synthetic-reader/README.md` ("Current use: an editorial
+loop"), and `INTERTEXT-DESIGN-NOTES.md` §10.
 
 ### Completed
 - Created folder structure: `plenitude/source_texts/sections/`, `plenitude/public/`, `plenitude/images/`
 - Source text placed at `plenitude/source_texts/plenitude.md` (10,401 words, pandoc-converted from Divide.docx)
-- Split into 7 sections and cleaned up markdown:
+- Split the current working version into 7 sections and cleaned up markdown:
   - `section-1.md` — The Great Divide (594 words)
   - `section-2.md` — The Philadelphia (Symphony) Story (1,347 words)
   - `section-3.md` — Class in America (520 words)
@@ -20,6 +38,8 @@ Follows the standard engine pattern — see the root `README.md` and `uncanny/CL
 - Added `'plenitude'` to `ALLOWED_TEXT_IDS` in `api/chat.js` and `api/evolve.js`
 
 ### Still To Do
+- Continue iterative editorial work on the prose, argument, section structure, and
+  reader relationship using repeated synthetic-reader runs.
 - Images: drop 4 files into `plenitude/images/` with these exact names:
   - `night-at-opera.jpg` — A Night at the Opera (1935), section 2
   - `whats-opera-doc.jpg` — What's Opera, Doc? (1957), section 2

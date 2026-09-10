@@ -28,7 +28,7 @@ Model in use: `claude-sonnet-5` (both `api/chat.js` and `api/evolve.js`).
 
 All three share the same conversational pattern: an AI guide voice per section, plus an opt-in "evolve" step where a reader's conversation can rewrite the section for future readers (see `api/evolve.js` and each config's `synthesisInstructions`). Before reading begins, every text offers the same three-way entry choice — contribute (read and possibly shape the evolving edition), read the current evolving edition without contributing, or read the untouched original — and the same blank-Return continuation (an empty Enter keeps reading instead of requiring a question). See `uncanny/CLAUDE.md`, "Entry Consent" and "Reading On," for how these work; they're identical across all three texts.
 
-## Testing with a synthetic reader
+## Synthetic reader: editorial development and testing
 
 `synthetic-reader/` is a CLI-only harness that drives the real `/api/chat` endpoint
 with an OpenAI model role-playing a reader (curious, skeptical, impatient, or
@@ -42,6 +42,20 @@ a dry-run mode that never reads or writes the live database. See
 npm run synthetic-reader -- --profile curious --section 1 --turns 10
 npm run synthetic-reader-evolve -- --session synthetic-reader/output/<run-folder>
 ```
+
+The current priority is to use repeated synthetic readings as an **editorial
+instrument**, especially for *Plenitude*. Transcripts and private reader reflections
+can reveal where the argument becomes unclear, repetitive, unconvincing, or difficult
+to enter; where pacing or section boundaries fail; and where the relationship between
+the text and the reader needs to change. Those observations can guide manual revision
+of the authored source, section structure, introductions, and guide behavior, followed
+by another controlled round of readings. The dry-run evolution command is one way to
+explore a possible revision, not the only or necessarily preferred editorial outcome.
+
+The same harness may later help prepare and refine questions for human user testing,
+but synthetic readers are not substitutes for observing what actual readers understand,
+feel, and do. See `synthetic-reader/README.md`, "Current use: an editorial loop," and
+`INTERTEXT-DESIGN-NOTES.md`, §10.
 
 ## Adding a new text
 

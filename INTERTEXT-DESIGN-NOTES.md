@@ -168,6 +168,36 @@ Run a consistency pass when revisions affect a major concept or conclusion. Pres
 
 Judge the reading experience separately from the evolving prose.
 
+### Current experimental method: iterative synthetic reading
+
+The present priority, particularly for *Plenitude*, is to use the synthetic-reader
+harness as an editorial instrument for improving the authored work itself. This is
+broader than checking the application and different from asking the evolve endpoint
+to produce a candidate rewrite. Repeated, comparable sessions can expose patterns in
+confusion, interest, objection, continuation, navigation, and stopping. Those patterns
+can support hypotheses about the prose, the sequence and boundaries of sections, the
+development of the argument, the public introductions, and the way the guide makes
+room for the reader.
+
+Use an iterative cycle: hold edition, starting section, profile, and turn budget steady
+where useful; compare transcripts and private reflections across repeated runs and
+profiles; state the editorial problem the evidence suggests; manually revise the
+relevant source text or interaction framing; and rerun the comparison. Do not treat
+one simulated reader, or agreement among simulated readers, as an objective judgment
+of literary quality. Look for recurring behavior and interpret it editorially. Preserve
+successful passages as well as identifying failures.
+
+This process may justify local changes that automatic section evolution cannot make
+well: deleting repetition, reordering an argument, joining or splitting sections,
+changing transitions or conclusions, or altering the balance between continuous prose
+and reader intervention. A `synthetic-reader-evolve` dry run remains useful for
+studying the current synthesis mechanism, but accepting its output is not the goal of
+the editorial loop.
+
+Later, the same harness can help formulate hypotheses and exercise scenarios before
+human user testing. Synthetic results should guide what to ask and observe; only
+actual readers can show how people experience the work.
+
 For reading: can people continue without struggling to invent prompts, find their way after a detour, recognize their own questions in the discussion, encounter the work's substantial claims, and return after a break? Ask readers whether they felt engaged and accurately understood. Time spent alone is ambiguous; confusion can also prolong a session.
 
 For evolution: use the editor’s archive to compare original and revised passages, assess whether incorporated contributions are represented faithfully, and examine unsupported additions and accidental contradictions. Independently evaluate whether versions improve or productively complicate the work; the public reading interface need not expose those comparisons. Do not assume every metric or every reader should prefer the latest edition.

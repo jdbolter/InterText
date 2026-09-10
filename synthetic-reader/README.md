@@ -20,6 +20,43 @@ essay text, or anything else hidden from a human reader. See
 `lib/publicContent.js` for how that's enforced (it reads only from a text's public
 `app.js`, never its config module or source-text folder).
 
+### Current use: an editorial loop
+
+The immediate purpose of the harness is not only to test whether the application
+works. It is to help improve the quality and structure of the authored text itself,
+currently with particular attention to *Plenitude*. Repeated readings by different
+profiles make it possible to look for patterns such as:
+
+- confusion about a claim, transition, example, or implied audience;
+- repetition, loss of momentum, premature stopping, or unproductive detours;
+- objections the text does not yet recognize or answer adequately;
+- section boundaries that do not match the reader's experience of the argument;
+- places where the guide overexplains, substitutes commentary for the text, or gives
+  the reader too little room to participate; and
+- passages that remain compelling and intelligible across different reader profiles.
+
+The working cycle is:
+
+1. Run comparable sessions against a known edition and section.
+2. Read the transcripts and private reflections across profiles and repeated runs.
+3. Form an editorial hypothesis rather than treating any single model response as a
+   verdict or score.
+4. Manually revise the source prose, section boundaries, public introductions, or
+   guide instructions as the evidence warrants.
+5. Rerun the same conditions and compare the reading experience.
+
+`synthetic-reader-evolve` can additionally show how the existing automated synthesis
+process would rewrite a section in response to one saved conversation. That preview
+is useful evidence, but it is distinct from the broader editorial loop: improving the
+manuscript may require cutting, reordering, joining or splitting sections, changing
+the argument, or changing the relationship between text and reader rather than
+accepting an automatically evolved version.
+
+In a later phase, this harness may also help prepare for human user testing: it can
+surface hypotheses, exercise likely interaction paths, and make comparisons more
+systematic before involving people. It cannot establish how actual readers understand
+or experience the work, and should not be presented as a replacement for that testing.
+
 ## Quick start (live session)
 
 You need:
