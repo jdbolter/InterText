@@ -198,6 +198,34 @@ Later, the same harness can help formulate hypotheses and exercise scenarios bef
 human user testing. Synthetic results should guide what to ask and observe; only
 actual readers can show how people experience the work.
 
+### Possibilities opened by this work — not commitments
+
+The present experiments raise, but do not settle, the question of whether to rewrite
+*Plenitude* as a whole book. One possible outcome is an author-directed revised
+edition, informed by repeated synthetic readings and later human testing, that could
+be offered to interested readers as a coherent work rather than as a collection of
+automatic section evolutions.
+
+Undertaking that revision could justify a production-quality editor interface for
+working through all chapters: navigating the complete manuscript, reviewing reader
+sessions and marked candidate revisions, comparing editions, editing or rejecting
+suggestions, and preserving recoverable version history. This is a possible future
+authoring environment, not an approved build specification.
+
+The reader-shaped work remains a separate desired possibility. A version changed by
+encounters with actual readers could continue alongside an immutable original and,
+if created, an author-revised edition. Whether these should be three distinct editions,
+stages in one process, or different public experiences is unresolved. Do not assume
+that revising the book means abandoning the evolving reader version, or that automatic
+synthesis should determine the author-revised text.
+
+Knowledgeable synthetic readers may use bounded web research to test important factual
+claims, locate useful primary evidence, and identify relevant sources or comparisons.
+Research should be selective and should help decide whether a claim or passage earns
+its place; it should not turn skepticism into citation display or automatic expansion.
+The skeptical and collaborative profiles currently receive this capability, while the
+curious nonspecialist does not.
+
 For reading: can people continue without struggling to invent prompts, find their way after a detour, recognize their own questions in the discussion, encounter the work's substantial claims, and return after a break? Ask readers whether they felt engaged and accurately understood. Time spent alone is ambiguous; confusion can also prolong a session.
 
 For evolution: use the editor’s archive to compare original and revised passages, assess whether incorporated contributions are represented faithfully, and examine unsupported additions and accidental contradictions. Independently evaluate whether versions improve or productively complicate the work; the public reading interface need not expose those comparisons. Do not assume every metric or every reader should prefer the latest edition.
@@ -222,6 +250,12 @@ Try one complete essay before an entire book. Include ordinary reading, a sustai
 - On return, should an ongoing encounter resume its previous underlying edition or begin with the newest one? Avoid asking readers to manage version history.
 - Jay leans against reader-facing switching between original and evolved editions. Whether any such access is needed beyond entry remains tentative; do not build a comparison feature by default.
 - What minimum source coverage makes the offering a reading of the whole work rather than a guided selection from it?
+- Should *Plenitude* become a complete author-revised edition, and what would make that
+  undertaking worthwhile?
+- How should an original, an author-revised edition, and a reader-shaped evolving
+  edition relate to one another, editorially and in the public interface?
+- What must a chapter-by-chapter editorial interface support before it is trustworthy
+  enough for production use?
 
 Settled direction for this revision: model-selected integration or omission; seamless prose; no reader-facing edit approval, contributor layers, or version archive. The editor/author retains comparison and restoration tools.
 

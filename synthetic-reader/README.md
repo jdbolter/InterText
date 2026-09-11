@@ -13,10 +13,11 @@ evolution" below.
 
 InterText's guide voice is served by Anthropic's Claude ("the Text model"). This
 harness uses a *different* provider (OpenAI) to play the reader, so the two roles
-are never the same model talking to itself. The simulated reader only ever sees
-what a real reader would see on screen — the table of contents, a section's opening
-passage, and the conversation so far — never `config.js`'s instructions, the raw
-essay text, or anything else hidden from a human reader. See
+are never the same model talking to itself. The simulated reader sees what a real
+reader would see on screen — the table of contents, a section's opening passage,
+and the conversation so far — never `config.js`'s instructions, the raw essay text,
+or anything else hidden from a human reader. The knowledgeable profiles may also
+consult public web sources, as explained below. See
 `lib/publicContent.js` for how that's enforced (it reads only from a text's public
 `app.js`, never its config module or source-text folder).
 
@@ -78,7 +79,7 @@ is meant to be committed).
 ```
 --text <id>            plenitude | uncanny | blood-on-the-wall   (default: plenitude)
 --section <n>          1-based section number to start in         (default: 1)
---profile <id>         curious | skeptical | impatient | passive  (default: curious)
+--profile <id>         curious | skeptical | collaborative        (default: curious)
 --turns <n>             maximum turns before the run stops itself (default: 10)
 --edition <name>        evolving | original                       (default: evolving)
 --base-url <url>        where the InterText server is running     (default: http://localhost:3000)
@@ -104,17 +105,38 @@ between those two editions.
 
 ## Reader profiles
 
-Four are included out of the box (`lib/profiles.js`): **curious** (curious
-nonspecialist), **skeptical** (skeptical academic), **impatient** (impatient
-reader), and **passive** (passive reader). Each is a natural-language persona given
-to the OpenAI model as its own instructions — a wholly separate prompt from
-anything in InterText's own `config.js` files — so the model decides in character
-what a reader like that would actually do each turn, rather than the harness
-scripting fixed behavior.
+Three are included out of the box (`lib/profiles.js`): **curious** (curious
+nonspecialist), **skeptical** (skeptical academic), and **collaborative**
+(knowledgeable reader and constructive editorial partner). The collaborative reader
+attends to argument and evidence, but also to prose quality, rhythm, transitions,
+economy, and forward movement. It does not assume that every claim needs more
+evidence or allow minor issues to stall the passage.
+
+Each profile is a natural-language persona given to the OpenAI model as its own
+instructions — a wholly separate prompt from anything in InterText's own `config.js`
+files — so the model decides in character what a reader like that would actually do
+each turn, rather than the harness scripting fixed behavior.
+
+### Research access
+
+The **skeptical** and **collaborative** profiles have optional live web search. The
+model decides whether to use it, with at most two search-tool calls per turn. Their
+instructions encourage selective research when it can test a factual claim, locate
+primary evidence, identify a genuinely useful source, or clarify a historical
+comparison. They are explicitly told not to search every turn or use citations merely
+to display knowledge, and to keep the passage moving. When web research materially
+informs a message, the reader should name the source and include its URL so it remains
+visible in the transcript and any later evolution preview.
+
+The **curious** profile does not receive the search tool. This preserves the behavior
+of a nonspecialist responding only from the reading experience and ordinary prior
+knowledge. Web results never expose the guide's hidden instructions or raw source
+files, and they are not sent to the guide unless the reader chooses to mention them
+in a normal reader message. Search calls can add latency and API cost.
 
 To add a profile, add an entry to `PROFILES` in `lib/profiles.js` with an `id`,
-`name`, `description`, and a paragraph of `instructions` describing how that reader
-behaves.
+`name`, `description`, `allowWebSearch`, and a paragraph of `instructions` describing
+how that reader behaves.
 
 ## What gets recorded
 
@@ -160,7 +182,7 @@ Concretely:
   different revisions, and that variance is worth being able to see.
 
 If the session has no recorded contributions for the requested section (e.g. a
-`passive`-profile run that only ever pressed Return), it says so and lists which
+run in which the reader only ever pressed Return), it says so and lists which
 sections (if any) do have contributions, rather than sending an empty conversation
 to the synthesis prompt.
 
@@ -178,7 +200,7 @@ npm test
 
 This runs `synthetic-reader/test/` under Node's built-in test runner. It covers:
 argument parsing and validation for both commands, the reader-action JSON Schema
-and its per-action validation rules, all four profiles, the section-metadata
+and its per-action validation rules, all three profiles, the section-metadata
 extractor (against the real `app.js` files — this is the one place these tests
 touch the real repo, and only ever reads, never writes), the HTTP client's error
 handling (server unreachable, non-2xx, non-JSON — via a stubbed `fetch`), the

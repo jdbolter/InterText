@@ -130,3 +130,24 @@ test('the persona/system instructions never mention InterText\'s own config or s
   const sentInstructions = client.calls[0].instructions;
   assert.doesNotMatch(sentInstructions, /config\.js|behavioralInstructions|source_texts/i);
 });
+
+test('skeptical and collaborative readers receive optional, bounded web search', async () => {
+  for (const profileId of ['skeptical', 'collaborative']) {
+    const client = fakeClient([validActionJson()]);
+    const reader = createReader({ client, model: 'gpt-test', profile: getProfile(profileId) });
+    await reader.chooseAction(sampleVisibleContext());
+    assert.deepEqual(client.calls[0].tools, [{ type: 'web_search', search_context_size: 'medium' }]);
+    assert.equal(client.calls[0].tool_choice, 'auto');
+    assert.equal(client.calls[0].max_tool_calls, 2);
+    assert.match(client.calls[0].instructions, /name the source and include its URL/i);
+  }
+});
+
+test('curious reader receives no web-search tool', async () => {
+  const client = fakeClient([validActionJson()]);
+  const reader = createReader({ client, model: 'gpt-test', profile: getProfile('curious') });
+  await reader.chooseAction(sampleVisibleContext());
+  assert.equal(client.calls[0].tools, undefined);
+  assert.equal(client.calls[0].tool_choice, undefined);
+  assert.equal(client.calls[0].max_tool_calls, undefined);
+});

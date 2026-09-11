@@ -31,8 +31,8 @@ All three share the same conversational pattern: an AI guide voice per section, 
 ## Synthetic reader: editorial development and testing
 
 `synthetic-reader/` is a CLI-only harness that drives the real `/api/chat` endpoint
-with an OpenAI model role-playing a reader (curious, skeptical, impatient, or
-passive), instead of a human. It never touches the web interface, and the reading
+with an OpenAI model role-playing a reader (curious, skeptical, or collaborative),
+instead of a human. It never touches the web interface, and the reading
 command never calls `/api/evolve` — a separate `synthetic-reader-evolve` command
 can preview what a session's real contributions would do to a section, but only in
 a dry-run mode that never reads or writes the live database. See
@@ -56,6 +56,11 @@ The same harness may later help prepare and refine questions for human user test
 but synthetic readers are not substitutes for observing what actual readers understand,
 feel, and do. See `synthetic-reader/README.md`, "Current use: an editorial loop," and
 `INTERTEXT-DESIGN-NOTES.md`, §10.
+
+The skeptical and collaborative profiles may selectively search the public web for
+evidence and sources; the curious nonspecialist remains grounded only in what a reader
+sees and already knows. Research access is bounded and intended to test consequential
+claims, not to reward citation-heavy responses.
 
 ## Adding a new text
 

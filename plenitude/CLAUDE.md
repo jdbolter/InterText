@@ -22,6 +22,21 @@ This iterative use may later inform human user testing, but it does not replace 
 See the root `README.md`, `synthetic-reader/README.md` ("Current use: an editorial
 loop"), and `INTERTEXT-DESIGN-NOTES.md` §10.
 
+### Possible longer-term directions — not yet decisions
+
+The synthetic-reader work raises the possibility of an author-directed revision of
+the whole book, potentially offered as a coherent revised edition to interested
+readers. No decision has been made to undertake that rewrite. If it proceeds, it may
+need a production-quality editorial interface for moving through every chapter,
+reviewing transcripts and marked candidates, comparing them with the authored text,
+editing or rejecting changes, and preserving version history.
+
+An author-revised edition would not necessarily replace the reader-shaped project.
+A distinct evolving version, formed through encounters with actual readers and the
+guide's editorial mediation, remains another desired possibility. How the original,
+an author-revised edition, and a reader-shaped edition should coexist—and which of
+them a public interface should expose—remains open.
+
 ### Completed
 - Created folder structure: `plenitude/source_texts/sections/`, `plenitude/public/`, `plenitude/images/`
 - Source text placed at `plenitude/source_texts/plenitude.md` (10,401 words, pandoc-converted from Divide.docx)
