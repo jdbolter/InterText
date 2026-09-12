@@ -86,6 +86,8 @@ Rules:
 - Do not add material that contradicts the original.
 - Preserve sentence rhythm and register. This is a serious, intellectually precise essay — not a blog post.
 - Incorporate insights, examples, and threads from the conversation wherever they illuminate the essay's themes — even by extension or analogy. Be willing to add a new sentence, example, or short passage if the conversation warrants it.
+- Treat source links in the conversation as editorial material. When the revision incorporates a factual correction, example, or claim that is materially supported by a supplied source, retain that source as a descriptive Markdown link — either naturally linked in the relevant sentence or in a brief Sources note at the end. Preserve the supplied URL exactly; never invent, complete, or alter a URL.
+- Do not include a source merely because it appeared in the conversation. Omit links whose supporting material was not incorporated, and avoid burdening the prose with citations for commonplace or purely interpretive claims.
 - If the conversation produced nothing relevant to the essay's argument, return the section unchanged.
 - Do not exceed {{WORD_LIMIT}} words total. Within that limit, feel free to add substantive new material where the conversation warrants it.
 - Always end on a complete sentence. Never cut off mid-sentence or mid-thought.
