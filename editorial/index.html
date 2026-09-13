@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>InterText Editorial Workspace</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">I/T</span>
+      <div>
+        <p class="eyebrow">InterText</p>
+        <h1>Editorial workspace</h1>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <span class="mode-badge">Read-only prototype</span>
+      <label class="work-picker">
+        <span>Work</span>
+        <select id="work-select" aria-label="Choose a work"></select>
+      </label>
+    </div>
+  </header>
+
+  <main class="workspace" aria-live="polite">
+    <nav class="section-nav" aria-label="Sections">
+      <div class="panel-heading">
+        <p class="eyebrow">Structure</p>
+        <h2 id="work-title">Loading…</h2>
+      </div>
+      <ol id="section-list" class="section-list"></ol>
+      <div class="nav-legend">
+        <span><i class="status-dot status-dot--ready"></i> Packaged</span>
+        <span><i class="status-dot"></i> Not started</span>
+      </div>
+    </nav>
+
+    <section class="reading-panel" aria-labelledby="section-title">
+      <header class="section-header">
+        <div>
+          <p id="section-kicker" class="eyebrow">Section</p>
+          <h2 id="section-title">Select a section</h2>
+        </div>
+        <div id="section-summary" class="section-summary"></div>
+      </header>
+
+      <div id="empty-section" class="empty-state" hidden>
+        <p class="empty-state__number" id="empty-number">—</p>
+        <h3>This section has no editorial package yet.</h3>
+        <p>It is listed because the schema and workspace apply to the complete work. Packaging can proceed section by section without changing its identity.</p>
+      </div>
+
+      <div id="spine-view" class="spine-view"></div>
+    </section>
+
+    <aside class="fund-panel" aria-labelledby="fund-title">
+      <header class="fund-header">
+        <div>
+          <p class="eyebrow">Selective material</p>
+          <h2 id="fund-title">The fund</h2>
+        </div>
+        <button id="clear-filter" class="text-button" type="button" hidden>Show all</button>
+      </header>
+      <p id="fund-context" class="fund-context">Choose a packaged section to inspect its entries.</p>
+      <div id="fund-summary" class="fund-summary"></div>
+      <div id="fund-list" class="fund-list"></div>
+    </aside>
+  </main>
+
+  <template id="section-button-template">
+    <li>
+      <button class="section-button" type="button">
+        <span class="section-number"></span>
+        <span class="section-name"></span>
+        <i class="status-dot"></i>
+      </button>
+    </li>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>

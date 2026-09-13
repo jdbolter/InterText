@@ -22,14 +22,27 @@ This iterative use may later inform human user testing, but it does not replace 
 See the root `README.md`, `synthetic-reader/README.md` ("Current use: an editorial
 loop"), and `INTERTEXT-DESIGN-NOTES.md` §10.
 
-### Possible longer-term directions — not yet decisions
+### Editorial architecture — direction selected, first prototype implemented
 
 The synthetic-reader work raises the possibility of an author-directed revision of
 the whole book, potentially offered as a coherent revised edition to interested
-readers. No decision has been made to undertake that rewrite. If it proceeds, it may
-need a production-quality editorial interface for moving through every chapter,
-reviewing transcripts and marked candidates, comparing them with the authored text,
-editing or rejecting changes, and preserving version history.
+readers. No decision has been made to undertake that complete rewrite. It is now a
+settled direction, however, that reader-shaped material should not be represented only
+as one repeatedly enlarged Markdown section. Each section should be capable of holding
+a concise narrative spine plus a fund of optional material from which the guide can
+select for a particular reader.
+
+The first local, read-only editorial workspace is implemented under `editorial/`.
+It registers every section of every work and packages Plenitude Section 5 as the first
+real example: the complete authored text is divided into ten stable spine passages,
+and four useful additions from a collaborative synthetic session are represented as
+candidate fund entries rather than being forced into the continuous essay. Two
+historical entries are explicitly marked as needing verification because the session
+did not supply source links.
+
+This is not yet connected to the guide, synthesis endpoint, synthetic-reader session
+loop, or live database. See root `EDITORIAL-ARCHITECTURE.md` for the authoritative
+handoff, database-key proposal, commands, limitations, and next experiment.
 
 An author-revised edition would not necessarily replace the reader-shaped project.
 A distinct evolving version, formed through encounters with actual readers and the
@@ -51,10 +64,14 @@ them a public interface should expose—remains open.
 - Created `plenitude/config.js` — 7 section intros, image slots, behavioral/synthesis instructions
 - Created `plenitude/public/index.html`, `style.css`, `app.js` (textId: `'plenitude'`)
 - Added `'plenitude'` to `ALLOWED_TEXT_IDS` in `api/chat.js` and `api/evolve.js`
+- Added the generic spine-and-fund editorial schema and read-only workspace, with
+  Section 5 as the first packaged example (`editorial/`)
 
 ### Still To Do
 - Continue iterative editorial work on the prose, argument, section structure, and
   reader relationship using repeated synthetic-reader runs.
+- Add an experimental candidate-reading path that lets the guide and synthetic reader
+  use the local Section 5 spine-and-fund package without publishing it.
 - Images: drop 4 files into `plenitude/images/` with these exact names:
   - `night-at-opera.jpg` — A Night at the Opera (1935), section 2
   - `whats-opera-doc.jpg` — What's Opera, Doc? (1957), section 2

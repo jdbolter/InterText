@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "plenitude",
+  "title": "Plenitude",
+  "order": 1,
+  "sections": [
+    { "id": "great-divide", "title": "The Great Divide", "order": 1, "package": null },
+    { "id": "philadelphia-symphony-story", "title": "The Philadelphia (Symphony) Story", "order": 2, "package": null },
+    { "id": "class-in-america", "title": "Class in America", "order": 3, "package": null },
+    { "id": "case-of-music", "title": "The Case of Music", "order": 4, "package": null },
+    { "id": "shocking-art", "title": "Shocking Art", "order": 5, "package": "sections/shocking-art/section.json" },
+    { "id": "art-as-special-interest", "title": "Art as a Special Interest", "order": 6, "package": null },
+    { "id": "communities-and-creativity", "title": "Communities and Creativity", "order": 7, "package": null }
+  ]
+}

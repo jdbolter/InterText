@@ -58,6 +58,22 @@ surface hypotheses, exercise likely interaction paths, and make comparisons more
 systematic before involving people. It cannot establish how actual readers understand
 or experience the work, and should not be presented as a replacement for that testing.
 
+### Transition to spine-and-fund testing
+
+The Section 5 experiment showed a limitation in full-section synthesis: detailed
+additions may be accurate and supportive while damaging the balance and rhythm of the
+continuous essay. The planned editorial representation therefore separates a concise
+narrative spine from a fund of optional material the guide can select for different
+readers. The generic schema, first Section 5 package, and read-only workspace are now
+implemented under `editorial/`; see root `EDITORIAL-ARCHITECTURE.md`.
+
+The synthetic reader does **not** yet consume those packages. `--edition evolving`
+still means the existing KV-backed whole-section edition, and
+`synthetic-reader-evolve` still produces a nonpersistent full-section rewrite against
+the pristine authored baseline. Do not describe either command as testing the new
+spine-and-fund selection behavior. The next harness milestone is an explicit candidate
+package option, followed by controlled original-spine versus spine-plus-fund readings.
+
 ## Quick start (live session)
 
 You need:

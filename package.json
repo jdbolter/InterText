@@ -3,14 +3,19 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "editorial-build": "node editorial/build-data.js",
+    "editorial-preview": "npm run editorial-build && node editorial/serve.js",
     "synthetic-reader": "node --env-file-if-exists=.env.local synthetic-reader/cli.js",
     "synthetic-reader-evolve": "node --env-file-if-exists=.env.local synthetic-reader/evolve-cli.js",
-    "test": "node --test synthetic-reader/test/"
+    "test": "node --test synthetic-reader/test/ editorial/test/"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
     "@upstash/redis": "^1.38.0",
     "openai": "^5.23.2",
     "vercel": "^59.11.7"
+  },
+  "devDependencies": {
+    "ajv": "^8.6.3"
   }
 }

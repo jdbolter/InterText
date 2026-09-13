@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://intertext.local/schema/section-package.schema.json",
+  "title": "InterText editorial section package",
+  "description": "A versioned narrative spine plus optional material available for selective presentation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "workId", "sectionId", "sectionOrder", "title",
+    "editionId", "versionId", "parentVersionId", "createdAt", "source",
+    "spine", "fundEntries", "changeSummary"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "workId": { "$ref": "#/$defs/slug" },
+    "sectionId": { "$ref": "#/$defs/slug" },
+    "sectionOrder": { "type": "integer", "minimum": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "editionId": { "$ref": "#/$defs/slug" },
+    "versionId": { "type": "string", "minLength": 1 },
+    "parentVersionId": { "type": ["string", "null"], "minLength": 1 },
+    "createdAt": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]+)?Z$"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "path"],
+      "properties": {
+        "type": { "enum": ["authored", "author-revised", "reader-shaped", "imported"] },
+        "path": { "type": "string", "minLength": 1 }
+      }
+    },
+    "spine": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/passage" }
+    },
+    "fundEntries": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/fundEntry" }
+    },
+    "changeSummary": { "type": "string", "minLength": 1 }
+  },
+  "$defs": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "passage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "markdown"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "markdown": { "type": "string", "minLength": 1 }
+      }
+    },
+    "sourceLink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "url"],
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "pattern": "^https?://" }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "sessionId", "turns", "artifactPath"],
+      "properties": {
+        "type": {
+          "enum": ["synthetic-reader", "human-reader", "author-editor", "model-editor", "imported"]
+        },
+        "sessionId": { "type": ["string", "null"], "minLength": 1 },
+        "turns": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 1 },
+          "uniqueItems": true
+        },
+        "artifactPath": { "type": ["string", "null"], "minLength": 1 }
+      }
+    },
+    "fundEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "title", "anchors", "kind", "status", "markdown", "useWhen",
+        "sourceStatus", "sources", "provenance"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "title": { "type": "string", "minLength": 1 },
+        "anchors": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/slug" }
+        },
+        "kind": {
+          "enum": ["clarification", "example", "qualification", "counterargument", "evidence", "extension"]
+        },
+        "status": { "enum": ["candidate", "accepted", "superseded", "rejected"] },
+        "markdown": { "type": "string", "minLength": 1 },
+        "useWhen": { "type": "string", "minLength": 1 },
+        "sourceStatus": { "enum": ["not-required", "needs-verification", "verified"] },
+        "sources": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/sourceLink" }
+        },
+        "provenance": { "$ref": "#/$defs/provenance" }
+      }
+    }
+  }
+}

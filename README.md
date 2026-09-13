@@ -8,6 +8,8 @@ InterText/
 ├── api/
 │   ├── chat.js         — generic Vercel serverless function (config-driven by textId)
 │   └── evolve.js       — generic Vercel serverless function (config-driven by textId)
+├── editorial/          — local spine-and-fund data, schemas, build, tests, and editor
+├── EDITORIAL-ARCHITECTURE.md — current editorial design and implementation handoff
 ├── package.json
 ├── vercel.json
 ├── uncanny/             — "The Uncanny Double" essay (textId: 'uncanny')
@@ -61,6 +63,30 @@ The skeptical and collaborative profiles may selectively search the public web f
 evidence and sources; the curious nonspecialist remains grounded only in what a reader
 sees and already knows. Research access is bounded and intended to test consequential
 claims, not to reward citation-heavy responses.
+
+## Editorial workspace: spine and fund
+
+The newer editorial architecture separates a section's **narrative spine** from a
+**fund** of optional clarifications, examples, qualifications, counterarguments,
+evidence, and extensions. This preserves useful material accumulated through readings
+without requiring every detail to enter the continuous essay or every reader's path.
+
+A universal local schema, validated build, and read-only workspace are implemented
+under `editorial/`. All three works and all 16 current sections are registered; the
+first complete example is *Plenitude*, Section 5, with ten spine passages and four
+candidate fund entries extracted from a collaborative synthetic session.
+
+```bash
+npm install
+npm test
+npm run editorial-preview
+```
+
+Open `http://127.0.0.1:4173`. No API keys, Vercel login, or database connection are
+needed for this workspace. It does not yet alter or feed the public reading engine.
+Read `EDITORIAL-ARCHITECTURE.md` for the full data model, database proposal, verified
+implementation boundary, and next experiment; read `editorial/README.md` for exact
+handoff and content-authoring instructions.
 
 ## Adding a new text
 

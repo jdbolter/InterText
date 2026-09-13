@@ -1,8 +1,8 @@
 # InterText: a reading that can change the book
 
-Design discussion recorded 2026-09-06, based on the `dev` branch of InterText. Updated to incorporate Jay’s clarification: a seamless current text, model-selected integration, interface alternatives still open, and an archive for the editor rather than the reader.
+Design discussion recorded 2026-09-06 and extended through 2026-09-13. The earlier portions preserve the path by which the current decisions were reached. The latest structural direction—narrative spine plus a selectively presented fund—is specified in `EDITORIAL-ARCHITECTURE.md`.
 
-**Status:** design notes only. No application code was changed. The directions identified as “Jay's stated choices” come from the conversation; everything else is a proposal for discussion, not an approved implementation specification.
+**Status:** mixed design and implementation record. The original 2026-09-06 discussion made no application changes. As of 2026-09-13, a universal local content schema, validated build, Section 5 sample package, and read-only editorial workspace are implemented under `editorial/`. They are not yet connected to the public guide, synthetic reader, or live database. The directions identified as Jay's choices are decisions; unimplemented mechanisms remain proposals unless explicitly identified otherwise.
 
 ## 1. Purpose and the change in direction
 
@@ -25,6 +25,42 @@ Earlier discussion compared this with the Shakespeare workshop in Ships of Thesp
 - Develop protections against defacement without treating substantive disagreement as abuse.
 - Design for a satisfying, extended reading of a complete essay or book, rather than only a short encounter with an excerpt.
 - Make no code changes during this discussion. Preserve ideas and eventual decisions in a Markdown document for later sessions.
+
+The final bullet above records the boundary of the original design session; it is not
+an ongoing prohibition. Implementation began on the later
+`codex/editorial-interface` branch after Jay explicitly authorized it.
+
+## 2a. Structural direction selected 2026-09-13: spine and fund
+
+The single seamless reader experience remains the public aim, but one continuously
+expanding Markdown section is no longer the preferred internal representation. Each
+section should have:
+
+- a **narrative spine** that preserves the argument's balance, rhythm, and forward
+  movement; and
+- a **fund** of optional clarifications, examples, qualifications, counterarguments,
+  evidence, and extensions that the guide selects according to the reader.
+
+This responds to a pattern in collaborative synthetic revisions: detailed additions
+often supported the main claim but threatened the proportion of the essay. Such
+material may be valuable to a knowledgeable reader without belonging in every reading
+or in the fixed narrative spine.
+
+The structure is universal, not Plenitude-specific. A work manifest gives every
+section a stable ID; a versioned section package contains stable spine passages and
+fund entries anchored to them. Local Markdown is the readable editorial record, while
+validated JSON is the portable form intended for the interface and eventual database.
+
+After a contributing session, a separate editorial model—not the conversational
+guide—should evaluate the whole exchange and decide whether to revise the spine, add
+or revise a fund entry, attach a source, supersede redundant material, or make no
+change. In the intended reader-shaped edition these routine decisions are autonomous;
+human oversight supplies policy, inspection, correction, pause, and restoration rather
+than approval of every entry.
+
+The implemented first package uses Plenitude Section 5 only as a representative test.
+All works and sections are registered from the start. The first four fund entries are
+candidates, not accepted public material, and the public guide cannot yet see them.
 
 ## 3. Three reading paths
 
@@ -198,7 +234,7 @@ Later, the same harness can help formulate hypotheses and exercise scenarios bef
 human user testing. Synthetic results should guide what to ask and observe; only
 actual readers can show how people experience the work.
 
-### Possibilities opened by this work — not commitments
+### Directions and possibilities opened by this work
 
 The present experiments raise, but do not settle, the question of whether to rewrite
 *Plenitude* as a whole book. One possible outcome is an author-directed revised
@@ -206,11 +242,12 @@ edition, informed by repeated synthetic readings and later human testing, that c
 be offered to interested readers as a coherent work rather than as a collection of
 automatic section evolutions.
 
-Undertaking that revision could justify a production-quality editor interface for
-working through all chapters: navigating the complete manuscript, reviewing reader
-sessions and marked candidate revisions, comparing editions, editing or rejecting
-suggestions, and preserving recoverable version history. This is a possible future
-authoring environment, not an approved build specification.
+An editorial interface is now a required part of the system rather than an optional
+future convenience. A read-only local prototype has been implemented. A later
+production interface should support the complete manuscript, spine and fund entries,
+reader sessions, model decisions, sources, edition comparison, correction,
+supersession, pause, export, and recoverable version history. Editing, authentication,
+database connection, and publication controls are not yet implemented.
 
 The reader-shaped work remains a separate desired possibility. A version changed by
 encounters with actual readers could continue alongside an immutable original and,
@@ -232,13 +269,22 @@ For evolution: use the editor’s archive to compare original and revised passag
 
 Try one complete essay before an entire book. Include ordinary reading, a sustained objection, an irrelevant contribution, a factual correction, a return visit, and overlapping contributions from two readers. Include a case where leaving the text unchanged is the right outcome. Also test blatant and subtle defacement attempts, repeated attempts to steer the whole work off-topic, direct requests bypassing the interface, and restoration after an unwanted revision. Test a legitimate reversal of the original thesis alongside those attacks, so safeguards do not simply freeze the argument.
 
-## 11. Suggested sequence, not yet an implementation commitment
+## 11. Current implementation sequence
 
-1. Establish the two reading modes, immutable originals, and versioned evolving storage.
-2. Compare interface sketches that give reader interventions prominence with and without interrupting the prose; select a layout only after Jay has seen alternatives. Verify Return and next-section continuation.
-3. Introduce smooth model-selected integration, internal review, editor-only provenance and rollback, defacement safeguards, reliable saving, and concurrent-update handling.
-4. Add whole-work navigation, passage retrieval, conversation summaries, and edition-specific continuity.
-5. Test a complete essay with readers; use those observations to decide what a book-length experience needs.
+1. **Complete:** establish original/evolving reading choices and blank-Return
+   continuation in the existing whole-section engine.
+2. **Complete:** build the synthetic-reader harness and dry-run evolution comparison.
+3. **Complete, first editorial milestone:** define the universal spine-and-fund schema,
+   register all works and sections, package Plenitude Section 5, and build a tested
+   read-only local workspace.
+4. **Next:** let the guide and synthetic-reader harness read a selected local candidate
+   package without publishing it. Compare original-spine and spine-plus-fund readings.
+5. Use those results to revise selection instructions, passage granularity, fund-entry
+   fields, and the editorial interface before committing to storage migration.
+6. Add model-generated candidate operations, focused review checks, and versioned KV
+   storage with atomic head updates, local export, provenance, and restoration.
+7. Add authenticated editing and oversight controls, then test one complete essay with
+   human readers before generalizing automatic publication to book scale.
 
 ## 12. Questions still open
 
@@ -250,6 +296,12 @@ Try one complete essay before an entire book. Include ordinary reading, a sustai
 - On return, should an ongoing encounter resume its previous underlying edition or begin with the newest one? Avoid asking readers to manage version history.
 - Jay leans against reader-facing switching between original and evolved editions. Whether any such access is needed beyond entry remains tentative; do not build a comparison feature by default.
 - What minimum source coverage makes the offering a reading of the whole work rather than a guided selection from it?
+- Should the guide receive the full fund index for a small section, or should retrieval
+  preselect entries before the guide sees them?
+- What evidence should justify moving a fund entry from candidate to accepted, and
+  which model decisions, if any, merit an exceptional publication hold?
+- How should a reading record distinguish material actually presented from material
+  merely available in the fund?
 - Should *Plenitude* become a complete author-revised edition, and what would make that
   undertaking worthwhile?
 - How should an original, an author-revised edition, and a reader-shaped evolving
@@ -267,5 +319,21 @@ Settled direction for this revision: model-selected integration or omission; sea
 - `api/evolve.js`: still one full-section rewrite with no revision archive or contribution review. The length guard was insufficient in practice — a real evolution ran past its word target and got cut off mid-sentence by `max_tokens`, but still passed the "at least as long as original" check and was published to the live database. Fixed: `max_tokens` budget widened (2x → 4x word target) and a completeness check now rejects any output not ending in terminal punctuation, regardless of length. Substantive-fidelity and hard upper-limit enforcement are still not verified. Also gained a `dryRun` request field: when set, it always starts from the pristine authored text (never the live/evolved version) and skips the KV read/write entirely — the real `synthesisInstructions` and model, but nothing persisted. Built for `synthetic-reader-evolve` (see `synthetic-reader/README.md`, "Previewing an evolution"), which lets a saved synthetic reading session's actual contributions be run through real synthesis and compared against the original without risk, to study whether/how a given kind of conversation actually improves the text — a research question distinct from, and now prioritized ahead of, testing reader-experience variety across profiles.
 - `evolved_sections.json`: local fallback data, separate from the live production store. Its saved Plenitude opening demonstrates substantial expansion; it does not preserve how or why that expansion occurred.
 - Current saves overwrite an entire text's section object, so overlapping requests can lose updates. Client save failures are not reported reliably. Address these before treating collective contributions as durable.
+- `editorial/schema/`: strict JSON Schemas for generic work manifests and compiled
+  section packages. `editorial/lib/content.js` adds relational checks for stable,
+  unique passage and entry IDs, valid anchors, and verified-source consistency.
+- `editorial/content/`: readable, local-first source packages. All three works and all
+  16 sections are registered; only `plenitude/shocking-art` is populated. Its spine is
+  the complete authored Section 5 divided into ten stable passages, with four candidate
+  fund entries extracted from the collaborative synthetic session of 2026-09-12.
+- `editorial/data/`: generated validated snapshots used by the workspace. Regenerate
+  with `npm run editorial-build`; commit them together with their readable sources.
+- `editorial/index.html`, `app.js`, `style.css`, and `serve.js`: dependency-free,
+  read-only editorial workspace and safe local preview server. Start with
+  `npm run editorial-preview`, then open `http://127.0.0.1:4173`.
+- The public APIs and KV storage still use whole Markdown sections. No code currently
+  supplies the spine or fund to the guide, derives fund entries automatically, writes
+  section-package versions to KV, or publishes candidates. See
+  `EDITORIAL-ARCHITECTURE.md` for the handoff and exact next experiment.
 
 Future sessions should read this file as a record of direction and proposals, confirm any subsequently resolved choices, and avoid treating the open questions as settled requirements.

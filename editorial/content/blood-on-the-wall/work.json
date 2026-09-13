@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "blood-on-the-wall",
+  "title": "Blood on the Wall",
+  "order": 3,
+  "sections": [
+    { "id": "shot-heard-in-berlin", "title": "The Shot Heard in Berlin", "order": 1, "package": null },
+    { "id": "graduated-pressure", "title": "Graduated Pressure", "order": 2, "package": null },
+    { "id": "fog-of-distrust", "title": "A Fog of Distrust", "order": 3, "package": null },
+    { "id": "files-break-open", "title": "The Files Break Open", "order": 4, "package": null }
+  ]
+}
