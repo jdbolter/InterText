@@ -58,7 +58,7 @@ surface hypotheses, exercise likely interaction paths, and make comparisons more
 systematic before involving people. It cannot establish how actual readers understand
 or experience the work, and should not be presented as a replacement for that testing.
 
-### Transition to spine-and-fund testing
+### Spine-and-fund testing
 
 The Section 5 experiment showed a limitation in full-section synthesis: detailed
 additions may be accurate and supportive while damaging the balance and rhythm of the
@@ -67,12 +67,20 @@ narrative spine from a fund of optional material the guide can select for differ
 readers. The generic schema, first Section 5 package, and read-only workspace are now
 implemented under `editorial/`; see root `EDITORIAL-ARCHITECTURE.md`.
 
-The synthetic reader does **not** yet consume those packages. `--edition evolving`
-still means the existing KV-backed whole-section edition, and
-`synthetic-reader-evolve` still produces a nonpersistent full-section rewrite against
-the pristine authored baseline. Do not describe either command as testing the new
-spine-and-fund selection behavior. The next harness milestone is an explicit candidate
-package option, followed by controlled original-spine versus spine-plus-fund readings.
+The guide and synthetic reader can now consume the local Section 5 package through
+two explicit experiment-only editions:
+
+- `editorial-spine` gives the guide the packaged spine and no fund entries.
+- `editorial-fund` gives it the identical spine plus the four candidates as optional
+  material, records which entries it reports using through a required structured
+  delivery tool, and does not offer a used entry as
+  new material again later in that section.
+
+These modes do not read or write KV, do not call `/api/evolve`, and are not exposed in
+the public reader UI. Guide-side web search and outside substantive examples are
+disabled in both conditions so fund availability is the intended experimental
+difference. `--edition evolving` retains its old meaning, and
+`synthetic-reader-evolve` remains the separate nonpersistent full-section rewrite.
 
 ## Quick start (live session)
 
@@ -97,7 +105,8 @@ is meant to be committed).
 --section <n>          1-based section number to start in         (default: 1)
 --profile <id>         curious | skeptical | collaborative        (default: curious)
 --turns <n>             maximum turns before the run stops itself (default: 10)
---edition <name>        evolving | original                       (default: evolving)
+--edition <name>        evolving | original | editorial-spine |
+                        editorial-fund                            (default: evolving)
 --base-url <url>        where the InterText server is running     (default: http://localhost:3000)
 --reader-model <name>   overrides OPENAI_READER_MODEL for this run
 --out <dir>             where to write the transcript              (default: synthetic-reader/output)
@@ -111,6 +120,11 @@ option (see the root `INTERTEXT-DESIGN-NOTES.md`, §3, and `uncanny/CLAUDE.md`,
 `/api/evolve`, so unlike a real "Contribute" reader it doesn't need a separate
 consent flag — every synthetic run behaves like a non-contributing reader choosing
 between those two editions.
+
+The editorial editions currently require `--text plenitude --section 5`; the CLI
+fails clearly for any section without a package rather than silently switching to a
+different text. They require the local `vercel dev` server from this branch. The
+static editorial browser on port 4173 cannot serve `/api/chat`.
 
 ## Environment variables
 
@@ -168,8 +182,45 @@ exactly this.
 
 A run produces a timestamped folder under `synthetic-reader/output/` (or `--out`)
 containing:
-- `session.json` — full structured record: run metadata, every turn, every private reflection, the final stop reason, and `contributionsBySection` — the reader's actual contributions (never continuation turns), keyed by 1-based section number, in the same `{role, content}` shape `/api/evolve` expects. This is what `synthetic-reader-evolve` (below) reads back out.
-- `transcript.md` — the same information laid out for a human to skim, with private reflections set off as blockquotes, plus a line naming which sections (if any) had real contributions worth evolving.
+- `session.json` — full structured record: run metadata, every turn, every private
+  reflection, the final stop reason, `contributionsBySection`, and (for the fund
+  experiment) `fundPresentationsBySection`. Each editorial turn separately records
+  what was offered, what the guide reported using, the package version, and whether
+  its required private delivery tool was valid.
+- `transcript.md` — the same information laid out for a human to skim, with private
+  reflections and editorial presentation metadata visible for comparison.
+
+For editorial runs, the guide must return every response through a private structured
+tool containing the visible prose, used-entry IDs, and section-completion state. The
+API rejects a missing or invalid call and shows only the prose to the simulated reader.
+The report is constrained to entries actually offered, although the transcript should
+still be read when judging whether the model classified its use accurately.
+
+## Running the spine/fund comparison
+
+Start the application API in one terminal:
+
+```bash
+vercel dev
+```
+
+Then run a matched pair in another terminal:
+
+```bash
+npm run synthetic-reader -- --text plenitude --section 5 --profile collaborative --turns 15 --edition editorial-spine
+npm run synthetic-reader -- --text plenitude --section 5 --profile collaborative --turns 15 --edition editorial-fund
+```
+
+Repeat with `curious` and `skeptical`. Read each pair for selection, comprehension,
+momentum, repetition, overload, prerequisite timing, and whether leaving the fund
+unused was sometimes the strongest choice. Model behavior is stochastic; repeat an
+important or anomalous condition rather than treating one transcript as a score.
+
+The first completed collaborative pair is preserved in
+`editorial/content/plenitude/sections/shocking-art/provenance/2026-09-18-collaborative-comparison/`.
+The guide used two candidates and left two unused. The fund reading lasted longer and
+produced useful refinements, but also circled the same historical distinction for many
+turns. Curious and skeptical pairs are still needed before changing selection policy.
 
 ## Previewing an evolution
 
@@ -238,7 +289,7 @@ None of this needs `OPENAI_API_KEY`, a running server, or network access.
 
 1. From the project root: `vercel dev` (leave it running).
 2. Make sure `OPENAI_API_KEY` is in `.env.local` (see "Quick start" above) — or `export OPENAI_API_KEY=sk-...` in your shell for a one-off override.
-3. `npm run synthetic-reader -- --profile skeptical --text uncanny --section 3 --turns 15`
+3. `npm run synthetic-reader -- --profile collaborative --text plenitude --section 5 --turns 15 --edition editorial-fund`
 4. Read the printed per-turn summary as it runs, then open the written `transcript.md` under `synthetic-reader/output/`.
 5. Optionally, preview an evolution from that session: `npm run synthetic-reader-evolve -- --session synthetic-reader/output/<run-folder>` (see "Previewing an evolution" above).
 

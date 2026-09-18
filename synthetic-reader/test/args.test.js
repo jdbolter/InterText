@@ -48,6 +48,11 @@ test('rejects an invalid edition', () => {
   assert.throws(() => parseArgs(['--edition', 'remixed']), /--edition must be/);
 });
 
+test('accepts both local editorial experiment editions', () => {
+  assert.equal(parseArgs(['--edition', 'editorial-spine']).edition, 'editorial-spine');
+  assert.equal(parseArgs(['--edition', 'editorial-fund']).edition, 'editorial-fund');
+});
+
 test('rejects an unknown flag', () => {
   assert.throws(() => parseArgs(['--nonsense']), /Unknown option/);
 });

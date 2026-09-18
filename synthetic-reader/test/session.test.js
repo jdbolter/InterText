@@ -96,6 +96,64 @@ test('a continue action sends action: continue with the per-section history', as
   assert.equal(sentBody.edition, 'original');
 });
 
+test('editorial-fund runs carry a per-section presentation ledger across turns', async () => {
+  const chatClient = recordingChatClient((_body, call) => ({
+    response: call === 1 ? 'First use.' : 'No repeated use.',
+    editorial: {
+      edition: 'editorial-fund',
+      packageVersionId: 'test-v1',
+      offeredFundEntryIds: call === 1 ? ['entry-one', 'entry-two'] : ['entry-two'],
+      usedFundEntryIds: call === 1 ? ['entry-one'] : [],
+      trackingComplete: true,
+      trackingMethod: 'required-tool',
+    },
+  }));
+  const reader = scriptedReader([
+    { action: 'message', message: 'Question one?', target_section: null, stop_reason: null, private_reflection: privateReflection() },
+    { action: 'message', message: 'Question two?', target_section: null, stop_reason: null, private_reflection: privateReflection() },
+    { action: 'finish', message: null, target_section: null, stop_reason: 'done', private_reflection: privateReflection() },
+  ]);
+
+  const result = await runSession({
+    textEntry: TEXT_ENTRY,
+    sections: SECTIONS,
+    startSectionIndex: 0,
+    edition: 'editorial-fund',
+    maxTurns: 5,
+    baseUrl: 'http://localhost:3000',
+    reader,
+    chatClient,
+  });
+
+  assert.deepEqual(chatClient.calls[0].body.presentedFundEntryIds, []);
+  assert.deepEqual(chatClient.calls[1].body.presentedFundEntryIds, ['entry-one']);
+  assert.deepEqual(result.fundPresentationsBySection, { 1: ['entry-one'] });
+  assert.deepEqual(result.turns[0].editorial.usedFundEntryIds, ['entry-one']);
+  assert.equal(result.turns[0].editorial.trackingComplete, true);
+  assert.equal(result.turns[0].editorial.trackingMethod, 'required-tool');
+});
+
+test('editorial runs stop clearly if the server does not return experiment metadata', async () => {
+  const chatClient = recordingChatClient(() => ({ response: 'A response from an old server.' }));
+  const reader = scriptedReader([
+    { action: 'message', message: 'Question?', target_section: null, stop_reason: null, private_reflection: privateReflection() },
+  ]);
+
+  const result = await runSession({
+    textEntry: TEXT_ENTRY,
+    sections: SECTIONS,
+    startSectionIndex: 0,
+    edition: 'editorial-spine',
+    maxTurns: 1,
+    baseUrl: 'http://localhost:3000',
+    reader,
+    chatClient,
+  });
+
+  assert.equal(result.stopReason, 'error');
+  assert.match(result.stopDetail, /did not return editorial experiment metadata/);
+});
+
 test('continuing on a completed non-final section auto-advances within the same turn', async () => {
   let call = 0;
   const chatClient = recordingChatClient((body) => {
@@ -150,6 +208,63 @@ test('continuing past the final completed section stops advancing and leaves a s
 
   assert.equal(result.turns[1].note, 'reached end of final section; no further content to read');
   assert.equal(result.stopReason, 'turn_limit_reached');
+});
+
+test('editorial experiments stop at the packaged section boundary instead of calling the next section', async () => {
+  const chatClient = recordingChatClient(() => ({
+    response: '',
+    sectionComplete: true,
+    editorial: {
+      edition: 'editorial-spine',
+      packageVersionId: 'test-v1',
+      offeredFundEntryIds: [],
+      usedFundEntryIds: [],
+      trackingComplete: true,
+    },
+  }));
+  const reader = scriptedReader([
+    { action: 'continue', message: null, target_section: null, stop_reason: null, private_reflection: privateReflection() },
+    { action: 'finish', message: null, target_section: null, stop_reason: 'end reached', private_reflection: privateReflection() },
+  ]);
+
+  const result = await runSession({
+    textEntry: TEXT_ENTRY,
+    sections: SECTIONS,
+    startSectionIndex: 0,
+    edition: 'editorial-spine',
+    maxTurns: 3,
+    baseUrl: 'http://localhost:3000',
+    reader,
+    chatClient,
+  });
+
+  assert.equal(chatClient.calls.length, 1);
+  assert.equal(result.finalSectionIndex, 0);
+  assert.equal(result.turns[0].note, 'reached end of packaged experimental section');
+  assert.equal(result.stopReason, 'reader_finished');
+});
+
+test('editorial experiments reject navigation away from the packaged target without an API call', async () => {
+  const chatClient = recordingChatClient(() => ({ response: 'unused' }));
+  const reader = scriptedReader([
+    { action: 'navigate', message: null, target_section: 2, stop_reason: null, private_reflection: privateReflection() },
+    { action: 'finish', message: null, target_section: null, stop_reason: 'done', private_reflection: privateReflection() },
+  ]);
+
+  const result = await runSession({
+    textEntry: TEXT_ENTRY,
+    sections: SECTIONS,
+    startSectionIndex: 0,
+    edition: 'editorial-fund',
+    maxTurns: 3,
+    baseUrl: 'http://localhost:3000',
+    reader,
+    chatClient,
+  });
+
+  assert.equal(chatClient.calls.length, 0);
+  assert.equal(result.finalSectionIndex, 0);
+  assert.match(result.turns[0].note, /navigation outside packaged experimental section rejected/);
 });
 
 test('a valid navigate action changes section without any HTTP call', async () => {

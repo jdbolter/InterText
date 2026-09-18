@@ -1,6 +1,13 @@
 const Anthropic = require('@anthropic-ai/sdk');
 const fs = require('fs');
 const path = require('path');
+const {
+  EDITORIAL_DELIVERY_TOOL,
+  buildEditorialDeliveryTool,
+  extractEditorialDelivery,
+  isEditorialEdition,
+  prepareEditorialReading,
+} = require('./lib/editorial-reading');
 
 const client = new Anthropic();
 
@@ -47,7 +54,17 @@ async function loadEvolved(textId) {
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { message, history, sectionIndex = 0, shownImages = [], textId, action, sectionHistory = [], edition } = req.body;
+  const {
+    message,
+    history,
+    sectionIndex = 0,
+    shownImages = [],
+    textId,
+    action,
+    sectionHistory = [],
+    edition,
+    presentedFundEntryIds = [],
+  } = req.body;
   const continuing = action === 'continue';
   // A reader who declined to contribute can still ask to see the original rather
   // than the collectively-evolved edition. Either way this session changes nothing.
@@ -64,8 +81,24 @@ module.exports = async function handler(req, res) {
   const config = getConfig(textId);
   const sections = getSections(textId);
   const idx = Math.max(0, Math.min(Math.floor(sectionIndex), sections.length - 1));
-  const evolved = useOriginal ? {} : await loadEvolved(textId);
-  const sectionText = evolved[idx] ?? sections[idx];
+  let editorialReading = null;
+  let sectionText;
+  if (isEditorialEdition(edition)) {
+    try {
+      editorialReading = prepareEditorialReading({
+        textId,
+        sectionIndex: idx,
+        edition,
+        presentedFundEntryIds,
+      });
+      sectionText = editorialReading.sectionText;
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
+    }
+  } else {
+    const evolved = useOriginal ? {} : await loadEvolved(textId);
+    sectionText = evolved[idx] ?? sections[idx];
+  }
   const sectionName = config.sectionNames[idx];
 
   // Continuation uses this section's exchanges, not the previous chapter's ending.
@@ -75,7 +108,9 @@ module.exports = async function handler(req, res) {
     { role: 'user', content: continuing ? 'Continue reading from where we have reached in this section.' : message.trim() }
   ];
   const continuationInstructions = continuing ? `The reader pressed Enter to continue reading. Follow the supplied current section's sequence of ideas, using the exchanges below to locate what has already been presented. Resume substantive material not yet covered rather than repeating the opening or continuing a digression indefinitely. Present the current text directly, with its voice and concrete details; do not summarize the entire section, describe your process, announce that you are continuing, ask a question, or say what the essay or author argues. A natural passage of up to 250 words is enough for this turn. Brief elaboration may connect the passage to the reader's interests, but return to the section's remaining material.
-When ALL the section's substantive material and useful elaboration have been covered, append [[SECTION_COMPLETE]] on a line by itself after the final passage. If they were already covered, return only [[SECTION_COMPLETE]]. Otherwise do not emit this marker. Do not move into the next section yourself or invent additional material merely to keep going. This is an internal navigation signal, never prose for the reader.` : null;
+${editorialReading
+    ? 'When ALL the packaged section\'s substantive material and useful elaboration have been covered, set sectionComplete to true in the required private delivery tool. If they were already covered, return an empty response with sectionComplete true. Otherwise set it to false. Do not move into the next section yourself or invent additional material merely to keep going.'
+    : 'When ALL the section\'s substantive material and useful elaboration have been covered, append [[SECTION_COMPLETE]] on a line by itself after the final passage. If they were already covered, return only [[SECTION_COMPLETE]]. Otherwise do not emit this marker. Do not move into the next section yourself or invent additional material merely to keep going. This is an internal navigation signal, never prose for the reader.'}` : null;
 
   try {
     const response = await client.messages.create({
@@ -99,10 +134,26 @@ When ALL the section's substantive material and useful elaboration have been cov
               .join('\n\n') || null,
             `Current section: ${sectionName}`,
             `The reader has just been shown this framing before their first message: "${config.sectionIntros[idx]}"`,
+            editorialReading ? editorialReading.instructions : null,
           ].filter(Boolean).join('\n\n') },
-        { type: 'text', text: sectionText, cache_control: { type: 'ephemeral' } }
+        { type: 'text', text: sectionText, cache_control: { type: 'ephemeral' } },
+        ...(editorialReading && editorialReading.fundText
+          ? [{ type: 'text', text: editorialReading.fundText }]
+          : []),
       ],
-      tools: [{ type: 'web_search_20260318', name: 'web_search', max_uses: 5 }],
+      // Keep the two editorial conditions controlled: neither may acquire new
+      // substantive material from web search. Ordinary/evolving readings retain
+      // the existing bounded search capability.
+      ...(editorialReading
+        ? {
+            tools: [buildEditorialDeliveryTool(editorialReading.offeredFundEntryIds)],
+            tool_choice: {
+              type: 'tool',
+              name: EDITORIAL_DELIVERY_TOOL,
+              disable_parallel_tool_use: true,
+            },
+          }
+        : { tools: [{ type: 'web_search_20260318', name: 'web_search', max_uses: 5 }] }),
       messages
     });
 
@@ -120,9 +171,32 @@ When ALL the section's substantive material and useful elaboration have been cov
         });
       }
     });
-    let text = postBlocks.map(b => b.text).join('');
-    const sectionComplete = continuing && /\[\[SECTION_COMPLETE\]\]\s*$/.test(text);
-    text = text.replace(/\[\[SECTION_COMPLETE\]\]/g, '').trim();
+    let text;
+    let editorialResult = null;
+    let sectionComplete;
+    if (editorialReading) {
+      let delivery;
+      try {
+        delivery = extractEditorialDelivery(response.content, editorialReading.offeredFundEntryIds);
+      } catch (err) {
+        console.error(`Invalid editorial completion for ${textId}[${idx}]:`, err.message);
+        return res.status(502).json({ error: 'Invalid editorial completion' });
+      }
+      text = delivery.text;
+      sectionComplete = continuing && delivery.sectionComplete;
+      editorialResult = {
+        edition,
+        packageVersionId: editorialReading.sectionPackage.versionId,
+        offeredFundEntryIds: editorialReading.offeredFundEntryIds,
+        usedFundEntryIds: delivery.usedFundEntryIds,
+        trackingComplete: delivery.trackingComplete,
+        trackingMethod: 'required-tool',
+      };
+    } else {
+      text = postBlocks.map(b => b.text).join('');
+      sectionComplete = continuing && /\[\[SECTION_COMPLETE\]\]/.test(text);
+      text = text.replace(/\[\[SECTION_COMPLETE\]\]/g, '').trim();
+    }
 
     // An empty completion (e.g. thinking consuming the whole max_tokens budget on a
     // hard turn) is a failure, not a valid reply — must not return 200 with empty
@@ -136,7 +210,11 @@ When ALL the section's substantive material and useful elaboration have been cov
     if (citations.length > 0) {
       text += '\n\nSources: ' + citations.slice(0, 5).map(c => `[${c.title}](${c.url})`).join(' · ');
     }
-    return res.status(200).json({ response: text, ...(continuing ? { sectionComplete } : {}) });
+    return res.status(200).json({
+      response: text,
+      ...(continuing ? { sectionComplete } : {}),
+      ...(editorialResult ? { editorial: editorialResult } : {}),
+    });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: 'API error' });

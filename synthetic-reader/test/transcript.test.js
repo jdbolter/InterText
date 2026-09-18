@@ -91,6 +91,38 @@ test('a run with no contributions says so plainly in the markdown', () => {
   assert.match(md, /No actual reader contributions were made this run/);
 });
 
+test('editorial presentation metadata appears in JSON and the readable transcript', () => {
+  const outDir = tmpOutDir();
+  const result = sampleResult({
+    fundPresentationsBySection: { 5: ['shared-evaluative-field'] },
+    turns: [
+      {
+        ...sampleResult().turns[0],
+        sectionNumber: 5,
+        editorial: {
+          edition: 'editorial-fund',
+          packageVersionId: 'shocking-art-editorial-v001',
+          offeredFundEntryIds: ['shared-evaluative-field'],
+          usedFundEntryIds: ['shared-evaluative-field'],
+          trackingComplete: true,
+          trackingMethod: 'required-tool',
+        },
+      },
+    ],
+  });
+  const { jsonPath, mdPath } = writeRun(
+    outDir,
+    sampleMeta({ startSectionIndex: 4, edition: 'editorial-fund' }),
+    result
+  );
+
+  const json = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+  assert.deepEqual(json.fundPresentationsBySection, { 5: ['shared-evaluative-field'] });
+  const md = fs.readFileSync(mdPath, 'utf8');
+  assert.match(md, /Fund entries actually presented: section 5: shared-evaluative-field/);
+  assert.match(md, /fund offered: shared-evaluative-field; fund used: shared-evaluative-field; tracking complete via required-tool/);
+});
+
 test('run directory name is filesystem-safe and includes text/profile/section', () => {
   const outDir = tmpOutDir();
   const { dir } = writeRun(outDir, sampleMeta(), sampleResult());

@@ -13,7 +13,7 @@
     {
       "id": "shared-evaluative-field",
       "title": "A shared evaluative field",
-      "anchors": ["shocking-art-p01", "shocking-art-p02"],
+      "anchors": ["shocking-art-p02"],
       "kind": "clarification",
       "status": "candidate",
       "markdownFile": "fund/shared-evaluative-field.md",

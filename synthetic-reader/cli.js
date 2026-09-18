@@ -17,6 +17,7 @@ const chatClient = require('./lib/chatClient');
 const { createReader } = require('./lib/openaiReader');
 const { runSession } = require('./lib/session');
 const { writeRun } = require('./lib/transcript');
+const { loadEditorialSection } = require('../api/lib/editorial-reading');
 
 const DEFAULT_OUT_DIR = path.join(__dirname, 'output');
 
@@ -35,6 +36,13 @@ async function main(argv) {
     throw new Error(
       `--section ${opts.section} is out of range for "${textEntry.id}" — it has ${sections.length} section(s).`
     );
+  }
+
+  if (opts.edition.startsWith('editorial-')) {
+    // Fail before either model is called. Reading the generated package index here
+    // validates availability only; the simulated reader still sees solely the same
+    // public section intro and conversation a human would see.
+    loadEditorialSection({ textId: opts.text, sectionIndex: opts.section - 1 });
   }
 
   const apiKey = requireOpenAiApiKey();

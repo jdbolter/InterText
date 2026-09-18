@@ -1,11 +1,13 @@
 # InterText editorial architecture
 
-**Status, 2026-09-13:** the universal local content model, validated build, and
-read-only editorial workspace are implemented. The public reading engine, the
-synthetic-reader harness, and the live KV database do **not** yet consume this model.
-This document records both the agreed direction and the implementation boundary so
-the work can be resumed by another model or on another computer without relying on
-conversation history.
+**Status, 2026-09-18:** the universal local content model, validated build, read-only
+editorial workspace, and controlled guide/synthetic-reader package path are
+implemented. The package path is local and explicitly experimental; the public reader
+interface and live KV database do **not** consume this model. One matched collaborative
+spine/fund pair has been completed; curious, skeptical, and repeated runs remain. This
+document records both the agreed direction and the
+implementation boundary so the work can be resumed by another model or on another
+computer without relying on conversation history.
 
 ## The governing distinction: spine and fund
 
@@ -119,6 +121,10 @@ metadata are deferred.
 Only **accepted** entries should later be offered to the public guide. Candidate,
 superseded, and rejected entries remain editorial records.
 
+The local `editorial-fund` experiment is the deliberate exception: requesting that
+edition explicitly authorizes the four Section 5 candidates for controlled testing.
+It does not change their status or publish them.
+
 ## First populated package
 
 The `plenitude/shocking-art` package preserves the entire authored Section 5 as ten
@@ -133,6 +139,13 @@ collaborative synthetic session dated `2026-09-12T18-55-01-898Z`:
 The two historically specific entries are marked `needs-verification`; the original
 session supplied no URLs. They must not be represented as verified merely because a
 model stated them fluently.
+
+The shared-evaluative-field entry originally had anchors to passages 1 and 2 even
+though its prose presupposes Walter Serner, who first appears in passage 2. That
+premature anchor was removed before the reading comparison. This exposed a future
+validation requirement: a model validator must assess every proposed anchor
+independently for contextual and chronological eligibility, not merely approve or
+reject an entry as a whole.
 
 Because `synthetic-reader/output/` is git-ignored, the exact Section 5 `session.json`,
 human-readable transcript, original, evolved comparison text, and evolution metadata
@@ -169,6 +182,50 @@ The entire `editorial/` directory is excluded in `.vercelignore`; do not remove 
 protection until the deployed editor has authentication and an intentional policy for
 which manuscript, session, and provenance data may leave the local environment.
 
+## Controlled local reading path
+
+`api/chat.js` now recognizes two explicit experimental editions:
+
+- `editorial-spine`: loads the packaged narrative spine and supplies no fund entries;
+- `editorial-fund`: loads the same spine and offers candidate or accepted fund entries
+  as optional material.
+
+Both conditions disable guide-side web search and instruct the guide not to introduce
+substantive examples or historical claims from outside the package. This keeps the
+fund availability—not uncontrolled outside knowledge—as the intended difference.
+The guide is told that fund entries are possibilities rather than a checklist, to use
+them only when they help the particular reader without damaging movement, and never
+to expose the editorial apparatus.
+
+For each response, the guide must call a private structured delivery tool containing
+the complete reader-visible prose, every offered fund-entry ID materially used, and a
+section-completion boolean. The API rejects a missing or malformed tool call, validates
+IDs against the entries actually offered, and returns only the prose plus structured
+experiment metadata. The synthetic harness carries a per-section ledger into later
+turns so an entry already presented is not offered as new material again.
+`session.json` and `transcript.md` distinguish entries offered to the guide from entries
+the guide reported actually using.
+
+An earlier free-text-marker design was rejected during the first live attempt: most
+markers were missing, and one response visibly used the Armory Show detail without
+reporting that entry. Required structured delivery guarantees a report on every guide
+turn and constrains it to offered IDs. It is still a model report rather than an
+independent semantic audit, so the visible prose remains the final evidence of use.
+
+The loader reads only compiled, validated files under `editorial/data/`. An editorial
+request for an unpackaged section fails clearly rather than falling back to the
+original or evolving whole-section text. The CLI currently fails early unless the
+target is the sole packaged example, Plenitude Section 5.
+
+An editorial run is bounded to its packaged target section. Continuation at the end
+does not auto-advance into an unpackaged section, and navigation away is rejected
+client-side with an explanatory transcript note.
+
+This path does not call `/api/evolve`, change candidate status, write local content,
+read `evolved_sections.json`, or contact Upstash. The public browser does not request
+either experimental edition. Because `editorial/` remains in `.vercelignore`, this
+path is intended for `vercel dev` from a complete local checkout, not production.
+
 ## Proposed database representation — not implemented
 
 The current Upstash KV object `evolved:<textId>` maps section indices to single
@@ -204,11 +261,17 @@ The conversational guide and the editorial model have different roles:
 
 1. The guide conducts a reading and selects from the accepted spine and fund.
 2. Contributions are recorded by stable section and passage where possible.
-3. At the end of a contributing session, a separate editorial model compares the
-   conversation with the current spine and fund.
-4. It may propose or perform: revise a spine passage, add a fund entry, revise or
-   supersede an existing entry, attach a source, or make no change.
-5. Structural and factual checks run before a new immutable version is published.
+3. At the end of a contributing session, a first editorial-model pass compares the
+   conversation with the current spine and fund. It may propose: revise a spine
+   passage, add a fund entry, revise or supersede an existing entry, attach a source,
+   or make no change.
+4. A separate second model pass validates those proposals for fidelity, relevance,
+   duplication, prose quality, rhythm, proportion, factual/source needs, and every
+   proposed anchor's contextual and chronological eligibility.
+5. Validated fund operations remain candidates until editorial policy promotes them.
+   A spine revision creates a proposed immutable version; it never silently replaces
+   the current spine.
+6. Structural checks run before any new immutable version is published.
 
 In the intended reader-shaped edition, the model normally makes routine editorial
 decisions autonomously; Jay does not approve every entry. The human role is to set the
@@ -223,33 +286,69 @@ turns.
 
 ## Required next experiment
 
-The next implementation milestone is not database migration. It is a candidate
-reading path that lets `api/chat.js` and the synthetic-reader harness use a selected
-local section package without publishing it. The guide should receive:
+The candidate reading path is implemented. The first preserved matched pair used the
+collaborative profile and a 15-turn cap. The spine-only reader finished after 10 turns;
+the fund reader reached the cap after 15. The fund guide selected only
+`shared-evaluative-field` and `armory-show-ridicule`, leaving the other two candidates
+unused. The optional material supported useful conceptual refinement, but the longer
+session also repeatedly narrowed the same historical contrast. This is a suggestive
+example of both the fund's value and its possible cost to momentum, not a verdict:
+the reader paths were stochastic and did not pose identical questions.
 
-- the relevant spine passage and neighboring context;
-- only accepted fund entries, or explicitly selected candidate entries in a marked
-  experimental mode;
-- compact selection cues; and
-- a record of what has already been presented.
+The exact final pair is tracked under
+`editorial/content/plenitude/sections/shocking-art/provenance/2026-09-18-collaborative-comparison/`.
 
-Run curious, collaborative, and skeptical synthetic readers against the same Section
-5 package, compare them with an original-spine-only condition, and evaluate selection,
-comprehension, momentum, repetition, and overload. Do not infer success merely because
-the guide can quote every available entry.
+The next work is to repeat the comparison with curious and skeptical profiles, and to
+repeat the collaborative condition if this pattern becomes important. Start the local
+API server in one terminal:
 
-Only after this experiment should the project implement candidate extraction,
-database versions, automatic publication, authentication, or editing controls.
+```bash
+vercel dev
+```
+
+In another terminal, run a matched pair for one profile at 15 turns:
+
+```bash
+npm run synthetic-reader -- --text plenitude --section 5 --profile collaborative --turns 15 --edition editorial-spine
+npm run synthetic-reader -- --text plenitude --section 5 --profile collaborative --turns 15 --edition editorial-fund
+```
+
+Use `curious` and `skeptical` next. These are stochastic readers, so a
+single pair is evidence rather than a verdict; repeat any condition whose result seems
+important or anomalous. Compare transcripts for:
+
+- which fund entries were offered and actually used;
+- whether an entry appeared only after its prerequisites were established;
+- comprehension and the quality of objections or questions;
+- momentum, repetition, and overload;
+- whether the fund helped this reader rather than merely giving the guide more to say;
+- invalid structured delivery calls or leakage of private editorial labels; and
+- whether leaving all fund entries unused was sometimes the best decision.
+
+The present implementation supplies the complete marked spine as guide context rather
+than performing retrieval of only one passage and its neighbors. The guide uses the
+conversation history, anchors, and selection cues to pace the material. The comparison
+should tell us whether explicit passage retrieval or more prerequisite metadata is
+actually needed before adding it.
+
+Only after this experiment should the project revise selection instructions or entry
+fields, implement candidate extraction and second-pass validation, add database
+versions, or build publication and editing controls.
 
 ## Commands and verification
 
 ```bash
 npm run editorial-build       # compile and validate editorial/data/
 npm run editorial-preview     # build, then serve at 127.0.0.1:4173
+vercel dev                    # local API required by synthetic-reader experiments
 npm test                      # editorial and synthetic-reader suites
 ```
 
-As of this milestone, the full suite contains 107 passing tests. The workspace was
+As of this milestone, the full suite contains 122 passing tests. The workspace was
 also checked in the in-app browser: Section 5 rendered correctly, passage filtering
 reduced the fund to the appropriate entries, switching to an unpopulated work produced
 the intended empty state, and the browser console contained no warnings or errors.
+The new package loader, condition isolation, anchor correction, required delivery
+tool, presentation ledger, packaged-section boundary, and transcript recording have
+offline coverage. The final collaborative pair also verified the path live against
+the configured OpenAI reader and Claude guide.

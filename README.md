@@ -76,6 +76,14 @@ under `editorial/`. All three works and all 16 current sections are registered; 
 first complete example is *Plenitude*, Section 5, with ten spine passages and four
 candidate fund entries extracted from a collaborative synthetic session.
 
+The guide and synthetic-reader harness can now consume that local package in two
+explicit, nonpublishing experiment modes: `editorial-spine` and `editorial-fund`.
+The latter offers candidate entries selectively and records which ones the guide
+reports actually using. Neither mode reads or writes the live evolved-text database.
+The first matched collaborative pair is complete and preserved with the Section 5
+package; it used two of four candidates and showed both useful refinement and a risk
+of prolonged, repetitive qualification. Curious and skeptical pairs remain.
+
 ```bash
 npm install
 npm test
@@ -83,7 +91,10 @@ npm run editorial-preview
 ```
 
 Open `http://127.0.0.1:4173`. No API keys, Vercel login, or database connection are
-needed for this workspace. It does not yet alter or feed the public reading engine.
+needed for this workspace. It does not alter or feed the public reading engine.
+The local API experiment is separate from this read-only browser workspace and is not
+exposed by the public reader interface.
+
 Read `EDITORIAL-ARCHITECTURE.md` for the full data model, database proposal, verified
 implementation boundary, and next experiment; read `editorial/README.md` for exact
 handoff and content-authoring instructions.

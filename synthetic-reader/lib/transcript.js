@@ -29,6 +29,9 @@ function buildJson(meta, result) {
     // to preview a synthesis without ever touching production data. See
     // synthetic-reader/lib/evolveClient.js and evolve-cli.js.
     contributionsBySection: result.contributionsBySection || {},
+    // In editorial-fund experiments, the guide reports which optional entries it
+    // actually used. This is separate from what was merely offered to it.
+    fundPresentationsBySection: result.fundPresentationsBySection || {},
   };
 }
 
@@ -37,6 +40,18 @@ function formatTurnMarkdown(turn) {
   if (turn.readerMessage) lines.push('', `**Reader:** ${turn.readerMessage}`);
   if (turn.action === 'continue') lines.push('', '_(reader pressed Return to continue reading)_');
   if (turn.guideResponse) lines.push('', `**Guide:**`, '', turn.guideResponse);
+  if (turn.editorial) {
+    const offered = turn.editorial.offeredFundEntryIds.length > 0
+      ? turn.editorial.offeredFundEntryIds.join(', ')
+      : 'none';
+    const used = turn.editorial.usedFundEntryIds.length > 0
+      ? turn.editorial.usedFundEntryIds.join(', ')
+      : 'none';
+    lines.push(
+      '',
+      `_(editorial package ${turn.editorial.packageVersionId}; fund offered: ${offered}; fund used: ${used}; tracking ${turn.editorial.trackingComplete ? 'complete' : 'missing'}${turn.editorial.trackingMethod ? ` via ${turn.editorial.trackingMethod}` : ''})_`
+    );
+  }
   if (turn.navigatedTo) lines.push('', `_(reader navigated to section ${turn.navigatedTo})_`);
   if (turn.stopReason) lines.push('', `_(reader chose to finish: ${turn.stopReason})_`);
   if (turn.note) lines.push('', `_(${turn.note})_`);
@@ -71,10 +86,15 @@ function buildMarkdown(meta, result) {
     '',
   ];
   const contributedSections = Object.keys(result.contributionsBySection || {});
+  const fundSections = Object.entries(result.fundPresentationsBySection || {});
   lines.push(
     contributedSections.length > 0
       ? `Sections with actual reader contributions (evolvable): ${contributedSections.join(', ')}.`
       : 'No actual reader contributions were made this run (continuation-only, or navigation-only) — nothing here to evolve.',
+    '',
+    fundSections.length > 0
+      ? `Fund entries actually presented: ${fundSections.map(([section, ids]) => `section ${section}: ${ids.join(', ')}`).join('; ')}.`
+      : 'No fund entries were recorded as presented.',
     '',
     '## Turns',
     ''

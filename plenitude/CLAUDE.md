@@ -22,7 +22,7 @@ This iterative use may later inform human user testing, but it does not replace 
 See the root `README.md`, `synthetic-reader/README.md` ("Current use: an editorial
 loop"), and `INTERTEXT-DESIGN-NOTES.md` §10.
 
-### Editorial architecture — direction selected, first prototype implemented
+### Editorial architecture — local package and reading experiment implemented
 
 The synthetic-reader work raises the possibility of an author-directed revision of
 the whole book, potentially offered as a coherent revised edition to interested
@@ -40,9 +40,14 @@ candidate fund entries rather than being forced into the continuous essay. Two
 historical entries are explicitly marked as needing verification because the session
 did not supply source links.
 
-This is not yet connected to the guide, synthesis endpoint, synthetic-reader session
-loop, or live database. See root `EDITORIAL-ARCHITECTURE.md` for the authoritative
-handoff, database-key proposal, commands, limitations, and next experiment.
+The local package is now connected to the guide and synthetic-reader session loop
+through two explicit experimental editions: `editorial-spine` and `editorial-fund`.
+The fund condition offers candidates as optional material, suppresses entries already
+reported as presented, and records per-turn use through a required structured guide
+tool. These modes are not
+available in the public reader interface, do not call synthesis, and never read or
+write the live database. See root `EDITORIAL-ARCHITECTURE.md` for the authoritative
+handoff, comparison commands, database-key proposal, and remaining limitations.
 
 An author-revised edition would not necessarily replace the reader-shaped project.
 A distinct evolving version, formed through encounters with actual readers and the
@@ -66,12 +71,18 @@ them a public interface should expose—remains open.
 - Added `'plenitude'` to `ALLOWED_TEXT_IDS` in `api/chat.js` and `api/evolve.js`
 - Added the generic spine-and-fund editorial schema and read-only workspace, with
   Section 5 as the first packaged example (`editorial/`)
+- Added controlled local `editorial-spine` and `editorial-fund` guide/harness modes,
+  including a per-section record of which optional entries were actually presented
+- Completed the first matched collaborative pair. Two of four entries were used; the
+  fund exchange was productive but longer and more repetitive. Exact transcripts are
+  tracked under the Section 5 package's `provenance/2026-09-18-collaborative-comparison/`.
 
 ### Still To Do
 - Continue iterative editorial work on the prose, argument, section structure, and
   reader relationship using repeated synthetic-reader runs.
-- Add an experimental candidate-reading path that lets the guide and synthetic reader
-  use the local Section 5 spine-and-fund package without publishing it.
+- Run paired Section 5 `editorial-spine` and `editorial-fund` sessions for curious and
+  skeptical profiles, with collaborative repetitions where useful; inspect selection, rhythm, comprehension,
+  repetition, and overload before extending the data model or migrating storage.
 - Images: drop 4 files into `plenitude/images/` with these exact names:
   - `night-at-opera.jpg` — A Night at the Opera (1935), section 2
   - `whats-opera-doc.jpg` — What's Opera, Doc? (1957), section 2

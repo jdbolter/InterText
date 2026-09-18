@@ -87,10 +87,19 @@ fact checking.
 
 ## Current boundary
 
-This is a read-only, local-first prototype. It does not alter authored source texts,
-`evolved_sections.json`, Upstash KV, `/api/chat`, `/api/evolve`, or the synthetic-reader
-state machine. It does not yet let the guide read a package. Those are explicit next
-steps, not missing setup.
+The browser workspace remains a read-only, local-first prototype. It does not alter
+authored source texts, `evolved_sections.json`, Upstash KV, or `/api/evolve`.
+
+The local guide and synthetic-reader harness can now read a package when explicitly
+invoked with `--edition editorial-spine` or `--edition editorial-fund`. That path is
+implemented in `api/lib/editorial-reading.js`, `api/chat.js`, and
+`synthetic-reader/lib/session.js`. Guide prose and fund-use IDs return through a
+required private structured tool; experiments stop at the packaged-section boundary.
+It is an experiment-only path: the normal public
+reader never requests those editions, no candidate is published or accepted, web
+search is disabled for both conditions, and the live database is not read or written.
+See the root architecture document and `synthetic-reader/README.md` for paired-run
+commands and interpretation guidance.
 
 `.vercelignore` excludes this entire directory from deployment. Do not remove that
 line merely to make the editor remotely reachable: authentication and a policy for

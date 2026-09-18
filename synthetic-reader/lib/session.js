@@ -31,7 +31,7 @@ function extractImageIds(text) {
  * @param {object} opts.textEntry - from textRegistry.getText()
  * @param {Array} opts.sections - from publicContent.extractPublicSectionData().sections
  * @param {number} opts.startSectionIndex - 0-based
- * @param {'evolving'|'original'} opts.edition
+ * @param {'evolving'|'original'|'editorial-spine'|'editorial-fund'} opts.edition
  * @param {number} opts.maxTurns
  * @param {string} opts.baseUrl
  * @param {{chooseAction: Function}} opts.reader
@@ -41,6 +41,8 @@ function extractImageIds(text) {
 async function runSession(opts) {
   const { textEntry, sections, startSectionIndex, edition, maxTurns, baseUrl, reader, onTurn } = opts;
   const chatClient = opts.chatClient || defaultChatClient;
+  const editorialExperiment = edition.startsWith('editorial-');
+  const editorialTargetSectionIndex = startSectionIndex;
 
   let sectionIndex = startSectionIndex;
   const history = [];
@@ -53,6 +55,7 @@ async function runSession(opts) {
   const sectionContributions = new Map();
   const completedSections = new Set();
   const shownImages = new Set();
+  const presentedFundEntriesBySection = new Map();
   const visibleTranscript = [];
   const turns = [];
   let stopReason = null;
@@ -60,6 +63,35 @@ async function runSession(opts) {
 
   function currentSection() {
     return sections[sectionIndex];
+  }
+
+  function presentedFundEntryIds(idx = sectionIndex) {
+    return Array.from(presentedFundEntriesBySection.get(idx) || []);
+  }
+
+  function recordEditorialPresentation(data, turnRecord) {
+    if (!data || !data.editorial) {
+      if (edition.startsWith('editorial-')) {
+        throw new Error(
+          'The chat server did not return editorial experiment metadata. ' +
+            'Make sure this branch is running locally with `vercel dev`.'
+        );
+      }
+      return;
+    }
+    const editorial = data.editorial;
+    const used = Array.isArray(editorial.usedFundEntryIds) ? editorial.usedFundEntryIds : [];
+    const presented = presentedFundEntriesBySection.get(sectionIndex) || new Set();
+    used.forEach(id => presented.add(id));
+    presentedFundEntriesBySection.set(sectionIndex, presented);
+    turnRecord.editorial = {
+      edition: editorial.edition,
+      packageVersionId: editorial.packageVersionId,
+      offeredFundEntryIds: editorial.offeredFundEntryIds || [],
+      usedFundEntryIds: used,
+      trackingComplete: editorial.trackingComplete === true,
+      trackingMethod: editorial.trackingMethod || null,
+    };
   }
 
   function appendSectionIntro(idx) {
@@ -112,7 +144,11 @@ async function runSession(opts) {
           shownImages: Array.from(shownImages),
           textId: textEntry.id,
           edition,
+          ...(edition.startsWith('editorial-')
+            ? { presentedFundEntryIds: presentedFundEntryIds() }
+            : {}),
         });
+        recordEditorialPresentation(data, turnRecord);
         const responseText = data.response || '';
         recordHistoryTurn(action.message, responseText, true);
         extractImageIds(responseText).forEach((id) => shownImages.add(id));
@@ -125,6 +161,11 @@ async function runSession(opts) {
         let advanced = false;
         for (;;) {
           if (completedSections.has(sectionIndex)) {
+            if (editorialExperiment) {
+              visibleTranscript.push({ type: 'system', text: 'End of the packaged experimental section.' });
+              turnRecord.note = 'reached end of packaged experimental section';
+              break;
+            }
             if (sectionIndex === sections.length - 1) {
               visibleTranscript.push({ type: 'system', text: 'End of the final section.' });
               turnRecord.note = 'reached end of final section; no further content to read';
@@ -144,7 +185,11 @@ async function runSession(opts) {
             edition,
             action: 'continue',
             sectionHistory: sectionHistories.get(sectionIndex) || [],
+            ...(edition.startsWith('editorial-')
+              ? { presentedFundEntryIds: presentedFundEntryIds() }
+              : {}),
           });
+          recordEditorialPresentation(data, turnRecord);
           if (data.sectionComplete === true) completedSections.add(sectionIndex);
           if (data.response) {
             const responseText = data.response;
@@ -166,7 +211,13 @@ async function runSession(opts) {
         turnRecord.advancedSection = advanced;
       } else if (action.action === 'navigate') {
         const targetIdx = action.target_section - 1;
-        if (!Number.isInteger(targetIdx) || targetIdx < 0 || targetIdx >= sections.length || targetIdx === sectionIndex) {
+        if (editorialExperiment && targetIdx !== editorialTargetSectionIndex) {
+          visibleTranscript.push({
+            type: 'system',
+            text: `This experiment is limited to section ${sections[editorialTargetSectionIndex].number}.`,
+          });
+          turnRecord.note = `navigation outside packaged experimental section rejected: ${action.target_section}`;
+        } else if (!Number.isInteger(targetIdx) || targetIdx < 0 || targetIdx >= sections.length || targetIdx === sectionIndex) {
           visibleTranscript.push({ type: 'system', text: `Section ${action.target_section} is not available.` });
           turnRecord.note = `invalid navigate target: ${action.target_section}`;
         } else {
@@ -209,6 +260,10 @@ async function runSession(opts) {
   // uses for evolved sections (`evolved:<textId>` → { "1": "...", "2": "..." }).
   const contributionsBySection = {};
   for (const [idx, pairs] of sectionContributions.entries()) contributionsBySection[idx + 1] = pairs;
+  const fundPresentationsBySection = {};
+  for (const [idx, entries] of presentedFundEntriesBySection.entries()) {
+    if (entries.size > 0) fundPresentationsBySection[idx + 1] = Array.from(entries);
+  }
 
   return {
     textId: textEntry.id,
@@ -219,6 +274,7 @@ async function runSession(opts) {
     stopReason,
     stopDetail,
     contributionsBySection,
+    fundPresentationsBySection,
   };
 }
 

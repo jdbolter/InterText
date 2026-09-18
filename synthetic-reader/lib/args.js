@@ -18,6 +18,8 @@ const DEFAULTS = {
   out: null, // null means "use synthetic-reader/output", resolved by the caller
 };
 
+const EDITIONS = ['evolving', 'original', 'editorial-spine', 'editorial-fund'];
+
 const HELP = `Usage: npm run synthetic-reader -- [options]
 
 Options:
@@ -25,7 +27,7 @@ Options:
   --section <n>           1-based section number to start in. Default: ${DEFAULTS.section}
   --profile <id>          Reader profile. One of: ${listProfileIds().join(', ')}. Default: ${DEFAULTS.profile}
   --turns <n>             Maximum number of turns before the run stops automatically. Default: ${DEFAULTS.turns}
-  --edition <name>        'evolving' (current collectively-shaped text) or 'original'. Default: ${DEFAULTS.edition}
+  --edition <name>        evolving | original | editorial-spine | editorial-fund. Default: ${DEFAULTS.edition}
   --base-url <url>        Base URL of the running InterText server. Default: ${DEFAULTS.baseUrl}
   --reader-model <name>   Overrides OPENAI_READER_MODEL for this run.
   --out <dir>             Output directory for the run's transcript. Default: synthetic-reader/output
@@ -90,11 +92,11 @@ function parseArgs(argv) {
   if (!Number.isInteger(opts.turns) || opts.turns < 1) {
     throw new Error(`--turns must be a positive integer (got "${opts.turns}")`);
   }
-  if (opts.edition !== 'evolving' && opts.edition !== 'original') {
-    throw new Error(`--edition must be "evolving" or "original" (got "${opts.edition}")`);
+  if (!EDITIONS.includes(opts.edition)) {
+    throw new Error(`--edition must be one of: ${EDITIONS.join(', ')} (got "${opts.edition}")`);
   }
 
   return { help: false, ...opts };
 }
 
-module.exports = { parseArgs, DEFAULTS, HELP };
+module.exports = { parseArgs, DEFAULTS, EDITIONS, HELP };
