@@ -220,7 +220,14 @@ The first completed collaborative pair is preserved in
 `editorial/content/plenitude/sections/shocking-art/provenance/2026-09-18-collaborative-comparison/`.
 The guide used two candidates and left two unused. The fund reading lasted longer and
 produced useful refinements, but also circled the same historical distinction for many
-turns. Curious and skeptical pairs are still needed before changing selection policy.
+turns. A single skeptical `editorial-fund` run is preserved in
+`editorial/content/plenitude/sections/shocking-art/provenance/2026-09-19-skeptical-fund/`.
+It used one prior collaborative candidate and raised several possible spine and source
+revisions, but did not add fund entries automatically. A skeptical spine-only run and
+curious pairs are still needed before drawing condition-level conclusions or changing
+selection policy. Each run starts from the current compiled package; the guide's
+per-session record of presented entries resets for the next run, while the package
+remains unchanged until an explicit editorial change is made and rebuilt.
 
 ## Previewing an evolution
 

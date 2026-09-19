@@ -1,11 +1,12 @@
 # InterText editorial architecture
 
-**Status, 2026-09-18:** the universal local content model, validated build, read-only
+**Status, 2026-09-19:** the universal local content model, validated build, read-only
 editorial workspace, and controlled guide/synthetic-reader package path are
 implemented. The package path is local and explicitly experimental; the public reader
 interface and live KV database do **not** consume this model. One matched collaborative
-spine/fund pair has been completed; curious, skeptical, and repeated runs remain. This
-document records both the agreed direction and the
+spine/fund pair and one skeptical fund-only run have been completed; the skeptical
+spine-only run and curious pairs remain. A separate working art-reception research
+dataset has also been added. This document records both the agreed direction and the
 implementation boundary so the work can be resumed by another model or on another
 computer without relying on conversation history.
 
@@ -151,6 +152,27 @@ Because `synthetic-reader/output/` is git-ignored, the exact Section 5 `session.
 human-readable transcript, original, evolved comparison text, and evolution metadata
 are copied into the package's `provenance/2026-09-12-collaborative/` directory. This
 tracked archive is the portable record; the original output folder remains untouched.
+
+## Working reception research — separate from the fund
+
+`editorial/research/art-reception-cases.json` is a portable working dataset of
+documented responses to early avant-garde works and selected later comparators. Its
+governing question is not which individual incident was most dramatic, but whether
+the historical avant-garde and its opponents took art's forms, boundaries, and cultural
+authority more seriously as broadly consequential matters. Section 5 passage 3 already
+articulates this idea; the research cases are possible evidence for testing and
+complicating it, not a replacement for that argument. “More seriously” need not mean
+more approvingly, and contemporary art disputes may carry profound stakes of their own.
+The comparison is also about the *kind and reach* of those stakes, not the absence of
+later reactions.
+
+The dataset separates observed reactions, issues at stake, possible interpretations,
+cautions, and source links. These cases are **not** fund entries, a representative
+historical sample, or content currently available to the guide. The accompanying
+`research/README.md` gives the fuller research question, limitations, and next evidence
+to seek beyond memorable scandals. An author or editorial pass can later select a case
+for a spine passage, an optional fund entry, or an authored inquiry path, but only after
+checking that case's sources and role in the text.
 
 ## Read-only editorial workspace
 
@@ -298,7 +320,17 @@ the reader paths were stochastic and did not pose identical questions.
 The exact final pair is tracked under
 `editorial/content/plenitude/sections/shocking-art/provenance/2026-09-18-collaborative-comparison/`.
 
-The next work is to repeat the comparison with curious and skeptical profiles, and to
+A later skeptical `editorial-fund` session is tracked under
+`editorial/content/plenitude/sections/shocking-art/provenance/2026-09-19-skeptical-fund/`.
+It finished after 15 turns. The guide used the existing `shared-evaluative-field`
+candidate and reported leaving the other three unused. The skeptical exchange
+identified possible spine-level and source issues, notably the status of the broad
+historical trend claim, audience comparability, the form/content distinction, and
+the NEA and Safer examples. These are review leads, not automatically created fund
+entries or verified facts. The package was unchanged. A skeptical spine-only run is
+still needed for a within-profile comparison.
+
+The next work is to complete the comparison with curious and skeptical profiles, and to
 repeat the collaborative condition if this pattern becomes important. Start the local
 API server in one terminal:
 

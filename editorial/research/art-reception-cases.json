@@ -1,0 +1,290 @@
+{
+  "datasetVersion": 1,
+  "title": "Working cases for comparing early avant-garde and later receptions of art",
+  "status": "research-leads-not-editorial-fund",
+  "compiledAt": "2026-09-19",
+  "purpose": "Gather documented cases as evidence for investigating changing attitudes toward the cultural importance of art, without treating famous incidents as a representative sample or equating every controversy with a riot.",
+  "guidingQuestion": "Did the historical avant-garde and its opponents treat art as art, including its forms and boundaries, as more broadly consequential than comparable publics tend to do today?",
+  "interpretiveCaution": "A striking reaction is evidence to examine, not proof that an era took art more seriously. Seriousness need not mean approval; contemporary controversies can also be consequential, and their stakes may overlap with early ones.",
+  "cases": [
+    {
+      "id": "fauves-salon-1905",
+      "period": "early-avant-garde",
+      "year": 1905,
+      "event": "Fauvist paintings at the Paris Salon d'Automne",
+      "workOrArtists": ["Henri Matisse", "André Derain", "other Fauvist painters"],
+      "medium": ["painting"],
+      "respondents": ["art critics", "Salon visitors"],
+      "responseTypes": ["critical-ridicule", "public-scandal", "movement-naming"],
+      "documentedReaction": "Paintings using non-naturalistic color drew hostile attention; critic Louis Vauxcelles's 'wild beasts' label became the movement's name.",
+      "issueAtStake": "Whether color detached from imitation could count as serious painting.",
+      "consequence": "The derogatory label became the durable public name of a new artistic movement.",
+      "interpretivePossibility": "A formal decision about color became an explicit matter of public critical judgment.",
+      "qualification": "A critic's phrase and reports of scandal do not establish a uniform response among Salon visitors; the work also attracted supporters and collectors.",
+      "sources": [
+        { "title": "The Metropolitan Museum of Art, Fauvism", "url": "https://www.metmuseum.org/fr/essays/fauvism", "sourceType": "museum-research" },
+        { "title": "Centre Pompidou, Le fauvisme et ses influences", "url": "https://mediation.centrepompidou.fr/education/ressources/ENS-Fauvisme/", "sourceType": "museum-research" }
+      ]
+    },
+    {
+      "id": "duchamp-nude-salon-1912",
+      "period": "early-avant-garde",
+      "year": 1912,
+      "event": "Proposed display of Nude Descending a Staircase at the Salon des Indépendants, Paris",
+      "workOrArtists": ["Marcel Duchamp", "Nude Descending a Staircase (No. 2)"],
+      "medium": ["painting"],
+      "respondents": ["other Cubist artists on the organizing committee"],
+      "responseTypes": ["peer-rejection", "institutional-boundary"],
+      "documentedReaction": "Cubist colleagues objected to displaying Duchamp's painting; it was withdrawn from the 1912 Salon des Indépendants.",
+      "issueAtStake": "The limits of acceptable experimentation within an already experimental group.",
+      "consequence": "Duchamp's work was not shown there, before its later American notoriety.",
+      "interpretivePossibility": "The historical avant-garde had consequential internal boundaries, not merely a united opposition to conventional taste.",
+      "qualification": "This was a dispute among artists, not evidence of a general public's reaction.",
+      "sources": [
+        { "title": "Centre Pompidou, Marcel Duchamp educational dossier", "url": "https://mediation.centrepompidou.fr/education/ressources/ENS-Duchamp_peinture/", "sourceType": "museum-research" }
+      ]
+    },
+    {
+      "id": "armory-new-york-1913",
+      "period": "early-avant-garde",
+      "year": 1913,
+      "event": "New York Armory Show",
+      "workOrArtists": ["Marcel Duchamp", "Nude Descending a Staircase (No. 2)", "European and American modernists"],
+      "medium": ["painting", "sculpture", "exhibition"],
+      "respondents": ["newspaper critics", "cartoonists", "visitors", "collectors"],
+      "responseTypes": ["press-ridicule", "curiosity", "debate", "purchase"],
+      "documentedReaction": "Press clippings and reader parodies mocked Cubist work, especially Duchamp's painting; the show also drew large crowds and recorded sales, including that painting.",
+      "issueAtStake": "Whether new pictorial forms deserved the name and status of art.",
+      "consequence": "Modern art became a widely reported cultural controversy and an object of collecting, not simply rejection.",
+      "interpretivePossibility": "Ridicule and commercial interest could coexist within the same reception event.",
+      "qualification": "The archived press is not a census of visitor opinion; organizers also actively cultivated publicity.",
+      "sources": [
+        { "title": "Smithsonian Archives of American Art, Armory Show highlights", "url": "https://www.aaa.si.edu/collection-features/1913-armory-show/highlights?page=1", "sourceType": "archive-of-contemporary-material" },
+        { "title": "Smithsonian Archives of American Art, about the primary-source collection", "url": "https://www.aaa.si.edu/collection-features/1913-armory-show/about?page=1", "sourceType": "archive-context" }
+      ]
+    },
+    {
+      "id": "armory-chicago-1913",
+      "period": "early-avant-garde",
+      "year": 1913,
+      "event": "Chicago presentation of the Armory Show",
+      "workOrArtists": ["Henri Matisse", "Cubist and other modernist exhibitors"],
+      "medium": ["painting", "exhibition"],
+      "respondents": ["School of the Art Institute students", "museum personnel", "visitors", "newspaper critics"],
+      "responseTypes": ["mock-trial", "protest", "press-ridicule", "public-debate", "curiosity"],
+      "documentedReaction": "On the show's last day, art students staged a mock trial of Matisse and burned copies—not originals—of three paintings. Public lectures debating the exhibition filled the Art Institute's hall and had to be repeated.",
+      "issueAtStake": "Whether an established art institution should confer its space and authority on the new art.",
+      "consequence": "The dispute was staged on museum grounds, covered by the press, and argued in public lectures.",
+      "interpretivePossibility": "This is a particularly concrete case of a local art institution and its own students contesting aesthetic legitimacy.",
+      "qualification": "The protest was theatrical and did not express every visitor's view; the Art Institute's research describes the response as mixed.",
+      "sources": [
+        { "title": "Art Institute of Chicago, The Finale", "url": "https://archive.artic.edu/armoryshow/finale", "sourceType": "museum-research-with-contemporary-records" },
+        { "title": "Art Institute of Chicago, Public Opinion", "url": "https://archive.artic.edu/ryerson/armory/5", "sourceType": "museum-research-with-contemporary-records" },
+        { "title": "Art Institute of Chicago, The Audience", "url": "https://archive.artic.edu/armoryshow/audience", "sourceType": "museum-research-with-contemporary-records" }
+      ]
+    },
+    {
+      "id": "vienna-scandal-concert-1913",
+      "period": "early-avant-garde",
+      "year": 1913,
+      "event": "Vienna 'Skandalkonzert,' 31 March",
+      "workOrArtists": ["Arnold Schönberg", "Alban Berg", "Anton Webern"],
+      "medium": ["music", "live-performance"],
+      "respondents": ["concertgoers", "concert organizers"],
+      "responseTypes": ["heckling", "audience-conflict", "performance-interruption"],
+      "documentedReaction": "Audience disruption and a physical altercation ended the concert before its program was complete; Schönberg publicly objected that a ticket did not entitle its holder to disrupt a performance.",
+      "issueAtStake": "Whether experimental concert music and its performers deserved the protections of a serious concert setting.",
+      "consequence": "The concert stopped, and the disturbance became a public controversy.",
+      "interpretivePossibility": "A fight over new music also became a fight over how an audience may behave inside an authoritative cultural institution.",
+      "qualification": "This was conflict among ticketed concertgoers and organizers, not evidence of society-wide attitudes.",
+      "sources": [
+        { "title": "Arnold Schönberg Center, 1913 interview after the concert", "url": "https://schoenberg.at/en/schoenberg/interviews/1913-scandal-in-the-concert-hall", "sourceType": "participant-interview" },
+        { "title": "Berliner Philharmoniker, The Slap-in-the-Face Concert", "url": "https://www.berliner-philharmoniker.de/en/stories/schoenbergs-slap-in-the-face-concert/", "sourceType": "performing-arts-research" }
+      ]
+    },
+    {
+      "id": "rite-of-spring-premiere-1913",
+      "period": "early-avant-garde",
+      "year": 1913,
+      "event": "Paris premiere of The Rite of Spring, 29 May",
+      "workOrArtists": ["Igor Stravinsky", "Vaslav Nijinsky", "Ballets Russes"],
+      "medium": ["ballet", "music", "live-performance"],
+      "respondents": ["premiere audience", "press critics"],
+      "responseTypes": ["boos-and-catcalls", "audience-conflict", "press-debate"],
+      "documentedReaction": "The premiere met loud, divided reactions; disruptions made the performance difficult to hear. Later tellings have made the evening emblematic of an artistic 'riot.'",
+      "issueAtStake": "Unfamiliar rhythms, choreography, and expectations of what ballet should be.",
+      "consequence": "The event became a durable story of modernist rupture, while the work went on to have a very different reception.",
+      "interpretivePossibility": "The conflict included defenders and opponents, making it a contest within an invested audience rather than undifferentiated hostility.",
+      "qualification": "The degree of physical violence in the familiar 'riot' story is disputed; recent press scholarship explicitly warns about myth-making and the select composition of the premiere audience.",
+      "sources": [
+        { "title": "Library of Congress, All Publicity Is Good", "url": "https://www.loc.gov/loc/lcib/09078/rite.html", "sourceType": "cultural-institution-account" },
+        { "title": "Cambridge University Press, The Rite of Spring in the Parisian Press", "url": "https://www.cambridge.org/core/books/abs/cambridge-companion-to-the-rite-of-spring/rite-of-spring-in-the-parisian-press/1274896B1F4FF95A247D6268DD608444", "sourceType": "press-research-summary" }
+      ]
+    },
+    {
+      "id": "russolo-noise-concert-1914",
+      "period": "early-avant-garde",
+      "year": 1914,
+      "event": "First public concert of Luigi Russolo's intonarumori, Milan",
+      "workOrArtists": ["Luigi Russolo", "Futurist performers"],
+      "medium": ["music", "live-performance"],
+      "respondents": ["concertgoers", "Futurist participants"],
+      "responseTypes": ["prearranged-provocation", "audience-uproar", "physical-conflict"],
+      "documentedReaction": "Accounts describe a crowd already hostile before the noise-instrument concert began and a confrontation between Futurist performers and people in the audience.",
+      "issueAtStake": "The proposal that mechanical and urban noises could become musical material.",
+      "consequence": "The disturbance became part of the Futurists' account of the event.",
+      "interpretivePossibility": "The performance deliberately courted confrontation, so reaction and artwork were partly intertwined.",
+      "qualification": "The most vivid accounts come from participants or partisan Futurist sources. Treat the scale and details of the confrontation as provisional until contemporary independent reporting is checked.",
+      "sources": [
+        { "title": "MoMA, Russolo exhibition checklist", "url": "https://assets.moma.org/documents/moma_master-checklist_387310.pdf", "sourceType": "museum-documentation-of-event" },
+        { "title": "The Public Domain Review, Russolo's Cacophonous Futures", "url": "https://publicdomainreview.org/essay/luigi-russolos-cacophonous-futures/", "sourceType": "research-essay-quoting-historical-accounts" }
+      ]
+    },
+    {
+      "id": "duchamp-fountain-1917",
+      "period": "early-avant-garde",
+      "year": 1917,
+      "event": "Submission of Fountain to the Society of Independent Artists, New York",
+      "workOrArtists": ["Marcel Duchamp", "Fountain"],
+      "medium": ["readymade", "exhibition"],
+      "respondents": ["exhibition organizers", "avant-garde artists and writers"],
+      "responseTypes": ["institutional-rejection", "peer-debate", "printed-defense"],
+      "documentedReaction": "The organizers voted to reject the urinal despite the exhibition's no-jury policy. Duchamp resigned, and a defense appeared in The Blind Man.",
+      "issueAtStake": "Whether choosing and presenting an ordinary manufactured object could make it art.",
+      "consequence": "The object was excluded from that exhibition; its rejection became central to its later significance.",
+      "interpretivePossibility": "An institution designed to avoid gatekeeping still enforced a boundary around the category of art.",
+      "qualification": "Fountain was not displayed in the exhibition, so this is evidence of organizer and peer reaction, not a witnessed general-public scandal.",
+      "sources": [
+        { "title": "Philadelphia Museum of Art, Marcel Duchamp and the Fountain Scandal", "url": "https://press.philamuseum.org/marcel-duchamp-and-the-fountain-scandal/", "sourceType": "museum-research-with-period-publication" }
+      ]
+    },
+    {
+      "id": "brancusi-bird-customs-1926",
+      "period": "early-avant-garde",
+      "year": 1926,
+      "event": "U.S. customs classification and subsequent trial of Brancusi's Bird in Space",
+      "workOrArtists": ["Constantin Brancusi", "Bird in Space"],
+      "medium": ["sculpture"],
+      "respondents": ["U.S. customs officials", "court", "art experts"],
+      "responseTypes": ["legal-classification", "taxation", "court-challenge"],
+      "documentedReaction": "Customs officials declined to classify the abstract sculpture as tariff-exempt art. The resulting case was decided in Brancusi's favor in 1928.",
+      "issueAtStake": "Whether sculpture must imitate a recognizable natural object to count legally as art.",
+      "consequence": "The definition of art carried an immediate financial consequence and was argued in court.",
+      "interpretivePossibility": "Art's category boundary was institutionally consequential outside a gallery or critical review.",
+      "qualification": "This is a state classification dispute, not a direct measure of popular taste.",
+      "sources": [
+        { "title": "MoMA, But Is It Art? Constantin Brancusi vs. the United States", "url": "https://www.moma.org/explore/inside_out/2014/07/24/but-is-it-art-constantin-brancusi-vs-the-united-states/", "sourceType": "museum-research-on-legal-record" }
+      ]
+    },
+    {
+      "id": "bunuel-age-dor-1930",
+      "period": "early-avant-garde",
+      "year": 1930,
+      "event": "Paris screenings and suppression of Buñuel's L'Âge d'or",
+      "workOrArtists": ["Luis Buñuel", "L'Âge d'or"],
+      "medium": ["surrealist-film"],
+      "respondents": ["Catholic youth activists", "right-wing groups", "police authorities", "film audiences"],
+      "responseTypes": ["organized-disruption", "property-damage", "censorship"],
+      "documentedReaction": "At the Studio 28 cinema in December 1930, organized protesters damaged the screen, furnishings, and an adjoining Surrealist exhibition. Police authorities then prohibited further screenings in Paris.",
+      "issueAtStake": "A Surrealist challenge to bourgeois and religious conventions, combining artistic form with explicit social and religious provocation.",
+      "consequence": "The film was removed from public exhibition in France for decades.",
+      "interpretivePossibility": "Early avant-garde scandal was not always about form alone; religious and political offense could already drive organized action and censorship.",
+      "qualification": "An organized political attack should not be treated as a spontaneous verdict from an ordinary film audience.",
+      "sources": [
+        { "title": "La Cinémathèque française, restoration history of L'Âge d'or", "url": "https://www.cinematheque.fr/article/1418.html", "sourceType": "film-archive-research" },
+        { "title": "British Film Institute, L'Âge d'or", "url": "https://www.bfi.org.uk/film/c823b341-e66a-536b-8a5d-ce639e8a041e/lage-dor", "sourceType": "film-institute-context" }
+      ]
+    },
+    {
+      "id": "cage-water-walk-1960",
+      "period": "postwar-contemporary-comparator",
+      "year": 1960,
+      "event": "John Cage performs Water Walk on I've Got a Secret",
+      "workOrArtists": ["John Cage", "Water Walk"],
+      "medium": ["music", "television-performance"],
+      "respondents": ["studio audience", "television host"],
+      "responseTypes": ["laughter", "polite-attention", "media-framing"],
+      "documentedReaction": "The host introduced Cage seriously while the studio audience laughed at the list of unconventional instruments and moments of the performance.",
+      "issueAtStake": "Whether sounds made with everyday objects could be presented as music on mass television.",
+      "consequence": "The performance proceeded as television entertainment rather than being stopped by its audience.",
+      "interpretivePossibility": "A formally experimental act could be framed and absorbed by a popular-media format.",
+      "qualification": "A game-show audience and a 1913 ballet premiere are not matched populations; the program's entertainment framing helped shape the reaction.",
+      "sources": [
+        { "title": "John Cage Trust, John Cage's Secret", "url": "https://www.johncage.org/blog/paolini-cage-eds-editlp.pdf", "sourceType": "arts-research-on-broadcast" }
+      ]
+    },
+    {
+      "id": "serra-tilted-arc-1981",
+      "period": "postwar-contemporary-comparator",
+      "year": 1981,
+      "event": "Public dispute over Richard Serra's Tilted Arc, Federal Plaza, New York",
+      "workOrArtists": ["Richard Serra", "Tilted Arc"],
+      "medium": ["site-specific-sculpture", "public-art"],
+      "respondents": ["federal workers", "local residents", "art-world supporters", "General Services Administration"],
+      "responseTypes": ["organized-complaint", "public-hearing", "institutional-removal"],
+      "documentedReaction": "Complaints about obstruction and unwanted imposition led to a three-day hearing in 1985; a GSA-appointed panel voted to remove the sculpture, which was dismantled in 1989.",
+      "issueAtStake": "The relationship between site-specific artistic autonomy and everyday public use of space.",
+      "consequence": "The work was removed and the commissioning agency changed its public-art procedures.",
+      "interpretivePossibility": "Contemporary art can still have serious public consequences when it changes people's shared environment, even without blasphemous or representational content.",
+      "qualification": "This is not directly comparable to a voluntarily attended gallery exhibition or performance; it complicates a simple form-versus-content story.",
+      "sources": [
+        { "title": "U.S. General Services Administration, Art in Architecture: Selected Artworks 1997–2008", "url": "https://www.gsa.gov/system/files/GSA-AIA-Selected-Artwork-1997-2008.pdf", "sourceType": "commissioning-agency-retrospective" }
+      ]
+    },
+    {
+      "id": "ofili-sensation-brooklyn-1999",
+      "period": "postwar-contemporary-comparator",
+      "year": 1999,
+      "event": "New York City dispute with Brooklyn Museum over Sensation",
+      "workOrArtists": ["Chris Ofili", "The Holy Virgin Mary"],
+      "medium": ["painting", "museum-exhibition"],
+      "respondents": ["New York City mayor", "Brooklyn Museum", "courts"],
+      "responseTypes": ["religious-offense", "funding-threat", "litigation"],
+      "documentedReaction": "The mayor condemned Ofili's painting and sought to penalize the museum through its city subsidy and building lease. A federal court barred the city from doing so because of the exhibition's viewpoint.",
+      "issueAtStake": "Religious offense, public subsidy, and the autonomy of a cultural institution.",
+      "consequence": "The dispute produced litigation over municipal support, not merely critical disagreement.",
+      "interpretivePossibility": "Public conflict over art persisted, but the immediate target was religious symbolism and public institutional support.",
+      "qualification": "The court record establishes governmental action and its limits; it does not measure the views of all New Yorkers or museum visitors.",
+      "sources": [
+        { "title": "Brooklyn Institute of Arts v. City of New York, 1999 federal court opinion", "url": "https://law.justia.com/cases/federal/district-courts/FSupp2/64/184/2578531/", "sourceType": "primary-court-record" }
+      ]
+    },
+    {
+      "id": "schutz-open-casket-2017",
+      "period": "postwar-contemporary-comparator",
+      "year": 2017,
+      "event": "Reaction to Dana Schutz's Open Casket at the Whitney Biennial",
+      "workOrArtists": ["Dana Schutz", "Open Casket"],
+      "medium": ["painting", "museum-exhibition"],
+      "respondents": ["artists", "museum visitors", "social-media participants", "critics"],
+      "responseTypes": ["protest", "press-debate", "social-media-debate"],
+      "documentedReaction": "The painting's depiction of Emmett Till prompted criticism and protest across museum and media settings concerning who may represent Black suffering.",
+      "issueAtStake": "The ethics and politics of racial representation, not simply formal experiment.",
+      "consequence": "The work became a focal point of public and institutional debate.",
+      "interpretivePossibility": "Art remained consequential where it touched contested social identity and representation.",
+      "qualification": "The museum's own retrospective is a useful institutional witness, not a complete account of all participants' positions.",
+      "sources": [
+        { "title": "Whitney Museum, Reflecting on the 2017 Biennial", "url": "https://whitney.org/education/blog/reflection2017-biennial", "sourceType": "museum-retrospective" }
+      ]
+    },
+    {
+      "id": "banksy-shredding-2018",
+      "period": "postwar-contemporary-comparator",
+      "year": 2018,
+      "event": "Banksy's Girl with Balloon partly shreds after a Sotheby's sale",
+      "workOrArtists": ["Banksy", "Love is in the Bin"],
+      "medium": ["auction-performance", "painting"],
+      "respondents": ["auction house", "buyer", "bidders", "media"],
+      "responseTypes": ["spectacle", "reclassification-as-new-artwork", "market-absorption"],
+      "documentedReaction": "The work partly passed through a hidden shredder after the hammer fell; Sotheby's and the buyer treated the result as a new artwork, and the buyer completed the purchase. The work later sold again at Sotheby's in 2021.",
+      "issueAtStake": "Whether an apparent attack on a sale would disrupt or enhance the artwork's market identity.",
+      "consequence": "The gesture was rapidly incorporated into authentication, display, publicity, and resale.",
+      "interpretivePossibility": "A deliberately disruptive artistic gesture can be absorbed as a market event instead of provoking institutional exclusion.",
+      "qualification": "Sotheby's is an interested participant in the account; this is a market case, not a representative measure of contemporary public response.",
+      "sources": [
+        { "title": "Sotheby's, Latest Banksy Artwork Created Live at Auction", "url": "https://www.sothebys.com/en/articles/latest-banksy-artwork-love-is-in-the-bin-created-live-at-auction", "sourceType": "participant-institution-account" },
+        { "title": "Sotheby's, 2021 resale report", "url": "https://www.sothebys.com/en/articles/banksy-brings-down-the-house-at-the-contemporary-art-evening-auction", "sourceType": "participant-institution-account" }
+      ]
+    }
+  ]
+}

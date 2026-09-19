@@ -96,10 +96,25 @@ implemented in `api/lib/editorial-reading.js`, `api/chat.js`, and
 `synthetic-reader/lib/session.js`. Guide prose and fund-use IDs return through a
 required private structured tool; experiments stop at the packaged-section boundary.
 It is an experiment-only path: the normal public
-reader never requests those editions, no candidate is published or accepted, web
-search is disabled for both conditions, and the live database is not read or written.
+reader never requests those editions, no candidate is published or accepted, guide-side
+web search is disabled for both conditions, and the live database is not read or written.
 See the root architecture document and `synthetic-reader/README.md` for paired-run
 commands and interpretation guidance.
+
+The fund is cumulative only through explicit editorial package updates: subsequent
+sessions load the same existing candidates and accepted entries, including those
+extracted from the earlier collaborative reading. A synthetic session records possible
+new material in its transcript but does not itself write a new fund entry or alter the
+spine. The 2026-09-19 skeptical run is archived under
+`content/plenitude/sections/shocking-art/provenance/2026-09-19-skeptical-fund/` with
+review leads; no candidate extraction or second-pass validation was run.
+
+Historical reception leads for a possible Section 5 detour are kept separately in
+`research/art-reception-cases.json`, with a `research/README.md`. They serve the broader
+question of whether early avant-garde artists and audiences treated art's forms and
+boundaries as more culturally consequential, not a tally of spectacular incidents.
+They are not loaded into the section package or shown to the guide merely by existing
+in the repository.
 
 `.vercelignore` excludes this entire directory from deployment. Do not remove that
 line merely to make the editor remotely reachable: authentication and a policy for
