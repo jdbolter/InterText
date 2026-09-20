@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "dev": "node --env-file-if-exists=.env.local node_modules/vercel/dist/vc.js dev",
     "editorial-build": "node editorial/build-data.js",
     "editorial-preview": "npm run editorial-build && node --env-file-if-exists=.env.local editorial/serve.js",
     "editorial-kv": "node --env-file-if-exists=.env.local editorial/kv-admin.js",

@@ -360,7 +360,7 @@ repeat the collaborative condition if this pattern becomes important. Start the 
 API server in one terminal:
 
 ```bash
-vercel dev
+npm run dev
 ```
 
 In another terminal, run a matched pair for one profile at 15 turns:
@@ -407,11 +407,11 @@ npm run editorial-build       # compile and validate editorial/data/
 npm run editorial-preview     # build, then serve at 127.0.0.1:4173
 npm run editorial-kv -- status --text plenitude --section 5
 npm run editorial-kv -- init --text plenitude --section 5
-vercel dev                    # local API required by synthetic-reader experiments
+npm run dev                   # local API with .env.local, required by reader experiments
 npm test                      # editorial and synthetic-reader suites
 ```
 
-As of this milestone, the full suite contains 131 passing tests. The runtime seed,
+As of this milestone, the full suite contains 132 passing tests. The runtime seed,
 accepted-only reader path, proposal/review validation, immutable publication,
 conflict detection, source allowlist, and candidate downgrade rules have offline
 coverage. The local workspace endpoint was also checked against the shared database:

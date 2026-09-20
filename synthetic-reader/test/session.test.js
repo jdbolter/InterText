@@ -133,6 +133,42 @@ test('editorial-fund runs carry a per-section presentation ledger across turns',
   assert.equal(result.turns[0].editorial.trackingMethod, 'required-tool');
 });
 
+test('evolving runs pin a resolved editorial version and carry its presentation ledger', async () => {
+  const chatClient = recordingChatClient((_body, call) => ({
+    response: call === 1 ? 'First use.' : 'Continue on the pinned version.',
+    editorial: {
+      edition: 'evolving',
+      packageVersionId: 'published-v2',
+      offeredFundEntryIds: call === 1 ? ['accepted-one', 'accepted-two'] : ['accepted-two'],
+      usedFundEntryIds: call === 1 ? ['accepted-one'] : [],
+      trackingComplete: true,
+      trackingMethod: 'required-tool',
+    },
+  }));
+  const reader = scriptedReader([
+    { action: 'message', message: 'Question one?', target_section: null, stop_reason: null, private_reflection: privateReflection() },
+    { action: 'message', message: 'Question two?', target_section: null, stop_reason: null, private_reflection: privateReflection() },
+    { action: 'finish', message: null, target_section: null, stop_reason: 'done', private_reflection: privateReflection() },
+  ]);
+
+  const result = await runSession({
+    textEntry: TEXT_ENTRY,
+    sections: SECTIONS,
+    startSectionIndex: 0,
+    edition: 'evolving',
+    maxTurns: 5,
+    baseUrl: 'http://localhost:3000',
+    reader,
+    chatClient,
+  });
+
+  assert.deepEqual(chatClient.calls[0].body.presentedFundEntryIds, []);
+  assert.equal(chatClient.calls[0].body.editorialVersionId, undefined);
+  assert.deepEqual(chatClient.calls[1].body.presentedFundEntryIds, ['accepted-one']);
+  assert.equal(chatClient.calls[1].body.editorialVersionId, 'published-v2');
+  assert.deepEqual(result.fundPresentationsBySection, { 1: ['accepted-one'] });
+});
+
 test('editorial runs stop clearly if the server does not return experiment metadata', async () => {
   const chatClient = recordingChatClient(() => ({ response: 'A response from an old server.' }));
   const reader = scriptedReader([

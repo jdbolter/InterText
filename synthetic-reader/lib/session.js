@@ -56,6 +56,7 @@ async function runSession(opts) {
   const completedSections = new Set();
   const shownImages = new Set();
   const presentedFundEntriesBySection = new Map();
+  const editorialVersionIdsBySection = new Map();
   const visibleTranscript = [];
   const turns = [];
   let stopReason = null;
@@ -69,6 +70,15 @@ async function runSession(opts) {
     return Array.from(presentedFundEntriesBySection.get(idx) || []);
   }
 
+  function versionedReadingState(idx = sectionIndex) {
+    if (edition === 'original') return {};
+    const versionId = editorialVersionIdsBySection.get(idx);
+    return {
+      presentedFundEntryIds: presentedFundEntryIds(idx),
+      ...(versionId ? { editorialVersionId: versionId } : {}),
+    };
+  }
+
   function recordEditorialPresentation(data, turnRecord) {
     if (!data || !data.editorial) {
       if (edition.startsWith('editorial-')) {
@@ -80,6 +90,9 @@ async function runSession(opts) {
       return;
     }
     const editorial = data.editorial;
+    if (editorial.packageVersionId) {
+      editorialVersionIdsBySection.set(sectionIndex, editorial.packageVersionId);
+    }
     const used = Array.isArray(editorial.usedFundEntryIds) ? editorial.usedFundEntryIds : [];
     const presented = presentedFundEntriesBySection.get(sectionIndex) || new Set();
     used.forEach(id => presented.add(id));
@@ -144,9 +157,7 @@ async function runSession(opts) {
           shownImages: Array.from(shownImages),
           textId: textEntry.id,
           edition,
-          ...(edition.startsWith('editorial-')
-            ? { presentedFundEntryIds: presentedFundEntryIds() }
-            : {}),
+          ...versionedReadingState(),
         });
         recordEditorialPresentation(data, turnRecord);
         const responseText = data.response || '';
@@ -185,9 +196,7 @@ async function runSession(opts) {
             edition,
             action: 'continue',
             sectionHistory: sectionHistories.get(sectionIndex) || [],
-            ...(edition.startsWith('editorial-')
-              ? { presentedFundEntryIds: presentedFundEntryIds() }
-              : {}),
+            ...versionedReadingState(),
           });
           recordEditorialPresentation(data, turnRecord);
           if (data.sectionComplete === true) completedSections.add(sectionIndex);

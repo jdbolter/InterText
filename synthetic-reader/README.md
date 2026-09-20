@@ -85,8 +85,8 @@ difference. `--edition evolving` retains its old meaning, and
 ## Quick start (live session)
 
 You need:
-1. **The InterText server running locally**: `vercel dev` from the project root (or wherever `--base-url` points).
-2. **An OpenAI API key**: add `OPENAI_API_KEY=sk-...` to `.env.local` at the project root — the same file that already holds `ANTHROPIC_API_KEY` and the KV vars. `npm run synthetic-reader` auto-loads it via Node's `--env-file-if-exists` flag, the same way `vercel dev` already loads it for the web app. (An `export OPENAI_API_KEY=...` in your shell, or an inline prefix, still overrides the file if you want to use a different key for one run.)
+1. **The InterText server running locally**: `npm run dev` from the project root (or wherever `--base-url` points). This command explicitly injects `.env.local` into the Vercel process so the API can resolve the current KV edition rather than silently falling back to its bundled seed.
+2. **An OpenAI API key**: add `OPENAI_API_KEY=sk-...` to `.env.local` at the project root — the same file that already holds `ANTHROPIC_API_KEY` and the KV vars. Both `npm run dev` and `npm run synthetic-reader` explicitly load this file. (An `export OPENAI_API_KEY=...` in your shell, or an inline prefix, still overrides the file if you want to use a different key for one run.)
 
 Then, from the project root:
 
@@ -123,7 +123,7 @@ between those two editions.
 
 The editorial editions currently require `--text plenitude --section 5`; the CLI
 fails clearly for any section without a package rather than silently switching to a
-different text. They require the local `vercel dev` server from this branch. The
+different text. They require the local `npm run dev` server from this branch. The
 static editorial browser on port 4173 cannot serve `/api/chat`.
 
 ## Environment variables
@@ -201,7 +201,7 @@ still be read when judging whether the model classified its use accurately.
 Start the application API in one terminal:
 
 ```bash
-vercel dev
+npm run dev
 ```
 
 Then run a matched pair in another terminal:
@@ -297,7 +297,7 @@ None of this needs `OPENAI_API_KEY`, a running server, or network access.
 
 ## Running a live session
 
-1. From the project root: `vercel dev` (leave it running).
+1. From the project root: `npm run dev` (leave it running).
 2. Make sure `OPENAI_API_KEY` is in `.env.local` (see "Quick start" above) — or `export OPENAI_API_KEY=sk-...` in your shell for a one-off override.
 3. `npm run synthetic-reader -- --profile collaborative --text plenitude --section 5 --turns 15 --edition editorial-fund`
 4. Read the printed per-turn summary as it runs, then open the written `transcript.md` under `synthetic-reader/output/`.

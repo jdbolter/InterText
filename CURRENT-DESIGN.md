@@ -38,7 +38,7 @@ The working historical question is not which avant-garde event elicited the loud
 
 1. Run the remaining curious Section 5 spine/fund readings and, where useful, repeat existing conditions. Examine momentum, guide voice, the reader's grasp of the larger argument, and whether optional material genuinely helps.
 2. Test guide instructions that maintain the text's voice, preserve proportion, and answer a narrow objection without losing the broader claim. Explore how a reader might choose a deeper inquiry path and return to the spine; do not treat that path as implemented.
-3. Run a fresh Section 5 reading against the published child version and assess whether its corrected spine and two accepted entries improve the encounter. The archived collaborative replay successfully exercised proposal, review, source verification, human correction, atomic publication, and next-reading resolution; its immutable snapshot is preserved in tracked provenance.
+3. Run a curious reading against the published child and compare it with the completed collaborative reading. The collaborative reader used both accepted entries once, completed Section 5 during turn 12, and advanced normally; it also showed that the guide still tends to inflate bounded claims about mediation into culture-wide historical conclusions that the reader must repeatedly narrow.
 4. Add authenticated oversight, comparison, restoration, and export controls to the editor, then package further sections and work through a complete essay with actual readers. Synthetic readers help formulate hypotheses; they do not substitute for human testing.
 
 No research case, experimental candidate, or proposed feature becomes part of the public text merely because it is described here.
