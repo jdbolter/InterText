@@ -1,8 +1,8 @@
 # InterText: a reading that can change the book
 
-Design discussion recorded 2026-09-06 and extended through 2026-09-18. The earlier portions preserve the path by which the current decisions were reached. The latest structural direction—narrative spine plus a selectively presented fund—is specified in `EDITORIAL-ARCHITECTURE.md`.
+Design discussion recorded 2026-09-06 and extended through 2026-09-19. This is the **history of the design discussion**, including superseded ideas and proposals that have not been built. Start with [CURRENT-DESIGN.md](CURRENT-DESIGN.md) for the present design and proposed changes at a glance; use [EDITORIAL-ARCHITECTURE.md](EDITORIAL-ARCHITECTURE.md) for technical detail and implementation boundaries. The earlier portions below preserve the path by which the current decisions were reached.
 
-**Status:** mixed design and implementation record. The original 2026-09-06 discussion made no application changes. As of 2026-09-18, a universal local content schema, validated build, Section 5 sample package, read-only editorial workspace, and controlled local guide/synthetic-reader package path are implemented. The public reader interface and live database do not consume the package. One matched collaborative comparison is complete; curious, skeptical, repeated comparisons and automated editorial-model passes remain. The directions identified as Jay's choices are decisions; unimplemented mechanisms remain proposals unless explicitly identified otherwise.
+**Status:** mixed design and implementation record. The original 2026-09-06 discussion made no application changes. As of 2026-09-19, a universal local content schema, validated build, Section 5 sample package, read-only editorial workspace, and controlled local guide/synthetic-reader package path are implemented. The public reader interface and live database do not consume the package. One matched collaborative comparison and one skeptical fund-only run are complete; the skeptical spine-only run, curious pairs, repetitions, and automated editorial-model passes remain. The directions identified as Jay's choices are decisions; unimplemented mechanisms remain proposals unless explicitly identified otherwise.
 
 ## 1. Purpose and the change in direction
 
@@ -67,6 +67,39 @@ All works and sections are registered from the start. The first four fund entrie
 candidates, not accepted public material. The public guide cannot see them, but an
 explicit local `editorial-fund` experiment can offer them to the guide without
 changing status or touching publication.
+
+## 2b. Questions sharpened by the skeptical reading, 2026-09-19
+
+The skeptical fund-only run raised a problem beyond whether the guide can retrieve
+useful fund material. Its reader pressed detailed evidentiary objections while the
+guide repeatedly negotiated those details and sometimes stepped outside the work's
+voice to comment on what “the account” established. Jay wants the guide to retain a
+view of the book's larger claim and answer from *within* the text's voice, without
+turning every encounter into a longer, more defensive version of the spine. The run
+used only the `shared-evaluative-field` entry; it did not create or accept new entries.
+Generic guide instructions about voice, proportion, and returning to the main
+argument are worth testing across all works, but no such prompt change has yet been
+implemented from this discussion.
+
+The fund may support different depths of reading while the spine keeps its pace.
+One possible extension is an *authored inquiry path* or detour: the author could
+anticipate a substantial alternative line of questioning and supply written prose,
+an argument outline, sources, or links for the guide to draw on when a reader wants
+to pursue it. The reader should be able to understand that deeper exploration is
+available and return to the main movement without needing to manage the internal
+spine/fund apparatus. The path structure, its reader-facing affordance, and how it
+relates to individual fund entries remain design questions, not implemented features.
+
+For *Plenitude* Section 5, the historical research question is not which single
+avant-garde incident produced the strongest public reaction. It is whether the
+historical avant-garde and its opponents treated art *as art*—its forms, boundaries,
+and cultural authority—as more broadly consequential. “More seriously” does not
+mean uniformly approvingly, nor that contemporary art cannot provoke deeply felt
+conflict. Documented cases can help test the difference in the *kind and reach* of
+what was at stake, but memorable scandals are not by themselves evidence of a
+period-wide attitude. Working cases and cautions live in
+`editorial/research/art-reception-cases.json` and `editorial/research/README.md`;
+they are research leads, not fund entries or material available to the guide.
 
 ## 3. Three reading paths
 
@@ -287,8 +320,9 @@ Try one complete essay before an entire book. Include ordinary reading, a sustai
    harness read the local Section 5 package in controlled `editorial-spine` and
    `editorial-fund` conditions, track which entries are actually presented, and keep
    the path isolated from synthesis and live storage.
-5. **In progress:** the first matched collaborative pair is complete. Run curious and
-   skeptical pairs, plus collaborative repetitions as warranted. Use those results to
+5. **In progress:** the first matched collaborative pair and a skeptical fund-only
+   run are complete. Run a skeptical spine-only comparison, curious pairs, and
+   collaborative repetitions as warranted. Use those results to
    revise selection instructions, passage granularity, fund-entry
    fields, and the editorial interface before committing to storage migration.
 6. Add first-pass model-generated candidate operations, separate second-pass review
@@ -361,6 +395,12 @@ Settled direction for this revision: model-selected integration or omission; sea
   sustained a useful but notably longer and more repetitive exchange than the
   spine-only run. This single stochastic pair is evidence to investigate, not a
   selection-policy verdict.
+- The skeptical fund-only run is preserved under
+  `editorial/content/plenitude/sections/shocking-art/provenance/2026-09-19-skeptical-fund/`.
+  It used one existing fund entry and made no cumulative change to the package.
+- `editorial/research/` holds a separate sourced case dataset and reading notes for
+  investigating the broader Section 5 question about art's cultural importance.
+  These files are neither package content nor part of the current reading path.
 - The normal public paths and KV storage still use whole Markdown sections. No code
   derives fund entries automatically, performs the planned second-pass editorial
   validation, writes section-package versions to KV, or publishes candidates. See

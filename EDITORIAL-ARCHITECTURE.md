@@ -1,5 +1,9 @@
 # InterText editorial architecture
 
+For a concise view of the current design and proposed changes, start with
+[`CURRENT-DESIGN.md`](CURRENT-DESIGN.md). This document supplies the detailed
+editorial model, implementation boundary, and handoff instructions.
+
 **Status, 2026-09-19:** the universal local content model, validated build, read-only
 editorial workspace, and controlled guide/synthetic-reader package path are
 implemented. The package path is local and explicitly experimental; the public reader

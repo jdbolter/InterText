@@ -9,7 +9,9 @@ InterText/
 │   ├── chat.js         — generic Vercel serverless function (config-driven by textId)
 │   └── evolve.js       — generic Vercel serverless function (config-driven by textId)
 ├── editorial/          — local spine-and-fund data, schemas, build, tests, and editor
-├── EDITORIAL-ARCHITECTURE.md — current editorial design and implementation handoff
+├── CURRENT-DESIGN.md  — present design, proposed changes, and open choices
+├── INTERTEXT-DESIGN-NOTES.md — history of the design discussion
+├── EDITORIAL-ARCHITECTURE.md — editorial data model and implementation handoff
 ├── package.json
 ├── vercel.json
 ├── uncanny/             — "The Uncanny Double" essay (textId: 'uncanny')
@@ -82,7 +84,8 @@ The latter offers candidate entries selectively and records which ones the guide
 reports actually using. Neither mode reads or writes the live evolved-text database.
 The first matched collaborative pair is complete and preserved with the Section 5
 package; it used two of four candidates and showed both useful refinement and a risk
-of prolonged, repetitive qualification. Curious and skeptical pairs remain.
+of prolonged, repetitive qualification. A skeptical fund-only run is also preserved;
+the skeptical spine-only comparison and curious pairs remain.
 
 ```bash
 npm install
@@ -95,9 +98,11 @@ needed for this workspace. It does not alter or feed the public reading engine.
 The local API experiment is separate from this read-only browser workspace and is not
 exposed by the public reader interface.
 
-Read `EDITORIAL-ARCHITECTURE.md` for the full data model, database proposal, verified
+Start with `CURRENT-DESIGN.md` for the present design and proposed changes. Read
+`EDITORIAL-ARCHITECTURE.md` for the full data model, database proposal, verified
 implementation boundary, and next experiment; read `editorial/README.md` for exact
-handoff and content-authoring instructions.
+handoff and content-authoring instructions. `INTERTEXT-DESIGN-NOTES.md` preserves the
+history of the design discussion.
 
 ## Adding a new text
 

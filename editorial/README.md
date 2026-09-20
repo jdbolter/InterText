@@ -1,8 +1,9 @@
 # Editorial workspace
 
-This directory contains InterText's first spine-and-fund editorial prototype. For the
-design rationale, database proposal, editorial lifecycle, and next milestone, read
-the root [`EDITORIAL-ARCHITECTURE.md`](../EDITORIAL-ARCHITECTURE.md) first.
+This directory contains InterText's first spine-and-fund editorial prototype. For
+the present design, start with [`CURRENT-DESIGN.md`](../CURRENT-DESIGN.md). For the
+data model, database proposal, editorial lifecycle, and exact implementation
+boundary, read [`EDITORIAL-ARCHITECTURE.md`](../EDITORIAL-ARCHITECTURE.md).
 
 ## Start on a new computer
 
