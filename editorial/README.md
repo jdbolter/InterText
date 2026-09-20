@@ -7,8 +7,10 @@ boundary, read [`EDITORIAL-ARCHITECTURE.md`](../EDITORIAL-ARCHITECTURE.md).
 
 ## Start on a new computer
 
-Requirements: Node.js 20 or later and the repository checkout. No API key, Vercel
-login, or database connection is needed for the read-only workspace.
+Requirements: Node.js 20 or later and the repository checkout. Without KV variables,
+the read-only workspace displays the bundled seed. With `KV_REST_API_URL` and
+`KV_REST_API_TOKEN` in `.env.local`, it displays the shared live head. No Vercel login
+is required.
 
 ```bash
 npm install
@@ -88,27 +90,49 @@ fact checking.
 
 ## Current boundary
 
-The browser workspace remains a read-only, local-first prototype. It does not alter
-authored source texts, `evolved_sections.json`, Upstash KV, or `/api/evolve`.
+The browser workspace remains read-only: it can inspect the current live KV head but
+cannot publish, restore, or call a model. The public contribution path now performs
+those writes for packaged sections through `/api/evolve`; it does not alter the
+authored source files.
 
 The local guide and synthetic-reader harness can now read a package when explicitly
 invoked with `--edition editorial-spine` or `--edition editorial-fund`. That path is
 implemented in `api/lib/editorial-reading.js`, `api/chat.js`, and
 `synthetic-reader/lib/session.js`. Guide prose and fund-use IDs return through a
 required private structured tool; experiments stop at the packaged-section boundary.
-It is an experiment-only path: the normal public
-reader never requests those editions, no candidate is published or accepted, guide-side
-web search is disabled for both conditions, and the live database is not read or written.
+It is an experiment-only path: the normal public reader never requests those edition
+names, no candidate is published or accepted by an experiment, guide-side web search
+is disabled for both conditions, and the experiment path does not use KV.
 See the root architecture document and `synthetic-reader/README.md` for paired-run
 commands and interpretation guidance.
 
-The fund is cumulative only through explicit editorial package updates: subsequent
-sessions load the same existing candidates and accepted entries, including those
-extracted from the earlier collaborative reading. A synthetic session records possible
-new material in its transcript but does not itself write a new fund entry or alter the
-spine. The 2026-09-19 skeptical run is archived under
+For an ordinary contributing reader on a packaged section, finishing or leaving the
+section invokes two editorial-model passes. Approved spine changes and fund operations
+are written as a new immutable snapshot, and a fresh reading loads that new head.
+Only accepted fund entries reach the ordinary guide; candidates remain inspectable.
+A synthetic reading still records possible material without persisting it. The
+2026-09-19 skeptical fund run is archived under
 `content/plenitude/sections/shocking-art/provenance/2026-09-19-skeptical-fund/` with
-review leads; no candidate extraction or second-pass validation was run.
+review leads; its 2026-09-20 spine-only comparison is archived under
+`content/plenitude/sections/shocking-art/provenance/2026-09-20-skeptical-spine/`.
+Neither run triggered candidate extraction or second-pass validation.
+
+## Shared KV commands
+
+```bash
+npm run editorial-kv -- status --text plenitude --section 5
+npm run editorial-kv -- init --text plenitude --section 5
+npm run editorial-kv -- export --text plenitude --section 5
+```
+
+`init` is idempotent: it creates the bundled baseline only when the section has no
+head. `export` writes the current immutable snapshot beneath `editorial/exports/`
+unless `--out` supplies another path. That folder is operational output and should be
+reviewed before committing. The current shared head is
+`shocking-art-20260920173549-0f38002e`, a child of
+`shocking-art-editorial-v001`, with ten passages, two accepted entries, and four
+candidates. A portable copy is tracked under
+`content/plenitude/sections/shocking-art/provenance/2026-09-20-collaborative-publication/`.
 
 Historical reception leads for a possible Section 5 detour are kept separately in
 `research/art-reception-cases.json`, with a `research/README.md`. They serve the broader

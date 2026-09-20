@@ -1,7 +1,11 @@
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
+const {
+  formatFundEntry,
+  formatSpine,
+  loadEditorialIndex,
+  loadSeedSection,
+} = require('./editorial-package');
 
 const EDITORIAL_SPINE_EDITION = 'editorial-spine';
 const EDITORIAL_FUND_EDITION = 'editorial-fund';
@@ -12,66 +16,72 @@ function isEditorialEdition(edition) {
   return EDITORIAL_EDITIONS.includes(edition);
 }
 
-function readJson(filePath, label) {
-  try {
-    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-  } catch (err) {
-    throw new Error(`Could not load ${label} at ${filePath}: ${err.message}`);
-  }
-}
-
 function loadEditorialSection({ rootDir = process.cwd(), textId, sectionIndex }) {
-  const dataRoot = path.join(rootDir, 'editorial', 'data');
-  const indexPath = path.join(dataRoot, 'index.json');
-  const index = readJson(indexPath, 'editorial index. Run `npm run editorial-build` first');
+  const sectionPackage = loadSeedSection({ rootDir, textId, sectionIndex });
+  if (sectionPackage) return sectionPackage;
+
+  const index = loadEditorialIndex({ rootDir });
   const work = (index.works || []).find(candidate => candidate.id === textId);
   if (!work) throw new Error(`No editorial work is registered for "${textId}"`);
 
   const sectionOrder = sectionIndex + 1;
   const section = (work.sections || []).find(candidate => candidate.order === sectionOrder);
   if (!section) throw new Error(`No editorial section ${sectionOrder} is registered for "${textId}"`);
-  if (section.readiness !== 'packaged' || !section.packageUrl) {
-    throw new Error(
-      `${work.title}, section ${sectionOrder} (${section.title}) has no editorial package yet`
-    );
-  }
-
-  const packagePath = path.join(rootDir, 'editorial', section.packageUrl);
-  const sectionPackage = readJson(packagePath, `${textId} section ${sectionOrder} editorial package`);
-  if (sectionPackage.workId !== textId || sectionPackage.sectionOrder !== sectionOrder) {
-    throw new Error(`${packagePath} does not match requested work and section`);
-  }
-  return sectionPackage;
-}
-
-function formatSpine(sectionPackage) {
-  return sectionPackage.spine
-    .map(passage => `<!-- intertext:passage ${passage.id} -->\n\n${passage.markdown}`)
-    .join('\n\n');
-}
-
-function formatFundEntry(entry) {
-  const sourceNote = entry.sourceStatus === 'needs-verification'
-    ? 'This entry contains factual detail that still needs source verification; omit it if that uncertainty matters to the response, and never embellish it.'
-    : entry.sourceStatus === 'verified'
-      ? 'This entry has attached source verification.'
-      : 'This entry is principally interpretive and does not require an external source merely to be considered.';
-  const links = entry.sources.length > 0
-    ? `\nSources: ${entry.sources.map(source => `${source.title}: ${source.url}`).join(' | ')}`
-    : '';
-
-  return `<fund_entry id="${entry.id}" anchors="${entry.anchors.join(',')}" kind="${entry.kind}">
-Title: ${entry.title}
-Use when: ${entry.useWhen}
-Source note: ${sourceNote}${links}
-
-${entry.markdown}
-</fund_entry>`;
+  throw new Error(
+    `${work.title}, section ${sectionOrder} (${section.title}) has no editorial package yet`
+  );
 }
 
 function normalizePresentedIds(value) {
   if (!Array.isArray(value)) return [];
   return [...new Set(value.filter(id => typeof id === 'string' && id.length > 0))];
+}
+
+function preparePackageReading({
+  sectionPackage,
+  selectableStatuses,
+  presentedFundEntryIds = [],
+  experimentLabel = null,
+}) {
+  const alreadyPresented = normalizePresentedIds(presentedFundEntryIds);
+  const selectableEntries = sectionPackage.fundEntries
+    .filter(entry => selectableStatuses.includes(entry.status));
+  const validIds = new Set(selectableEntries.map(entry => entry.id));
+  const knownPresentedIds = alreadyPresented.filter(id => validIds.has(id));
+  const knownPresentedSet = new Set(knownPresentedIds);
+  const offeredEntries = selectableEntries.filter(entry => !knownPresentedSet.has(entry.id));
+  const priorNote = knownPresentedIds.length > 0
+    ? `The following entries have already been presented in this section; rely on the conversation history rather than repeating them: ${knownPresentedIds.join(', ')}.`
+    : 'No fund entry has been presented yet.';
+  const offeredText = offeredEntries.length > 0
+    ? offeredEntries.map(formatFundEntry).join('\n\n')
+    : '(No unpresented fund entries remain.)';
+  const contextLabel = experimentLabel
+    ? `This request is part of ${experimentLabel}.`
+    : 'This is the current reader-shaped edition of the work.';
+
+  return {
+    sectionPackage,
+    sectionText: formatSpine(sectionPackage),
+    instructions: `${contextLabel} The narrative spine below is the authoritative route through the section. Its passage markers are private editorial identifiers: never quote or mention them to the reader.
+
+Speak as the work's own intelligence. Do not refer to the spine, fund, entries, sources, versions, editorial decisions, "the account," or the essay's rhetorical machinery. Preserve the larger claim and proportion of the section when answering a narrow objection. A reader's continued disagreement does not by itself require another concession or longer answer.
+
+Optional fund entries are possibilities, not a checklist. Select an entry only when it directly helps this reader at this moment without interrupting the spine's rhythm or forward movement. Do not expose entry titles, IDs, statuses, anchors, source notes, or the existence of a fund. An anchor identifies where an entry becomes contextually relevant; do not use an entry before the reader has encountered the people or concepts it presupposes. ${priorNote}
+
+Return the response through the required private delivery tool. In usedFundEntryIds, list every newly offered entry whose language, distinctive example, factual detail, or conceptual refinement materially informed the visible response. Do not list an entry merely because it was available. The tool call is private and only its response field will be shown to the reader.`,
+    fundText: `OPTIONAL EDITORIAL FUND — PRIVATE TO THE GUIDE\n\n${offeredText}`,
+    offeredFundEntryIds: offeredEntries.map(entry => entry.id),
+    alreadyPresentedFundEntryIds: knownPresentedIds,
+  };
+}
+
+function prepareVersionedReading({ sectionPackage, presentedFundEntryIds = [] }) {
+  return preparePackageReading({
+    sectionPackage,
+    selectableStatuses: ['accepted'],
+    presentedFundEntryIds,
+  });
 }
 
 function prepareEditorialReading({
@@ -194,4 +204,5 @@ module.exports = {
   isEditorialEdition,
   loadEditorialSection,
   prepareEditorialReading,
+  prepareVersionedReading,
 };

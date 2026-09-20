@@ -3,6 +3,7 @@
 const fs = require('fs');
 const http = require('http');
 const path = require('path');
+const { loadCurrentSection } = require('../api/lib/editorial-store');
 
 const root = __dirname;
 const port = Number(process.env.EDITORIAL_PORT || 4173);
@@ -23,7 +24,7 @@ function respond(res, status, body, contentType = 'text/plain; charset=utf-8') {
   res.end(body);
 }
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
   if (req.method !== 'GET' && req.method !== 'HEAD') {
     respond(res, 405, 'Method not allowed');
     return;
@@ -34,6 +35,33 @@ const server = http.createServer((req, res) => {
     pathname = decodeURIComponent(new URL(req.url, `http://${req.headers.host || 'localhost'}`).pathname);
   } catch {
     respond(res, 400, 'Bad request');
+    return;
+  }
+  if (pathname === '/api/current-section') {
+    try {
+      const requestUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+      const textId = requestUrl.searchParams.get('textId');
+      const sectionIndex = Number(requestUrl.searchParams.get('sectionIndex'));
+      if (!textId || !Number.isInteger(sectionIndex) || sectionIndex < 0) {
+        respond(res, 400, JSON.stringify({ error: 'Invalid section request' }), 'application/json; charset=utf-8');
+        return;
+      }
+      const current = await loadCurrentSection({
+        rootDir: path.join(__dirname, '..'),
+        textId,
+        sectionIndex,
+      });
+      if (!current) {
+        respond(res, 404, JSON.stringify({ error: 'Section is not packaged' }), 'application/json; charset=utf-8');
+        return;
+      }
+      respond(res, 200, JSON.stringify({
+        sectionPackage: current.sectionPackage,
+        source: current.source,
+      }), 'application/json; charset=utf-8');
+    } catch (error) {
+      respond(res, 502, JSON.stringify({ error: error.message }), 'application/json; charset=utf-8');
+    }
     return;
   }
   if (pathname === '/') pathname = '/index.html';

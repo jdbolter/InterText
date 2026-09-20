@@ -2,7 +2,7 @@
 
 Design discussion recorded 2026-09-06 and extended through 2026-09-19. This is the **history of the design discussion**, including superseded ideas and proposals that have not been built. Start with [CURRENT-DESIGN.md](CURRENT-DESIGN.md) for the present design and proposed changes at a glance; use [EDITORIAL-ARCHITECTURE.md](EDITORIAL-ARCHITECTURE.md) for technical detail and implementation boundaries. The earlier portions below preserve the path by which the current decisions were reached.
 
-**Status:** mixed design and implementation record. The original 2026-09-06 discussion made no application changes. As of 2026-09-19, a universal local content schema, validated build, Section 5 sample package, read-only editorial workspace, and controlled local guide/synthetic-reader package path are implemented. The public reader interface and live database do not consume the package. One matched collaborative comparison and one skeptical fund-only run are complete; the skeptical spine-only run, curious pairs, repetitions, and automated editorial-model passes remain. The directions identified as Jay's choices are decisions; unimplemented mechanisms remain proposals unless explicitly identified otherwise.
+**Status:** mixed design and implementation record. The original 2026-09-06 discussion made no application changes. As of 2026-09-20, a universal content schema, validated build, Section 5 package, read-only editorial workspace, controlled guide/synthetic-reader package path, two editorial-model passes, and versioned KV publication are implemented. The public current-edition reader consumes this model for packaged Section 5; unpackaged sections retain the earlier whole-section path. One matched collaborative comparison and one skeptical spine/fund comparison are complete. The first preflight correctly chose no change; a later replay of the archived collaborative spine session produced the first published child version after model review, official-source verification, and human narrowing. Curious pairs and a fresh reading of the child version remain. The directions identified as Jay's choices are decisions; unimplemented mechanisms remain proposals unless explicitly identified otherwise.
 
 ## 1. Purpose and the change in direction
 
@@ -320,15 +320,18 @@ Try one complete essay before an entire book. Include ordinary reading, a sustai
    harness read the local Section 5 package in controlled `editorial-spine` and
    `editorial-fund` conditions, track which entries are actually presented, and keep
    the path isolated from synthesis and live storage.
-5. **In progress:** the first matched collaborative pair and a skeptical fund-only
-   run are complete. Run a skeptical spine-only comparison, curious pairs, and
-   collaborative repetitions as warranted. Use those results to
-   revise selection instructions, passage granularity, fund-entry
-   fields, and the editorial interface before committing to storage migration.
-6. Add first-pass model-generated candidate operations, separate second-pass review
-   checks (including anchor timing), and versioned KV
-   storage with atomic head updates, local export, provenance, and restoration.
-7. Add authenticated editing and oversight controls, then test one complete essay with
+5. **Complete, third editorial milestone:** add first-pass model-generated spine/fund
+   operations, separate second-pass review, deployable runtime seeds, immutable KV
+   snapshots, atomic head updates, contribution provenance, and local export. Initialize
+   the shared Section 5 baseline and make fresh readings consume the head while active
+   readings remain pinned.
+6. **Complete, fourth editorial milestone:** run both a justified no-change preflight
+   and a warranted archived-contribution replay; fix replacement and partial-review
+   gaps; verify official sources; publish the first immutable child; and confirm that
+   the local editor resolves the new KV head.
+7. **In progress:** read the published child afresh, continue curious pairs and useful
+   repetitions, and revise selection instructions, passage granularity, and policy.
+8. Add authenticated editing, comparison, restoration, and oversight controls, then test one complete essay with
    human readers before generalizing automatic publication to book scale.
 
 ## 12. Questions still open
@@ -360,16 +363,26 @@ Settled direction for this revision: model-selected integration or omission; sea
 
 - `plenitude/config.js`, `uncanny/config.js`: added an explicit instruction against meta-commentary on the essay's own structure/rhetoric (e.g. "this marks the point where the argument turns," "not rhetorical flourish") after a live reader session produced exactly that failure mode. `blood-on-the-wall/config.js` intentionally left untouched.
 - `plenitude/public/app.js`, `uncanny/public/app.js`, `blood-on-the-wall/public/app.js` (and matching `index.html`/`style.css`): separate guide/reader columns, three-way entry consent (see §3), section transitions, and save triggers. All three texts share identical interaction code now — only per-text data (section titles, images, intros, textId, guide/historian label, and the entry-screen wording's nouns) differs.
-- `api/chat.js`: accepts an `edition` field. `'original'` bypasses the evolved-text
-  lookup; `editorial-spine` and `editorial-fund` load a compiled local package through
-  `api/lib/editorial-reading.js`. The two editorial modes disable guide-side search,
-  never read KV, and return stripped, structured fund-use tracking for the harness.
-  Omitted or any other value defaults to preferring evolved text as before. The earlier
-  empty-completion bug was fixed by raising `max_tokens` from 2048 to 4096; response
-  prose remains capped by behavioral instructions.
-- `api/evolve.js`: still one full-section rewrite with no revision archive or contribution review. The length guard was insufficient in practice — a real evolution ran past its word target and got cut off mid-sentence by `max_tokens`, but still passed the "at least as long as original" check and was published to the live database. Fixed: `max_tokens` budget widened (2x → 4x word target) and a completeness check now rejects any output not ending in terminal punctuation, regardless of length. Substantive-fidelity and hard upper-limit enforcement are still not verified. Also gained a `dryRun` request field: when set, it always starts from the pristine authored text (never the live/evolved version) and skips the KV read/write entirely — the real `synthesisInstructions` and model, but nothing persisted. Built for `synthetic-reader-evolve` (see `synthetic-reader/README.md`, "Previewing an evolution"), which lets a saved synthetic reading session's actual contributions be run through real synthesis and compared against the original without risk, to study whether/how a given kind of conversation actually improves the text — a research question distinct from, and now prioritized ahead of, testing reader-experience variety across profiles.
+- `api/chat.js`: accepts an `edition` field. `'original'` bypasses evolving storage;
+  `editorial-spine` and `editorial-fund` load the compiled seed for controlled local
+  comparisons. An ordinary current-edition request for a packaged section loads the
+  requested immutable KV version (or current head), offers only accepted entries, and
+  returns structured fund-use and version metadata. Unpackaged sections keep the
+  legacy evolved-text lookup. The earlier empty-completion bug was fixed by raising
+  `max_tokens` from 2048 to 4096; response prose remains capped by behavioral
+  instructions.
+- `api/evolve.js`: packaged contributions now run a proposal pass and an independent
+  review pass, then atomically publish an immutable spine-and-fund child version plus
+  its conversation/proposal/review record. Unpackaged sections retain the legacy
+  whole-section rewrite. That legacy path previously allowed a truncated response to
+  pass its length check; its token budget was widened and a terminal-punctuation check
+  added. `dryRun` deliberately continues to exercise only that fixed-baseline legacy
+  rewrite and never reads or writes KV, preserving comparability for
+  `synthetic-reader-evolve`.
 - `evolved_sections.json`: local fallback data, separate from the live production store. Its saved Plenitude opening demonstrates substantial expansion; it does not preserve how or why that expansion occurred.
-- Current saves overwrite an entire text's section object, so overlapping requests can lose updates. Client save failures are not reported reliably. Address these before treating collective contributions as durable.
+- Packaged saves use compare-and-swap publication and report failures in the reader
+  interface. Legacy unpackaged saves still replace the text's whole evolved-section
+  object and therefore retain the older concurrency limitation.
 - `editorial/schema/`: strict JSON Schemas for generic work manifests and compiled
   section packages. `editorial/lib/content.js` adds relational checks for stable,
   unique passage and entry IDs, valid anchors, and verified-source consistency.
@@ -379,9 +392,16 @@ Settled direction for this revision: model-selected integration or omission; sea
   fund entries extracted from the collaborative synthetic session of 2026-09-12.
 - `editorial/data/`: generated validated snapshots used by the workspace. Regenerate
   with `npm run editorial-build`; commit them together with their readable sources.
+- `api/editorial-seed/`: the deployable generated baseline used by serverless reading
+  and evolution code while the private `editorial/` tree remains excluded by
+  `.vercelignore`.
 - `editorial/index.html`, `app.js`, `style.css`, and `serve.js`: dependency-free,
-  read-only editorial workspace and safe local preview server. Start with
+  read-only editorial workspace and safe local preview server. With KV variables it
+  displays the live head; otherwise it displays the local seed. Start with
   `npm run editorial-preview`, then open `http://127.0.0.1:4173`.
+- `api/lib/editorial-evolution.js` and `api/lib/editorial-store.js`: structured
+  two-pass editing, hard validation guards, version loading, idempotent seed
+  initialization, and atomic immutable publication.
 - `api/lib/editorial-reading.js` and the synthetic-reader session/transcript modules
   implement the explicit local Section 5 comparison path. They supply the spine and,
   in the fund condition, the still-candidate entries; used-entry IDs are carried per
@@ -398,6 +418,11 @@ Settled direction for this revision: model-selected integration or omission; sea
 - The skeptical fund-only run is preserved under
   `editorial/content/plenitude/sections/shocking-art/provenance/2026-09-19-skeptical-fund/`.
   It used one existing fund entry and made no cumulative change to the package.
+- The skeptical spine-only comparison is preserved under
+  `editorial/content/plenitude/sections/shocking-art/provenance/2026-09-20-skeptical-spine/`.
+  It reached the same central methodological objection without optional fund material
+  and finished after 11 turns rather than 15; the stochastic pair does not isolate a
+  causal fund effect.
 - `editorial/research/` holds a separate sourced case dataset and reading notes for
   investigating the broader Section 5 question about art's cultural importance.
   These files are neither package content nor part of the current reading path.

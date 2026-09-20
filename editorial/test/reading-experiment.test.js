@@ -11,6 +11,7 @@ const {
   isEditorialEdition,
   loadEditorialSection,
   prepareEditorialReading,
+  prepareVersionedReading,
 } = require('../../api/lib/editorial-reading');
 
 const ROOT = path.join(__dirname, '..', '..');
@@ -107,4 +108,13 @@ test('delivery extraction rejects a missing call or an entry that was not offere
 test('spine-only delivery tool requires an empty use array', () => {
   const tool = buildEditorialDeliveryTool([]);
   assert.equal(tool.input_schema.properties.usedFundEntryIds.maxItems, 0);
+});
+
+test('reader-shaped reading offers accepted fund entries but not candidates', () => {
+  const sectionPackage = loadEditorialSection({ rootDir: ROOT, textId: 'plenitude', sectionIndex: 4 });
+  sectionPackage.fundEntries[0].status = 'accepted';
+  const reading = prepareVersionedReading({ sectionPackage });
+  assert.deepEqual(reading.offeredFundEntryIds, ['shared-evaluative-field']);
+  assert.match(reading.fundText, /shared-evaluative-field/);
+  assert.doesNotMatch(reading.fundText, /armory-show-ridicule/);
 });

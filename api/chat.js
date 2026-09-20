@@ -7,7 +7,9 @@ const {
   extractEditorialDelivery,
   isEditorialEdition,
   prepareEditorialReading,
+  prepareVersionedReading,
 } = require('./lib/editorial-reading');
+const { loadCurrentSection } = require('./lib/editorial-store');
 
 const client = new Anthropic();
 
@@ -64,6 +66,7 @@ module.exports = async function handler(req, res) {
     sectionHistory = [],
     edition,
     presentedFundEntryIds = [],
+    editorialVersionId = null,
   } = req.body;
   const continuing = action === 'continue';
   // A reader who declined to contribute can still ask to see the original rather
@@ -95,9 +98,30 @@ module.exports = async function handler(req, res) {
     } catch (err) {
       return res.status(400).json({ error: err.message });
     }
+  } else if (!useOriginal) {
+    try {
+      const versioned = await loadCurrentSection({
+        textId,
+        sectionIndex: idx,
+        versionId: typeof editorialVersionId === 'string' ? editorialVersionId : null,
+      });
+      if (versioned) {
+        editorialReading = prepareVersionedReading({
+          sectionPackage: versioned.sectionPackage,
+          presentedFundEntryIds,
+        });
+        sectionText = editorialReading.sectionText;
+      }
+    } catch (err) {
+      console.error(`Versioned editorial read failed for ${textId}[${idx}]:`, err.message);
+      return res.status(409).json({ error: 'The current edition changed or could not be loaded' });
+    }
+    if (!editorialReading) {
+      const evolved = await loadEvolved(textId);
+      sectionText = evolved[idx] ?? sections[idx];
+    }
   } else {
-    const evolved = useOriginal ? {} : await loadEvolved(textId);
-    sectionText = evolved[idx] ?? sections[idx];
+    sectionText = sections[idx];
   }
   const sectionName = config.sectionNames[idx];
 

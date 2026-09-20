@@ -4,15 +4,19 @@ For a concise view of the current design and proposed changes, start with
 [`CURRENT-DESIGN.md`](CURRENT-DESIGN.md). This document supplies the detailed
 editorial model, implementation boundary, and handoff instructions.
 
-**Status, 2026-09-19:** the universal local content model, validated build, read-only
-editorial workspace, and controlled guide/synthetic-reader package path are
-implemented. The package path is local and explicitly experimental; the public reader
-interface and live KV database do **not** consume this model. One matched collaborative
-spine/fund pair and one skeptical fund-only run have been completed; the skeptical
-spine-only run and curious pairs remain. A separate working art-reception research
-dataset has also been added. This document records both the agreed direction and the
-implementation boundary so the work can be resumed by another model or on another
-computer without relying on conversation history.
+**Status, 2026-09-20:** the universal content model, validated build, read-only
+editorial workspace, controlled guide/synthetic-reader package path, two-pass
+editorial update, and versioned KV store are implemented. The ordinary reader-shaped
+path now consumes the current packaged version for *Plenitude* Section 5; unpackaged
+sections continue to use the earlier whole-section engine. The shared KV head is
+`shocking-art-20260920173549-0f38002e`, a child of the bundled
+`shocking-art-editorial-v001` baseline. One matched collaborative spine/fund
+pair and one skeptical comparison have been completed; curious pairs remain. The code
+has offline coverage, and the first explicitly approved live Anthropic editorial
+preflight completed successfully: the proposal pass chose no change for an already
+answered objection. A later replay of the archived collaborative spine session
+produced, reviewed, source-checked, and published the first child version. A separate
+working art-reception research dataset has also been added.
 
 ## The governing distinction: spine and fund
 
@@ -95,7 +99,9 @@ Run `npm run editorial-build`. `editorial/lib/content.js` then:
 4. constructs a complete section snapshot;
 5. validates the snapshot against `section-package.schema.json` plus relational
    checks for unique IDs, valid anchors, and source consistency; and
-6. writes static JSON under `editorial/data/` for the workspace.
+6. writes static JSON under `editorial/data/` for the workspace; and
+7. writes the same validated runtime seed under `api/editorial-seed/`, because the
+   private `editorial/` tree remains excluded from deployment.
 
 A compiled section contains:
 
@@ -199,11 +205,13 @@ The workspace currently supports:
 - seeing how many fund entries attach to each passage;
 - clicking a passage to filter the fund to its related entries;
 - inspecting entry type, status, use cue, sources, source warnings, and provenance;
+- showing whether a packaged section was loaded from the live KV head or local seed;
 - responsive desktop/mobile layout; and
 - safe Markdown rendering through DOM construction rather than raw HTML injection.
 
 It intentionally cannot edit, accept, publish, restore, or call a model. It is a
-working data-model inspection tool, not yet a production editorial application.
+working data-model and live-head inspection tool, not yet a production editorial
+application.
 The entire `editorial/` directory is excluded in `.vercelignore`; do not remove that
 protection until the deployed editor has authentication and an intentional policy for
 which manuscript, session, and provenance data may leave the local environment.
@@ -238,38 +246,44 @@ reporting that entry. Required structured delivery guarantees a report on every 
 turn and constrains it to offered IDs. It is still a model report rather than an
 independent semantic audit, so the visible prose remains the final evidence of use.
 
-The loader reads only compiled, validated files under `editorial/data/`. An editorial
-request for an unpackaged section fails clearly rather than falling back to the
-original or evolving whole-section text. The CLI currently fails early unless the
-target is the sole packaged example, Plenitude Section 5.
+The experiment loader reads only the compiled, validated runtime seed under
+`api/editorial-seed/`. An editorial request for an unpackaged section fails clearly
+rather than falling back to the original or evolving whole-section text. The CLI
+currently fails early unless the target is the sole packaged example, Plenitude
+Section 5. The browser workspace uses `editorial/data/` for its index and static
+fallback, then asks its local server for the current KV snapshot when available.
 
 An editorial run is bounded to its packaged target section. Continuation at the end
 does not auto-advance into an unpackaged section, and navigation away is rejected
 client-side with an explanatory transcript note.
 
-This path does not call `/api/evolve`, change candidate status, write local content,
-read `evolved_sections.json`, or contact Upstash. The public browser does not request
-either experimental edition. Because `editorial/` remains in `.vercelignore`, this
-path is intended for `vercel dev` from a complete local checkout, not production.
+These two explicit experiment editions do not call `/api/evolve`, change candidate
+status, write local content, read `evolved_sections.json`, or contact Upstash. The
+public browser does not request either experiment edition.
 
-## Proposed database representation — not implemented
+The ordinary `evolving` edition now has a separate packaged-section path. For
+*Plenitude* Section 5 it reads the current KV head (or the bundled seed when KV is not
+configured), offers only accepted entries, and uses the same required private delivery
+tool. The browser remembers the returned version ID for that section, so a head change
+cannot alter a reading halfway through. Other sections retain the legacy whole-section
+path.
 
-The current Upstash KV object `evolved:<textId>` maps section indices to single
-Markdown strings. It remains untouched. When the local package and guide-selection
-experiment are satisfactory, use versioned keys such as:
+## Versioned database representation — implemented for packaged sections
+
+Legacy `evolved:<textId>` objects remain available for unpackaged sections. Packaged
+sections instead use:
 
 ```text
-work:<workId>
-edition:<workId>:<editionId>
 section-head:<workId>:<editionId>:<sectionId>
 section-version:<workId>:<editionId>:<sectionId>:<versionId>
-candidate:<workId>:<sectionId>:<candidateId>
+editorial-update:<workId>:<sectionId>:<updateId>
 ```
 
-Store each accepted section version as one immutable, self-contained JSON snapshot.
-`section-head` should contain only the current version ID. Publishing must verify that
-the proposed parent is still the head and update the pointer atomically, preventing
-overlapping readers from silently overwriting one another. Restoration should create
+Each section version is one immutable, self-contained JSON snapshot. `section-head`
+contains only the current version ID. A Lua transaction verifies that the proposed
+parent is still the head, writes both the snapshot and its update record, and advances
+the pointer atomically. A conflicting save is regenerated once against the new head;
+it never silently overwrites another reader's change. Restoration should later create
 a new version derived from an older snapshot rather than delete history.
 
 At the present scale, duplicating unchanged fund entries across immutable section
@@ -277,11 +291,12 @@ snapshots is preferable to normalizing every entry into its own KV record: snaps
 are easier to inspect, restore, cache, and export. This can be reconsidered only if
 the fund becomes large enough to make section snapshots impractical.
 
-The live database is operational state, not the sole archive. An export command or
-editor action should write any important live version back to a local package so it
-remains easy to read, compare, and move between computers.
+The live database is operational state, not the sole archive. `npm run editorial-kv
+-- export --text plenitude --section 5` writes the current snapshot to a local JSON
+file with restrictive permissions. A future editor action should make comparison and
+restoration equally direct.
 
-## Proposed editorial lifecycle — not implemented
+## Editorial lifecycle — implemented for packaged contributions
 
 The conversational guide and the editorial model have different roles:
 
@@ -294,10 +309,12 @@ The conversational guide and the editorial model have different roles:
 4. A separate second model pass validates those proposals for fidelity, relevance,
    duplication, prose quality, rhythm, proportion, factual/source needs, and every
    proposed anchor's contextual and chronological eligibility.
-5. Validated fund operations remain candidates until editorial policy promotes them.
-   A spine revision creates a proposed immutable version; it never silently replaces
-   the current spine.
-6. Structural checks run before any new immutable version is published.
+5. The reviewer assigns additions to accepted, candidate, or rejected status. Material
+   marked `needs-verification` cannot be accepted, and an existing unverified
+   candidate cannot be promoted.
+6. Structural checks run before any new immutable version is published. Approved
+   spine and fund operations become one child snapshot; if nothing survives review,
+   the head remains unchanged.
 
 In the intended reader-shaped edition, the model normally makes routine editorial
 decisions autonomously; Jay does not approve every entry. The human role is to set the
@@ -310,7 +327,7 @@ boundaries so an abandoned session is not lost. Consolidation should still happe
 after the session ends or times out, reducing duplicate entries created from adjacent
 turns.
 
-## Required next experiment
+## Integration status and next check
 
 The candidate reading path is implemented. The first preserved matched pair used the
 collaborative profile and a 15-turn cap. The spine-only reader finished after 10 turns;
@@ -332,9 +349,13 @@ identified possible spine-level and source issues, notably the status of the bro
 historical trend claim, audience comparability, the form/content distinction, and
 the NEA and Safer examples. These are review leads, not automatically created fund
 entries or verified facts. The package was unchanged. A skeptical spine-only run is
-still needed for a within-profile comparison.
+now tracked under
+`editorial/content/plenitude/sections/shocking-art/provenance/2026-09-20-skeptical-spine/`.
+It finished after 11 turns and reached a similar narrowing of the historical claim
+without optional material. This repeated pattern matters, but the stochastic paths do
+not establish that the fund caused the difference in length or emphasis.
 
-The next work is to complete the comparison with curious and skeptical profiles, and to
+The next work is to complete the comparison with the curious profile, and to
 repeat the collaborative condition if this pattern becomes important. Start the local
 API server in one terminal:
 
@@ -367,24 +388,35 @@ conversation history, anchors, and selection cues to pace the material. The comp
 should tell us whether explicit passage retrieval or more prerequisite metadata is
 actually needed before adding it.
 
-Only after this experiment should the project revise selection instructions or entry
-fields, implement candidate extraction and second-pass validation, add database
-versions, or build publication and editing controls.
+Candidate extraction, second-pass validation, and versioned storage are now in place.
+An explicitly approved nonpublishing live preflight first demonstrated the desired
+`no-change` response to an objection the guide had already answered. Replaying the
+archived 2026-09-18 collaborative spine session then exposed two workflow gaps:
+supersession needed to support a validated replacement, and review needed to approve
+safe operations independently rather than treating a proposal as all-or-nothing.
+Both are fixed and covered by tests. After model review, official-source checks, and
+human narrowing, the resulting child corrected the NEA and *Sensation* passages,
+accepted two fund entries, retained four candidates, and advanced the KV head
+atomically. The local editor endpoint resolves the new head. The next check is a fresh
+reading of that published version.
 
 ## Commands and verification
 
 ```bash
 npm run editorial-build       # compile and validate editorial/data/
 npm run editorial-preview     # build, then serve at 127.0.0.1:4173
+npm run editorial-kv -- status --text plenitude --section 5
+npm run editorial-kv -- init --text plenitude --section 5
 vercel dev                    # local API required by synthetic-reader experiments
 npm test                      # editorial and synthetic-reader suites
 ```
 
-As of this milestone, the full suite contains 122 passing tests. The workspace was
-also checked in the in-app browser: Section 5 rendered correctly, passage filtering
-reduced the fund to the appropriate entries, switching to an unpopulated work produced
-the intended empty state, and the browser console contained no warnings or errors.
-The new package loader, condition isolation, anchor correction, required delivery
-tool, presentation ledger, packaged-section boundary, and transcript recording have
-offline coverage. The final collaborative pair also verified the path live against
-the configured OpenAI reader and Claude guide.
+As of this milestone, the full suite contains 131 passing tests. The runtime seed,
+accepted-only reader path, proposal/review validation, immutable publication,
+conflict detection, source allowlist, and candidate downgrade rules have offline
+coverage. The local workspace endpoint was also checked against the shared database:
+it loaded `shocking-art-20260920173549-0f38002e` from KV with ten passages, two
+accepted entries, and four candidates.
+The earlier collaborative and skeptical readings verified the experimental OpenAI
+reader/Claude guide path. The editorial proposal and review passes have now also been
+called live, including both a justified no-change result and the first published child.

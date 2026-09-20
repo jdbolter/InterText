@@ -5,6 +5,7 @@ const state = {
   work: null,
   section: null,
   package: null,
+  packageSource: null,
   selectedPassageId: null,
 };
 
@@ -272,12 +273,14 @@ function renderSection() {
   els.spineView.hidden = !state.package;
 
   if (state.package) {
+    const acceptedCount = state.package.fundEntries.filter(entry => entry.status === 'accepted').length;
     const candidateCount = state.package.fundEntries.filter(entry => entry.status === 'candidate').length;
+    const historicalCount = state.package.fundEntries.length - acceptedCount - candidateCount;
     els.sectionSummary.innerHTML = '';
     const version = document.createElement('div');
-    version.textContent = state.package.versionId;
+    version.textContent = `${state.package.versionId}${state.packageSource ? ` · ${state.packageSource === 'kv' ? 'live KV' : 'local seed'}` : ''}`;
     const counts = document.createElement('div');
-    counts.textContent = `${state.package.spine.length} passages · ${candidateCount} candidates`;
+    counts.textContent = `${state.package.spine.length} passages · ${acceptedCount} accepted · ${candidateCount} candidates${historicalCount ? ` · ${historicalCount} historical` : ''}`;
     els.sectionSummary.append(version, counts);
   } else {
     els.sectionSummary.textContent = 'Not yet packaged';
@@ -290,12 +293,22 @@ async function selectSection(section) {
   state.section = section;
   state.selectedPassageId = null;
   state.package = null;
+  state.packageSource = null;
   renderSection();
   if (!section.packageUrl) return;
   try {
-    const response = await fetch(section.packageUrl);
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    state.package = await response.json();
+    const currentUrl = `/api/current-section?textId=${encodeURIComponent(state.work.id)}&sectionIndex=${section.order - 1}`;
+    let response = await fetch(currentUrl);
+    if (response.ok) {
+      const current = await response.json();
+      state.package = current.sectionPackage;
+      state.packageSource = current.source;
+    } else {
+      response = await fetch(section.packageUrl);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      state.package = await response.json();
+      state.packageSource = 'seed';
+    }
     if (state.section.id === section.id) renderSection();
   } catch (err) {
     showError(`Could not load ${section.title}: ${err.message}`);

@@ -22,7 +22,8 @@ InterText/
         └── sections/   — section files loaded by the API
 ```
 
-Model in use: `claude-sonnet-5` (both `api/chat.js` and `api/evolve.js`).
+Model in use: `claude-sonnet-5` for the guide and editorial passes. The synthetic
+reader uses OpenAI (default `gpt-5.6-terra`) so guide and reader are separate models.
 
 ## The texts
 
@@ -78,14 +79,15 @@ under `editorial/`. All three works and all 16 current sections are registered; 
 first complete example is *Plenitude*, Section 5, with ten spine passages and four
 candidate fund entries extracted from a collaborative synthetic session.
 
-The guide and synthetic-reader harness can now consume that local package in two
+The guide and synthetic-reader harness can consume that package in two
 explicit, nonpublishing experiment modes: `editorial-spine` and `editorial-fund`.
 The latter offers candidate entries selectively and records which ones the guide
 reports actually using. Neither mode reads or writes the live evolved-text database.
 The first matched collaborative pair is complete and preserved with the Section 5
 package; it used two of four candidates and showed both useful refinement and a risk
-of prolonged, repetitive qualification. A skeptical fund-only run is also preserved;
-the skeptical spine-only comparison and curious pairs remain.
+of prolonged, repetitive qualification. A skeptical fund/spine comparison is also
+preserved; both conditions exposed the same central evidentiary weakness, while the
+spine-only reader finished sooner. Curious pairs remain.
 
 ```bash
 npm install
@@ -94,9 +96,15 @@ npm run editorial-preview
 ```
 
 Open `http://127.0.0.1:4173`. No API keys, Vercel login, or database connection are
-needed for this workspace. It does not alter or feed the public reading engine.
-The local API experiment is separate from this read-only browser workspace and is not
-exposed by the public reader interface.
+needed to view the bundled seed. When KV variables are present, the workspace displays
+the shared live head. It remains read-only.
+
+For the packaged Section 5, the ordinary current-edition reader now loads that live
+head and only its accepted fund entries. A contributing save runs separate proposal
+and review passes, publishes any approved operations as an immutable child version,
+and atomically advances the head. A reader already in the section stays pinned to its
+starting version; the next reading receives the new one. Unpackaged sections continue
+to use the original whole-section evolution path.
 
 Start with `CURRENT-DESIGN.md` for the present design and proposed changes. Read
 `EDITORIAL-ARCHITECTURE.md` for the full data model, database proposal, verified

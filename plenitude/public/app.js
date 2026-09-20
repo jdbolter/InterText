@@ -16,6 +16,9 @@ let readingEdition = 'evolving';
 let sectionHistoryStart = 0;
 const contributionHistory = [];
 const sectionHistories = new Map();
+const editorialVersionIds = new Map();
+const presentedFundEntryIds = new Map();
+const contributionSessionId = `intertext-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
 const completedSections = new Set();
 let sending = false;
 let endShown = false;
@@ -129,16 +132,28 @@ document.getElementById('finish-btn').addEventListener('click', async () => {
 
 async function saveCurrentSection() {
   if (!saveConsent) return;
+  const sectionToSave = sectionIndex;
   const slice = contributionHistory.slice(sectionHistoryStart);
   if (slice.length === 0) return;
   try {
-    await fetch('/api/evolve', {
+    const res = await fetch('/api/evolve', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ sectionIndex, conversationHistory: slice, textId: 'plenitude' })
+      body: JSON.stringify({
+        sectionIndex: sectionToSave,
+        conversationHistory: slice,
+        textId: 'plenitude',
+        sessionId: contributionSessionId,
+        baseVersionId: editorialVersionIds.get(sectionToSave) || null,
+      })
     });
-  } catch {
-    // silent failure — saving is best-effort
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Editorial update failed');
+    if (data.editorial?.versionId) editorialVersionIds.set(sectionToSave, data.editorial.versionId);
+    return data;
+  } catch (error) {
+    appendSystemMessage(`Your contribution could not be saved: ${error.message}`);
+    return null;
   }
 }
 
@@ -322,6 +337,10 @@ async function send() {
         body: JSON.stringify({
           message: text, history, sectionIndex: activeSection,
           shownImages: Array.from(shownImages), textId: 'plenitude', edition: readingEdition,
+          presentedFundEntryIds: Array.from(presentedFundEntryIds.get(activeSection) || []),
+          ...(editorialVersionIds.has(activeSection)
+            ? { editorialVersionId: editorialVersionIds.get(activeSection) }
+            : {}),
           ...(continuing ? { action: 'continue', sectionHistory: sectionHistories.get(activeSection) || [] } : {})
         })
       });
@@ -330,6 +349,14 @@ async function send() {
         throw new Error('No reading response');
       }
       if (data.response) {
+        if (data.editorial?.packageVersionId && !editorialVersionIds.has(activeSection)) {
+          editorialVersionIds.set(activeSection, data.editorial.packageVersionId);
+        }
+        if (Array.isArray(data.editorial?.usedFundEntryIds)) {
+          const used = presentedFundEntryIds.get(activeSection) || new Set();
+          data.editorial.usedFundEntryIds.forEach(id => used.add(id));
+          presentedFundEntryIds.set(activeSection, used);
+        }
         const turns = [
           { role: 'user', content: continuing ? CONTINUE_MESSAGE : text },
           { role: 'assistant', content: data.response }
