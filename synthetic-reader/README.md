@@ -64,7 +64,7 @@ The Section 5 experiment showed a limitation in full-section synthesis: detailed
 additions may be accurate and supportive while damaging the balance and rhythm of the
 continuous essay. The planned editorial representation therefore separates a concise
 narrative spine from a fund of optional material the guide can select for different
-readers. The generic schema, first Section 5 package, and read-only workspace are now
+readers. The generic schema, first Section 5 package, and local author editor are now
 implemented under `editorial/`; see root `EDITORIAL-ARCHITECTURE.md`.
 
 The guide and synthetic reader can now consume the local Section 5 package through

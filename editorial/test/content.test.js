@@ -100,12 +100,15 @@ test('buildAll writes a portable editor index and validated section snapshot', (
   }
 });
 
-test('read-only editor is generic and loads the generated data index', () => {
+test('author editor is generic, loads the generated index, and exposes versioned editing controls', () => {
   const app = fs.readFileSync(path.join(root, 'editorial', 'app.js'), 'utf8');
   const html = fs.readFileSync(path.join(root, 'editorial', 'index.html'), 'utf8');
   assert.match(app, /fetch\('data\/index\.json'\)/);
   assert.doesNotMatch(app, /plenitude|shocking-art/i);
-  assert.match(html, /Read-only prototype/);
+  assert.match(app, /\/api\/author-section/);
+  assert.match(html, /Author editor/);
+  assert.match(html, /Publish author revision/);
+  assert.match(html, /Add entry/);
   assert.match(html, /The fund/);
 });
 

@@ -74,7 +74,7 @@ The newer editorial architecture separates a section's **narrative spine** from 
 evidence, and extensions. This preserves useful material accumulated through readings
 without requiring every detail to enter the continuous essay or every reader's path.
 
-A universal local schema, validated build, and read-only workspace are implemented
+A universal local schema, validated build, and author-editing workspace are implemented
 under `editorial/`. All three works and all 16 current sections are registered; the
 first complete example is *Plenitude*, Section 5, with ten spine passages and four
 candidate fund entries extracted from a collaborative synthetic session.
@@ -97,7 +97,11 @@ npm run editorial-preview
 
 Open `http://127.0.0.1:4173`. No API keys, Vercel login, or database connection are
 needed to view the bundled seed. When KV variables are present, the workspace displays
-the shared live head. It remains read-only.
+the shared live head and can publish direct author edits as immutable child versions.
+The local editor can revise spine prose and all editorial fund fields, add fund entries,
+assign optional thread membership and order, and accept, reject, supersede, or return
+entries to candidate status. It preserves passage and entry identity, protects existing
+provenance, and refuses to publish over a newer head.
 
 For the packaged Section 5, the ordinary current-edition reader now loads that live
 head and only its accepted fund entries. A contributing save runs separate proposal

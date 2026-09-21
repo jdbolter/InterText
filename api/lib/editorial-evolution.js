@@ -35,6 +35,20 @@ const ENTRY_SCHEMA = {
     kind: { type: 'string', enum: [...FUND_KINDS] },
     markdown: { type: 'string', minLength: 1 },
     useWhen: { type: 'string', minLength: 1 },
+    thread: {
+      anyOf: [
+        { type: 'null' },
+        {
+          type: 'object',
+          additionalProperties: false,
+          required: ['id', 'order'],
+          properties: {
+            id: { type: 'string', pattern: '^[a-z0-9]+(?:-[a-z0-9]+)*$' },
+            order: { type: 'integer', minimum: 1 },
+          },
+        },
+      ],
+    },
     sourceStatus: { type: 'string', enum: [...SOURCE_STATUSES] },
     sources: { type: 'array', items: SOURCE_SCHEMA },
   },
@@ -210,6 +224,17 @@ function validateEntryProposal(entry, passageIds, allowedUrls, label) {
   if (entry.anchors.some(anchor => !passageIds.has(anchor))) throw new Error(`${label} has an unknown anchor`);
   if (!FUND_KINDS.has(entry.kind)) throw new Error(`${label}.kind is invalid`);
   if (!SOURCE_STATUSES.has(entry.sourceStatus)) throw new Error(`${label}.sourceStatus is invalid`);
+  if (entry.thread !== undefined && entry.thread !== null) {
+    if (
+      typeof entry.thread !== 'object' ||
+      Array.isArray(entry.thread) ||
+      !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(entry.thread.id || '') ||
+      !Number.isInteger(entry.thread.order) ||
+      entry.thread.order < 1
+    ) {
+      throw new Error(`${label}.thread is invalid`);
+    }
+  }
   if (!Array.isArray(entry.sources)) throw new Error(`${label}.sources must be an array`);
   for (const source of entry.sources) {
     if (!source || typeof source.title !== 'string' || !source.title.trim() || !allowedUrls.has(source.url)) {

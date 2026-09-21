@@ -4,8 +4,8 @@ For a concise view of the current design and proposed changes, start with
 [`CURRENT-DESIGN.md`](CURRENT-DESIGN.md). This document supplies the detailed
 editorial model, implementation boundary, and handoff instructions.
 
-**Status, 2026-09-20:** the universal content model, validated build, read-only
-editorial workspace, controlled guide/synthetic-reader package path, two-pass
+**Status, 2026-09-21:** the universal content model, validated build, local author
+editor, controlled guide/synthetic-reader package path, two-pass
 editorial update, and versioned KV store are implemented. The ordinary reader-shaped
 path now consumes the current packaged version for *Plenitude* Section 5; unpackaged
 sections continue to use the earlier whole-section engine. The shared KV head is
@@ -121,6 +121,7 @@ The first schema deliberately keeps fund entries small. Each contains:
 - `status`: candidate, accepted, superseded, or rejected;
 - Markdown prose;
 - a natural-language `useWhen` selection cue;
+- optional `thread` membership, represented by a stable thread ID and positive order;
 - `sourceStatus`: not-required, needs-verification, or verified;
 - zero or more descriptive HTTP(S) source links; and
 - provenance identifying the kind of origin, session, turns, and local artifact.
@@ -184,7 +185,7 @@ to seek beyond memorable scandals. An author or editorial pass can later select 
 for a spine passage, an optional fund entry, or an authored inquiry path, but only after
 checking that case's sources and role in the text.
 
-## Read-only editorial workspace
+## Local author editor
 
 Run:
 
@@ -197,21 +198,26 @@ Then open `http://127.0.0.1:4173`. The dependency-free preview server serves onl
 `editorial/` directory and sets `no-store`; it does not expose `.env.local` or the rest
 of the repository.
 
-The workspace currently supports:
+The workspace supports:
 
 - switching among all registered works;
 - seeing every known section and whether it has been packaged;
 - reading the spine as continuous prose with stable passage labels;
 - seeing how many fund entries attach to each passage;
 - clicking a passage to filter the fund to its related entries;
-- inspecting entry type, status, use cue, sources, source warnings, and provenance;
+- inspecting and editing entry type, status, prose, use cue, anchors, thread, sources,
+  and source status while preserving existing provenance;
+- editing spine prose directly without changing stable passage IDs;
+- adding new fund entries and retaining rejected or superseded entries as records;
 - showing whether a packaged section was loaded from the live KV head or local seed;
+- publishing a validated immutable author child when KV is configured, with a stale-head
+  check and atomic head update;
 - responsive desktop/mobile layout; and
 - safe Markdown rendering through DOM construction rather than raw HTML injection.
 
-It intentionally cannot edit, accept, publish, restore, or call a model. It is a
-working data-model and live-head inspection tool, not yet a production editorial
-application.
+It intentionally cannot restore or compare versions, browse full history, export with
+a button, or call a model. Seed-only mode cannot publish. It is an unauthenticated local
+authoring tool, not yet a production editorial application.
 The entire `editorial/` directory is excluded in `.vercelignore`; do not remove that
 protection until the deployed editor has authentication and an intentional policy for
 which manuscript, session, and provenance data may leave the local environment.
@@ -394,8 +400,9 @@ An explicitly approved nonpublishing live preflight first demonstrated the desir
 archived 2026-09-18 collaborative spine session then exposed two workflow gaps:
 supersession needed to support a validated replacement, and review needed to approve
 safe operations independently rather than treating a proposal as all-or-nothing.
-Both are fixed and covered by tests. After model review, official-source checks, and
-human narrowing, the resulting child corrected the NEA and *Sensation* passages,
+Both are fixed and covered by tests. After model review and official-source checks,
+Codex staged the resulting child and Jay authorized the publication run; there was no
+item-by-item human curation. The child corrected the NEA and *Sensation* passages,
 accepted two fund entries, retained four candidates, and advanced the KV head
 atomically. The local editor endpoint resolves the new head. The next check is a fresh
 reading of that published version.
@@ -411,7 +418,7 @@ npm run dev                   # local API with .env.local, required by reader ex
 npm test                      # editorial and synthetic-reader suites
 ```
 
-As of this milestone, the full suite contains 132 passing tests. The runtime seed,
+As of this milestone, the full suite contains 139 passing tests. The runtime seed,
 accepted-only reader path, proposal/review validation, immutable publication,
 conflict detection, source allowlist, and candidate downgrade rules have offline
 coverage. The local workspace endpoint was also checked against the shared database:

@@ -39,12 +39,32 @@ function validateSource(source, label) {
   }
 }
 
+function normalizeThread(thread) {
+  return thread === undefined ? null : thread;
+}
+
+function validateThread(thread, label) {
+  if (thread === undefined || thread === null) return;
+  if (!thread || typeof thread !== 'object' || Array.isArray(thread)) {
+    throw new Error(`${label} must be null or an object`);
+  }
+  const keys = Object.keys(thread).sort();
+  if (keys.length !== 2 || keys[0] !== 'id' || keys[1] !== 'order') {
+    throw new Error(`${label} must contain only id and order`);
+  }
+  assertSlug(thread.id, `${label}.id`);
+  if (!Number.isInteger(thread.order) || thread.order < 1) {
+    throw new Error(`${label}.order must be a positive integer`);
+  }
+}
+
 function validateFundEntry(entry, passageIds, label) {
   if (!entry || typeof entry !== 'object' || Array.isArray(entry)) throw new Error(`${label} must be an object`);
   assertSlug(entry.id, `${label}.id`);
   assertNonEmptyString(entry.title, `${label}.title`);
   assertNonEmptyString(entry.markdown, `${label}.markdown`);
   assertNonEmptyString(entry.useWhen, `${label}.useWhen`);
+  validateThread(entry.thread, `${label}.thread`);
   if (!Array.isArray(entry.anchors) || entry.anchors.length === 0) throw new Error(`${label}.anchors must not be empty`);
   assertUnique(entry.anchors, `${label}.anchors`);
   for (const anchor of entry.anchors) {
@@ -92,7 +112,13 @@ function validateRuntimePackage(sectionPackage, label = 'editorial section packa
   sectionPackage.fundEntries.forEach((entry, index) => {
     validateFundEntry(entry, passageIds, `${label}.fundEntries[${index}]`);
   });
-  return sectionPackage;
+  return {
+    ...sectionPackage,
+    fundEntries: sectionPackage.fundEntries.map(entry => ({
+      ...entry,
+      thread: normalizeThread(entry.thread),
+    })),
+  };
 }
 
 function loadEditorialIndex({ rootDir = process.cwd() } = {}) {
@@ -135,11 +161,14 @@ function formatFundEntry(entry) {
   const links = entry.sources.length > 0
     ? `\nSources: ${entry.sources.map(source => `${source.title}: ${source.url}`).join(' | ')}`
     : '';
+  const thread = entry.thread
+    ? `\nThread: ${entry.thread.id} (position ${entry.thread.order})`
+    : '';
 
   return `<fund_entry id="${entry.id}" anchors="${entry.anchors.join(',')}" kind="${entry.kind}">
 Title: ${entry.title}
 Use when: ${entry.useWhen}
-Source note: ${sourceNote}${links}
+Source note: ${sourceNote}${thread}${links}
 
 ${entry.markdown}
 </fund_entry>`;

@@ -32,15 +32,15 @@ function decodeStored(value) {
 }
 
 function assertPackageIdentity(sectionPackage, seed, label) {
-  validateRuntimePackage(sectionPackage, label);
+  const normalized = validateRuntimePackage(sectionPackage, label);
   if (
-    sectionPackage.workId !== seed.workId ||
-    sectionPackage.sectionId !== seed.sectionId ||
-    sectionPackage.sectionOrder !== seed.sectionOrder
+    normalized.workId !== seed.workId ||
+    normalized.sectionId !== seed.sectionId ||
+    normalized.sectionOrder !== seed.sectionOrder
   ) {
     throw new Error(`${label} does not match ${seed.workId}/${seed.sectionId}`);
   }
-  return sectionPackage;
+  return normalized;
 }
 
 function readerShapedSeed(seed) {

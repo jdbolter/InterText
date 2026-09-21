@@ -2,7 +2,7 @@
 
 Design discussion recorded 2026-09-06 and extended through 2026-09-19. This is the **history of the design discussion**, including superseded ideas and proposals that have not been built. Start with [CURRENT-DESIGN.md](CURRENT-DESIGN.md) for the present design and proposed changes at a glance; use [EDITORIAL-ARCHITECTURE.md](EDITORIAL-ARCHITECTURE.md) for technical detail and implementation boundaries. The earlier portions below preserve the path by which the current decisions were reached.
 
-**Status:** mixed design and implementation record. The original 2026-09-06 discussion made no application changes. As of 2026-09-20, a universal content schema, validated build, Section 5 package, read-only editorial workspace, controlled guide/synthetic-reader package path, two editorial-model passes, and versioned KV publication are implemented. The public current-edition reader consumes this model for packaged Section 5; unpackaged sections retain the earlier whole-section path. One matched collaborative comparison and one skeptical spine/fund comparison are complete. The first preflight correctly chose no change; a later replay of the archived collaborative spine session produced the first published child version after model review, official-source verification, and human narrowing. Curious pairs and a fresh reading of the child version remain. The directions identified as Jay's choices are decisions; unimplemented mechanisms remain proposals unless explicitly identified otherwise.
+**Status:** mixed design and implementation record. The original 2026-09-06 discussion made no application changes. As of 2026-09-21, a universal content schema, validated build, Section 5 package, local author editor, controlled guide/synthetic-reader package path, two editorial-model passes, and versioned KV publication are implemented. The public current-edition reader consumes this model for packaged Section 5; unpackaged sections retain the earlier whole-section path. One matched collaborative comparison and one skeptical spine/fund comparison are complete. The first preflight correctly chose no change; a later replay of the archived collaborative spine session produced the first published child version after model review and official-source verification. That publication was not item-by-item human curation; Jay authorized the run, and Codex performed the final staging. Curious pairs and a fresh reading of the child version remain. The directions identified as Jay's choices are decisions; unimplemented mechanisms remain proposals unless explicitly identified otherwise.
 
 ## 1. Purpose and the change in direction
 
@@ -282,11 +282,13 @@ be offered to interested readers as a coherent work rather than as a collection 
 automatic section evolutions.
 
 An editorial interface is now a required part of the system rather than an optional
-future convenience. A read-only local prototype has been implemented. A later
-production interface should support the complete manuscript, spine and fund entries,
-reader sessions, model decisions, sources, edition comparison, correction,
-supersession, pause, export, and recoverable version history. Editing, authentication,
-database connection, and publication controls are not yet implemented.
+future convenience. The local prototype now edits spine prose and complete fund-entry
+metadata, including status, sources, anchors, and optional ordered thread membership.
+It adds entries and publishes immutable author revisions to KV with conflict detection.
+A later production interface should support the complete manuscript, reader sessions,
+model decisions, edition comparison, correction, pause, export, and recoverable version
+history. Authentication, comparison, restoration, and production deployment are not
+yet implemented.
 
 The reader-shaped work remains a separate desired possibility. A version changed by
 encounters with actual readers could continue alongside an immutable original and,
@@ -315,7 +317,7 @@ Try one complete essay before an entire book. Include ordinary reading, a sustai
 2. **Complete:** build the synthetic-reader harness and dry-run evolution comparison.
 3. **Complete, first editorial milestone:** define the universal spine-and-fund schema,
    register all works and sections, package Plenitude Section 5, and build a tested
-   read-only local workspace.
+   local workspace, initially read-only and now author-editable.
 4. **Complete, second editorial milestone:** let the guide and synthetic-reader
    harness read the local Section 5 package in controlled `editorial-spine` and
    `editorial-fund` conditions, track which entries are actually presented, and keep
@@ -331,7 +333,7 @@ Try one complete essay before an entire book. Include ordinary reading, a sustai
    the local editor resolves the new KV head.
 7. **In progress:** read the published child afresh, continue curious pairs and useful
    repetitions, and revise selection instructions, passage granularity, and policy.
-8. Add authenticated editing, comparison, restoration, and oversight controls, then test one complete essay with
+8. Add comparison, restoration, history, and export controls locally, then authenticated production oversight; test one complete essay with
    human readers before generalizing automatic publication to book scale.
 
 ## 12. Questions still open
@@ -396,8 +398,9 @@ Settled direction for this revision: model-selected integration or omission; sea
   and evolution code while the private `editorial/` tree remains excluded by
   `.vercelignore`.
 - `editorial/index.html`, `app.js`, `style.css`, and `serve.js`: dependency-free,
-  read-only editorial workspace and safe local preview server. With KV variables it
-  displays the live head; otherwise it displays the local seed. Start with
+  local author editor and safe preview server. With KV variables it displays and can
+  publish an immutable child of the live head; otherwise it displays the local seed.
+  Start with
   `npm run editorial-preview`, then open `http://127.0.0.1:4173`.
 - `api/lib/editorial-evolution.js` and `api/lib/editorial-store.js`: structured
   two-pass editing, hard validation guards, version loading, idempotent seed

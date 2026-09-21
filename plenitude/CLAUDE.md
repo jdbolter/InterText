@@ -32,7 +32,7 @@ as one repeatedly enlarged Markdown section. Each section should be capable of h
 a concise narrative spine plus a fund of optional material from which the guide can
 select for a particular reader.
 
-The first local, read-only editorial workspace is implemented under `editorial/`.
+The first local author-editing workspace is implemented under `editorial/`.
 It registers every section of every work and packages Plenitude Section 5 as the first
 real example: the complete authored text is divided into ten stable spine passages,
 and four useful additions from a collaborative synthetic session are represented as
@@ -69,7 +69,7 @@ them a public interface should expose—remains open.
 - Created `plenitude/config.js` — 7 section intros, image slots, behavioral/synthesis instructions
 - Created `plenitude/public/index.html`, `style.css`, `app.js` (textId: `'plenitude'`)
 - Added `'plenitude'` to `ALLOWED_TEXT_IDS` in `api/chat.js` and `api/evolve.js`
-- Added the generic spine-and-fund editorial schema and read-only workspace, with
+- Added the generic spine-and-fund editorial schema and author editor, with
   Section 5 as the first packaged example (`editorial/`)
 - Added controlled local `editorial-spine` and `editorial-fund` guide/harness modes,
   including a per-section record of which optional entries were actually presented

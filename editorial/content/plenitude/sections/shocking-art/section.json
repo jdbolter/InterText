@@ -18,6 +18,7 @@
       "status": "candidate",
       "markdownFile": "fund/shared-evaluative-field.md",
       "useWhen": "Use when a reader asks whether public fury demonstrates art's importance or merely its social salience.",
+      "thread": null,
       "sourceStatus": "not-required",
       "sources": [],
       "provenance": {
@@ -35,6 +36,7 @@
       "status": "candidate",
       "markdownFile": "fund/futurism-and-dada.md",
       "useWhen": "Use when a knowledgeable reader questions whether the two avant-gardes are being flattened into the same negative project.",
+      "thread": null,
       "sourceStatus": "needs-verification",
       "sources": [],
       "provenance": {
@@ -52,6 +54,7 @@
       "status": "candidate",
       "markdownFile": "fund/armory-show-ridicule.md",
       "useWhen": "Use when a reader wants a concrete example of how American critics registered the avant-garde as a violation worth answering.",
+      "thread": null,
       "sourceStatus": "needs-verification",
       "sources": [],
       "provenance": {
@@ -69,6 +72,7 @@
       "status": "candidate",
       "markdownFile": "fund/reach-not-passion.md",
       "useWhen": "Use when a reader objects that contemporary art communities still possess strong norms, controversies, and passionate publics.",
+      "thread": null,
       "sourceStatus": "not-required",
       "sources": [],
       "provenance": {

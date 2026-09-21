@@ -8,9 +8,9 @@ boundary, read [`EDITORIAL-ARCHITECTURE.md`](../EDITORIAL-ARCHITECTURE.md).
 ## Start on a new computer
 
 Requirements: Node.js 20 or later and the repository checkout. Without KV variables,
-the read-only workspace displays the bundled seed. With `KV_REST_API_URL` and
-`KV_REST_API_TOKEN` in `.env.local`, it displays the shared live head. No Vercel login
-is required.
+the workspace displays the bundled seed for inspection. With `KV_REST_API_URL` and
+`KV_REST_API_TOKEN` in `.env.local`, it displays the shared live head and can publish
+author revisions. No Vercel login is required.
 
 ```bash
 npm install
@@ -88,12 +88,26 @@ and entries marked verified without any source.
 These statuses are editorial metadata, not claims that the current code has performed
 fact checking.
 
-## Current boundary
+## Author editing and current boundary
 
-The browser workspace remains read-only: it can inspect the current live KV head but
-cannot publish, restore, or call a model. The public contribution path now performs
-those writes for packaged sections through `/api/evolve`; it does not alter the
-authored source files.
+Click **Edit section** to edit spine passage prose and every editorial field on each
+fund entry. The editor can add entries; change kind, status, anchors, prose, selection
+cue, sources, and source status; and assign an optional thread ID and order. Existing
+passage IDs, fund-entry IDs, and provenance are deliberately protected. Existing
+entries cannot be deleted; reject or supersede them so the decision remains in the
+record.
+
+**Publish author revision** validates the complete package, verifies that the loaded
+base is still the live head, writes a new immutable `author-revised` child plus its
+update record, and advances the head atomically. It never rewrites the authored source
+files under `editorial/content/`. Publishing therefore requires the KV variables;
+seed-only mode remains inspectable but cannot save. The local editor does not call a
+model.
+
+The workspace cannot yet compare or restore versions, browse full update history, or
+export with a button. It is local and unauthenticated, and `editorial/` remains excluded
+from Vercel deployment. The public contribution path separately performs model-reviewed
+writes for packaged sections through `/api/evolve`.
 
 The local guide and synthetic-reader harness can now read a package when explicitly
 invoked with `--edition editorial-spine` or `--edition editorial-fund`. That path is

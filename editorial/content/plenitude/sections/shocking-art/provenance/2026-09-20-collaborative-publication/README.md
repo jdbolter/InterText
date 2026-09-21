@@ -12,7 +12,10 @@ rejected ones. Both were corrected and covered by tests before publication.
 
 The final development review narrowed the update after checking the official NEA
 history, the Supreme Court's account in *NEA v. Finley*, and the Brooklyn Museum's
-timeline. The published child:
+timeline. Codex performed that staging and Jay authorized the publication run; these
+items were not individually curated by a human. The exact immutable snapshot below
+retains its original change summary, whose phrase “Human-curated development review”
+is therefore inaccurate historical metadata. The published child:
 
 - corrects the claim that controversy ended federal funding of experimental art;
 - distinguishes *Sensation*'s 1997 London opening from the October 1999 Brooklyn

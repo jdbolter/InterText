@@ -105,6 +105,20 @@
         "status": { "enum": ["candidate", "accepted", "superseded", "rejected"] },
         "markdown": { "type": "string", "minLength": 1 },
         "useWhen": { "type": "string", "minLength": 1 },
+        "thread": {
+          "anyOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["id", "order"],
+              "properties": {
+                "id": { "$ref": "#/$defs/slug" },
+                "order": { "type": "integer", "minimum": 1 }
+              }
+            }
+          ]
+        },
         "sourceStatus": { "enum": ["not-required", "needs-verification", "verified"] },
         "sources": {
           "type": "array",

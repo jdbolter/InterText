@@ -17,11 +17,12 @@
       </div>
     </div>
     <div class="topbar-actions">
-      <span class="mode-badge">Read-only prototype</span>
+      <span class="mode-badge">Author editor · local</span>
       <label class="work-picker">
         <span>Work</span>
         <select id="work-select" aria-label="Choose a work"></select>
       </label>
+      <button id="edit-section" class="topbar-button" type="button" hidden>Edit section</button>
     </div>
   </header>
 
@@ -47,6 +48,23 @@
         <div id="section-summary" class="section-summary"></div>
       </header>
 
+      <div id="editor-notice" class="editor-notice" role="status" hidden></div>
+
+      <section id="edit-toolbar" class="edit-toolbar" aria-label="Publish author revision" hidden>
+        <div>
+          <p class="eyebrow">Unpublished author draft</p>
+          <p>Edits become a new immutable child of the version shown above. Existing IDs and provenance remain stable.</p>
+        </div>
+        <label class="change-summary-field">
+          <span>Change summary</span>
+          <textarea id="change-summary" rows="2" placeholder="Briefly describe the authorial revision."></textarea>
+        </label>
+        <div class="edit-actions">
+          <button id="cancel-edit" class="secondary-button" type="button">Cancel</button>
+          <button id="publish-section" class="primary-button" type="button" disabled>Publish author revision</button>
+        </div>
+      </section>
+
       <div id="empty-section" class="empty-state" hidden>
         <p class="empty-state__number" id="empty-number">—</p>
         <h3>This section has no editorial package yet.</h3>
@@ -62,7 +80,10 @@
           <p class="eyebrow">Selective material</p>
           <h2 id="fund-title">The fund</h2>
         </div>
-        <button id="clear-filter" class="text-button" type="button" hidden>Show all</button>
+        <div class="fund-header__actions">
+          <button id="add-fund-entry" class="secondary-button" type="button" hidden>Add entry</button>
+          <button id="clear-filter" class="text-button" type="button" hidden>Show all</button>
+        </div>
       </header>
       <p id="fund-context" class="fund-context">Choose a packaged section to inspect its entries.</p>
       <div id="fund-summary" class="fund-summary"></div>
