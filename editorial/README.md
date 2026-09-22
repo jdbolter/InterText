@@ -61,8 +61,9 @@ renamed, added, or reordered application section must be reflected here.
    ```
 
 3. Add `section.json`, following the existing `plenitude/shocking-art` example.
-4. Put fund prose in short Markdown files under `fund/` and reference each one with
-   `markdownFile` in `section.json`.
+4. If the section has fund material, put its prose in short Markdown files under
+   `fund/` and reference each one with `markdownFile` in `section.json`. An empty
+   `fundEntries` array is a valid faithful starting package.
 5. Change the section's `package` in `work.json` from `null` to the relative path of
    `section.json`.
 6. Run `npm run editorial-build && npm test`.
@@ -131,6 +132,10 @@ review leads; its 2026-09-20 spine-only comparison is archived under
 `content/plenitude/sections/shocking-art/provenance/2026-09-20-skeptical-spine/`.
 Neither run triggered candidate extraction or second-pass validation.
 
+All seven *Plenitude* sections are now packaged. Sections 1–4 and 6–7 preserve their
+authored prose exactly and begin with empty funds; Section 5 retains the accumulated
+fund and live version history. The other two works remain registered but unpackaged.
+
 ## Shared KV commands
 
 ```bash
@@ -142,11 +147,11 @@ npm run editorial-kv -- export --text plenitude --section 5
 `init` is idempotent: it creates the bundled baseline only when the section has no
 head. `export` writes the current immutable snapshot beneath `editorial/exports/`
 unless `--out` supplies another path. That folder is operational output and should be
-reviewed before committing. The current shared head is
-`shocking-art-20260920173549-0f38002e`, a child of
-`shocking-art-editorial-v001`, with ten passages, two accepted entries, and four
-candidates. A portable copy is tracked under
+reviewed before committing. The first published Section 5 child, with ten passages,
+two accepted entries, and four candidates, has a portable copy tracked under
 `content/plenitude/sections/shocking-art/provenance/2026-09-20-collaborative-publication/`.
+Use the `status` command for the current live head; author revisions may have advanced
+it since that milestone.
 
 Historical reception leads for a possible Section 5 detour are kept separately in
 `research/art-reception-cases.json`, with a `research/README.md`. They serve the broader

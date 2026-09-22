@@ -75,11 +75,12 @@ evidence, and extensions. This preserves useful material accumulated through rea
 without requiring every detail to enter the continuous essay or every reader's path.
 
 A universal local schema, validated build, and author-editing workspace are implemented
-under `editorial/`. All three works and all 16 current sections are registered; the
-first complete example is *Plenitude*, Section 5, with ten spine passages and four
-candidate fund entries extracted from a collaborative synthetic session.
+under `editorial/`. All three works and all 16 current sections are registered. All
+seven *Plenitude* sections are faithfully packaged as stable spine passages; Section 5
+is the developed example, with fund material accumulated through reader experiments.
+The other six begin with empty funds and unchanged authored prose.
 
-The guide and synthetic-reader harness can consume that package in two
+The guide and synthetic-reader harness can consume those packages in two
 explicit, nonpublishing experiment modes: `editorial-spine` and `editorial-fund`.
 The latter offers candidate entries selectively and records which ones the guide
 reports actually using. Neither mode reads or writes the live evolved-text database.
@@ -103,12 +104,12 @@ assign optional thread membership and order, and accept, reject, supersede, or r
 entries to candidate status. It preserves passage and entry identity, protects existing
 provenance, and refuses to publish over a newer head.
 
-For the packaged Section 5, the ordinary current-edition reader now loads that live
-head and only its accepted fund entries. A contributing save runs separate proposal
+For every *Plenitude* section, the ordinary current-edition reader now loads its
+versioned package and only its accepted fund entries. A contributing save runs separate proposal
 and review passes, publishes any approved operations as an immutable child version,
 and atomically advances the head. A reader already in the section stays pinned to its
-starting version; the next reading receives the new one. Unpackaged sections continue
-to use the original whole-section evolution path.
+starting version; the next reading receives the new one. The other two works remain on
+the original whole-section evolution path until they are packaged.
 
 Start with `CURRENT-DESIGN.md` for the present design and proposed changes. Read
 `EDITORIAL-ARCHITECTURE.md` for the full data model, database proposal, verified

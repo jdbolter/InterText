@@ -33,12 +33,11 @@ a concise narrative spine plus a fund of optional material from which the guide 
 select for a particular reader.
 
 The first local author-editing workspace is implemented under `editorial/`.
-It registers every section of every work and packages Plenitude Section 5 as the first
-real example: the complete authored text is divided into ten stable spine passages,
-and four useful additions from a collaborative synthetic session are represented as
-candidate fund entries rather than being forced into the continuous essay. Two
-historical entries are explicitly marked as needing verification because the session
-did not supply source links.
+It registers every section of every work and packages all seven *Plenitude* sections.
+Sections 1–4 and 6–7 preserve the authored prose exactly in stable spine passages and
+begin with empty funds. Section 5 remains the developed example: its authored text is
+divided into ten passages, and useful additions from reader experiments are represented
+in the fund rather than being forced into the continuous essay.
 
 The local package is now connected to the guide and synthetic-reader session loop
 through two explicit experimental editions: `editorial-spine` and `editorial-fund`.
@@ -69,8 +68,8 @@ them a public interface should expose—remains open.
 - Created `plenitude/config.js` — 7 section intros, image slots, behavioral/synthesis instructions
 - Created `plenitude/public/index.html`, `style.css`, `app.js` (textId: `'plenitude'`)
 - Added `'plenitude'` to `ALLOWED_TEXT_IDS` in `api/chat.js` and `api/evolve.js`
-- Added the generic spine-and-fund editorial schema and author editor, with
-  Section 5 as the first packaged example (`editorial/`)
+- Added the generic spine-and-fund editorial schema and author editor; all seven
+  sections are packaged, with Section 5 as the first populated-fund example (`editorial/`)
 - Added controlled local `editorial-spine` and `editorial-fund` guide/harness modes,
   including a per-section record of which optional entries were actually presented
 - Completed the first matched collaborative pair. Two of four entries were used; the

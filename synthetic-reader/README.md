@@ -64,10 +64,11 @@ The Section 5 experiment showed a limitation in full-section synthesis: detailed
 additions may be accurate and supportive while damaging the balance and rhythm of the
 continuous essay. The planned editorial representation therefore separates a concise
 narrative spine from a fund of optional material the guide can select for different
-readers. The generic schema, first Section 5 package, and local author editor are now
-implemented under `editorial/`; see root `EDITORIAL-ARCHITECTURE.md`.
+readers. The generic schema, packages for all seven *Plenitude* sections, and local
+author editor are now implemented under `editorial/`; see root
+`EDITORIAL-ARCHITECTURE.md`.
 
-The guide and synthetic reader can now consume the local Section 5 package through
+The guide and synthetic reader can consume any local *Plenitude* package through
 two explicit experiment-only editions:
 
 - `editorial-spine` gives the guide the packaged spine and no fund entries.
@@ -121,9 +122,10 @@ option (see the root `INTERTEXT-DESIGN-NOTES.md`, §3, and `uncanny/CLAUDE.md`,
 consent flag — every synthetic run behaves like a non-contributing reader choosing
 between those two editions.
 
-The editorial editions currently require `--text plenitude --section 5`; the CLI
-fails clearly for any section without a package rather than silently switching to a
-different text. They require the local `npm run dev` server from this branch. The
+The editorial editions currently require `--text plenitude`; all seven sections are
+packaged, although only Section 5 initially has fund entries. The CLI fails clearly
+for any section without a package rather than silently switching to a different text.
+They require the local `npm run dev` server from this branch. The
 static editorial browser on port 4173 cannot serve `/api/chat`.
 
 ## Environment variables

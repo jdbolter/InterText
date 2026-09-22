@@ -22,16 +22,27 @@ test('recognizes only the two local editorial experiment editions', () => {
   assert.equal(isEditorialEdition('original'), false);
 });
 
-test('loads the generated Plenitude Section 5 package by stable section order', () => {
-  const section = loadEditorialSection({ rootDir: ROOT, textId: 'plenitude', sectionIndex: 4 });
-  assert.equal(section.sectionId, 'shocking-art');
-  assert.equal(section.spine.length, 10);
-  assert.equal(section.fundEntries.length, 4);
+test('loads every generated Plenitude package by stable section order', () => {
+  const expected = [
+    ['great-divide', 4, 0],
+    ['philadelphia-symphony-story', 8, 0],
+    ['class-in-america', 2, 0],
+    ['case-of-music', 7, 0],
+    ['shocking-art', 10, 4],
+    ['art-as-special-interest', 17, 0],
+    ['communities-and-creativity', 8, 0],
+  ];
+  expected.forEach(([sectionId, passageCount, fundCount], sectionIndex) => {
+    const section = loadEditorialSection({ rootDir: ROOT, textId: 'plenitude', sectionIndex });
+    assert.equal(section.sectionId, sectionId);
+    assert.equal(section.spine.length, passageCount);
+    assert.equal(section.fundEntries.length, fundCount);
+  });
 });
 
 test('fails clearly when an experimental section has not been packaged', () => {
   assert.throws(
-    () => loadEditorialSection({ rootDir: ROOT, textId: 'plenitude', sectionIndex: 0 }),
+    () => loadEditorialSection({ rootDir: ROOT, textId: 'uncanny', sectionIndex: 0 }),
     /has no editorial package yet/
   );
 });

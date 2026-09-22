@@ -21,6 +21,17 @@ function normalize(text) {
   return String(text).replace(/\s+/g, ' ').trim();
 }
 
+function authoredSection(sectionOrder) {
+  const [heading, ...bodyBlocks] = fs.readFileSync(
+    path.join(root, 'plenitude', 'source_texts', 'sections', `section-${sectionOrder}.md`),
+    'utf8'
+  ).trim().split(/\n\s*\n/);
+  return {
+    title: heading.replace(/^##\s+/u, '').trim(),
+    body: bodyBlocks.join('\n\n'),
+  };
+}
+
 test('all editorial work manifests match the current text configs', () => {
   const discovered = discoverWorks(contentRoot);
   assert.deepEqual(discovered.map(({ work }) => work.id).sort(), [
@@ -71,6 +82,23 @@ test('Section 5 package preserves the complete authored spine and exposes four c
   assert.equal(normalize(packagedSpine), normalize(authored));
 });
 
+test('every Plenitude section is packaged without changing its authored prose', () => {
+  const { work, workDir } = discoverWorks(contentRoot).find(item => item.work.id === 'plenitude');
+  assert.equal(work.sections.length, 7);
+  assert.ok(work.sections.every(section => section.package));
+
+  const expectedPassageCounts = [4, 8, 2, 7, 10, 17, 8];
+  for (const section of work.sections.slice().sort((a, b) => a.order - b.order)) {
+    const sectionPackage = buildSectionPackage(work, section, workDir);
+    const source = authoredSection(section.order);
+    const packagedSpine = sectionPackage.spine.map(passage => passage.markdown).join('\n\n');
+    assert.equal(source.title, section.title, `Section ${section.order} source title changed`);
+    assert.equal(packagedSpine, source.body, `Section ${section.order} prose changed`);
+    assert.equal(sectionPackage.spine.length, expectedPassageCounts[section.order - 1]);
+    if (section.order !== 5) assert.deepEqual(sectionPackage.fundEntries, []);
+  }
+});
+
 test('section validation rejects a fund entry anchored to a nonexistent passage', () => {
   const { work, workDir } = discoverWorks(contentRoot).find(item => item.work.id === 'plenitude');
   const section = work.sections.find(item => item.id === 'shocking-art');
@@ -89,6 +117,7 @@ test('buildAll writes a portable editor index and validated section snapshot', (
     assert.equal(index.works.length, 3);
     assert.equal(index.works.flatMap(work => work.sections).length, 16);
     const plenitude = index.works.find(work => work.id === 'plenitude');
+    assert.ok(plenitude.sections.every(section => section.readiness === 'packaged'));
     const shockingArt = plenitude.sections.find(section => section.id === 'shocking-art');
     assert.equal(shockingArt.readiness, 'packaged');
     assert.equal(shockingArt.passageCount, 10);

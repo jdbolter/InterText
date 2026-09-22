@@ -10,37 +10,65 @@
           "id": "great-divide",
           "title": "The Great Divide",
           "order": 1,
-          "package": null,
-          "readiness": "not-started",
-          "packageUrl": null,
-          "fundCounts": null
+          "package": "sections/great-divide/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/plenitude/great-divide.json",
+          "versionId": "great-divide-editorial-v001",
+          "passageCount": 4,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
         },
         {
           "id": "philadelphia-symphony-story",
           "title": "The Philadelphia (Symphony) Story",
           "order": 2,
-          "package": null,
-          "readiness": "not-started",
-          "packageUrl": null,
-          "fundCounts": null
+          "package": "sections/philadelphia-symphony-story/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/plenitude/philadelphia-symphony-story.json",
+          "versionId": "philadelphia-symphony-story-editorial-v001",
+          "passageCount": 8,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
         },
         {
           "id": "class-in-america",
           "title": "Class in America",
           "order": 3,
-          "package": null,
-          "readiness": "not-started",
-          "packageUrl": null,
-          "fundCounts": null
+          "package": "sections/class-in-america/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/plenitude/class-in-america.json",
+          "versionId": "class-in-america-editorial-v001",
+          "passageCount": 2,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
         },
         {
           "id": "case-of-music",
           "title": "The Case of Music",
           "order": 4,
-          "package": null,
-          "readiness": "not-started",
-          "packageUrl": null,
-          "fundCounts": null
+          "package": "sections/case-of-music/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/plenitude/case-of-music.json",
+          "versionId": "case-of-music-editorial-v001",
+          "passageCount": 7,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
         },
         {
           "id": "shocking-art",
@@ -62,19 +90,33 @@
           "id": "art-as-special-interest",
           "title": "Art as a Special Interest",
           "order": 6,
-          "package": null,
-          "readiness": "not-started",
-          "packageUrl": null,
-          "fundCounts": null
+          "package": "sections/art-as-special-interest/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/plenitude/art-as-special-interest.json",
+          "versionId": "art-as-special-interest-editorial-v001",
+          "passageCount": 17,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
         },
         {
           "id": "communities-and-creativity",
           "title": "Communities and Creativity",
           "order": 7,
-          "package": null,
-          "readiness": "not-started",
-          "packageUrl": null,
-          "fundCounts": null
+          "package": "sections/communities-and-creativity/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/plenitude/communities-and-creativity.json",
+          "versionId": "communities-and-creativity-editorial-v001",
+          "passageCount": 8,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
         }
       ]
     },

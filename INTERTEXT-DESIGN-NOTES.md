@@ -2,7 +2,7 @@
 
 Design discussion recorded 2026-09-06 and extended through 2026-09-19. This is the **history of the design discussion**, including superseded ideas and proposals that have not been built. Start with [CURRENT-DESIGN.md](CURRENT-DESIGN.md) for the present design and proposed changes at a glance; use [EDITORIAL-ARCHITECTURE.md](EDITORIAL-ARCHITECTURE.md) for technical detail and implementation boundaries. The earlier portions below preserve the path by which the current decisions were reached.
 
-**Status:** mixed design and implementation record. The original 2026-09-06 discussion made no application changes. As of 2026-09-21, a universal content schema, validated build, Section 5 package, local author editor, controlled guide/synthetic-reader package path, two editorial-model passes, and versioned KV publication are implemented. The public current-edition reader consumes this model for packaged Section 5; unpackaged sections retain the earlier whole-section path. One matched collaborative comparison and one skeptical spine/fund comparison are complete. The first preflight correctly chose no change; a later replay of the archived collaborative spine session produced the first published child version after model review and official-source verification. That publication was not item-by-item human curation; Jay authorized the run, and Codex performed the final staging. Curious pairs and a fresh reading of the child version remain. The directions identified as Jay's choices are decisions; unimplemented mechanisms remain proposals unless explicitly identified otherwise.
+**Status:** mixed design and implementation record. The original 2026-09-06 discussion made no application changes. As of 2026-09-22, a universal content schema, validated build, faithful packages for all seven *Plenitude* sections, local author editor, controlled guide/synthetic-reader package path, two editorial-model passes, and versioned KV publication are implemented. The public current-edition reader consumes this model throughout *Plenitude*; the other works retain the earlier whole-section path. One matched collaborative comparison and one skeptical spine/fund comparison are complete. The first preflight correctly chose no change; a later replay of the archived collaborative spine session produced the first published child version after model review and official-source verification. That publication was not item-by-item human curation; Jay authorized the run, and Codex performed the final staging. Curious pairs and a fresh reading of the child version remain. The directions identified as Jay's choices are decisions; unimplemented mechanisms remain proposals unless explicitly identified otherwise.
 
 ## 1. Purpose and the change in direction
 
@@ -389,9 +389,9 @@ Settled direction for this revision: model-selected integration or omission; sea
   section packages. `editorial/lib/content.js` adds relational checks for stable,
   unique passage and entry IDs, valid anchors, and verified-source consistency.
 - `editorial/content/`: readable, local-first source packages. All three works and all
-  16 sections are registered; only `plenitude/shocking-art` is populated. Its spine is
-  the complete authored Section 5 divided into ten stable passages, with four candidate
-  fund entries extracted from the collaborative synthetic session of 2026-09-12.
+  16 sections are registered. All seven *Plenitude* sections are packaged as faithful
+  stable spines; Sections 1–4 and 6–7 begin with empty funds, while Section 5 contains
+  the accumulated fund material and provenance from the reading experiments.
 - `editorial/data/`: generated validated snapshots used by the workspace. Regenerate
   with `npm run editorial-build`; commit them together with their readable sources.
 - `api/editorial-seed/`: the deployable generated baseline used by serverless reading
