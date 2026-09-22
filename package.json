@@ -7,6 +7,7 @@
     "editorial-build": "node editorial/build-data.js",
     "editorial-preview": "npm run editorial-build && node --env-file-if-exists=.env.local editorial/serve.js",
     "editorial-kv": "node --env-file-if-exists=.env.local editorial/kv-admin.js",
+    "editorial-propose": "node --env-file-if-exists=.env.local editorial/propose-session.js",
     "synthetic-reader": "node --env-file-if-exists=.env.local synthetic-reader/cli.js",
     "synthetic-reader-evolve": "node --env-file-if-exists=.env.local synthetic-reader/evolve-cli.js",
     "test": "node --test synthetic-reader/test/*.test.js editorial/test/*.test.js"

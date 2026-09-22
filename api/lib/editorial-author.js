@@ -46,6 +46,8 @@ function createAuthorRevision({
   spine,
   fundEntries,
   changeSummary,
+  proposedEntryProvenance = {},
+  proposalId = null,
   updateId = `author-${crypto.randomUUID()}`,
   now = new Date(),
 }) {
@@ -76,10 +78,13 @@ function createAuthorRevision({
   }
 
   const revisedEntries = fundEntries.map(entry => {
-    const existing = currentEntries.get(trimmed(entry && entry.id));
+    const entryId = trimmed(entry && entry.id);
+    const existing = currentEntries.get(entryId);
     const provenance = existing
       ? clone(existing.provenance)
-      : { type: 'author-editor', sessionId: updateId, turns: [], artifactPath: null };
+      : proposedEntryProvenance[entryId]
+        ? clone(proposedEntryProvenance[entryId])
+        : { type: 'author-editor', sessionId: updateId, turns: [], artifactPath: null };
     return normalizeEntry(entry, provenance);
   });
 
@@ -129,6 +134,7 @@ function createAuthorRevision({
     updateId,
     mode: 'author-revision',
     decisionAuthority: 'author',
+    proposalId,
     workId: current.workId,
     sectionId: current.sectionId,
     parentVersionId: current.versionId,

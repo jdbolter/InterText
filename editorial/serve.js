@@ -9,6 +9,10 @@ const {
   loadCurrentSection,
   publishSectionVersion,
 } = require('../api/lib/editorial-store');
+const {
+  listProposalBundles,
+  loadProposalBundle,
+} = require('./lib/proposal-store');
 
 const root = __dirname;
 const port = Number(process.env.EDITORIAL_PORT || 4173);
@@ -56,6 +60,9 @@ function createEditorialHandler({
   loadSection = loadCurrentSection,
   makeAuthorRevision = createAuthorRevision,
   publishVersion = publishSectionVersion,
+  listProposals = listProposalBundles,
+  loadProposal = loadProposalBundle,
+  workspaceRoot = path.join(__dirname, '..'),
 } = {}) {
   return async (req, res) => {
   let requestUrl;
@@ -83,13 +90,13 @@ function createEditorialHandler({
     }
     try {
       const body = await readJsonBody(req);
-      const { textId, sectionIndex, baseVersionId, spine, fundEntries, changeSummary } = body || {};
+      const { textId, sectionIndex, baseVersionId, spine, fundEntries, changeSummary, proposalId } = body || {};
       if (!textId || !Number.isInteger(sectionIndex) || sectionIndex < 0 || !baseVersionId) {
         respond(res, 400, JSON.stringify({ error: 'Invalid author revision request' }), 'application/json; charset=utf-8');
         return;
       }
       const current = await initializeSection({
-        rootDir: path.join(__dirname, '..'),
+        rootDir: workspaceRoot,
         textId,
         sectionIndex,
       });
@@ -104,11 +111,36 @@ function createEditorialHandler({
         }), 'application/json; charset=utf-8');
         return;
       }
+      let proposedEntryProvenance = {};
+      if (proposalId) {
+        const proposal = loadProposal({ rootDir: workspaceRoot, proposalId });
+        if (!proposal) {
+          respond(res, 400, JSON.stringify({ error: 'The editorial proposal no longer exists' }), 'application/json; charset=utf-8');
+          return;
+        }
+        if (
+          !proposal.changed ||
+          proposal.workId !== textId ||
+          proposal.sectionOrder !== sectionIndex + 1 ||
+          proposal.baseVersionId !== baseVersionId
+        ) {
+          respond(res, 400, JSON.stringify({ error: 'The editorial proposal does not match this section version' }), 'application/json; charset=utf-8');
+          return;
+        }
+        const existingIds = new Set(current.sectionPackage.fundEntries.map(entry => entry.id));
+        proposedEntryProvenance = Object.fromEntries(
+          proposal.draftPackage.fundEntries
+            .filter(entry => !existingIds.has(entry.id))
+            .map(entry => [entry.id, entry.provenance])
+        );
+      }
       const revision = makeAuthorRevision({
         sectionPackage: current.sectionPackage,
         spine,
         fundEntries,
         changeSummary,
+        proposedEntryProvenance,
+        proposalId: proposalId || null,
       });
       const result = await publishVersion({
         currentPackage: current.sectionPackage,
@@ -150,7 +182,7 @@ function createEditorialHandler({
         return;
       }
       const current = await loadSection({
-        rootDir: path.join(__dirname, '..'),
+        rootDir: workspaceRoot,
         textId,
         sectionIndex,
       });
@@ -164,6 +196,22 @@ function createEditorialHandler({
       }), 'application/json; charset=utf-8');
     } catch (error) {
       respond(res, 502, JSON.stringify({ error: error.message }), 'application/json; charset=utf-8');
+    }
+    return;
+  }
+  if (pathname === '/api/editorial-proposals') {
+    try {
+      const textId = requestUrl.searchParams.get('textId');
+      const sectionId = requestUrl.searchParams.get('sectionId');
+      const baseVersionId = requestUrl.searchParams.get('baseVersionId');
+      if (!textId || !sectionId || !baseVersionId) {
+        respond(res, 400, JSON.stringify({ error: 'Invalid proposal request' }), 'application/json; charset=utf-8');
+        return;
+      }
+      const proposals = listProposals({ rootDir: workspaceRoot, workId: textId, sectionId, baseVersionId });
+      respond(res, 200, JSON.stringify({ proposals }), 'application/json; charset=utf-8');
+    } catch (error) {
+      respond(res, 500, JSON.stringify({ error: error.message }), 'application/json; charset=utf-8');
     }
     return;
   }

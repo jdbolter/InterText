@@ -20,6 +20,27 @@ npm run editorial-preview
 
 Open `http://127.0.0.1:4173`. Stop the server with Control-C.
 
+### Review a synthetic reading without publishing it
+
+After completing a synthetic-reader session, run the two-pass spine-and-fund editorial
+process separately:
+
+```bash
+npm run editorial-propose -- --session synthetic-reader/output/<run-folder> --section 1
+```
+
+This sends the current section package and the recorded contributing exchange to the
+configured Anthropic API. It may read the current KV head when KV is configured, but
+it never initializes or writes KV. The proposal, independent review, and reviewed
+draft are saved under the gitignored `editorial/proposals/` directory. Restart or
+refresh `npm run editorial-preview`; a matching proposal appears above the spine.
+
+Choosing **Review proposed changes** loads the reviewed subset as an unpublished
+author draft. The author can revise spine prose, alter or reject fund entries, and
+inspect the two model passes. **Discard proposal** writes nothing. **Publish author
+revision** is the only action that creates a KV child version, and it refuses to save
+if the section head has changed since proposal generation.
+
 `editorial-preview` always runs the build first. To validate and regenerate the static
 data without starting a server:
 

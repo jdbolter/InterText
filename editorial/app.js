@@ -7,7 +7,7 @@ const SOURCE_STATUSES = ['not-required', 'needs-verification', 'verified'];
 const state = {
   index: null, work: null, section: null, package: null, packageSource: null,
   selectedPassageId: null, editing: false, draft: null, baseVersionId: null,
-  dirty: false, saving: false,
+  dirty: false, saving: false, proposals: [], activeProposal: null,
 };
 
 const els = {
@@ -32,6 +32,11 @@ const els = {
   publishSection: document.querySelector('#publish-section'),
   addFundEntry: document.querySelector('#add-fund-entry'),
   editorNotice: document.querySelector('#editor-notice'),
+  proposalPanel: document.querySelector('#proposal-panel'),
+  proposalTitle: document.querySelector('#proposal-title'),
+  proposalSummary: document.querySelector('#proposal-summary'),
+  proposalDetails: document.querySelector('#proposal-details'),
+  reviewProposal: document.querySelector('#review-proposal'),
 };
 
 function clone(value) { return JSON.parse(JSON.stringify(value)); }
@@ -305,6 +310,7 @@ function renderFundEntryEditor(entry) {
   card.className = 'fund-card fund-card--editing';
   card.dataset.entryId = entry.id;
   const existing = state.package.fundEntries.some(candidate => candidate.id === entry.id);
+  card.classList.toggle('fund-card--proposed', Boolean(state.activeProposal && !existing));
 
   const identity = document.createElement('div');
   identity.className = 'editor-grid editor-grid--identity';
@@ -449,6 +455,9 @@ function renderSpine() {
   sectionPackage.spine.forEach((passage, index) => {
     const article = document.createElement('article');
     article.className = `passage${state.editing ? ' passage--editing' : ''}`;
+    if (state.activeProposal && passage.markdown !== state.package.spine[index].markdown) {
+      article.classList.add('passage--proposed');
+    }
     article.dataset.passageId = passage.id;
     article.classList.toggle('is-selected', passage.id === state.selectedPassageId);
     const label = document.createElement('div');
@@ -488,8 +497,46 @@ function updateEditingChrome() {
   els.workSelect.disabled = state.editing || state.saving;
   els.publishSection.disabled = state.saving || !state.dirty;
   els.publishSection.textContent = state.saving ? 'Publishing…' : 'Publish author revision';
+  els.cancelEdit.textContent = state.activeProposal ? 'Discard proposal' : 'Cancel';
   els.cancelEdit.disabled = state.saving;
   document.body.classList.toggle('is-editing', state.editing);
+}
+
+function proposalReviewText(proposal) {
+  const firstPass = proposal.proposal || {};
+  const review = proposal.review || {};
+  const lines = [
+    `First pass: ${firstPass.decision || 'no decision'}`,
+    firstPass.changeSummary || proposal.changeSummary,
+    '',
+    `Spine operations: ${(firstPass.spineUpdates || []).length}`,
+    ...(firstPass.spineUpdates || []).map(update => `• ${update.passageId}: ${update.rationale}`),
+    '',
+    `Fund operations: ${(firstPass.fundOperations || []).length}`,
+    ...(firstPass.fundOperations || []).map((operation, index) => (
+      `• ${index + 1}. ${operation.operation}${operation.entry ? ` ${operation.entry.id}` : ` ${operation.targetEntryId || ''}`}: ${operation.rationale}`
+    )),
+    '',
+    `Independent review: ${review.decision || 'not run'}`,
+    review.summary || '',
+    ...(review.spineReviews || []).map(item => `• ${item.approved ? 'approved' : 'rejected'} ${item.passageId}: ${item.reason}`),
+    ...(review.fundReviews || []).map(item => `• ${item.approved ? `approved as ${item.publishStatus}` : 'rejected'} fund operation ${item.operationIndex + 1}: ${item.reason}`),
+  ];
+  return lines.filter((line, index) => line || lines[index - 1]).join('\n').trim();
+}
+
+function renderProposalPanel() {
+  const proposal = state.proposals[0];
+  els.proposalPanel.hidden = state.editing || !proposal;
+  if (!proposal) return;
+  els.proposalTitle.textContent = proposal.changed
+    ? 'Reviewed changes are ready for your decision'
+    : 'The editorial passes proposed no change';
+  els.proposalSummary.textContent = proposal.changed
+    ? proposal.changeSummary
+    : proposal.changeSummary || 'No durable spine or fund change was recommended.';
+  els.proposalDetails.textContent = proposalReviewText(proposal);
+  els.reviewProposal.hidden = !proposal.changed;
 }
 
 function renderSection() {
@@ -511,7 +558,7 @@ function renderSection() {
     els.sectionSummary.append(version, counts);
     if (state.editing) els.sectionSummary.append(makeChip('Unpublished author draft'));
   } else els.sectionSummary.textContent = 'Not yet packaged';
-  renderSpine(); renderFund(); updateEditingChrome();
+  renderSpine(); renderFund(); renderProposalPanel(); updateEditingChrome();
 }
 
 function guardDiscard() {
@@ -521,7 +568,8 @@ function guardDiscard() {
 
 async function selectSection(section) {
   state.section = section; state.selectedPassageId = null; state.package = null; state.packageSource = null;
-  state.editing = false; state.draft = null; state.dirty = false; clearNotice(); renderSection();
+  state.editing = false; state.draft = null; state.dirty = false; state.proposals = []; state.activeProposal = null;
+  clearNotice(); renderSection();
   if (!section.packageUrl) return;
   try {
     const currentUrl = `/api/current-section?textId=${encodeURIComponent(state.work.id)}&sectionIndex=${section.order - 1}`;
@@ -533,6 +581,14 @@ async function selectSection(section) {
       response = await fetch(section.packageUrl);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       state.package = normalizePackage(await response.json()); state.packageSource = 'seed';
+    }
+    const proposalUrl = `/api/editorial-proposals?textId=${encodeURIComponent(state.work.id)}`
+      + `&sectionId=${encodeURIComponent(state.package.sectionId)}`
+      + `&baseVersionId=${encodeURIComponent(state.package.versionId)}`;
+    const proposalResponse = await fetch(proposalUrl);
+    if (proposalResponse.ok) {
+      const result = await proposalResponse.json();
+      state.proposals = result.proposals || [];
     }
     if (state.section.id === section.id) renderSection();
   } catch (error) { showFatalError(`Could not load ${section.title}: ${error.message}`); }
@@ -556,9 +612,27 @@ function beginEdit() {
   els.changeSummary.value = ''; renderSection();
 }
 
+function beginProposalReview() {
+  const proposal = state.proposals[0];
+  if (!state.package || !proposal?.changed || !proposal.draftPackage) return;
+  clearNotice();
+  state.editing = true;
+  state.activeProposal = proposal;
+  state.draft = clone(normalizePackage(state.package));
+  state.draft.spine = clone(proposal.draftPackage.spine);
+  state.draft.fundEntries = clone(proposal.draftPackage.fundEntries);
+  state.baseVersionId = state.package.versionId;
+  state.selectedPassageId = null;
+  state.dirty = true;
+  els.changeSummary.value = proposal.changeSummary;
+  renderSection();
+  showNotice('Proposal loaded as an unpublished draft. Revise it freely, set fund statuses, then publish or discard it.', 'info');
+}
+
 function cancelEdit() {
   if (!guardDiscard()) return;
   state.editing = false; state.draft = null; state.baseVersionId = null; state.dirty = false;
+  state.activeProposal = null;
   clearNotice(); renderSection();
 }
 
@@ -591,12 +665,14 @@ async function publishDraft() {
         textId: state.work.id, sectionIndex: state.section.order - 1,
         baseVersionId: state.baseVersionId, changeSummary,
         spine: state.draft.spine, fundEntries: state.draft.fundEntries,
+        proposalId: state.activeProposal?.proposalId || null,
       }),
     });
     const result = await response.json().catch(() => ({ error: `HTTP ${response.status}` }));
     if (!response.ok) throw new Error(result.error || `HTTP ${response.status}`);
     state.package = normalizePackage(result.sectionPackage); state.packageSource = result.source;
     state.editing = false; state.draft = null; state.baseVersionId = null; state.dirty = false;
+    state.activeProposal = null; state.proposals = [];
     els.changeSummary.value = ''; renderSection();
     showNotice(`Published ${state.package.versionId} as an author revision.`, 'success');
   } catch (error) { showNotice(error.message, 'error'); }
@@ -614,6 +690,7 @@ els.editSection.addEventListener('click', beginEdit);
 els.cancelEdit.addEventListener('click', cancelEdit);
 els.publishSection.addEventListener('click', publishDraft);
 els.addFundEntry.addEventListener('click', addFundEntry);
+els.reviewProposal.addEventListener('click', beginProposalReview);
 els.changeSummary.addEventListener('input', updateEditingChrome);
 window.addEventListener('beforeunload', event => {
   if (!state.editing || !state.dirty) return;
