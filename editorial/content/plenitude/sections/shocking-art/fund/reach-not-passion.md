@@ -1,0 +1,1 @@
+What diminished was not controversy or passion as such. Both persist inside artistic communities. What diminished was their reach: the scale at which a verdict on a work could claim to speak for, or provoke, a broadly shared public rather than one local and optional community among many.

@@ -16,6 +16,9 @@ let readingEdition = 'evolving';
 let sectionHistoryStart = 0;
 const contributionHistory = [];
 const sectionHistories = new Map();
+const editorialVersionIds = new Map();
+const presentedFundEntryIds = new Map();
+const contributionSessionId = `intertext-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
 const completedSections = new Set();
 let sending = false;
 let endShown = false;
@@ -25,7 +28,7 @@ const SECTION_NUMERALS = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
 
 const SECTION_TITLES = [
   'The Great Divide',
-  'The Philadelphia Story',
+  'The Philadelphia (Orchestra) Story',
   'Class in America',
   'The Case of Music',
   'Shocking Art',
@@ -61,7 +64,7 @@ SECTION_IMAGES.forEach(section => {
 const SECTION_INTROS = [
   `<p>In June 2013, Jay Z performed for six hours at the Pace Gallery in Manhattan &mdash; one of the city&rsquo;s most prestigious white-box art spaces. Art-world figures and fans rotated through to stand across from him while he rapped. Marina Abramović, who had spent 30 days sitting motionless at MOMA staring at strangers, appeared as one of his partners. Everyone was delighted.</p>`,
 
-  `<p>In April 2011, the Philadelphia Symphony Orchestra filed for Chapter 11 bankruptcy &mdash; the first of America&rsquo;s &ldquo;Big Five&rdquo; orchestras ever to do so. It had been playing for over a century. In 1939, its director Leopold Stokowski appeared as a silhouetted figure in Disney&rsquo;s <em>Fantasia</em>, where Mickey Mouse greeted him with nervous reverence. By 2011, the orchestra&rsquo;s problem was not reverence but revenue.</p>`,
+  `<p>In April 2011, the Philadelphia Orchestra filed for Chapter 11 bankruptcy &mdash; the first of America&rsquo;s &ldquo;Big Five&rdquo; orchestras ever to do so. It had been playing for over a century. In 1939, its director Leopold Stokowski appeared as a silhouetted figure in Disney&rsquo;s <em>Fantasia</em>, where Mickey Mouse greeted him with nervous reverence. By 2011, the orchestra&rsquo;s problem was not reverence but revenue.</p>`,
 
   `<p>In the 1940s, major American newspapers ran society columns. Today, where they still exist, they read like dispatches from a costume party. Paris Hilton is a &ldquo;socialite&rdquo; &mdash; a word that now designates someone famous for being famous. In the 1920s, Fitzgerald said the rich were different from us. Hemingway reportedly replied: yes, they have more money. American culture eventually chose Hemingway&rsquo;s answer.</p>`,
 
@@ -129,16 +132,28 @@ document.getElementById('finish-btn').addEventListener('click', async () => {
 
 async function saveCurrentSection() {
   if (!saveConsent) return;
+  const sectionToSave = sectionIndex;
   const slice = contributionHistory.slice(sectionHistoryStart);
   if (slice.length === 0) return;
   try {
-    await fetch('/api/evolve', {
+    const res = await fetch('/api/evolve', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ sectionIndex, conversationHistory: slice, textId: 'plenitude' })
+      body: JSON.stringify({
+        sectionIndex: sectionToSave,
+        conversationHistory: slice,
+        textId: 'plenitude',
+        sessionId: contributionSessionId,
+        baseVersionId: editorialVersionIds.get(sectionToSave) || null,
+      })
     });
-  } catch {
-    // silent failure — saving is best-effort
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Editorial update failed');
+    if (data.editorial?.versionId) editorialVersionIds.set(sectionToSave, data.editorial.versionId);
+    return data;
+  } catch (error) {
+    appendSystemMessage(`Your contribution could not be saved: ${error.message}`);
+    return null;
   }
 }
 
@@ -322,6 +337,10 @@ async function send() {
         body: JSON.stringify({
           message: text, history, sectionIndex: activeSection,
           shownImages: Array.from(shownImages), textId: 'plenitude', edition: readingEdition,
+          presentedFundEntryIds: Array.from(presentedFundEntryIds.get(activeSection) || []),
+          ...(editorialVersionIds.has(activeSection)
+            ? { editorialVersionId: editorialVersionIds.get(activeSection) }
+            : {}),
           ...(continuing ? { action: 'continue', sectionHistory: sectionHistories.get(activeSection) || [] } : {})
         })
       });
@@ -330,6 +349,14 @@ async function send() {
         throw new Error('No reading response');
       }
       if (data.response) {
+        if (data.editorial?.packageVersionId && !editorialVersionIds.has(activeSection)) {
+          editorialVersionIds.set(activeSection, data.editorial.packageVersionId);
+        }
+        if (Array.isArray(data.editorial?.usedFundEntryIds)) {
+          const used = presentedFundEntryIds.get(activeSection) || new Set();
+          data.editorial.usedFundEntryIds.forEach(id => used.add(id));
+          presentedFundEntryIds.set(activeSection, used);
+        }
         const turns = [
           { role: 'user', content: continuing ? CONTINUE_MESSAGE : text },
           { role: 'assistant', content: data.response }

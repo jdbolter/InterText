@@ -55,7 +55,7 @@ culture. The great division between elite art and popular culture has
 almost, but not quite, vanished. What replaces that division is not a
 consensus about art, but a wide range of different attitudes.
 
-The Philadelphia (Symphony) Story
+The Philadelphia (Orchestra) Story
 
 In April, 2011 the Philadelphia Symphony orchestra filed for Chapter 11
 protection from creditors; it was the first time that one of the \"Big

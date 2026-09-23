@@ -1,6 +1,14 @@
 const Anthropic = require('@anthropic-ai/sdk');
+const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
+const { evolveEditorialSection } = require('./lib/editorial-evolution');
+const { formatSpine } = require('./lib/editorial-package');
+const {
+  ensureSectionInitialized,
+  loadCurrentSection,
+  publishSectionVersion,
+} = require('./lib/editorial-store');
 
 const client = new Anthropic();
 
@@ -67,7 +75,8 @@ async function writeEvolved(textId, data) {
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { sectionIndex, conversationHistory, textId } = req.body;
+  const { sectionIndex, conversationHistory, textId, dryRun, sessionId, baseVersionId } = req.body;
+  const isDryRun = dryRun === true;
 
   if (!ALLOWED_TEXT_IDS.includes(textId)) {
     return res.status(400).json({ error: 'Unknown text' });
@@ -80,8 +89,88 @@ module.exports = async function handler(req, res) {
   const config = getConfig(textId);
   const sections = getSections(textId);
   const idx = Math.max(0, Math.min(Math.floor(sectionIndex), sections.length - 1));
-  const evolved = await readEvolved(textId);
-  const currentText = evolved[idx] ?? sections[idx];
+
+  if (!isDryRun) {
+    try {
+      const initialized = await ensureSectionInitialized({ textId, sectionIndex: idx });
+      if (initialized) {
+        const contributionSessionId = typeof sessionId === 'string' && sessionId.trim()
+          ? sessionId.trim()
+          : `anonymous-${crypto.randomUUID()}`;
+
+        for (let attempt = 0; attempt < 2; attempt += 1) {
+          const current = attempt === 0
+            ? initialized
+            : await loadCurrentSection({ textId, sectionIndex: idx });
+          const currentPackage = current.sectionPackage;
+          const result = await evolveEditorialSection({
+            client,
+            sectionPackage: currentPackage,
+            conversationHistory,
+            sessionId: contributionSessionId,
+          });
+
+          if (!result.changed) {
+            const currentText = formatSpine(currentPackage);
+            return res.status(200).json({
+              revised: currentText,
+              original: currentText,
+              editorial: {
+                updated: false,
+                versionId: currentPackage.versionId,
+                reason: result.proposal?.decision || result.review?.decision || 'no-change',
+              },
+            });
+          }
+
+          const updateRecord = {
+            schemaVersion: 1,
+            updateId: result.updateId,
+            sessionId: contributionSessionId,
+            workId: currentPackage.workId,
+            sectionId: currentPackage.sectionId,
+            readerBaseVersionId: typeof baseVersionId === 'string' ? baseVersionId : null,
+            parentVersionId: currentPackage.versionId,
+            versionId: result.nextPackage.versionId,
+            createdAt: result.nextPackage.createdAt,
+            conversationHistory,
+            proposal: result.proposal,
+            review: result.review,
+          };
+          const published = await publishSectionVersion({
+            currentPackage,
+            nextPackage: result.nextPackage,
+            updateRecord,
+            updateId: result.updateId,
+          });
+          if (published.published) {
+            return res.status(200).json({
+              original: formatSpine(currentPackage),
+              revised: formatSpine(result.nextPackage),
+              editorial: {
+                updated: true,
+                previousVersionId: currentPackage.versionId,
+                versionId: result.nextPackage.versionId,
+                changeSummary: result.nextPackage.changeSummary,
+              },
+            });
+          }
+        }
+        return res.status(409).json({ error: 'The section changed concurrently; please retry the contribution' });
+      }
+    } catch (err) {
+      console.error(`Editorial evolution failed for ${textId}[${idx}]:`, err);
+      return res.status(500).json({ error: 'Editorial update failed, nothing saved' });
+    }
+  }
+
+  // A dry run (synthetic-reader's evolve preview — see synthetic-reader/lib/evolveClient.js)
+  // never reads or writes KV at all: it always starts from the pristine authored text,
+  // regardless of what real readers may have already evolved it into, so that repeated
+  // synthetic runs are comparable against the same fixed baseline instead of a moving
+  // target. It must never persist anything — see the isDryRun guard near the bottom.
+  const evolved = isDryRun ? {} : await readEvolved(textId);
+  const currentText = isDryRun ? sections[idx] : (evolved[idx] ?? sections[idx]);
 
   const conversationTranscript = conversationHistory
     .map(m => `${m.role === 'user' ? 'Reader' : 'Guide'}: ${m.content}`)
@@ -132,10 +221,12 @@ module.exports = async function handler(req, res) {
       return res.status(502).json({ error: 'Synthesis failed, nothing saved' });
     }
 
-    evolved[idx] = revised;
-    await writeEvolved(textId, evolved);
+    if (!isDryRun) {
+      evolved[idx] = revised;
+      await writeEvolved(textId, evolved);
+    }
 
-    return res.status(200).json({ revised });
+    return res.status(200).json({ revised, original: currentText });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: 'API error' });

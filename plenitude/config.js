@@ -15,7 +15,7 @@ module.exports = {
 
   sectionNames: [
     'The Great Divide',
-    'The Philadelphia (Symphony) Story',
+    'The Philadelphia (Orchestra) Story',
     'Class in America',
     'The Case of Music',
     'Shocking Art',
@@ -26,7 +26,7 @@ module.exports = {
   sectionIntros: [
     `In June 2013, Jay Z performed for six hours at the Pace Gallery in Manhattan — one of the city's most prestigious white-box art spaces. Art-world figures and fans rotated through to stand across from him while he rapped. Marina Abramović, who had spent 30 days sitting motionless at MOMA staring at strangers, appeared as one of his partners. Everyone was delighted.`,
 
-    `In April 2011, the Philadelphia Symphony Orchestra filed for Chapter 11 bankruptcy — the first of America's "Big Five" orchestras ever to do so. It had been playing for over a century. In 1939, its director Leopold Stokowski appeared as a silhouetted figure in Disney's Fantasia, where Mickey Mouse greeted him with nervous reverence. By 2011, the orchestra's problem was not reverence but revenue.`,
+    `In April 2011, the Philadelphia Orchestra filed for Chapter 11 bankruptcy — the first of America's "Big Five" orchestras ever to do so. It had been playing for over a century. In 1939, its director Leopold Stokowski appeared as a silhouetted figure in Disney's Fantasia, where Mickey Mouse greeted him with nervous reverence. By 2011, the orchestra's problem was not reverence but revenue.`,
 
     `In the 1940s, major American newspapers ran society columns. Today, where they still exist, they read like dispatches from a costume party. Paris Hilton is a "socialite" — a word that now designates someone famous for being famous. In the 1920s, Fitzgerald said the rich were different from us. Hemingway reportedly replied: yes, they have more money. American culture eventually chose Hemingway's answer.`,
 
@@ -86,6 +86,8 @@ Rules:
 - Do not add material that contradicts the original.
 - Preserve sentence rhythm and register. This is a serious, intellectually precise essay — not a blog post.
 - Incorporate insights, examples, and threads from the conversation wherever they illuminate the essay's themes — even by extension or analogy. Be willing to add a new sentence, example, or short passage if the conversation warrants it.
+- Treat source links in the conversation as editorial material. When the revision incorporates a factual correction, example, or claim that is materially supported by a supplied source, retain that source as a descriptive Markdown link — either naturally linked in the relevant sentence or in a brief Sources note at the end. Preserve the supplied URL exactly; never invent, complete, or alter a URL.
+- Do not include a source merely because it appeared in the conversation. Omit links whose supporting material was not incorporated, and avoid burdening the prose with citations for commonplace or purely interpretive claims.
 - If the conversation produced nothing relevant to the essay's argument, return the section unchanged.
 - Do not exceed {{WORD_LIMIT}} words total. Within that limit, feel free to add substantive new material where the conversation warrants it.
 - Always end on a complete sentence. Never cut off mid-sentence or mid-thought.

@@ -1,0 +1,11 @@
+{
+  "sourceSession": "synthetic-reader/output/2026-09-12T18-55-01-898Z_plenitude_collaborative_section5/session.json",
+  "textId": "plenitude",
+  "sectionNumber": 5,
+  "profileId": "collaborative",
+  "baseUrl": "http://localhost:3000",
+  "startedAt": "2026-09-12T18:58:16.227Z",
+  "finishedAt": "2026-09-12T18:58:58.085Z",
+  "originalWordCount": 1715,
+  "revisedWordCount": 2197
+}

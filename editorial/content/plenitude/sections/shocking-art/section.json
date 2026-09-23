@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "editionId": "editorial-preview",
+  "versionId": "shocking-art-editorial-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-09-13T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "plenitude/source_texts/sections/section-5.md"
+  },
+  "spineFile": "spine.md",
+  "fundEntries": [
+    {
+      "id": "shared-evaluative-field",
+      "title": "A shared evaluative field",
+      "anchors": ["shocking-art-p02"],
+      "kind": "clarification",
+      "status": "candidate",
+      "markdownFile": "fund/shared-evaluative-field.md",
+      "useWhen": "Use when a reader asks whether public fury demonstrates art's importance or merely its social salience.",
+      "thread": null,
+      "sourceStatus": "not-required",
+      "sources": [],
+      "provenance": {
+        "type": "synthetic-reader",
+        "sessionId": "2026-09-12T18-55-01-898Z",
+        "turns": [1, 2],
+        "artifactPath": "editorial/content/plenitude/sections/shocking-art/provenance/2026-09-12-collaborative/transcript.md"
+      }
+    },
+    {
+      "id": "futurism-and-dada",
+      "title": "Futurism and Dada were not one program",
+      "anchors": ["shocking-art-p02"],
+      "kind": "qualification",
+      "status": "candidate",
+      "markdownFile": "fund/futurism-and-dada.md",
+      "useWhen": "Use when a knowledgeable reader questions whether the two avant-gardes are being flattened into the same negative project.",
+      "thread": null,
+      "sourceStatus": "needs-verification",
+      "sources": [],
+      "provenance": {
+        "type": "synthetic-reader",
+        "sessionId": "2026-09-12T18-55-01-898Z",
+        "turns": [4],
+        "artifactPath": "editorial/content/plenitude/sections/shocking-art/provenance/2026-09-12-collaborative/transcript.md"
+      }
+    },
+    {
+      "id": "armory-show-ridicule",
+      "title": "Ridicule at the Armory Show",
+      "anchors": ["shocking-art-p03"],
+      "kind": "example",
+      "status": "candidate",
+      "markdownFile": "fund/armory-show-ridicule.md",
+      "useWhen": "Use when a reader wants a concrete example of how American critics registered the avant-garde as a violation worth answering.",
+      "thread": null,
+      "sourceStatus": "needs-verification",
+      "sources": [],
+      "provenance": {
+        "type": "synthetic-reader",
+        "sessionId": "2026-09-12T18-55-01-898Z",
+        "turns": [4],
+        "artifactPath": "editorial/content/plenitude/sections/shocking-art/provenance/2026-09-12-collaborative/transcript.md"
+      }
+    },
+    {
+      "id": "reach-not-passion",
+      "title": "The loss is reach, not passion",
+      "anchors": ["shocking-art-p01", "shocking-art-p07"],
+      "kind": "qualification",
+      "status": "candidate",
+      "markdownFile": "fund/reach-not-passion.md",
+      "useWhen": "Use when a reader objects that contemporary art communities still possess strong norms, controversies, and passionate publics.",
+      "thread": null,
+      "sourceStatus": "not-required",
+      "sources": [],
+      "provenance": {
+        "type": "synthetic-reader",
+        "sessionId": "2026-09-12T18-55-01-898Z",
+        "turns": [2],
+        "artifactPath": "editorial/content/plenitude/sections/shocking-art/provenance/2026-09-12-collaborative/transcript.md"
+      }
+    }
+  ],
+  "changeSummary": "Initial editorial package: authored Section 5 spine plus four candidate fund entries extracted from the collaborative synthetic reading."
+}

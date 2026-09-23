@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "works": [
+    {
+      "id": "plenitude",
+      "title": "Plenitude",
+      "order": 1,
+      "sections": [
+        {
+          "id": "great-divide",
+          "title": "The Great Divide",
+          "order": 1,
+          "package": "sections/great-divide/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/plenitude/great-divide.json",
+          "versionId": "great-divide-editorial-v001",
+          "passageCount": 4,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "philadelphia-symphony-story",
+          "title": "The Philadelphia (Orchestra) Story",
+          "order": 2,
+          "package": "sections/philadelphia-symphony-story/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/plenitude/philadelphia-symphony-story.json",
+          "versionId": "philadelphia-symphony-story-editorial-v001",
+          "passageCount": 8,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "class-in-america",
+          "title": "Class in America",
+          "order": 3,
+          "package": "sections/class-in-america/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/plenitude/class-in-america.json",
+          "versionId": "class-in-america-editorial-v001",
+          "passageCount": 2,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "case-of-music",
+          "title": "The Case of Music",
+          "order": 4,
+          "package": "sections/case-of-music/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/plenitude/case-of-music.json",
+          "versionId": "case-of-music-editorial-v001",
+          "passageCount": 7,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "shocking-art",
+          "title": "Shocking Art",
+          "order": 5,
+          "package": "sections/shocking-art/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/plenitude/shocking-art.json",
+          "versionId": "shocking-art-editorial-v001",
+          "passageCount": 10,
+          "fundCounts": {
+            "candidate": 4,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "art-as-special-interest",
+          "title": "Art as a Special Interest",
+          "order": 6,
+          "package": "sections/art-as-special-interest/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/plenitude/art-as-special-interest.json",
+          "versionId": "art-as-special-interest-editorial-v001",
+          "passageCount": 17,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "communities-and-creativity",
+          "title": "Communities and Creativity",
+          "order": 7,
+          "package": "sections/communities-and-creativity/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/plenitude/communities-and-creativity.json",
+          "versionId": "communities-and-creativity-editorial-v001",
+          "passageCount": 8,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "uncanny",
+      "title": "The Uncanny",
+      "order": 2,
+      "sections": [
+        {
+          "id": "uncanny-valley-and-double",
+          "title": "The Uncanny Valley and the Uncanny Double",
+          "order": 1,
+          "package": null,
+          "readiness": "not-started",
+          "packageUrl": null,
+          "fundCounts": null
+        },
+        {
+          "id": "film-and-the-uncanny",
+          "title": "Film and the Uncanny",
+          "order": 2,
+          "package": null,
+          "readiness": "not-started",
+          "packageUrl": null,
+          "fundCounts": null
+        },
+        {
+          "id": "double-in-film",
+          "title": "The Double in Film",
+          "order": 3,
+          "package": null,
+          "readiness": "not-started",
+          "packageUrl": null,
+          "fundCounts": null
+        },
+        {
+          "id": "uncanny-avatars",
+          "title": "Uncanny Avatars in Mirror Worlds",
+          "order": 4,
+          "package": null,
+          "readiness": "not-started",
+          "packageUrl": null,
+          "fundCounts": null
+        },
+        {
+          "id": "feature-not-bug",
+          "title": "The Uncanny is a Feature, not a Bug",
+          "order": 5,
+          "package": null,
+          "readiness": "not-started",
+          "packageUrl": null,
+          "fundCounts": null
+        }
+      ]
+    },
+    {
+      "id": "blood-on-the-wall",
+      "title": "Blood on the Wall",
+      "order": 3,
+      "sections": [
+        {
+          "id": "shot-heard-in-berlin",
+          "title": "The Shot Heard in Berlin",
+          "order": 1,
+          "package": null,
+          "readiness": "not-started",
+          "packageUrl": null,
+          "fundCounts": null
+        },
+        {
+          "id": "graduated-pressure",
+          "title": "Graduated Pressure",
+          "order": 2,
+          "package": null,
+          "readiness": "not-started",
+          "packageUrl": null,
+          "fundCounts": null
+        },
+        {
+          "id": "fog-of-distrust",
+          "title": "A Fog of Distrust",
+          "order": 3,
+          "package": null,
+          "readiness": "not-started",
+          "packageUrl": null,
+          "fundCounts": null
+        },
+        {
+          "id": "files-break-open",
+          "title": "The Files Break Open",
+          "order": 4,
+          "package": null,
+          "readiness": "not-started",
+          "packageUrl": null,
+          "fundCounts": null
+        }
+      ]
+    }
+  ]
+}

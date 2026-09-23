@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "workId": "plenitude",
+  "sectionId": "communities-and-creativity",
+  "sectionOrder": 7,
+  "title": "Communities and Creativity",
+  "editionId": "editorial-preview",
+  "versionId": "communities-and-creativity-editorial-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-09-22T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "plenitude/source_texts/sections/section-7.md"
+  },
+  "spine": [
+    {
+      "id": "communities-and-creativity-p01",
+      "markdown": "As we have said, the development of digital media did not cause the\nbreakdown of the hierarchy of art and other high cultural forms. The two\nhappened in parallel after the Second World War, and indeed by the time\nthe major digital media (videogames, the personal computer, the World\nWide Web, mobile phones and tablets) were developed, the breakdown of\nhierarchy was unavoidable. But digital media have been developed in a\nway that provides an ideal framework for the plenitude of forms that\nhave arisen out of the fragments of modernist culture. Producers,\ndesigners, and programmers have fashioned these technologies into a\nfluid environment in which all sorts of practices are possible and\nequally legitimate. On the World Wide Web, the official web page for the\nMetropolitan Museum has the same status as deviantArt, although\ndeviantArt has considerable more visitors (it scores much higher in the\nratings of Alexa.com). The Web with its social media often accessed by\nmobile technology now constitutes the matrix for today's communities of\nexpression and participation."
+    },
+    {
+      "id": "communities-and-creativity-p02",
+      "markdown": "In *Convergence Culture : Where Old and New Media Collide*, Henry\nJenkins describes today's media communities:\n\n> \\\"New forms of community are emerging\\...: these new communities are\n> defined through voluntary, temporary, and tactical affiliations,\n> reaffirmed through common intellectual enterprises and emotional\n> investments. Members may shift from one group to another as their\n> interests and needs change... These communities, however, are held\n> together through the mutual production and reciprocal exchange of\n> knowledge.\\\" (27)"
+    },
+    {
+      "id": "communities-and-creativity-p03",
+      "markdown": "None of this knowledge is canonical in the traditional sense. It may be\nintricate knowledge about the Starship Enterprise or the customs of\nWookies or the backstory of minor characters in the Harry Potter novels.\nAlthough most people, if pressed, might still maintain that knowing\n*Hamlet* or *Macbeth* is more important than knowing Voldemort's seven\nhorcruxes, in practice, Shakespeare has become community knowledge\nrather than common knowledge. There is nothing that people outside the\ncommunity need to know. Jenkins's description could be applied to the\nwhole cultural plenitude today, but he was thinking in particular of\nthose interest groups that function in and through fan culture. The\ncommon intellectual enterprises he is referring to might include an\narchive of fan fiction that recycles the characters and situations of\npopular fictive universes of Star Wars, Star Trek, Twilight, Harry\nPotter, Anne Rice Vampire novels, and so on. Alexandra Alter catalogues\nthese and more examples in an article in the *Wall Street Journal\nOnline* entitled \"The Weird World of Fan Fiction*,\"* pointing out:\n\"They\\'re amateur writers---with millions of readers. After years in the\nshadows, they\\'re starting to break into the mainstream\" (Alter 2012).\nShe notes that the erotic novelist E.L. James wrote fan fiction before\nproducing the print bestseller *Fifty Shades of Gray*. In the plenitude\nof digital media, however, there is nothing particularly weird about fan\nfiction. It is produced by a series of networked communities that taken\ntogether, as Alter recognizes, have millions of readers. What the\narticle refers to as the \"main stream\" is simply the community of\nreaders of print fiction by established publishing houses. Many of the\nreaders of James's \"mainstream\" novels will also be reading them as\ne-books."
+    },
+    {
+      "id": "communities-and-creativity-p04",
+      "markdown": "The established communities of art and culture of the past have changed\ncomparatively slowly. Even the avant-gardes of twentieth century with\ntheir rhetoric of revolution needed years or decades to break into and\npartly redefine the mainstream of the visual arts. For example, the\nimportant serial composers Schönberg, Webern, and Berg of the early\ntwentieth century are still seldom played by major orchestras. Film was\nnot considered an art form worth studying in universities until the\n1960s or later. But in the digital plenitude today, Jenkins\\'s\ncommunities \"defined through voluntary, temporary, and tactical\naffiliations\" form in weeks or months, employing the technologies of\nsocial media. Fan fiction has an honorable pedigree by these standards,\nwith an early community forming in the1970s around the Star Trek\ntelevision series. Before the Web, fan fiction was distributed using\nmimeograph or copying machines, and the process was necessarily slow and\nlimited. When fan fiction and so-called \"fan work\" moved to the Web,\nparticipation could increase tremendously, and communities could ramify\nand mutate quickly. The aggregator site fanlore.org lists dozens of Star\nTrek fansites, many of which may contain hundreds of individual story\ncontributions or more. Groups or even individuals may assemble their own\nonline communities, as Thomas Kinkade (or his company) succeeded in\ndoing around his own paintings and furniture products. Kinkade's website\nwith its virtual gallery served as a focus for the community and\ncontinues to do so after his death, and the physical manifestations\ninclude a chain of galleries (stores) and even a community in the\nAmerican sense, a gated housing development. Kinkade's art community\nmimics the elite worlds of art and design of the past, and it functions\nparallel to and independent of the traditional museum and gallery\nsystem. (Glaister 2012; Flegenheimer 2012)"
+    },
+    {
+      "id": "communities-and-creativity-p05",
+      "markdown": "Participatory fansites, DIY communities like deviantART, the remixes of\nYouTube, and the template-bound self-expression of social networking\nsites, all testify to a new conception of *creativity* as a synonym for\nart. The conception developed from the fragments of the collapsed elite\nculture and now includes the making or refashioning of almost anything\nfrom the new practices supported by social media, to all the older\npractices of visual art, expressive writing, filmmaking, and so on. This\ncreativity may be blandly appreciated as universal, but it can only be\nevaluated in relation to one or more of the appropriate communities.\nThere is no single standard, and no community's creative practice is\ncentral to all of our culture."
+    },
+    {
+      "id": "communities-and-creativity-p06",
+      "markdown": "In recent years writers (including Andrew Keen, Jaron Lanier, and\nNicolas Carr among others) have argued that digital technology is\ndemeaning our culture and debilitating us as individuals. They have\ncriticized the effects of email and Google on our attention spans and of\nthe new participatory world of social media on our creative powers. In\n*You are not a Gadget* (2010), Lanier was particularly concerned with\ncreative expression:\n\n> Something started to go wrong with the digital revolution around the\n> turn of the twenty-first century. The World Wide Web was flooded by a\n> torrent of petty designs sometimes called web 2.0.... Anonymous blog\n> comments, vapid video pranks, and lightweight mashups may seem trivial\n> and harmless, but as a whole, this widespread practice of fragmentary,\n> impersonal communication has demeaned interpersonal interaction.... A\n> new generation has come of age with a reduced expectation of what a\n> person can be, and of who each person might become. (3)"
+    },
+    {
+      "id": "communities-and-creativity-p07",
+      "markdown": "It is the DIY communities of remix and social networking that Lanier\nbelieves are so destructive. Like many other digital media critics, he\nseems to want to return to a prior state of culture. He complains that\nWeb 2.0 culture is not producing \"artists\" like Ani diFranco (Kindle\nlocation 1603), whose contemporary folk music is one of dozens of\npopular music genres that have won increased legitimacy since the\ncollapse of the musical hierarchy. Lanier's own hierarchy of art, then,\ncontains diFranco, and he associates his hierarchy with the task of\ndefining \"what a person can be.\" He has inherited from the elite culture\nthe assumption that art plays a central culture role, but he has\nexpanded the definition of art to include popular forms that the elites\nof the past would never have acknowledged."
+    },
+    {
+      "id": "communities-and-creativity-p08",
+      "markdown": "This move is common among digital media critics as well as many critics\nand scholars of film, rock music, and television, who want to promote\ncertain forms of popular culture into a redefined hierarchy. They want,\nin other words, to enjoy the legitimacy of popular culture brought about\nby the collapse of high culture, but to ignore the fragmentation into\nvarious communities that is also the product of the collapse. This is an\nimportant aspect of what I call \"popular modernism,\" which we will\nconsider in the following chapter."
+    }
+  ],
+  "fundEntries": [],
+  "changeSummary": "Faithful structural package of authored Plenitude Section 7; no prose changes and no initial fund entries."
+}

@@ -1,0 +1,14 @@
+# Skeptical editorial-fund reading — 2026-09-19
+
+This directory preserves one 15-turn synthetic reading of *Plenitude*, Section 5, using the `skeptical` profile and `editorial-fund` edition. It is **not** a matched spine/fund comparison. The reader finished at the packaged-section boundary. `session.json` is the structured record; `transcript.md` is the readable conversation and private reader reflections.
+
+The guide was offered the four existing candidates extracted from the earlier collaborative reading. It reported using `shared-evaluative-field` on turn 1 and none of the other three. All guide turns used the required structured delivery tool. The fund package and authored spine were unchanged by this run.
+
+Editorial leads for review, not accepted entries:
+
+- **Spine-level claim:** The reader argued that the section's broad historical decline thesis is illustrated by selected cases rather than established by comparative evidence. Consider whether it should be framed as a hypothesis or whether broader reception evidence is needed. The exchange also questioned whether a self-selected Dada audience, a television studio, and later gallery or broadcast publics are comparable.
+- **Possible counterexample/alternate axis:** The reader raised Richard Serra's *Tilted Arc* as a case where a largely non-iconographic artwork had serious institutional consequences through its effect on public space. That may complicate a simple form-versus-content account. The reader supplied URLs in turn 6, but this run did not independently validate them for editorial adoption.
+- **Factual and causal checks:** The reader challenged shorthand about the NEA/Serrano controversy and the use of Morley Safer's broadcasts as evidence of public reception. Its source URLs are preserved in turns 11 and 13; their relevance and factual claims still need separate verification. The guide also used the phrase “defunded the National Endowment” on turn 10 before narrowing it after the reader's correction.
+- **Selection/rhythm:** The skeptical reader spent most turns probing the same central inference. More fund detail would not by itself resolve a challenge to the section's framing; adding every objection as prose would likely bury the narrative movement. A short qualification or revision to the spine may be more useful than several new entries.
+
+The skeptical profile had optional web search available. The transcript records URLs the reader supplied, but the harness does not currently log actual search-tool calls or cost, so this archive does not prove which links were fetched. No automated candidate extraction, second-pass validation, or fund promotion exists yet. The matched `editorial-spine` run was subsequently preserved in `../2026-09-20-skeptical-spine/`; even this pair remains stochastic rather than a controlled causal estimate.

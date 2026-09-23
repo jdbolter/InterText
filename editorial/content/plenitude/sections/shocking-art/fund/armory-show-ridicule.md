@@ -1,0 +1,1 @@
+One widely repeated response compared Duchamp's *Nude Descending a Staircase* to “an explosion in a shingle factory.” The specificity and repeatability of the ridicule matter: the violation was still worth answering in public, not merely ignoring as the concern of a specialist enclave.

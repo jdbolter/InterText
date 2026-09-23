@@ -8,6 +8,10 @@ InterText/
 ├── api/
 │   ├── chat.js         — generic Vercel serverless function (config-driven by textId)
 │   └── evolve.js       — generic Vercel serverless function (config-driven by textId)
+├── editorial/          — local spine-and-fund data, schemas, build, tests, and editor
+├── CURRENT-DESIGN.md  — present design, proposed changes, and open choices
+├── INTERTEXT-DESIGN-NOTES.md — history of the design discussion
+├── EDITORIAL-ARCHITECTURE.md — editorial data model and implementation handoff
 ├── package.json
 ├── vercel.json
 ├── uncanny/             — "The Uncanny Double" essay (textId: 'uncanny')
@@ -18,7 +22,8 @@ InterText/
         └── sections/   — section files loaded by the API
 ```
 
-Model in use: `claude-sonnet-5` (both `api/chat.js` and `api/evolve.js`).
+Model in use: `claude-sonnet-5` for the guide and editorial passes. The synthetic
+reader uses OpenAI (default `gpt-5.6-terra`) so guide and reader are separate models.
 
 ## The texts
 
@@ -27,6 +32,93 @@ Model in use: `claude-sonnet-5` (both `api/chat.js` and `api/evolve.js`).
 - **blood-on-the-wall** — a counterfactual narrative history (JFK assassinated in Berlin, 1963) told by a historian who has never known any other timeline. The guide is instructed never to acknowledge an "other" version of events exists. See `blood-on-the-wall/CLAUDE.md`.
 
 All three share the same conversational pattern: an AI guide voice per section, plus an opt-in "evolve" step where a reader's conversation can rewrite the section for future readers (see `api/evolve.js` and each config's `synthesisInstructions`). Before reading begins, every text offers the same three-way entry choice — contribute (read and possibly shape the evolving edition), read the current evolving edition without contributing, or read the untouched original — and the same blank-Return continuation (an empty Enter keeps reading instead of requiring a question). See `uncanny/CLAUDE.md`, "Entry Consent" and "Reading On," for how these work; they're identical across all three texts.
+
+## Synthetic reader: editorial development and testing
+
+`synthetic-reader/` is a CLI-only harness that drives the real `/api/chat` endpoint
+with an OpenAI model role-playing a reader (curious, skeptical, or collaborative),
+instead of a human. It never touches the web interface, and the reading
+command never calls `/api/evolve` — a separate `synthetic-reader-evolve` command
+can preview what a session's real contributions would do to a section, but only in
+a dry-run mode that never reads or writes the live database. See
+`synthetic-reader/README.md` for setup and usage; quick start:
+
+```bash
+npm run synthetic-reader -- --profile curious --section 1 --turns 10
+npm run synthetic-reader-evolve -- --session synthetic-reader/output/<run-folder>
+```
+
+The current priority is to use repeated synthetic readings as an **editorial
+instrument**, especially for *Plenitude*. Transcripts and private reader reflections
+can reveal where the argument becomes unclear, repetitive, unconvincing, or difficult
+to enter; where pacing or section boundaries fail; and where the relationship between
+the text and the reader needs to change. Those observations can guide manual revision
+of the authored source, section structure, introductions, and guide behavior, followed
+by another controlled round of readings. The dry-run evolution command is one way to
+explore a possible revision, not the only or necessarily preferred editorial outcome.
+
+The same harness may later help prepare and refine questions for human user testing,
+but synthetic readers are not substitutes for observing what actual readers understand,
+feel, and do. See `synthetic-reader/README.md`, "Current use: an editorial loop," and
+`INTERTEXT-DESIGN-NOTES.md`, §10.
+
+The skeptical and collaborative profiles may selectively search the public web for
+evidence and sources; the curious nonspecialist remains grounded only in what a reader
+sees and already knows. Research access is bounded and intended to test consequential
+claims, not to reward citation-heavy responses.
+
+## Editorial workspace: spine and fund
+
+The newer editorial architecture separates a section's **narrative spine** from a
+**fund** of optional clarifications, examples, qualifications, counterarguments,
+evidence, and extensions. This preserves useful material accumulated through readings
+without requiring every detail to enter the continuous essay or every reader's path.
+
+A universal local schema, validated build, and author-editing workspace are implemented
+under `editorial/`. All three works and all 16 current sections are registered. All
+seven *Plenitude* sections are faithfully packaged as stable spine passages; Section 5
+is the developed example, with fund material accumulated through reader experiments.
+The other six begin with empty funds and unchanged authored prose.
+
+The guide and synthetic-reader harness can consume those packages in two
+explicit, nonpublishing experiment modes: `editorial-spine` and `editorial-fund`.
+The latter offers candidate entries selectively and records which ones the guide
+reports actually using. Neither mode reads or writes the live evolved-text database.
+The first matched collaborative pair is complete and preserved with the Section 5
+package; it used two of four candidates and showed both useful refinement and a risk
+of prolonged, repetitive qualification. A skeptical fund/spine comparison is also
+preserved; both conditions exposed the same central evidentiary weakness, while the
+spine-only reader finished sooner. Curious pairs remain.
+
+```bash
+npm install
+npm test
+npm run editorial-preview
+```
+
+Open `http://127.0.0.1:4173`. No API keys, Vercel login, or database connection are
+needed to view the bundled seed. When KV variables are present, the workspace displays
+the shared live head and can publish direct author edits as immutable child versions.
+If port 4173 is already occupied, reuse and refresh the existing current server, stop
+the old process, or choose another port as described in
+[`editorial/README.md`](editorial/README.md#if-port-4173-is-already-in-use).
+The local editor can revise spine prose and all editorial fund fields, add fund entries,
+assign optional thread membership and order, and accept, reject, supersede, or return
+entries to candidate status. It preserves passage and entry identity, protects existing
+provenance, and refuses to publish over a newer head.
+
+For every *Plenitude* section, the ordinary current-edition reader now loads its
+versioned package and only its accepted fund entries. A contributing save runs separate proposal
+and review passes, publishes any approved operations as an immutable child version,
+and atomically advances the head. A reader already in the section stays pinned to its
+starting version; the next reading receives the new one. The other two works remain on
+the original whole-section evolution path until they are packaged.
+
+Start with `CURRENT-DESIGN.md` for the present design and proposed changes. Read
+`EDITORIAL-ARCHITECTURE.md` for the full data model, database proposal, verified
+implementation boundary, and next experiment; read `editorial/README.md` for exact
+handoff and content-authoring instructions. `INTERTEXT-DESIGN-NOTES.md` preserves the
+history of the design discussion.
 
 ## Adding a new text
 

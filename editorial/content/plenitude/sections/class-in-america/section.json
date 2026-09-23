@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "editionId": "editorial-preview",
+  "versionId": "class-in-america-editorial-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-09-22T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "plenitude/source_texts/sections/section-3.md"
+  },
+  "spineFile": "spine.md",
+  "fundEntries": [],
+  "changeSummary": "Faithful structural package of authored Plenitude Section 3; no prose changes and no initial fund entries."
+}

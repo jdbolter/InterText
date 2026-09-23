@@ -1,0 +1,1 @@
+The Zurich fury does not prove that Serner's manifesto possessed deep aesthetic importance. It shows that performer and audience still occupied a shared evaluative field. Serious art held a recognized social rank, and violating its boundaries produced consequences because the antagonists understood themselves to be fighting over the same cultural order.
