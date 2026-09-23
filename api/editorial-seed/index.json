@@ -129,46 +129,81 @@
           "id": "uncanny-valley-and-double",
           "title": "The Uncanny Valley and the Uncanny Double",
           "order": 1,
-          "package": null,
-          "readiness": "not-started",
-          "packageUrl": null,
-          "fundCounts": null
+          "package": "sections/uncanny-valley-and-double/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/uncanny/uncanny-valley-and-double.json",
+          "versionId": "uncanny-valley-and-double-editorial-v001",
+          "passageCount": 5,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
         },
         {
           "id": "film-and-the-uncanny",
           "title": "Film and the Uncanny",
           "order": 2,
-          "package": null,
-          "readiness": "not-started",
-          "packageUrl": null,
-          "fundCounts": null
+          "package": "sections/film-and-the-uncanny/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/uncanny/film-and-the-uncanny.json",
+          "versionId": "film-and-the-uncanny-editorial-v001",
+          "passageCount": 14,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
         },
         {
           "id": "double-in-film",
           "title": "The Double in Film",
           "order": 3,
-          "package": null,
-          "readiness": "not-started",
-          "packageUrl": null,
-          "fundCounts": null
+          "package": "sections/double-in-film/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/uncanny/double-in-film.json",
+          "versionId": "double-in-film-editorial-v001",
+          "passageCount": 6,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
         },
         {
           "id": "uncanny-avatars",
           "title": "Uncanny Avatars in Mirror Worlds",
           "order": 4,
-          "package": null,
-          "readiness": "not-started",
-          "packageUrl": null,
-          "fundCounts": null
+          "package": "sections/uncanny-avatars/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/uncanny/uncanny-avatars.json",
+          "versionId": "uncanny-avatars-editorial-v001",
+          "passageCount": 6,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
         },
         {
           "id": "feature-not-bug",
           "title": "The Uncanny is a Feature, not a Bug",
           "order": 5,
-          "package": null,
-          "readiness": "not-started",
-          "packageUrl": null,
-          "fundCounts": null
+          "package": "sections/feature-not-bug/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/uncanny/feature-not-bug.json",
+          "versionId": "feature-not-bug-editorial-v001",
+          "passageCount": 5,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
         }
       ]
     },
@@ -181,37 +216,65 @@
           "id": "shot-heard-in-berlin",
           "title": "The Shot Heard in Berlin",
           "order": 1,
-          "package": null,
-          "readiness": "not-started",
-          "packageUrl": null,
-          "fundCounts": null
+          "package": "sections/shot-heard-in-berlin/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/blood-on-the-wall/shot-heard-in-berlin.json",
+          "versionId": "shot-heard-in-berlin-editorial-v001",
+          "passageCount": 2,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
         },
         {
           "id": "graduated-pressure",
           "title": "Graduated Pressure",
           "order": 2,
-          "package": null,
-          "readiness": "not-started",
-          "packageUrl": null,
-          "fundCounts": null
+          "package": "sections/graduated-pressure/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/blood-on-the-wall/graduated-pressure.json",
+          "versionId": "graduated-pressure-editorial-v001",
+          "passageCount": 2,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
         },
         {
           "id": "fog-of-distrust",
           "title": "A Fog of Distrust",
           "order": 3,
-          "package": null,
-          "readiness": "not-started",
-          "packageUrl": null,
-          "fundCounts": null
+          "package": "sections/fog-of-distrust/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/blood-on-the-wall/fog-of-distrust.json",
+          "versionId": "fog-of-distrust-editorial-v001",
+          "passageCount": 2,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
         },
         {
           "id": "files-break-open",
           "title": "The Files Break Open",
           "order": 4,
-          "package": null,
-          "readiness": "not-started",
-          "packageUrl": null,
-          "fundCounts": null
+          "package": "sections/files-break-open/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/blood-on-the-wall/files-break-open.json",
+          "versionId": "files-break-open-editorial-v001",
+          "passageCount": 2,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
         }
       ]
     }

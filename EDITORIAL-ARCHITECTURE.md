@@ -4,12 +4,12 @@ For a concise view of the current design and proposed changes, start with
 [`CURRENT-DESIGN.md`](CURRENT-DESIGN.md). This document supplies the detailed
 editorial model, implementation boundary, and handoff instructions.
 
-**Status, 2026-09-22:** the universal content model, validated build, local author
+**Status, 2026-09-23:** the universal content model, validated build, local author
 editor, controlled guide/synthetic-reader package path, two-pass editorial update,
-and versioned KV store are implemented. All seven *Plenitude* sections now use
-faithful structural packages; Sections 1–4 and 6–7 have unchanged authored spines and
-empty initial funds, while Section 5 retains its developed fund and live history. The
-other works continue to use the earlier whole-section engine. One matched collaborative spine/fund
+and versioned KV store are implemented. All 16 sections across the three works now use
+faithful structural packages. Fifteen retain unchanged authored spines and empty
+initial funds, while *Plenitude*, Section 5 retains its developed fund and live
+history. One matched collaborative spine/fund
 pair and one skeptical comparison have been completed; curious pairs remain. The code
 has offline coverage, and the first explicitly approved live Anthropic editorial
 preflight completed successfully: the proposal pass chose no change for an already
@@ -45,10 +45,9 @@ The schema is generic. It applies to every section of *Plenitude*, *The Uncanny*
 first populated example because a collaborative synthetic reading produced a useful
 set of additions with which to test the distinction.
 
-All current works and their 16 sections have stable IDs in `editorial/content/`.
-All seven *Plenitude* sections have packages. Section 5 has the first populated fund;
-the other six intentionally begin with empty funds. Sections of the other works remain
-known sections with `"package": null`, not errors or absent identities.
+All current works and their 16 sections have stable IDs and packages in
+`editorial/content/`. Section 5 of *Plenitude* has the first populated fund; the other
+fifteen intentionally begin with empty funds.
 
 ## Local source format
 
@@ -255,8 +254,9 @@ independent semantic audit, so the visible prose remains the final evidence of u
 The experiment loader reads only the compiled, validated runtime seed under
 `api/editorial-seed/`. An editorial request for an unpackaged section fails clearly
 rather than falling back to the original or evolving whole-section text. The CLI can
-target any *Plenitude* section; Sections other than 5 currently have empty funds, so
-their spine and fund experiment conditions begin identically. The browser workspace uses `editorial/data/` for its index and static
+target any section of all three works. All except *Plenitude*, Section 5 currently
+have empty funds, so their spine and fund experiment conditions begin identically.
+The browser workspace uses `editorial/data/` for its index and static
 fallback, then asks its local server for the current KV snapshot when available.
 
 An editorial run is bounded to its packaged target section. Continuation at the end
@@ -268,11 +268,10 @@ status, write local content, read `evolved_sections.json`, or contact Upstash. T
 public browser does not request either experiment edition.
 
 The ordinary `evolving` edition now has a separate packaged-section path. For every
-*Plenitude* section it reads the current KV head (or the bundled seed when no head is
+section of all three works it reads the current KV head (or the bundled seed when no head is
 initialized), offers only accepted entries, and uses the same required private delivery
 tool. The browser remembers the returned version ID for that section, so a head change
-cannot alter a reading halfway through. The other works retain the legacy whole-section
-path.
+cannot alter a reading halfway through.
 
 ## Versioned database representation — implemented for packaged sections
 
@@ -420,8 +419,8 @@ npm run dev                   # local API with .env.local, required by reader ex
 npm test                      # editorial and synthetic-reader suites
 ```
 
-As of this milestone, the full suite contains 140 passing tests. Exact authored-prose
-preservation across all seven *Plenitude* packages, the runtime seed,
+As of this milestone, the full suite verifies exact authored-prose preservation across
+all 16 packages, the runtime seed,
 accepted-only reader path, proposal/review validation, immutable publication,
 conflict detection, source allowlist, and candidate downgrade rules have offline
 coverage. The local workspace endpoint was also checked against the shared database:

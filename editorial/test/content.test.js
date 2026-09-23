@@ -32,6 +32,26 @@ function authoredSection(sectionOrder) {
   };
 }
 
+function authoredUncannySection(sectionOrder, title) {
+  const blocks = fs.readFileSync(
+    path.join(root, 'uncanny', 'source_texts', 'sections', `section-${sectionOrder}.md`),
+    'utf8'
+  ).trim().split(/\n\s*\n/);
+  const heading = `## ${title}`;
+  const headingIndex = blocks.indexOf(heading);
+  assert.notEqual(headingIndex, -1, `Section ${sectionOrder} source heading is missing`);
+  blocks.splice(headingIndex, 1);
+  return blocks.join('\n\n');
+}
+
+function authoredBloodSection(sectionOrder) {
+  const [, ...bodyBlocks] = fs.readFileSync(
+    path.join(root, 'blood-on-the-wall', 'source_texts', 'sections', `section-${sectionOrder}.md`),
+    'utf8'
+  ).trim().split(/\n\s*\n/);
+  return bodyBlocks.join('\n\n');
+}
+
 test('all editorial work manifests match the current text configs', () => {
   const discovered = discoverWorks(contentRoot);
   assert.deepEqual(discovered.map(({ work }) => work.id).sort(), [
@@ -99,6 +119,39 @@ test('every Plenitude section is packaged without changing its authored prose', 
   }
 });
 
+test('every Uncanny section is packaged without changing its authored prose', () => {
+  const { work, workDir } = discoverWorks(contentRoot).find(item => item.work.id === 'uncanny');
+  assert.equal(work.sections.length, 5);
+  assert.ok(work.sections.every(section => section.package));
+
+  const expectedPassageCounts = [5, 14, 6, 6, 5];
+  for (const section of work.sections.slice().sort((a, b) => a.order - b.order)) {
+    const sectionPackage = buildSectionPackage(work, section, workDir);
+    const packagedSpine = sectionPackage.spine.map(passage => passage.markdown).join('\n\n');
+    assert.equal(
+      packagedSpine,
+      authoredUncannySection(section.order, section.title),
+      `Section ${section.order} prose changed`
+    );
+    assert.equal(sectionPackage.spine.length, expectedPassageCounts[section.order - 1]);
+    assert.deepEqual(sectionPackage.fundEntries, []);
+  }
+});
+
+test('every Blood on the Wall section is packaged without changing its authored prose', () => {
+  const { work, workDir } = discoverWorks(contentRoot).find(item => item.work.id === 'blood-on-the-wall');
+  assert.equal(work.sections.length, 4);
+  assert.ok(work.sections.every(section => section.package));
+
+  for (const section of work.sections.slice().sort((a, b) => a.order - b.order)) {
+    const sectionPackage = buildSectionPackage(work, section, workDir);
+    const packagedSpine = sectionPackage.spine.map(passage => passage.markdown).join('\n\n');
+    assert.equal(packagedSpine, authoredBloodSection(section.order), `Section ${section.order} prose changed`);
+    assert.equal(sectionPackage.spine.length, 2);
+    assert.deepEqual(sectionPackage.fundEntries, []);
+  }
+});
+
 test('section validation rejects a fund entry anchored to a nonexistent passage', () => {
   const { work, workDir } = discoverWorks(contentRoot).find(item => item.work.id === 'plenitude');
   const section = work.sections.find(item => item.id === 'shocking-art');
@@ -118,15 +171,29 @@ test('buildAll writes a portable editor index and validated section snapshot', (
     assert.equal(index.works.flatMap(work => work.sections).length, 16);
     const plenitude = index.works.find(work => work.id === 'plenitude');
     assert.ok(plenitude.sections.every(section => section.readiness === 'packaged'));
+    const uncanny = index.works.find(work => work.id === 'uncanny');
+    assert.ok(uncanny.sections.every(section => section.readiness === 'packaged'));
+    const blood = index.works.find(work => work.id === 'blood-on-the-wall');
+    assert.ok(blood.sections.every(section => section.readiness === 'packaged'));
     const shockingArt = plenitude.sections.find(section => section.id === 'shocking-art');
     assert.equal(shockingArt.readiness, 'packaged');
     assert.equal(shockingArt.passageCount, 10);
     assert.equal(shockingArt.fundCounts.candidate, 4);
     assert.ok(fs.existsSync(path.join(outputRoot, 'index.json')));
     assert.ok(fs.existsSync(path.join(outputRoot, 'plenitude', 'shocking-art.json')));
+    assert.ok(fs.existsSync(path.join(outputRoot, 'uncanny', 'uncanny-valley-and-double.json')));
+    assert.ok(fs.existsSync(path.join(outputRoot, 'blood-on-the-wall', 'shot-heard-in-berlin.json')));
   } finally {
     fs.rmSync(outputRoot, { recursive: true, force: true });
   }
+});
+
+test('reader home page orders Plenitude, Uncanny, then Blood on the Wall', () => {
+  const homepage = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+  const plenitude = homepage.indexOf('href="plenitude/public/index.html"');
+  const uncanny = homepage.indexOf('href="uncanny/public/index.html"');
+  const blood = homepage.indexOf('href="blood-on-the-wall/public/index.html"');
+  assert.ok(plenitude >= 0 && plenitude < uncanny && uncanny < blood);
 });
 
 test('author editor is generic, loads the generated index, and exposes versioned editing controls', () => {

@@ -4,9 +4,9 @@
   "title": "Blood on the Wall",
   "order": 3,
   "sections": [
-    { "id": "shot-heard-in-berlin", "title": "The Shot Heard in Berlin", "order": 1, "package": null },
-    { "id": "graduated-pressure", "title": "Graduated Pressure", "order": 2, "package": null },
-    { "id": "fog-of-distrust", "title": "A Fog of Distrust", "order": 3, "package": null },
-    { "id": "files-break-open", "title": "The Files Break Open", "order": 4, "package": null }
+    { "id": "shot-heard-in-berlin", "title": "The Shot Heard in Berlin", "order": 1, "package": "sections/shot-heard-in-berlin/section.json" },
+    { "id": "graduated-pressure", "title": "Graduated Pressure", "order": 2, "package": "sections/graduated-pressure/section.json" },
+    { "id": "fog-of-distrust", "title": "A Fog of Distrust", "order": 3, "package": "sections/fog-of-distrust/section.json" },
+    { "id": "files-break-open", "title": "The Files Break Open", "order": 4, "package": "sections/files-break-open/section.json" }
   ]
 }

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "editionId": "editorial-preview",
+  "versionId": "feature-not-bug-editorial-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-09-23T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "uncanny/source_texts/sections/section-5.md"
+  },
+  "spineFile": "spine.md",
+  "fundEntries": [],
+  "changeSummary": "Faithful structural package of authored The Uncanny Section 5; no prose changes and no initial fund entries."
+}

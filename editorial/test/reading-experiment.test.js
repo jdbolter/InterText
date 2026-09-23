@@ -40,11 +40,19 @@ test('loads every generated Plenitude package by stable section order', () => {
   });
 });
 
-test('fails clearly when an experimental section has not been packaged', () => {
-  assert.throws(
-    () => loadEditorialSection({ rootDir: ROOT, textId: 'uncanny', sectionIndex: 0 }),
-    /has no editorial package yet/
-  );
+test('loads every generated Blood on the Wall package by stable section order', () => {
+  const expected = [
+    ['shot-heard-in-berlin', 2],
+    ['graduated-pressure', 2],
+    ['fog-of-distrust', 2],
+    ['files-break-open', 2],
+  ];
+  expected.forEach(([sectionId, passageCount], sectionIndex) => {
+    const section = loadEditorialSection({ rootDir: ROOT, textId: 'blood-on-the-wall', sectionIndex });
+    assert.equal(section.sectionId, sectionId);
+    assert.equal(section.spine.length, passageCount);
+    assert.equal(section.fundEntries.length, 0);
+  });
 });
 
 test('spine condition supplies no fund while preserving passage markers', () => {

@@ -4,10 +4,10 @@
   "title": "The Uncanny",
   "order": 2,
   "sections": [
-    { "id": "uncanny-valley-and-double", "title": "The Uncanny Valley and the Uncanny Double", "order": 1, "package": null },
-    { "id": "film-and-the-uncanny", "title": "Film and the Uncanny", "order": 2, "package": null },
-    { "id": "double-in-film", "title": "The Double in Film", "order": 3, "package": null },
-    { "id": "uncanny-avatars", "title": "Uncanny Avatars in Mirror Worlds", "order": 4, "package": null },
-    { "id": "feature-not-bug", "title": "The Uncanny is a Feature, not a Bug", "order": 5, "package": null }
+    { "id": "uncanny-valley-and-double", "title": "The Uncanny Valley and the Uncanny Double", "order": 1, "package": "sections/uncanny-valley-and-double/section.json" },
+    { "id": "film-and-the-uncanny", "title": "Film and the Uncanny", "order": 2, "package": "sections/film-and-the-uncanny/section.json" },
+    { "id": "double-in-film", "title": "The Double in Film", "order": 3, "package": "sections/double-in-film/section.json" },
+    { "id": "uncanny-avatars", "title": "Uncanny Avatars in Mirror Worlds", "order": 4, "package": "sections/uncanny-avatars/section.json" },
+    { "id": "feature-not-bug", "title": "The Uncanny is a Feature, not a Bug", "order": 5, "package": "sections/feature-not-bug/section.json" }
   ]
 }

@@ -62,18 +62,18 @@ or experience the work, and should not be presented as a replacement for that te
 
 The Section 5 experiment showed a limitation in full-section synthesis: detailed
 additions may be accurate and supportive while damaging the balance and rhythm of the
-continuous essay. The planned editorial representation therefore separates a concise
+continuous essay. The editorial representation therefore separates a concise
 narrative spine from a fund of optional material the guide can select for different
-readers. The generic schema, packages for all seven *Plenitude* sections, and local
-author editor are now implemented under `editorial/`; see root
+readers. The generic schema, packages for all 16 sections across the three works, and
+local author editor are now implemented under `editorial/`; see root
 `EDITORIAL-ARCHITECTURE.md`.
 
-The guide and synthetic reader can consume any local *Plenitude* package through
+The guide and synthetic reader can consume any local package through
 two explicit experiment-only editions:
 
 - `editorial-spine` gives the guide the packaged spine and no fund entries.
-- `editorial-fund` gives it the identical spine plus the four candidates as optional
-  material, records which entries it reports using through a required structured
+- `editorial-fund` gives it the identical spine plus any candidates as optional
+  material (four in *Plenitude*, Section 5), records which entries it reports using through a required structured
   delivery tool, and does not offer a used entry as
   new material again later in that section.
 
@@ -122,9 +122,9 @@ option (see the root `INTERTEXT-DESIGN-NOTES.md`, §3, and `uncanny/CLAUDE.md`,
 consent flag — every synthetic run behaves like a non-contributing reader choosing
 between those two editions.
 
-The editorial editions currently require `--text plenitude`; all seven sections are
-packaged, although only Section 5 initially has fund entries. The CLI fails clearly
-for any section without a package rather than silently switching to a different text.
+The editorial editions support all three text IDs and all 16 sections, although only
+*Plenitude*, Section 5 initially has fund entries.
+The CLI fails clearly for any section without a package rather than silently switching to a different text.
 They require the local `npm run dev` server from this branch. The
 static editorial browser on port 4173 cannot serve `/api/chat`.
 

@@ -184,9 +184,9 @@ review leads; its 2026-09-20 spine-only comparison is archived under
 `content/plenitude/sections/shocking-art/provenance/2026-09-20-skeptical-spine/`.
 Neither run triggered candidate extraction or second-pass validation.
 
-All seven *Plenitude* sections are now packaged. Sections 1–4 and 6–7 preserve their
-authored prose exactly and begin with empty funds; Section 5 retains the accumulated
-fund and live version history. The other two works remain registered but unpackaged.
+All 16 sections across *Plenitude*, *The Uncanny*, and *Blood on the Wall* are now
+packaged. Fifteen preserve their authored prose exactly and begin with empty funds;
+*Plenitude*, Section 5 retains the accumulated fund and live version history.
 
 ## Shared KV commands
 
