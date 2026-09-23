@@ -59,7 +59,7 @@ them a public interface should expose—remains open.
 - Source text placed at `plenitude/source_texts/plenitude.md` (10,401 words, pandoc-converted from Divide.docx)
 - Split the current working version into 7 sections and cleaned up markdown:
   - `section-1.md` — The Great Divide (594 words)
-  - `section-2.md` — The Philadelphia (Symphony) Story (1,347 words)
+  - `section-2.md` — The Philadelphia (Orchestra) Story (1,347 words)
   - `section-3.md` — Class in America (520 words)
   - `section-4.md` — The Case of Music (1,363 words)
   - `section-5.md` — Shocking Art (1,794 words)

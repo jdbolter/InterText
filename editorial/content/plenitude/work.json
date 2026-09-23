@@ -5,7 +5,7 @@
   "order": 1,
   "sections": [
     { "id": "great-divide", "title": "The Great Divide", "order": 1, "package": "sections/great-divide/section.json" },
-    { "id": "philadelphia-symphony-story", "title": "The Philadelphia (Symphony) Story", "order": 2, "package": "sections/philadelphia-symphony-story/section.json" },
+    { "id": "philadelphia-symphony-story", "title": "The Philadelphia (Orchestra) Story", "order": 2, "package": "sections/philadelphia-symphony-story/section.json" },
     { "id": "class-in-america", "title": "Class in America", "order": 3, "package": "sections/class-in-america/section.json" },
     { "id": "case-of-music", "title": "The Case of Music", "order": 4, "package": "sections/case-of-music/section.json" },
     { "id": "shocking-art", "title": "Shocking Art", "order": 5, "package": "sections/shocking-art/section.json" },

@@ -43,6 +43,7 @@ function same(valueA, valueB) {
 
 function createAuthorRevision({
   sectionPackage,
+  title,
   spine,
   fundEntries,
   changeSummary,
@@ -52,6 +53,7 @@ function createAuthorRevision({
   now = new Date(),
 }) {
   const current = validateRuntimePackage(sectionPackage, 'current author section');
+  const revisedTitle = trimmed(title === undefined ? current.title : title);
   if (!Array.isArray(spine) || spine.length !== current.spine.length) {
     throw new Error('Author revision must preserve the current passage structure');
   }
@@ -90,6 +92,7 @@ function createAuthorRevision({
 
   const summary = trimmed(changeSummary);
   if (!summary) throw new Error('A change summary is required');
+  const titleChanged = revisedTitle !== current.title;
   const changedPassageIds = revisedSpine
     .filter((passage, index) => passage.markdown !== current.spine[index].markdown)
     .map(passage => passage.id);
@@ -107,7 +110,7 @@ function createAuthorRevision({
       to: entry.status,
     }));
 
-  if (changedPassageIds.length === 0 && addedFundEntryIds.length === 0 && changedFundEntryIds.length === 0) {
+  if (!titleChanged && changedPassageIds.length === 0 && addedFundEntryIds.length === 0 && changedFundEntryIds.length === 0) {
     throw new Error('The author revision contains no changes');
   }
 
@@ -124,6 +127,7 @@ function createAuthorRevision({
       type: 'author-revised',
       path: `kv://editorial-update/${current.workId}/${current.sectionId}/${updateId}`,
     },
+    title: revisedTitle,
     spine: revisedSpine,
     fundEntries: revisedEntries,
     changeSummary: summary,
@@ -141,6 +145,7 @@ function createAuthorRevision({
     versionId,
     createdAt,
     changeSummary: summary,
+    titleChange: titleChanged ? { from: current.title, to: revisedTitle } : null,
     changedPassageIds,
     addedFundEntryIds,
     changedFundEntryIds,

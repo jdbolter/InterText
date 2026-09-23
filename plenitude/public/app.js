@@ -28,7 +28,7 @@ const SECTION_NUMERALS = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
 
 const SECTION_TITLES = [
   'The Great Divide',
-  'The Philadelphia Story',
+  'The Philadelphia (Orchestra) Story',
   'Class in America',
   'The Case of Music',
   'Shocking Art',
@@ -64,7 +64,7 @@ SECTION_IMAGES.forEach(section => {
 const SECTION_INTROS = [
   `<p>In June 2013, Jay Z performed for six hours at the Pace Gallery in Manhattan &mdash; one of the city&rsquo;s most prestigious white-box art spaces. Art-world figures and fans rotated through to stand across from him while he rapped. Marina Abramović, who had spent 30 days sitting motionless at MOMA staring at strangers, appeared as one of his partners. Everyone was delighted.</p>`,
 
-  `<p>In April 2011, the Philadelphia Symphony Orchestra filed for Chapter 11 bankruptcy &mdash; the first of America&rsquo;s &ldquo;Big Five&rdquo; orchestras ever to do so. It had been playing for over a century. In 1939, its director Leopold Stokowski appeared as a silhouetted figure in Disney&rsquo;s <em>Fantasia</em>, where Mickey Mouse greeted him with nervous reverence. By 2011, the orchestra&rsquo;s problem was not reverence but revenue.</p>`,
+  `<p>In April 2011, the Philadelphia Orchestra filed for Chapter 11 bankruptcy &mdash; the first of America&rsquo;s &ldquo;Big Five&rdquo; orchestras ever to do so. It had been playing for over a century. In 1939, its director Leopold Stokowski appeared as a silhouetted figure in Disney&rsquo;s <em>Fantasia</em>, where Mickey Mouse greeted him with nervous reverence. By 2011, the orchestra&rsquo;s problem was not reverence but revenue.</p>`,
 
   `<p>In the 1940s, major American newspapers ran society columns. Today, where they still exist, they read like dispatches from a costume party. Paris Hilton is a &ldquo;socialite&rdquo; &mdash; a word that now designates someone famous for being famous. In the 1920s, Fitzgerald said the rich were different from us. Hemingway reportedly replied: yes, they have more money. American culture eventually chose Hemingway&rsquo;s answer.</p>`,
 

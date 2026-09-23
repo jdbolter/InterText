@@ -106,6 +106,28 @@ test('author revision can add a fund entry with author provenance and thread mem
   assert.deepEqual(result.updateRecord.addedFundEntryIds, ['media-domestication']);
 });
 
+test('author revision can change section title without changing stable section identity', () => {
+  const current = {
+    ...loadSeedSection({ rootDir: ROOT, textId: 'plenitude', sectionIndex: 1 }),
+    title: 'The Philadelphia (Symphony) Story',
+  };
+  const value = draft(current);
+  const result = createAuthorRevision({
+    sectionPackage: current,
+    title: 'The Philadelphia (Orchestra) Story',
+    ...value,
+    changeSummary: 'Correct the Section 2 display title.',
+    updateId: 'author-title-test',
+    now: new Date('2026-09-23T13:00:00Z'),
+  });
+  assert.equal(result.nextPackage.title, 'The Philadelphia (Orchestra) Story');
+  assert.equal(result.nextPackage.sectionId, current.sectionId);
+  assert.deepEqual(result.updateRecord.titleChange, {
+    from: current.title,
+    to: 'The Philadelphia (Orchestra) Story',
+  });
+});
+
 test('author revision cannot remove an existing fund entry or alter passage structure', () => {
   const current = seed();
   const value = draft(current);

@@ -24,7 +24,7 @@
         },
         {
           "id": "philadelphia-symphony-story",
-          "title": "The Philadelphia (Symphony) Story",
+          "title": "The Philadelphia (Orchestra) Story",
           "order": 2,
           "package": "sections/philadelphia-symphony-story/section.json",
           "readiness": "packaged",
