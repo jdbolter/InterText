@@ -1,0 +1,277 @@
+{
+  "schemaVersion": 1,
+  "proposalId": "communities-and-creativity-20260923093408-b175cd54",
+  "createdAt": "2026-09-23T09:34:08.032Z",
+  "model": "claude-sonnet-5",
+  "workId": "plenitude",
+  "sectionId": "communities-and-creativity",
+  "sectionOrder": 7,
+  "baseVersionId": "communities-and-creativity-editorial-v001",
+  "baseSource": "seed",
+  "changed": true,
+  "noChangeReason": null,
+  "sourceSession": {
+    "path": "synthetic-reader/output/2026-09-22T20-23-59-419Z_plenitude_collaborative_section7/session.json",
+    "profileId": "collaborative",
+    "startedAt": "2026-09-22T20:23:59.419Z",
+    "stopReason": "turn_limit_reached"
+  },
+  "proposal": {
+    "changeSummary": "Corrected the deviantArt/Alexa comparison to remove the dated, volatile traffic claim in favor of the accurate structural point about protocol-level indifference to institutional legitimacy (distinguishing that from platform-level distinctions like verification and paid promotion). Refined the Shakespeare/\"community knowledge\" claim to avoid overstating the loss of common reference, framing it instead as a loss of self-enforcing normative deference. Tightened the E.L. James/Fifty Shades example to show porousness (via the legal/editorial \"filing off\" gate) rather than equivalence between fan fiction and mainstream publishing. Corrected the fanlore.org citation to avoid the unverified \"dozens of Star Trek fan sites\" claim, reframing it as evidence of density and historical layering. Sharpened the Kinkade paragraph to mark his community as company-organized/consumer rather than a Jenkins-style reciprocal-production community, and noted the licensed/developer-built housing development. Added fund entries capturing durable clarifications developed in dialogue (formal equality vs. prestige; contact without a common tribunal; metrics vs. tribunals; universal eligibility vs. equal success; Lanier's sharper platform-incentive worry) that enrich but need not burden the main spine.",
+    "decision": "change",
+    "fundOperations": [
+      {
+        "operation": "add",
+        "targetEntryId": null,
+        "entry": {
+          "id": "formal-equality-not-prestige",
+          "title": "Formal equality of address vs. equality of prestige",
+          "anchors": [
+            "communities-and-creativity-p01"
+          ],
+          "kind": "clarification",
+          "markdown": "The claim that the Met and deviantArt have \"the same status\" on the Web is a claim about formal equality of address, not equality of prestige, institutional authority, or curatorial legitimacy. The underlying protocol and browser — HTTP, the URL, the render engine — carry no encoding of cultural legitimacy: a browser has no field for \"institutional standing.\" That is compatible with unequal traffic, unequal institutional backing, and unequal cultural capital persisting at every other level. Platforms built on top of that protocol layer, by contrast, routinely reintroduce distinctions of their own — verification badges, featured placement, paid promotion, recommendation weighting, moderation privileges — for commercial or governance purposes, not critical ones. What is genuinely new is not the disappearance of hierarchy but the removal of any architectural necessity for a single vertical ranking across communities.",
+          "useWhen": "A reader assumes the essay claims digital media flattened prestige outright, or objects that platforms obviously do rank and differentiate content.",
+          "sourceStatus": "not-required",
+          "sources": []
+        },
+        "rationale": "The exchange (turns 1-10) produced a precise and durable distinction between protocol-level indifference and platform-level differentiation that clarifies the opening claim without requiring spine-level elaboration for every reader.",
+        "conversationTurns": [
+          1,
+          2,
+          3,
+          4,
+          9,
+          10
+        ]
+      },
+      {
+        "operation": "add",
+        "targetEntryId": null,
+        "entry": {
+          "id": "contact-without-tribunal",
+          "title": "Contact without a common tribunal",
+          "anchors": [
+            "communities-and-creativity-p05"
+          ],
+          "kind": "qualification",
+          "markdown": "The collapse of a single cultural hierarchy does not mean communities are sealed off from one another. Recommendation algorithms, trending lists, hashtags, and shared platforms constantly produce contact between communities — fan fiction next to literary prize coverage, a meme beside a museum acquisition. What has disappeared is not contact but a common tribunal: a widely credible authority capable of resolving such collisions into an agreed ranking of relative cultural worth. Communities can see, borrow from, and even feud with one another without that activity generating agreement about whose practice matters more. Markets and platform metrics do generate cross-community rankings, but of attention, clicks, or revenue — quantities indifferent to the internal standards by which a community judges its own work's excellence.",
+          "useWhen": "A reader argues that platforms clearly do connect or rank communities against each other, seemingly contradicting a picture of sealed-off horizontal proliferation.",
+          "sourceStatus": "not-required",
+          "sources": []
+        },
+        "rationale": "Turns 3-8 converge on a genuinely sharper formulation (\"contact without a common tribunal\") distinguishing adjudication of worth from mere contact or metric-based ranking; this is a durable conceptual refinement worth preserving for readers who raise the same objection.",
+        "conversationTurns": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "operation": "add",
+        "targetEntryId": null,
+        "entry": {
+          "id": "eligibility-vs-success",
+          "title": "Universal eligibility to create vs. equal artistic success",
+          "anchors": [
+            "communities-and-creativity-p05",
+            "communities-and-creativity-p07"
+          ],
+          "kind": "qualification",
+          "markdown": "Two claims must be kept distinct: that creative expression is now a widely distributed capacity requiring no external gatekeeper's permission to attempt, and that every instance of expression thereby succeeds as art. Fan fiction archives and sites like deviantArt are often ferocious about internal quality: beta-reading conventions, canon-compliance tagging, comment cultures distinguishing craft from sloppiness, informal rankings of essential versus merely prolific authors. What has disappeared is not evaluation but the single external tribunal that once claimed authority to rank one community's best output against every other community's on one shared scale. \"No single standard, no community central to all of culture\" should not be misread as \"no standards at all\" — a misreading that critics of DIY culture sometimes need in order to make their diagnosis seem urgent, but which the communities themselves, on inspection, do not practice. A sharper version of that critique instead asks how platform incentives (algorithmic amplification, engagement metrics) can favor certain participation regardless of a community's own internal standards, potentially overriding the practical force of rigorous local judgment without ever refuting it.",
+          "useWhen": "A reader takes the essay's account of creativity-as-eligibility to imply that all output is equally valued within participatory communities, or objects that this makes evaluation disappear.",
+          "sourceStatus": "not-required",
+          "sources": []
+        },
+        "rationale": "Turns 19-22 establish a genuinely important and non-obvious distinction (eligibility vs. success; internal rigor vs. platform-distorted visibility) that refines the chapter's central claim about creativity without needing to lengthen the spine itself, since the spine's existing formulation already gestures at this without the sharper articulation.",
+        "conversationTurns": [
+          19,
+          20,
+          21,
+          22
+        ]
+      }
+    ],
+    "spineUpdates": [
+      {
+        "passageId": "communities-and-creativity-p01",
+        "markdown": "As we have said, the development of digital media did not cause the\nbreakdown of the hierarchy of art and other high cultural forms. The two\nhappened in parallel after the Second World War, and indeed by the time\nthe major digital media (videogames, the personal computer, the World\nWide Web, mobile phones and tablets) were developed, the breakdown of\nhierarchy was unavoidable. But digital media have been developed in a\nway that provides an ideal framework for the plenitude of forms that\nhave arisen out of the fragments of modernist culture. Producers,\ndesigners, and programmers have fashioned these technologies into a\nfluid environment in which all sorts of practices are possible and\nequally legitimate. The underlying protocol and browser relation --\nthe address, the fetch, the render -- do not encode cultural legitimacy:\nthe official web page for the Metropolitan Museum and a page on\ndeviantArt are equally addressable, and the architecture that serves\nthem makes no distinction between institutional and amateur production.\nThat formal equality of address coexists with sharply unequal traffic,\ninstitutional backing, and cultural capital; particular platforms, for\ntheir own commercial and administrative purposes, routinely reintroduce\ndistinctions of visibility and standing that the underlying architecture\ndoes not itself contain. The Web with its social media often accessed by\nmobile technology now constitutes the matrix for today's communities of\nexpression and participation.",
+        "rationale": "The reader (turns 1, 9-10) correctly identified that the specific Alexa-based traffic claim was dated, volatile, and conflated two distinct layers: the protocol's indifference to institutional legitimacy versus platforms' active reintroduction of distinctions (verification, paid promotion, recommendation weighting). The guide's own refined formulation in turn 10 is durable and factually more careful; the spine is corrected to state the structural point accurately without resting on an unverifiable, now-obsolete metric.",
+        "conversationTurns": [
+          1,
+          9,
+          10
+        ]
+      },
+      {
+        "passageId": "communities-and-creativity-p03",
+        "markdown": "None of this knowledge is canonical in the traditional sense. It may be\nintricate knowledge about the Starship Enterprise or the customs of\nWookies or the backstory of minor characters in the Harry Potter novels.\nAlthough most people, if pressed, might still maintain that knowing\n*Hamlet* or *Macbeth* is more important than knowing Voldemort's seven\nhorcruxes, in practice, Shakespeare's claim to commonness is no longer\nself-enforcing: schools still teach him and theaters still stage him,\nbut broad institutional circulation no longer automatically yields a\nverdict that everyone owes him deference, or that ignorance of him is a\ndeficiency needing no further justification. Canonical knowledge\nincreasingly functions as community knowledge rather than knowledge\nthat is simply common. Jenkins's description could be applied to the\nwhole cultural plenitude today, but he was thinking in particular of\nthose interest groups that function in and through fan culture. The\ncommon intellectual enterprises he is referring to might include an\narchive of fan fiction that recycles the characters and situations of\npopular fictive universes of Star Wars, Star Trek, Twilight, Harry\nPotter, Anne Rice Vampire novels, and so on. Alexandra Alter catalogues\nthese and more examples in an article in the *Wall Street Journal\nOnline* entitled \"The Weird World of Fan Fiction*,\"* pointing out:\n\"They\\'re amateur writers---with millions of readers. After years in the\nshadows, they\\'re starting to break into the mainstream\" (Alter 2012).\nShe notes that the erotic novelist E.L. James wrote fan fiction before\nproducing the print bestseller *Fifty Shades of Gray*, though the\nmanuscript had to be filed off from its Twilight origins -- stripped of\nthe specific characters and copyrighted material -- before it could pass\nthrough the acquisition, editing, and distribution machinery of\nconventional publishing, a gate few fan works cross. The example\ntherefore shows porousness between communities rather than their\nequivalence: a work can originate entirely within one community's\npractice and later migrate into another community's institutional\nchannels once altered to meet that channel's requirements. In the\nplenitude of digital media, however, there is nothing particularly weird\nabout fan fiction. It is produced by a series of networked communities\nthat taken together, as Alter recognizes, have millions of readers. What\nthe article refers to as the \"main stream\" is simply the community of\nreaders of print fiction by established publishing houses, with its own\ncontinuing gatekeeping and distribution power. Many of the readers of\nJames's \"mainstream\" novels will also be reading them as e-books.",
+        "rationale": "The reader (turns 11-14) identified two genuine overstatements: the flat claim that Shakespeare has \"become community knowledge rather than common knowledge\" understates his continuing institutional circulation, and the James example, left as originally worded, understated the legal and editorial gatekeeping fan fiction had to pass through to reach mainstream publishing. Both corrections are accepted refinements of durable claims made confidently in the spine, not mere expressions of persisting disagreement, and both are compressed rather than expanded at length to preserve proportion.",
+        "conversationTurns": [
+          11,
+          12,
+          13,
+          14
+        ]
+      },
+      {
+        "passageId": "communities-and-creativity-p04",
+        "markdown": "The established communities of art and culture of the past have changed\ncomparatively slowly. Even the avant-gardes of twentieth century with\ntheir rhetoric of revolution needed years or decades to break into and\npartly redefine the mainstream of the visual arts. For example, the\nimportant serial composers Schönberg, Webern, and Berg of the early\ntwentieth century are still seldom played by major orchestras. Film was\nnot considered an art form worth studying in universities until the\n1960s or later. But in the digital plenitude today, Jenkins\\'s\ncommunities \"defined through voluntary, temporary, and tactical\naffiliations\" can form and coordinate in weeks or months -- though the\ndevelopment of durable norms, stable archives, and any eventual\ncrossover into commercial institutions can still take considerably\nlonger. Fan fiction has an honorable pedigree by these standards, with\nan early community forming in the 1970s around the Star Trek television\nseries. Before the Web, fan fiction was distributed using mimeograph or\ncopying machines, and the process was necessarily slow and limited. Once\nfan fiction and so-called \"fan work\" moved online -- through mailing\nlists, Usenet, dedicated forums, and fan-run archives well before the\nrise of contemporary social media -- participation could increase\ntremendously, and communities could ramify and mutate quickly. The\naggregator site fanlore.org documents the sheer accumulated density and\nhistorical layering of Star Trek fandom -- clubs, zines, archives, and\nderivative communities stretching back to the 1970s, decades before the\nWeb existed to accelerate their growth further\n(https://fanlore.org/wiki/List_of_Star_Trek_Fan_Clubs). A rather\ndifferent case is that of Thomas Kinkade (or his company), who\nassembled not a Jenkins-style community of reciprocal production but a\ncompany-organized public of consumers around a branded product line:\npaintings, furniture, and a licensed, professionally developed\nresidential community rather than participants generating and trading\ntheir own derivative work. Kinkade's website with its virtual gallery\nserved as a focus for this consumer community and continues to do so\nafter his death, and its physical manifestations include a chain of\ngalleries (stores) and even a gated housing development designed and\nbuilt by an outside developer under license. Kinkade's community mimics\nthe elite worlds of art and design of the past, and it functions\nparallel to and independent of the traditional museum and gallery\nsystem, another instance of commercial institutions shaping which\ncultural affiliations take durable form. (Glaister 2012; Flegenheimer\n2012)",
+        "rationale": "The reader (turns 15-16) identified a factual overreach in the fanlore.org citation (the source lists fan clubs, not simply \"dozens of Star Trek fan sites\") and a conceptual conflation in using Kinkade to confirm Jenkins's reciprocal-production model when Kinkade's is actually a company-organized consumer public -- an important contrast rather than confirmation. Both are accepted corrections to specific, checkable claims in the authoritative spine, consistent with the instruction to fix known errors there rather than leave them uncorrected while relegating the fix to the fund. The speed and infrastructure claims were also broadened per turns 15-16 to avoid overclaiming social-media-specific acceleration and to distinguish formation speed from institutionalization speed.",
+        "conversationTurns": [
+          15,
+          16
+        ]
+      }
+    ]
+  },
+  "review": {
+    "decision": "approve",
+    "summary": "Approved the three spine corrections (p01 protocol/platform distinction, p03 Shakespeare/James refinements, p04 fanlore/Kinkade corrections) as genuine, well-supported fixes to overstated or imprecise claims in the authoritative text, consistent with points the reader established and the guide accepted without introducing new unsupported material. Approved the \"contact-without-tribunal\" and \"eligibility-vs-success\" fund entries as accepted: both are durable, well-written interpretive clarifications, correctly anchored, and non-duplicative of spine content, genuinely enriching future readings without requiring unsupported factual claims. Rejected the \"formal-equality-not-prestige\" fund entry: it is substantially duplicative of the corrected p01 spine text (which now already states the protocol/platform distinction directly), so retaining a near-identical fund entry adds redundancy rather than value.",
+    "spineReviews": [
+      {
+        "passageId": "communities-and-creativity-p01",
+        "approved": true,
+        "reason": "Corrects a real fault in the current spine: the Alexa-based traffic claim is dated, volatile, and conflates protocol-level indifference with platform-level ranking. The revision states the structural point (protocol/browser indifference to institutional legitimacy vs. platforms' own reintroduced distinctions) accurately and concisely, improving the passage for future readers without overstating platform neutrality, since it explicitly notes platforms reintroduce distinctions for commercial/administrative reasons."
+      },
+      {
+        "passageId": "communities-and-creativity-p03",
+        "approved": true,
+        "reason": "The original spine's flat claim that Shakespeare has become 'community knowledge rather than common knowledge' is a genuine overstatement corrected via the more precise 'self-enforcing' framing, and the James/Fifty Shades passage was factually thin as originally written, understating the legal/editorial gatekeeping. Both corrections are proportionate, well-supported by the reasoning developed in the exchange, and improve accuracy without drifting into hedging or defensive overqualification."
+      },
+      {
+        "passageId": "communities-and-creativity-p04",
+        "approved": true,
+        "reason": "The fanlore.org citation was an unsupported overstatement ('dozens of Star Trek fan sites') not verifiable against the cited source, which lists fan clubs; reframing as evidence of density/historical layering is accurate and appropriately cited. The Kinkade correction fixes a genuine conceptual error -- using Kinkade to confirm Jenkins's reciprocal-production model when it is actually a company-organized consumer public -- and adds the licensed-developer detail, which is a reasonable factual refinement supported by the existing citations (Glaister 2012; Flegenheimer 2012) already anchoring the passage."
+      }
+    ],
+    "fundReviews": [
+      {
+        "operationIndex": 0,
+        "approved": false,
+        "publishStatus": "rejected",
+        "reason": "This entry is now substantially duplicative of the corrected p01 spine text, which already states the protocol/platform distinction directly and accurately. Retaining a near-identical fund entry adds redundancy without new interpretive value; optional fund material should not restate what the authoritative spine now already says."
+      },
+      {
+        "operationIndex": 1,
+        "approved": true,
+        "publishStatus": "accepted",
+        "reason": "This is a genuinely interpretive clarification -- distinguishing contact between communities from adjudication of worth -- developed carefully across multiple turns with the reader's corrections incorporated (platforms do produce contact; metrics rank attention/revenue, not cultural worth). It is well-written, non-duplicative of the spine's existing content, correctly anchored to the horizontal-proliferation passage, and ready for a future guide to use without needing further sourcing since it is conceptual rather than a factual/historical claim requiring citation."
+      },
+      {
+        "operationIndex": 2,
+        "approved": true,
+        "publishStatus": "accepted",
+        "reason": "This entry captures a durable and important distinction -- universal eligibility to create versus equal artistic success, and the sharper platform-incentive version of Lanier's worry -- that refines the chapter's central claim without overburdening the spine. It is interpretive rather than requiring factual support, is anchored appropriately to the creativity/Lanier passages, and is written with sufficient precision and fairness (including the turn 21-22 refinement of Lanier's position) to be usable by a future guide as-is."
+      }
+    ]
+  },
+  "draftPackage": {
+    "schemaVersion": 1,
+    "workId": "plenitude",
+    "sectionId": "communities-and-creativity",
+    "sectionOrder": 7,
+    "title": "Communities and Creativity",
+    "editionId": "reader-shaped",
+    "versionId": "communities-and-creativity-20260923093408-8441dd3a",
+    "parentVersionId": "communities-and-creativity-editorial-v001",
+    "createdAt": "2026-09-23T09:34:08.032Z",
+    "source": {
+      "type": "reader-shaped",
+      "path": "kv://editorial-update/plenitude/communities-and-creativity/41edbf1f-4ae7-43ce-8e5a-2bd300471760"
+    },
+    "spine": [
+      {
+        "id": "communities-and-creativity-p01",
+        "markdown": "As we have said, the development of digital media did not cause the\nbreakdown of the hierarchy of art and other high cultural forms. The two\nhappened in parallel after the Second World War, and indeed by the time\nthe major digital media (videogames, the personal computer, the World\nWide Web, mobile phones and tablets) were developed, the breakdown of\nhierarchy was unavoidable. But digital media have been developed in a\nway that provides an ideal framework for the plenitude of forms that\nhave arisen out of the fragments of modernist culture. Producers,\ndesigners, and programmers have fashioned these technologies into a\nfluid environment in which all sorts of practices are possible and\nequally legitimate. The underlying protocol and browser relation --\nthe address, the fetch, the render -- do not encode cultural legitimacy:\nthe official web page for the Metropolitan Museum and a page on\ndeviantArt are equally addressable, and the architecture that serves\nthem makes no distinction between institutional and amateur production.\nThat formal equality of address coexists with sharply unequal traffic,\ninstitutional backing, and cultural capital; particular platforms, for\ntheir own commercial and administrative purposes, routinely reintroduce\ndistinctions of visibility and standing that the underlying architecture\ndoes not itself contain. The Web with its social media often accessed by\nmobile technology now constitutes the matrix for today's communities of\nexpression and participation."
+      },
+      {
+        "id": "communities-and-creativity-p02",
+        "markdown": "In *Convergence Culture : Where Old and New Media Collide*, Henry\nJenkins describes today's media communities:\n\n> \\\"New forms of community are emerging\\...: these new communities are\n> defined through voluntary, temporary, and tactical affiliations,\n> reaffirmed through common intellectual enterprises and emotional\n> investments. Members may shift from one group to another as their\n> interests and needs change... These communities, however, are held\n> together through the mutual production and reciprocal exchange of\n> knowledge.\\\" (27)"
+      },
+      {
+        "id": "communities-and-creativity-p03",
+        "markdown": "None of this knowledge is canonical in the traditional sense. It may be\nintricate knowledge about the Starship Enterprise or the customs of\nWookies or the backstory of minor characters in the Harry Potter novels.\nAlthough most people, if pressed, might still maintain that knowing\n*Hamlet* or *Macbeth* is more important than knowing Voldemort's seven\nhorcruxes, in practice, Shakespeare's claim to commonness is no longer\nself-enforcing: schools still teach him and theaters still stage him,\nbut broad institutional circulation no longer automatically yields a\nverdict that everyone owes him deference, or that ignorance of him is a\ndeficiency needing no further justification. Canonical knowledge\nincreasingly functions as community knowledge rather than knowledge\nthat is simply common. Jenkins's description could be applied to the\nwhole cultural plenitude today, but he was thinking in particular of\nthose interest groups that function in and through fan culture. The\ncommon intellectual enterprises he is referring to might include an\narchive of fan fiction that recycles the characters and situations of\npopular fictive universes of Star Wars, Star Trek, Twilight, Harry\nPotter, Anne Rice Vampire novels, and so on. Alexandra Alter catalogues\nthese and more examples in an article in the *Wall Street Journal\nOnline* entitled \"The Weird World of Fan Fiction*,\"* pointing out:\n\"They\\'re amateur writers---with millions of readers. After years in the\nshadows, they\\'re starting to break into the mainstream\" (Alter 2012).\nShe notes that the erotic novelist E.L. James wrote fan fiction before\nproducing the print bestseller *Fifty Shades of Gray*, though the\nmanuscript had to be filed off from its Twilight origins -- stripped of\nthe specific characters and copyrighted material -- before it could pass\nthrough the acquisition, editing, and distribution machinery of\nconventional publishing, a gate few fan works cross. The example\ntherefore shows porousness between communities rather than their\nequivalence: a work can originate entirely within one community's\npractice and later migrate into another community's institutional\nchannels once altered to meet that channel's requirements. In the\nplenitude of digital media, however, there is nothing particularly weird\nabout fan fiction. It is produced by a series of networked communities\nthat taken together, as Alter recognizes, have millions of readers. What\nthe article refers to as the \"main stream\" is simply the community of\nreaders of print fiction by established publishing houses, with its own\ncontinuing gatekeeping and distribution power. Many of the readers of\nJames's \"mainstream\" novels will also be reading them as e-books."
+      },
+      {
+        "id": "communities-and-creativity-p04",
+        "markdown": "The established communities of art and culture of the past have changed\ncomparatively slowly. Even the avant-gardes of twentieth century with\ntheir rhetoric of revolution needed years or decades to break into and\npartly redefine the mainstream of the visual arts. For example, the\nimportant serial composers Schönberg, Webern, and Berg of the early\ntwentieth century are still seldom played by major orchestras. Film was\nnot considered an art form worth studying in universities until the\n1960s or later. But in the digital plenitude today, Jenkins\\'s\ncommunities \"defined through voluntary, temporary, and tactical\naffiliations\" can form and coordinate in weeks or months -- though the\ndevelopment of durable norms, stable archives, and any eventual\ncrossover into commercial institutions can still take considerably\nlonger. Fan fiction has an honorable pedigree by these standards, with\nan early community forming in the 1970s around the Star Trek television\nseries. Before the Web, fan fiction was distributed using mimeograph or\ncopying machines, and the process was necessarily slow and limited. Once\nfan fiction and so-called \"fan work\" moved online -- through mailing\nlists, Usenet, dedicated forums, and fan-run archives well before the\nrise of contemporary social media -- participation could increase\ntremendously, and communities could ramify and mutate quickly. The\naggregator site fanlore.org documents the sheer accumulated density and\nhistorical layering of Star Trek fandom -- clubs, zines, archives, and\nderivative communities stretching back to the 1970s, decades before the\nWeb existed to accelerate their growth further\n(https://fanlore.org/wiki/List_of_Star_Trek_Fan_Clubs). A rather\ndifferent case is that of Thomas Kinkade (or his company), who\nassembled not a Jenkins-style community of reciprocal production but a\ncompany-organized public of consumers around a branded product line:\npaintings, furniture, and a licensed, professionally developed\nresidential community rather than participants generating and trading\ntheir own derivative work. Kinkade's website with its virtual gallery\nserved as a focus for this consumer community and continues to do so\nafter his death, and its physical manifestations include a chain of\ngalleries (stores) and even a gated housing development designed and\nbuilt by an outside developer under license. Kinkade's community mimics\nthe elite worlds of art and design of the past, and it functions\nparallel to and independent of the traditional museum and gallery\nsystem, another instance of commercial institutions shaping which\ncultural affiliations take durable form. (Glaister 2012; Flegenheimer\n2012)"
+      },
+      {
+        "id": "communities-and-creativity-p05",
+        "markdown": "Participatory fansites, DIY communities like deviantART, the remixes of\nYouTube, and the template-bound self-expression of social networking\nsites, all testify to a new conception of *creativity* as a synonym for\nart. The conception developed from the fragments of the collapsed elite\nculture and now includes the making or refashioning of almost anything\nfrom the new practices supported by social media, to all the older\npractices of visual art, expressive writing, filmmaking, and so on. This\ncreativity may be blandly appreciated as universal, but it can only be\nevaluated in relation to one or more of the appropriate communities.\nThere is no single standard, and no community's creative practice is\ncentral to all of our culture."
+      },
+      {
+        "id": "communities-and-creativity-p06",
+        "markdown": "In recent years writers (including Andrew Keen, Jaron Lanier, and\nNicolas Carr among others) have argued that digital technology is\ndemeaning our culture and debilitating us as individuals. They have\ncriticized the effects of email and Google on our attention spans and of\nthe new participatory world of social media on our creative powers. In\n*You are not a Gadget* (2010), Lanier was particularly concerned with\ncreative expression:\n\n> Something started to go wrong with the digital revolution around the\n> turn of the twenty-first century. The World Wide Web was flooded by a\n> torrent of petty designs sometimes called web 2.0.... Anonymous blog\n> comments, vapid video pranks, and lightweight mashups may seem trivial\n> and harmless, but as a whole, this widespread practice of fragmentary,\n> impersonal communication has demeaned interpersonal interaction.... A\n> new generation has come of age with a reduced expectation of what a\n> person can be, and of who each person might become. (3)"
+      },
+      {
+        "id": "communities-and-creativity-p07",
+        "markdown": "It is the DIY communities of remix and social networking that Lanier\nbelieves are so destructive. Like many other digital media critics, he\nseems to want to return to a prior state of culture. He complains that\nWeb 2.0 culture is not producing \"artists\" like Ani diFranco (Kindle\nlocation 1603), whose contemporary folk music is one of dozens of\npopular music genres that have won increased legitimacy since the\ncollapse of the musical hierarchy. Lanier's own hierarchy of art, then,\ncontains diFranco, and he associates his hierarchy with the task of\ndefining \"what a person can be.\" He has inherited from the elite culture\nthe assumption that art plays a central culture role, but he has\nexpanded the definition of art to include popular forms that the elites\nof the past would never have acknowledged."
+      },
+      {
+        "id": "communities-and-creativity-p08",
+        "markdown": "This move is common among digital media critics as well as many critics\nand scholars of film, rock music, and television, who want to promote\ncertain forms of popular culture into a redefined hierarchy. They want,\nin other words, to enjoy the legitimacy of popular culture brought about\nby the collapse of high culture, but to ignore the fragmentation into\nvarious communities that is also the product of the collapse. This is an\nimportant aspect of what I call \"popular modernism,\" which we will\nconsider in the following chapter."
+      }
+    ],
+    "fundEntries": [
+      {
+        "id": "contact-without-tribunal",
+        "title": "Contact without a common tribunal",
+        "anchors": [
+          "communities-and-creativity-p05"
+        ],
+        "kind": "qualification",
+        "markdown": "The collapse of a single cultural hierarchy does not mean communities are sealed off from one another. Recommendation algorithms, trending lists, hashtags, and shared platforms constantly produce contact between communities — fan fiction next to literary prize coverage, a meme beside a museum acquisition. What has disappeared is not contact but a common tribunal: a widely credible authority capable of resolving such collisions into an agreed ranking of relative cultural worth. Communities can see, borrow from, and even feud with one another without that activity generating agreement about whose practice matters more. Markets and platform metrics do generate cross-community rankings, but of attention, clicks, or revenue — quantities indifferent to the internal standards by which a community judges its own work's excellence.",
+        "useWhen": "A reader argues that platforms clearly do connect or rank communities against each other, seemingly contradicting a picture of sealed-off horizontal proliferation.",
+        "sourceStatus": "not-required",
+        "sources": [],
+        "status": "accepted",
+        "provenance": {
+          "type": "model-editor",
+          "sessionId": "synthetic-2026-09-22T20-23-59-419Z_plenitude_collaborative_section7",
+          "turns": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "artifactPath": "editorial/proposals/communities-and-creativity-20260923093408-b175cd54.json"
+        },
+        "thread": null
+      },
+      {
+        "id": "eligibility-vs-success",
+        "title": "Universal eligibility to create vs. equal artistic success",
+        "anchors": [
+          "communities-and-creativity-p05",
+          "communities-and-creativity-p07"
+        ],
+        "kind": "qualification",
+        "markdown": "Two claims must be kept distinct: that creative expression is now a widely distributed capacity requiring no external gatekeeper's permission to attempt, and that every instance of expression thereby succeeds as art. Fan fiction archives and sites like deviantArt are often ferocious about internal quality: beta-reading conventions, canon-compliance tagging, comment cultures distinguishing craft from sloppiness, informal rankings of essential versus merely prolific authors. What has disappeared is not evaluation but the single external tribunal that once claimed authority to rank one community's best output against every other community's on one shared scale. \"No single standard, no community central to all of culture\" should not be misread as \"no standards at all\" — a misreading that critics of DIY culture sometimes need in order to make their diagnosis seem urgent, but which the communities themselves, on inspection, do not practice. A sharper version of that critique instead asks how platform incentives (algorithmic amplification, engagement metrics) can favor certain participation regardless of a community's own internal standards, potentially overriding the practical force of rigorous local judgment without ever refuting it.",
+        "useWhen": "A reader takes the essay's account of creativity-as-eligibility to imply that all output is equally valued within participatory communities, or objects that this makes evaluation disappear.",
+        "sourceStatus": "not-required",
+        "sources": [],
+        "status": "accepted",
+        "provenance": {
+          "type": "model-editor",
+          "sessionId": "synthetic-2026-09-22T20-23-59-419Z_plenitude_collaborative_section7",
+          "turns": [
+            19,
+            20,
+            21,
+            22
+          ],
+          "artifactPath": "editorial/proposals/communities-and-creativity-20260923093408-b175cd54.json"
+        },
+        "thread": null
+      }
+    ],
+    "changeSummary": "Corrected the deviantArt/Alexa comparison to remove the dated, volatile traffic claim in favor of the accurate structural point about protocol-level indifference to institutional legitimacy (distinguishing that from platform-level distinctions like verification and paid promotion). Refined the Shakespeare/\"community knowledge\" claim to avoid overstating the loss of common reference, framing it instead as a loss of self-enforcing normative deference. Tightened the E.L. James/Fifty Shades example to show porousness (via the legal/editorial \"filing off\" gate) rather than equivalence between fan fiction and mainstream publishing. Corrected the fanlore.org citation to avoid the unverified \"dozens of Star Trek fan sites\" claim, reframing it as evidence of density and historical layering. Sharpened the Kinkade paragraph to mark his community as company-organized/consumer rather than a Jenkins-style reciprocal-production community, and noted the licensed/developer-built housing development. Added fund entries capturing durable clarifications developed in dialogue (formal equality vs. prestige; contact without a common tribunal; metrics vs. tribunals; universal eligibility vs. equal success; Lanier's sharper platform-incentive worry) that enrich but need not burden the main spine. Validation: Approved the three spine corrections (p01 protocol/platform distinction, p03 Shakespeare/James refinements, p04 fanlore/Kinkade corrections) as genuine, well-supported fixes to overstated or imprecise claims in the authoritative text, consistent with points the reader established and the guide accepted without introducing new unsupported material. Approved the \"contact-without-tribunal\" and \"eligibility-vs-success\" fund entries as accepted: both are durable, well-written interpretive clarifications, correctly anchored, and non-duplicative of spine content, genuinely enriching future readings without requiring unsupported factual claims. Rejected the \"formal-equality-not-prestige\" fund entry: it is substantially duplicative of the corrected p01 spine text (which now already states the protocol/platform distinction directly), so retaining a near-identical fund entry adds redundancy rather than value."
+  }
+}

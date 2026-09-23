@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "proposalId": "great-divide-20260922152626-5d8ab832",
+  "createdAt": "2026-09-22T15:26:26.948Z",
+  "model": "claude-sonnet-5",
+  "workId": "plenitude",
+  "sectionId": "great-divide",
+  "sectionOrder": 1,
+  "baseVersionId": "great-divide-editorial-v001",
+  "baseSource": "seed",
+  "changed": true,
+  "noChangeReason": null,
+  "sourceSession": {
+    "path": "synthetic-reader/output/2026-09-22T15-12-00-564Z_plenitude_collaborative_section1/session.json",
+    "profileId": "collaborative",
+    "startedAt": "2026-09-22T15:12:00.564Z",
+    "stopReason": "reader_finished"
+  },
+  "proposal": {
+    "changeSummary": "Corrected two factual errors in the opening paragraph (Pace event date and duration of Abramović's MOMA piece) and softened the totalizing \"delighted\" framing to preserve the tension the section goes on to develop. No other spine changes; the rich interpretive discussion about plural authority/consecration is valuable but constitutes reader-guide analysis rather than durable corrections to the authored text, so it is preserved in the fund as optional supporting material rather than inserted into the spine's voice.",
+    "decision": "change",
+    "spineUpdates": [
+      {
+        "passageId": "great-divide-p01",
+        "markdown": "On July 10, 2013, the rapper Jay Z released a video called \"Picasso Baby: A Performance Art Film.\" The video documents a performance in an unusual venue, a \"white-box\" hall of the New York Pace Gallery. As he raps, Jay Z playfully confronts one by one a series of fans and \"art-world types,\" as the New York Times article describes them (Trebay 2013). Jay Z got the idea from a work by the performance artist, Marina Abramovic, who had in 2010 staged a nearly three-month, 736-hour event at the MOMA, in which she sat motionless and stared at one seated individual after other. Abramovic herself appears as one of Jay Z's partners. Director Mark Romanek's video portrays the joyful atmosphere of an event in which well-known art figures as well as the fans appear pleased to be taking part. Jay Z begins: \"I just want a Picasso in my casa, no, my castle.\" His lyrics make reference to other twentieth-century artists (Rothko, Warhol, Basquiat, Francis Bacon), but there seems to be no particular rationale for his choices. Jay Z feels no weight of the elite artistic tradition of the twentieth century. His list includes those who functioned comfortably within the elite community and those who were challenging the status of art itself. At the end he intones: \"...I'm the modern day Pablo Picasso baby.\"",
+        "rationale": "Reader identified two verifiable factual errors — the performance date (July 10, not June) and the duration/nature of Abramović's MOMA piece (736 hours over nearly three months, not simply '30 days') — that belong in the authoritative spine rather than a footnote, since this is the section's hinge example. Also softened 'delighted to be taking part' to 'appear pleased to be taking part' since the guide's own later turns (2, 4) establish that universal delight is a surface reading the section complicates, not a flat claim the opening should assert outright; the original wording blunted the tension the argument goes on to develop.",
+        "conversationTurns": [
+          1,
+          2
+        ]
+      }
+    ],
+    "fundOperations": [
+      {
+        "operation": "add",
+        "targetEntryId": null,
+        "entry": {
+          "id": "consecration-nonexclusive",
+          "title": "Elite consecration as nonexclusive rather than absent",
+          "anchors": [
+            "great-divide-p04"
+          ],
+          "kind": "extension",
+          "markdown": "The shift the video registers is not that elite art-world consecration has vanished, but that it has lost exclusivity. Pace's prestige, Abramović's participation, and the Times's coverage still confer a real and distinct kind of seriousness — the claim to stand inside the twentieth-century lineage Jay Z invokes by naming Rothko, Warhol, Basquiat, and Bacon. But this consecration no longer functions as the sole gate through which value must pass to count as legitimate: Keith Hunt's judgment of rap as 'a complex and beautiful art form' requires no ratification from the gallery and would hold even if Pace had never opened its doors. Several institutions and publics can authorize different kinds of value on the same object at once, with no fixed exchange rate between them — though not with equal power. Pace converts Jay Z's celebrity into art-world relevance; Jay Z converts Pace's prestige into a lineage-legitimacy he did not inherit by training, a conversion legible through race and class given his origins.",
+          "useWhen": "A reader asks whether the essay is claiming elite art-world authority has simply disappeared, or wants the crossover scene distinguished from older high/low controversies.",
+          "sourceStatus": "not-required",
+          "sources": []
+        },
+        "rationale": "Turns 5-8 developed a precise and durable refinement — sovereign authority giving way to nonexclusive, unequally powered consecration rather than to flat equivalence or full evaporation — that sharpens the section's core claim without altering its voice or proportion. Worth preserving for readers who probe this exact distinction, but it is interpretive elaboration rather than a correction the spine itself requires.",
+        "conversationTurns": [
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "operation": "add",
+        "targetEntryId": null,
+        "entry": {
+          "id": "contraction-not-collapse",
+          "title": "Decline in reach, not universal collapse, of elite jurisdiction",
+          "anchors": [
+            "great-divide-p04"
+          ],
+          "kind": "qualification",
+          "markdown": "The claim should not be overstated as elite institutions once holding universal, uncontested jurisdiction that has now vanished entirely. Even in earlier crossover controversies, contestation of an elite verdict presupposed that the verdict mattered decisively — the court was disputed but still presumed sovereign. What the Pace event registers is narrower and more defensible: a contraction in the practical reach and monopoly claim of elite adjudication. Pace's sanction still confers something real, but rap's internal standard and the informal judgments of a YouTube public now proceed independently of it, neither seeking its blessing nor organizing in reaction against it. The change is elite authority's demotion from presumed monopoly to one adjudicating body among several with genuine but bounded reach — not the disappearance of adjudication as such.",
+          "useWhen": "A reader worries the argument idealizes a past era of uncontested elite authority, or asks for a more precise historical framing of what has actually changed.",
+          "sourceStatus": "not-required",
+          "sources": []
+        },
+        "rationale": "Turn 9's correction and turn 10's restatement supply a genuine qualification against overstating the historical contrast — a distinct, durable refinement worth keeping available without inserting historiographical hedging into the spine's compact narrative voice.",
+        "conversationTurns": [
+          9,
+          10
+        ]
+      }
+    ]
+  },
+  "review": {
+    "decision": "approve",
+    "summary": "Approved the spine correction of the Pace event date and Abramović performance duration, both verifiable factual errors worth fixing in the authoritative text. Rejected the \"delighted\" -> \"appear pleased\" softening bundled into the same passage edit is not separable from the approved passage update since only one spine update per passage is allowed; however, on balance the softening is itself a defensible refinement (avoiding a totalizing claim the section immediately complicates) and does not overstate or contradict the source, so the full passage update is approved as one unit. Of the two fund additions, \"consecration-nonexclusive\" is approved as accepted: it is a precise, well-anchored interpretive extension resting entirely on textual details already in the spine (Jay Z's lyrics, Mickalene Thomas's quote, Keith Hunt's comment), requires no outside factual support, and is genuinely useful durable material. \"Contraction-not-collapse\" is rejected: while turn 9-10's historiographical qualification is intellectually sound, it rests on an unsupported comparative historical claim about how earlier crossover controversies actually functioned (i.e., that elite verdicts were \"presumed sovereign\" and contests \"presupposed\" that sovereignty) — a historical/institutional claim about reception and authority that is asserted without any supplied source and functions as a factual claim about past practice rather than pure textual interpretation, so it does not meet the bar for durable fund inclusion as written.",
+    "spineReviews": [
+      {
+        "passageId": "great-divide-p01",
+        "approved": true,
+        "reason": "Corrects two verifiable factual errors (July 10, 2013 date; 736-hour/nearly-three-month duration of Abramović's MOMA piece) that matter precisely because this is the section's hinge example, improving accuracy for all future readers. The accompanying softening of 'delighted' to 'appear pleased' is a modest, textually faithful adjustment that preserves rather than weakens the tension the section goes on to develop in paragraphs 2-4, and does not concede any point merely because a reader pushed back without being convinced. Net effect improves the continuous work."
+      }
+    ],
+    "fundReviews": [
+      {
+        "operationIndex": 0,
+        "approved": true,
+        "publishStatus": "accepted",
+        "reason": "A precise, well-anchored interpretive extension distinguishing nonexclusive from absent consecration. It draws entirely on details already present in the spine (Pace/Abramović/Times, the Rothko/Warhol/Basquiat/Bacon list, Keith Hunt's comment, Mickalene Thomas's remark on race and class) and synthesizes them into a durable, nonduplicative interpretive point. No unsupported factual claims are introduced; it is ready for the next guide to use as-is."
+      },
+      {
+        "operationIndex": 1,
+        "approved": false,
+        "publishStatus": "rejected",
+        "reason": "This entry rests on an unsupported historical/institutional claim -- that earlier crossover controversies presupposed elite verdicts were 'presumed sovereign' and that contestation of them 'presupposed' that sovereignty. That is a specific claim about how reception and authority actually functioned historically, not a claim derivable from the text alone, and no source supports it. Even as interpretive framing, it overstates certainty about historical dynamics outside the supplied material and should not enter the durable fund as currently written."
+      }
+    ]
+  },
+  "draftPackage": {
+    "schemaVersion": 1,
+    "workId": "plenitude",
+    "sectionId": "great-divide",
+    "sectionOrder": 1,
+    "title": "The Great Divide",
+    "editionId": "reader-shaped",
+    "versionId": "great-divide-20260922152626-7c9a5151",
+    "parentVersionId": "great-divide-editorial-v001",
+    "createdAt": "2026-09-22T15:26:26.948Z",
+    "source": {
+      "type": "reader-shaped",
+      "path": "kv://editorial-update/plenitude/great-divide/aa2dd421-505f-4e85-8eb7-0140fd4be35d"
+    },
+    "spine": [
+      {
+        "id": "great-divide-p01",
+        "markdown": "On July 10, 2013, the rapper Jay Z released a video called \"Picasso Baby: A Performance Art Film.\" The video documents a performance in an unusual venue, a \"white-box\" hall of the New York Pace Gallery. As he raps, Jay Z playfully confronts one by one a series of fans and \"art-world types,\" as the New York Times article describes them (Trebay 2013). Jay Z got the idea from a work by the performance artist, Marina Abramovic, who had in 2010 staged a nearly three-month, 736-hour event at the MOMA, in which she sat motionless and stared at one seated individual after other. Abramovic herself appears as one of Jay Z's partners. Director Mark Romanek's video portrays the joyful atmosphere of an event in which well-known art figures as well as the fans appear pleased to be taking part. Jay Z begins: \"I just want a Picasso in my casa, no, my castle.\" His lyrics make reference to other twentieth-century artists (Rothko, Warhol, Basquiat, Francis Bacon), but there seems to be no particular rationale for his choices. Jay Z feels no weight of the elite artistic tradition of the twentieth century. His list includes those who functioned comfortably within the elite community and those who were challenging the status of art itself. At the end he intones: \"...I'm the modern day Pablo Picasso baby.\""
+      },
+      {
+        "id": "great-divide-p02",
+        "markdown": "The video includes a brief introductory interview in which Jay Z explains that he is bringing art and rap as popular culture back together. Despite the rather hostile tone of some of the lyrics, the point of the video is that Jay Z transcends the artificial barriers that separated high art from the life of everyday people, which rap is about. An artist Mickalene Thomas suggests a political dimension to this performance: \"For a young black man in America to be on his level of success and rapping about art, and not what he's wearing, is the coolest thing...\" Jay Z was indeed raised in a housing project in Brooklyn by his mother after being abandoned by his father and had early encounters with guns and drugs. And the video certainly intends to suggest his acceptance by the New York art community. The artist Marilyn Minter says that \"Jay-Z speaks to the times we live in.\""
+      },
+      {
+        "id": "great-divide-p03",
+        "markdown": "But what does his performance say about those times? What does it mean to be an artist today, and why does Jay Z want to portray himself as one? The video is supposed to celebrate the openness of our culture in which traditional art and rap come together, and it doubtless does that for millions of viewers. One fan, Keith Hunt, comments on the YouTube video:\n\n> \"...Rap is a complex and beautiful art form. And Jay Z is one of the best of all time in this medium. I don't see anything weird about one of the best artists in his medium sharing his art at an art gallery.\""
+      },
+      {
+        "id": "great-divide-p04",
+        "markdown": "Yet the video also provoked every conceivable reaction. Some regarded it as derivative or silly; others criticized it simply as poor rap (that is, they judged it by the standards and genres of the rap community). The video, the performance, the comments by fans and artists, the reactions in the press and online---all reflect the complex and uncertain status of art among the various communities of our media culture. The great division between elite art and popular culture has almost, but not quite, vanished. What replaces that division is not a consensus about art, but a wide range of different attitudes."
+      }
+    ],
+    "fundEntries": [
+      {
+        "id": "consecration-nonexclusive",
+        "title": "Elite consecration as nonexclusive rather than absent",
+        "anchors": [
+          "great-divide-p04"
+        ],
+        "kind": "extension",
+        "markdown": "The shift the video registers is not that elite art-world consecration has vanished, but that it has lost exclusivity. Pace's prestige, Abramović's participation, and the Times's coverage still confer a real and distinct kind of seriousness — the claim to stand inside the twentieth-century lineage Jay Z invokes by naming Rothko, Warhol, Basquiat, and Bacon. But this consecration no longer functions as the sole gate through which value must pass to count as legitimate: Keith Hunt's judgment of rap as 'a complex and beautiful art form' requires no ratification from the gallery and would hold even if Pace had never opened its doors. Several institutions and publics can authorize different kinds of value on the same object at once, with no fixed exchange rate between them — though not with equal power. Pace converts Jay Z's celebrity into art-world relevance; Jay Z converts Pace's prestige into a lineage-legitimacy he did not inherit by training, a conversion legible through race and class given his origins.",
+        "useWhen": "A reader asks whether the essay is claiming elite art-world authority has simply disappeared, or wants the crossover scene distinguished from older high/low controversies.",
+        "sourceStatus": "not-required",
+        "sources": [],
+        "status": "accepted",
+        "provenance": {
+          "type": "model-editor",
+          "sessionId": "synthetic-2026-09-22T15-12-00-564Z_plenitude_collaborative_section1",
+          "turns": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "artifactPath": "editorial/proposals/great-divide-20260922152626-5d8ab832.json"
+        },
+        "thread": null
+      }
+    ],
+    "changeSummary": "Corrected two factual errors in the opening paragraph (Pace event date and duration of Abramović's MOMA piece) and softened the totalizing \"delighted\" framing to preserve the tension the section goes on to develop. No other spine changes; the rich interpretive discussion about plural authority/consecration is valuable but constitutes reader-guide analysis rather than durable corrections to the authored text, so it is preserved in the fund as optional supporting material rather than inserted into the spine's voice. Validation: Approved the spine correction of the Pace event date and Abramović performance duration, both verifiable factual errors worth fixing in the authoritative text. Rejected the \"delighted\" -> \"appear pleased\" softening bundled into the same passage edit is not separable from the approved passage update since only one spine update per passage is allowed; however, on balance the softening is itself a defensible refinement (avoiding a totalizing claim the section immediately complicates) and does not overstate or contradict the source, so the full passage update is approved as one unit. Of the two fund additions, \"consecration-nonexclusive\" is approved as accepted: it is a precise, well-anchored interpretive extension resting entirely on textual details already in the spine (Jay Z's lyrics, Mickalene Thomas's quote, Keith Hunt's comment), requires no outside factual support, and is genuinely useful durable material. \"Contraction-not-collapse\" is rejected: while turn 9-10's historiographical qualification is intellectually sound, it rests on an unsupported comparative historical claim about how earlier crossover controversies actually functioned (i.e., that elite verdicts were \"presumed sovereign\" and contests \"presupposed\" that sovereignty) — a historical/institutional claim about reception and authority that is asserted without any supplied source and functions as a factual claim about past practice rather than pure textual interpretation, so it does not meet the bar for durable fund inclusion as written."
+  }
+}

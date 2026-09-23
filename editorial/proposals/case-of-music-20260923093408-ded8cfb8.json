@@ -1,0 +1,316 @@
+{
+  "schemaVersion": 1,
+  "proposalId": "case-of-music-20260923093408-ded8cfb8",
+  "createdAt": "2026-09-23T09:34:08.638Z",
+  "model": "claude-sonnet-5",
+  "workId": "plenitude",
+  "sectionId": "case-of-music",
+  "sectionOrder": 4,
+  "baseVersionId": "case-of-music-editorial-v001",
+  "baseSource": "seed",
+  "changed": true,
+  "noChangeReason": null,
+  "sourceSession": {
+    "path": "synthetic-reader/output/2026-09-22T20-23-59-419Z_plenitude_collaborative_section4/session.json",
+    "profileId": "collaborative",
+    "startedAt": "2026-09-22T20:23:59.419Z",
+    "stopReason": "turn_limit_reached"
+  },
+  "proposal": {
+    "changeSummary": "Corrected a factual detail in p03 about the Huntley-Brinkley theme (it was the second movement of Beethoven's Ninth, drawn from Toscanini's 1952 NBC Symphony recording, used as a recurring closing theme over more than a decade — not simply \"an excerpt\" with vague framing), and added fund entries capturing the durable interpretive gains from the exchange: the Berry/Jay Z institutional-asymmetry point (gallery-as-initiator, not hip-hop-as-subordinate), the availability-vs-attention distinction for the Netrebko example, and the scaled-back hypothesis about plenitude making fine-grained affiliations visible/durable rather than \"replacing\" the old hierarchy. Declined to add invented concrete band/label/festival examples since none were actually supplied. No other spine prose altered; the core argument and proportion of the section stand.",
+    "decision": "change",
+    "fundOperations": [
+      {
+        "operation": "add",
+        "targetEntryId": null,
+        "entry": {
+          "id": "picasso-baby-institutional-asymmetry",
+          "title": "The Pace Gallery gesture: staged, not argued",
+          "anchors": [
+            "case-of-music-p02"
+          ],
+          "kind": "extension",
+          "markdown": "When Jay Z invoked Picasso during his 2013 \"Picasso Baby\" performance at Pace Gallery, the lyric itself carries little weight—it gestures at Picasso the way Chuck Berry gestured at Beethoven, casually, as shorthand for high culture. What differs is institutional: Berry's audience needed no blessing from classical music to feel culturally significant, and no orchestra sought proximity to \"Roll Over Beethoven.\" In 1956 the two systems—rock and roll and the classical establishment—were mutually irrelevant to one another, indifferent in both directions. By 2013 that mutual irrelevance had broken in only one direction: Pace Gallery chose to become the site of the encounter, offering its walls and its guest list as the setting for Jay Z's performance. The reversal is not that hip-hop out-argued or surpassed painting—nothing in the lyric makes that case—but that the formerly elite institution initiated contact with a cultural energy it does not generate and cannot claim credit for. The asymmetry is not a hierarchy of rank reversed; it is a question of who sought the meeting.",
+          "useWhen": "For a reader who wants the Berry/Jay Z hinge unpacked more fully than the compressed spine passage allows, especially the distinction between the lyric's content and the institutional fact of the venue.",
+          "sourceStatus": "needs-verification",
+          "sources": []
+        },
+        "rationale": "Turns 1-6 developed a precise and durable clarification of what the Berry-to-Jay-Z sequence actually demonstrates (institutional initiative, not lyrical argument or reversed rank of subordination). This refines rather than corrects the spine's already-compressed p02, so it belongs as optional supporting elaboration rather than a spine rewrite, preserving proportion. Marked needs-verification since it turns on a specific date/venue detail not already established in the package.",
+        "conversationTurns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "operation": "add",
+        "targetEntryId": null,
+        "entry": {
+          "id": "availability-vs-attention",
+          "title": "Universal availability is not universal attention",
+          "anchors": [
+            "case-of-music-p06"
+          ],
+          "kind": "qualification",
+          "markdown": "Anna Netrebko's presence on the same platforms as any rock star does not mean she is equally discoverable or that her audience lacks gatekeepers. Recommendation systems built on listening history, social graphs built on existing affinities, marketing aimed at audiences already primed to respond, and genre habits reinforced by years of prior listening all continue to sort listeners, only invisibly and individually rather than through a centralized broadcast decision. Nor did Netrebko's confinement to an opera audience originate with algorithms: opera required specialized training, a distinct repertoire, particular vocal technique, and an audience culture with its own codes long before any streaming platform existed. Plenitude did not invent these community boundaries; it operates within a system already organized by language, training, and social identity, tending to reinforce rather than dissolve those older lines by giving each community enough self-sufficiency that crossing over is never forced.",
+          "useWhen": "For a reader pressing on the claim that removing institutional gatekeepers should have produced convergence between musical communities, or who wants the Netrebko example held to a more precise causal claim than 'no gatekeeper, yet no convergence.'",
+          "sourceStatus": "not-required",
+          "sources": []
+        },
+        "rationale": "Turns 9-14 established a genuine interpretive refinement: the spine's p06 already asserts separate communities and unequal follower counts, but the exchange sharpens why plenitude preserves rather than manufactures those divisions. This is a durable clarification worth preserving for a reader who wants the causal mechanism spelled out, without expanding the spine's compressed treatment.",
+        "conversationTurns": [
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ]
+      },
+      {
+        "operation": "add",
+        "targetEntryId": null,
+        "entry": {
+          "id": "private-discovery-vs-shared-reference",
+          "title": "Solitary crossings versus common cultural furniture",
+          "anchors": [
+            "case-of-music-p03",
+            "case-of-music-p06"
+          ],
+          "kind": "qualification",
+          "markdown": "Personalized recommendation and streaming do not necessarily reduce how often any single listener crosses genre lines—search, playlists, soundtracks, and viral clips can generate cross-genre discovery as readily as suppress it. What has changed is not frequency but character: crossings under plenitude tend to be private and unsynchronized rather than public and shared. A listener who discovers an aria through an algorithm has an individual encounter, invisible to anyone else, generating no common reference point. This contrasts with the way the Huntley-Brinkley closing theme worked: the recurring fragment (the second movement of Beethoven's Ninth, from Toscanini's 1952 NBC Symphony recording) became common cultural furniture not because of its musical content but because of scheduled, repeated, collectively witnessed placement inside a mass ritual, becoming a shared marker of a shared habit regardless of anyone's taste for or knowledge of classical music. Broadcast structure has not vanished—live events, scheduled programming, and platform-scale spectacles still create simultaneous publics—but scheduled, unchosen, repeated exposure is no longer the default condition of encountering culture. It is one option among many rather than the near-universal infrastructure it once was, which makes the accidental production of such shared, recognizable furniture rarer and harder to sustain, though not impossible.",
+          "useWhen": "For a reader who wants the plenitude-versus-broadcast contrast held to a precise, non-absolute claim, distinguishing frequency of individual crossing from the loss of shared, simultaneous cultural reference points.",
+          "sourceStatus": "verified",
+          "sources": [
+            {
+              "title": "The Foote Files: The Final Huntley-Brinkley Report on NBC",
+              "url": "https://www.cbsnews.com/texas/news/the-foote-files-the-final-huntley-brinkley-report-on-nbc/"
+            }
+          ]
+        },
+        "rationale": "Turns 15-20 arrived at a carefully qualified and durable distinction (frequency vs. shared/synchronized exposure) that corrects an overreaching claim without being already stated in the spine. The reader supplied a verifying source for the Huntley-Brinkley detail, so this entry can be marked verified rather than needs-verification for that specific fact.",
+        "conversationTurns": [
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ]
+      },
+      {
+        "operation": "add",
+        "targetEntryId": null,
+        "entry": {
+          "id": "plenitude-visibility-not-replacement",
+          "title": "Plenitude makes fine-grained affiliation visible and durable, not a completed replacement",
+          "anchors": [
+            "case-of-music-p07"
+          ],
+          "kind": "qualification",
+          "markdown": "The defensible hypothesis is narrower than saying countless meaningful divisions have \"replaced\" the old elite/popular hierarchy in a completed historical succession. What can actually be shown is that musical plenitude makes fine-grained affiliations more visible than they were under broadcast scarcity, and gives already-existing communities durable means of reinforcing themselves—streaming, headphones, niche criticism, genre taxonomies are now general features of the musical environment regardless of which particular scene one examines. Genre distinctions such as Death Metal, Doom Metal, and Industrial Metal, or the contested authenticity of hip hop's transnational variants, illustrate the kind of division plenitude accommodates; they are not offered as fully documented case studies of named bands, labels, or festival disputes. The causal sequence runs culture first, platform reinforcement second: boundaries are established by listeners, critics, and practitioners arguing over aesthetics and identity, and recommendation systems reinforce an existing scene's coherence rather than originating the boundary or guaranteeing it stays fixed—platforms can also surface adjacent genres a listener had not sought. The old single hierarchy has not been replaced by a new one; it has been succeeded by a condition in which no single hierarchy holds and many bounded, self-sustaining communities of taste coexist without converging.",
+          "useWhen": "For a reader pressing on whether the genre-proliferation claim in the closing section is adequately supported by evidence, or who wants the causal relationship between cultural boundary-formation and platform reinforcement stated precisely.",
+          "sourceStatus": "not-required",
+          "sources": []
+        },
+        "rationale": "Turns 21-28 是 a sustained, productive correction of overreach: the guide ultimately conceded that no concrete documented case was available and rescaled the claim appropriately. This is exactly the kind of durable refinement the fund should preserve, since it corrects both the evidentiary basis (taxonomic proliferation vs. documented social hierarchy) and the causal direction (culture first, platform second), without requiring an unsupported spine rewrite that invents specific bands or scenes.",
+        "conversationTurns": [
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28
+        ]
+      }
+    ],
+    "spineUpdates": [
+      {
+        "passageId": "case-of-music-p03",
+        "markdown": "In the 1960s, music was one of the cultural activities in which the term \"artist\" began to be applied more and more widely without irony, until it included all kinds of musical performers. In fact, unlike popular singers, performers of classical music were and still are usually referred to more specifically as \"soprano\" or \"violinist\" rather than \"artist.\" From 1956 to 1970, *The Huntley-Brinkley Report*, NBC's nightly news program, used the second movement of Beethoven's Ninth Symphony, drawn from Toscanini's 1952 recording with the NBC Symphony Orchestra, as its recurring closing theme. Night after night for over a decade, the fragment became fused with the ritual of watching the news, a shared marker recognizable to millions regardless of whether they knew it was Beethoven or cared for classical music at all. Today it is unthinkable that any television news show would use a classical music standard as a theme, let alone that an American network would maintain its own symphony orchestra.",
+        "rationale": "Turn 17 identified that the spine's original claim (\"an excerpt from Beethoven's Ninth Symphony,\" \"a 1950s recording\") was imprecise and needed correction: the actual case is the second movement specifically, from Toscanini's 1952 recording, used across the program's 1956-1970 run. This is a factual correction of a passage in the authoritative spine, not merely optional supporting material, so per instructions it belongs in the spine itself. The reader supplied a verifying source (CBS News) for the broadcast dates.",
+        "conversationTurns": [
+          17,
+          18
+        ]
+      }
+    ]
+  },
+  "review": {
+    "decision": "approve",
+    "summary": "Approved the spine correction to p03 (Huntley-Brinkley theme detail), which is properly sourced and improves accuracy without altering the section's argument or proportion. Of the four proposed fund entries, approved two as accepted-quality additions (availability-vs-attention; private-discovery-vs-shared-reference, the latter carrying the verified CBS source for its factual claim), approved one as candidate pending verification of the Picasso Baby/Pace Gallery date and venue detail (not supported by any supplied source), and rejected the fourth as substantially duplicative of ground already covered by the p07 spine passage and the other fund entries, restating rather than adding a distinct, well-anchored contribution.",
+    "spineReviews": [
+      {
+        "passageId": "case-of-music-p03",
+        "approved": true,
+        "reason": "The original spine text vaguely described 'an excerpt' from 'a 1950s recording' by Toscanini. The revision corrects this to the specific, sourced detail (second movement, 1952 Toscanini/NBC Symphony recording, used 1956-1970) with a supplied verifying source (CBS News). This is a factual correction to the authoritative spine itself, not merely deferred to optional material, and it strengthens the passage's precision without disrupting its function or proportion in the section. The added sentence about the fragment becoming 'fused with the ritual of watching' is a reasonable, moderate interpretive gloss supported by the surrounding exchange's reasoning and does not overstate beyond what turns 17-18 established."
+      }
+    ],
+    "fundReviews": [
+      {
+        "operationIndex": 0,
+        "approved": true,
+        "publishStatus": "candidate",
+        "reason": "The institutional-asymmetry point about Berry vs. Jay Z is a genuine interpretive contribution that goes beyond the compressed spine passage without duplicating it. However, it turns on a specific factual claim (2013 Pace Gallery performance, guest list, venue details) that has no supplied source in this package -- the reader introduced this detail in conversation but no citation was ever furnished. Per guidance, precise historical/institutional claims lacking direct supplied support must be marked candidate even when the broader interpretive point is sound."
+      },
+      {
+        "operationIndex": 1,
+        "approved": true,
+        "publishStatus": "accepted",
+        "reason": "This is a well-written, nonduplicative qualification that refines the spine's existing Netrebko example (p06) with a precise, defensible causal claim (availability vs. attention, culture-first/platform-second) that was carefully negotiated across turns 9-14 to avoid overreach. It does not depend on any unsupported factual specifics -- it is interpretive reasoning about platform mechanics and preexisting community structure, correctly marked not-required for sourcing, and ready for use by the next guide."
+      },
+      {
+        "operationIndex": 2,
+        "approved": true,
+        "publishStatus": "accepted",
+        "reason": "This entry captures a carefully qualified, non-absolute distinction (frequency of individual crossing vs. loss of shared simultaneous reference points) that was rigorously corrected across turns 15-20 to avoid overstatement. It correctly anchors to the Huntley-Brinkley detail with the same verified CBS source used in the spine correction, and is nonduplicative of the qualification in operation 1, addressing a distinct mechanism (synchronization vs. mere availability). Well-written and ready for use."
+      },
+      {
+        "operationIndex": 3,
+        "approved": false,
+        "publishStatus": "rejected",
+        "reason": "This entry substantially restates the conclusion already present in spine passage p07 (numerous smaller divides, genre proliferation, communities sorting by taste) and duplicates the causal logic already fully covered by fund entries 1 and 2 (culture-first/platform-second, preexisting boundaries). The guide's own turn 28 concession that no concrete case exists undercuts the entry's value as a fund addition -- it is a rescoping of an overreaching claim back toward what the spine already says, not new interpretive or evidentiary material. It does not meet the bar of being nonduplicative or adding distinct value beyond what the existing spine and other approved entries already establish."
+      }
+    ]
+  },
+  "draftPackage": {
+    "schemaVersion": 1,
+    "workId": "plenitude",
+    "sectionId": "case-of-music",
+    "sectionOrder": 4,
+    "title": "The Case of Music",
+    "editionId": "reader-shaped",
+    "versionId": "case-of-music-20260923093408-f1639d0d",
+    "parentVersionId": "case-of-music-editorial-v001",
+    "createdAt": "2026-09-23T09:34:08.638Z",
+    "source": {
+      "type": "reader-shaped",
+      "path": "kv://editorial-update/plenitude/case-of-music/0cddd12b-27b2-4f6b-b755-c76ac4846d18"
+    },
+    "spine": [
+      {
+        "id": "case-of-music-p01",
+        "markdown": "In the 1950s the Philadelphia Symphony and the other orchestras in the \"Big Five\" in the United States (and of course the orchestras of Europe) were still flourishing. But the shift in popular music from the big bands and crooners of the pre-war period to jazz and especially to rock-and-roll was changing cultural attitudes towards music in general. Prior to the 1950s, few questioned that the musical tradition from Bach to at least Stravinsky was one of the great achievements of Western culture, incomparably more profound than popular music. Increasingly the popular music of the 1950s and 1960s was made by people barely out of their teens for people still in their teens. And although the music had roots, for example in African-American blues, it owed nothing to the classical tradition. This music posed perhaps the first successful challenge to the hierarchy of the arts in North America and Europe."
+      },
+      {
+        "id": "case-of-music-p02",
+        "markdown": "The Chuck Berry song \"Roll Over Beethoven,\" performed later by the Beatles and many others, captured perfectly what was happening. The song and youth culture in general did not harbor real hostility to classical music, because it did not know or care about the music. Berry simply used Beethoven as a metaphor for the music of high culture that his music replaces for his youthful audience (Kozinin 2011). Jay Z's song \"Picasso Baby\" celebrates the culmination of this cultural process. Like Berry, the rapper is telling Picasso to move over, but by 2013, recognized artists are happy to participate in his performance. Jay Z is confident about his status in a way that Berry was not."
+      },
+      {
+        "id": "case-of-music-p03",
+        "markdown": "In the 1960s, music was one of the cultural activities in which the term \"artist\" began to be applied more and more widely without irony, until it included all kinds of musical performers. In fact, unlike popular singers, performers of classical music were and still are usually referred to more specifically as \"soprano\" or \"violinist\" rather than \"artist.\" From 1956 to 1970, *The Huntley-Brinkley Report*, NBC's nightly news program, used the second movement of Beethoven's Ninth Symphony, drawn from Toscanini's 1952 recording with the NBC Symphony Orchestra, as its recurring closing theme. Night after night for over a decade, the fragment became fused with the ritual of watching the news, a shared marker recognizable to millions regardless of whether they knew it was Beethoven or cared for classical music at all. Today it is unthinkable that any television news show would use a classical music standard as a theme, let alone that an American network would maintain its own symphony orchestra."
+      },
+      {
+        "id": "case-of-music-p04",
+        "markdown": "Throughout this period, the community of composers, musicians, and audiences who believed in the evident superiority of classical music grew smaller and less convincing. New hybrid figures appeared, such as Brian Eno and David Byrne, whose music, though not part of the classical tradition, was taken seriously as artistic expression. Classically trained composers, among them Philip Glass, crossed over into popular performance with minimalist music. Meanwhile, the conservative symphonic sound was refashioned for large popular audiences in Hollywood film by John Williams, Vangelis, Howard Shore, and many others. Above all, the enormous audiences for rock, country, hip-hop, and various other popular music genres demanded cultural recognition. By the end of the century, American culture had clearly accepted the notion that all the various musical styles or traditions were of equal creative potential. The audience for symphonic classical music had diminished, but not disappeared. Today, even some of the great orchestras in large American cities, which were founded in the nineteenth century in a conscious effort by business philanthropists to bring European culture to the United States (Levine 1988, 104-140), find it difficult to fund their seasons. In Europe, the audiences are more faithful, and there is still significant government support as there is for theater and opera (Judt 2005, 778-779). Opera in both America and Europe survives largely for audiences who may dress up in an effort to recall the era of elite music, and there is at the same time a successful trend to broadcast opera to a secondary audience in film theaters in high-quality stereo. Opera stars and soloists resort to gimmicks (the three-tenor concerts) to generate publicity and larger audiences. Meanwhile, the classical community engages in endless debates on whether and how to make classical music \"relevant\": to increase the size of its audience, for example, by making the concerts less stodgy (e.g. Wakin 2012). And the term \"artist\" is used simply to designate the performer column in the iTunes music interface."
+      },
+      {
+        "id": "case-of-music-p05",
+        "markdown": "In 1913, the première of Stravinsky's dissonant and rhythmically violent ballet *The Rite of Spring* led to a riot. Whether the rioters were in fact incensed by the music, rather than the choreography, it was certainly believable that a Parisian audience could care enough about the fate of music to break into fistfights over an avant-garde piece. It is unthinkable today that any music portrayed as classical could provoke its docile audience to riot. (However, fans can occasionally be moved to violence when a famous rock band cancels a concert.) If the music is not to a listener's taste, she goes elsewhere, for she has an infinite number of musical choices, all available from a variety of sources, especially Internet streaming and download."
+      },
+      {
+        "id": "case-of-music-p06",
+        "markdown": "The plenitude now accommodates musical communities that intersect, cooperate, compete, and above all ignore each other. The formerly elite classical community is certainly present on the Web. Classical music can be purchased and downloaded on iTunes, and classical music magazines have websites. There are classical music blogs, and some opera stars have their own blogs and fan sites. All the digital and other media forms that support popular music are also available for formerly elite music, although the sites are less visited, the music less often downloaded. The opera diva Anna Netrebko is present, like any rock star, in most of the various digital forms from websites to iTunes to Facebook to YouTube to Twitter, although she will have much smaller numbers in all these forms than a rock star. (For example, she had somewhat more than 50,000 followers on Twitter; Justin Timberlake has over 61.5 million.) She is regarded as a star within her community, but not necessarily across communities. The Internet does not put Netrebko in competition with rock stars, for she remains in a different community. The converging of musical tastes into one community never happened, although it was perhaps closer to happening in the period prior to the Internet when the three television networks in the United States and local radio chains with replicable formats dominated the airwaves. The plenitude creates numerous hierarchies, which can be braided into strands (sharing some common artists or performers) or held quite separate."
+      },
+      {
+        "id": "case-of-music-p07",
+        "markdown": "This in itself is an important shift from the mid-twentieth century. The great divide between elite and popular music has been replaced with numerous smaller divides and provisional connections. The Wikipedia article lists over 250 \"genres\" of rock music, each with a link to a descriptive article: including Bandana Thrash (a subgenre of Thrashcore), Krautrock, Swedish Death Metal, and The New Wave of New Wave (Wikipedia, \"List of Rock Genres\" 2017). The vastly popular hip hop, which began as an African-American subculture and spread to world-wide status, has dozens of genres too: including Avant-garde hip hop, chopper rap, and crunk (Wikipedia, \"List of Hip Hop Genres\" 2017). We cite these names not to make fun of them, but rather to indicate the intensity of interest in these popular forms. Some of these genres imply not only a particular aesthetic, but also social status. To someone outside of the rock community in general, the differences between Death Metal, Doom Metal, and Industrial Metal may be hardly noticeable, but to those within the community it may be a matter not only of taste, but even political significance. This is certainly true of hip hop, where the international versions may not share the social and political concerns of African-American culture. People do not all enjoy the same music today, and with the technologies of streaming music services, mp3 players, and satellite radio receivers they have infinitely more choices than ever before. These technologies have perhaps made listeners less tolerant of music styles they do not like or understand. Earphones make it easy to create a music bubble almost anywhere and to fill that bubble with one's favorite style."
+      }
+    ],
+    "fundEntries": [
+      {
+        "id": "picasso-baby-institutional-asymmetry",
+        "title": "The Pace Gallery gesture: staged, not argued",
+        "anchors": [
+          "case-of-music-p02"
+        ],
+        "kind": "extension",
+        "markdown": "When Jay Z invoked Picasso during his 2013 \"Picasso Baby\" performance at Pace Gallery, the lyric itself carries little weight—it gestures at Picasso the way Chuck Berry gestured at Beethoven, casually, as shorthand for high culture. What differs is institutional: Berry's audience needed no blessing from classical music to feel culturally significant, and no orchestra sought proximity to \"Roll Over Beethoven.\" In 1956 the two systems—rock and roll and the classical establishment—were mutually irrelevant to one another, indifferent in both directions. By 2013 that mutual irrelevance had broken in only one direction: Pace Gallery chose to become the site of the encounter, offering its walls and its guest list as the setting for Jay Z's performance. The reversal is not that hip-hop out-argued or surpassed painting—nothing in the lyric makes that case—but that the formerly elite institution initiated contact with a cultural energy it does not generate and cannot claim credit for. The asymmetry is not a hierarchy of rank reversed; it is a question of who sought the meeting.",
+        "useWhen": "For a reader who wants the Berry/Jay Z hinge unpacked more fully than the compressed spine passage allows, especially the distinction between the lyric's content and the institutional fact of the venue.",
+        "sourceStatus": "needs-verification",
+        "sources": [],
+        "status": "candidate",
+        "provenance": {
+          "type": "model-editor",
+          "sessionId": "synthetic-2026-09-22T20-23-59-419Z_plenitude_collaborative_section4",
+          "turns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "artifactPath": "editorial/proposals/case-of-music-20260923093408-ded8cfb8.json"
+        },
+        "thread": null
+      },
+      {
+        "id": "availability-vs-attention",
+        "title": "Universal availability is not universal attention",
+        "anchors": [
+          "case-of-music-p06"
+        ],
+        "kind": "qualification",
+        "markdown": "Anna Netrebko's presence on the same platforms as any rock star does not mean she is equally discoverable or that her audience lacks gatekeepers. Recommendation systems built on listening history, social graphs built on existing affinities, marketing aimed at audiences already primed to respond, and genre habits reinforced by years of prior listening all continue to sort listeners, only invisibly and individually rather than through a centralized broadcast decision. Nor did Netrebko's confinement to an opera audience originate with algorithms: opera required specialized training, a distinct repertoire, particular vocal technique, and an audience culture with its own codes long before any streaming platform existed. Plenitude did not invent these community boundaries; it operates within a system already organized by language, training, and social identity, tending to reinforce rather than dissolve those older lines by giving each community enough self-sufficiency that crossing over is never forced.",
+        "useWhen": "For a reader pressing on the claim that removing institutional gatekeepers should have produced convergence between musical communities, or who wants the Netrebko example held to a more precise causal claim than 'no gatekeeper, yet no convergence.'",
+        "sourceStatus": "not-required",
+        "sources": [],
+        "status": "accepted",
+        "provenance": {
+          "type": "model-editor",
+          "sessionId": "synthetic-2026-09-22T20-23-59-419Z_plenitude_collaborative_section4",
+          "turns": [
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "artifactPath": "editorial/proposals/case-of-music-20260923093408-ded8cfb8.json"
+        },
+        "thread": null
+      },
+      {
+        "id": "private-discovery-vs-shared-reference",
+        "title": "Solitary crossings versus common cultural furniture",
+        "anchors": [
+          "case-of-music-p03",
+          "case-of-music-p06"
+        ],
+        "kind": "qualification",
+        "markdown": "Personalized recommendation and streaming do not necessarily reduce how often any single listener crosses genre lines—search, playlists, soundtracks, and viral clips can generate cross-genre discovery as readily as suppress it. What has changed is not frequency but character: crossings under plenitude tend to be private and unsynchronized rather than public and shared. A listener who discovers an aria through an algorithm has an individual encounter, invisible to anyone else, generating no common reference point. This contrasts with the way the Huntley-Brinkley closing theme worked: the recurring fragment (the second movement of Beethoven's Ninth, from Toscanini's 1952 NBC Symphony recording) became common cultural furniture not because of its musical content but because of scheduled, repeated, collectively witnessed placement inside a mass ritual, becoming a shared marker of a shared habit regardless of anyone's taste for or knowledge of classical music. Broadcast structure has not vanished—live events, scheduled programming, and platform-scale spectacles still create simultaneous publics—but scheduled, unchosen, repeated exposure is no longer the default condition of encountering culture. It is one option among many rather than the near-universal infrastructure it once was, which makes the accidental production of such shared, recognizable furniture rarer and harder to sustain, though not impossible.",
+        "useWhen": "For a reader who wants the plenitude-versus-broadcast contrast held to a precise, non-absolute claim, distinguishing frequency of individual crossing from the loss of shared, simultaneous cultural reference points.",
+        "sourceStatus": "verified",
+        "sources": [
+          {
+            "title": "The Foote Files: The Final Huntley-Brinkley Report on NBC",
+            "url": "https://www.cbsnews.com/texas/news/the-foote-files-the-final-huntley-brinkley-report-on-nbc/"
+          }
+        ],
+        "status": "accepted",
+        "provenance": {
+          "type": "model-editor",
+          "sessionId": "synthetic-2026-09-22T20-23-59-419Z_plenitude_collaborative_section4",
+          "turns": [
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "artifactPath": "editorial/proposals/case-of-music-20260923093408-ded8cfb8.json"
+        },
+        "thread": null
+      }
+    ],
+    "changeSummary": "Corrected a factual detail in p03 about the Huntley-Brinkley theme (it was the second movement of Beethoven's Ninth, drawn from Toscanini's 1952 NBC Symphony recording, used as a recurring closing theme over more than a decade — not simply \"an excerpt\" with vague framing), and added fund entries capturing the durable interpretive gains from the exchange: the Berry/Jay Z institutional-asymmetry point (gallery-as-initiator, not hip-hop-as-subordinate), the availability-vs-attention distinction for the Netrebko example, and the scaled-back hypothesis about plenitude making fine-grained affiliations visible/durable rather than \"replacing\" the old hierarchy. Declined to add invented concrete band/label/festival examples since none were actually supplied. No other spine prose altered; the core argument and proportion of the section stand. Validation: Approved the spine correction to p03 (Huntley-Brinkley theme detail), which is properly sourced and improves accuracy without altering the section's argument or proportion. Of the four proposed fund entries, approved two as accepted-quality additions (availability-vs-attention; private-discovery-vs-shared-reference, the latter carrying the verified CBS source for its factual claim), approved one as candidate pending verification of the Picasso Baby/Pace Gallery date and venue detail (not supported by any supplied source), and rejected the fourth as substantially duplicative of ground already covered by the p07 spine passage and the other fund entries, restating rather than adding a distinct, well-anchored contribution."
+  }
+}
