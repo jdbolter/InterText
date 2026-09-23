@@ -212,3 +212,9 @@ test('unauthenticated editorial workspace is excluded from Vercel deployments', 
   const vercelIgnore = fs.readFileSync(path.join(root, '.vercelignore'), 'utf8');
   assert.match(vercelIgnore, /^editorial\/$/m);
 });
+
+test('Vercel functions include the generated editorial runtime seed', () => {
+  const vercelConfig = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8'));
+  assert.equal(vercelConfig.functions['api/chat.js'].includeFiles, 'api/editorial-seed/**');
+  assert.equal(vercelConfig.functions['api/evolve.js'].includeFiles, 'api/editorial-seed/**');
+});
