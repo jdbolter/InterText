@@ -99,6 +99,9 @@ npm run editorial-preview
 Open `http://127.0.0.1:4173`. No API keys, Vercel login, or database connection are
 needed to view the bundled seed. When KV variables are present, the workspace displays
 the shared live head and can publish direct author edits as immutable child versions.
+If port 4173 is already occupied, reuse and refresh the existing current server, stop
+the old process, or choose another port as described in
+[`editorial/README.md`](editorial/README.md#if-port-4173-is-already-in-use).
 The local editor can revise spine prose and all editorial fund fields, add fund entries,
 assign optional thread membership and order, and accept, reject, supersede, or return
 entries to candidate status. It preserves passage and entry identity, protects existing

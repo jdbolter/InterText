@@ -20,6 +20,33 @@ npm run editorial-preview
 
 Open `http://127.0.0.1:4173`. Stop the server with Control-C.
 
+### If port 4173 is already in use
+
+Only one preview server can listen on a port. If the editorial workspace already
+opens at `http://127.0.0.1:4173`, reuse that server and refresh the browser; proposal
+files are read from disk whenever a section is loaded. If the repository or server
+code has changed, however, stop and restart the old process so it loads the current
+branch.
+
+On macOS, identify the process using the port with:
+
+```bash
+lsof -nP -iTCP:4173 -sTCP:LISTEN
+```
+
+Prefer returning to the terminal that started `editorial-preview` and pressing
+Control-C. If that terminal is unavailable, confirm that the listed process is the
+old Node editorial server, then stop its specific PID with `kill <PID>` and run
+`npm run editorial-preview` again.
+
+Alternatively, keep the existing process and start this checkout on another port:
+
+```bash
+EDITORIAL_PORT=4174 npm run editorial-preview
+```
+
+Then open `http://127.0.0.1:4174`.
+
 ### Review a synthetic reading without publishing it
 
 After completing a synthetic-reader session, run the two-pass spine-and-fund editorial
@@ -33,7 +60,11 @@ This sends the current section package and the recorded contributing exchange to
 configured Anthropic API. It may read the current KV head when KV is configured, but
 it never initializes or writes KV. The proposal, independent review, and reviewed
 draft are saved under the gitignored `editorial/proposals/` directory. Restart or
-refresh `npm run editorial-preview`; a matching proposal appears above the spine.
+refresh the preview; a matching proposal appears above the spine.
+Because these proposal files are gitignored, reviewing them on another computer
+requires copying their JSON files into that checkout's `editorial/proposals/`
+directory. A browser refresh is sufficient when the preview server is already
+running current code.
 
 Choosing **Review proposed changes** loads the reviewed subset as an unpublished
 author draft. The author can revise spine prose, alter or reject fund entries, and
