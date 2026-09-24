@@ -196,6 +196,17 @@ test('reader home page orders Plenitude, Uncanny, then Blood on the Wall', () =>
   assert.ok(plenitude >= 0 && plenitude < uncanny && uncanny < blood);
 });
 
+test('public readers carry compact cross-section memory and restore per-section history', () => {
+  for (const workId of ['plenitude', 'uncanny', 'blood-on-the-wall']) {
+    const app = fs.readFileSync(path.join(root, workId, 'public', 'app.js'), 'utf8');
+    assert.match(app, /const sectionSummaries = new Map\(\)/);
+    assert.match(app, /priorSectionSummaries: priorSectionSummaries\(activeSection\)/);
+    assert.match(app, /sectionHistory: sectionHistories\.get\(activeSection\) \|\| \[\]/);
+    assert.match(app, /data\.editorial\?\.sectionSummary/);
+    assert.match(app, /history: readingEdition === 'original' \? history : \[\]/);
+  }
+});
+
 test('author editor is generic, loads the generated index, and exposes versioned editing controls', () => {
   const app = fs.readFileSync(path.join(root, 'editorial', 'app.js'), 'utf8');
   const html = fs.readFileSync(path.join(root, 'editorial', 'index.html'), 'utf8');

@@ -111,7 +111,10 @@ For every section of all three works, the ordinary current-edition reader loads 
 versioned package and only its accepted fund entries. A contributing save runs separate
 proposal and review passes, publishes any approved operations as an immutable child
 version, and atomically advances the head. A reader already in the section stays pinned
-to its starting version; the next reading receives the new one.
+to its starting version; the next reading receives the new one. During a reading, the
+guide privately maintains a compact memory for each visited section. Later requests
+carry the current section's conversation and the other sections' summaries instead of
+the complete accumulated transcript; returning to a section restores its own history.
 
 Start with `CURRENT-DESIGN.md` for the present design and proposed changes. Read
 `EDITORIAL-ARCHITECTURE.md` for the full data model, database proposal, verified

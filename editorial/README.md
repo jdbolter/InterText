@@ -177,6 +177,10 @@ For an ordinary contributing reader on a packaged section, finishing or leaving 
 section invokes two editorial-model passes. Approved spine changes and fund operations
 are written as a new immutable snapshot, and a fresh reading loads that new head.
 Only accepted fund entries reach the ordinary guide; candidates remain inspectable.
+A private compact memory is updated as part of each existing guide response. The guide
+receives the current section's conversation plus summaries of other visited sections,
+so cross-section continuity does not require resending the full reading transcript;
+returning to an earlier section restores that section's own history and ledger.
 A synthetic reading still records possible material without persisting it. The
 2026-09-19 skeptical fund run is archived under
 `content/plenitude/sections/shocking-art/provenance/2026-09-19-skeptical-fund/` with

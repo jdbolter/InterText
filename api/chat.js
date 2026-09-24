@@ -5,6 +5,7 @@ const {
   EDITORIAL_DELIVERY_TOOL,
   buildEditorialDeliveryTool,
   extractEditorialDelivery,
+  formatPriorSectionSummaries,
   isEditorialEdition,
   prepareEditorialReading,
   prepareVersionedReading,
@@ -63,10 +64,11 @@ module.exports = async function handler(req, res) {
     shownImages = [],
     textId,
     action,
-    sectionHistory = [],
+    sectionHistory = null,
     edition,
     presentedFundEntryIds = [],
     editorialVersionId = null,
+    priorSectionSummaries = [],
   } = req.body;
   const continuing = action === 'continue';
   // A reader who declined to contribute can still ask to see the original rather
@@ -126,7 +128,11 @@ module.exports = async function handler(req, res) {
   const sectionName = config.sectionNames[idx];
 
   // Continuation uses this section's exchanges, not the previous chapter's ending.
-  const context = continuing ? sectionHistory : history;
+  // New clients send the current section's history for both questions and
+  // continuations. Falling back to the legacy global history keeps older clients
+  // compatible without forcing current clients to resend every earlier exchange.
+  const context = Array.isArray(sectionHistory) ? sectionHistory : history;
+  const priorSectionMemory = formatPriorSectionSummaries(priorSectionSummaries, idx);
   const messages = [
     ...(Array.isArray(context) ? context : []),
     { role: 'user', content: continuing ? 'Continue reading from where we have reached in this section.' : message.trim() }
@@ -159,8 +165,12 @@ ${editorialReading
             `Current section: ${sectionName}`,
             `The reader has just been shown this framing before their first message: "${config.sectionIntros[idx]}"`,
             editorialReading ? editorialReading.instructions : null,
+            editorialReading ? editorialReading.memoryInstructions : null,
           ].filter(Boolean).join('\n\n') },
         { type: 'text', text: sectionText, cache_control: { type: 'ephemeral' } },
+        ...(editorialReading && priorSectionMemory
+          ? [{ type: 'text', text: priorSectionMemory }]
+          : []),
         ...(editorialReading && editorialReading.fundText
           ? [{ type: 'text', text: editorialReading.fundText }]
           : []),
@@ -213,6 +223,7 @@ ${editorialReading
         packageVersionId: editorialReading.sectionPackage.versionId,
         offeredFundEntryIds: editorialReading.offeredFundEntryIds,
         usedFundEntryIds: delivery.usedFundEntryIds,
+        sectionSummary: delivery.sectionSummary,
         trackingComplete: delivery.trackingComplete,
         trackingMethod: 'required-tool',
       };

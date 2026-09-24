@@ -16,6 +16,7 @@ let readingEdition = 'evolving';
 let sectionHistoryStart = 0;
 const contributionHistory = [];
 const sectionHistories = new Map();
+const sectionSummaries = new Map();
 const editorialVersionIds = new Map();
 const presentedFundEntryIds = new Map();
 const contributionSessionId = `intertext-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
@@ -32,6 +33,17 @@ const SECTION_TITLES = [
   'A Fog of Distrust',
   'The Files Break Open',
 ];
+
+function priorSectionSummaries(activeSection) {
+  return Array.from(sectionSummaries.entries())
+    .filter(([section]) => section !== activeSection)
+    .sort(([a], [b]) => a - b)
+    .map(([section, summary]) => ({
+      sectionIndex: section,
+      title: SECTION_TITLES[section],
+      summary,
+    }));
+}
 
 const SECTION_IMAGES = [null, null, null, null];
 
@@ -309,28 +321,44 @@ async function send() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          message: text, history, sectionIndex: activeSection,
+          message: text, history: readingEdition === 'original' ? history : [], sectionIndex: activeSection,
           shownImages: Array.from(shownImages), textId: 'blood-on-the-wall', edition: readingEdition,
           presentedFundEntryIds: Array.from(presentedFundEntryIds.get(activeSection) || []),
+          ...(readingEdition !== 'original'
+            ? {
+                sectionHistory: sectionHistories.get(activeSection) || [],
+                priorSectionSummaries: priorSectionSummaries(activeSection),
+              }
+            : {}),
           ...(editorialVersionIds.has(activeSection)
             ? { editorialVersionId: editorialVersionIds.get(activeSection) }
             : {}),
-          ...(continuing ? { action: 'continue', sectionHistory: sectionHistories.get(activeSection) || [] } : {})
+          ...(continuing
+            ? {
+                action: 'continue',
+                ...(readingEdition === 'original'
+                  ? { sectionHistory: sectionHistories.get(activeSection) || [] }
+                  : {}),
+              }
+            : {})
         })
       });
       const data = await res.json();
       if (!res.ok || (!data.response && !(continuing && data.sectionComplete === true))) {
         throw new Error('No reading response');
       }
+      if (data.editorial?.packageVersionId && !editorialVersionIds.has(activeSection)) {
+        editorialVersionIds.set(activeSection, data.editorial.packageVersionId);
+      }
+      if (Array.isArray(data.editorial?.usedFundEntryIds)) {
+        const used = presentedFundEntryIds.get(activeSection) || new Set();
+        data.editorial.usedFundEntryIds.forEach(id => used.add(id));
+        presentedFundEntryIds.set(activeSection, used);
+      }
+      if (typeof data.editorial?.sectionSummary === 'string' && data.editorial.sectionSummary.trim()) {
+        sectionSummaries.set(activeSection, data.editorial.sectionSummary.trim());
+      }
       if (data.response) {
-        if (data.editorial?.packageVersionId && !editorialVersionIds.has(activeSection)) {
-          editorialVersionIds.set(activeSection, data.editorial.packageVersionId);
-        }
-        if (Array.isArray(data.editorial?.usedFundEntryIds)) {
-          const used = presentedFundEntryIds.get(activeSection) || new Set();
-          data.editorial.usedFundEntryIds.forEach(id => used.add(id));
-          presentedFundEntryIds.set(activeSection, used);
-        }
         const turns = [
           { role: 'user', content: continuing ? CONTINUE_MESSAGE : text },
           { role: 'assistant', content: data.response }
