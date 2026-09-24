@@ -5,7 +5,6 @@ const leftCol = document.getElementById('left-col');
 const readerHistory = document.getElementById('reader-history');
 
 let history = [];
-let firstSend = true;
 let sectionIndex = 0;
 let shownImages = new Set();
 let saveConsent = false;
@@ -49,18 +48,18 @@ function priorSectionSummaries(activeSection) {
 }
 
 // Image filenames: drop files in plenitude/images/ matching these names.
-// Section 2: night-at-opera.jpg, whats-opera-doc.jpg
-// Section 5: olmstead.jpg, kandinsky.jpg
+// Section 2: night-at-opera.png, whats-opera-doc.png
+// Section 5: olmstead.png, kandinsky.jpg
 const SECTION_IMAGES = [
   null,
   [
-    { id: 'night-at-opera', src: '../images/night-at-opera.jpg', alt: 'A Night at the Opera, Marx Brothers (1935)' },
-    { id: 'whats-opera-doc', src: '../images/whats-opera-doc.jpg', alt: "What's Opera, Doc? (1957)" },
+    { id: 'night-at-opera', src: '../images/night-at-opera.png', alt: 'A Night at the Opera, Marx Brothers (1935)' },
+    { id: 'whats-opera-doc', src: '../images/whats-opera-doc.png', alt: "What's Opera, Doc? (1957)" },
   ],
   null,
   null,
   [
-    { id: 'olmstead', src: '../images/olmstead.jpg', alt: 'Painting by Marla Olmstead, subject of My Kid Could Paint That (2007)' },
+    { id: 'olmstead', src: '../images/olmstead.png', alt: 'Painting by Marla Olmstead, subject of My Kid Could Paint That (2007)' },
     { id: 'kandinsky', src: '../images/kandinsky.jpg', alt: 'Wassily Kandinsky, Composition IV (1911)' },
   ],
   null,
@@ -91,10 +90,16 @@ const SECTION_INTROS = [
 
 // ── Consent dialog ──
 
+function focusInput() {
+  input.focus({ preventScroll: true });
+  input.setSelectionRange(input.value.length, input.value.length);
+}
+
 function chooseEntry(consent, edition) {
   saveConsent = consent;
   readingEdition = edition;
   document.getElementById('consent-overlay').style.display = 'none';
+  focusInput();
 }
 
 document.getElementById('consent-contribute').addEventListener('click', () => chooseEntry(true, 'evolving'));
@@ -118,7 +123,6 @@ function selectSection(newIdx) {
     el.classList.toggle('active', Number(el.dataset.section) === newIdx);
   });
   intro.innerHTML = SECTION_INTROS[sectionIndex];
-  firstSend = true;
   appendSectionBreak(sectionIndex);
 }
 
@@ -208,7 +212,11 @@ function appendSectionBreak(idx, scroll = true) {
   el.appendChild(introBox);
   conv.appendChild(el);
 
-  if (scroll) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Automatic advancement happens while the thinking indicator already exists.
+  // Keep it after the newly inserted opening rather than stranded above it.
+  const thinking = document.getElementById('thinking');
+  if (thinking) conv.appendChild(thinking);
+  if (scroll) (thinking || el).scrollIntoView({ behavior: 'smooth', block: thinking ? 'end' : 'start' });
 }
 
 function renderText(container, text) {
@@ -325,7 +333,6 @@ async function send() {
   input.placeholder = '';
   updateCaretMarker();
   input.style.height = 'auto';
-  firstSend = false;
   if (!continuing) appendReaderMessage(text);
   input.focus();
   setSending(true);
@@ -343,6 +350,8 @@ async function send() {
         selectSection(sectionIndex + 1);
       }
       const activeSection = sectionIndex;
+      const activeSectionHistory = sectionHistories.get(activeSection) || [];
+      const firstContinuation = continuing && activeSectionHistory.length === 0;
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -352,7 +361,7 @@ async function send() {
           presentedFundEntryIds: Array.from(presentedFundEntryIds.get(activeSection) || []),
           ...(readingEdition !== 'original'
             ? {
-                sectionHistory: sectionHistories.get(activeSection) || [],
+                sectionHistory: activeSectionHistory,
                 priorSectionSummaries: priorSectionSummaries(activeSection),
               }
             : {}),
@@ -362,8 +371,9 @@ async function send() {
           ...(continuing
             ? {
                 action: 'continue',
+                firstContinuation,
                 ...(readingEdition === 'original'
-                  ? { sectionHistory: sectionHistories.get(activeSection) || [] }
+                  ? { sectionHistory: activeSectionHistory }
                   : {}),
               }
             : {})
@@ -405,7 +415,7 @@ async function send() {
     removeThinking();
     setSending(false);
     updateCaretMarker();
-    input.focus();
+    focusInput();
   }
 }
 

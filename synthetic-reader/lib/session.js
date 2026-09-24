@@ -201,6 +201,7 @@ async function runSession(opts) {
             advanced = true;
             continue;
           }
+          const currentSectionHistory = sectionHistories.get(sectionIndex) || [];
           const data = await chatClient.postChat(baseUrl, {
             message: '',
             history: edition === 'original' ? history : [],
@@ -209,8 +210,9 @@ async function runSession(opts) {
             textId: textEntry.id,
             edition,
             action: 'continue',
+            firstContinuation: currentSectionHistory.length === 0,
             ...(edition === 'original'
-              ? { sectionHistory: sectionHistories.get(sectionIndex) || [] }
+              ? { sectionHistory: currentSectionHistory }
               : {}),
             ...versionedReadingState(),
           });
