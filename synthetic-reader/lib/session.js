@@ -47,6 +47,7 @@ async function runSession(opts) {
   let sectionIndex = startSectionIndex;
   const history = [];
   const sectionHistories = new Map();
+  const sectionSummaries = new Map();
   // Mirrors app.js's contributionHistory: only actual reader contributions
   // ('message' turns), scoped per section — never continuation turns, since
   // reading on is navigation, not something to feed back into an evolution. This
@@ -74,6 +75,15 @@ async function runSession(opts) {
     if (edition === 'original') return {};
     const versionId = editorialVersionIdsBySection.get(idx);
     return {
+      sectionHistory: sectionHistories.get(idx) || [],
+      priorSectionSummaries: Array.from(sectionSummaries.entries())
+        .filter(([section]) => section !== idx)
+        .sort(([a], [b]) => a - b)
+        .map(([section, summary]) => ({
+          sectionIndex: section,
+          title: sections[section].title,
+          summary,
+        })),
       presentedFundEntryIds: presentedFundEntryIds(idx),
       ...(versionId ? { editorialVersionId: versionId } : {}),
     };
@@ -97,11 +107,15 @@ async function runSession(opts) {
     const presented = presentedFundEntriesBySection.get(sectionIndex) || new Set();
     used.forEach(id => presented.add(id));
     presentedFundEntriesBySection.set(sectionIndex, presented);
+    if (typeof editorial.sectionSummary === 'string' && editorial.sectionSummary.trim()) {
+      sectionSummaries.set(sectionIndex, editorial.sectionSummary.trim());
+    }
     turnRecord.editorial = {
       edition: editorial.edition,
       packageVersionId: editorial.packageVersionId,
       offeredFundEntryIds: editorial.offeredFundEntryIds || [],
       usedFundEntryIds: used,
+      sectionSummary: editorial.sectionSummary || null,
       trackingComplete: editorial.trackingComplete === true,
       trackingMethod: editorial.trackingMethod || null,
     };
@@ -152,7 +166,7 @@ async function runSession(opts) {
         visibleTranscript.push({ type: 'reader', text: action.message });
         const data = await chatClient.postChat(baseUrl, {
           message: action.message,
-          history,
+          history: edition === 'original' ? history : [],
           sectionIndex,
           shownImages: Array.from(shownImages),
           textId: textEntry.id,
@@ -189,13 +203,15 @@ async function runSession(opts) {
           }
           const data = await chatClient.postChat(baseUrl, {
             message: '',
-            history,
+            history: edition === 'original' ? history : [],
             sectionIndex,
             shownImages: Array.from(shownImages),
             textId: textEntry.id,
             edition,
             action: 'continue',
-            sectionHistory: sectionHistories.get(sectionIndex) || [],
+            ...(edition === 'original'
+              ? { sectionHistory: sectionHistories.get(sectionIndex) || [] }
+              : {}),
             ...versionedReadingState(),
           });
           recordEditorialPresentation(data, turnRecord);
@@ -273,6 +289,8 @@ async function runSession(opts) {
   for (const [idx, entries] of presentedFundEntriesBySection.entries()) {
     if (entries.size > 0) fundPresentationsBySection[idx + 1] = Array.from(entries);
   }
+  const sectionSummariesBySection = {};
+  for (const [idx, summary] of sectionSummaries.entries()) sectionSummariesBySection[idx + 1] = summary;
 
   return {
     textId: textEntry.id,
@@ -284,6 +302,7 @@ async function runSession(opts) {
     stopDetail,
     contributionsBySection,
     fundPresentationsBySection,
+    sectionSummariesBySection,
   };
 }
 

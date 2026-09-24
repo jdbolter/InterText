@@ -238,7 +238,9 @@ to expose the editorial apparatus.
 
 For each response, the guide must call a private structured delivery tool containing
 the complete reader-visible prose, every offered fund-entry ID materially used, and a
-section-completion boolean. The API rejects a missing or malformed tool call, validates
+section-completion boolean. It also returns a private, 100-word-or-shorter memory of
+the current section's reading: material already covered, durable reader interests or
+objections, established distinctions, and unresolved questions. The API rejects a missing or malformed tool call, validates
 IDs against the entries actually offered, and returns only the prose plus structured
 experiment metadata. The synthetic harness carries a per-section ledger into later
 turns so an entry already presented is not offered as new material again.
@@ -271,7 +273,11 @@ The ordinary `evolving` edition now has a separate packaged-section path. For ev
 section of all three works it reads the current KV head (or the bundled seed when no head is
 initialized), offers only accepted entries, and uses the same required private delivery
 tool. The browser remembers the returned version ID for that section, so a head change
-cannot alter a reading halfway through.
+cannot alter a reading halfway through. It also retains each section's private compact
+memory. A request sends the complete conversation for the current section plus compact
+memories of other visited sections, rather than resending the complete cross-section
+transcript. Returning to a section restores that section's own history and fund ledger.
+The untouched `original` edition retains its legacy full-history behavior.
 
 ## Versioned database representation — implemented for packaged sections
 

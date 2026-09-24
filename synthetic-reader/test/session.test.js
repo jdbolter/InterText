@@ -169,6 +169,67 @@ test('evolving runs pin a resolved editorial version and carry its presentation 
   assert.deepEqual(result.fundPresentationsBySection, { 1: ['accepted-one'] });
 });
 
+test('evolving runs replace cross-section transcripts with summaries and restore a revisited section history', async () => {
+  const summaries = [
+    'The reader questioned the first section hierarchy.',
+    'The reader connected the second section to institutional authority.',
+    'The reader returned to the first section with a new comparison.',
+  ];
+  const chatClient = recordingChatClient((_body, call) => ({
+    response: `Guide response ${call}.`,
+    editorial: {
+      edition: 'evolving',
+      packageVersionId: `section-version-${call}`,
+      offeredFundEntryIds: [],
+      usedFundEntryIds: [],
+      sectionSummary: summaries[call - 1],
+      trackingComplete: true,
+      trackingMethod: 'required-tool',
+    },
+  }));
+  const reader = scriptedReader([
+    { action: 'message', message: 'First-section question?', target_section: null, stop_reason: null, private_reflection: privateReflection() },
+    { action: 'navigate', message: null, target_section: 2, stop_reason: null, private_reflection: privateReflection() },
+    { action: 'message', message: 'Second-section question?', target_section: null, stop_reason: null, private_reflection: privateReflection() },
+    { action: 'navigate', message: null, target_section: 1, stop_reason: null, private_reflection: privateReflection() },
+    { action: 'message', message: 'Back to the first section?', target_section: null, stop_reason: null, private_reflection: privateReflection() },
+    { action: 'finish', message: null, target_section: null, stop_reason: 'done', private_reflection: privateReflection() },
+  ]);
+
+  const result = await runSession({
+    textEntry: TEXT_ENTRY,
+    sections: SECTIONS,
+    startSectionIndex: 0,
+    edition: 'evolving',
+    maxTurns: 8,
+    baseUrl: 'http://localhost:3000',
+    reader,
+    chatClient,
+  });
+
+  assert.deepEqual(chatClient.calls[0].body.history, []);
+  assert.deepEqual(chatClient.calls[0].body.sectionHistory, []);
+  assert.deepEqual(chatClient.calls[1].body.priorSectionSummaries, [{
+    sectionIndex: 0,
+    title: 'First',
+    summary: summaries[0],
+  }]);
+  assert.deepEqual(chatClient.calls[1].body.sectionHistory, []);
+  assert.deepEqual(chatClient.calls[2].body.priorSectionSummaries, [{
+    sectionIndex: 1,
+    title: 'Second',
+    summary: summaries[1],
+  }]);
+  assert.deepEqual(chatClient.calls[2].body.sectionHistory, [
+    { role: 'user', content: 'First-section question?' },
+    { role: 'assistant', content: 'Guide response 1.' },
+  ]);
+  assert.deepEqual(result.sectionSummariesBySection, {
+    1: summaries[2],
+    2: summaries[1],
+  });
+});
+
 test('editorial runs stop clearly if the server does not return experiment metadata', async () => {
   const chatClient = recordingChatClient(() => ({ response: 'A response from an old server.' }));
   const reader = scriptedReader([

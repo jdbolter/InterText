@@ -8,8 +8,10 @@ const {
   EDITORIAL_DELIVERY_TOOL,
   buildEditorialDeliveryTool,
   extractEditorialDelivery,
+  formatPriorSectionSummaries,
   isEditorialEdition,
   loadEditorialSection,
+  normalizePriorSectionSummaries,
   prepareEditorialReading,
   prepareVersionedReading,
 } = require('../../api/lib/editorial-reading');
@@ -104,12 +106,14 @@ test('required delivery tool constrains use reports to entries actually offered'
       response: 'Visible prose.',
       usedFundEntryIds: ['shared-evaluative-field'],
       sectionComplete: false,
+      sectionSummary: 'The reader is testing how plural standards replace a single hierarchy.',
     },
   }], ['shared-evaluative-field']);
   assert.equal(parsed.text, 'Visible prose.');
   assert.deepEqual(parsed.usedFundEntryIds, ['shared-evaluative-field']);
   assert.equal(parsed.trackingComplete, true);
   assert.equal(parsed.sectionComplete, false);
+  assert.match(parsed.sectionSummary, /plural standards/);
 });
 
 test('delivery extraction rejects a missing call or an entry that was not offered', () => {
@@ -118,15 +122,50 @@ test('delivery extraction rejects a missing call or an entry that was not offere
     () => extractEditorialDelivery([{
       type: 'tool_use',
       name: EDITORIAL_DELIVERY_TOOL,
-      input: { response: 'Prose.', usedFundEntryIds: ['other'], sectionComplete: false },
+      input: {
+        response: 'Prose.',
+        usedFundEntryIds: ['other'],
+        sectionComplete: false,
+        sectionSummary: 'A compact memory.',
+      },
     }], ['entry']),
     /was not offered/
+  );
+});
+
+test('delivery extraction requires a nonempty private section summary', () => {
+  assert.throws(
+    () => extractEditorialDelivery([{
+      type: 'tool_use',
+      name: EDITORIAL_DELIVERY_TOOL,
+      input: { response: 'Prose.', usedFundEntryIds: [], sectionComplete: false },
+    }], []),
+    /sectionSummary is invalid/
   );
 });
 
 test('spine-only delivery tool requires an empty use array', () => {
   const tool = buildEditorialDeliveryTool([]);
   assert.equal(tool.input_schema.properties.usedFundEntryIds.maxItems, 0);
+  assert.ok(tool.input_schema.required.includes('sectionSummary'));
+});
+
+test('prior-section memory is compact, ordered, and excludes the current section', () => {
+  const raw = [
+    { sectionIndex: 2, title: 'Third', summary: 'Third memory.' },
+    { sectionIndex: 0, title: 'First', summary: ' First memory. ' },
+    { sectionIndex: 1, title: 'Current', summary: 'Must be excluded.' },
+    { sectionIndex: 0, title: 'Duplicate', summary: 'Must also be excluded.' },
+    { sectionIndex: -1, title: 'Invalid', summary: 'Invalid.' },
+  ];
+  assert.deepEqual(normalizePriorSectionSummaries(raw, 1), [
+    { sectionIndex: 0, title: 'First', summary: 'First memory.' },
+    { sectionIndex: 2, title: 'Third', summary: 'Third memory.' },
+  ]);
+  const formatted = formatPriorSectionSummaries(raw, 1);
+  assert.match(formatted, /Section 1 — First: First memory\./);
+  assert.match(formatted, /Section 3 — Third: Third memory\./);
+  assert.doesNotMatch(formatted, /Must be excluded/);
 });
 
 test('reader-shaped reading offers accepted fund entries but not candidates', () => {
