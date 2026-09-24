@@ -92,8 +92,32 @@ test('a continue action sends action: continue with the per-section history', as
 
   const sentBody = chatClient.calls[0].body;
   assert.equal(sentBody.action, 'continue');
+  assert.equal(sentBody.firstContinuation, true);
   assert.deepEqual(sentBody.sectionHistory, []);
   assert.equal(sentBody.edition, 'original');
+});
+
+test('only a blank return with no current-section history is an opening continuation', async () => {
+  const chatClient = recordingChatClient(() => ({ response: 'More of the section.' }));
+  const reader = scriptedReader([
+    { action: 'continue', message: null, target_section: null, stop_reason: null, private_reflection: privateReflection() },
+    { action: 'continue', message: null, target_section: null, stop_reason: null, private_reflection: privateReflection() },
+    { action: 'finish', message: null, target_section: null, stop_reason: 'done', private_reflection: privateReflection() },
+  ]);
+
+  await runSession({
+    textEntry: TEXT_ENTRY,
+    sections: SECTIONS,
+    startSectionIndex: 0,
+    edition: 'original',
+    maxTurns: 5,
+    baseUrl: 'http://localhost:3000',
+    reader,
+    chatClient,
+  });
+
+  assert.equal(chatClient.calls[0].body.firstContinuation, true);
+  assert.equal(chatClient.calls[1].body.firstContinuation, false);
 });
 
 test('editorial-fund runs carry a per-section presentation ledger across turns', async () => {

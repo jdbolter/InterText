@@ -11,6 +11,12 @@ const {
   prepareVersionedReading,
 } = require('./lib/editorial-reading');
 const { loadCurrentSection } = require('./lib/editorial-store');
+const {
+  buildContinuationInstructions,
+  continuationUserMessage,
+  openingSectionText,
+  resolveFirstContinuation,
+} = require('./lib/reading-continuation');
 
 const client = new Anthropic();
 
@@ -69,6 +75,7 @@ module.exports = async function handler(req, res) {
     presentedFundEntryIds = [],
     editorialVersionId = null,
     priorSectionSummaries = [],
+    firstContinuation: requestedFirstContinuation = false,
   } = req.body;
   const continuing = action === 'continue';
   // A reader who declined to contribute can still ask to see the original rather
@@ -132,15 +139,30 @@ module.exports = async function handler(req, res) {
   // continuations. Falling back to the legacy global history keeps older clients
   // compatible without forcing current clients to resend every earlier exchange.
   const context = Array.isArray(sectionHistory) ? sectionHistory : history;
+  const firstContinuation = resolveFirstContinuation({
+    continuing,
+    requestedFirstContinuation,
+    context,
+  });
   const priorSectionMemory = formatPriorSectionSummaries(priorSectionSummaries, idx);
+  const promptedSectionText = firstContinuation ? openingSectionText(sectionText) : sectionText;
+  // Keep the opening deterministic: optional material can enter on later turns,
+  // once the guide has a real section cursor and has reached the relevant anchor.
+  const offeredFundEntryIds = editorialReading && !firstContinuation
+    ? editorialReading.offeredFundEntryIds
+    : [];
+  const editorialFundText = editorialReading && !firstContinuation
+    ? editorialReading.fundText
+    : null;
   const messages = [
     ...(Array.isArray(context) ? context : []),
-    { role: 'user', content: continuing ? 'Continue reading from where we have reached in this section.' : message.trim() }
+    { role: 'user', content: continuing ? continuationUserMessage(firstContinuation) : message.trim() }
   ];
-  const continuationInstructions = continuing ? `The reader pressed Enter to continue reading. Follow the supplied current section's sequence of ideas, using the exchanges below to locate what has already been presented. Resume substantive material not yet covered rather than repeating the opening or continuing a digression indefinitely. Present the current text directly, with its voice and concrete details; do not summarize the entire section, describe your process, announce that you are continuing, ask a question, or say what the essay or author argues. A natural passage of up to 250 words is enough for this turn. Brief elaboration may connect the passage to the reader's interests, but return to the section's remaining material.
-${editorialReading
-    ? 'When ALL the packaged section\'s substantive material and useful elaboration have been covered, set sectionComplete to true in the required private delivery tool. If they were already covered, return an empty response with sectionComplete true. Otherwise set it to false. Do not move into the next section yourself or invent additional material merely to keep going.'
-    : 'When ALL the section\'s substantive material and useful elaboration have been covered, append [[SECTION_COMPLETE]] on a line by itself after the final passage. If they were already covered, return only [[SECTION_COMPLETE]]. Otherwise do not emit this marker. Do not move into the next section yourself or invent additional material merely to keep going. This is an internal navigation signal, never prose for the reader.'}` : null;
+  const continuationInstructions = buildContinuationInstructions({
+    continuing,
+    firstContinuation,
+    editorialReading: Boolean(editorialReading),
+  });
 
   try {
     const response = await client.messages.create({
@@ -167,12 +189,12 @@ ${editorialReading
             editorialReading ? editorialReading.instructions : null,
             editorialReading ? editorialReading.memoryInstructions : null,
           ].filter(Boolean).join('\n\n') },
-        { type: 'text', text: sectionText, cache_control: { type: 'ephemeral' } },
+        { type: 'text', text: promptedSectionText, cache_control: { type: 'ephemeral' } },
         ...(editorialReading && priorSectionMemory
           ? [{ type: 'text', text: priorSectionMemory }]
           : []),
-        ...(editorialReading && editorialReading.fundText
-          ? [{ type: 'text', text: editorialReading.fundText }]
+        ...(editorialFundText
+          ? [{ type: 'text', text: editorialFundText }]
           : []),
       ],
       // Keep the two editorial conditions controlled: neither may acquire new
@@ -180,7 +202,7 @@ ${editorialReading
       // the existing bounded search capability.
       ...(editorialReading
         ? {
-            tools: [buildEditorialDeliveryTool(editorialReading.offeredFundEntryIds)],
+            tools: [buildEditorialDeliveryTool(offeredFundEntryIds)],
             tool_choice: {
               type: 'tool',
               name: EDITORIAL_DELIVERY_TOOL,
@@ -211,17 +233,17 @@ ${editorialReading
     if (editorialReading) {
       let delivery;
       try {
-        delivery = extractEditorialDelivery(response.content, editorialReading.offeredFundEntryIds);
+        delivery = extractEditorialDelivery(response.content, offeredFundEntryIds);
       } catch (err) {
         console.error(`Invalid editorial completion for ${textId}[${idx}]:`, err.message);
         return res.status(502).json({ error: 'Invalid editorial completion' });
       }
       text = delivery.text;
-      sectionComplete = continuing && delivery.sectionComplete;
+      sectionComplete = continuing && !firstContinuation && delivery.sectionComplete;
       editorialResult = {
         edition,
         packageVersionId: editorialReading.sectionPackage.versionId,
-        offeredFundEntryIds: editorialReading.offeredFundEntryIds,
+        offeredFundEntryIds,
         usedFundEntryIds: delivery.usedFundEntryIds,
         sectionSummary: delivery.sectionSummary,
         trackingComplete: delivery.trackingComplete,
@@ -229,7 +251,7 @@ ${editorialReading
       };
     } else {
       text = postBlocks.map(b => b.text).join('');
-      sectionComplete = continuing && /\[\[SECTION_COMPLETE\]\]/.test(text);
+      sectionComplete = continuing && !firstContinuation && /\[\[SECTION_COMPLETE\]\]/.test(text);
       text = text.replace(/\[\[SECTION_COMPLETE\]\]/g, '').trim();
     }
 

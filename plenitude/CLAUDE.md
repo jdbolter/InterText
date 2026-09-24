@@ -83,9 +83,9 @@ them a public interface should expose—remains open.
   skeptical profiles, with collaborative repetitions where useful; inspect selection, rhythm, comprehension,
   repetition, and overload before extending the data model or migrating storage.
 - Images: drop 4 files into `plenitude/images/` with these exact names:
-  - `night-at-opera.jpg` — A Night at the Opera (1935), section 2
-  - `whats-opera-doc.jpg` — What's Opera, Doc? (1957), section 2
-  - `olmstead.jpg` — Marla Olmstead painting, section 5
+  - `night-at-opera.png` — A Night at the Opera (1935), section 2
+  - `whats-opera-doc.png` — What's Opera, Doc? (1957), section 2
+  - `olmstead.png` — Marla Olmstead painting, section 5
   - `kandinsky.jpg` — Kandinsky Composition IV (1911), section 5
 
 ### Notes

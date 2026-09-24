@@ -250,6 +250,7 @@ body {
   font-size: 0.97rem;
   line-height: 1.6;
   color: var(--text);
+  caret-color: var(--text);
   background: transparent;
   border: none;
   padding: 0.4rem 0;

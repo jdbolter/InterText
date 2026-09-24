@@ -199,11 +199,34 @@ test('reader home page orders Plenitude, Uncanny, then Blood on the Wall', () =>
 test('public readers carry compact cross-section memory and restore per-section history', () => {
   for (const workId of ['plenitude', 'uncanny', 'blood-on-the-wall']) {
     const app = fs.readFileSync(path.join(root, workId, 'public', 'app.js'), 'utf8');
+    const style = fs.readFileSync(path.join(root, workId, 'public', 'style.css'), 'utf8');
     assert.match(app, /const sectionSummaries = new Map\(\)/);
     assert.match(app, /priorSectionSummaries: priorSectionSummaries\(activeSection\)/);
-    assert.match(app, /sectionHistory: sectionHistories\.get\(activeSection\) \|\| \[\]/);
+    assert.match(app, /const activeSectionHistory = sectionHistories\.get\(activeSection\) \|\| \[\]/);
+    assert.match(app, /sectionHistory: activeSectionHistory/);
     assert.match(app, /data\.editorial\?\.sectionSummary/);
     assert.match(app, /history: readingEdition === 'original' \? history : \[\]/);
+    assert.match(app, /const firstContinuation = continuing && activeSectionHistory\.length === 0/);
+    assert.match(app, /firstContinuation,/);
+    assert.doesNotMatch(app, /firstSend/);
+    assert.match(app, /function focusInput\(\)[\s\S]*input\.focus\(\{ preventScroll: true \}\)/);
+    assert.match(app, /document\.getElementById\('consent-overlay'\)\.style\.display = 'none';\n  focusInput\(\);/);
+    assert.match(app, /if \(thinking\) conv\.appendChild\(thinking\)/);
+    assert.match(style, /#message-input \{[\s\S]*caret-color: var\(--text\)/);
+  }
+});
+
+test('every configured Plenitude image resolves to an existing file', () => {
+  const app = fs.readFileSync(path.join(root, 'plenitude', 'public', 'app.js'), 'utf8');
+  const sources = [...app.matchAll(/src: '\.\.\/images\/([^']+)'/g)].map(match => match[1]);
+  assert.deepEqual(sources, [
+    'night-at-opera.png',
+    'whats-opera-doc.png',
+    'olmstead.png',
+    'kandinsky.jpg',
+  ]);
+  for (const source of sources) {
+    assert.ok(fs.existsSync(path.join(root, 'plenitude', 'images', source)), `${source} is missing`);
   }
 });
 

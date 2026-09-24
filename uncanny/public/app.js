@@ -5,7 +5,6 @@ const leftCol = document.getElementById('left-col');
 const readerHistory = document.getElementById('reader-history');
 
 let history = [];
-let firstSend = true;
 let sectionIndex = 0;
 let shownImages = new Set();
 let saveConsent = false;
@@ -81,10 +80,16 @@ const SECTION_INTROS = [
 
 // ── Consent dialog ──
 
+function focusInput() {
+  input.focus({ preventScroll: true });
+  input.setSelectionRange(input.value.length, input.value.length);
+}
+
 function chooseEntry(consent, edition) {
   saveConsent = consent;
   readingEdition = edition;
   document.getElementById('consent-overlay').style.display = 'none';
+  focusInput();
 }
 
 document.getElementById('consent-contribute').addEventListener('click', () => chooseEntry(true, 'evolving'));
@@ -108,7 +113,6 @@ function selectSection(newIdx) {
     el.classList.toggle('active', Number(el.dataset.section) === newIdx);
   });
   intro.innerHTML = SECTION_INTROS[sectionIndex];
-  firstSend = true;
   appendSectionBreak(sectionIndex);
 }
 
@@ -198,7 +202,11 @@ function appendSectionBreak(idx, scroll = true) {
   el.appendChild(introBox);
   conv.appendChild(el);
 
-  if (scroll) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Automatic advancement happens while the thinking indicator already exists.
+  // Keep it after the newly inserted opening rather than stranded above it.
+  const thinking = document.getElementById('thinking');
+  if (thinking) conv.appendChild(thinking);
+  if (scroll) (thinking || el).scrollIntoView({ behavior: 'smooth', block: thinking ? 'end' : 'start' });
 }
 
 function renderText(container, text) {
@@ -315,7 +323,6 @@ async function send() {
   input.placeholder = '';
   updateCaretMarker();
   input.style.height = 'auto';
-  firstSend = false;
   if (!continuing) appendReaderMessage(text);
   input.focus();
   setSending(true);
@@ -333,6 +340,8 @@ async function send() {
         selectSection(sectionIndex + 1);
       }
       const activeSection = sectionIndex;
+      const activeSectionHistory = sectionHistories.get(activeSection) || [];
+      const firstContinuation = continuing && activeSectionHistory.length === 0;
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -342,7 +351,7 @@ async function send() {
           presentedFundEntryIds: Array.from(presentedFundEntryIds.get(activeSection) || []),
           ...(readingEdition !== 'original'
             ? {
-                sectionHistory: sectionHistories.get(activeSection) || [],
+                sectionHistory: activeSectionHistory,
                 priorSectionSummaries: priorSectionSummaries(activeSection),
               }
             : {}),
@@ -352,8 +361,9 @@ async function send() {
           ...(continuing
             ? {
                 action: 'continue',
+                firstContinuation,
                 ...(readingEdition === 'original'
-                  ? { sectionHistory: sectionHistories.get(activeSection) || [] }
+                  ? { sectionHistory: activeSectionHistory }
                   : {}),
               }
             : {})
@@ -395,7 +405,7 @@ async function send() {
     removeThinking();
     setSending(false);
     updateCaretMarker();
-    input.focus();
+    focusInput();
   }
 }
 
