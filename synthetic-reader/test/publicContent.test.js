@@ -10,6 +10,7 @@ test('extracts the correct section count for each known text', () => {
   assert.equal(extractPublicSectionData(TEXTS.plenitude).sections.length, 7);
   assert.equal(extractPublicSectionData(TEXTS.uncanny).sections.length, 5);
   assert.equal(extractPublicSectionData(TEXTS['blood-on-the-wall']).sections.length, 4);
+  assert.equal(extractPublicSectionData(TEXTS.remediation).sections.length, 7);
 });
 
 test('each section has a plain-text intro with no leftover markup or entities', () => {

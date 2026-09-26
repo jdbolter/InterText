@@ -16,7 +16,8 @@ InterText/
 ├── vercel.json
 ├── uncanny/             — "The Uncanny Double" essay (textId: 'uncanny')
 ├── plenitude/           — "Plenitude" essay on cultural hierarchy (textId: 'plenitude')
-└── blood-on-the-wall/   — counterfactual Cold War history (textId: 'blood-on-the-wall')
+├── remediation/         — chapter on immediacy, hypermediacy, and remediation (textId: 'remediation')
+└── blood-on-the-wall/   — counterfactual Cold War history (retained, hidden from landing page)
     ├── config.js       — all text-specific content
     └── source_texts/
         └── sections/   — section files loaded by the API
@@ -29,9 +30,10 @@ reader uses OpenAI (default `gpt-5.6-terra`) so guide and reader are separate mo
 
 - **uncanny** — conversation about an essay on the uncanny in film, literature, and digital media. Readers converse with an AI guide that reveals the argument section by section. See `uncanny/CLAUDE.md` for setup, run instructions, and the general engine architecture (KV storage, adding a text, etc.) — it's the canonical reference doc for the shared engine.
 - **plenitude** — companion essay on the collapse of cultural hierarchy and the rise of media plenitude. See `plenitude/CLAUDE.md`.
-- **blood-on-the-wall** — a counterfactual narrative history (JFK assassinated in Berlin, 1963) told by a historian who has never known any other timeline. The guide is instructed never to acknowledge an "other" version of events exists. See `blood-on-the-wall/CLAUDE.md`.
+- **remediation** — a chapter on transparent immediacy, hypermediacy, and the ways media refashion one another. See `remediation/CLAUDE.md`.
+- **blood-on-the-wall** — a counterfactual narrative history (JFK assassinated in Berlin, 1963) told by a historian who has never known any other timeline. Its files and direct reader remain intact, but it is currently omitted from the landing-page reading list. See `blood-on-the-wall/CLAUDE.md`.
 
-All three share the same conversational pattern: an AI guide voice per section, plus an opt-in "evolve" step where a reader's conversation can rewrite the section for future readers (see `api/evolve.js` and each config's `synthesisInstructions`). Before reading begins, every text offers the same three-way entry choice — contribute (read and possibly shape the evolving edition), read the current evolving edition without contributing, or read the untouched original — and the same blank-Return continuation (an empty Enter keeps reading instead of requiring a question). The first blank Return treats the boxed opening as a prologue and begins at the first section passage; later Returns use that section's conversation as the reading cursor. See `uncanny/CLAUDE.md`, "Entry Consent" and "Reading On," for how these work; they're identical across all three texts.
+All four share the same conversational pattern: an AI guide voice per section, plus an opt-in "evolve" step where a reader's conversation can rewrite the section for future readers (see `api/evolve.js` and each config's `synthesisInstructions`). Before reading begins, every text offers the same three-way entry choice — contribute (read and possibly shape the evolving edition), read the current evolving edition without contributing, or read the untouched original — and the same blank-Return continuation (an empty Enter keeps reading instead of requiring a question). The first blank Return treats the boxed opening as a prologue and begins at the first section passage; later Returns use that section's conversation as the reading cursor. See `uncanny/CLAUDE.md`, "Entry Consent" and "Reading On," for how these work; they're identical across all four texts.
 
 ## Synthetic reader: editorial development and testing
 
@@ -75,9 +77,9 @@ evidence, and extensions. This preserves useful material accumulated through rea
 without requiring every detail to enter the continuous essay or every reader's path.
 
 A universal local schema, validated build, and author-editing workspace are implemented
-under `editorial/`. All three works and all 16 current sections are faithfully
+under `editorial/`. All four works and all 23 current sections are faithfully
 packaged as stable spine passages. *Plenitude*, Section 5 is the developed example,
-with fund material accumulated through reader experiments; the other fifteen sections
+with fund material accumulated through reader experiments; the other twenty-two sections
 begin with empty funds and unchanged authored prose.
 
 The guide and synthetic-reader harness can consume those packages in two
@@ -107,7 +109,7 @@ assign optional thread membership and order, and accept, reject, supersede, or r
 entries to candidate status. It preserves passage and entry identity, protects existing
 provenance, and refuses to publish over a newer head.
 
-For every section of all three works, the ordinary current-edition reader loads its
+For every section of all four works, the ordinary current-edition reader loads its
 versioned package and only its accepted fund entries. A contributing save runs separate
 proposal and review passes, publishes any approved operations as an immutable child
 version, and atomically advances the head. A reader already in the section stays pinned

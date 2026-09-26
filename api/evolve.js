@@ -12,7 +12,7 @@ const {
 
 const client = new Anthropic();
 
-const ALLOWED_TEXT_IDS = ['uncanny', 'plenitude', 'blood-on-the-wall'];
+const ALLOWED_TEXT_IDS = ['uncanny', 'plenitude', 'blood-on-the-wall', 'remediation'];
 const configCache = {};
 const sectionCache = {};
 

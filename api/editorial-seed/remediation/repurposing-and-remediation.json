@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "workId": "remediation",
+  "sectionId": "repurposing-and-remediation",
+  "sectionOrder": 6,
+  "title": "Repurposing and Remediation",
+  "editionId": "editorial-preview",
+  "versionId": "repurposing-and-remediation-editorial-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-09-26T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "remediation/source_texts/sections/section-6.md"
+  },
+  "spine": [
+    {
+      "id": "repurposing-and-remediation-p01",
+      "markdown": "In the early and mid 1990s, perhaps to a greater extent than at any time since the 1930s, Hollywood produced numerous filmed versions of classic novels--including Hawthorne, Wharton, and even Henry James. There has been a particular vogue for the novels of Jane Austen (*Sense and Sensibility*, *Pride and Prejudice*, and *Emma*). Some of the adaptations are quite free, but (except for the odd *Clueless*) the Austen films, whose popularity swept the others aside, are historically accurate in costume and setting and very faithful to the original novels. Yet, the Austen films do not contain any overt reference to the novels on which they are based: they certainly do not acknowledge that they are adaptations. Acknowledging the novel in the film would disrupt the continuity and the illusion of immediacy that Austen's readers expect, for they want to view the film in the same seamless way in which they read the novels. The content has been borrowed, but the medium has not been appropriated or quoted. This kind of borrowing, extremely common in popular culture today, is also of course very old. One example with a long pedigree are paintings illustrating stories from the Bible or from other literary sources, where apparently only the story content is borrowed. The contemporary entertainment industry calls such borrowing \"repurposing\": to take a \"property\" from one medium and re-use it in another. With reuse comes a necessary redefinition, but there may be no conscious interplay between media. The interplay happens, if at all, only for the reader or viewer who happens to know both versions and can compare them."
+    },
+    {
+      "id": "repurposing-and-remediation-p02",
+      "markdown": "On the opening page of *Understanding Media*, Marshall McLuhan remarked that \"the 'content' of any medium is always another medium. The content of writing is speech, just as the written word is the content of print, and print is the content of the telegraph\" (23-24). As his problematic examples suggest, McLuhan was not thinking of simple repurposing, but perhaps of a more complex kind of borrowing in which one medium is itself incorporated or represented in another medium. Dutch painters incorporated maps, globes, inscriptions, letters, and mirrors in their works. In fact, all our examples of hypermediacy are characterized by this kind of borrowing, as is also ancient and modern ekphrasis, the literary description of works of visual art, which W. J. T. Mitchell defines as \"the verbal representation of visual representation\" (W.J.T. Mitchell, *Picture Theory* 151-152). Again, we call the representation of one medium in another \"remediation,\" and we will argue that remediation is a defining characteristic of the new digital media. What might seem at first to be an esoteric practice is so widespread that we can identify a spectrum of different ways in digital media remediate their predecessors, a spectrum depending upon the degree of perceived competition or rivalry between the new media and the old."
+    },
+    {
+      "id": "repurposing-and-remediation-p03",
+      "markdown": "At one extreme, an older medium is highlighted and re-presented in digital form without apparent irony or critique. Examples include CD-ROM (or DVD) picture galleries (digitized paintings or photographs) and collections of literary texts. There are also numerous websites that offer pictures or texts for users to download. In these cases, the electronic medium is not set in opposition to painting, photography, or printing; instead, the computer is offered as a new means of gaining access to these older materials, as if the content of the older media could simply be poured into the new one. Since the electronic version justifies itself by granting access to the older media, it wants to be transparent. The digital medium wants to erase itself, so that the viewer stands in the same relationship to the content as she would if she were confronting the original medium. Ideally, there should be no difference between the experience of seeing a painting in person and on the computer screen, but this is never so. The computer always intervenes and makes its presence felt in some way, perhaps because the viewer must click on a button or slide a bar to view a whole picture or perhaps because the digital image appears grainy or with untrue colors. Transparency, however, remains the goal."
+    },
+    {
+      "id": "repurposing-and-remediation-p04",
+      "markdown": "Creators of other electronic remediations seem to want to emphasize the difference rather than erase it. In these cases, the electronic version is offered as an improvement, although the new is still justified in terms of the old and seeks to remain faithful to the older medium's character. There are various degrees of fidelity. Encyclopedias on CD-ROM, such as Microsoft's Encarta or Grolier's Electronic Encyclopedia, seek to improve on printed encyclopedias by providing not only text and graphics, but also sound and video and feature electronic searching and linking capabilities. Yet, because they are presenting discrete, alphabetized articles on technical subjects, they are still recognizably in the tradition of the printed encyclopedia since the eighteenth-century *Encyclopédie* and *Encyclopaedia Britannica*. In the early 1990s, the Voyager Company published series of \"Expanded Books\" on CD-ROM, an eclectic set of books originally written for printed publication including *Jurassic Park* and *Brave New World*. The Voyager interface remediated the printed book without doing much to challenge print's assumptions about linearity and closure. Even the name \"Expanded Books\" indicated the priority of the older medium. Much of the current World Wide Web also remediates older forms without challenging them. Its point-and-click interface allows the developer to reorganize texts and images taken from books, magazines, film, or television, but the reorganization does not call into question the character of a text or the status of an image. In all these cases, the new medium does not want to efface itself entirely. Microsoft wants the buyer to understand that she has purchased not simply an encyclopedia, but an electronic and therefore improved encyclopedia. So the borrowing might be said to be translucent rather than transparent."
+    }
+  ],
+  "fundEntries": [],
+  "changeSummary": "Faithful structural package of authored Remediation Section 6; no prose changes and no initial fund entries."
+}

@@ -52,14 +52,23 @@ function authoredBloodSection(sectionOrder) {
   return bodyBlocks.join('\n\n');
 }
 
+function authoredRemediationSection(sectionOrder) {
+  const [, ...bodyBlocks] = fs.readFileSync(
+    path.join(root, 'remediation', 'source_texts', 'sections', `section-${sectionOrder}.md`),
+    'utf8'
+  ).trim().split(/\n\s*\n/);
+  return bodyBlocks.join('\n\n');
+}
+
 test('all editorial work manifests match the current text configs', () => {
   const discovered = discoverWorks(contentRoot);
   assert.deepEqual(discovered.map(({ work }) => work.id).sort(), [
     'blood-on-the-wall',
     'plenitude',
+    'remediation',
     'uncanny',
   ]);
-  assert.deepEqual(discovered.map(({ work }) => work.order), [1, 2, 3]);
+  assert.deepEqual(discovered.map(({ work }) => work.order), [1, 2, 3, 4]);
 
   for (const { work } of discovered) {
     const config = require(path.join(root, work.id, 'config.js'));
@@ -152,6 +161,25 @@ test('every Blood on the Wall section is packaged without changing its authored 
   }
 });
 
+test('every Remediation section is packaged without changing its authored prose', () => {
+  const { work, workDir } = discoverWorks(contentRoot).find(item => item.work.id === 'remediation');
+  assert.equal(work.sections.length, 7);
+  assert.ok(work.sections.every(section => section.package));
+
+  const expectedPassageCounts = [8, 9, 7, 6, 19, 4, 8];
+  for (const section of work.sections.slice().sort((a, b) => a.order - b.order)) {
+    const sectionPackage = buildSectionPackage(work, section, workDir);
+    const packagedSpine = sectionPackage.spine.map(passage => passage.markdown).join('\n\n');
+    assert.equal(
+      normalize(packagedSpine),
+      normalize(authoredRemediationSection(section.order)),
+      `Section ${section.order} prose changed`
+    );
+    assert.equal(sectionPackage.spine.length, expectedPassageCounts[section.order - 1]);
+    assert.deepEqual(sectionPackage.fundEntries, []);
+  }
+});
+
 test('section validation rejects a fund entry anchored to a nonexistent passage', () => {
   const { work, workDir } = discoverWorks(contentRoot).find(item => item.work.id === 'plenitude');
   const section = work.sections.find(item => item.id === 'shocking-art');
@@ -167,14 +195,16 @@ test('buildAll writes a portable editor index and validated section snapshot', (
   const outputRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'intertext-editorial-'));
   try {
     const index = buildAll({ contentRoot, outputRoot });
-    assert.equal(index.works.length, 3);
-    assert.equal(index.works.flatMap(work => work.sections).length, 16);
+    assert.equal(index.works.length, 4);
+    assert.equal(index.works.flatMap(work => work.sections).length, 23);
     const plenitude = index.works.find(work => work.id === 'plenitude');
     assert.ok(plenitude.sections.every(section => section.readiness === 'packaged'));
     const uncanny = index.works.find(work => work.id === 'uncanny');
     assert.ok(uncanny.sections.every(section => section.readiness === 'packaged'));
     const blood = index.works.find(work => work.id === 'blood-on-the-wall');
     assert.ok(blood.sections.every(section => section.readiness === 'packaged'));
+    const remediation = index.works.find(work => work.id === 'remediation');
+    assert.ok(remediation.sections.every(section => section.readiness === 'packaged'));
     const shockingArt = plenitude.sections.find(section => section.id === 'shocking-art');
     assert.equal(shockingArt.readiness, 'packaged');
     assert.equal(shockingArt.passageCount, 10);
@@ -183,21 +213,24 @@ test('buildAll writes a portable editor index and validated section snapshot', (
     assert.ok(fs.existsSync(path.join(outputRoot, 'plenitude', 'shocking-art.json')));
     assert.ok(fs.existsSync(path.join(outputRoot, 'uncanny', 'uncanny-valley-and-double.json')));
     assert.ok(fs.existsSync(path.join(outputRoot, 'blood-on-the-wall', 'shot-heard-in-berlin.json')));
+    assert.ok(fs.existsSync(path.join(outputRoot, 'remediation', 'two-logics.json')));
   } finally {
     fs.rmSync(outputRoot, { recursive: true, force: true });
   }
 });
 
-test('reader home page orders Plenitude, Uncanny, then Blood on the Wall', () => {
+test('reader home page orders Plenitude, Uncanny, then Remediation and hides Blood on the Wall', () => {
   const homepage = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   const plenitude = homepage.indexOf('href="plenitude/public/index.html"');
   const uncanny = homepage.indexOf('href="uncanny/public/index.html"');
+  const remediation = homepage.indexOf('href="remediation/public/index.html"');
   const blood = homepage.indexOf('href="blood-on-the-wall/public/index.html"');
-  assert.ok(plenitude >= 0 && plenitude < uncanny && uncanny < blood);
+  assert.ok(plenitude >= 0 && plenitude < uncanny && uncanny < remediation);
+  assert.equal(blood, -1);
 });
 
 test('public readers carry compact cross-section memory and restore per-section history', () => {
-  for (const workId of ['plenitude', 'uncanny', 'blood-on-the-wall']) {
+  for (const workId of ['plenitude', 'uncanny', 'blood-on-the-wall', 'remediation']) {
     const app = fs.readFileSync(path.join(root, workId, 'public', 'app.js'), 'utf8');
     const style = fs.readFileSync(path.join(root, workId, 'public', 'style.css'), 'utf8');
     assert.match(app, /const sectionSummaries = new Map\(\)/);

@@ -21,6 +21,12 @@ const TEXTS = {
     guideLabel: 'Guide',
     appJsPath: path.join(PROJECT_ROOT, 'uncanny', 'public', 'app.js'),
   },
+  remediation: {
+    id: 'remediation',
+    displayTitle: 'A conversation about remediation',
+    guideLabel: 'Guide',
+    appJsPath: path.join(PROJECT_ROOT, 'remediation', 'public', 'app.js'),
+  },
   'blood-on-the-wall': {
     id: 'blood-on-the-wall',
     displayTitle: 'Blood on the Wall',

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A conversation about remediation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="consent-overlay">
+    <div id="consent-dialog">
+      <p class="consent-kicker">Before you begin</p>
+      <p class="consent-body">What you are about to read has already been shaped, in part, by the readers who came before you. When your conversation with the guide opens up the argument, takes it somewhere the text hadn't gone, or surfaces a connection it hadn't made, that exchange can be folded back into the essay itself. You can choose to be part of that. If you agree, your conversation today will be used to enrich the sections you engage with — anonymously, as one contribution among many to a text that continues to evolve with its readers.</p>
+      <p class="consent-body">If you'd rather not contribute, you can still read freely — either the text as it stands today, or the version as it was first written. Either way, nothing about your visit will change what the next reader finds.</p>
+      <div id="consent-buttons">
+        <button id="consent-contribute" class="consent-btn consent-btn-primary">
+          <span class="consent-btn-title">Contribute</span>
+          <span class="consent-btn-caption">Yes, let my conversation become part of the collective.</span>
+        </button>
+        <button id="consent-current" class="consent-btn">
+          <span class="consent-btn-title">Read the current text</span>
+          <span class="consent-btn-caption">No — read it as previous readers have already shaped it.</span>
+        </button>
+        <button id="consent-original" class="consent-btn">
+          <span class="consent-btn-title">Read the original</span>
+          <span class="consent-btn-caption">No — read it exactly as first written, before any reader's changes.</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="layout">
+
+    <div id="left-col">
+      <header>
+        <h1>A conversation about remediation</h1>
+      </header>
+      <div id="intro"></div>
+      <div id="conversation"></div>
+    </div>
+
+    <div id="right-col">
+
+      <nav id="toc" aria-label="Essay sections">
+        <button class="toc-item active" data-section="0">
+          <span class="toc-num">I</span>
+          <span class="toc-title">The Two Logics of Remediation</span>
+        </button>
+        <button class="toc-item" data-section="1">
+          <span class="toc-num">II</span>
+          <span class="toc-title">Perspective and Automaticity</span>
+        </button>
+        <button class="toc-item" data-section="2">
+          <span class="toc-num">III</span>
+          <span class="toc-title">Photorealism and the Real</span>
+        </button>
+        <button class="toc-item" data-section="3">
+          <span class="toc-num">IV</span>
+          <span class="toc-title">The Windowed Interface</span>
+        </button>
+        <button class="toc-item" data-section="4">
+          <span class="toc-num">V</span>
+          <span class="toc-title">A Genealogy of Hypermediacy</span>
+        </button>
+        <button class="toc-item" data-section="5">
+          <span class="toc-num">VI</span>
+          <span class="toc-title">Repurposing and Remediation</span>
+        </button>
+        <button class="toc-item" data-section="6">
+          <span class="toc-num">VII</span>
+          <span class="toc-title">Rivalry and Refashioning</span>
+        </button>
+      </nav>
+
+      <div id="input-panel">
+        <div id="reader-history"></div>
+        <div id="input-area">
+          <span class="input-prompt" aria-hidden="true">&gt;</span>
+          <textarea id="message-input" rows="2" aria-label="Your questions or comments" placeholder="Type your questions or comments here, or just hit Enter to continue."></textarea>
+        </div>
+      </div>
+
+      <div id="finish-bar">
+        <button id="finish-btn">Finish reading</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div id="farewell">
+    <div id="farewell-dialog">
+      <div id="farewell-saving">
+        <div class="farewell-spinner"></div>
+        <p class="farewell-body">The text is being configured to reflect your contribution. This may take a few minutes. Please leave this window open until the operation is complete.</p>
+      </div>
+      <div id="farewell-done" style="display:none">
+        <p class="farewell-body">Thank you for reading.</p>
+        <p class="farewell-sub">Close this window whenever you are ready.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
