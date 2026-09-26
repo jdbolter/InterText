@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "remediation",
+  "title": "Remediation",
+  "order": 4,
+  "sections": [
+    { "id": "two-logics", "title": "The Two Logics of Remediation", "order": 1, "package": "sections/two-logics/section.json" },
+    { "id": "perspective-and-automaticity", "title": "Perspective and Automaticity", "order": 2, "package": "sections/perspective-and-automaticity/section.json" },
+    { "id": "photorealism-and-real", "title": "Photorealism and the Real", "order": 3, "package": "sections/photorealism-and-real/section.json" },
+    { "id": "windowed-interface", "title": "The Windowed Interface", "order": 4, "package": "sections/windowed-interface/section.json" },
+    { "id": "genealogy-of-hypermediacy", "title": "A Genealogy of Hypermediacy", "order": 5, "package": "sections/genealogy-of-hypermediacy/section.json" },
+    { "id": "repurposing-and-remediation", "title": "Repurposing and Remediation", "order": 6, "package": "sections/repurposing-and-remediation/section.json" },
+    { "id": "rivalry-and-refashioning", "title": "Rivalry and Refashioning", "order": 7, "package": "sections/rivalry-and-refashioning/section.json" }
+  ]
+}

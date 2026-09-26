@@ -388,8 +388,8 @@ Settled direction for this revision: model-selected integration or omission; sea
 - `editorial/schema/`: strict JSON Schemas for generic work manifests and compiled
   section packages. `editorial/lib/content.js` adds relational checks for stable,
   unique passage and entry IDs, valid anchors, and verified-source consistency.
-- `editorial/content/`: readable, local-first source packages. All three works and all
-  16 sections are registered. All seven *Plenitude* sections are packaged as faithful
+- `editorial/content/`: readable, local-first source packages. All four works and all
+  23 sections are registered. All seven *Plenitude* sections are packaged as faithful
   stable spines; Sections 1–4 and 6–7 begin with empty funds, while Section 5 contains
   the accumulated fund material and provenance from the reading experiments.
 - `editorial/data/`: generated validated snapshots used by the workspace. Regenerate

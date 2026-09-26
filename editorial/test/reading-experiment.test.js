@@ -57,6 +57,24 @@ test('loads every generated Blood on the Wall package by stable section order', 
   });
 });
 
+test('loads every generated Remediation package by stable section order', () => {
+  const expected = [
+    ['two-logics', 8],
+    ['perspective-and-automaticity', 9],
+    ['photorealism-and-real', 7],
+    ['windowed-interface', 6],
+    ['genealogy-of-hypermediacy', 19],
+    ['repurposing-and-remediation', 4],
+    ['rivalry-and-refashioning', 8],
+  ];
+  expected.forEach(([sectionId, passageCount], sectionIndex) => {
+    const section = loadEditorialSection({ rootDir: ROOT, textId: 'remediation', sectionIndex });
+    assert.equal(section.sectionId, sectionId);
+    assert.equal(section.spine.length, passageCount);
+    assert.equal(section.fundEntries.length, 0);
+  });
+});
+
 test('spine condition supplies no fund while preserving passage markers', () => {
   const reading = prepareEditorialReading({
     rootDir: ROOT,

@@ -277,6 +277,125 @@
           }
         }
       ]
+    },
+    {
+      "id": "remediation",
+      "title": "Remediation",
+      "order": 4,
+      "sections": [
+        {
+          "id": "two-logics",
+          "title": "The Two Logics of Remediation",
+          "order": 1,
+          "package": "sections/two-logics/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/remediation/two-logics.json",
+          "versionId": "two-logics-editorial-v001",
+          "passageCount": 8,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "perspective-and-automaticity",
+          "title": "Perspective and Automaticity",
+          "order": 2,
+          "package": "sections/perspective-and-automaticity/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/remediation/perspective-and-automaticity.json",
+          "versionId": "perspective-and-automaticity-editorial-v001",
+          "passageCount": 9,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "photorealism-and-real",
+          "title": "Photorealism and the Real",
+          "order": 3,
+          "package": "sections/photorealism-and-real/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/remediation/photorealism-and-real.json",
+          "versionId": "photorealism-and-real-editorial-v001",
+          "passageCount": 7,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "windowed-interface",
+          "title": "The Windowed Interface",
+          "order": 4,
+          "package": "sections/windowed-interface/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/remediation/windowed-interface.json",
+          "versionId": "windowed-interface-editorial-v001",
+          "passageCount": 6,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "genealogy-of-hypermediacy",
+          "title": "A Genealogy of Hypermediacy",
+          "order": 5,
+          "package": "sections/genealogy-of-hypermediacy/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/remediation/genealogy-of-hypermediacy.json",
+          "versionId": "genealogy-of-hypermediacy-editorial-v001",
+          "passageCount": 19,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "repurposing-and-remediation",
+          "title": "Repurposing and Remediation",
+          "order": 6,
+          "package": "sections/repurposing-and-remediation/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/remediation/repurposing-and-remediation.json",
+          "versionId": "repurposing-and-remediation-editorial-v001",
+          "passageCount": 4,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "rivalry-and-refashioning",
+          "title": "Rivalry and Refashioning",
+          "order": 7,
+          "package": "sections/rivalry-and-refashioning/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/remediation/rivalry-and-refashioning.json",
+          "versionId": "rivalry-and-refashioning-editorial-v001",
+          "passageCount": 8,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        }
+      ]
     }
   ]
 }
