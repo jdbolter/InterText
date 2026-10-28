@@ -27,6 +27,12 @@ const TEXTS = {
     guideLabel: 'Guide',
     appJsPath: path.join(PROJECT_ROOT, 'remediation', 'public', 'app.js'),
   },
+  'digital-plenitude': {
+    id: 'digital-plenitude',
+    displayTitle: 'A conversation about the Digital Plenitude (proofs edition)',
+    guideLabel: 'Guide',
+    appJsPath: path.join(PROJECT_ROOT, 'digital-plenitude', 'public', 'app.js'),
+  },
   'blood-on-the-wall': {
     id: 'blood-on-the-wall',
     displayTitle: 'Blood on the Wall',
