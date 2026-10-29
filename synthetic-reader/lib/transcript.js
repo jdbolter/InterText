@@ -35,11 +35,11 @@ function buildJson(meta, result) {
   };
 }
 
-function formatTurnMarkdown(turn) {
+function formatTurnMarkdown(turn, voiceLabel = 'Guide') {
   const lines = [`### Turn ${turn.turn} — section ${turn.sectionNumber} — action: \`${turn.action}\``];
   if (turn.readerMessage) lines.push('', `**Reader:** ${turn.readerMessage}`);
   if (turn.action === 'continue') lines.push('', '_(reader pressed Return to continue reading)_');
-  if (turn.guideResponse) lines.push('', `**Guide:**`, '', turn.guideResponse);
+  if (turn.guideResponse) lines.push('', `**${voiceLabel}:**`, '', turn.guideResponse);
   if (turn.editorial) {
     const offered = turn.editorial.offeredFundEntryIds.length > 0
       ? turn.editorial.offeredFundEntryIds.join(', ')
@@ -100,7 +100,7 @@ function buildMarkdown(meta, result) {
     ''
   );
   for (const turn of result.turns) {
-    lines.push(formatTurnMarkdown(turn), '');
+    lines.push(formatTurnMarkdown(turn, meta.voiceLabel || 'Guide'), '');
   }
   return lines.join('\n');
 }

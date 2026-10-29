@@ -162,6 +162,7 @@ module.exports = async function handler(req, res) {
     continuing,
     firstContinuation,
     editorialReading: Boolean(editorialReading),
+    continuationVoice: config.continuationVoice,
   });
 
   try {

@@ -129,6 +129,7 @@ async function runSession(opts) {
   function buildVisibleContext() {
     return {
       workTitle: textEntry.displayTitle,
+      voiceLabel: textEntry.voiceLabel || null,
       tableOfContents: sections.map((s) => ({ number: s.number, title: s.title })),
       currentSection: { number: currentSection().number, title: currentSection().title },
       transcript: visibleTranscript.slice(),

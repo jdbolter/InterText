@@ -10,7 +10,7 @@ function resolveFirstContinuation({ continuing, requestedFirstContinuation, cont
     context.length === 0;
 }
 
-function buildContinuationInstructions({ continuing, firstContinuation, editorialReading }) {
+function buildContinuationInstructions({ continuing, firstContinuation, editorialReading, continuationVoice }) {
   if (!continuing) return null;
 
   const openingBoundary = firstContinuation
@@ -23,9 +23,13 @@ function buildContinuationInstructions({ continuing, firstContinuation, editoria
     ? `When ALL the packaged section's substantive material and useful elaboration have been covered, set sectionComplete to true in the required private delivery tool. If they were already covered, return an empty response with sectionComplete true. Otherwise set it to false. Do not move into the next section yourself or invent additional material merely to keep going.`
     : `When ALL the section's substantive material and useful elaboration have been covered, append [[SECTION_COMPLETE]] on a line by itself after the final passage. If they were already covered, return only [[SECTION_COMPLETE]]. Otherwise do not emit this marker. Do not move into the next section yourself or invent additional material merely to keep going. This is an internal navigation signal, never prose for the reader.`;
 
+  const voice = typeof continuationVoice === 'string' && continuationVoice.trim()
+    ? continuationVoice.trim()
+    : `Present the current text directly, with its voice and concrete details; do not summarize the entire section, describe your process, announce that you are continuing, ask a question, or say what the essay or author argues. A natural passage of up to 250 words is enough for this turn. Brief elaboration may connect the passage to the reader's interests, but return to the section's remaining material.`;
+
   return `The reader pressed Enter to continue reading. ${openingBoundary}
 
-Present the current text directly, with its voice and concrete details; do not summarize the entire section, describe your process, announce that you are continuing, ask a question, or say what the essay or author argues. A natural passage of up to 250 words is enough for this turn. Brief elaboration may connect the passage to the reader's interests, but return to the section's remaining material.
+${voice}
 
 ${completionSignal}`;
 }

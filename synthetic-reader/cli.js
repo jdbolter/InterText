@@ -87,6 +87,7 @@ async function main(argv) {
 
   const meta = {
     textId: textEntry.id,
+    ...(textEntry.voiceLabel ? { voiceLabel: textEntry.voiceLabel } : {}),
     startSectionIndex: opts.section - 1,
     profileId: profile.id,
     profileName: profile.name,
