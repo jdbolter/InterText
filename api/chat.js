@@ -17,6 +17,7 @@ const {
   openingSectionText,
   resolveFirstContinuation,
 } = require('./lib/reading-continuation');
+const { loadSectionFund, sectionLabelLine } = require('./lib/text-extras');
 
 const client = new Anthropic();
 
@@ -156,14 +157,17 @@ module.exports = async function handler(req, res) {
     : null;
   const messages = [
     ...(Array.isArray(context) ? context : []),
-    { role: 'user', content: continuing ? continuationUserMessage(firstContinuation) : message.trim() }
+    { role: 'user', content: continuing ? continuationUserMessage(firstContinuation, editorialReading ? null : config.continuationWording) : message.trim() }
   ];
   const continuationInstructions = buildContinuationInstructions({
     continuing,
     firstContinuation,
     editorialReading: Boolean(editorialReading),
     continuationVoice: config.continuationVoice,
+    wording: config.continuationWording,
   });
+  // H-003: a section's fund of citable works, for ordinary readings only.
+  const sectionFundText = loadSectionFund(config, idx, { editorial: Boolean(editorialReading) });
 
   try {
     const response = await client.messages.create({
@@ -185,12 +189,13 @@ module.exports = async function handler(req, res) {
               .filter(({ id }) => !shownImages.includes(id))
               .map(({ prompt }) => prompt)
               .join('\n\n') || null,
-            `Current section: ${sectionName}`,
+            sectionLabelLine(config, sectionName),
             `The reader has just been shown this framing before their first message: "${config.sectionIntros[idx]}"`,
             editorialReading ? editorialReading.instructions : null,
             editorialReading ? editorialReading.memoryInstructions : null,
           ].filter(Boolean).join('\n\n') },
         { type: 'text', text: promptedSectionText, cache_control: { type: 'ephemeral' } },
+        ...(sectionFundText ? [{ type: 'text', text: sectionFundText }] : []),
         ...(editorialReading && priorSectionMemory
           ? [{ type: 'text', text: priorSectionMemory }]
           : []),

@@ -10,18 +10,24 @@ function resolveFirstContinuation({ continuing, requestedFirstContinuation, cont
     context.length === 0;
 }
 
-function buildContinuationInstructions({ continuing, firstContinuation, editorialReading, continuationVoice }) {
+function wordingFor(wording, key) {
+  return wording && typeof wording[key] === 'string' && wording[key].trim() ? wording[key].trim() : null;
+}
+
+function buildContinuationInstructions({ continuing, firstContinuation, editorialReading, continuationVoice, wording }) {
   if (!continuing) return null;
+  // H-003: a text may replace the shared framing in ordinary readings; editorial readings keep theirs.
+  const own = editorialReading ? null : wording;
 
   const openingBoundary = firstContinuation
-    ? `This is the first continuation after the boxed opening. The box is a prologue, not part of the section-reading transcript, and the opening boundary is BEFORE the first supplied passage. Its details may overlap with or anticipate material anywhere in the section; that does not mean those passages have already been covered. Only the opening passage is supplied on this turn. Begin there and connect its unpresented claims directly to the box's final thought. Stay within that opening material. It is fine to stop partway through it; do not compress or omit material merely to finish it. Avoid needless verbatim repetition of facts already stated in the box, but do not skip any substantive claim, example, distinction, or transition.`
-    : `Use the exchanges below as the reading cursor. Resume substantive material not yet covered rather than repeating the opening or continuing a digression indefinitely.`;
+    ? wordingFor(own, 'opening') || `This is the first continuation after the boxed opening. The box is a prologue, not part of the section-reading transcript, and the opening boundary is BEFORE the first supplied passage. Its details may overlap with or anticipate material anywhere in the section; that does not mean those passages have already been covered. Only the opening passage is supplied on this turn. Begin there and connect its unpresented claims directly to the box's final thought. Stay within that opening material. It is fine to stop partway through it; do not compress or omit material merely to finish it. Avoid needless verbatim repetition of facts already stated in the box, but do not skip any substantive claim, example, distinction, or transition.`
+    : wordingFor(own, 'cursor') || `Use the exchanges below as the reading cursor. Resume substantive material not yet covered rather than repeating the opening or continuing a digression indefinitely.`;
 
   const completionSignal = firstContinuation
-    ? `This opening turn cannot complete the section. Set sectionComplete to false if using the private delivery tool, and never emit [[SECTION_COMPLETE]].`
+    ? (editorialReading ? null : wordingFor(own, 'openingCompletion')) || `This opening turn cannot complete the section. Set sectionComplete to false if using the private delivery tool, and never emit [[SECTION_COMPLETE]].`
     : editorialReading
     ? `When ALL the packaged section's substantive material and useful elaboration have been covered, set sectionComplete to true in the required private delivery tool. If they were already covered, return an empty response with sectionComplete true. Otherwise set it to false. Do not move into the next section yourself or invent additional material merely to keep going.`
-    : `When ALL the section's substantive material and useful elaboration have been covered, append [[SECTION_COMPLETE]] on a line by itself after the final passage. If they were already covered, return only [[SECTION_COMPLETE]]. Otherwise do not emit this marker. Do not move into the next section yourself or invent additional material merely to keep going. This is an internal navigation signal, never prose for the reader.`;
+    : wordingFor(own, 'completion') || `When ALL the section's substantive material and useful elaboration have been covered, append [[SECTION_COMPLETE]] on a line by itself after the final passage. If they were already covered, return only [[SECTION_COMPLETE]]. Otherwise do not emit this marker. Do not move into the next section yourself or invent additional material merely to keep going. This is an internal navigation signal, never prose for the reader.`;
 
   const voice = typeof continuationVoice === 'string' && continuationVoice.trim()
     ? continuationVoice.trim()
@@ -48,8 +54,10 @@ function openingSectionText(sectionText) {
   return (firstBody || blocks[0] || '').trim();
 }
 
-function continuationUserMessage(firstContinuation) {
-  return firstContinuation ? OPENING_CONTINUE_MESSAGE : STANDARD_CONTINUE_MESSAGE;
+function continuationUserMessage(firstContinuation, wording) {
+  return firstContinuation
+    ? wordingFor(wording, 'openingContinueMessage') || OPENING_CONTINUE_MESSAGE
+    : wordingFor(wording, 'continueMessage') || STANDARD_CONTINUE_MESSAGE;
 }
 
 module.exports = {
