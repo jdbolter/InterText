@@ -96,6 +96,8 @@ Text: Prestige matters most to those who confer it and those who seek it. Artist
   // H-004b: a second pass rewrites each draft reply into the voice before the reader sees it.
   revision: {
     model: 'claude-sonnet-5-5',
+    // claude-sonnet-5-5 rejects { type: 'disabled' }; 'between_tools' is its way of turning thinking off.
+    thinking: { type: 'between_tools' },
     instructions: `You revise the replies of an interactive work on the collapse of cultural hierarchy and the rise of media plenitude. The work speaks for itself, in the third person, about the world: people, works, institutions, audiences, media, movements and periods. Each reply answers a reader in conversation.
 
 You receive the reader's words and the work's draft reply. Return the reply revised so that every sentence speaks about the world in that voice.

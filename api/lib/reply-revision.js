@@ -14,6 +14,9 @@ function revisionConfig(config) {
     model: r.model.trim(),
     instructions: r.instructions.trim(),
     maxTokens: Number.isInteger(r.maxTokens) && r.maxTokens > 0 ? r.maxTokens : 1500,
+    // Models differ in how thinking is turned off: claude-sonnet-5 takes 'disabled',
+    // claude-sonnet-5-5 requires 'between_tools' (it then does not think before replying).
+    thinking: r.thinking && typeof r.thinking.type === 'string' ? { type: r.thinking.type } : { type: 'disabled' },
   };
 }
 
@@ -48,7 +51,7 @@ async function reviseReply({ client, config, readerMessage, continuing, draft })
     const response = await client.messages.create({
       model: rc.model,
       max_tokens: rc.maxTokens,
-      thinking: { type: 'disabled' },
+      thinking: rc.thinking,
       system: rc.instructions,
       messages: [{ role: 'user', content: buildRevisionMessage({ readerMessage, continuing, draft }) }],
     });
@@ -60,8 +63,9 @@ async function reviseReply({ client, config, readerMessage, continuing, draft })
     if (!check.ok) return { text: draft, applied: false, reason: check.reason, model: rc.model, usage: response.usage };
     return { text: check.text, applied: true, model: rc.model, usage: response.usage };
   } catch (err) {
-    console.error('reply revision failed:', err.message);
-    return { text: draft, applied: false, reason: 'revision call failed', model: rc.model };
+    const detail = [err.status, err.message].filter(Boolean).join(' ').slice(0, 300);
+    console.error('reply revision failed:', detail);
+    return { text: draft, applied: false, reason: `revision call failed: ${detail}`, model: rc.model };
   }
 }
 

@@ -22,7 +22,7 @@ test('revision is off unless a text configures model and instructions', () => {
   assert.equal(revisionConfig({}), null);
   assert.equal(revisionConfig({ revision: { model: 'm' } }), null);
   assert.equal(revisionConfig({ revision: { instructions: 'x' } }), null);
-  assert.deepEqual(revisionConfig({ revision: { model: 'm', instructions: ' x ' } }), { model: 'm', instructions: 'x', maxTokens: 1500 });
+  assert.deepEqual(revisionConfig({ revision: { model: 'm', instructions: ' x ' } }), { model: 'm', instructions: 'x', maxTokens: 1500, thinking: { type: 'disabled' } });
 });
 
 test('the revision message carries the reader and the draft; Return turns are named as such', () => {
@@ -51,6 +51,7 @@ test('reviseReply uses the configured model with thinking off, and falls back to
   assert.equal(calls[0].system, 'Revise.');
   const failed = await reviseReply({ client: fakeClient(new Error('boom')), config, readerMessage: 'q', draft: 'Draft.' });
   assert.deepEqual([failed.text, failed.applied], ['Draft.', false]);
+  assert.match(failed.reason, /^revision call failed: boom/);
   const empty = await reviseReply({ client: fakeClient(''), config, readerMessage: 'q', draft: 'Draft.' });
   assert.deepEqual([empty.text, empty.applied, empty.reason], ['Draft.', false, 'empty revision']);
   const off = await reviseReply({ client: fakeClient('x'), config: {}, readerMessage: 'q', draft: 'Draft.' });
@@ -74,5 +75,6 @@ test('old Return-turn messages in the history take the text\'s own wording', () 
 
 test('digital-plenitude configures the revision pass on claude-sonnet-5-5; plenitude does not', () => {
   assert.equal(revisionConfig(require('../../digital-plenitude/config')).model, 'claude-sonnet-5-5');
+  assert.deepEqual(revisionConfig(require('../../digital-plenitude/config')).thinking, { type: 'between_tools' });
   assert.equal(revisionConfig(require('../../plenitude/config')), null);
 });
