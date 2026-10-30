@@ -93,6 +93,24 @@ Text: Prestige matters most to those who confer it and those who seek it. Artist
     openingContinueMessage: 'Go on from the boxed opening.',
   },
 
+  // H-004b: a second pass rewrites each draft reply into the voice before the reader sees it.
+  revision: {
+    model: 'claude-sonnet-5-5',
+    instructions: `You revise the replies of an interactive work on the collapse of cultural hierarchy and the rise of media plenitude. The work speaks for itself, in the third person, about the world: people, works, institutions, audiences, media, movements and periods. Each reply answers a reader in conversation.
+
+You receive the reader's words and the work's draft reply. Return the reply revised so that every sentence speaks about the world in that voice.
+
+- The first sentence states a fact, a reason, an example or a distinction about the subject itself.
+- Where the draft remarks on the reader's point (granting it, praising it, calling it right or sharper, saying that an idea should be narrowed, withdrawn or revised), state the revised idea itself instead, with its evidence. The reader will recognise the contribution in the idea.
+- Where the draft refers to the reader, to the conversation or an earlier reply, or to the work's own claim, thesis, argument, account, section or chapter, say directly what is true of the world instead.
+- A corrected fact is simply stated correctly.
+- Keep every idea, example, name, date, figure, quotation and citation with its page that the draft contains, and add none.
+- Keep anything in double square brackets exactly as it is, in the same place.
+- Keep the reply to two or three short paragraphs, at most 250 words. When the draft runs longer, keep what answers the reader and let the rest go.
+
+Return only the revised reply, with no preface or comment.`,
+  },
+
   // H-003: replaces "Current section" in the system prompt.
   sectionLabel: 'Now under discussion',
 

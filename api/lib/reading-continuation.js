@@ -60,9 +60,25 @@ function continuationUserMessage(firstContinuation, wording) {
     : wordingFor(wording, 'continueMessage') || STANDARD_CONTINUE_MESSAGE;
 }
 
+// H-004b: clients send earlier Return turns back with the shared message. When a text
+// has its own wording, the history it sends the model uses that wording too.
+function normalizeContinueHistory(context, wording) {
+  if (!Array.isArray(context)) return context;
+  const standard = wordingFor(wording, 'continueMessage');
+  const opening = wordingFor(wording, 'openingContinueMessage');
+  if (!standard && !opening) return context;
+  return context.map(m => {
+    if (!m || m.role !== 'user') return m;
+    if (standard && m.content === STANDARD_CONTINUE_MESSAGE) return { ...m, content: standard };
+    if (opening && m.content === OPENING_CONTINUE_MESSAGE) return { ...m, content: opening };
+    return m;
+  });
+}
+
 module.exports = {
   buildContinuationInstructions,
   continuationUserMessage,
+  normalizeContinueHistory,
   openingSectionText,
   resolveFirstContinuation,
 };

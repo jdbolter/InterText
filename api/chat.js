@@ -14,10 +14,12 @@ const { loadCurrentSection } = require('./lib/editorial-store');
 const {
   buildContinuationInstructions,
   continuationUserMessage,
+  normalizeContinueHistory,
   openingSectionText,
   resolveFirstContinuation,
 } = require('./lib/reading-continuation');
 const { loadSectionFund, sectionLabelLine, textModel } = require('./lib/text-extras');
+const { reviseReply } = require('./lib/reply-revision');
 
 const client = new Anthropic();
 
@@ -156,7 +158,9 @@ module.exports = async function handler(req, res) {
     ? editorialReading.fundText
     : null;
   const messages = [
-    ...(Array.isArray(context) ? context : []),
+    ...(Array.isArray(context)
+      ? (editorialReading ? context : normalizeContinueHistory(context, config.continuationWording))
+      : []),
     { role: 'user', content: continuing ? continuationUserMessage(firstContinuation, editorialReading ? null : config.continuationWording) : message.trim() }
   ];
   const continuationInstructions = buildContinuationInstructions({
@@ -270,6 +274,24 @@ module.exports = async function handler(req, res) {
       return res.status(502).json({ error: 'Empty completion' });
     }
 
+    // H-004b: an optional second pass rewrites the draft into the text's voice
+    // (ordinary readings only). The draft is returned beside it for measurement.
+    let revision = null;
+    if (!editorialReading && text.trim()) {
+      const draft = text;
+      const revised = await reviseReply({
+        client,
+        config,
+        readerMessage: continuing ? '' : message,
+        continuing,
+        draft,
+      });
+      if (revised.reason !== 'not configured') {
+        revision = { draft, applied: revised.applied, model: revised.model, ...(revised.reason ? { reason: revised.reason } : {}), usage: revised.usage || null };
+        text = revised.text;
+      }
+    }
+
     if (citations.length > 0) {
       text += '\n\nSources: ' + citations.slice(0, 5).map(c => `[${c.title}](${c.url})`).join(' · ');
     }
@@ -277,6 +299,7 @@ module.exports = async function handler(req, res) {
       response: text,
       ...(continuing ? { sectionComplete } : {}),
       ...(editorialResult ? { editorial: editorialResult } : {}),
+      ...(revision ? { revision, usage: response.usage || null } : {}),
     });
   } catch (err) {
     console.error(err);

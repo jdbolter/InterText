@@ -26,6 +26,19 @@ function extractImageIds(text) {
   return ids;
 }
 
+// H-004b: when the server revised the reply, keep the draft beside it (and the token
+// usage of both calls) so a reading round can measure what the second pass changed.
+function recordRevision(data, turnRecord) {
+  if (!data || !data.revision) return;
+  turnRecord.revision = {
+    draft: typeof data.revision.draft === 'string' ? stripImageTokens(data.revision.draft) : null,
+    applied: data.revision.applied === true,
+    model: data.revision.model || null,
+    ...(data.revision.reason ? { reason: data.revision.reason } : {}),
+    usage: { reply: data.usage || null, revision: data.revision.usage || null },
+  };
+}
+
 /**
  * @param {object} opts
  * @param {object} opts.textEntry - from textRegistry.getText()
@@ -182,6 +195,7 @@ async function runSession(opts) {
         // Record and display what the reader actually saw, not the server's raw
         // [[IMAGE:id]] token — that's an internal rendering instruction, never prose.
         turnRecord.guideResponse = stripImageTokens(responseText);
+        recordRevision(data, turnRecord);
         visibleTranscript.push({ type: 'guide', text: turnRecord.guideResponse });
       } else if (action.action === 'continue') {
         let advanced = false;
@@ -224,6 +238,7 @@ async function runSession(opts) {
             recordHistoryTurn('Continue reading from where we have reached in this section.', responseText);
             extractImageIds(responseText).forEach((id) => shownImages.add(id));
             turnRecord.guideResponse = stripImageTokens(responseText);
+            recordRevision(data, turnRecord);
             visibleTranscript.push({ type: 'guide', text: turnRecord.guideResponse });
             break;
           }

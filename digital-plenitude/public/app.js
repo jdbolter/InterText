@@ -241,7 +241,7 @@ function appendGuideResponse(text) {
 
   const label = document.createElement('div');
   label.className = 'turn-label';
-  label.textContent = 'Text';
+  label.textContent = 'The text';
 
   const body = document.createElement('div');
   body.className = 'turn-body';
