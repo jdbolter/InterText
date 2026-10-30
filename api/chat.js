@@ -17,7 +17,7 @@ const {
   openingSectionText,
   resolveFirstContinuation,
 } = require('./lib/reading-continuation');
-const { loadSectionFund, sectionLabelLine } = require('./lib/text-extras');
+const { loadSectionFund, sectionLabelLine, textModel } = require('./lib/text-extras');
 
 const client = new Anthropic();
 
@@ -171,7 +171,7 @@ module.exports = async function handler(req, res) {
 
   try {
     const response = await client.messages.create({
-      model: 'claude-sonnet-5',
+      model: textModel(config),
       // 2048 was too tight: adaptive thinking can consume the whole budget on a hard
       // turn, leaving no tokens for the actual reply and forcing the empty-completion
       // 502 below — confirmed in practice by several consecutive real turns. Response

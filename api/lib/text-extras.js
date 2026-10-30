@@ -7,6 +7,14 @@ const fs = require('fs');
 const path = require('path');
 
 const DEFAULT_SECTION_LABEL = 'Current section';
+const DEFAULT_TEXT_MODEL = 'claude-sonnet-5';
+
+// H-004a: the model that writes a text's replies; a text without `model` keeps the shared default.
+function textModel(config) {
+  return config && typeof config.model === 'string' && config.model.trim()
+    ? config.model.trim()
+    : DEFAULT_TEXT_MODEL;
+}
 
 function sectionLabelLine(config, sectionName) {
   const label = config && typeof config.sectionLabel === 'string' && config.sectionLabel.trim()
@@ -39,7 +47,9 @@ function clearFundCache() {
 
 module.exports = {
   DEFAULT_SECTION_LABEL,
+  DEFAULT_TEXT_MODEL,
   clearFundCache,
   loadSectionFund,
   sectionLabelLine,
+  textModel,
 };

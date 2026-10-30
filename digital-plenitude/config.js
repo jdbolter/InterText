@@ -1,6 +1,9 @@
 const path = require('path');
 
 module.exports = {
+  // H-004a: the model that writes this text's replies (shared default: claude-sonnet-5).
+  model: 'claude-sonnet-5-5',
+
   sectionsDir: path.join(__dirname, 'source_texts', 'sections'),
 
   sectionFiles: [

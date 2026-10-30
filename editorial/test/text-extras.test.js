@@ -8,6 +8,7 @@ const {
   clearFundCache,
   loadSectionFund,
   sectionLabelLine,
+  textModel,
 } = require('../../api/lib/text-extras');
 const {
   buildContinuationInstructions,
@@ -100,4 +101,11 @@ test('plenitude, the old text, sends exactly what it sent before', () => {
   assert.equal(sectionLabelLine(config, 'X'), 'Current section: X');
   assert.equal(loadSectionFund(config, 0), null);
   assert.equal(config.continuationWording, undefined);
+});
+
+test('the reply model falls back to claude-sonnet-5; digital-plenitude uses claude-sonnet-5-5', () => {
+  assert.equal(textModel({}), 'claude-sonnet-5');
+  assert.equal(textModel({ model: ' ' }), 'claude-sonnet-5');
+  assert.equal(textModel(require('../../digital-plenitude/config')), 'claude-sonnet-5-5');
+  assert.equal(textModel(require('../../plenitude/config')), 'claude-sonnet-5');
 });
