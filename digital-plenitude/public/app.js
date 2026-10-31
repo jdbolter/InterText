@@ -73,7 +73,7 @@ SECTION_IMAGES.forEach(section => {
 });
 
 const SECTION_INTROS = [
-  `<p>In June 2013, Jay Z performed for six hours at the Pace Gallery in Manhattan &mdash; one of the city&rsquo;s most prestigious white-box art spaces. Art-world figures and fans rotated through to stand across from him while he rapped. Marina Abramović, who had spent 30 days sitting motionless at MOMA staring at strangers, appeared as one of his partners. Everyone was delighted.</p>`,
+  `<p>In 2013, JAY-Z performed in a white-box hall of the Pace Gallery in New York, one of the city&rsquo;s most prestigious art spaces. Art-world figures and fans took turns standing across from him while he rapped. Marina Abramović, who had spent thirty days sitting motionless at MoMA staring at strangers, appeared as one of his partners. Everyone was delighted.</p>`,
 
   `<p>In April 2011, the Philadelphia Orchestra filed for Chapter 11 bankruptcy &mdash; the first of America&rsquo;s &ldquo;Big Five&rdquo; orchestras ever to do so. It had been playing for over a century. In 1939, its director Leopold Stokowski appeared as a silhouetted figure in Disney&rsquo;s <em>Fantasia</em>, where Mickey Mouse greeted him with nervous reverence. By 2011, the orchestra&rsquo;s problem was not reverence but revenue.</p>`,
 

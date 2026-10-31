@@ -286,3 +286,20 @@ test('Vercel functions include the generated editorial runtime seed', () => {
   assert.equal(vercelConfig.functions['api/chat.js'].includeFiles, 'api/editorial-seed/**');
   assert.equal(vercelConfig.functions['api/evolve.js'].includeFiles, 'api/editorial-seed/**');
 });
+
+test('digital-plenitude: the introductions the page shows match the ones the model is told about', () => {
+  // H-006: the boxes live in app.js (what the reader sees) and in config.js (what the model is told
+  // the reader saw). They must say the same thing.
+  const config = require(path.join(root, 'digital-plenitude', 'config.js'));
+  const app = fs.readFileSync(path.join(root, 'digital-plenitude', 'public', 'app.js'), 'utf8');
+  const block = app.slice(app.indexOf('const SECTION_INTROS = ['), app.indexOf('];', app.indexOf('const SECTION_INTROS = [')));
+  const shown = [...block.matchAll(/`([\s\S]*?)`/g)].map(m => m[1]);
+  const plain = s => s
+    .replace(/<[^>]+>/g, '')
+    .replace(/&mdash;/g, '—').replace(/&rsquo;/g, '’').replace(/&lsquo;/g, '‘')
+    .replace(/&ldquo;/g, '“').replace(/&rdquo;/g, '”').replace(/&amp;/g, '&')
+    .replace(/[’‘]/g, "'").replace(/[“”]/g, '"')
+    .replace(/\s+/g, ' ').trim();
+  assert.equal(shown.length, config.sectionIntros.length);
+  shown.forEach((html, i) => assert.equal(plain(html), plain(config.sectionIntros[i]), `section ${i + 1} introduction`));
+});
