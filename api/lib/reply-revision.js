@@ -1,5 +1,7 @@
 'use strict';
 
+const { thinkingOff } = require('./text-extras');
+
 // H-004b: an optional second pass that rewrites a text's draft reply into its voice
 // before the reader sees it. Ordinary (non-editorial) readings only. A text without
 // `revision` in its config is unchanged.
@@ -15,9 +17,9 @@ function revisionConfig(config) {
     model: r.model.trim(),
     instructions: r.instructions.trim(),
     maxTokens: Number.isInteger(r.maxTokens) && r.maxTokens > 0 ? r.maxTokens : 1500,
-    // Models differ in how thinking is turned off: claude-sonnet-5 takes 'disabled',
+    // Models differ in how thinking is turned off (see thinkingOff in text-extras);
     // claude-sonnet-5-5 requires 'between_tools' (it then does not think before replying).
-    thinking: r.thinking && typeof r.thinking.type === 'string' ? { type: r.thinking.type } : { type: 'disabled' },
+    thinking: r.thinking && typeof r.thinking.type === 'string' ? { type: r.thinking.type } : thinkingOff(r.model.trim()),
   };
 }
 

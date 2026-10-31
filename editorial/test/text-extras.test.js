@@ -9,6 +9,7 @@ const {
   loadSectionFund,
   sectionLabelLine,
   textModel,
+  thinkingOff,
 } = require('../../api/lib/text-extras');
 const {
   buildContinuationInstructions,
@@ -103,9 +104,15 @@ test('plenitude, the old text, sends exactly what it sent before', () => {
   assert.equal(config.continuationWording, undefined);
 });
 
-test('the reply model falls back to claude-sonnet-5; digital-plenitude uses claude-sonnet-5-5', () => {
-  assert.equal(textModel({}), 'claude-sonnet-5');
-  assert.equal(textModel({ model: ' ' }), 'claude-sonnet-5');
+test('the reply model defaults to claude-sonnet-5-5 for every text (H-007)', () => {
+  assert.equal(textModel({}), 'claude-sonnet-5-5');
+  assert.equal(textModel({ model: ' ' }), 'claude-sonnet-5-5');
   assert.equal(textModel(require('../../digital-plenitude/config')), 'claude-sonnet-5-5');
-  assert.equal(textModel(require('../../plenitude/config')), 'claude-sonnet-5');
+  assert.equal(textModel(require('../../plenitude/config')), 'claude-sonnet-5-5');
+  assert.equal(textModel({ model: 'claude-sonnet-5' }), 'claude-sonnet-5', 'a text can still pin the older model');
+});
+
+test('thinking is turned off in each model\'s own way', () => {
+  assert.deepEqual(thinkingOff('claude-sonnet-5-5'), { type: 'between_tools' });
+  assert.deepEqual(thinkingOff('claude-sonnet-5'), { type: 'disabled' });
 });

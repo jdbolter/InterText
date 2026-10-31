@@ -7,13 +7,23 @@ const fs = require('fs');
 const path = require('path');
 
 const DEFAULT_SECTION_LABEL = 'Current section';
-const DEFAULT_TEXT_MODEL = 'claude-sonnet-5';
+// H-007: every text now defaults to claude-sonnet-5-5 (H-004a introduced the per-text setting).
+const DEFAULT_TEXT_MODEL = 'claude-sonnet-5-5';
 
-// H-004a: the model that writes a text's replies; a text without `model` keeps the shared default.
+// The model that writes a text's replies and evolves its sections; a text without `model`
+// uses the shared default.
 function textModel(config) {
   return config && typeof config.model === 'string' && config.model.trim()
     ? config.model.trim()
     : DEFAULT_TEXT_MODEL;
+}
+
+// Models differ in how thinking is turned off. claude-sonnet-5 takes { type: 'disabled' };
+// claude-sonnet-5-5 rejects that and takes { type: 'between_tools' } (it then does not
+// think before replying). Found on 2026-10-30, when every H-004b revision call failed.
+const THINKING_OFF = { 'claude-sonnet-5-5': 'between_tools' };
+function thinkingOff(model) {
+  return { type: THINKING_OFF[model] || 'disabled' };
 }
 
 function sectionLabelLine(config, sectionName) {
@@ -48,8 +58,10 @@ function clearFundCache() {
 module.exports = {
   DEFAULT_SECTION_LABEL,
   DEFAULT_TEXT_MODEL,
+  THINKING_OFF,
   clearFundCache,
   loadSectionFund,
   sectionLabelLine,
   textModel,
+  thinkingOff,
 };

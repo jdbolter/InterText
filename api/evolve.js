@@ -3,6 +3,7 @@ const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 const { evolveEditorialSection } = require('./lib/editorial-evolution');
+const { textModel, thinkingOff } = require('./lib/text-extras');
 const { formatSpine } = require('./lib/editorial-package');
 const {
   ensureSectionInitialized,
@@ -108,6 +109,7 @@ module.exports = async function handler(req, res) {
             sectionPackage: currentPackage,
             conversationHistory,
             sessionId: contributionSessionId,
+            model: textModel(config),
           });
 
           if (!result.changed) {
@@ -191,9 +193,11 @@ module.exports = async function handler(req, res) {
     const maxTokens = Math.min(8192, Math.round(wordLimit * 4));
 
     const response = await client.messages.create({
-      model: 'claude-sonnet-5',
+      // H-007: the text's model (claude-sonnet-5-5 by default), with thinking off in that
+      // model's own way.
+      model: textModel(config),
       max_tokens: maxTokens,
-      thinking: { type: 'disabled' },
+      thinking: thinkingOff(textModel(config)),
       system: systemPrompt,
       messages: [
         {

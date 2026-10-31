@@ -47,7 +47,7 @@ test('reviseReply uses the configured model with thinking off, and falls back to
   assert.equal(ok.text, 'Revised.');
   assert.equal(ok.applied, true);
   assert.equal(calls[0].model, 'claude-sonnet-5-5');
-  assert.deepEqual(calls[0].thinking, { type: 'disabled' });
+  assert.deepEqual(calls[0].thinking, { type: 'between_tools' }, 'Sonnet 5.5 turns thinking off this way');
   assert.equal(calls[0].system, 'Revise.');
   const failed = await reviseReply({ client: fakeClient(new Error('boom')), config, readerMessage: 'q', draft: 'Draft.' });
   assert.deepEqual([failed.text, failed.applied], ['Draft.', false]);
