@@ -91,12 +91,19 @@ test('digital-plenitude: every fund entry has a reference, and every fund page l
   assert.equal(citationMarkersOn(require('../../plenitude/config')), false);
   const refs = loadReferences(config);
   clearFundCache();
-  for (const idx of [0, 4]) {
+  for (const idx of [0, 1, 2, 3, 4, 5, 6]) {
     const ids = fundIds(loadSectionFund(config, idx));
-    assert.ok(ids.size >= 8);
+    assert.ok(ids.size >= 5, `section ${idx + 1} has a fund`);
     for (const id of ids) {
       assert.ok(refs[id], `reference for ${id}`);
       assert.match(refs[id].full, /\d{4}/);
+    }
+    // Every page an entry cites must be one a marker for that work may carry.
+    const fund = loadSectionFund(config, idx);
+    for (const m of fund.matchAll(/^\[([a-z0-9-]+)\] (.*)$/gm)) {
+      for (const p of m[2].matchAll(/\(pp?\. ([\d–, ]+)\)/g)) {
+        assert.ok(locatorAllowed(p[1], refs[m[1]].pages), `${m[1]} cites pp. ${p[1]} in section ${idx + 1}`);
+      }
     }
   }
   assert.deepEqual(refs['greenberg-1939'].pages, [], 'Greenberg pages belong to an unidentified reprint');

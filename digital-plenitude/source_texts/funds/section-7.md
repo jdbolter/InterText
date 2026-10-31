@@ -1,0 +1,19 @@
+[jenkins-2006] Jenkins, Convergence Culture (2006). From the publisher's description (cite only for these points): convergence is cultural as much as technical, as audiences act across media and with one another; corporate and grassroots media sometimes cooperate and sometimes conflict; young Harry Potter fans write their own stories. Use: the section's own source for media communities and fan fiction.
+
+[lanier-2010] Lanier, You Are Not a Gadget (2010). Web 2.0 software degrades the idea of the person, and a generation has grown up expecting less of what a person can be; the remix and social-networking cultures are the destructive ones. Use: the critic whose hierarchy of art has quietly admitted popular forms; he argues from the opposite side.
+
+[lessig-2008] Lessig, Remix (2008). The twentieth century made popular culture "Read/Only," the first century in which it was professionalized (pp. 28–29); digital technologies make "Read/Write" culture possible again (pp. 33–35). Remix is collage, drawing on the meaning its references carry (p. 76), and its goods are community and interest-based learning, as in the anime music video scene (pp. 76–82). Use: fan fiction and remix as the return of amateur making, and the communities built around it.
+
+[burgess-2018] Burgess and Green, YouTube (2018). From the publisher's description (cite only for these points): YouTube's amateur culture and its commercial logics have coexisted in tension for more than a decade, producing new popular genres and professions. Use: the remixes of YouTube, and the line between amateur community and business.
+
+[bolter-2022] Bolter, "The Condition of Reading in a Digital Media Culture" (2022). Bolter's own later chapter, carrying this argument on. Social media let readers pass constantly into writing, so that there may now be more published authors than readers (p. 39). In collective reading, a reader's notes become a paratext that others read and extend (p. 41). Use: the later development of the argument about communities of readers and writers.
+
+[skageby-2010] Skågeby, "Gift-Giving as a Conceptual Framework" (2010). From the abstract (cite only for this point): online sharing can be understood through other-orientation, social bonding and generalized reciprocity. Use: the "reciprocal exchange of knowledge" that holds fan communities together.
+
+[chun-2021] Chun, Discriminating Data (2021). From the publisher's description (cite only for this point): recommender systems group people with others like them, so that the clusters of the digital world are partly made by algorithms built on "homophily." Use: a challenge to the picture of communities as "voluntary, temporary, and tactical"; some affiliations are made for us.
+
+[haidt-2024] Haidt, The Anxious Generation (2024). From the publisher's description (cite only for these points): adolescent mental health worsened sharply in the early 2010s across many countries, and Haidt attributes it to the replacement of play-based by phone-based childhood. Use: a later critic in the line of Lanier and Carr, arguing from the opposite side; say so when citing him.
+
+[alter-2026] Alter, "The New Fabio Is Claude" (New York Times, 2026). Romance, the most formula-driven genre, is where AI-written fiction has arrived first at scale; about a third of surveyed authors use generative AI for plotting, outlining or writing, and most do not disclose it, according to a survey she reports. Use: a development after 2019 by the same reporter whose 2012 article on fan fiction the section cites.
+
+[postman-1985] Postman, Amusing Ourselves to Death (1985; page numbers from the 2005 Penguin edition). Our ideas of intellect, knowledge and truth were formed by print, and as print moves to the periphery the value of public discourse declines (p. 29). Use: the earlier critic of electronic media, before Lanier, Keen and Carr; he argues from the opposite side.

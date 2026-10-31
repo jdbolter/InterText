@@ -13,12 +13,32 @@
     3
    ],
    [
+    4,
+    7
+   ],
+   [
+    12,
+    14
+   ],
+   [
+    28,
+    30
+   ],
+   [
     37,
     40
    ],
    [
+    50,
+    53
+   ],
+   [
     57,
     58
+   ],
+   [
+    58,
+    61
    ],
    [
     72,
@@ -74,6 +94,14 @@
    [
     38,
     39
+   ],
+   [
+    39,
+    39
+   ],
+   [
+    41,
+    41
    ]
   ]
  },
@@ -165,6 +193,188 @@
  "edwards-2022": {
   "short": "Edwards 2022",
   "full": "Edwards, Benj. 2022. “Fearing Copyright Issues, Getty Images Bans AI-Generated Artwork.” <i>Ars Technica</i>, September 21, 2022. https://arstechnica.com/information-technology/2022/09/fearing-copyright-issues-getty-images-bans-ai-generated-artwork/.",
+  "pages": []
+ },
+ "lessig-2008": {
+  "short": "Lessig 2008",
+  "full": "Lessig, Lawrence. 2008. <i>Remix: Making Art and Commerce Thrive in the Hybrid Economy</i>. New York: Penguin Press.",
+  "pages": [
+   [
+    11,
+    15
+   ],
+   [
+    23,
+    29
+   ],
+   [
+    33,
+    35
+   ],
+   [
+    51,
+    56
+   ],
+   [
+    76,
+    83
+   ],
+   [
+    289,
+    294
+   ]
+  ]
+ },
+ "wagner-1849": {
+  "short": "Wagner 1849",
+  "full": "Wagner, Richard. (1849) 1895. “The Art-Work of the Future.” Translated by W. A. Ellis. In <i>Richard Wagner’s Prose Works</i>, vol. 1, 69–213.",
+  "pages": []
+ },
+ "pautz-2002": {
+  "short": "Pautz 2002",
+  "full": "Pautz, Michelle. 2002. “The Decline in Average Weekly Cinema Attendance: 1930–2000.” <i>Issues in Political Economy</i> 11.",
+  "pages": [
+   [
+    1,
+    2
+   ]
+  ]
+ },
+ "hirsch-1987": {
+  "short": "Hirsch, Kett, and Trefil 1987",
+  "full": "Hirsch, E. D., Joseph F. Kett, and James S. Trefil. 1987. <i>Cultural Literacy: What Every American Needs to Know</i>. Boston: Houghton Mifflin.",
+  "pages": []
+ },
+ "bourdieu-1984": {
+  "short": "Bourdieu 1984",
+  "full": "Bourdieu, Pierre. 1984. <i>Distinction: A Social Critique of the Judgement of Taste</i>. Translated by Richard Nice. Routledge.",
+  "pages": []
+ },
+ "wolfe-1976": {
+  "short": "Wolfe 1976",
+  "full": "Wolfe, Tom. 1976. “The ‘Me’ Decade and the Third Great Awakening.” <i>New York Magazine</i>, August 23, 1976. http://nymag.com/news/features/45938/.",
+  "pages": [
+   [
+    1,
+    1
+   ]
+  ]
+ },
+ "lasch-1978": {
+  "short": "Lasch 1978",
+  "full": "Lasch, Christopher. 1978. <i>The Culture of Narcissism: American Life in an Age of Diminishing Expectations</i>. New York: Norton.",
+  "pages": []
+ },
+ "postman-1985": {
+  "short": "Postman 1985",
+  "full": "Postman, Neil. (1985) 2005. <i>Amusing Ourselves to Death: Public Discourse in the Age of Show Business</i>. Penguin.",
+  "pages": [
+   [
+    8,
+    8
+   ],
+   [
+    29,
+    29
+   ]
+  ]
+ },
+ "williams-1974": {
+  "short": "Williams 1974",
+  "full": "Williams, Raymond. 1974. <i>Television: Technology and Cultural Form</i>. London: Fontana.",
+  "pages": []
+ },
+ "manovich-2018": {
+  "short": "Manovich 2018",
+  "full": "Manovich, Lev. 2018. <i>AI Aesthetics</i>. Strelka Press. https://manovich.net/index.php/projects/ai-aesthetics.",
+  "pages": []
+ },
+ "shiner-2001": {
+  "short": "Shiner 2001",
+  "full": "Shiner, Larry. 2001. <i>The Invention of Art: A Cultural History</i>. Chicago: University of Chicago Press.",
+  "pages": [
+   [
+    5,
+    5
+   ],
+   [
+    194,
+    212
+   ],
+   [
+    217,
+    217
+   ],
+   [
+    221,
+    221
+   ],
+   [
+    225,
+    225
+   ],
+   [
+    248,
+    249
+   ],
+   [
+    281,
+    281
+   ],
+   [
+    286,
+    289
+   ]
+  ]
+ },
+ "benjamin-1936": {
+  "short": "Benjamin 1936",
+  "full": "Benjamin, Walter. 1936. “The Work of Art in the Age of Mechanical Reproduction.” Annotated classroom edition.",
+  "pages": []
+ },
+ "bennett-1995": {
+  "short": "Bennett 1995",
+  "full": "Bennett, Tony. 1995. <i>The Birth of the Museum: History, Theory, Politics</i>. Oxford: Routledge.",
+  "pages": []
+ },
+ "steyerl-2009": {
+  "short": "Steyerl 2009",
+  "full": "Steyerl, Hito. 2009. “In Defense of the Poor Image.” <i>e-flux journal</i>, no. 10. https://www.e-flux.com/journal/10/61362/in-defense-of-the-poor-image/.",
+  "pages": []
+ },
+ "park-2024": {
+  "short": "Park 2024",
+  "full": "Park, Sungjin. 2024. “The Work of Art in the Age of Generative AI: Aura, Liberation, and Democratization.” <i>AI &amp; Society</i> 40 (6): 1807–16. https://doi.org/10.1007/s00146-024-01948-6.",
+  "pages": []
+ },
+ "jenkins-2006": {
+  "short": "Jenkins 2006",
+  "full": "Jenkins, Henry. 2006. <i>Convergence Culture: Where Old and New Media Collide</i>. New York: New York University Press.",
+  "pages": []
+ },
+ "lanier-2010": {
+  "short": "Lanier 2010",
+  "full": "Lanier, Jaron. 2010. <i>You Are Not a Gadget: A Manifesto</i>. New York: Knopf.",
+  "pages": []
+ },
+ "burgess-2018": {
+  "short": "Burgess and Green 2018",
+  "full": "Burgess, Jean, and Joshua Green. 2018. <i>YouTube: Online Video and Participatory Culture</i>. 2nd ed. Polity.",
+  "pages": []
+ },
+ "skageby-2010": {
+  "short": "Skågeby 2010",
+  "full": "Skågeby, Jörgen. 2010. “Gift-Giving as a Conceptual Framework: Framing Social Behavior in Online Networks.” <i>Journal of Information Technology</i> 25 (2): 170–77. https://doi.org/10.1057/jit.2010.5.",
+  "pages": []
+ },
+ "haidt-2024": {
+  "short": "Haidt 2024",
+  "full": "Haidt, Jonathan. 2024. <i>The Anxious Generation: How the Great Rewiring of Childhood Is Causing an Epidemic of Mental Illness</i>. New York: Penguin Press.",
+  "pages": []
+ },
+ "alter-2026": {
+  "short": "Alter 2026",
+  "full": "Alter, Alexandra. 2026. “The New Fabio Is Claude.” <i>New York Times</i>, February 8, 2026. https://www.nytimes.com/2026/02/08/business/ai-claude-romance-books.html.",
   "pages": []
  }
 }

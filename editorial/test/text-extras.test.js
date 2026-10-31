@@ -87,7 +87,7 @@ test('digital-plenitude wiring: label, funds for sections 1 and 5, wording, mark
   assert.match(loadSectionFund(config, 0), /^WORKS THAT MAY BE CITED BY NAME/);
   assert.match(loadSectionFund(config, 0), /Greenberg/);
   assert.match(loadSectionFund(config, 4), /Bürger/);
-  for (const i of [1, 2, 3, 5, 6]) assert.equal(loadSectionFund(config, i), null);
+  for (const i of [1, 2, 3, 5, 6]) assert.match(loadSectionFund(config, i), /^WORKS THAT MAY BE CITED BY NAME/);
   assert.match(config.continuationWording.completion, /\[\[SECTION_COMPLETE\]\]/);
   assert.equal(continuationUserMessage(false, config.continuationWording), 'Go on.');
   for (const field of ['behavioralInstructions', 'continuationVoice', 'fundPreamble']) {

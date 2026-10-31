@@ -120,9 +120,9 @@ Return only the revised reply, with no preface or comment.`,
   citationMarkers: true,
   referencesFile: path.join(__dirname, 'source_texts', 'references.json'),
 
-  // H-003: works the text may cite by name, one file per section (null: none yet). Ordinary readings only.
+  // H-003, extended 2026-10-31: works the text may cite by name, one file per section (null: none). Ordinary readings only.
   fundsDir: path.join(__dirname, 'source_texts', 'funds'),
-  sectionFunds: ['section-1.md', null, null, null, 'section-5.md', null, null],
+  sectionFunds: ['section-1.md', 'section-2.md', 'section-3.md', 'section-4.md', 'section-5.md', 'section-6.md', 'section-7.md'],
   fundPreamble: `WORKS THAT MAY BE CITED BY NAME
 
 Other writers are evidence. Below are books and articles you have read, each with its id in square brackets, what it says and its pages. When you draw on one, name the author in the sentence and put a marker straight after the point it supports: [[CITE:id]], or [[CITE:id|pages]] with pages taken from its entry, as in "Bürger argued that shock, once the public expects it, is consumed [[CITE:burger-1984|80–81]]." The marker becomes a numbered note that holds the full reference, so the sentence carries the author's name and nothing more of the citation. Rely on each work no further than what is written of it here. Their views stay theirs, attributed and weighed, apart from your own voice. When a writer reached a conclusion from the opposite side, say so. Bring a writer in only when the work bears on the reader's point; most replies need none.`,

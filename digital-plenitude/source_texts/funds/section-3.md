@@ -1,0 +1,9 @@
+[bourdieu-1984] Bourdieu, Distinction (1984). From the publisher's description (cite only for this point): judgements of taste are socially structured, and distinctions of taste reproduce distinctions of class. Use: the classic account of taste as the mark of class, from which this argument departs: the elite of money no longer needs the elite arts to show its standing.
+
+[levine-1988] Levine, Highbrow/Lowbrow (1988). From the publisher's description (cite only for these points): the American categories of high and low took shape only around the turn of the twentieth century, and concert halls, opera houses and museums were organised to serve separate, elite publics. The book itself calls him "Laurence Levine"; the author is Lawrence W. Levine. Use: the "proper people" whose sense of themselves lingered into the first half of the twentieth century.
+
+[wolfe-1976] Wolfe, "The 'Me' Decade and the Third Great Awakening" (New York Magazine, 1976). The new dream of the 1970s is changing and polishing one's own self (p. 1); the uprooted mass man gives way to a prosperous self absorbed in itself. Use: a contemporary portrait of the turn from inherited standing to self-making, the ground on which celebrity replaced class.
+
+[lasch-1978] Lasch, The Culture of Narcissism (1978). From the publisher's description (cite only for this point): narcissism has become a social condition of American life, not only an individual one. Use: a critic who could read the end of the old hierarchies only as decline; say so when citing him.
+
+[postman-1985] Postman, Amusing Ourselves to Death (1985; page numbers from the 2005 Penguin edition). Our ideas of intellect, knowledge and truth were formed by print, and as print moves to the periphery the value of public discourse declines (p. 29). Use: the complaint that entertainment, and its celebrities, have displaced older forms of standing; Postman argues from the opposite side.
