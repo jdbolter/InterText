@@ -221,7 +221,8 @@ test('buildAll writes a portable editor index and validated section snapshot', (
 
 test('reader home page orders Plenitude, Uncanny, then Remediation and hides Blood on the Wall', () => {
   const homepage = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
-  const plenitude = homepage.indexOf('href="plenitude/public/index.html"');
+  // The Plenitude card opens the proofs edition (digital-plenitude) since 2026-10-31.
+  const plenitude = homepage.indexOf('href="digital-plenitude/public/index.html"');
   const uncanny = homepage.indexOf('href="uncanny/public/index.html"');
   const remediation = homepage.indexOf('href="remediation/public/index.html"');
   const blood = homepage.indexOf('href="blood-on-the-wall/public/index.html"');

@@ -8,7 +8,7 @@ const { PROFILES, listProfileIds, getProfile } = require('../lib/profiles');
 test('includes the three current reader profiles', () => {
   assert.deepEqual(
     listProfileIds().sort(),
-    ['curious', 'skeptical', 'collaborative'].sort()
+    ['curious', 'skeptical', 'collaborative', 'general'].sort()
   );
 });
 
@@ -27,6 +27,7 @@ test('knowledgeable profiles can research while the curious nonspecialist cannot
   assert.equal(PROFILES.curious.allowWebSearch, false);
   assert.equal(PROFILES.skeptical.allowWebSearch, true);
   assert.equal(PROFILES.collaborative.allowWebSearch, true);
+  assert.equal(PROFILES.general.allowWebSearch, false);
 });
 
 test('getProfile throws a clear error for an unknown profile', () => {
