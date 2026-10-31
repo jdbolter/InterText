@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const { evolveEditorialSection } = require('./lib/editorial-evolution');
 const { textModel, thinkingOff } = require('./lib/text-extras');
+const { citationMarkersOn, loadReferences, plainCitations } = require('./lib/citations');
 const { formatSpine } = require('./lib/editorial-package');
 const {
   ensureSectionInitialized,
@@ -174,8 +175,15 @@ module.exports = async function handler(req, res) {
   const evolved = isDryRun ? {} : await readEvolved(textId);
   const currentText = isDryRun ? sections[idx] : (evolved[idx] ?? sections[idx]);
 
+  // H-007: the voice is named as the text names it (digital-plenitude: "Text"), and any
+  // citation markers still in the history become the book's author-date style.
+  const voiceName = typeof config.voiceName === 'string' && config.voiceName.trim() ? config.voiceName.trim() : 'Guide';
+  const references = citationMarkersOn(config) ? loadReferences(config) : null;
   const conversationTranscript = conversationHistory
-    .map(m => `${m.role === 'user' ? 'Reader' : 'Guide'}: ${m.content}`)
+    .map(m => {
+      const content = references ? plainCitations(m.content, references) : m.content;
+      return `${m.role === 'user' ? 'Reader' : voiceName}: ${content}`;
+    })
     .join('\n\n');
 
   try {

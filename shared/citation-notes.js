@@ -113,7 +113,10 @@ function plainReply(text, notes) {
       const ref = notes && notes.library && notes.library[id];
       return ref ? ` (${ref.short}${loc ? ', ' + loc : ''})` : '';
     })
-    .replace(/\[\[WEB:\d+\]\]/g, '');
+    .replace(/\[\[WEB:(\d+)\]\]/g, (_, k) => {
+      const src = notes && Array.isArray(notes.web) && notes.web.find(w => w.k === Number(k));
+      return src ? ` ([${String(src.title).replace(/[\[\]]/g, '')}](${src.url}))` : '';
+    });
 }
 
 

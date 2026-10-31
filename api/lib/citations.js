@@ -117,6 +117,17 @@ function webUsed(text, web) {
   return web.filter(w => used.has(w.k));
 }
 
+// H-007: for synthesis, markers become the book's own author-date style; web markers, whose
+// numbers mean nothing outside their reply, are dropped (the browser sends web sources as links).
+function plainCitations(text, references) {
+  return String(text)
+    .replace(CITE_TOKEN, (_, id, locator) => {
+      const ref = references && references[id];
+      return ref ? ` (${ref.short}${locator ? ', ' + locator : ''})` : '';
+    })
+    .replace(WEB_TOKEN, '');
+}
+
 module.exports = {
   CITE_TOKEN,
   WEB_TOKEN,
@@ -130,6 +141,7 @@ module.exports = {
   locatorAllowed,
   markWebCitations,
   parseLocator,
+  plainCitations,
   stripWebTokens,
   webUsed,
 };

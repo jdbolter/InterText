@@ -12,6 +12,7 @@ const {
   locatorAllowed,
   markWebCitations,
   parseLocator,
+  plainCitations,
   stripWebTokens,
   webUsed,
 } = require('../../api/lib/citations');
@@ -109,4 +110,17 @@ test('digital-plenitude: every fund entry has a reference, and every fund page l
   assert.deepEqual(refs['greenberg-1939'].pages, [], 'Greenberg pages belong to an unidentified reprint');
   assert.match(config.fundInstruction, /\[\[CITE:id\]\]/);
   assert.doesNotMatch(config.fundPreamble, /Cite a work only/);
+});
+
+test('for synthesis, markers become the book\'s author-date style (server and page agree)', () => {
+  assert.equal(plainCitations('Consumed[[CITE:burger-1984|80–81]]. Getty[[WEB:1]]. Ghost[[CITE:nobody-2000]].', references),
+    'Consumed (Bürger 1984, 80–81). Getty. Ghost.');
+  const vm = require('vm');
+  const fs = require('fs');
+  const path = require('path');
+  const sandbox = { window: {}, URL };
+  vm.runInNewContext(fs.readFileSync(path.join(__dirname, '..', '..', 'shared', 'citation-notes.js'), 'utf8'), sandbox);
+  const notes = { library: { 'burger-1984': references['burger-1984'] }, web: [{ k: 1, url: 'https://a.org/x', title: 'Getty [bans] AI art' }] };
+  assert.equal(sandbox.window.CitationNotes.plainReply('Consumed[[CITE:burger-1984|80–81]]. Getty[[WEB:1]].', notes),
+    'Consumed (Bürger 1984, 80–81). Getty ([Getty bans AI art](https://a.org/x)).');
 });
