@@ -27,7 +27,7 @@ test('knowledgeable profiles can research while the curious nonspecialist cannot
   assert.equal(PROFILES.curious.allowWebSearch, false);
   assert.equal(PROFILES.skeptical.allowWebSearch, true);
   assert.equal(PROFILES.collaborative.allowWebSearch, true);
-  assert.equal(PROFILES.general.allowWebSearch, false);
+  assert.equal(PROFILES.general.allowWebSearch, true);
 });
 
 test('getProfile throws a clear error for an unknown profile', () => {
