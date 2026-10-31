@@ -212,6 +212,8 @@ module.exports = async function handler(req, res) {
               .map(({ prompt }) => prompt)
               .join('\n\n') || null,
             sectionLabelLine(config, sectionName),
+            // H-005: the citing rule, only where the section has a fund of citable works.
+            sectionFundText && typeof config.fundInstruction === 'string' ? config.fundInstruction : null,
             `The reader has just been shown this framing before their first message: "${config.sectionIntros[idx]}"`,
             editorialReading ? editorialReading.instructions : null,
             editorialReading ? editorialReading.memoryInstructions : null,

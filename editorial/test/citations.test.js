@@ -100,4 +100,6 @@ test('digital-plenitude: every fund entry has a reference, and every fund page l
     }
   }
   assert.deepEqual(refs['greenberg-1939'].pages, [], 'Greenberg pages belong to an unidentified reprint');
+  assert.match(config.fundInstruction, /\[\[CITE:id\]\]/);
+  assert.doesNotMatch(config.fundPreamble, /Cite a work only/);
 });
