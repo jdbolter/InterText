@@ -11,6 +11,7 @@
 'use strict';
 
 const defaultChatClient = require('./chatClient');
+const { renderDraftMarkers, renderWithNotes } = require('./notes');
 
 const IMAGE_TOKEN_RE = /\[\[IMAGE:([^\]]+)\]\]/g;
 
@@ -31,7 +32,7 @@ function extractImageIds(text) {
 function recordRevision(data, turnRecord) {
   if (!data || !data.revision) return;
   turnRecord.revision = {
-    draft: typeof data.revision.draft === 'string' ? stripImageTokens(data.revision.draft) : null,
+    draft: typeof data.revision.draft === 'string' ? renderDraftMarkers(stripImageTokens(data.revision.draft), data.notes) : null,
     applied: data.revision.applied === true,
     model: data.revision.model || null,
     ...(data.revision.reason ? { reason: data.revision.reason } : {}),
@@ -60,6 +61,8 @@ async function runSession(opts) {
   let sectionIndex = startSectionIndex;
   const history = [];
   const sectionHistories = new Map();
+  // H-005: citation notes are numbered through the whole session, as in the interface.
+  const noteCounter = { n: 0 };
   const sectionSummaries = new Map();
   // Mirrors app.js's contributionHistory: only actual reader contributions
   // ('message' turns), scoped per section — never continuation turns, since
@@ -194,7 +197,7 @@ async function runSession(opts) {
         turnRecord.readerMessage = action.message;
         // Record and display what the reader actually saw, not the server's raw
         // [[IMAGE:id]] token — that's an internal rendering instruction, never prose.
-        turnRecord.guideResponse = stripImageTokens(responseText);
+        turnRecord.guideResponse = renderWithNotes(stripImageTokens(responseText), data.notes, noteCounter);
         recordRevision(data, turnRecord);
         visibleTranscript.push({ type: 'guide', text: turnRecord.guideResponse });
       } else if (action.action === 'continue') {
@@ -237,7 +240,7 @@ async function runSession(opts) {
             const responseText = data.response;
             recordHistoryTurn('Continue reading from where we have reached in this section.', responseText);
             extractImageIds(responseText).forEach((id) => shownImages.add(id));
-            turnRecord.guideResponse = stripImageTokens(responseText);
+            turnRecord.guideResponse = renderWithNotes(stripImageTokens(responseText), data.notes, noteCounter);
             recordRevision(data, turnRecord);
             visibleTranscript.push({ type: 'guide', text: turnRecord.guideResponse });
             break;

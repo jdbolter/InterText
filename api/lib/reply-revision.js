@@ -4,7 +4,8 @@
 // before the reader sees it. Ordinary (non-editorial) readings only. A text without
 // `revision` in its config is unchanged.
 
-const IMAGE_TOKEN = /\[\[IMAGE:[^\]]+\]\]/g;
+// Every marker the reader's interface turns into something else: images and citations.
+const MARKER_TOKEN = /\[\[(?:IMAGE|CITE|WEB):[^\]]+\]\]/g;
 
 function revisionConfig(config) {
   const r = config && config.revision;
@@ -27,19 +28,19 @@ function buildRevisionMessage({ readerMessage, continuing, draft }) {
   return `THE READER'S WORDS\n${reader}\n\nTHE DRAFT REPLY\n${String(draft).trim()}`;
 }
 
-function imageTokens(text) {
-  return (String(text).match(IMAGE_TOKEN) || []).slice().sort();
+function markerTokens(text) {
+  return (String(text).match(MARKER_TOKEN) || []).slice().sort();
 }
 
-// A revision is used only if it is non-empty and keeps every image token of the draft.
+// A revision is used only if it is non-empty and keeps every marker of the draft (images, citations).
 function checkRevision(draft, revised) {
   const text = typeof revised === 'string' ? revised.trim() : '';
   if (!text) return { ok: false, reason: 'empty revision' };
   if (/\[\[SECTION_COMPLETE\]\]/.test(text)) return { ok: false, reason: 'revision emitted the navigation marker' };
-  const before = imageTokens(draft);
-  const after = imageTokens(text);
+  const before = markerTokens(draft);
+  const after = markerTokens(text);
   if (before.length !== after.length || before.some((t, i) => t !== after[i])) {
-    return { ok: false, reason: 'revision changed the image tokens' };
+    return { ok: false, reason: 'revision changed the markers' };
   }
   return { ok: true, text };
 }

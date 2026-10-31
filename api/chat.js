@@ -20,6 +20,16 @@ const {
 } = require('./lib/reading-continuation');
 const { loadSectionFund, sectionLabelLine, textModel } = require('./lib/text-extras');
 const { reviseReply } = require('./lib/reply-revision');
+const {
+  checkCitations,
+  citationMarkersOn,
+  dropWrittenSourceList,
+  fundIds,
+  loadReferences,
+  markWebCitations,
+  stripWebTokens,
+  webUsed,
+} = require('./lib/citations');
 
 const client = new Anthropic();
 
@@ -157,9 +167,17 @@ module.exports = async function handler(req, res) {
   const editorialFundText = editorialReading && !firstContinuation
     ? editorialReading.fundText
     : null;
+  // H-005: citation markers, for ordinary readings of a text that turns them on.
+  const markers = !editorialReading && citationMarkersOn(config);
+  function withoutWebMarkers(msgs) {
+    if (!markers) return msgs;
+    return msgs.map(m => (m && m.role === 'assistant' && typeof m.content === 'string'
+      ? { ...m, content: stripWebTokens(m.content) }
+      : m));
+  }
   const messages = [
     ...(Array.isArray(context)
-      ? (editorialReading ? context : normalizeContinueHistory(context, config.continuationWording))
+      ? (editorialReading ? context : withoutWebMarkers(normalizeContinueHistory(context, config.continuationWording)))
       : []),
     { role: 'user', content: continuing ? continuationUserMessage(firstContinuation, editorialReading ? null : config.continuationWording) : message.trim() }
   ];
@@ -238,6 +256,7 @@ module.exports = async function handler(req, res) {
       }
     });
     let text;
+    let webSources = [];
     let editorialResult = null;
     let sectionComplete;
     if (editorialReading) {
@@ -260,9 +279,16 @@ module.exports = async function handler(req, res) {
         trackingMethod: 'required-tool',
       };
     } else {
-      text = postBlocks.map(b => b.text).join('');
+      if (markers) {
+        const marked = markWebCitations(postBlocks);
+        text = marked.text;
+        webSources = marked.web;
+      } else {
+        text = postBlocks.map(b => b.text).join('');
+      }
       sectionComplete = continuing && !firstContinuation && /\[\[SECTION_COMPLETE\]\]/.test(text);
       text = text.replace(/\[\[SECTION_COMPLETE\]\]/g, '').trim();
+      if (markers) text = dropWrittenSourceList(text);
     }
 
     // An empty completion (e.g. thinking consuming the whole max_tokens budget on a
@@ -292,7 +318,19 @@ module.exports = async function handler(req, res) {
       }
     }
 
-    if (citations.length > 0) {
+    // H-005: keep only markers for works in this section's fund (and pages its entry
+    // gives), and return the notes; the interface numbers them and shows the references.
+    let notes = null;
+    if (markers) {
+      const checked = checkCitations(text, {
+        allowedIds: fundIds(sectionFundText),
+        references: loadReferences(config),
+      });
+      text = checked.text;
+      notes = { library: checked.library, web: webUsed(text, webSources) };
+    }
+
+    if (!markers && citations.length > 0) {
       text += '\n\nSources: ' + citations.slice(0, 5).map(c => `[${c.title}](${c.url})`).join(' · ');
     }
     return res.status(200).json({
@@ -300,6 +338,7 @@ module.exports = async function handler(req, res) {
       ...(continuing ? { sectionComplete } : {}),
       ...(editorialResult ? { editorial: editorialResult } : {}),
       ...(revision ? { revision, usage: response.usage || null } : {}),
+      ...(notes ? { notes } : {}),
     });
   } catch (err) {
     console.error(err);

@@ -40,6 +40,11 @@ function formatTurnMarkdown(turn, voiceLabel = 'Guide') {
   if (turn.readerMessage) lines.push('', `**Reader:** ${turn.readerMessage}`);
   if (turn.action === 'continue') lines.push('', '_(reader pressed Return to continue reading)_');
   if (turn.guideResponse) lines.push('', `**${voiceLabel}:**`, '', turn.guideResponse);
+  // H-004b/H-005: when a revision pass rewrote the reply, show the draft it started from.
+  if (turn.revision && typeof turn.revision.draft === 'string') {
+    const status = turn.revision.applied ? 'revised' : `not revised: ${turn.revision.reason || 'unknown'}`;
+    lines.push('', `<details><summary>Draft before revision (${status})</summary>`, '', turn.revision.draft, '', '</details>');
+  }
   if (turn.editorial) {
     const offered = turn.editorial.offeredFundEntryIds.length > 0
       ? turn.editorial.offeredFundEntryIds.join(', ')
