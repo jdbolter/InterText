@@ -6,7 +6,7 @@
 
 [burger-1984] Bürger, Theory of the Avant-Garde (1984). After the historical avant-garde, the radically disparate exists side by side, and no movement can claim to be historically more advanced than any other (p. 63). Use: a theoretical statement of the condition in which 250 genres of rock coexist without a ranking.
 
-[bolter-2022] Bolter, "The Condition of Reading in a Digital Media Culture" (2022). Bolter's own later chapter, carrying this argument on. Heterogeneity, not convergence on one medium, defines contemporary media culture (p. 36). Use: the later statement that musical tastes have never converged and digital media have multiplied the forms instead.
+[bolter-2022] Bolter, "The Condition of Reading in a Digital Media Culture" (2022). Later work by the book's own author, carrying this argument on; its ideas are the work's own. Heterogeneity, not convergence on one medium, defines contemporary media culture (p. 36). Use: the later statement that musical tastes have never converged and digital media have multiplied the forms instead.
 
 [chun-2021] Chun, Discriminating Data (2021). From the publisher's description (cite only for this point): recommender systems group people with others like them, so that the clusters of the digital world are partly made by algorithms built on "homophily." Use: the music bubble of streaming services, made in part by recommendation; a challenge to the picture of freely chosen communities.
 

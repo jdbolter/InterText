@@ -8,7 +8,7 @@
 
 [burger-1984] Bürger, Theory of the Avant-Garde (1984). After the historical avant-garde, the radically disparate exists side by side, and no movement can claim to be historically more advanced than any other (p. 63). Use: a theoretical statement, decades earlier, of the condition in which JAY-Z can list Rothko, Warhol and Basquiat without any order among them.
 
-[bolter-2022] Bolter, "The Condition of Reading in a Digital Media Culture" (2022). Bolter's own later chapter, carrying this argument on. To its users the web looks flat, without centre or periphery, and it became a working image for a culture with no agreed centre and no single canon (pp. 38–39). Heterogeneity, not convergence on one medium, defines contemporary media culture (p. 36). Use: the argument's later development, cited by name and year.
+[bolter-2022] Bolter, "The Condition of Reading in a Digital Media Culture" (2022). Later work by the book's own author, carrying this argument on; its ideas are the work's own. To its users the web looks flat, without centre or periphery, and it became a working image for a culture with no agreed centre and no single canon (pp. 38–39). Heterogeneity, not convergence on one medium, defines contemporary media culture (p. 36). Use: the argument's later development, stated as the work's own.
 
 [stiles-2025] Stiles, A LIVING POEM (Museum of Modern Art, 2025–2026). A poem co-written with an AI trained on the poet's own voice, rewriting itself every hour in MoMA's lobby (MoMA press release). Use: a recent case of the elite institution opening its doors to a popular, technological form, a successor to JAY-Z at Pace.
 

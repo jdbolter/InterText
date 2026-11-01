@@ -2,7 +2,10 @@
  "greenberg-1939": {
   "short": "Greenberg 1939",
   "full": "Greenberg, Clement. 1939. “Avant-Garde and Kitsch.” <i>Partisan Review</i> 6 (5): 34–49.",
-  "pages": []
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the influential art critic Clement Greenberg",
+  "name": "Greenberg"
  },
  "macdonald-1962": {
   "short": "Macdonald 1962",
@@ -44,7 +47,10 @@
     72,
     74
    ]
-  ]
+  ],
+  "mention": "introduce",
+  "intro": "the writer and critic Dwight Macdonald",
+  "name": "Macdonald"
  },
  "huyssen-1986": {
   "short": "Huyssen 1986",
@@ -54,12 +60,18 @@
     15,
     15
    ]
-  ]
+  ],
+  "mention": "introduce",
+  "intro": "the literary scholar Andreas Huyssen",
+  "name": "Huyssen"
  },
  "levine-1988": {
   "short": "Levine 1988",
   "full": "Levine, Lawrence W. 1988. <i>Highbrow/Lowbrow: The Emergence of Cultural Hierarchy in America</i>. Cambridge, MA: Harvard University Press.",
-  "pages": []
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the historian Lawrence W. Levine",
+  "name": "Levine"
  },
  "burger-1984": {
   "short": "Bürger 1984",
@@ -81,7 +93,10 @@
     80,
     81
    ]
-  ]
+  ],
+  "mention": "introduce",
+  "intro": "the German literary theorist Peter Bürger",
+  "name": "Bürger"
  },
  "bolter-2022": {
   "short": "Bolter 2022",
@@ -103,17 +118,24 @@
     41,
     41
    ]
-  ]
+  ],
+  "mention": "own"
  },
  "stiles-2025": {
   "short": "Stiles 2025",
   "full": "Stiles, Sasha. 2025–26. <i>A LIVING POEM</i>. Digital artwork, Museum of Modern Art, New York. https://www.moma.org/calendar/exhibitions/5839.",
-  "pages": []
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the poet Sasha Stiles",
+  "name": "Stiles"
  },
  "chun-2021": {
   "short": "Chun 2021",
   "full": "Chun, Wendy Hui Kyong. 2021. <i>Discriminating Data: Correlation, Neighborhoods, and the New Politics of Recognition</i>. With Alex Barnett. Cambridge, MA: MIT Press.",
-  "pages": []
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the media theorist Wendy Hui Kyong Chun",
+  "name": "Chun"
  },
  "stubbs-2000": {
   "short": "Stubbs 2000",
@@ -127,7 +149,8 @@
     321,
     321
    ]
-  ]
+  ],
+  "mention": "note"
  },
  "krauss-1981": {
   "short": "Krauss 1981",
@@ -141,7 +164,10 @@
     65,
     66
    ]
-  ]
+  ],
+  "mention": "introduce",
+  "intro": "the art critic Rosalind Krauss",
+  "name": "Krauss"
  },
  "danto-1997": {
   "short": "Danto 1997",
@@ -163,7 +189,10 @@
     136,
     136
    ]
-  ]
+  ],
+  "mention": "introduce",
+  "intro": "the philosopher and art critic Arthur Danto",
+  "name": "Danto"
  },
  "higgins-2007": {
   "short": "Higgins 2007",
@@ -173,7 +202,10 @@
     1,
     4
    ]
-  ]
+  ],
+  "mention": "introduce",
+  "intro": "the Fluxus artist Dick Higgins",
+  "name": "Higgins"
  },
  "cesare-sandford-2010": {
   "short": "Cesare and Sandford 2010",
@@ -183,17 +215,20 @@
     10,
     10
    ]
-  ]
+  ],
+  "mention": "note"
  },
  "zryd-2006": {
   "short": "Zryd 2006",
   "full": "Zryd, Michael. 2006. “The Academy and the Avant-Garde: A Relationship of Dependence and Resistance.” <i>Cinema Journal</i> 45 (2): 17–42. https://doi.org/10.1353/cj.2006.0023.",
-  "pages": []
+  "pages": [],
+  "mention": "note"
  },
  "edwards-2022": {
   "short": "Edwards 2022",
   "full": "Edwards, Benj. 2022. “Fearing Copyright Issues, Getty Images Bans AI-Generated Artwork.” <i>Ars Technica</i>, September 21, 2022. https://arstechnica.com/information-technology/2022/09/fearing-copyright-issues-getty-images-bans-ai-generated-artwork/.",
-  "pages": []
+  "pages": [],
+  "mention": "note"
  },
  "lessig-2008": {
   "short": "Lessig 2008",
@@ -223,12 +258,18 @@
     289,
     294
    ]
-  ]
+  ],
+  "mention": "introduce",
+  "intro": "the legal scholar Lawrence Lessig",
+  "name": "Lessig"
  },
  "wagner-1849": {
   "short": "Wagner 1849",
   "full": "Wagner, Richard. (1849) 1895. “The Art-Work of the Future.” Translated by W. A. Ellis. In <i>Richard Wagner’s Prose Works</i>, vol. 1, 69–213.",
-  "pages": []
+  "pages": [],
+  "mention": "introduce",
+  "intro": "Richard Wagner",
+  "name": "Wagner"
  },
  "pautz-2002": {
   "short": "Pautz 2002",
@@ -238,17 +279,24 @@
     1,
     2
    ]
-  ]
+  ],
+  "mention": "note"
  },
  "hirsch-1987": {
   "short": "Hirsch, Kett, and Trefil 1987",
   "full": "Hirsch, E. D., Joseph F. Kett, and James S. Trefil. 1987. <i>Cultural Literacy: What Every American Needs to Know</i>. Boston: Houghton Mifflin.",
-  "pages": []
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the educator E. D. Hirsch",
+  "name": "Hirsch"
  },
  "bourdieu-1984": {
   "short": "Bourdieu 1984",
   "full": "Bourdieu, Pierre. 1984. <i>Distinction: A Social Critique of the Judgement of Taste</i>. Translated by Richard Nice. Routledge.",
-  "pages": []
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the French sociologist Pierre Bourdieu",
+  "name": "Bourdieu"
  },
  "wolfe-1976": {
   "short": "Wolfe 1976",
@@ -258,12 +306,18 @@
     1,
     1
    ]
-  ]
+  ],
+  "mention": "introduce",
+  "intro": "the journalist Tom Wolfe",
+  "name": "Wolfe"
  },
  "lasch-1978": {
   "short": "Lasch 1978",
   "full": "Lasch, Christopher. 1978. <i>The Culture of Narcissism: American Life in an Age of Diminishing Expectations</i>. New York: Norton.",
-  "pages": []
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the historian and social critic Christopher Lasch",
+  "name": "Lasch"
  },
  "postman-1985": {
   "short": "Postman 1985",
@@ -277,17 +331,26 @@
     29,
     29
    ]
-  ]
+  ],
+  "mention": "introduce",
+  "intro": "the media critic Neil Postman",
+  "name": "Postman"
  },
  "williams-1974": {
   "short": "Williams 1974",
   "full": "Williams, Raymond. 1974. <i>Television: Technology and Cultural Form</i>. London: Fontana.",
-  "pages": []
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the cultural critic Raymond Williams",
+  "name": "Williams"
  },
  "manovich-2018": {
   "short": "Manovich 2018",
   "full": "Manovich, Lev. 2018. <i>AI Aesthetics</i>. Strelka Press. https://manovich.net/index.php/projects/ai-aesthetics.",
-  "pages": []
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the media theorist Lev Manovich",
+  "name": "Manovich"
  },
  "shiner-2001": {
   "short": "Shiner 2001",
@@ -325,56 +388,81 @@
     286,
     289
    ]
-  ]
+  ],
+  "mention": "introduce",
+  "intro": "the philosopher Larry Shiner",
+  "name": "Shiner"
  },
  "benjamin-1936": {
   "short": "Benjamin 1936",
   "full": "Benjamin, Walter. 1936. “The Work of Art in the Age of Mechanical Reproduction.” Annotated classroom edition.",
-  "pages": []
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the critic Walter Benjamin",
+  "name": "Benjamin"
  },
  "bennett-1995": {
   "short": "Bennett 1995",
   "full": "Bennett, Tony. 1995. <i>The Birth of the Museum: History, Theory, Politics</i>. Oxford: Routledge.",
-  "pages": []
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the cultural theorist Tony Bennett",
+  "name": "Bennett"
  },
  "steyerl-2009": {
   "short": "Steyerl 2009",
   "full": "Steyerl, Hito. 2009. “In Defense of the Poor Image.” <i>e-flux journal</i>, no. 10. https://www.e-flux.com/journal/10/61362/in-defense-of-the-poor-image/.",
-  "pages": []
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the artist and writer Hito Steyerl",
+  "name": "Steyerl"
  },
  "park-2024": {
   "short": "Park 2024",
   "full": "Park, Sungjin. 2024. “The Work of Art in the Age of Generative AI: Aura, Liberation, and Democratization.” <i>AI &amp; Society</i> 40 (6): 1807–16. https://doi.org/10.1007/s00146-024-01948-6.",
-  "pages": []
+  "pages": [],
+  "mention": "note"
  },
  "jenkins-2006": {
   "short": "Jenkins 2006",
   "full": "Jenkins, Henry. 2006. <i>Convergence Culture: Where Old and New Media Collide</i>. New York: New York University Press.",
-  "pages": []
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the media scholar Henry Jenkins",
+  "name": "Jenkins"
  },
  "lanier-2010": {
   "short": "Lanier 2010",
   "full": "Lanier, Jaron. 2010. <i>You Are Not a Gadget: A Manifesto</i>. New York: Knopf.",
-  "pages": []
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the technologist Jaron Lanier",
+  "name": "Lanier"
  },
  "burgess-2018": {
   "short": "Burgess and Green 2018",
   "full": "Burgess, Jean, and Joshua Green. 2018. <i>YouTube: Online Video and Participatory Culture</i>. 2nd ed. Polity.",
-  "pages": []
+  "pages": [],
+  "mention": "note"
  },
  "skageby-2010": {
   "short": "Skågeby 2010",
   "full": "Skågeby, Jörgen. 2010. “Gift-Giving as a Conceptual Framework: Framing Social Behavior in Online Networks.” <i>Journal of Information Technology</i> 25 (2): 170–77. https://doi.org/10.1057/jit.2010.5.",
-  "pages": []
+  "pages": [],
+  "mention": "note"
  },
  "haidt-2024": {
   "short": "Haidt 2024",
   "full": "Haidt, Jonathan. 2024. <i>The Anxious Generation: How the Great Rewiring of Childhood Is Causing an Epidemic of Mental Illness</i>. New York: Penguin Press.",
-  "pages": []
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the social psychologist Jonathan Haidt",
+  "name": "Haidt"
  },
  "alter-2026": {
   "short": "Alter 2026",
   "full": "Alter, Alexandra. 2026. “The New Fabio Is Claude.” <i>New York Times</i>, February 8, 2026. https://www.nytimes.com/2026/02/08/business/ai-claude-romance-books.html.",
-  "pages": []
+  "pages": [],
+  "mention": "note"
  }
 }

@@ -6,7 +6,7 @@
 
 [burgess-2018] Burgess and Green, YouTube (2018). From the publisher's description (cite only for these points): YouTube's amateur culture and its commercial logics have coexisted in tension for more than a decade, producing new popular genres and professions. Use: the remixes of YouTube, and the line between amateur community and business.
 
-[bolter-2022] Bolter, "The Condition of Reading in a Digital Media Culture" (2022). Bolter's own later chapter, carrying this argument on. Social media let readers pass constantly into writing, so that there may now be more published authors than readers (p. 39). In collective reading, a reader's notes become a paratext that others read and extend (p. 41). Use: the later development of the argument about communities of readers and writers.
+[bolter-2022] Bolter, "The Condition of Reading in a Digital Media Culture" (2022). Later work by the book's own author, carrying this argument on; its ideas are the work's own. Social media let readers pass constantly into writing, so that there may now be more published authors than readers (p. 39). In collective reading, a reader's notes become a paratext that others read and extend (p. 41). Use: the later development of the argument about communities of readers and writers.
 
 [skageby-2010] Skågeby, "Gift-Giving as a Conceptual Framework" (2010). From the abstract (cite only for this point): online sharing can be understood through other-orientation, social bonding and generalized reciprocity. Use: the "reciprocal exchange of knowledge" that holds fan communities together.
 

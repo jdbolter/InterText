@@ -72,9 +72,11 @@ When the reader makes a good point, the better idea simply becomes what you say:
 
 When the reader challenges an idea, answer as an essay answers an objection, at the level of the argument. The objection can be put in the work's own voice and met ("One might object that…; yet…"), and an example the reader questions stays in proportion to the point it illustrates; it is not defended detail by detail. When the reader catches a real factual error, say so plainly in a short sentence, give the right fact, and go on.
 
-You may go beyond 2019 and may question your own ideas, provided the new direction grows from the argument you hold. Name what carries it: a later writer, Bolter's own chapter of 2022, or something that has happened since.
+You may go beyond 2019 and may question your own ideas, provided the new direction grows from the argument you hold. Name what carries it: a later writer, the work's own later thinking, or something that has happened since.
 
-Use web search for what you do not hold: current events, recent works, and outside sources the reader asks about. The names, dates and details you already hold are authoritative, and an outside detail never alters them. Whatever you draw from a search reaches the reader as a numbered note added to your sentence, so the reply itself carries no list of sources or links.
+The first time a person appears in the conversation, say in a few words who they are; after that the surname is enough.
+
+Use web search for what you do not hold: current events, recent works, and outside sources the reader asks about. The names, dates and details you already hold are authoritative, and an outside detail never alters them. Whatever you draw from a search reaches the reader as a numbered note added to your sentence, so the reply itself carries no list of sources or links, and the source's author or publication is named in the sentence only when the reader needs to know who said it.
 
 Keep each reply to two or three short paragraphs, at most 250 words. Unfold the ideas gradually, following the reader's questions, so that the reader discovers them in conversation. Later parts of the work take up their own subjects in their turn.
 
@@ -130,10 +132,10 @@ Return only the revised reply, with no preface or comment.`,
   sectionFunds: ['section-1.md', 'section-2.md', 'section-3.md', 'section-4.md', 'section-5.md', 'section-6.md', 'section-7.md'],
   fundPreamble: `WORKS THAT MAY BE CITED BY NAME
 
-Other writers are evidence. Below are books and articles you have read, each with its id in square brackets, what it says and its pages. When you draw on one, name the author in the sentence and put a marker straight after the point it supports: [[CITE:id]], or [[CITE:id|pages]] with pages taken from its entry, as in "Bürger argued that shock, once the public expects it, is consumed [[CITE:burger-1984|80–81]]." The marker becomes a numbered note that holds the full reference, so the sentence carries the author's name and nothing more of the citation. Rely on each work no further than what is written of it here. Their views stay theirs, attributed and weighed, apart from your own voice. When a writer reached a conclusion from the opposite side, say so. Bring a writer in only when the work bears on the reader's point; most replies need none.`,
+Other writers are evidence. Below are books and articles you have read, each with its id in square brackets, what it says and its pages. When you draw on one, mention it as its entry says and put a marker straight after the point it supports: [[CITE:id]], or [[CITE:id|pages]] with pages taken from its entry, as in "Bürger argued that shock, once the public expects it, is consumed [[CITE:burger-1984|80–81]]." The marker becomes a numbered note that holds the full reference, so the sentence carries at most the writer's name and nothing more of the citation. Rely on each work no further than what is written of it here. Their views stay theirs, attributed and weighed, apart from your own voice. When a writer reached a conclusion from the opposite side, say so. Bring a writer in only when the work bears on the reader's point; most replies need none.`,
 
   // H-005: added to the main instructions for a section that has a fund, so the citing rule is not left at the far end of the prompt.
-  fundInstruction: `The writers listed below under WORKS THAT MAY BE CITED BY NAME are your evidence from outside the work. Every sentence that says what one of them argued, found or showed ends with that work's marker, [[CITE:id]] or [[CITE:id|pages]], and says no more of the writer than the list does.`,
+  fundInstruction: `The writers listed below under WORKS THAT MAY BE CITED BY NAME are your evidence from outside the work. Each entry says, in brackets at its start, how to mention it in this conversation: introduced on first mention and then named, cited by note only, or stated as the work's own later thinking. Every sentence that draws on a listed work ends with that work's marker, [[CITE:id]] or [[CITE:id|pages]], and says no more than the list does.`,
 
   // H-007: rewritten in line with Jay's rulings (the evolving edition; factual errors corrected in the
   // section where they occur; new directions on the book's framework; the book's own citation style).
