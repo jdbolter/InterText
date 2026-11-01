@@ -35,7 +35,7 @@ function sectionLabelLine(config, sectionName) {
 
 // H-009: the main line of the argument at this point (a section statement, and one for the
 // chapter), handed to the model before every reply so that it can steer back to it.
-function mainLineText(config, sectionIndex) {
+function mainLineStatement(config, sectionIndex) {
   if (!config) return null;
   const point = Array.isArray(config.sectionPoints) && typeof config.sectionPoints[sectionIndex] === 'string'
     ? config.sectionPoints[sectionIndex].trim() : '';
@@ -44,8 +44,15 @@ function mainLineText(config, sectionIndex) {
   return [
     point ? `The main line at this point: ${point}` : null,
     chapter ? `The chapter as a whole: ${chapter}` : null,
-    'Close each reply by tying what it says back to this main line, so that the reader keeps hold of the argument.',
   ].filter(Boolean).join('\n');
+}
+
+// H-010: the main line is named plainly in the opening paragraph of a reply to the reader, right
+// after the direct answer (Jay: the point should be announced, not buried at the end).
+function mainLineText(config, sectionIndex) {
+  const statement = mainLineStatement(config, sectionIndex);
+  if (!statement) return null;
+  return `${statement}\nWhen you answer a message from the reader, name this main line plainly, in so many words, in your opening paragraph, right after the direct answer, and let the rest of the reply bear on it; do not leave the reader to infer it.`;
 }
 
 const fundCache = new Map();
@@ -76,6 +83,7 @@ module.exports = {
   THINKING_OFF,
   clearFundCache,
   loadSectionFund,
+  mainLineStatement,
   mainLineText,
   sectionLabelLine,
   textModel,

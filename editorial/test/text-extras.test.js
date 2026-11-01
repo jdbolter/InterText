@@ -124,6 +124,6 @@ test('the main line is handed to the model only when a text has one (H-009)', ()
   const text = mainLineText(config, 0);
   assert.match(text, /^The main line at this point: The divide has almost vanished\.$/m);
   assert.match(text, /^The chapter as a whole: The plenitude\.$/m);
-  assert.match(text, /Close each reply by tying/);
+  assert.match(text, /name this main line plainly, in so many words, in your opening paragraph/);
   assert.doesNotMatch(mainLineText(config, 1), /at this point/, 'a section without a statement still gets the chapter');
 });

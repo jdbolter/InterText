@@ -18,8 +18,8 @@ const {
   openingSectionText,
   resolveFirstContinuation,
 } = require('./lib/reading-continuation');
-const { loadSectionFund, mainLineText, sectionLabelLine, textModel } = require('./lib/text-extras');
-const { reviseReply } = require('./lib/reply-revision');
+const { loadSectionFund, mainLineStatement, mainLineText, sectionLabelLine, textModel } = require('./lib/text-extras');
+const { reviseReply, shownToReader } = require('./lib/reply-revision');
 const {
   annotateFund,
   checkCitations,
@@ -323,6 +323,10 @@ module.exports = async function handler(req, res) {
         readerMessage: continuing ? '' : message,
         continuing,
         draft,
+        // H-010: what the reader has been shown, the section the work holds, the main line
+        shown: shownToReader({ intro: config.sectionIntros && config.sectionIntros[idx], history: context }),
+        sectionText,
+        mainLine: continuing ? null : mainLineStatement(config, idx),
       });
       if (revised.reason !== 'not configured') {
         revision = { draft, applied: revised.applied, model: revised.model, ...(revised.reason ? { reason: revised.reason } : {}), usage: revised.usage || null };

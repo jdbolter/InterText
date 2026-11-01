@@ -23,11 +23,34 @@ function revisionConfig(config) {
   };
 }
 
-function buildRevisionMessage({ readerMessage, continuing, draft }) {
+// H-010: the editor also sees what the reader has been shown (the opening box and the text's
+// earlier replies), what the work holds for this section (for reference: the reader has not read
+// it), and the main line of the argument here. Each part is optional; without them the message
+// is exactly the H-004b one.
+function buildRevisionMessage({ readerMessage, continuing, draft, shown = null, sectionText = null, mainLine = null }) {
   const reader = continuing
     ? '(The reader asked the work to go on.)'
     : String(readerMessage || '').trim();
-  return `THE READER'S WORDS\n${reader}\n\nTHE DRAFT REPLY\n${String(draft).trim()}`;
+  const parts = [];
+  if (mainLine && String(mainLine).trim()) parts.push(`THE MAIN LINE AT THIS POINT\n${String(mainLine).trim()}`);
+  if (shown && String(shown).trim()) parts.push(`WHAT THE READER HAS BEEN SHOWN SO FAR\n${String(shown).trim()}`);
+  if (sectionText && String(sectionText).trim()) {
+    parts.push(`WHAT THE WORK HOLDS FOR THIS SECTION (for reference; the reader has not read it)\n${String(sectionText).trim()}`);
+  }
+  parts.push(`THE READER'S WORDS\n${reader}`);
+  parts.push(`THE DRAFT REPLY\n${String(draft).trim()}`);
+  return parts.join('\n\n');
+}
+
+// What the reader has seen: the opening box, then each of the text's earlier replies.
+function shownToReader({ intro, history }) {
+  const replies = (Array.isArray(history) ? history : [])
+    .filter(m => m && m.role === 'assistant' && typeof m.content === 'string' && m.content.trim())
+    .map(m => m.content.trim());
+  const parts = [];
+  if (intro && String(intro).trim()) parts.push(`[The opening box]\n${String(intro).trim()}`);
+  replies.forEach((r, i) => parts.push(`[The text's reply ${i + 1}]\n${r}`));
+  return parts.join('\n\n');
 }
 
 function markerTokens(text) {
@@ -47,7 +70,7 @@ function checkRevision(draft, revised) {
   return { ok: true, text };
 }
 
-async function reviseReply({ client, config, readerMessage, continuing, draft }) {
+async function reviseReply({ client, config, readerMessage, continuing, draft, shown = null, sectionText = null, mainLine = null }) {
   const rc = revisionConfig(config);
   if (!rc || !String(draft || '').trim()) return { text: draft, applied: false, reason: 'not configured' };
   try {
@@ -56,7 +79,7 @@ async function reviseReply({ client, config, readerMessage, continuing, draft })
       max_tokens: rc.maxTokens,
       thinking: rc.thinking,
       system: rc.instructions,
-      messages: [{ role: 'user', content: buildRevisionMessage({ readerMessage, continuing, draft }) }],
+      messages: [{ role: 'user', content: buildRevisionMessage({ readerMessage, continuing, draft, shown, sectionText, mainLine }) }],
     });
     const revised = (response.content || [])
       .filter(b => b.type === 'text')
@@ -77,4 +100,5 @@ module.exports = {
   checkRevision,
   revisionConfig,
   reviseReply,
+  shownToReader,
 };

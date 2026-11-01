@@ -5,6 +5,7 @@ const assert = require('node:assert/strict');
 
 const {
   buildRevisionMessage,
+  shownToReader,
   checkRevision,
   revisionConfig,
   reviseReply,
@@ -77,4 +78,16 @@ test('digital-plenitude configures the revision pass on claude-sonnet-5-5; pleni
   assert.equal(revisionConfig(require('../../digital-plenitude/config')).model, 'claude-sonnet-5-5');
   assert.deepEqual(revisionConfig(require('../../digital-plenitude/config')).thinking, { type: 'between_tools' });
   assert.equal(revisionConfig(require('../../plenitude/config')), null);
+});
+
+test('the editor sees the main line, what the reader has been shown, and the section (H-010)', () => {
+  const shown = shownToReader({
+    intro: 'In 2013, JAY-Z performed at Pace.',
+    history: [{ role: 'user', content: 'q' }, { role: 'assistant', content: 'First reply.' }, { role: 'assistant', content: '  ' }],
+  });
+  assert.equal(shown, '[The opening box]\nIn 2013, JAY-Z performed at Pace.\n\n[The text\'s reply 1]\nFirst reply.');
+  const msg = buildRevisionMessage({ readerMessage: 'Is he avant-garde?', draft: 'Draft.', shown, sectionText: 'Section.', mainLine: 'The divide has almost vanished.' });
+  const order = ['THE MAIN LINE AT THIS POINT', 'WHAT THE READER HAS BEEN SHOWN SO FAR', 'WHAT THE WORK HOLDS FOR THIS SECTION', "THE READER'S WORDS", 'THE DRAFT REPLY'].map(h => msg.indexOf(h));
+  assert.ok(order.every((v, i) => v >= 0 && (i === 0 || v > order[i - 1])), 'all five parts, in order');
+  assert.equal(buildRevisionMessage({ readerMessage: 'q', draft: 'd' }), "THE READER'S WORDS\nq\n\nTHE DRAFT REPLY\nd", 'without context: as before');
 });
