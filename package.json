@@ -11,7 +11,8 @@
     "synthetic-reader": "node --env-file-if-exists=.env.local synthetic-reader/cli.js",
     "synthetic-reader-evolve": "node --env-file-if-exists=.env.local synthetic-reader/evolve-cli.js",
     "test": "node --test synthetic-reader/test/*.test.js editorial/test/*.test.js",
-    "check-models": "node --env-file-if-exists=.env.local scripts/check-models.js"
+    "check-models": "node --env-file-if-exists=.env.local scripts/check-models.js",
+    "evolved": "node --env-file-if-exists=.env.local scripts/evolved.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
