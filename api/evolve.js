@@ -3,7 +3,7 @@ const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 const { evolveEditorialSection } = require('./lib/editorial-evolution');
-const { textModel, thinkingOff } = require('./lib/text-extras');
+const { editorialModel, textModel, thinkingOff } = require('./lib/text-extras');
 const { citationMarkersOn, loadReferences, plainCitations } = require('./lib/citations');
 const { formatSpine } = require('./lib/editorial-package');
 const {
@@ -110,7 +110,7 @@ module.exports = async function handler(req, res) {
             sectionPackage: currentPackage,
             conversationHistory,
             sessionId: contributionSessionId,
-            model: textModel(config),
+            model: editorialModel(config),
           });
 
           if (!result.changed) {

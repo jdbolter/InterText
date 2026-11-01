@@ -18,7 +18,7 @@ const {
   openingSectionText,
   resolveFirstContinuation,
 } = require('./lib/reading-continuation');
-const { loadSectionFund, mainLineStatement, mainLineText, sectionLabelLine, textModel } = require('./lib/text-extras');
+const { editorialModel, loadSectionFund, mainLineStatement, mainLineText, sectionLabelLine, textModel } = require('./lib/text-extras');
 const { reviseReply, shownToReader } = require('./lib/reply-revision');
 const {
   annotateFund,
@@ -202,7 +202,8 @@ module.exports = async function handler(req, res) {
 
   try {
     const response = await client.messages.create({
-      model: textModel(config),
+      // Editorial readings force a tool call, which needs a model that supports it (see editorialModel).
+      model: editorialReading ? editorialModel(config) : textModel(config),
       // 2048 was too tight: adaptive thinking can consume the whole budget on a hard
       // turn, leaving no tokens for the actual reply and forcing the empty-completion
       // 502 below — confirmed in practice by several consecutive real turns. Response

@@ -18,6 +18,17 @@ function textModel(config) {
     : DEFAULT_TEXT_MODEL;
 }
 
+// The editorial path forces a tool call (tool_choice 'tool'), which claude-sonnet-5-5 does not
+// support ("tool_choice: type \"tool\" and \"any\" are not supported for this model", npm run
+// check-models, 2026-11-01). Editorial readings and editorial evolution therefore stay on
+// claude-sonnet-5; a text may set config.editorialModel to a model that supports forced tools.
+const DEFAULT_EDITORIAL_MODEL = 'claude-sonnet-5';
+function editorialModel(config) {
+  return config && typeof config.editorialModel === 'string' && config.editorialModel.trim()
+    ? config.editorialModel.trim()
+    : DEFAULT_EDITORIAL_MODEL;
+}
+
 // Models differ in how thinking is turned off. claude-sonnet-5 takes { type: 'disabled' };
 // claude-sonnet-5-5 rejects that and takes { type: 'between_tools' } (it then does not
 // think before replying). Found on 2026-10-30, when every H-004b revision call failed.
@@ -79,9 +90,11 @@ function clearFundCache() {
 
 module.exports = {
   DEFAULT_SECTION_LABEL,
+  DEFAULT_EDITORIAL_MODEL,
   DEFAULT_TEXT_MODEL,
   THINKING_OFF,
   clearFundCache,
+  editorialModel,
   loadSectionFund,
   mainLineStatement,
   mainLineText,

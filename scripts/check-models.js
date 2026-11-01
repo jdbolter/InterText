@@ -4,7 +4,7 @@
 // Prints OK or the API's error for each; costs a fraction of a cent.
 
 const Anthropic = require('@anthropic-ai/sdk');
-const { DEFAULT_TEXT_MODEL, thinkingOff } = require('../api/lib/text-extras');
+const { DEFAULT_EDITORIAL_MODEL, DEFAULT_TEXT_MODEL, thinkingOff } = require('../api/lib/text-extras');
 
 const client = new Anthropic();
 const model = DEFAULT_TEXT_MODEL;
@@ -24,8 +24,8 @@ const checks = [
     model, max_tokens: 200, thinking: thinkingOff(model),
     messages: [{ role: 'user', content: 'Rewrite in four words: The orchestra went bankrupt in 2011.' }],
   }],
-  ['editorial readings and editorial evolution (adaptive thinking, forced tool)', {
-    model, max_tokens: 2048, thinking: { type: 'adaptive' },
+  [`editorial readings and editorial evolution on ${DEFAULT_EDITORIAL_MODEL} (adaptive thinking, forced tool)`, {
+    model: DEFAULT_EDITORIAL_MODEL, max_tokens: 2048, thinking: { type: 'adaptive' },
     tools: [tool], tool_choice: { type: 'tool', name: 'deliver', disable_parallel_tool_use: true },
     messages: [{ role: 'user', content: 'Deliver the word "opera".' }],
   }],

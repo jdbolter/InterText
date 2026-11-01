@@ -449,7 +449,7 @@ async function evolveEditorialSection({
   conversationHistory,
   sessionId,
   updateId = crypto.randomUUID(),
-  model = 'claude-sonnet-5-5',
+  model = 'claude-sonnet-5', // forced tool calls: see editorialModel in text-extras
   now = new Date(),
 }) {
   validateRuntimePackage(sectionPackage, 'current editorial version');

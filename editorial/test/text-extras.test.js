@@ -9,6 +9,7 @@ const {
   loadSectionFund,
   mainLineText,
   sectionLabelLine,
+  editorialModel,
   textModel,
   thinkingOff,
 } = require('../../api/lib/text-extras');
@@ -126,4 +127,10 @@ test('the main line is handed to the model only when a text has one (H-009)', ()
   assert.match(text, /^The chapter as a whole: The plenitude\.$/m);
   assert.match(text, /name this main line plainly, in so many words, in your opening paragraph/);
   assert.doesNotMatch(mainLineText(config, 1), /at this point/, 'a section without a statement still gets the chapter');
+});
+
+test('editorial readings and evolution stay on a model that supports forced tool calls', () => {
+  assert.equal(editorialModel({}), 'claude-sonnet-5');
+  assert.equal(editorialModel(require('../../plenitude/config')), 'claude-sonnet-5');
+  assert.equal(editorialModel({ editorialModel: 'm' }), 'm');
 });
