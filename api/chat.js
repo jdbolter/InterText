@@ -18,7 +18,7 @@ const {
   openingSectionText,
   resolveFirstContinuation,
 } = require('./lib/reading-continuation');
-const { loadSectionFund, sectionLabelLine, textModel } = require('./lib/text-extras');
+const { loadSectionFund, mainLineText, sectionLabelLine, textModel } = require('./lib/text-extras');
 const { reviseReply } = require('./lib/reply-revision');
 const {
   annotateFund,
@@ -221,6 +221,7 @@ module.exports = async function handler(req, res) {
               .map(({ prompt }) => prompt)
               .join('\n\n') || null,
             sectionLabelLine(config, sectionName),
+            mainLineText(config, idx),
             // H-005: the citing rule, only where the section has a fund of citable works.
             sectionFundText && typeof config.fundInstruction === 'string' ? config.fundInstruction : null,
             `The reader has just been shown this framing before their first message: "${config.sectionIntros[idx]}"`,

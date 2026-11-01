@@ -33,6 +33,21 @@ function sectionLabelLine(config, sectionName) {
   return `${label}: ${sectionName}`;
 }
 
+// H-009: the main line of the argument at this point (a section statement, and one for the
+// chapter), handed to the model before every reply so that it can steer back to it.
+function mainLineText(config, sectionIndex) {
+  if (!config) return null;
+  const point = Array.isArray(config.sectionPoints) && typeof config.sectionPoints[sectionIndex] === 'string'
+    ? config.sectionPoints[sectionIndex].trim() : '';
+  const chapter = typeof config.chapterPoint === 'string' ? config.chapterPoint.trim() : '';
+  if (!point && !chapter) return null;
+  return [
+    point ? `The main line at this point: ${point}` : null,
+    chapter ? `The chapter as a whole: ${chapter}` : null,
+    'Close each reply by tying what it says back to this main line, so that the reader keeps hold of the argument.',
+  ].filter(Boolean).join('\n');
+}
+
 const fundCache = new Map();
 
 // Returns the system-prompt text for a section's fund of citable works, or null.
@@ -61,6 +76,7 @@ module.exports = {
   THINKING_OFF,
   clearFundCache,
   loadSectionFund,
+  mainLineText,
   sectionLabelLine,
   textModel,
   thinkingOff,

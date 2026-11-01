@@ -7,6 +7,7 @@ const path = require('path');
 const {
   clearFundCache,
   loadSectionFund,
+  mainLineText,
   sectionLabelLine,
   textModel,
   thinkingOff,
@@ -115,4 +116,14 @@ test('the reply model defaults to claude-sonnet-5-5 for every text (H-007)', () 
 test('thinking is turned off in each model\'s own way', () => {
   assert.deepEqual(thinkingOff('claude-sonnet-5-5'), { type: 'between_tools' });
   assert.deepEqual(thinkingOff('claude-sonnet-5'), { type: 'disabled' });
+});
+
+test('the main line is handed to the model only when a text has one (H-009)', () => {
+  assert.equal(mainLineText({}, 0), null);
+  const config = { sectionPoints: ['The divide has almost vanished.', null], chapterPoint: 'The plenitude.' };
+  const text = mainLineText(config, 0);
+  assert.match(text, /^The main line at this point: The divide has almost vanished\.$/m);
+  assert.match(text, /^The chapter as a whole: The plenitude\.$/m);
+  assert.match(text, /Close each reply by tying/);
+  assert.doesNotMatch(mainLineText(config, 1), /at this point/, 'a section without a statement still gets the chapter');
 });
