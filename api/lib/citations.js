@@ -128,9 +128,52 @@ function plainCitations(text, references) {
     .replace(WEB_TOKEN, '');
 }
 
+// H-008: how each listed work is mentioned (Jay, 2026-11-01). A reference may carry
+//   mention: 'introduce' (with intro, e.g. "the German literary theorist Peter Bürger", and name, "Bürger"),
+//   mention: 'note'  (the point in the text's own sentence, the author unnamed, the note carrying the source),
+//   mention: 'own'   (the author's own later work: its ideas stated as the work's own, never named).
+// Before each reply the fund is marked, entry by entry, with what to do in this conversation, so the
+// model never has to remember whom it has already introduced.
+function introducedIds(messages, references) {
+  const done = new Set();
+  const said = (Array.isArray(messages) ? messages : [])
+    .filter(m => m && m.role === 'assistant' && typeof m.content === 'string')
+    .map(m => m.content)
+    .join('\n');
+  for (const [id, ref] of Object.entries(references || {})) {
+    if (ref.mention !== 'introduce') continue;
+    if (said.includes(`[[CITE:${id}`) || (ref.name && said.includes(ref.name))) done.add(id);
+  }
+  return done;
+}
+
+function mentionNote(ref, introduced) {
+  if (!ref || !ref.mention) return '';
+  if (ref.mention === 'own') {
+    return '(The work\'s own later thinking: state its ideas as your own, never naming the author or the work, and add the marker.) ';
+  }
+  if (ref.mention === 'note') {
+    return '(Cite by note only: state the point in your own sentence, add the marker, and leave the author unnamed.) ';
+  }
+  if (ref.mention === 'introduce' && ref.intro && ref.name) {
+    return introduced
+      ? `(Already introduced in this conversation: simply "${ref.name}".) `
+      : `(Not yet introduced: on first mention, "${ref.intro}"; afterwards simply "${ref.name}".) `;
+  }
+  return '';
+}
+
+function annotateFund(fundText, references, introduced) {
+  if (!fundText) return fundText;
+  return String(fundText).replace(/^\[([a-z0-9-]+)\] /gm, (whole, id) =>
+    `${whole}${mentionNote(references && references[id], introduced && introduced.has(id))}`);
+}
+
 module.exports = {
   CITE_TOKEN,
   WEB_TOKEN,
+  annotateFund,
+  introducedIds,
   checkCitations,
   citationMarkersOn,
   clearReferenceCache,

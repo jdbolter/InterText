@@ -21,10 +21,12 @@ const {
 const { loadSectionFund, sectionLabelLine, textModel } = require('./lib/text-extras');
 const { reviseReply } = require('./lib/reply-revision');
 const {
+  annotateFund,
   checkCitations,
   citationMarkersOn,
   dropWrittenSourceList,
   fundIds,
+  introducedIds,
   loadReferences,
   markWebCitations,
   stripWebTokens,
@@ -189,7 +191,14 @@ module.exports = async function handler(req, res) {
     wording: config.continuationWording,
   });
   // H-003: a section's fund of citable works, for ordinary readings only.
-  const sectionFundText = loadSectionFund(config, idx, { editorial: Boolean(editorialReading) });
+  const rawFundText = loadSectionFund(config, idx, { editorial: Boolean(editorialReading) });
+  // H-008: each listed work marked with how to mention it now (introduce, already introduced,
+  // note only, the work's own), judged from everything the text has said so far.
+  const sectionFundText = rawFundText && citationMarkersOn(config)
+    ? annotateFund(rawFundText, loadReferences(config), introducedIds(
+      [...(Array.isArray(history) ? history : []), ...(Array.isArray(sectionHistory) ? sectionHistory : [])],
+      loadReferences(config)))
+    : rawFundText;
 
   try {
     const response = await client.messages.create({

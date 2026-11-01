@@ -4,10 +4,12 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 
 const {
+  annotateFund,
   checkCitations,
   citationMarkersOn,
   dropWrittenSourceList,
   fundIds,
+  introducedIds,
   loadReferences,
   locatorAllowed,
   markWebCitations,
@@ -123,4 +125,27 @@ test('for synthesis, markers become the book\'s author-date style (server and pa
   const notes = { library: { 'burger-1984': references['burger-1984'] }, web: [{ k: 1, url: 'https://a.org/x', title: 'Getty [bans] AI art' }] };
   assert.equal(sandbox.window.CitationNotes.plainReply('Consumed[[CITE:burger-1984|80–81]]. Getty[[WEB:1]].', notes),
     'Consumed (Bürger 1984, 80–81). Getty ([Getty bans AI art](https://a.org/x)).');
+});
+
+test('each listed work is marked with how to mention it, and introductions happen once (H-008)', () => {
+  const refs = {
+    'burger-1984': { short: 'Bürger 1984', full: 'x', pages: [], mention: 'introduce', intro: 'the German literary theorist Peter Bürger', name: 'Bürger' },
+    'pautz-2002': { short: 'Pautz 2002', full: 'x', pages: [], mention: 'note' },
+    'bolter-2022': { short: 'Bolter 2022', full: 'x', pages: [], mention: 'own' },
+    'levine-1988': { short: 'Levine 1988', full: 'x', pages: [] },
+  };
+  const fund = 'PREAMBLE\n\n[burger-1984] Bürger, ...\n\n[pautz-2002] Pautz, ...\n\n[bolter-2022] Bolter, ...\n\n[levine-1988] Levine, ...';
+  const fresh = annotateFund(fund, refs, introducedIds([], refs));
+  assert.match(fresh, /\[burger-1984\] \(Not yet introduced: on first mention, "the German literary theorist Peter Bürger"; afterwards simply "Bürger"\.\) Bürger/);
+  assert.match(fresh, /\[pautz-2002\] \(Cite by note only:/);
+  assert.match(fresh, /\[bolter-2022\] \(The work's own later thinking:/);
+  assert.match(fresh, /\[levine-1988\] Levine/, 'no mention field: unchanged');
+  assert.deepEqual([...fundIds(fresh)], ['burger-1984', 'pautz-2002', 'bolter-2022', 'levine-1988']);
+  // once the text has cited him (or named him), he is introduced
+  for (const said of ['Shock is consumed[[CITE:burger-1984|80–81]].', 'As Bürger argued, shock is consumed.']) {
+    const later = annotateFund(fund, refs, introducedIds([{ role: 'user', content: 'Bürger?' }, { role: 'assistant', content: said }], refs));
+    assert.match(later, /\[burger-1984\] \(Already introduced in this conversation: simply "Bürger"\.\)/);
+  }
+  // a reader naming him does not count as the text introducing him
+  assert.equal(introducedIds([{ role: 'user', content: 'What about Bürger?' }], refs).size, 0);
 });
