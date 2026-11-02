@@ -219,15 +219,10 @@ test('buildAll writes a portable editor index and validated section snapshot', (
   }
 });
 
-test('reader home page orders Plenitude, Uncanny, then Remediation and hides Blood on the Wall', () => {
+test('reader home page offers only The Digital Plenitude for now (Jay, 2026-11-02)', () => {
   const homepage = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
-  // The Plenitude card opens the proofs edition (digital-plenitude) since 2026-10-31.
-  const plenitude = homepage.indexOf('href="digital-plenitude/public/index.html"');
-  const uncanny = homepage.indexOf('href="uncanny/public/index.html"');
-  const remediation = homepage.indexOf('href="remediation/public/index.html"');
-  const blood = homepage.indexOf('href="blood-on-the-wall/public/index.html"');
-  assert.ok(plenitude >= 0 && plenitude < uncanny && uncanny < remediation);
-  assert.equal(blood, -1);
+  const cards = [...homepage.matchAll(/<a class="card" href="([^"]+)"/g)].map(m => m[1]);
+  assert.deepEqual(cards, ['digital-plenitude/public/index.html']);
 });
 
 test('public readers carry compact cross-section memory and restore per-section history', () => {
