@@ -73,7 +73,7 @@ SECTION_IMAGES.forEach(section => {
 });
 
 const SECTION_INTROS = [
-  `<p>In 2013, JAY-Z performed in a white-box hall of the Pace Gallery in New York, one of the city&rsquo;s most prestigious art spaces. Art-world figures and fans took turns standing across from him while he rapped. Marina Abramović, who had spent thirty days sitting motionless at MoMA staring at strangers, appeared as one of his partners. Everyone in the room seemed delighted.</p>`,
+  `<p>In 2013 JAY-Z released &ldquo;Picasso Baby,&rdquo; a song and a video: the rapper wants to own a Picasso and ends by claiming to be a new Picasso. He is performing in New York&rsquo;s Pace Gallery, one of the city&rsquo;s prestigious art spaces. Art-world figures and fans take turns standing across from him while he raps. Marina Abramović, whose MoMA performance of 2010 he was borrowing (she sat motionless for more than two months, staring at one stranger after another), appears as one of his partners. Everyone in the film is delighted that the art world has accepted the rapper as an artist. The great divide between elite art and popular culture is in the process of dissolving.</p>`,
 
   `<p>In April 2011, the Philadelphia Orchestra filed for Chapter 11 bankruptcy &mdash; the first of America&rsquo;s &ldquo;Big Five&rdquo; orchestras ever to do so. In 1940, its director Leopold Stokowski appeared as a silhouetted figure in Disney&rsquo;s <em>Fantasia</em>, where Mickey Mouse treated him with nervous reverence. By 2011, the orchestra&rsquo;s problem was not reverence but revenue.</p>`,
 
