@@ -64,11 +64,12 @@ test('all editorial work manifests match the current text configs', () => {
   const discovered = discoverWorks(contentRoot);
   assert.deepEqual(discovered.map(({ work }) => work.id).sort(), [
     'blood-on-the-wall',
+    'digital-plenitude',
     'plenitude',
     'remediation',
     'uncanny',
   ]);
-  assert.deepEqual(discovered.map(({ work }) => work.order), [1, 2, 3, 4]);
+  assert.deepEqual(discovered.map(({ work }) => work.order), [1, 2, 3, 4, 5]);
 
   for (const { work } of discovered) {
     const config = require(path.join(root, work.id, 'config.js'));
@@ -195,8 +196,11 @@ test('buildAll writes a portable editor index and validated section snapshot', (
   const outputRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'intertext-editorial-'));
   try {
     const index = buildAll({ contentRoot, outputRoot });
-    assert.equal(index.works.length, 4);
-    assert.equal(index.works.flatMap(work => work.sections).length, 23);
+    assert.equal(index.works.length, 5);
+    assert.equal(index.works.flatMap(work => work.sections).length, 30);
+    const proofs = index.works.find(work => work.id === 'digital-plenitude');
+    assert.ok(proofs.sections.every(section => section.readiness === 'packaged'));
+    assert.ok(proofs.sections.every(section => section.fundCounts.accepted === 0 && section.fundCounts.candidate === 0));
     const plenitude = index.works.find(work => work.id === 'plenitude');
     assert.ok(plenitude.sections.every(section => section.readiness === 'packaged'));
     const uncanny = index.works.find(work => work.id === 'uncanny');

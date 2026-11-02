@@ -396,6 +396,125 @@
           }
         }
       ]
+    },
+    {
+      "id": "digital-plenitude",
+      "title": "The Digital Plenitude (proofs edition)",
+      "order": 5,
+      "sections": [
+        {
+          "id": "great-divide",
+          "title": "The Great Divide",
+          "order": 1,
+          "package": "sections/great-divide/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/great-divide.json",
+          "versionId": "dp-great-divide-v001",
+          "passageCount": 3,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "philadelphia-orchestra-story",
+          "title": "The Philadelphia (Orchestra) Story",
+          "order": 2,
+          "package": "sections/philadelphia-orchestra-story/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/philadelphia-orchestra-story.json",
+          "versionId": "dp-philadelphia-orchestra-story-v001",
+          "passageCount": 6,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "class-in-america",
+          "title": "Class in America",
+          "order": 3,
+          "package": "sections/class-in-america/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/class-in-america.json",
+          "versionId": "dp-class-in-america-v001",
+          "passageCount": 3,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "case-of-music",
+          "title": "The Case of Music",
+          "order": 4,
+          "package": "sections/case-of-music/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/case-of-music.json",
+          "versionId": "dp-case-of-music-v001",
+          "passageCount": 8,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "shocking-art",
+          "title": "Shocking Art",
+          "order": 5,
+          "package": "sections/shocking-art/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/shocking-art.json",
+          "versionId": "dp-shocking-art-v001",
+          "passageCount": 11,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "art-as-special-interest",
+          "title": "Art as a Special Interest",
+          "order": 6,
+          "package": "sections/art-as-special-interest/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/art-as-special-interest.json",
+          "versionId": "dp-art-as-special-interest-v001",
+          "passageCount": 16,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "communities-and-creativity",
+          "title": "Communities and Creativity",
+          "order": 7,
+          "package": "sections/communities-and-creativity/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/communities-and-creativity.json",
+          "versionId": "dp-communities-and-creativity-v001",
+          "passageCount": 9,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        }
+      ]
     }
   ]
 }

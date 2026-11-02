@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "editionId": "digital-plenitude-proofs",
+  "versionId": "dp-shocking-art-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-02T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "digital-plenitude/source_texts/sections/section-5.md"
+  },
+  "spineFile": "spine.md",
+  "fundEntries": [],
+  "changeSummary": "Faithful structural package of the proofs' chapter 1, section 5 (Shocking Art); one passage per paragraph; no prose changes and no initial fund entries."
+}
