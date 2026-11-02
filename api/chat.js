@@ -5,6 +5,7 @@ const {
   EDITORIAL_DELIVERY_TOOL,
   buildEditorialDeliveryTool,
   extractEditorialDelivery,
+  extractMarkerDelivery,
   formatPriorSectionSummaries,
   isEditorialEdition,
   prepareEditorialReading,
@@ -110,6 +111,11 @@ module.exports = async function handler(req, res) {
   const idx = Math.max(0, Math.min(Math.floor(sectionIndex), sections.length - 1));
   let editorialReading = null;
   let sectionText;
+  // H-011: a text whose model cannot be forced to call a tool reads its editorial packages by
+  // markers in the prose, and its editorial readings go through the same pipeline as ordinary
+  // ones (revision pass, citation notes, main line, introductions).
+  // (The local editorial-spine/editorial-fund experiments keep their forced-tool delivery.)
+  const markerDelivery = config.editorialDelivery === 'markers' && !isEditorialEdition(edition);
   if (isEditorialEdition(edition)) {
     try {
       editorialReading = prepareEditorialReading({
@@ -133,6 +139,7 @@ module.exports = async function handler(req, res) {
         editorialReading = prepareVersionedReading({
           sectionPackage: versioned.sectionPackage,
           presentedFundEntryIds,
+          delivery: markerDelivery ? 'markers' : 'tool',
         });
         sectionText = editorialReading.sectionText;
       }
@@ -163,6 +170,8 @@ module.exports = async function handler(req, res) {
   const promptedSectionText = firstContinuation ? openingSectionText(sectionText) : sectionText;
   // Keep the opening deterministic: optional material can enter on later turns,
   // once the guide has a real section cursor and has reached the relevant anchor.
+  const toolDelivery = Boolean(editorialReading) && !markerDelivery;
+  const fullPipeline = !editorialReading || markerDelivery;
   const offeredFundEntryIds = editorialReading && !firstContinuation
     ? editorialReading.offeredFundEntryIds
     : [];
@@ -170,7 +179,7 @@ module.exports = async function handler(req, res) {
     ? editorialReading.fundText
     : null;
   // H-005: citation markers, for ordinary readings of a text that turns them on.
-  const markers = !editorialReading && citationMarkersOn(config);
+  const markers = fullPipeline && citationMarkersOn(config);
   function withoutWebMarkers(msgs) {
     if (!markers) return msgs;
     return msgs.map(m => (m && m.role === 'assistant' && typeof m.content === 'string'
@@ -179,19 +188,19 @@ module.exports = async function handler(req, res) {
   }
   const messages = [
     ...(Array.isArray(context)
-      ? (editorialReading ? context : withoutWebMarkers(normalizeContinueHistory(context, config.continuationWording)))
+      ? (toolDelivery ? context : withoutWebMarkers(normalizeContinueHistory(context, config.continuationWording)))
       : []),
-    { role: 'user', content: continuing ? continuationUserMessage(firstContinuation, editorialReading ? null : config.continuationWording) : message.trim() }
+    { role: 'user', content: continuing ? continuationUserMessage(firstContinuation, toolDelivery ? null : config.continuationWording) : message.trim() }
   ];
   const continuationInstructions = buildContinuationInstructions({
     continuing,
     firstContinuation,
-    editorialReading: Boolean(editorialReading),
+    editorialReading: toolDelivery,
     continuationVoice: config.continuationVoice,
     wording: config.continuationWording,
   });
   // H-003: a section's fund of citable works, for ordinary readings only.
-  const rawFundText = loadSectionFund(config, idx, { editorial: Boolean(editorialReading) });
+  const rawFundText = loadSectionFund(config, idx, { editorial: toolDelivery });
   // H-008: each listed work marked with how to mention it now (introduce, already introduced,
   // note only, the work's own), judged from everything the text has said so far.
   const sectionFundText = rawFundText && citationMarkersOn(config)
@@ -203,7 +212,7 @@ module.exports = async function handler(req, res) {
   try {
     const response = await client.messages.create({
       // Editorial readings force a tool call, which needs a model that supports it (see editorialModel).
-      model: editorialReading ? editorialModel(config) : textModel(config),
+      model: toolDelivery ? editorialModel(config) : textModel(config),
       // 2048 was too tight: adaptive thinking can consume the whole budget on a hard
       // turn, leaving no tokens for the actual reply and forcing the empty-completion
       // 502 below — confirmed in practice by several consecutive real turns. Response
@@ -241,7 +250,7 @@ module.exports = async function handler(req, res) {
       // Keep the two editorial conditions controlled: neither may acquire new
       // substantive material from web search. Ordinary/evolving readings retain
       // the existing bounded search capability.
-      ...(editorialReading
+      ...(toolDelivery
         ? {
             tools: [buildEditorialDeliveryTool(offeredFundEntryIds)],
             tool_choice: {
@@ -272,7 +281,7 @@ module.exports = async function handler(req, res) {
     let webSources = [];
     let editorialResult = null;
     let sectionComplete;
-    if (editorialReading) {
+    if (toolDelivery) {
       let delivery;
       try {
         delivery = extractEditorialDelivery(response.content, offeredFundEntryIds);
@@ -302,6 +311,21 @@ module.exports = async function handler(req, res) {
       sectionComplete = continuing && !firstContinuation && /\[\[SECTION_COMPLETE\]\]/.test(text);
       text = text.replace(/\[\[SECTION_COMPLETE\]\]/g, '').trim();
       if (markers) text = dropWrittenSourceList(text);
+      if (editorialReading) {
+        // H-011: fund markers and the private section memory are read and removed here,
+        // before the revision pass and before anyone sees the reply.
+        const delivered = extractMarkerDelivery(text, offeredFundEntryIds);
+        text = delivered.text;
+        editorialResult = {
+          edition,
+          packageVersionId: editorialReading.sectionPackage.versionId,
+          offeredFundEntryIds,
+          usedFundEntryIds: delivered.usedFundEntryIds,
+          ...(delivered.sectionSummary ? { sectionSummary: delivered.sectionSummary } : {}),
+          trackingComplete: true,
+          trackingMethod: 'markers',
+        };
+      }
     }
 
     // An empty completion (e.g. thinking consuming the whole max_tokens budget on a
@@ -316,7 +340,7 @@ module.exports = async function handler(req, res) {
     // H-004b: an optional second pass rewrites the draft into the text's voice
     // (ordinary readings only). The draft is returned beside it for measurement.
     let revision = null;
-    if (!editorialReading && text.trim()) {
+    if (fullPipeline && text.trim()) {
       const draft = text;
       const revised = await reviseReply({
         client,

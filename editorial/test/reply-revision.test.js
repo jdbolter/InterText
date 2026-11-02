@@ -91,3 +91,19 @@ test('the editor sees the main line, what the reader has been shown, and the sec
   assert.ok(order.every((v, i) => v >= 0 && (i === 0 || v > order[i - 1])), 'all five parts, in order');
   assert.equal(buildRevisionMessage({ readerMessage: 'q', draft: 'd' }), "THE READER'S WORDS\nq\n\nTHE DRAFT REPLY\nd", 'without context: as before');
 });
+
+test('editorial readings by markers: fund markers and the private memory are read and removed (H-011)', () => {
+  const { extractMarkerDelivery, prepareVersionedReading } = require('../../api/lib/editorial-reading');
+  const { loadSeedSection } = require('../../api/lib/editorial-package');
+  const out = extractMarkerDelivery('One point [[FUND:e1]]. Two[[FUND:e1]][[FUND:unoffered]].\n\n[[MEMORY: Pace covered.]]', ['e1', 'e2']);
+  assert.deepEqual(out, { text: 'One point. Two.', usedFundEntryIds: ['e1'], sectionSummary: 'Pace covered.' });
+  assert.equal(extractMarkerDelivery('No markers.', []).sectionSummary, null);
+  const seed = loadSeedSection({ textId: 'digital-plenitude', sectionIndex: 0 });
+  const byMarkers = prepareVersionedReading({ sectionPackage: seed, delivery: 'markers' });
+  assert.match(byMarkers.instructions, /\[\[FUND:entry-id\]\]/);
+  assert.doesNotMatch(byMarkers.instructions, /delivery tool/);
+  assert.match(byMarkers.memoryInstructions, /\[\[MEMORY: \.\.\.\]\]/);
+  const byTool = prepareVersionedReading({ sectionPackage: seed });
+  assert.match(byTool.instructions, /required private delivery tool/, 'the older works keep the tool');
+  assert.equal(require('../../digital-plenitude/config').editorialDelivery, 'markers');
+});

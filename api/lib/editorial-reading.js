@@ -40,11 +40,39 @@ function normalizePresentedIds(value) {
   return [...new Set(value.filter(id => typeof id === 'string' && id.length > 0))];
 }
 
+// H-011: models that cannot be forced to call a tool (claude-sonnet-5-5) deliver by markers in
+// the prose instead: [[FUND:id]] after a sentence an entry informs, and one [[MEMORY: ...]] line at
+// the end. The server reads and removes both before anyone sees the reply.
+const FUND_MARKER = /\[\[FUND:([^\]\s]+)\]\]/g;
+const MEMORY_MARKER = /\[\[MEMORY:\s*([\s\S]*?)\]\]/g;
+
+const MARKER_DELIVERY_INSTRUCTIONS = `When an entry materially informs your reply (its language, a distinctive example, a factual detail or a conceptual refinement), put its private marker [[FUND:entry-id]] straight after the sentence it informs. Do not mark an entry merely because it was available.`;
+
+const MARKER_MEMORY_INSTRUCTIONS = `End every reply with a private memory of this section's reading so far, on a line of its own: [[MEMORY: ...]], no more than 100 words. Record only durable context that could matter if the reader moves elsewhere and later returns: ideas already covered, the reader's interests or objections, distinctions established, and genuinely unresolved questions. Do not summarize the whole section or address the reader. Both kinds of marker are removed before the reader sees the reply; never mention them.`;
+
+function extractMarkerDelivery(text, allowedIds = []) {
+  const allowed = new Set(allowedIds);
+  const used = [];
+  let memory = null;
+  let cleaned = String(text || '').replace(MEMORY_MARKER, (_, body) => {
+    const summary = String(body).trim();
+    if (summary) memory = summary.slice(0, SECTION_SUMMARY_MAX_LENGTH);
+    return '';
+  });
+  cleaned = cleaned.replace(FUND_MARKER, (_, id) => {
+    if (allowed.has(id) && !used.includes(id)) used.push(id);
+    return '';
+  });
+  cleaned = cleaned.replace(/[ \t]+([.,;:])/g, '$1').replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+  return { text: cleaned, usedFundEntryIds: used, sectionSummary: memory };
+}
+
 function preparePackageReading({
   sectionPackage,
   selectableStatuses,
   presentedFundEntryIds = [],
   experimentLabel = null,
+  delivery = 'tool',
 }) {
   const alreadyPresented = normalizePresentedIds(presentedFundEntryIds);
   const selectableEntries = sectionPackage.fundEntries
@@ -72,19 +100,20 @@ Speak as the work's own intelligence. Do not refer to the spine, fund, entries, 
 
 Optional fund entries are possibilities, not a checklist. Select an entry only when it directly helps this reader at this moment without interrupting the spine's rhythm or forward movement. Do not expose entry titles, IDs, statuses, anchors, source notes, or the existence of a fund. An anchor identifies where an entry becomes contextually relevant; do not use an entry before the reader has encountered the people or concepts it presupposes. ${priorNote}
 
-Return the response through the required private delivery tool. In usedFundEntryIds, list every newly offered entry whose language, distinctive example, factual detail, or conceptual refinement materially informed the visible response. Do not list an entry merely because it was available. The tool call is private and only its response field will be shown to the reader.`,
-    memoryInstructions: SECTION_MEMORY_INSTRUCTIONS,
+${delivery === 'markers' ? MARKER_DELIVERY_INSTRUCTIONS : 'Return the response through the required private delivery tool. In usedFundEntryIds, list every newly offered entry whose language, distinctive example, factual detail, or conceptual refinement materially informed the visible response. Do not list an entry merely because it was available. The tool call is private and only its response field will be shown to the reader.'}`,
+    memoryInstructions: delivery === 'markers' ? MARKER_MEMORY_INSTRUCTIONS : SECTION_MEMORY_INSTRUCTIONS,
     fundText: `OPTIONAL EDITORIAL FUND — PRIVATE TO THE GUIDE\n\n${offeredText}`,
     offeredFundEntryIds: offeredEntries.map(entry => entry.id),
     alreadyPresentedFundEntryIds: knownPresentedIds,
   };
 }
 
-function prepareVersionedReading({ sectionPackage, presentedFundEntryIds = [] }) {
+function prepareVersionedReading({ sectionPackage, presentedFundEntryIds = [], delivery = 'tool' }) {
   return preparePackageReading({
     sectionPackage,
     selectableStatuses: ['accepted'],
     presentedFundEntryIds,
+    delivery,
   });
 }
 
@@ -255,6 +284,7 @@ module.exports = {
   EDITORIAL_SPINE_EDITION,
   buildEditorialDeliveryTool,
   extractEditorialDelivery,
+  extractMarkerDelivery,
   formatPriorSectionSummaries,
   isEditorialEdition,
   loadEditorialSection,

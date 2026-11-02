@@ -7,6 +7,10 @@ module.exports = {
   // H-007: how the conversation names this text's voice when it is folded into an evolved section.
   voiceName: 'Text',
 
+  // H-011: editorial readings and evolution without forced tool calls, so they run on claude-sonnet-5-5
+  // and keep the whole pipeline (revision pass, citation notes, main line, introductions).
+  editorialDelivery: 'markers',
+
   sectionsDir: path.join(__dirname, 'source_texts', 'sections'),
 
   sectionFiles: [
