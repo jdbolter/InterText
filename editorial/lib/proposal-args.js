@@ -28,7 +28,7 @@ function parseProposalArgs(argv) {
     if (argument === '-h' || argument === '--help') return { help: true };
     if (argument === '--session') options.session = next(argument);
     else if (argument === '--section') options.section = Number(next(argument));
-    else if (argument === '--model') options.model = next(argument);
+    else if (argument === '--model') { options.model = next(argument); options.modelGiven = true; }
     else throw new Error(`Unknown option "${argument}". Run with --help for usage.`);
     index += 1;
   }

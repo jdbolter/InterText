@@ -78,7 +78,7 @@ function proposalBundle() {
 
 test('proposal CLI arguments require a session and accept an explicit section', () => {
   assert.deepEqual(parseProposalArgs(['--session', 'run', '--section', '1', '--model', 'model']), {
-    help: false, session: 'run', section: 1, model: 'model',
+    help: false, session: 'run', section: 1, model: 'model', modelGiven: true,
   });
   assert.throws(() => parseProposalArgs([]), /--session is required/);
   assert.throws(() => parseProposalArgs(['--session', 'run', '--section', '0']), /positive integer/);
@@ -116,4 +116,27 @@ test('publishing a reviewed draft preserves model provenance and records proposa
   assert.deepEqual(result.nextPackage.fundEntries[0].provenance, proposed.provenance);
   assert.equal(result.updateRecord.proposalId, bundle.proposalId);
   assert.equal(result.updateRecord.decisionAuthority, 'author');
+});
+
+test('editorial evolution by checked JSON, for models that cannot be forced to call a tool (H-011)', async () => {
+  const { evolveEditorialSection, parseJsonObject } = require('../../api/lib/editorial-evolution');
+  const { loadSeedSection } = require('../../api/lib/editorial-package');
+  assert.deepEqual(parseJsonObject('Here it is:\n```json\n{"decision":"no-change"}\n```'), { decision: 'no-change' });
+  assert.throws(() => parseJsonObject('no object'), /no JSON object/);
+  const calls = [];
+  const replies = ['not json at all', '{"decision":"no-change","changeSummary":"Nothing durable.","spineUpdates":[],"fundOperations":[]}'];
+  const client = { messages: { create: async (req) => { calls.push(req); return { content: [{ type: 'text', text: replies.shift() }] }; } } };
+  const result = await evolveEditorialSection({
+    client,
+    sectionPackage: loadSeedSection({ textId: 'digital-plenitude', sectionIndex: 0 }),
+    conversationHistory: [{ role: 'user', content: 'q' }, { role: 'assistant', content: 'a' }],
+    sessionId: 's',
+    model: 'claude-sonnet-5-5',
+    structured: 'json',
+  }).catch(err => ({ error: err.message }));
+  assert.equal(calls.length, 2, 'one retry after an unreadable reply');
+  assert.ok(calls.every(c => !c.tools && !c.tool_choice && c.model === 'claude-sonnet-5-5'));
+  assert.match(calls[1].messages[0].content, /could not be read as the required JSON object/);
+  assert.match(calls[0].system, /Return your answer as one JSON object/);
+  assert.ok(result.error || result.changed === false, JSON.stringify(result).slice(0, 200));
 });

@@ -430,7 +430,50 @@ function approvedVersion({ sectionPackage, proposal, review, sessionId, updateId
   return validateRuntimePackage(next, 'approved editorial version');
 }
 
-async function callTool(client, { system, user, tool, model }) {
+// H-011: for models that cannot be forced to call a tool (claude-sonnet-5-5), the same structured
+// answer is requested as one JSON object in the reply, matching the tool's schema; it is then
+// checked by the same validators as a tool call. One retry if the reply cannot be read as JSON.
+function parseJsonObject(text) {
+  let s = String(text || '').trim();
+  const fenced = s.match(/```(?:json)?\s*([\s\S]*?)```/);
+  if (fenced) s = fenced[1].trim();
+  const start = s.indexOf('{');
+  const end = s.lastIndexOf('}');
+  if (start < 0 || end <= start) throw new Error('no JSON object found');
+  const value = JSON.parse(s.slice(start, end + 1));
+  if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('the JSON is not an object');
+  return value;
+}
+
+async function callJson(client, { system, user, tool, model }) {
+  const ask = `${system}
+
+Return your answer as one JSON object and nothing else: no preface, no comment. It must match this JSON schema exactly (the private form "${tool.name}": ${tool.description}):
+${JSON.stringify(tool.input_schema)}`;
+  let lastError = null;
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    const content = attempt === 0
+      ? user
+      : `${user}\n\nYour previous answer could not be read as the required JSON object (${lastError.message}). Return only the JSON object.`;
+    const response = await client.messages.create({
+      model,
+      max_tokens: 8192,
+      thinking: { type: 'adaptive' },
+      system: ask,
+      messages: [{ role: 'user', content }],
+    });
+    const text = (response.content || []).filter(block => block.type === 'text').map(block => block.text).join('');
+    try {
+      return parseJsonObject(text);
+    } catch (err) {
+      lastError = err;
+    }
+  }
+  throw new Error(`${tool.name}: no readable JSON after two attempts (${lastError.message})`);
+}
+
+async function callTool(client, { system, user, tool, model, structured = 'tool' }) {
+  if (structured === 'json') return callJson(client, { system, user, tool, model });
   const response = await client.messages.create({
     model,
     max_tokens: 8192,
@@ -450,6 +493,7 @@ async function evolveEditorialSection({
   sessionId,
   updateId = crypto.randomUUID(),
   model = 'claude-sonnet-5', // forced tool calls: see editorialModel in text-extras
+  structured = 'tool', // H-011: 'json' for models that cannot be forced to call a tool
   now = new Date(),
 }) {
   validateRuntimePackage(sectionPackage, 'current editorial version');
@@ -460,6 +504,7 @@ async function evolveEditorialSection({
   const packageJson = JSON.stringify(sectionPackage, null, 2);
   const proposal = validateProposal(await callTool(client, {
     model,
+    structured,
     tool: proposalTool(),
     system: `You are the first editorial pass for an evolving work. Compare one contributing reader's exchange with the current versioned spine and fund. Preserve the work's voice, argument, proportion, and forward movement. Do not reward persistence by treating a repeatedly stated objection as newly persuasive. A reasonable guide answer may resolve an objection even if the reader remains personally unconvinced. Prefer no change when the exchange produces no durable improvement.
 
@@ -479,6 +524,7 @@ Return the complete proposal through the required private tool.`,
 
   const review = validateReview(await callTool(client, {
     model,
+    structured,
     tool: reviewTool(proposal),
     system: `You are the independent second editorial pass. Review—not rewrite—the proposed operations against the exact current version and the actual exchange. Reject repetition, drift, defensive overqualification, unsupported factual claims, duplicate fund material, poor prose, and changes that weaken the work merely because a reader refused to be convinced. Check every fund anchor for contextual and chronological timing. Distinguish faults in the current spine from overstatements introduced only in the guide's replies.
 
@@ -498,6 +544,7 @@ module.exports = {
   approvedVersion,
   evolveEditorialSection,
   extractToolInput,
+  parseJsonObject,
   proposalTool,
   reviewTool,
   validateProposal,

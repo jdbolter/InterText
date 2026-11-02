@@ -110,7 +110,9 @@ module.exports = async function handler(req, res) {
             sectionPackage: currentPackage,
             conversationHistory,
             sessionId: contributionSessionId,
-            model: editorialModel(config),
+            // H-011: a text that reads by markers also evolves on its own model, by checked JSON.
+            model: config.editorialDelivery === 'markers' ? textModel(config) : editorialModel(config),
+            structured: config.editorialDelivery === 'markers' ? 'json' : 'tool',
           });
 
           if (!result.changed) {
