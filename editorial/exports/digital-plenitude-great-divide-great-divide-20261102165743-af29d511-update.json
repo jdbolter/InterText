@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "updateId": "71f356e5-465b-4c3a-8092-cf9a614e43e0",
+  "sessionId": "intertext-mvzhvwh8-vt4o1fzant",
+  "workId": "digital-plenitude",
+  "sectionId": "great-divide",
+  "readerBaseVersionId": "dp-great-divide-v001",
+  "parentVersionId": "dp-great-divide-v001",
+  "versionId": "great-divide-20261102165743-af29d511",
+  "createdAt": "2026-11-02T16:57:43.901Z",
+  "conversationHistory": [
+    {
+      "role": "user",
+      "content": "Would Bürger regard JAY-Z as avant-garde then?"
+    },
+    {
+      "role": "assistant",
+      "content": "Peter Bürger, the German literary theorist, would more likely treat JAY-Z as a sign of what came after the avant-garde than as part of it. In *Theory of the Avant-Garde*, Bürger argued that once the historical avant-garde had passed, radically disparate things exist side by side, and no movement can claim to be historically more advanced than any other (Bürger 1984, 63). That is the condition in which JAY-Z, in *Picasso Baby* (the 2013 rap he performed at New York's Pace Gallery), can name Mark Rothko, Andy Warhol, Jean-Michel Basquiat and Francis Bacon in one breath, with no order or rationale among them. It also bears on the main line: the great divide between elite art and popular culture has almost, but not quite, vanished, and what replaces it is the separate judgments of many communities.\n\nThe avant-garde also needs something to push against. The movements Bürger describes defined themselves against an established tradition. JAY-Z, by contrast, feels no weight of the elite tradition, and the Pace Gallery greeted him with delight, not resistance. The people in the room, among them the performance artist Marina Abramović, were not shocked, so there was little for him to break.\n\nHis claim is better read as a bid for standing. By calling himself a modern-day Picasso, he asks that rap be counted as art on its own terms. The reception shows how far that bid goes. Some in the art world thought the performance derivative or silly. Some rap listeners judged it simply as poor rap. Fans like Keith Hunt, who posted on YouTube, saw nothing strange in a great rapper working in a gallery. Each community applied its own standard, and none could make its verdict binding on the others. That absence of an enforceable verdict, more than any avant-garde gesture, is what marks the plenitude."
+    },
+    {
+      "role": "user",
+      "content": "What about Abramovic herself? Her work is actually now in a long tradition of performance artists who put themselves through abusive or extreme bodily exertion. I'm thinking of Chris Burden or Stelarc from the 1970s on. Is Abramovic herself part of what comes after the avant-garde?"
+    },
+    {
+      "role": "assistant",
+      "content": "Abramović belongs to that lineage, and her place in it shows how the avant-garde's gestures outlived their original purpose. Her 1970s pieces, like Chris Burden's self-endangering performances and Stelarc's experiments on his own body, treated the artist's body as a risk the audience had to witness, outside the commodity and the museum. The 2010 MoMA event was different. For thirty days she sat motionless in the museum, staring at one seated visitor after another, and the museum was her host. This bears on the main line: the great divide between elite art and popular culture has almost, but not quite, vanished, and what replaces it is the judgment of many communities, none able to impose its definition of art on the rest.\n\nHer career traces that change. Endurance performance began as a challenge to what an art institution would accept, and it ended as one of the institution's most prized attractions. Because the form has been absorbed, it can be lifted out and adapted, and JAY-Z did exactly that when he borrowed her staring exchange for *Picasso Baby*. She joined him in the Pace Gallery, which shows how far the gesture had shed its confrontation.\n\nStill, a gesture that no longer shocks the elite can mean something quite different elsewhere. A rap fan, seeing her beside JAY-Z, might simply take it as confirmation of his stature. Her work now sits in several communities at once, with a different value in each."
+    },
+    {
+      "role": "user",
+      "content": "How long was her performance in fact?"
+    },
+    {
+      "role": "assistant",
+      "content": "Her MoMA performance in 2010 ran thirty days. In it, Abramović sat motionless and stared at one seated individual after another. The duration is what ties her to Chris Burden and Stelarc, whose self-endangering performances of the 1970s she had been compared with. Endurance is the point of the form, since the audience has to watch a body bear something over time.\n\n*Picasso Baby*, the 2013 rap JAY-Z performed in a white-box hall of New York's Pace Gallery, kept the staring exchange and dropped the ordeal. He faced his partners one by one in a single event, with a rap as his medium and a film crew recording it. A gesture whose meaning once depended on duration could be taken up as a short, celebratory ritual.\n\nThat compression is part of how the gesture crosses communities, and it bears on the main line: the great divide between elite art and popular culture has almost, but not quite, vanished, and what replaces it is the judgment of many communities, none able to impose its definition of art on the rest. Gallery-goers can read the staring exchange as a quotation of a famous piece. Fans can read it simply as JAY-Z being received as an equal. Neither reading needs the thirty days."
+    },
+    {
+      "role": "user",
+      "content": "Wasn't it longer than 30 days? Can you check?"
+    },
+    {
+      "role": "assistant",
+      "content": "The reader is right to question the figure: the run was longer than thirty days. The thirty days given earlier, from the account of JAY-Z's video, was wrong. MoMA's retrospective ran from March 14 to May 31, 2010, and Abramović performed *The Artist Is Present* daily throughout it, for over 700 hours. That is roughly two and a half months, and it was her longest solo piece to date.\n\nThe correction sharpens the point about endurance. A piece measured in hundreds of hours, with the artist seated through the museum's opening times, belongs with the bodily ordeals of Chris Burden and Stelarc, whose self-endangering performances of the 1970s are its lineage. *Picasso Baby*, the 2013 rap JAY-Z performed in a white-box hall of the Pace Gallery, kept only the staring exchange, one partner after another. The compression from months to a single event is more drastic than it first appeared.\n\nThat compression is part of the main line: the great divide between elite art and popular culture has almost, but not quite, vanished, and what replaces it is the judgment of many communities, none able to impose its definition of art on the rest. The gesture could travel because it detached so easily from its ordeal. Gallery-goers could recognise a famous piece of performance art, and fans could see JAY-Z being received as an equal. Neither group needed to know how long she had sat."
+    }
+  ],
+  "proposal": {
+    "decision": "change",
+    "changeSummary": "Corrected the spine's statement that Abramović's 2010 MoMA performance lasted thirty days; it ran for roughly two and a half months. Added one fund entry on the correction and on how the gesture was compressed in Picasso Baby.",
+    "spineUpdates": [
+      {
+        "passageId": "great-divide-p01",
+        "markdown": "In 2013 the rapper JAY-Z released a video entitled *Picasso Baby: A Performance Art Film*, directed by Mark Romanek. It documents his performance in an unusual venue, a “white-box” hall of the New York Pace Gallery. As he raps, JAY-Z playfully confronts one by one a series of fans and “art-world types,” as the *New York Times* article describes them (Trebay 2013). JAY-Z had adapted a work by the performance artist Marina Abramovic, who in 2010 staged a performance at MoMA that ran daily for more than two months, in which she sat motionless and stared at one seated individual after another. Abramovic herself appears as one of JAY-Z’s partners. In *Picasso Baby*, director Romanek portrays the joyful atmosphere of an event in which well-known art figures as well as fans are delighted to be taking part. In the song, JAY-Z says he wants to own a Picasso; his lyrics refer to twentieth-century artists (Mark Rothko, Andy Warhol, Jean-Michel Basquiat, Francis Bacon), but there seems to be no particular rationale for his choices. JAY-Z feels no weight of the elite artistic tradition of the twentieth century. His list includes those who functioned comfortably within the elite community and those who were challenging the status of art itself. In the end, he claims to be a modern-day Picasso.",
+        "rationale": "The spine said Abramovic's MoMA event lasted thirty days. The exchange corrected this: the 2010 MoMA run was March 14 to May 31, well over thirty days. The passage is corrected in place, and the 'after other' typo is fixed in the same sentence.",
+        "conversationTurns": [
+          5,
+          7,
+          8
+        ]
+      }
+    ],
+    "fundOperations": [
+      {
+        "operation": "add",
+        "targetEntryId": null,
+        "entry": {
+          "id": "abramovic-moma-duration-compression",
+          "title": "The length of Abramović's MoMA piece and what Picasso Baby kept",
+          "anchors": [
+            "great-divide-p01"
+          ],
+          "kind": "clarification",
+          "markdown": "Abramović's *The Artist Is Present* ran at MoMA from March 14 to May 31, 2010. She sat through the museum's opening hours for more than 700 hours in all, the longest solo piece she had done to that point. The form belongs to a lineage of endurance and bodily-ordeal performance that includes Chris Burden and Stelarc, where duration matters because the audience watches a body bear something over time. *Picasso Baby* keeps the staring exchange and drops the ordeal, reducing months to a single filmed event. That makes the gesture easy to move between communities. Gallery-goers can read it as a quotation of a famous piece, and fans can read it as JAY-Z being received as an equal. Neither reading depends on how long she sat.",
+          "useWhen": "A reader asks how long Abramović's MoMA performance lasted, or how her work relates to endurance art and to JAY-Z's adaptation of it.",
+          "thread": null,
+          "sourceStatus": "needs-verification",
+          "sources": []
+        },
+        "rationale": "This records the corrected dates and duration, which come from the guide and are not otherwise established in the package. It also adds the interpretive point about the gesture's compression, which would be needless detail in the main route.",
+        "conversationTurns": [
+          3,
+          4,
+          6,
+          8
+        ]
+      }
+    ]
+  },
+  "review": {
+    "decision": "approve",
+    "summary": "The spine's \"thirty-day\" claim is a factual error, and the in-place correction to \"more than two months\" is sound. The fund entry has a useful interpretive point, but its precise dates and hours have no supplied sources, so it enters as a candidate.",
+    "spineReviews": [
+      {
+        "passageId": "great-divide-p01",
+        "approved": true,
+        "reason": "The current spine says the 2010 MoMA event lasted thirty days, which is wrong. The run was March 14 to May 31, so \"more than two months\" is accurate and deliberately avoids precise figures. The error is fixed in the authoritative route rather than left to the optional fund. The \"after other\" typo fix is minimal and harmless. The word \"daily\" is slightly loose, since she performed during museum opening hours, but it does not make the passage misleading."
+      }
+    ],
+    "fundReviews": [
+      {
+        "operationIndex": 0,
+        "approved": true,
+        "publishStatus": "candidate",
+        "reason": "The anchor at p01 fits the passage that mentions Abramović's MoMA event, and the interpretive point is useful: the gesture was compressed and detached from its ordeal, so it travels across communities. However, the entry gives the dates, the \"more than 700 hours\" figure, and the \"longest solo piece\" claim with no supplied sources. Its own sourceStatus is needs-verification, and the Burden and Stelarc lineage came from the reader. Those details need verification before the entry is accepted. The duration facts partly duplicate the corrected spine."
+      }
+    ]
+  }
+}
