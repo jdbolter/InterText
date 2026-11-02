@@ -1,6 +1,6 @@
 # InterText: current design
 
-**As of 2026-09-26.** This is the short, forward-looking account of the design now in force or under active consideration. **In place** means implemented; **intended** means a chosen direction that is not yet implemented; **exploring** means a possibility, not a settled requirement. For the history of decisions and superseded ideas, see [INTERTEXT-DESIGN-NOTES.md](INTERTEXT-DESIGN-NOTES.md). For the content schema, exact implementation boundary, and experiment commands, see [EDITORIAL-ARCHITECTURE.md](EDITORIAL-ARCHITECTURE.md).
+**As of 2026-09-26, with a 2026-11-02 note on the current focus below.** This is the short, forward-looking account of the design now in force or under active consideration. **In place** means implemented; **intended** means a chosen direction that is not yet implemented; **exploring** means a possibility, not a settled requirement. For the history of decisions and superseded ideas, see [INTERTEXT-DESIGN-NOTES.md](INTERTEXT-DESIGN-NOTES.md). For the content schema, exact implementation boundary, and experiment commands, see [EDITORIAL-ARCHITECTURE.md](EDITORIAL-ARCHITECTURE.md).
 
 ## What InterText is for
 
@@ -30,7 +30,20 @@ InterText is a sustained reading of a whole work in which a guide speaks as the 
 - **Still needed:** The local editor now publishes direct author revisions, but it cannot yet compare two versions, restore an older version, browse the complete update history, or export with a button. A command-line export exists; authenticated production oversight and restoration controls do not. The editor remains local and is intentionally excluded from deployment.
 - **In place locally:** A completed synthetic-reader exchange can be sent through the existing two-pass spine-and-fund editorial process with `npm run editorial-propose`. The command reads but never initializes or writes KV, stores a gitignored proposal bundle, and exposes a matching reviewed draft in the local editor. Nothing becomes a section version until the author loads, revises if desired, and explicitly publishes it; stale proposals cannot overwrite a newer head.
 
-## Current editorial focus: *Plenitude*, Section 5
+## Current focus: *The Digital Plenitude* (proofs edition), as of 2026-11-02
+
+The work now centres on `digital-plenitude`, the proofs' chapter 1; it is the only text on the landing page. Since the
+end of October it has added, through hand-offs in Jay's vault (`../Intertext-Author/projects/digital-plenitude/`):
+- a voice that speaks as the work about the world, answers first, and introduces what the reader has not been shown;
+- a revision pass;
+- numbered citation notes from a curated library list, with Chicago author-date references;
+- a main line for every section and the chapter;
+- spine-and-fund evolution on `claude-sonnet-5-5`, by markers and checked JSON instead of forced tool calls (H-011).
+
+`CLAUDE.md` maps the mechanisms, and the vault's `STATE.md` gives where the work stands. The account below of
+*Plenitude*, Section 5 describes the earlier focus (September 2026), which the four older works still follow.
+
+## Earlier editorial focus: *Plenitude*, Section 5
 
 The immediate purpose of synthetic reading is to improve the authored work and the reading experience, not merely to test software. The first matched collaborative spine/fund pair found useful optional material but also a risk of longer, repetitive qualification. The skeptical fund and spine runs both pressed the section toward a narrower claim about changing idioms and institutional settings of disputes over art, rather than a demonstrated decline in art's power. The fund run used one existing candidate and lasted 15 turns; the spine run used no optional material, reached a similar methodological narrowing, and finished after 11 turns. Because the paths were stochastic, this is a repeated pattern rather than proof that the fund caused the difference. Curious pairs remain to be run.
 
