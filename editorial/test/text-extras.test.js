@@ -5,8 +5,8 @@ const assert = require('node:assert/strict');
 const path = require('path');
 
 const {
-  clearFundCache,
-  loadSectionFund,
+  clearLibraryListCache,
+  loadLibraryList,
   mainLineText,
   sectionLabelLine,
   editorialModel,
@@ -26,22 +26,22 @@ test('section label falls back to "Current section" and honours sectionLabel', (
 });
 
 test('a section fund loads with its preamble for ordinary readings only', () => {
-  clearFundCache();
+  clearLibraryListCache();
   const reads = [];
   const readFile = p => { reads.push(p); return '\nBürger, entry.\n'; };
   const config = {
-    fundsDir: '/funds',
-    fundPreamble: 'WORKS THAT MAY BE CITED BY NAME',
-    sectionFunds: ['section-1.md', null],
+    libraryListsDir: '/funds',
+    libraryPreamble: 'WORKS THAT MAY BE CITED BY NAME',
+    libraryLists: ['section-1.md', null],
   };
-  assert.equal(loadSectionFund(config, 0, { readFile }), 'WORKS THAT MAY BE CITED BY NAME\n\nBürger, entry.');
+  assert.equal(loadLibraryList(config, 0, { readFile }), 'WORKS THAT MAY BE CITED BY NAME\n\nBürger, entry.');
   assert.deepEqual(reads, [path.join('/funds', 'section-1.md')]);
-  assert.equal(loadSectionFund(config, 0, { readFile }), 'WORKS THAT MAY BE CITED BY NAME\n\nBürger, entry.');
+  assert.equal(loadLibraryList(config, 0, { readFile }), 'WORKS THAT MAY BE CITED BY NAME\n\nBürger, entry.');
   assert.equal(reads.length, 1, 'fund files are read once and cached');
-  assert.equal(loadSectionFund(config, 1, { readFile }), null, 'a section without a fund gets no block');
-  assert.equal(loadSectionFund(config, 5, { readFile }), null);
-  assert.equal(loadSectionFund(config, 0, { readFile, editorial: true }), null, 'editorial readings never get it');
-  assert.equal(loadSectionFund({}, 0, { readFile }), null, 'texts without sectionFunds are unchanged');
+  assert.equal(loadLibraryList(config, 1, { readFile }), null, 'a section without a fund gets no block');
+  assert.equal(loadLibraryList(config, 5, { readFile }), null);
+  assert.equal(loadLibraryList(config, 0, { readFile, editorial: true }), null, 'editorial readings never get it');
+  assert.equal(loadLibraryList({}, 0, { readFile }), null, 'texts without libraryLists are unchanged');
 });
 
 test('every continuationWording key overrides its default in ordinary readings', () => {
@@ -85,24 +85,24 @@ test('editorial readings ignore continuationWording', () => {
 
 test('digital-plenitude wiring: label, funds for sections 1 and 5, wording, marker kept', () => {
   const config = require('../../digital-plenitude/config');
-  clearFundCache();
+  clearLibraryListCache();
   assert.equal(sectionLabelLine(config, config.sectionNames[0]), 'Now under discussion: The Great Divide');
-  assert.match(loadSectionFund(config, 0), /^WORKS THAT MAY BE CITED BY NAME/);
-  assert.match(loadSectionFund(config, 0), /Greenberg/);
-  assert.match(loadSectionFund(config, 4), /Bürger/);
-  for (const i of [1, 2, 3, 5, 6]) assert.match(loadSectionFund(config, i), /^WORKS THAT MAY BE CITED BY NAME/);
+  assert.match(loadLibraryList(config, 0), /^WORKS THAT MAY BE CITED BY NAME/);
+  assert.match(loadLibraryList(config, 0), /Greenberg/);
+  assert.match(loadLibraryList(config, 4), /Bürger/);
+  for (const i of [1, 2, 3, 5, 6]) assert.match(loadLibraryList(config, i), /^WORKS THAT MAY BE CITED BY NAME/);
   assert.match(config.continuationWording.completion, /\[\[SECTION_COMPLETE\]\]/);
   assert.equal(continuationUserMessage(false, config.continuationWording), 'Go on.');
-  for (const field of ['behavioralInstructions', 'continuationVoice', 'fundPreamble']) {
+  for (const field of ['behavioralInstructions', 'continuationVoice', 'libraryPreamble']) {
     assert.doesNotMatch(config[field], /\bsections?\b/i, `${field} does not say "section"`);
   }
 });
 
 test('plenitude, the old text, sends exactly what it sent before', () => {
   const config = require('../../plenitude/config');
-  clearFundCache();
+  clearLibraryListCache();
   assert.equal(sectionLabelLine(config, 'X'), 'Current section: X');
-  assert.equal(loadSectionFund(config, 0), null);
+  assert.equal(loadLibraryList(config, 0), null);
   assert.equal(config.continuationWording, undefined);
 });
 

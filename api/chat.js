@@ -19,14 +19,14 @@ const {
   openingSectionText,
   resolveFirstContinuation,
 } = require('./lib/reading-continuation');
-const { editorialModel, loadSectionFund, mainLineStatement, mainLineText, sectionLabelLine, textModel } = require('./lib/text-extras');
+const { editorialModel, loadLibraryList, mainLineStatement, mainLineText, sectionLabelLine, textModel } = require('./lib/text-extras');
 const { reviseReply, shownToReader } = require('./lib/reply-revision');
 const {
-  annotateFund,
+  annotateLibraryList,
   checkCitations,
   citationMarkersOn,
   dropWrittenSourceList,
-  fundIds,
+  listIds,
   introducedIds,
   loadReferences,
   markWebCitations,
@@ -200,14 +200,14 @@ module.exports = async function handler(req, res) {
     wording: config.continuationWording,
   });
   // H-003: a section's fund of citable works, for ordinary readings only.
-  const rawFundText = loadSectionFund(config, idx, { editorial: toolDelivery });
+  const rawLibraryList = loadLibraryList(config, idx, { editorial: toolDelivery });
   // H-008: each listed work marked with how to mention it now (introduce, already introduced,
   // note only, the work's own), judged from everything the text has said so far.
-  const sectionFundText = rawFundText && citationMarkersOn(config)
-    ? annotateFund(rawFundText, loadReferences(config), introducedIds(
+  const libraryListText = rawLibraryList && citationMarkersOn(config)
+    ? annotateLibraryList(rawLibraryList, loadReferences(config), introducedIds(
       [...(Array.isArray(history) ? history : []), ...(Array.isArray(sectionHistory) ? sectionHistory : [])],
       loadReferences(config)))
-    : rawFundText;
+    : rawLibraryList;
 
   try {
     const response = await client.messages.create({
@@ -233,13 +233,13 @@ module.exports = async function handler(req, res) {
             sectionLabelLine(config, sectionName),
             mainLineText(config, idx),
             // H-005: the citing rule, only where the section has a fund of citable works.
-            sectionFundText && typeof config.fundInstruction === 'string' ? config.fundInstruction : null,
+            libraryListText && typeof config.libraryInstruction === 'string' ? config.libraryInstruction : null,
             `The reader has just been shown this framing before their first message: "${config.sectionIntros[idx]}"`,
             editorialReading ? editorialReading.instructions : null,
             editorialReading ? editorialReading.memoryInstructions : null,
           ].filter(Boolean).join('\n\n') },
         { type: 'text', text: promptedSectionText, cache_control: { type: 'ephemeral' } },
-        ...(sectionFundText ? [{ type: 'text', text: sectionFundText }] : []),
+        ...(libraryListText ? [{ type: 'text', text: libraryListText }] : []),
         ...(editorialReading && priorSectionMemory
           ? [{ type: 'text', text: priorSectionMemory }]
           : []),
@@ -364,7 +364,7 @@ module.exports = async function handler(req, res) {
     let notes = null;
     if (markers) {
       const checked = checkCitations(text, {
-        allowedIds: fundIds(sectionFundText),
+        allowedIds: listIds(libraryListText),
         references: loadReferences(config),
       });
       text = checked.text;

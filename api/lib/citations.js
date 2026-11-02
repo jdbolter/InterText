@@ -24,7 +24,7 @@ function loadReferences(config, { readFile = fs.readFileSync } = {}) {
 function clearReferenceCache() { referenceCache.clear(); }
 
 // Fund entries begin with their id in square brackets: "[burger-1984] Bürger, ...".
-function fundIds(fundText) {
+function listIds(fundText) {
   const ids = new Set();
   const re = /^\[([a-z0-9-]+)\]\s/gm;
   let m;
@@ -163,7 +163,7 @@ function mentionNote(ref, introduced) {
   return '';
 }
 
-function annotateFund(fundText, references, introduced) {
+function annotateLibraryList(fundText, references, introduced) {
   if (!fundText) return fundText;
   return String(fundText).replace(/^\[([a-z0-9-]+)\] /gm, (whole, id) =>
     `${whole}${mentionNote(references && references[id], introduced && introduced.has(id))}`);
@@ -172,14 +172,14 @@ function annotateFund(fundText, references, introduced) {
 module.exports = {
   CITE_TOKEN,
   WEB_TOKEN,
-  annotateFund,
+  annotateLibraryList,
   introducedIds,
   checkCitations,
   citationMarkersOn,
   clearReferenceCache,
   dropWrittenSourceList,
   formatLocator,
-  fundIds,
+  listIds,
   loadReferences,
   locatorAllowed,
   markWebCitations,

@@ -4,11 +4,11 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 
 const {
-  annotateFund,
+  annotateLibraryList,
   checkCitations,
   citationMarkersOn,
   dropWrittenSourceList,
-  fundIds,
+  listIds,
   introducedIds,
   loadReferences,
   locatorAllowed,
@@ -19,7 +19,7 @@ const {
   webUsed,
 } = require('../../api/lib/citations');
 const { checkRevision } = require('../../api/lib/reply-revision');
-const { clearFundCache, loadSectionFund } = require('../../api/lib/text-extras');
+const { clearLibraryListCache, loadLibraryList } = require('../../api/lib/text-extras');
 const { renderDraftMarkers, renderWithNotes } = require('../../synthetic-reader/lib/notes');
 
 const references = {
@@ -29,7 +29,7 @@ const references = {
 };
 
 test('fund ids are read from the start of each entry', () => {
-  const ids = fundIds('PREAMBLE with [[CITE:x]] in it\n\n[burger-1984] Bürger, ...\n\n[levine-1988] Levine, ...');
+  const ids = listIds('PREAMBLE with [[CITE:x]] in it\n\n[burger-1984] Bürger, ...\n\n[levine-1988] Levine, ...');
   assert.deepEqual([...ids], ['burger-1984', 'levine-1988']);
 });
 
@@ -93,16 +93,16 @@ test('digital-plenitude: every fund entry has a reference, and every fund page l
   assert.equal(citationMarkersOn(config), true);
   assert.equal(citationMarkersOn(require('../../plenitude/config')), false);
   const refs = loadReferences(config);
-  clearFundCache();
+  clearLibraryListCache();
   for (const idx of [0, 1, 2, 3, 4, 5, 6]) {
-    const ids = fundIds(loadSectionFund(config, idx));
+    const ids = listIds(loadLibraryList(config, idx));
     assert.ok(ids.size >= 5, `section ${idx + 1} has a fund`);
     for (const id of ids) {
       assert.ok(refs[id], `reference for ${id}`);
       assert.match(refs[id].full, /\d{4}/);
     }
     // Every page an entry cites must be one a marker for that work may carry.
-    const fund = loadSectionFund(config, idx);
+    const fund = loadLibraryList(config, idx);
     for (const m of fund.matchAll(/^\[([a-z0-9-]+)\] (.*)$/gm)) {
       for (const p of m[2].matchAll(/\(pp?\. ([\d–, ]+)\)/g)) {
         assert.ok(locatorAllowed(p[1], refs[m[1]].pages), `${m[1]} cites pp. ${p[1]} in section ${idx + 1}`);
@@ -110,8 +110,8 @@ test('digital-plenitude: every fund entry has a reference, and every fund page l
     }
   }
   assert.deepEqual(refs['greenberg-1939'].pages, [], 'Greenberg pages belong to an unidentified reprint');
-  assert.match(config.fundInstruction, /\[\[CITE:id\]\]/);
-  assert.doesNotMatch(config.fundPreamble, /Cite a work only/);
+  assert.match(config.libraryInstruction, /\[\[CITE:id\]\]/);
+  assert.doesNotMatch(config.libraryPreamble, /Cite a work only/);
 });
 
 test('for synthesis, markers become the book\'s author-date style (server and page agree)', () => {
@@ -135,15 +135,15 @@ test('each listed work is marked with how to mention it, and introductions happe
     'levine-1988': { short: 'Levine 1988', full: 'x', pages: [] },
   };
   const fund = 'PREAMBLE\n\n[burger-1984] Bürger, ...\n\n[pautz-2002] Pautz, ...\n\n[bolter-2022] Bolter, ...\n\n[levine-1988] Levine, ...';
-  const fresh = annotateFund(fund, refs, introducedIds([], refs));
+  const fresh = annotateLibraryList(fund, refs, introducedIds([], refs));
   assert.match(fresh, /\[burger-1984\] \(Not yet introduced: on first mention, "the German literary theorist Peter Bürger"; afterwards simply "Bürger"\.\) Bürger/);
   assert.match(fresh, /\[pautz-2002\] \(Cite by note only:/);
   assert.match(fresh, /\[bolter-2022\] \(The work's own later thinking:/);
   assert.match(fresh, /\[levine-1988\] Levine/, 'no mention field: unchanged');
-  assert.deepEqual([...fundIds(fresh)], ['burger-1984', 'pautz-2002', 'bolter-2022', 'levine-1988']);
+  assert.deepEqual([...listIds(fresh)], ['burger-1984', 'pautz-2002', 'bolter-2022', 'levine-1988']);
   // once the text has cited him (or named him), he is introduced
   for (const said of ['Shock is consumed[[CITE:burger-1984|80–81]].', 'As Bürger argued, shock is consumed.']) {
-    const later = annotateFund(fund, refs, introducedIds([{ role: 'user', content: 'Bürger?' }, { role: 'assistant', content: said }], refs));
+    const later = annotateLibraryList(fund, refs, introducedIds([{ role: 'user', content: 'Bürger?' }, { role: 'assistant', content: said }], refs));
     assert.match(later, /\[burger-1984\] \(Already introduced in this conversation: simply "Bürger"\.\)/);
   }
   // a reader naming him does not count as the text introducing him

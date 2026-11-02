@@ -150,14 +150,14 @@ Return only the revised reply, with no preface or comment.`,
   referencesFile: path.join(__dirname, 'source_texts', 'references.json'),
 
   // H-003, extended 2026-10-31: works the text may cite by name, one file per section (null: none). Ordinary readings only.
-  fundsDir: path.join(__dirname, 'source_texts', 'funds'),
-  sectionFunds: ['section-1.md', 'section-2.md', 'section-3.md', 'section-4.md', 'section-5.md', 'section-6.md', 'section-7.md'],
-  fundPreamble: `WORKS THAT MAY BE CITED BY NAME
+  libraryListsDir: path.join(__dirname, 'source_texts', 'library-lists'),
+  libraryLists: ['section-1.md', 'section-2.md', 'section-3.md', 'section-4.md', 'section-5.md', 'section-6.md', 'section-7.md'],
+  libraryPreamble: `WORKS THAT MAY BE CITED BY NAME
 
 Other writers are evidence. Below are books and articles you have read, each with its id in square brackets, what it says and its pages. When you draw on one, mention it as its entry says and put a marker straight after the point it supports: [[CITE:id]], or [[CITE:id|pages]] with pages taken from its entry, as in "Bürger argued that shock, once the public expects it, is consumed [[CITE:burger-1984|80–81]]." The marker becomes a numbered note that holds the full reference, so the sentence carries at most the writer's name and nothing more of the citation. Rely on each work no further than what is written of it here. Their views stay theirs, attributed and weighed, apart from your own voice. When a writer reached a conclusion from the opposite side, say so. Bring a writer in only when the work bears on the reader's point; most replies need none.`,
 
   // H-005: added to the main instructions for a section that has a fund, so the citing rule is not left at the far end of the prompt.
-  fundInstruction: `The writers listed below under WORKS THAT MAY BE CITED BY NAME are your evidence from outside the work. Each entry says, in brackets at its start, how to mention it in this conversation: introduced on first mention and then named, cited by note only, or stated as the work's own later thinking. Every sentence that draws on a listed work ends with that work's marker, [[CITE:id]] or [[CITE:id|pages]], and says no more than the list does.`,
+  libraryInstruction: `The writers listed below under WORKS THAT MAY BE CITED BY NAME are your evidence from outside the work. Each entry says, in brackets at its start, how to mention it in this conversation: introduced on first mention and then named, cited by note only, or stated as the work's own later thinking. Every sentence that draws on a listed work ends with that work's marker, [[CITE:id]] or [[CITE:id|pages]], and says no more than the list does.`,
 
   // H-007: rewritten in line with Jay's rulings (the evolving edition; factual errors corrected in the
   // section where they occur; new directions on the book's framework; the book's own citation style).

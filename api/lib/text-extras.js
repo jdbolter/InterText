@@ -66,26 +66,26 @@ function mainLineText(config, sectionIndex) {
   return `${statement}\nWhen you answer a message from the reader, name this main line plainly, in so many words, in your opening paragraph, right after the direct answer, and let the rest of the reply bear on it; do not leave the reader to infer it.`;
 }
 
-const fundCache = new Map();
+const libraryListCache = new Map();
 
 // Returns the system-prompt text for a section's fund of citable works, or null.
 // Editorial readings carry their own fund mechanism and never receive this block.
-function loadSectionFund(config, sectionIndex, { editorial = false, readFile = fs.readFileSync } = {}) {
-  if (editorial || !config || !Array.isArray(config.sectionFunds)) return null;
-  const file = config.sectionFunds[sectionIndex];
-  if (typeof file !== 'string' || !file.trim() || typeof config.fundsDir !== 'string') return null;
-  const fullPath = path.join(config.fundsDir, file);
-  if (!fundCache.has(fullPath)) {
-    fundCache.set(fullPath, String(readFile(fullPath, 'utf8')).trim());
+function loadLibraryList(config, sectionIndex, { editorial = false, readFile = fs.readFileSync } = {}) {
+  if (editorial || !config || !Array.isArray(config.libraryLists)) return null;
+  const file = config.libraryLists[sectionIndex];
+  if (typeof file !== 'string' || !file.trim() || typeof config.libraryListsDir !== 'string') return null;
+  const fullPath = path.join(config.libraryListsDir, file);
+  if (!libraryListCache.has(fullPath)) {
+    libraryListCache.set(fullPath, String(readFile(fullPath, 'utf8')).trim());
   }
-  const body = fundCache.get(fullPath);
+  const body = libraryListCache.get(fullPath);
   if (!body) return null;
-  const preamble = typeof config.fundPreamble === 'string' ? config.fundPreamble.trim() : '';
+  const preamble = typeof config.libraryPreamble === 'string' ? config.libraryPreamble.trim() : '';
   return preamble ? `${preamble}\n\n${body}` : body;
 }
 
-function clearFundCache() {
-  fundCache.clear();
+function clearLibraryListCache() {
+  libraryListCache.clear();
 }
 
 module.exports = {
@@ -93,9 +93,9 @@ module.exports = {
   DEFAULT_EDITORIAL_MODEL,
   DEFAULT_TEXT_MODEL,
   THINKING_OFF,
-  clearFundCache,
+  clearLibraryListCache,
   editorialModel,
-  loadSectionFund,
+  loadLibraryList,
   mainLineStatement,
   mainLineText,
   sectionLabelLine,
