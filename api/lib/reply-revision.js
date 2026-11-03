@@ -32,7 +32,7 @@ function buildRevisionMessage({ readerMessage, continuing, draft, shown = null, 
     ? '(The reader asked the work to go on.)'
     : String(readerMessage || '').trim();
   const parts = [];
-  if (mainLine && String(mainLine).trim()) parts.push(`THE MAIN LINE AT THIS POINT\n${String(mainLine).trim()}`);
+  if (mainLine && String(mainLine).trim()) parts.push(`THE ARGUMENT HERE, IN BRIEF\n${String(mainLine).trim()}`);
   if (shown && String(shown).trim()) parts.push(`WHAT THE READER HAS BEEN SHOWN SO FAR\n${String(shown).trim()}`);
   if (sectionText && String(sectionText).trim()) {
     parts.push(`WHAT THE WORK HOLDS FOR THIS SECTION (for reference; the reader has not read it)\n${String(sectionText).trim()}`);

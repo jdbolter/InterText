@@ -276,7 +276,17 @@ function appendGuideResponse(text, notes = null) {
   turn.appendChild(label);
   turn.appendChild(body);
   conv.appendChild(turn);
-  turn.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  revealResponse(turn);
+}
+
+// Jay, 2026-11-03: a reply that fits is scrolled fully into view; a longer one keeps its
+// beginning in view, and the reader scrolls down to finish it.
+function revealResponse(el) {
+  const pane = document.getElementById('left-col');
+  const scrolls = pane && getComputedStyle(pane).overflowY !== 'visible';
+  const viewHeight = scrolls ? pane.clientHeight : window.innerHeight;
+  const fits = el.getBoundingClientRect().height <= viewHeight * 0.9;
+  el.scrollIntoView({ behavior: 'smooth', block: fits ? 'end' : 'start' });
 }
 
 function appendReaderMessage(text) {

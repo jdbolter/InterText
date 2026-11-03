@@ -123,9 +123,9 @@ test('the main line is handed to the model only when a text has one (H-009)', ()
   assert.equal(mainLineText({}, 0), null);
   const config = { sectionPoints: ['The divide has almost vanished.', null], chapterPoint: 'The plenitude.' };
   const text = mainLineText(config, 0);
-  assert.match(text, /^The main line at this point: The divide has almost vanished\.$/m);
+  assert.match(text, /^The argument here, in brief: The divide has almost vanished\.$/m);
   assert.match(text, /^The chapter as a whole: The plenitude\.$/m);
-  assert.match(text, /name this main line plainly, in so many words, in your opening paragraph/);
+  assert.match(text, /state this point in your opening paragraph, right after the direct answer/);
   assert.doesNotMatch(mainLineText(config, 1), /at this point/, 'a section without a statement still gets the chapter');
 });
 

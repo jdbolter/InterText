@@ -53,7 +53,7 @@ function mainLineStatement(config, sectionIndex) {
   const chapter = typeof config.chapterPoint === 'string' ? config.chapterPoint.trim() : '';
   if (!point && !chapter) return null;
   return [
-    point ? `The main line at this point: ${point}` : null,
+    point ? `The argument here, in brief: ${point}` : null,
     chapter ? `The chapter as a whole: ${chapter}` : null,
   ].filter(Boolean).join('\n');
 }
@@ -63,7 +63,7 @@ function mainLineStatement(config, sectionIndex) {
 function mainLineText(config, sectionIndex) {
   const statement = mainLineStatement(config, sectionIndex);
   if (!statement) return null;
-  return `${statement}\nWhen you answer a message from the reader, name this main line plainly, in so many words, in your opening paragraph, right after the direct answer, and let the rest of the reply bear on it; do not leave the reader to infer it.`;
+  return `${statement}\nWhen you answer a message from the reader, state this point in your opening paragraph, right after the direct answer, as a claim about culture and media in words fresh to this reply, and let the rest of the reply bear on it. The statement above is for you to steer by: the reply says the point itself, and never calls it a main line, a thesis or an argument.`;
 }
 
 const libraryListCache = new Map();

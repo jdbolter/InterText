@@ -87,7 +87,7 @@ test('the editor sees the main line, what the reader has been shown, and the sec
   });
   assert.equal(shown, '[The opening box]\nIn 2013, JAY-Z performed at Pace.\n\n[The text\'s reply 1]\nFirst reply.');
   const msg = buildRevisionMessage({ readerMessage: 'Is he avant-garde?', draft: 'Draft.', shown, sectionText: 'Section.', mainLine: 'The divide has almost vanished.' });
-  const order = ['THE MAIN LINE AT THIS POINT', 'WHAT THE READER HAS BEEN SHOWN SO FAR', 'WHAT THE WORK HOLDS FOR THIS SECTION', "THE READER'S WORDS", 'THE DRAFT REPLY'].map(h => msg.indexOf(h));
+  const order = ['THE ARGUMENT HERE, IN BRIEF', 'WHAT THE READER HAS BEEN SHOWN SO FAR', 'WHAT THE WORK HOLDS FOR THIS SECTION', "THE READER'S WORDS", 'THE DRAFT REPLY'].map(h => msg.indexOf(h));
   assert.ok(order.every((v, i) => v >= 0 && (i === 0 || v > order[i - 1])), 'all five parts, in order');
   assert.equal(buildRevisionMessage({ readerMessage: 'q', draft: 'd' }), "THE READER'S WORDS\nq\n\nTHE DRAFT REPLY\nd", 'without context: as before');
 });
