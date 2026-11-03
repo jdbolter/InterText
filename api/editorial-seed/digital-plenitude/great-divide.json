@@ -5,9 +5,9 @@
   "sectionOrder": 1,
   "title": "The Great Divide",
   "editionId": "digital-plenitude-proofs",
-  "versionId": "dp-great-divide-v001",
-  "parentVersionId": null,
-  "createdAt": "2026-11-02T00:00:00Z",
+  "versionId": "dp-great-divide-v002",
+  "parentVersionId": "dp-great-divide-v001",
+  "createdAt": "2026-11-03T00:00:00Z",
   "source": {
     "type": "authored",
     "path": "digital-plenitude/source_texts/sections/section-1.md"
@@ -15,7 +15,7 @@
   "spine": [
     {
       "id": "great-divide-p01",
-      "markdown": "In 2013 the rapper JAY-Z released a video entitled *Picasso Baby: A Performance Art Film*, directed by Mark Romanek. It documents his performance in an unusual venue, a “white-box” hall of the New York Pace Gallery. As he raps, JAY-Z playfully confronts one by one a series of fans and “art-world types,” as the *New York Times* article describes them (Trebay 2013). JAY-Z had adapted a work by the performance artist Marina Abramovic, who in 2010 staged a thirty-day event at MoMA, in which she sat motionless and stared at one seated individual after other. Abramovic herself appears as one of JAY-Z’s partners. In *Picasso Baby*, director Romanek portrays the joyful atmosphere of an event in which well-known art figures as well as fans are delighted to be taking part. In the song, JAY-Z says he wants to own a Picasso; his lyrics refer to twentieth-century artists (Mark Rothko, Andy Warhol, Jean-Michel Basquiat, Francis Bacon), but there seems to be no particular rationale for his choices. JAY-Z feels no weight of the elite artistic tradition of the twentieth century. His list includes those who functioned comfortably within the elite community and those who were challenging the status of art itself. In the end, he claims to be a modern-day Picasso."
+      "markdown": "In 2013 the rapper JAY-Z released a video entitled *Picasso Baby: A Performance Art Film*, directed by Mark Romanek. It documents his performance in an unusual venue, a “white-box” hall of the New York Pace Gallery. As he raps, JAY-Z playfully confronts one by one a series of fans and “art-world types,” as the *New York Times* article describes them (Trebay 2013). JAY-Z had adapted a work by the performance artist Marina Abramovic, who in 2010 staged a performance at MoMA that ran daily for more than two months, in which she sat motionless and stared at one seated individual after another. Abramovic herself appears as one of JAY-Z’s partners. In *Picasso Baby*, director Romanek portrays the joyful atmosphere of an event in which well-known art figures as well as fans are delighted to be taking part. In the song, JAY-Z says he wants to own a Picasso; his lyrics refer to twentieth-century artists (Mark Rothko, Andy Warhol, Jean-Michel Basquiat, Francis Bacon), but there seems to be no particular rationale for his choices. JAY-Z feels no weight of the elite artistic tradition of the twentieth century. His list includes those who functioned comfortably within the elite community and those who were challenging the status of art itself. In the end, he claims to be a modern-day Picasso."
     },
     {
       "id": "great-divide-p02",
@@ -27,5 +27,5 @@
     }
   ],
   "fundEntries": [],
-  "changeSummary": "Faithful structural package of the proofs' chapter 1, section 1 (The Great Divide); one passage per paragraph; no prose changes and no initial fund entries."
+  "changeSummary": "Faithful structural package of the proofs' chapter 1, section 1 (The Great Divide); one passage per paragraph; no prose changes and no initial fund entries. v002 (Jay, 2026-11-03): Abramović's MoMA piece corrected from \"a thirty-day event\" to \"a performance ... that ran daily for more than two months\" (it ran 14 March to 31 May 2010), as first made by the evolving edition on 2026-11-02; \"after other\" mended to \"after another\"."
 }

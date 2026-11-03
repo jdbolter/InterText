@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "editionId": "digital-plenitude-proofs",
-  "versionId": "dp-great-divide-v001",
-  "parentVersionId": null,
-  "createdAt": "2026-11-02T00:00:00Z",
+  "versionId": "dp-great-divide-v002",
+  "parentVersionId": "dp-great-divide-v001",
+  "createdAt": "2026-11-03T00:00:00Z",
   "source": {
     "type": "authored",
     "path": "digital-plenitude/source_texts/sections/section-1.md"
   },
   "spineFile": "spine.md",
   "fundEntries": [],
-  "changeSummary": "Faithful structural package of the proofs' chapter 1, section 1 (The Great Divide); one passage per paragraph; no prose changes and no initial fund entries."
+  "changeSummary": "Faithful structural package of the proofs' chapter 1, section 1 (The Great Divide); one passage per paragraph; no prose changes and no initial fund entries. v002 (Jay, 2026-11-03): Abramović's MoMA piece corrected from \"a thirty-day event\" to \"a performance ... that ran daily for more than two months\" (it ran 14 March to 31 May 2010), as first made by the evolving edition on 2026-11-02; \"after other\" mended to \"after another\"."
 }

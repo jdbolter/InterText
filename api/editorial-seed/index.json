@@ -409,7 +409,7 @@
           "package": "sections/great-divide/section.json",
           "readiness": "packaged",
           "packageUrl": "data/digital-plenitude/great-divide.json",
-          "versionId": "dp-great-divide-v001",
+          "versionId": "dp-great-divide-v002",
           "passageCount": 3,
           "fundCounts": {
             "candidate": 0,
