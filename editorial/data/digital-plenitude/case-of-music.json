@@ -5,9 +5,9 @@
   "sectionOrder": 4,
   "title": "The Case of Music",
   "editionId": "digital-plenitude-proofs",
-  "versionId": "dp-case-of-music-v001",
-  "parentVersionId": null,
-  "createdAt": "2026-11-02T00:00:00Z",
+  "versionId": "dp-case-of-music-v002",
+  "parentVersionId": "dp-case-of-music-v001",
+  "createdAt": "2026-11-03T00:00:00Z",
   "source": {
     "type": "authored",
     "path": "digital-plenitude/source_texts/sections/section-4.md"
@@ -39,7 +39,7 @@
     },
     {
       "id": "case-of-music-p07",
-      "markdown": "This in itself is an important shift from the mid-twentieth century. The great divide between elite and popular music has been replaced with numerous smaller divides and provisional connections. The Wikipedia article lists over 250 “genres” of rock music, each with a link to a descriptive article: including Bandana Thrash (a subgenre of Thrashcore), Krautrock, Swedish Death Metal, and The New Wave of New Wave (Wikipedia contributors, “List of Rock Genres”). The vastly popular hip-hop, which began as an African American subculture and spread to world-wide status, has dozens of genres too: including avant-garde hip-hop, chopper rap, and crunk (Wikipedia contributors, “List of Hip-Hop Genres”). We cite these names not to make fun of them, but rather to indicate the intensity of interest in these popular forms. Some of these genres imply not only a particular aesthetic but also a social status. To someone outside of the rock community in general, the differences between death metal, doom metal, and industrial metal may be hardly noticeable, but to those within the community it may a matter not only of taste, but even political significance. This is certainly true of hip-hop, where the international versions may not share the social and political concerns of African American culture."
+      "markdown": "This in itself is an important shift from the mid-twentieth century. The great divide between elite and popular music has been replaced with numerous smaller divides and provisional connections. When this book was written, the Wikipedia article listed over 250 “genres” of rock music, each with a link to a descriptive article: including Bandana Thrash (a subgenre of Thrashcore), Krautrock, Swedish Death Metal, and The New Wave of New Wave (Wikipedia contributors, “List of Rock Genres”). The vastly popular hip-hop, which began as an African American subculture and spread to world-wide status, has dozens of genres too: including avant-garde hip-hop, chopper rap, and crunk (Wikipedia contributors, “List of Hip-Hop Genres”). We cite these names not to make fun of them, but rather to indicate the intensity of interest in these popular forms. Some of these genres imply not only a particular aesthetic but also a social status. To someone outside of the rock community in general, the differences between death metal, doom metal, and industrial metal may be hardly noticeable, but to those within the community it may a matter not only of taste, but even political significance. This is certainly true of hip-hop, where the international versions may not share the social and political concerns of African American culture."
     },
     {
       "id": "case-of-music-p08",
@@ -47,5 +47,5 @@
     }
   ],
   "fundEntries": [],
-  "changeSummary": "Faithful structural package of the proofs' chapter 1, section 4 (The Case of Music); one passage per paragraph; no prose changes and no initial fund entries."
+  "changeSummary": "Faithful structural package of the proofs' chapter 1, section 4 (The Case of Music); one passage per paragraph; no prose changes and no initial fund entries. v002 (Jay, 2026-11-03): the Wikipedia genre count is dated (\"When this book was written, the Wikipedia article listed over 250\"), since the list has since shrunk."
 }
