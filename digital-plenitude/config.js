@@ -46,7 +46,7 @@ module.exports = {
 
     `In 2012 the painter Thomas Kinkade died. His website called him America’s “Most Collected Artist,” and his company sold prints and assembly-line oil paintings of light-dappled cottages and gardens to thousands of customers a year. To the art world they were the definition of kitsch, and his obituary in the New York Times was careful to let his fans do the praising. The question was not whether Kinkade was good, but whether the standards that excluded him still obtained. Art, once a category with a mission for the whole culture, has become a special interest, or rather many: the art world, Kinkade’s collectors and countless others, each with its own community.`,
 
-    `The Metropolitan Museum of Art has a website. So does deviantART. On web traffic rankings, deviantART scores considerably higher. Both pages load in the same browser, with equal claims on the same search results. None of this caused the collapse of cultural hierarchy — that was well underway before the Internet arrived. But digital media built an ideal home for what the collapse left behind.`,
+    `On the web, the Metropolitan Museum of Art and deviantART, a site where millions of amateurs post their own art, are equally accessible, and deviantART draws considerably more visitors. Fan fiction for shows like Star Trek was once distributed on mimeographed sheets. Such fiction is now posted to online communities whose members often number in the millions. Digital media did not cause the breakdown of cultural hierarchy. But they provide an ideal framework for our current networked culture, in which creativity is a synonym for art and each community judges it by its own standard.`,
   ],
 
   sectionImagePrompts: [
