@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "workId": "digital-plenitude",
+  "sectionId": "forgetting-popular-modernism",
+  "sectionOrder": 15,
+  "title": "Forgetting (Popular) Modernism",
+  "editionId": "digital-plenitude-proofs",
+  "versionId": "dp-forgetting-popular-modernism-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-04T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "digital-plenitude/source_texts/sections/section-15.md"
+  },
+  "spine": [
+    {
+      "id": "forgetting-popular-modernism-p01",
+      "markdown": "If modernism became popular modernism in the second half of the twentieth century, it is natural to ask what happened to postmodernism. According to Fredric Jameson (1991), postmodernism also rejected the division between high and low culture and drew freely from popular sources. Postmodern writers, architects, and artists were heirs to the tradition of the elite arts; they played casually with the fragments of modernism, but still with the sense that these were the fragments of their own tradition. In fact, postmodern art was not any more popular than the modern art it superseded. By the 1970s, the hierarchy of art had broken down so that postmodern artists could no longer have pretended to speak for the whole culture, even if they had wanted to. They were working in and for their own community, with the same claim to cultural status that popular writers and filmmakers had for their larger communities. Popular films and novels as well as rock music, music videos, and graphic novels played with the fragments of modernism, but they also responded to popular forms that came before. Ridley Scott’s sci-fi blockbuster film *Alien* (1979) combined the Hollywood monster film with progressive modernist space epics like *Star Trek*. His popular masterpiece *Blade Runner* (1982) projected film noir into a dystopian modernist future. These were examples of what we might call *popular postmodernism*. What postmodernism was to modernism in the art community, popular postmodernism is to popular modernism in the larger media culture. That is, popular postmodernism is a second wave of the popularizing of art culture in the late twentieth century."
+    },
+    {
+      "id": "forgetting-popular-modernism-p02",
+      "markdown": "Popular postmodernism has not replaced popular modernism, however. The fragments of modernism and postmodernism both continue to leave an impression on contemporary media culture today. To the end of his life, Steve Jobs, for example, was not particularly interested in the postmodernist elements that were filtering into popular culture all around him. He was committed to the values of perfect design that he inherited from modernism, and he insisted on originality and ownership, not just as a matter of economics, but also on principle. Under his leadership, Apple was involved in numerous patent infringement litigations with companies, including Samsung, Nokia, HTC, and Motorola. And when it came to design, Jobs had no use for digital sampling, crowdsourcing, or DIY, believing that designs should be carefully crafted by experts (like himself) to create platforms for users to exercise a subsidiary or at least different form of creativity. In his view, Apple’s designs empowered users precisely because they provided interfaces and services that users themselves did not know they wanted. Walter Isaacson (2011) quotes Jobs: “People don’t know what they want until you show it to them. That’s why I never rely on market research” (567). This paternalism does not fit with popular postmodernism, but is perfectly consonant with a modernism that proceeds from first principles."
+    },
+    {
+      "id": "forgetting-popular-modernism-p03",
+      "markdown": "The assumptions of popular modernism remain compelling in many communities today. The rhetoric of technological change—progressive modernism with just a dash of the avant-garde—is apparent in almost every article written about digital technology. Even today, contemporary science has not abandoned progressive modernism: the idea that science and technology lead us cumulatively to more knowledge and control. The popular modernism of technologists like Raymond Kurzweil, promising brilliant artificial intelligence and a kind of immortality for humans, still captivates audiences of geeks. These utopian visions, which have really hardly changed since the science fiction pulps of the 1930s, have their place in the plenitude along with the popular postmodernism of social media and remix. Steve Jobs’s death does seem to signal the waning of the purest form of popular modernism, but waning does not mean dying. Tens of millions of customers love the elegant design of their iPhones (or the derivative Samsung devices). But they have no abiding commitment to the aesthetic; they use their iPhones and iPads to access the careless interfaces of Facebook and Flickr."
+    },
+    {
+      "id": "forgetting-popular-modernism-p04",
+      "markdown": "If modernism was the story of European and American culture in the twentieth century, there is no dominant cultural story today. Some in the academic world are preoccupied with the attempt to find an “ism” to follow postmodernism. But postmodernism was always the late phase of modernism, and it is futile to try to describe a “post-postmodernism,” a “digimodernism,” or a “super-,” “hyper-,” or “metamodernism” (Fjellestad and Engberg 2013). Implicit in all such terms is the idea that our cultural plenitude still has an underlying unity that needs naming. The breakdown of modernism throughout the second half of the twentieth century was also the end of a coherence of culture in that sense. Popular modernism is what modernism became on its way to dissolution."
+    },
+    {
+      "id": "forgetting-popular-modernism-p05",
+      "markdown": "Postmodernism as an elite aesthetic is fading along with modernism, and the fragments of both are constantly being absorbed into contemporary media culture. This blending is exactly what modernism is not supposed to permit, for it was supposed to provide a unifying principle to culture. In that sense modernism and the avant-garde are coming to an end. As so many critics have pointed out, the avant-garde has to be ahead of the mainstream. If there is no identifiable mainstream, how can there be an avant-garde? The term “avant-garde” is now used in popular culture simply to mean “unexpected and original,” or even just “cool.” The art community still speaks of the avant-garde in the historic sense, of overturning our culture’s assumptions about art and admonishing us to adopt a new politics. But this notion applies only within the art and literary communities themselves. For all the other communities that have appropriated the term “avant-garde,” it is not really disruptive. As Thomas Frank (1997) demonstrated in *The Conquest of Cool*, the elements of counterculture (popular modernism’s avant-garde) were ultimately appropriated by business culture and became mainstream."
+    }
+  ],
+  "fundEntries": [],
+  "changeSummary": "Structural package of the proofs' chapter 2, section 8 (Forgetting (Popular) Modernism); one passage per paragraph; no initial fund entries. Jay's corrections of 2026-11-04 applied to the spine (the original edition keeps the proofs): \"Frederic Jameson\"."
+}

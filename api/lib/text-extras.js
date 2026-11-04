@@ -37,11 +37,25 @@ function thinkingOff(model) {
   return { type: THINKING_OFF[model] || 'disabled' };
 }
 
-function sectionLabelLine(config, sectionName) {
+// H-014: a text whose config lists `chapters` ({ number, title, firstSection, point }, in order)
+// is one work in several chapters; each section belongs to the last chapter starting at or before it.
+function chapterFor(config, sectionIndex) {
+  if (!config || !Array.isArray(config.chapters) || !Number.isInteger(sectionIndex)) return null;
+  let found = null;
+  for (const chapter of config.chapters) {
+    if (chapter && Number.isInteger(chapter.firstSection) && chapter.firstSection <= sectionIndex) found = chapter;
+  }
+  return found;
+}
+
+function sectionLabelLine(config, sectionName, sectionIndex) {
   const label = config && typeof config.sectionLabel === 'string' && config.sectionLabel.trim()
     ? config.sectionLabel.trim()
     : DEFAULT_SECTION_LABEL;
-  return `${label}: ${sectionName}`;
+  const chapter = chapterFor(config, sectionIndex);
+  return chapter
+    ? `${label}: ${sectionName} (chapter ${chapter.number}, ${chapter.title})`
+    : `${label}: ${sectionName}`;
 }
 
 // H-009: the main line of the argument at this point (a section statement, and one for the
@@ -50,11 +64,16 @@ function mainLineStatement(config, sectionIndex) {
   if (!config) return null;
   const point = Array.isArray(config.sectionPoints) && typeof config.sectionPoints[sectionIndex] === 'string'
     ? config.sectionPoints[sectionIndex].trim() : '';
-  const chapter = typeof config.chapterPoint === 'string' ? config.chapterPoint.trim() : '';
+  // H-014: with chapters, the chapter's own point; otherwise the single chapterPoint.
+  const inChapter = chapterFor(config, sectionIndex);
+  const chapter = inChapter
+    ? (typeof inChapter.point === 'string' ? inChapter.point.trim() : '')
+    : (typeof config.chapterPoint === 'string' ? config.chapterPoint.trim() : '');
   if (!point && !chapter) return null;
+  const chapterLabel = inChapter ? `Chapter ${inChapter.number}, ${inChapter.title}, as a whole` : 'The chapter as a whole';
   return [
     point ? `The argument here, in brief: ${point}` : null,
-    chapter ? `The chapter as a whole: ${chapter}` : null,
+    chapter ? `${chapterLabel}: ${chapter}` : null,
   ].filter(Boolean).join('\n');
 }
 
@@ -93,6 +112,7 @@ module.exports = {
   DEFAULT_EDITORIAL_MODEL,
   DEFAULT_TEXT_MODEL,
   THINKING_OFF,
+  chapterFor,
   clearLibraryListCache,
   editorialModel,
   loadLibraryList,

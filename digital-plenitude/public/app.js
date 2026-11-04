@@ -24,7 +24,23 @@ let sending = false;
 let endShown = false;
 const CONTINUE_MESSAGE = 'Continue reading from where we have reached in this section.';
 
-const SECTION_NUMERALS = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
+// H-014: one work in chapters; numerals start again in each chapter.
+const SECTION_NUMERALS = [
+  'I', 'II', 'III', 'IV', 'V', 'VI', 'VII',
+  'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII',
+];
+
+// H-014: must match config.chapters (number, title, firstSection); a test checks this.
+const CHAPTERS = [
+  { number: 1, title: 'The Great Divide', firstSection: 0 },
+  { number: 2, title: 'Popular Modernism', firstSection: 7 },
+];
+
+function chapterOf(idx) {
+  let found = CHAPTERS[0];
+  CHAPTERS.forEach(chapter => { if (chapter.firstSection <= idx) found = chapter; });
+  return found;
+}
 
 const SECTION_TITLES = [
   'The Great Divide',
@@ -34,6 +50,14 @@ const SECTION_TITLES = [
   'Shocking Art',
   'Art as a Special Interest',
   'Communities & Creativity',
+  'Popular Modernism',
+  'Popular Modernism: Formal, Progressive and Avant-Garde',
+  'Popular Music and Formal Modernism',
+  'John Lennon and Yoko Ono as Political Modernists',
+  'McLuhan and Popular Modernism',
+  'Steve Jobs',
+  'The Future as Popular Modernist Kitsch',
+  'Forgetting (Popular) Modernism',
 ];
 
 function priorSectionSummaries(activeSection) {
@@ -64,6 +88,7 @@ const SECTION_IMAGES = [
   ],
   null,
   null,
+  null, null, null, null, null, null, null, null, // H-014: chapter 2
 ];
 
 // Flat lookup map for inline image tokens
@@ -86,6 +111,23 @@ const SECTION_INTROS = [
   `<p>In 2012 the painter Thomas Kinkade died. His website called him America&rsquo;s &ldquo;Most Collected Artist,&rdquo; and his company sold prints and assembly-line oil paintings of light-dappled cottages and gardens to thousands of customers a year. To the art world they were the definition of kitsch, and his obituary in the <em>New York Times</em> was careful to let his fans do the praising. The question was not whether Kinkade was good, but whether the standards that excluded him still obtained. Art, once a category with a mission for the whole culture, has become a special interest, or rather many: the art world, Kinkade&rsquo;s collectors and countless others, each with its own community.</p>`,
 
   `<p>On the web, the Metropolitan Museum of Art and deviantART, a site where millions of amateurs post their own art, are equally accessible, and deviantART draws considerably more visitors. Fan fiction for shows like <em>Star Trek</em> was once distributed on mimeographed sheets. Such fiction is now posted to online communities whose members often number in the millions. Digital media did not cause the breakdown of cultural hierarchy. But they provide an ideal framework for our current networked culture, in which creativity is a synonym for art and each community judges it by its own standard.</p>`,
+
+  // H-014: chapter 2 (drafts for Jay's approval).
+  `<p>On January 9, 2007, Steve Jobs walked onto the stage at Macworld to introduce the iPhone. Apple, he said, had already changed everything twice, with the Macintosh in 1984 and the iPod in 2001, and now it was reinventing the telephone. The audience applauded louder at every pause. Claims like this, that a new device or medium changes society or even human nature, are the standard rhetoric of digital culture. They are modernism in a popular form: where the modernists of the last century wanted a revolutionary art, today&rsquo;s digital writers and designers want revolutionary media, and they remember just enough of the past to believe they can overcome it.</p>`,
+
+  `<p>Modernism was never one idea. Painters from the Cubists to the Abstract Expressionists pursued formal innovation, which the critic Clement Greenberg saw as modernism&rsquo;s great achievement. The Bauhaus, the German design school the Nazis closed in 1933, meant to design a better society through simplicity and purity. And the avant-gardes, from the Futurists to the Surrealists, wanted, as the cultural historian Peter Bürger put it, to dissolve art into everyday life. All three strands passed into popular culture after 1950: into jazz and rock, into the political performances of John Lennon and Yoko Ono, into the media theory of Marshall McLuhan, and into the products of Steve Jobs.</p>`,
+
+  `<p>In the film <em>The Blackboard Jungle</em> (1955), rebellious students smash their teacher&rsquo;s collection of jazz records. Jazz had become &ldquo;modern&rdquo; after the war, music for listening rather than dancing, played by Charlie Parker, Miles Davis and John Coltrane and championed by critics as art. Rock and roll was music for teenagers. Yet within a dozen years it took the same path: in 1967 the Beatles released <em>Sgt. Pepper&rsquo;s Lonely Hearts Club Band</em>, which <em>Rolling Stone</em> would rank as the greatest rock album of all time. Jazz and rock each ran through a compressed version of modernism&rsquo;s formal trajectory, from simple forms to works claimed as art, and each had reached its end by the 1970s.</p>`,
+
+  `<p>In March 1969 John Lennon married Yoko Ono in Gibraltar, and the couple spent their honeymoon in bed at the Amsterdam Hilton, receiving reporters for a week with one message: the people themselves could end the war in Vietnam. Ono came from Fluxus, an avant-garde that staged events to bring art and life together, and through her Lennon turned his own celebrity into a performance. That December, in Toronto, the couple were interviewed by Marshall McLuhan. The avant-gardes of the early twentieth century had shocked small audiences of art patrons. Lennon reached millions, and since then rock stars have been expected to be cultural and political figures.</p>`,
+
+  `<p>In Woody Allen&rsquo;s <em>Annie Hall</em> (1977), Marshall McLuhan appears as himself to tell a Columbia University professor of communications that he does not understand McLuhan&rsquo;s work. By then McLuhan, an English professor who had turned to the study of media, had spent a decade as the celebrated prophet of television. He made media, not art, the agent of revolutionary change: each new medium extends the human senses, and the medium is the message. In this he carried the elite modernist idea that every medium has its own essence into popular culture, and digital writers have followed him, treating the computer as the final medium that absorbs all the others.</p>`,
+
+  `<p>On January 22, 1984, during the Super Bowl, Apple ran a commercial directed by Ridley Scott. An athletic woman, chased by armed police, runs through a hall of grey workers watching a dictator on a giant screen and hurls a hammer into it. The Macintosh, the narrator promised, would prove that &ldquo;1984 will not be like <em>1984</em>.&rdquo; Steve Jobs loved Dylan and the Beatles, but his own modernism was the Bauhaus&rsquo;s: clean, simple, totally designed machines, closed to tinkering. He put modernist design into the hands of tens of millions, and yet that order could reach no further than Apple&rsquo;s own products and their users.</p>`,
+
+  `<p>Aboard the Starship <em>Enterprise</em>, in the <em>Star Trek</em> of the 1960s, the furniture parodies mid-century modern design, almost everything is plastic or alloy, war and poverty on Earth are things of the past, and everyone fits into a spandex jumpsuit. From Fritz Lang&rsquo;s <em>Metropolis</em> (1927) on, science fiction turned the modernist fascination with technology into a popular vision of the future. Artificial intelligence, from Alan Turing&rsquo;s paper of 1950 to Ray Kurzweil&rsquo;s &ldquo;singularity,&rdquo; promised the same future in the language of science. Silly and endearing, these visions are progressive modernism in a popular idiom, and they have barely changed since the science fiction pulps of the 1930s.</p>`,
+
+  `<p>In Ridley Scott&rsquo;s <em>Alien</em> (1979), a Hollywood monster film plays out on a spaceship from the world of <em>Star Trek</em>; in his <em>Blade Runner</em> (1982), film noir moves into a dystopian modernist future. This is popular postmodernism, playing with the fragments of modernism and of earlier popular forms alike. It has not replaced popular modernism: Steve Jobs held to modernist design to the end, and millions love their iPhones, which they use to reach the careless interfaces of Facebook. With no mainstream left, there can be no avant-garde, and the counterculture became business culture. Popular modernism is what modernism became on its way to dissolution.</p>`,
 ];
 
 // ── Consent dialog ──
@@ -114,14 +156,63 @@ appendSectionBreak(0, false);
 
 // ── TOC navigation ──
 
+// H-014: the contents list is built here, grouped by chapter; only the current chapter is open.
+function buildToc() {
+  const toc = document.getElementById('toc');
+  toc.innerHTML = '';
+  CHAPTERS.forEach((chapter, c) => {
+    const last = c + 1 < CHAPTERS.length ? CHAPTERS[c + 1].firstSection : SECTION_TITLES.length;
+    const group = document.createElement('div');
+    group.className = 'toc-chapter';
+    group.dataset.chapter = String(chapter.number);
+    const head = document.createElement('button');
+    head.className = 'toc-chapter-title';
+    head.type = 'button';
+    head.textContent = `Chapter ${chapter.number}: ${chapter.title}`;
+    head.addEventListener('click', () => group.classList.toggle('open'));
+    const list = document.createElement('div');
+    list.className = 'toc-sections';
+    for (let i = chapter.firstSection; i < last; i += 1) {
+      const item = document.createElement('button');
+      item.className = 'toc-item';
+      item.type = 'button';
+      item.dataset.section = String(i);
+      const num = document.createElement('span');
+      num.className = 'toc-num';
+      num.textContent = SECTION_NUMERALS[i];
+      const title = document.createElement('span');
+      title.className = 'toc-title';
+      title.textContent = SECTION_TITLES[i];
+      item.appendChild(num);
+      item.appendChild(title);
+      list.appendChild(item);
+    }
+    group.appendChild(head);
+    group.appendChild(list);
+    toc.appendChild(group);
+  });
+  markTocActive(sectionIndex);
+}
+
+function markTocActive(idx) {
+  document.querySelectorAll('.toc-item').forEach(el => {
+    el.classList.toggle('active', Number(el.dataset.section) === idx);
+  });
+  const current = String(chapterOf(idx).number);
+  document.querySelectorAll('.toc-chapter').forEach(group => {
+    group.classList.toggle('open', group.dataset.chapter === current);
+    group.classList.toggle('current', group.dataset.chapter === current);
+  });
+}
+
+buildToc();
+
 function selectSection(newIdx) {
   if (newIdx === sectionIndex) return;
   saveCurrentSection();
   sectionHistoryStart = contributionHistory.length;
   sectionIndex = newIdx;
-  document.querySelectorAll('.toc-item').forEach(el => {
-    el.classList.toggle('active', Number(el.dataset.section) === newIdx);
-  });
+  markTocActive(newIdx);
   intro.innerHTML = SECTION_INTROS[sectionIndex];
   appendSectionBreak(sectionIndex);
 }
@@ -190,6 +281,15 @@ function showFarewellDone() {
 function appendSectionBreak(idx, scroll = true) {
   const el = document.createElement('div');
   el.className = 'section-break';
+
+  // H-014: a chapter's first section opens under the chapter's heading.
+  const chapter = CHAPTERS.find(ch => ch.firstSection === idx);
+  if (chapter) {
+    const chapterHead = document.createElement('div');
+    chapterHead.className = 'chapter-heading';
+    chapterHead.textContent = `Chapter ${chapter.number}: ${chapter.title}`;
+    el.appendChild(chapterHead);
+  }
 
   const header = document.createElement('div');
   header.className = 'section-break-header';

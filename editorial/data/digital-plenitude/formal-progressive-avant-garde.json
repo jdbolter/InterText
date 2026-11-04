@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "workId": "digital-plenitude",
+  "sectionId": "formal-progressive-avant-garde",
+  "sectionOrder": 9,
+  "title": "Popular Modernism: Formal, Progressive and Avant-Garde",
+  "editionId": "digital-plenitude-proofs",
+  "versionId": "dp-formal-progressive-avant-garde-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-04T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "digital-plenitude/source_texts/sections/section-9.md"
+  },
+  "spine": [
+    {
+      "id": "formal-progressive-avant-garde-p01",
+      "markdown": "Modernism had always been a network of related ideas about the nature and purpose of art. One strand of modernism emphasized formal innovation that focused on changing the form, and even the materials, of art. In painting, for example, artists worked to free themselves from what André Bazin once called the “original sin” of Renaissance painting, meaning the attempt to represent the world with perfect visual fidelity. They devised new styles such as Fauvism, Cubism, and Abstract Expressionism. Art historians or critics such as Clement Greenberg saw this formal innovation as the great achievement of modernism. In addition to this formal modernism, there was a political strain, as artists and designers believed their work could contribute to a new social order. Futuristic, progressive, and technologically oriented, the Bauhaus sought to design a better society through the aesthetic principles of simplicity and purity: “the creation of a new man for a new, more humane society was the Bauhaus’s true goal” (Siebenbrodt and Schöbe 2009, loc. 234 of 4191, Kindle). The German government financed the design school, more or less generously, until the Nazis shut it down."
+    },
+    {
+      "id": "formal-progressive-avant-garde-p02",
+      "markdown": "[Note: In his work on video games, Brian Schrank (2014) has developed a closely related but distinct version of the distinctions between the formal and political avant-gardes. I am indebted to his work.]"
+    },
+    {
+      "id": "formal-progressive-avant-garde-p03",
+      "markdown": "There were also the avant-gardes of twentieth-century modernism, such as the Futurists, Dadaists, and Surrealists, who appeared to want a more thorough-going revision of art and culture. The term “avant-garde” has often been treated as a synonym for modernism, because generations of modernist artists, beginning with the Impressionists in the nineteenth century, saw themselves as ahead of and opposed to mainstream art. But as wave after wave of -isms (Constructivism, Suprematism, Futurism, Surrealism, and so on) swept through modern art and culture, artists had difficulty remaining avant-garde, shocking, and contrary to the mainstream. Various modernist artists (e.g., Picasso, Kandinsky, Pollock) themselves became a new mainstream, against which the next generation of avant-garde artists rebelled. The formal modernist styles, such as Cubism and Abstract Expressionism, in particular, began as shocking, and therefore avant-garde, but then moved comfortably into the museum and gallery system. By the midcentury, high or elite modernism, as described by the critic Clement Greenberg, was thoroughly mainstream. In 1939, Greenberg himself wrote a famous essay entitled “Avant-garde and Kitsch,” in which all modernism was avant-garde in its fight against nineteenth-century mainstream art, which he called “kitsch.” Yet, by the 1950s, Greenberg was the champion of Abstract Expressionism, which itself had come to dominate elite, mainstream art, at least in America."
+    },
+    {
+      "id": "formal-progressive-avant-garde-p04",
+      "markdown": "Meanwhile, some of the twentieth-century avant-gardes were true avant-gardes in the political as well as artistic sense—on both the left and the right. The Futurists associated themselves with the Italian fascists; the Dadaists, at least in Berlin, with the leftists. As the cultural historian Peter Bürger put it, these historical avant-gardes imagined a revolution in which art was integrated into everyday life (Bürger 1984). Life itself became art, or rather you lived in such a way that your day-to-day existence was artistic, a performance. In this new order, the hierarchies of traditional art were gone, but so perhaps were the hierarchies of traditional society and politics. The seductive idea of art as life and life as art returned repeatedly in the twentieth century."
+    },
+    {
+      "id": "formal-progressive-avant-garde-p05",
+      "markdown": "These strands—the formal modernism of the mainstream, the progressive modernism of the Bauhaus, and the radical modernism of the avant-garde—all found their way into popular modernism. Sometimes popular modernists emphasized formal innovation, sometimes political change, and sometimes they combined the two. For example, jazz critics saw musicians such as Miles Davis and the Modern Jazz Quartet as pursuing formal perfection. Rock music in the 1960s combined formal innovation with a sense that society could be remade. John Lennon and Yoko Ono created their own synthesis of rock music and politically inspired avant-garde performance. Marshall McLuhan was a technological modernist who substituted the idea of media for art: it was the evolution of media, not high art, that changed culture and human beings themselves. Finally, there were popular modernists, such as Steve Jobs, for whom the themes of technological innovation, cultural expression, and social change converged in the digital medium."
+    },
+    {
+      "id": "formal-progressive-avant-garde-p06",
+      "markdown": "Popular modernism has never been a self-conscious movement. It is my name for an explosion of different expressive forms from the 1960s to the present. The strands that I identify here—formal, progressive, and political—are my attempt to impose order on this extraordinary creative diversity. And the figures I focus on here—the Beatles and particularly John Lennon, Marshall McLuhan, and Steve Jobs—are somewhat arbitrary choices out of dozens or hundreds of musicians, filmmakers, writers, and technologists. Nevertheless these examples of popular modernism were all extremely well known and can help us understand one of the paths that our media culture has traveled in the last half century."
+    }
+  ],
+  "fundEntries": [],
+  "changeSummary": "Structural package of the proofs' chapter 2, section 2 (Popular Modernism: Formal, Progressive and Avant-Garde); one passage per paragraph; no initial fund entries. Jay's corrections of 2026-11-04 applied to the spine (the original edition keeps the proofs): \"Futurists, Dadaist, and Surrealists\"; \"(Siebenbrot and Schöbe 2009\"."
+}

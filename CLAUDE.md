@@ -32,7 +32,7 @@ first.
 - **`npm run check-models`** tries each kind of call against the real API.
 
 ## *The Digital Plenitude* (`digital-plenitude/`)
-The proofs' chapter 1, seven sections. Its `config.js` carries everything specific to it:
+The proofs' chapters 1 and 2, fifteen sections. Its `config.js` carries everything specific to it:
 
 - **The voice and model**
   - `behavioralInstructions`: the text speaks as the work about the world, in the third person. It answers the
@@ -54,8 +54,12 @@ The proofs' chapter 1, seven sections. Its `config.js` carries everything specif
       never named).
   - The model writes `[[CITE:id|pages]]`. The server checks it. Web citations become `[[WEB:k]]`. The page
     (`shared/citation-notes.js`) numbers the notes and shows the references.
-- **The main line:** `chapterPoint` and `sectionPoints`. Before every reply, the model gets the main line of the
-  argument for the section and the chapter.
+- **Chapters (H-014).** One work in chapters: `chapters` lists `{ number, title, firstSection, point }`, and a
+  section belongs to the last chapter starting at or before it. Chapter 1 is sections 1 to 7; chapter 2, *Popular
+  Modernism*, sections 8 to 15. The page's `CHAPTERS` in `public/app.js` must match (a test checks it); the contents
+  list is built from it, grouped by chapter, and numerals start again in each chapter.
+- **The argument in brief:** `sectionPoints` and each chapter's `point`. Before every reply, the model gets the point
+  for the section and for its chapter, and states it as a claim, never as "the main line" (H-013).
 - **Evolution**
   - `synthesisInstructions`: used only for dry-run previews of the old whole-section rewrite.
   - `editorialDelivery: 'markers'`: the text's editorial path runs without forced tools (H-011).

@@ -147,6 +147,51 @@ body {
   flex-direction: column;
   gap: 1.1rem;
   padding: 2.5rem 1.5rem 1.5rem;
+  max-height: 55vh; /* H-014: with several chapters the list may scroll */
+  overflow-y: auto;
+}
+
+/* H-014: chapters in the contents list; only the open chapter shows its sections. */
+.toc-chapter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.toc-chapter-title {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.toc-chapter-title::before {
+  content: '\25B8\00A0';
+}
+
+.toc-chapter.open .toc-chapter-title::before {
+  content: '\25BE\00A0';
+}
+
+.toc-chapter.current .toc-chapter-title {
+  color: var(--guide-label);
+}
+
+.toc-sections {
+  display: none;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding-left: 0.2rem;
+}
+
+.toc-chapter.open .toc-sections {
+  display: flex;
 }
 
 .toc-item {
@@ -429,6 +474,15 @@ header h1 {
   margin: 2.5rem 0 2rem;
   padding-top: 2rem;
   border-top: 1px solid var(--border);
+}
+
+.chapter-heading {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
 }
 
 .section-break-header {

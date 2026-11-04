@@ -230,7 +230,7 @@ module.exports = async function handler(req, res) {
               .filter(({ id }) => !shownImages.includes(id))
               .map(({ prompt }) => prompt)
               .join('\n\n') || null,
-            sectionLabelLine(config, sectionName),
+            sectionLabelLine(config, sectionName, idx),
             mainLineText(config, idx),
             // H-005: the citing rule, only where the section has a fund of citable works.
             libraryListText && typeof config.libraryInstruction === 'string' ? config.libraryInstruction : null,

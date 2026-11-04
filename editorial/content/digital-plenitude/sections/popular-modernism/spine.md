@@ -1,0 +1,39 @@
+<!-- intertext:passage popular-modernism-p01 -->
+
+On January 9, 2007, Steve Jobs was on stage at the Macworld conference giving one of his flamboyant product presentations. He saved the most important product, the iPhone, for last. The giant screen projected images appropriately punctuating his words, as Jobs began. “Every once in a while, a revolutionary product comes along that changes everything,” he said. Most designers or engineers would be lucky to work on even one such revolution in their careers. But Apple (and Jobs himself) had pioneered several: “In 1984, we introduced the Macintosh. It didn’t just change Apple; it changed the whole computer industry. In 2001, we introduced the first iPod. And it didn’t just change the way we all listen to music. It changed the entire music industry.” With the iPhone, Jobs told his audience, whose applause became more enthusiastic at each pause in his narrative, Apple was reinventing the telephone and changing everything again (Jobs 2007). Claims that a new product is revolutionary—that it changes us as individuals or society as a whole—have become the standard rhetoric of digital media culture. We hear it from industry leaders, writers, and academics:
+
+<!-- intertext:passage popular-modernism-p02 -->
+
+> The Internet enabled so many other phenomenon [sic] that it’s startling to realize the Internet as we know it only arrived in the ’90s. But it didn’t take long to change our lives forever. (Daniel 2009)
+
+<!-- intertext:passage popular-modernism-p03 -->
+
+> Video games touch everyone, everywhere. You can’t escape their reach. They have shaped pop culture, economics and the lives of millions of people for over six decades. (from *Video Game: The Movie*, cited in Parker 2012)
+
+<!-- intertext:passage popular-modernism-p04 -->
+
+> If we take the computer as a carrier of a way of knowing, a way of seeing the world and our place in it, we are all computer people now. (Turkle 2004)
+
+<!-- intertext:passage popular-modernism-p05 -->
+
+> The current explosion of digital technology not only is changing the way we live and communicate but also is rapidly and profoundly altering our brains. (Small and Vorgan 2008)
+
+<!-- intertext:passage popular-modernism-p06 -->
+
+The idea that media technologies can have such a revolutionary effect is a popular expression of modernist views from the last century. Where twentieth-century modernists believed that art should be revolutionary, digital writers today assume that media and media technology should be. Where modernist designers, such as those at the Bauhaus school, believed that the proper use of technology could reform society, today’s digerati (both writers and designers) believe that digital media have the power to transform society or even human nature.
+
+<!-- intertext:passage popular-modernism-p07 -->
+
+Popular modernists often exhibit a useful forgetfulness of a past that might get in the way of the revolution. They imagine history in the way common among speakers in TED talks, where there are three or four great ages of technological development culminating in the new age the speaker is promoting. Steve Jobs certainly believed in the power of well-designed technology to refashion media culture and conducted a campaign over decades to make digital technology “transformative.”
+
+<!-- intertext:passage popular-modernism-p08 -->
+
+For traditional, elite modernism, art and society needed to start over from first principles. In a pamphlet, the Futurist Marinetti suggested bombing Venice in order to get rid of the past. Popular modernism goes further; it does not even need to remember elite modernism. Over the past fifty years, the breakdown of the hierarchy of art and culture has meant that popular modernists could take whatever fragments they chose from the modernist past and leave the rest. That is, popular modernists do to modernism what earlier modernists did to the traditions of nineteenth-century art and design. Digital writers and designers have borrowed the early modernist imperative of revolution, along with a modernist’s own lack of gratitude toward the past. As popular modernists, they know just enough history to believe they can overcome it. The final line in Apple’s classic Think Different ad campaign is: “Because the people who are crazy enough to think they can change the world, are the ones who do.”
+
+<!-- intertext:passage popular-modernism-p09 -->
+
+It is especially ironic that today’s popular modernists care so little about the history of modernism, because in some ways the impulse to popularize was already a facet of early modernism. Modernist artists wanted to go beyond the elite culture of the nineteenth century or even to bring down the elite. After the Russian Revolution, the Constructivists aimed to educate the peasants and bring them to an awareness of history and the triumph of socialism. Likewise, the goal of the Bauhaus was to design the future through the application of modernist first principles. Because it was to be a future for everyone, the Bauhaus curriculum emphasized the applied arts and crafts. Students learned in workshops, sometimes working on applied projects that the Bauhaus school could sell to the public or industry (Whitford 1984). The Bauhaus teachers were often artists themselves (e.g., Klee, Kandinsky, Moholy-Nagy) whose reputations would eventually rank them among the century’s artistic elite, but they also applied modernism to the problems of graphic and industrial design. When the Nazis closed the school in 1933, refugees carried its principles to the United States and elsewhere, and modernist ideas from the Bauhaus and other sources became increasingly influential in commercial design. Another popularizing movement in the 1920s and 1930s was Art Deco. Although it rejected the spartan design philosophy of the Bauhaus, Art Deco nevertheless borrowed from modernist principles to inform designs as diverse as railway stations, household furniture, radios, and dishes.
+
+<!-- intertext:passage popular-modernism-p10 -->
+
+By the 1950s, then, bringing modernist ideas into popular culture was nothing new. Yet this period was different. Modern art itself had become traditional, firmly established in the elite museum and gallery system. The Museum of Modern Art (MoMA) in New York had opened in 1929 and occupied its current location starting in 1939. By the 1960s, modern art was being challenged, not for being radical, but for being too conservative. Within the art world, the challenge took the form of such new practices as performance and installation art. The challenge from popular culture came from jazz and rock-and-roll musicians and to some extent from writers and film and television producers. These diverse talents were ambivalent about the high culture they were challenging. The makers of popular culture did not always seek to abolish hierarchy; they sometimes wanted recognition for their own works as part of a new elite. They wanted film to be recognized as the equivalent of literature. They wanted 1950s jazz or 1960s rock music to gain a place alongside classical music: they called on Beethoven not so much to roll over as to move over. In some cases they adopted the names and forms of elite art from the previous era. Gradually, too, styles and forms of popular culture filtered “up” into the art and music communities. The division between elite and popular was becoming permeable in both directions.

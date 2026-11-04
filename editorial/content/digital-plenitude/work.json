@@ -45,6 +45,54 @@
       "title": "Communities and Creativity",
       "order": 7,
       "package": "sections/communities-and-creativity/section.json"
+    },
+    {
+      "id": "popular-modernism",
+      "title": "Popular Modernism",
+      "order": 8,
+      "package": "sections/popular-modernism/section.json"
+    },
+    {
+      "id": "formal-progressive-avant-garde",
+      "title": "Popular Modernism: Formal, Progressive and Avant-Garde",
+      "order": 9,
+      "package": "sections/formal-progressive-avant-garde/section.json"
+    },
+    {
+      "id": "popular-music-formal-modernism",
+      "title": "Popular Music and Formal Modernism",
+      "order": 10,
+      "package": "sections/popular-music-formal-modernism/section.json"
+    },
+    {
+      "id": "lennon-ono-political-modernists",
+      "title": "John Lennon and Yoko Ono as Political Modernists",
+      "order": 11,
+      "package": "sections/lennon-ono-political-modernists/section.json"
+    },
+    {
+      "id": "mcluhan-popular-modernism",
+      "title": "McLuhan and Popular Modernism",
+      "order": 12,
+      "package": "sections/mcluhan-popular-modernism/section.json"
+    },
+    {
+      "id": "steve-jobs",
+      "title": "Steve Jobs",
+      "order": 13,
+      "package": "sections/steve-jobs/section.json"
+    },
+    {
+      "id": "future-as-kitsch",
+      "title": "The Future as Popular Modernist Kitsch",
+      "order": 14,
+      "package": "sections/future-as-kitsch/section.json"
+    },
+    {
+      "id": "forgetting-popular-modernism",
+      "title": "Forgetting (Popular) Modernism",
+      "order": 15,
+      "package": "sections/forgetting-popular-modernism/section.json"
     }
   ]
 }

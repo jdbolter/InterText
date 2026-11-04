@@ -513,6 +513,134 @@
             "superseded": 0,
             "rejected": 0
           }
+        },
+        {
+          "id": "popular-modernism",
+          "title": "Popular Modernism",
+          "order": 8,
+          "package": "sections/popular-modernism/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/popular-modernism.json",
+          "versionId": "dp-popular-modernism-v001",
+          "passageCount": 10,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "formal-progressive-avant-garde",
+          "title": "Popular Modernism: Formal, Progressive and Avant-Garde",
+          "order": 9,
+          "package": "sections/formal-progressive-avant-garde/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/formal-progressive-avant-garde.json",
+          "versionId": "dp-formal-progressive-avant-garde-v001",
+          "passageCount": 6,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "popular-music-formal-modernism",
+          "title": "Popular Music and Formal Modernism",
+          "order": 10,
+          "package": "sections/popular-music-formal-modernism/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/popular-music-formal-modernism.json",
+          "versionId": "dp-popular-music-formal-modernism-v001",
+          "passageCount": 8,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "lennon-ono-political-modernists",
+          "title": "John Lennon and Yoko Ono as Political Modernists",
+          "order": 11,
+          "package": "sections/lennon-ono-political-modernists/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/lennon-ono-political-modernists.json",
+          "versionId": "dp-lennon-ono-political-modernists-v001",
+          "passageCount": 7,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "mcluhan-popular-modernism",
+          "title": "McLuhan and Popular Modernism",
+          "order": 12,
+          "package": "sections/mcluhan-popular-modernism/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/mcluhan-popular-modernism.json",
+          "versionId": "dp-mcluhan-popular-modernism-v001",
+          "passageCount": 7,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "steve-jobs",
+          "title": "Steve Jobs",
+          "order": 13,
+          "package": "sections/steve-jobs/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/steve-jobs.json",
+          "versionId": "dp-steve-jobs-v001",
+          "passageCount": 9,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "future-as-kitsch",
+          "title": "The Future as Popular Modernist Kitsch",
+          "order": 14,
+          "package": "sections/future-as-kitsch/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/future-as-kitsch.json",
+          "versionId": "dp-future-as-kitsch-v001",
+          "passageCount": 3,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "forgetting-popular-modernism",
+          "title": "Forgetting (Popular) Modernism",
+          "order": 15,
+          "package": "sections/forgetting-popular-modernism/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/forgetting-popular-modernism.json",
+          "versionId": "dp-forgetting-popular-modernism-v001",
+          "passageCount": 5,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
         }
       ]
     }

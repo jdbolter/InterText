@@ -21,6 +21,15 @@ module.exports = {
     'section-5.md',
     'section-6.md',
     'section-7.md',
+    // H-014: chapter 2, Popular Modernism.
+    'section-8.md',
+    'section-9.md',
+    'section-10.md',
+    'section-11.md',
+    'section-12.md',
+    'section-13.md',
+    'section-14.md',
+    'section-15.md',
   ],
 
   sectionNames: [
@@ -31,6 +40,14 @@ module.exports = {
     'Shocking Art',
     'Art as a Special Interest',
     'Communities and Creativity',
+    "Popular Modernism",
+    "Popular Modernism: Formal, Progressive and Avant-Garde",
+    "Popular Music and Formal Modernism",
+    "John Lennon and Yoko Ono as Political Modernists",
+    "McLuhan and Popular Modernism",
+    "Steve Jobs",
+    "The Future as Popular Modernist Kitsch",
+    "Forgetting (Popular) Modernism",
   ],
 
   sectionIntros: [
@@ -47,6 +64,23 @@ module.exports = {
     `In 2012 the painter Thomas Kinkade died. His website called him America’s “Most Collected Artist,” and his company sold prints and assembly-line oil paintings of light-dappled cottages and gardens to thousands of customers a year. To the art world they were the definition of kitsch, and his obituary in the New York Times was careful to let his fans do the praising. The question was not whether Kinkade was good, but whether the standards that excluded him still obtained. Art, once a category with a mission for the whole culture, has become a special interest, or rather many: the art world, Kinkade’s collectors and countless others, each with its own community.`,
 
     `On the web, the Metropolitan Museum of Art and deviantART, a site where millions of amateurs post their own art, are equally accessible, and deviantART draws considerably more visitors. Fan fiction for shows like Star Trek was once distributed on mimeographed sheets. Such fiction is now posted to online communities whose members often number in the millions. Digital media did not cause the breakdown of cultural hierarchy. But they provide an ideal framework for our current networked culture, in which creativity is a synonym for art and each community judges it by its own standard.`,
+
+    // H-014: chapter 2. Drafted by Claude, 2026-11-04, for Jay's approval (vault: drafts/chapter-2-boxes.md).
+    `On January 9, 2007, Steve Jobs walked onto the stage at Macworld to introduce the iPhone. Apple, he said, had already changed everything twice, with the Macintosh in 1984 and the iPod in 2001, and now it was reinventing the telephone. The audience applauded louder at every pause. Claims like this, that a new device or medium changes society or even human nature, are the standard rhetoric of digital culture. They are modernism in a popular form: where the modernists of the last century wanted a revolutionary art, today’s digital writers and designers want revolutionary media, and they remember just enough of the past to believe they can overcome it.`,
+
+    `Modernism was never one idea. Painters from the Cubists to the Abstract Expressionists pursued formal innovation, which the critic Clement Greenberg saw as modernism’s great achievement. The Bauhaus, the German design school the Nazis closed in 1933, meant to design a better society through simplicity and purity. And the avant-gardes, from the Futurists to the Surrealists, wanted, as the cultural historian Peter Bürger put it, to dissolve art into everyday life. All three strands passed into popular culture after 1950: into jazz and rock, into the political performances of John Lennon and Yoko Ono, into the media theory of Marshall McLuhan, and into the products of Steve Jobs.`,
+
+    `In the film The Blackboard Jungle (1955), rebellious students smash their teacher’s collection of jazz records. Jazz had become “modern” after the war, music for listening rather than dancing, played by Charlie Parker, Miles Davis and John Coltrane and championed by critics as art. Rock and roll was music for teenagers. Yet within a dozen years it took the same path: in 1967 the Beatles released Sgt. Pepper’s Lonely Hearts Club Band, which Rolling Stone would rank as the greatest rock album of all time. Jazz and rock each ran through a compressed version of modernism’s formal trajectory, from simple forms to works claimed as art, and each had reached its end by the 1970s.`,
+
+    `In March 1969 John Lennon married Yoko Ono in Gibraltar, and the couple spent their honeymoon in bed at the Amsterdam Hilton, receiving reporters for a week with one message: the people themselves could end the war in Vietnam. Ono came from Fluxus, an avant-garde that staged events to bring art and life together, and through her Lennon turned his own celebrity into a performance. That December, in Toronto, the couple were interviewed by Marshall McLuhan. The avant-gardes of the early twentieth century had shocked small audiences of art patrons. Lennon reached millions, and since then rock stars have been expected to be cultural and political figures.`,
+
+    `In Woody Allen’s Annie Hall (1977), Marshall McLuhan appears as himself to tell a Columbia University professor of communications that he does not understand McLuhan’s work. By then McLuhan, an English professor who had turned to the study of media, had spent a decade as the celebrated prophet of television. He made media, not art, the agent of revolutionary change: each new medium extends the human senses, and the medium is the message. In this he carried the elite modernist idea that every medium has its own essence into popular culture, and digital writers have followed him, treating the computer as the final medium that absorbs all the others.`,
+
+    `On January 22, 1984, during the Super Bowl, Apple ran a commercial directed by Ridley Scott. An athletic woman, chased by armed police, runs through a hall of grey workers watching a dictator on a giant screen and hurls a hammer into it. The Macintosh, the narrator promised, would prove that “1984 will not be like 1984.” Steve Jobs loved Dylan and the Beatles, but his own modernism was the Bauhaus’s: clean, simple, totally designed machines, closed to tinkering. He put modernist design into the hands of tens of millions, and yet that order could reach no further than Apple’s own products and their users.`,
+
+    `Aboard the Starship Enterprise, in the Star Trek of the 1960s, the furniture parodies mid-century modern design, almost everything is plastic or alloy, war and poverty on Earth are things of the past, and everyone fits into a spandex jumpsuit. From Fritz Lang’s Metropolis (1927) on, science fiction turned the modernist fascination with technology into a popular vision of the future. Artificial intelligence, from Alan Turing’s paper of 1950 to Ray Kurzweil’s “singularity,” promised the same future in the language of science. Silly and endearing, these visions are progressive modernism in a popular idiom, and they have barely changed since the science fiction pulps of the 1930s.`,
+
+    `In Ridley Scott’s Alien (1979), a Hollywood monster film plays out on a spaceship from the world of Star Trek; in his Blade Runner (1982), film noir moves into a dystopian modernist future. This is popular postmodernism, playing with the fragments of modernism and of earlier popular forms alike. It has not replaced popular modernism: Steve Jobs held to modernist design to the end, and millions love their iPhones, which they use to reach the careless interfaces of Facebook. With no mainstream left, there can be no avant-garde, and the counterculture became business culture. Popular modernism is what modernism became on its way to dissolution.`,
   ],
 
   sectionImagePrompts: [
@@ -63,6 +97,7 @@ module.exports = {
     ],
     null,
     null,
+    null, null, null, null, null, null, null, null, // H-014: chapter 2
   ],
 
   // H-003: rewritten so that no noun names the material the model holds (H-002's "section" came back 69 times).
@@ -134,7 +169,13 @@ Return only the revised reply, with no preface or comment.`,
   },
 
   // H-009: the main line of the argument, written with Jay (approved 2026-11-01); never shown to the reader.
-  chapterPoint: "The great divide between elite art and popular culture, which educated and moneyed elites could enforce across the whole culture in the nineteenth and twentieth centuries, is dissolving. It no longer holds for the culture as a whole, though traces of it survive in particular institutions and communities, and the boundaries are fluid. What is taking its place is not a consensus but the diverse judgments of many communities, each free to treat its own art as central and none able to impose that view on the rest. This is the media plenitude, and digital media have given it an ideal framework.",
+  // H-014: one work in chapters. Each section belongs to the last chapter starting at or before it; the
+  // chapter's point is handed to the model with the section's. Chapter 2's point and section points are
+  // drafts by Claude, 2026-11-04, for Jay's approval (vault: drafts/chapter-2-plan.md).
+  chapters: [
+    { number: 1, title: 'The Great Divide', firstSection: 0, point: "The great divide between elite art and popular culture, which educated and moneyed elites could enforce across the whole culture in the nineteenth and twentieth centuries, is dissolving. It no longer holds for the culture as a whole, though traces of it survive in particular institutions and communities, and the boundaries are fluid. What is taking its place is not a consensus but the diverse judgments of many communities, each free to treat its own art as central and none able to impose that view on the rest. This is the media plenitude, and digital media have given it an ideal framework." },
+    { number: 2, title: 'Popular Modernism', firstSection: 7, point: "From the 1960s on, musicians, media theorists and technologists carried the fragments of elite modernism into popular culture: formal innovation, the progressive faith that design and technology can remake society, and the avant-garde's wish to merge art and life. They kept modernism's rhetoric of revolution, now attached to media and technology instead of art, and forgot most of the history behind it. That rhetoric still frames how digital media are sold and discussed. But in the media plenitude it is one strand among many, and no \"ism\" can again give the culture a single story. Popular modernism is what modernism became on its way to dissolution." },
+  ],
   sectionPoints: [
     "JAY-Z's Picasso Baby catches the divide in the act of dissolving: a rapper claims the status of a modern-day Picasso in a white-box gallery, art-world figures and fans join in with delight, and yet the reactions split by community. What is taking the divide's place is not a consensus about art but the judgments of many communities, none of which can enforce its definition of art across the culture.",
     "The fortunes of opera and the symphony orchestra trace the elite arts' loss of status. In the 1930s popular culture still approached high culture on high culture's terms (A Night at the Opera, Fantasia); by 1957 a cartoon could parody Wagner without reverence; today a great orchestra can go bankrupt with no larger cultural repercussions. There are no longer areas of culture that every educated person must know.",
@@ -143,6 +184,14 @@ Return only the revised reply, with no preface or comment.`,
     "Art no longer shocks us, and that shows how its cultural significance has changed. The avant-garde's provocations once mattered enough to start riots; since the 1960s the public has met formerly elite art with bemusement or indifference, because there is no longer an elite whose judgment of art is at stake for everyone.",
     "Art, invented in the late eighteenth century as a special and redemptive category, has become one special interest among many, each art and entertainment with its own community of makers and audience. The elite art world still guards its boundaries and its prestige, and popular forms still seek the title of art, but no definition of art extends across the whole culture, and there is almost no common cultural ground on which everyone meets.",
     "Digital media did not cause the breakdown of hierarchy, but they provide an ideal framework for the media plenitude that grew out of it. Communities form by voluntary, temporary and tactical affiliation, each with knowledge that is canonical only within it, and creativity has become a synonym for art. Critics who lament this, such as Jaron Lanier, want a return to a prior state, even as they quietly admit popular forms into their own hierarchy of art.",
+    "Calling a new device or medium revolutionary, as Steve Jobs did for the iPhone in 2007, is the standard rhetoric of digital culture, and it is modernism in a popular form: where modernists wanted revolutionary art, today's digerati want revolutionary media, and they know just enough history to believe they can overcome it. By the 1950s modern art had itself become the establishment, and popular culture began both to borrow from it and to claim a place beside it.",
+    "Modernism was a network of strands: the formal modernism of new styles and media that Greenberg championed, the progressive modernism of the Bauhaus, which meant to design a better society, and the avant-garde's wish, as Bürger described it, to dissolve art into everyday life. All three passed into popular culture, through figures such as the Beatles, John Lennon and Yoko Ono, Marshall McLuhan and Steve Jobs.",
+    "Postwar jazz and 1960s rock each ran through a compressed version of formal modernism's trajectory, from simple forms to ambitious works claimed as art, with Sgt. Pepper's as rock's high point. Each trajectory ended in the 1970s, as modern art's had, and for a generation style came to stand for substance, with rock musicians expected to turn art into a way of life.",
+    "Through Yoko Ono and Fluxus, Lennon carried the political avant-garde's wish to make life into art into popular culture. He turned his own celebrity into a performance, as in the bed-ins for peace, and reached audiences the historical avant-garde never could. Since then, rock stars have been expected to be cultural and political figures.",
+    "McLuhan brought the elite modernist idea of medium specificity into popular culture and made media, not art, the agent of revolutionary change. Digital writers have followed him: they look for the essence of the digital medium (procedurality, simulation) and claim the computer as the medium that absorbs all the others. That claim of a final, unifying medium is the opposite of the plenitude.",
+    "Jobs joined the progressive modernism of Bauhaus and European design to McLuhan's rhetoric and to the youth culture of the 1960s, and he put modernist design in the hands of tens of millions. His insistence on closed, totally designed systems could bring order to the plenitude only within Apple's products and their communities of users.",
+    "The modernist fascination with technology became a popular vision of the future, from Metropolis to Star Trek, and an intellectual programme in artificial intelligence, from Turing to Kurzweil's singularity. Its promises, progressive modernism in a popular idiom, have barely changed since the science fiction pulps, even as computers achieve some of AI's goals by quite other means.",
+    "Popular postmodernism followed popular modernism as postmodernism followed modernism, but neither replaced the other: their fragments coexist in the plenitude, and no dominant cultural story, and no new \"ism\", can name the whole. Without a mainstream there can be no avant-garde; the counterculture, as Thomas Frank showed, became business culture.",
   ],
 
   // H-003: replaces "Current section" in the system prompt.

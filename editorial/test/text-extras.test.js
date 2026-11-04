@@ -134,3 +134,25 @@ test('editorial readings and evolution stay on a model that supports forced tool
   assert.equal(editorialModel(require('../../plenitude/config')), 'claude-sonnet-5');
   assert.equal(editorialModel({ editorialModel: 'm' }), 'm');
 });
+
+test('chapters: a section finds its chapter, label and chapter point (H-014)', () => {
+  const { chapterFor, mainLineStatement } = require('../../api/lib/text-extras');
+  const config = {
+    sectionLabel: 'Now under discussion',
+    sectionPoints: ['One.', 'Two.', 'Three.'],
+    chapters: [
+      { number: 1, title: 'The Great Divide', firstSection: 0, point: 'Divide.' },
+      { number: 2, title: 'Popular Modernism', firstSection: 2, point: 'Modernism.' },
+    ],
+  };
+  assert.equal(chapterFor(config, 1).number, 1);
+  assert.equal(chapterFor(config, 2).number, 2);
+  assert.equal(chapterFor({}, 2), null);
+  assert.equal(sectionLabelLine(config, 'Steve Jobs', 2), 'Now under discussion: Steve Jobs (chapter 2, Popular Modernism)');
+  assert.equal(sectionLabelLine(config, 'X'), 'Now under discussion: X');
+  assert.equal(mainLineStatement(config, 2), 'The argument here, in brief: Three.\nChapter 2, Popular Modernism, as a whole: Modernism.');
+  assert.match(mainLineStatement(config, 0), /Chapter 1, The Great Divide, as a whole: Divide\./);
+  const dp = require('../../digital-plenitude/config');
+  assert.match(mainLineStatement(dp, 12), /Chapter 2, Popular Modernism, as a whole: From the 1960s on/);
+  assert.match(mainLineStatement(dp, 0), /Chapter 1, The Great Divide, as a whole: The great divide/);
+});

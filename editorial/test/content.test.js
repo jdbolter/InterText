@@ -197,7 +197,7 @@ test('buildAll writes a portable editor index and validated section snapshot', (
   try {
     const index = buildAll({ contentRoot, outputRoot });
     assert.equal(index.works.length, 5);
-    assert.equal(index.works.flatMap(work => work.sections).length, 30);
+    assert.equal(index.works.flatMap(work => work.sections).length, 38); // H-014: chapter 2 adds 8
     const proofs = index.works.find(work => work.id === 'digital-plenitude');
     assert.ok(proofs.sections.every(section => section.readiness === 'packaged'));
     assert.ok(proofs.sections.every(section => section.fundCounts.accepted === 0 && section.fundCounts.candidate === 0));
@@ -301,4 +301,31 @@ test('digital-plenitude: the introductions the page shows match the ones the mod
     .replace(/\s+/g, ' ').trim();
   assert.equal(shown.length, config.sectionIntros.length);
   shown.forEach((html, i) => assert.equal(plain(html), plain(config.sectionIntros[i]), `section ${i + 1} introduction`));
+});
+
+test('digital-plenitude: the chapters the page shows match config.chapters (H-014)', () => {
+  const config = require(path.join(root, 'digital-plenitude', 'config.js'));
+  const app = fs.readFileSync(path.join(root, 'digital-plenitude', 'public', 'app.js'), 'utf8');
+  const block = app.slice(app.indexOf('const CHAPTERS = ['), app.indexOf('];', app.indexOf('const CHAPTERS = [')) + 2);
+  const shown = new Function(`${block}; return CHAPTERS;`)();
+  assert.deepEqual(shown, config.chapters.map(({ number, title, firstSection }) => ({ number, title, firstSection })));
+  assert.equal(config.chapters[0].firstSection, 0);
+  assert.ok(config.chapters.every(ch => typeof ch.point === 'string' && ch.point.trim()));
+  assert.equal(config.sectionPoints.length, config.sectionNames.length);
+  const numerals = new Function(`${app.slice(app.indexOf('const SECTION_NUMERALS = ['), app.indexOf('];', app.indexOf('const SECTION_NUMERALS = [')) + 2)}; return SECTION_NUMERALS;`)();
+  assert.equal(numerals.length, config.sectionNames.length);
+  assert.equal(numerals[config.chapters[1].firstSection], 'I');
+});
+
+test('digital-plenitude chapter 2: the original edition keeps the proofs; the spine carries the corrections (H-014)', () => {
+  const read = n => fs.readFileSync(path.join(root, 'digital-plenitude', 'source_texts', 'sections', `section-${n}.md`), 'utf8');
+  const spine = id => fs.readFileSync(path.join(contentRoot, 'digital-plenitude', 'sections', id, 'spine.md'), 'utf8');
+  assert.match(read(13), /Jony Ives/);
+  assert.doesNotMatch(spine('steve-jobs'), /Ives/);
+  assert.match(spine('steve-jobs'), /Jony Ive,/);
+  assert.match(read(14), /Alan Newell/);
+  assert.match(spine('future-as-kitsch'), /Allen Newell[\s\S]*C-3PO[\s\S]*Levandowski/);
+  assert.match(spine('lennon-ono-political-modernists'), /after he met Ono were nonsongs/);
+  assert.match(spine('forgetting-popular-modernism'), /Fredric Jameson/);
+  for (let n = 8; n <= 15; n += 1) assert.doesNotMatch(read(n), /⟦|\[\^/);
 });
