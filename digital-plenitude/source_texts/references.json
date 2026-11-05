@@ -82,6 +82,10 @@
     22
    ],
    [
+    49,
+    54
+   ],
+   [
     57,
     58
    ],
@@ -174,8 +178,20 @@
   "full": "Danto, Arthur C. 1997. <i>After the End of Art: Contemporary Art and the Pale of History</i>. The A. W. Mellon Lectures in the Fine Arts, 1995. Princeton, NJ: Princeton University Press.",
   "pages": [
    [
+    4,
+    5
+   ],
+   [
+    8,
+    8
+   ],
+   [
     47,
     47
+   ],
+   [
+    68,
+    69
    ],
    [
     122,
@@ -464,5 +480,167 @@
   "full": "Alter, Alexandra. 2026. “The New Fabio Is Claude.” <i>New York Times</i>, February 8, 2026. https://www.nytimes.com/2026/02/08/business/ai-claude-romance-books.html.",
   "pages": [],
   "mention": "note"
+ },
+ "greenberg-1960": {
+  "short": "Greenberg 1960",
+  "full": "Greenberg, Clement. 1960. “Modernist Painting.” Forum Lectures. Washington, DC: Voice of America.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the influential art critic Clement Greenberg",
+  "name": "Greenberg"
+ },
+ "mcluhan-1964": {
+  "short": "McLuhan 1964",
+  "full": "McLuhan, Marshall. (1964) 2013. <i>Understanding Media: The Extensions of Man</i>. Berkeley, CA: Gingko Press.",
+  "pages": [
+   [
+    273,
+    273
+   ],
+   [
+    288,
+    289
+   ]
+  ],
+  "mention": "introduce",
+  "intro": "the media theorist Marshall McLuhan",
+  "name": "McLuhan"
+ },
+ "mcluhan-1962": {
+  "short": "McLuhan 1962",
+  "full": "McLuhan, Marshall. 1962. <i>The Gutenberg Galaxy: The Making of Typographic Man</i>. Toronto: University of Toronto Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the media theorist Marshall McLuhan",
+  "name": "McLuhan"
+ },
+ "jameson-1991": {
+  "short": "Jameson 1991",
+  "full": "Jameson, Fredric. 1991. <i>Postmodernism, or, The Cultural Logic of Late Capitalism</i>. Durham, NC: Duke University Press.",
+  "pages": [
+   [
+    2,
+    6
+   ],
+   [
+    16,
+    20
+   ],
+   [
+    48,
+    49
+   ]
+  ],
+  "mention": "introduce",
+  "intro": "the Marxist literary critic Fredric Jameson",
+  "name": "Jameson"
+ },
+ "friedman-1998": {
+  "short": "Friedman 1998",
+  "full": "Friedman, Ken, ed. 1998. <i>The Fluxus Reader</i>. Chichester: Academy Editions.",
+  "pages": [],
+  "mention": "note"
+ },
+ "schrank-2014": {
+  "short": "Schrank 2014",
+  "full": "Schrank, Brian. 2014. <i>Avant-Garde Videogames: Playing with Technoculture</i>. Cambridge, MA: MIT Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the game designer and scholar Brian Schrank",
+  "name": "Schrank"
+ },
+ "o-mara-2019": {
+  "short": "O’Mara 2019",
+  "full": "O’Mara, Margaret. 2019. “The Church of Techno-Optimism.” <i>New York Times</i>, September 28, 2019. https://www.nytimes.com/2019/09/28/opinion/sunday/silicon-valley-techno-optimism.html.",
+  "pages": [],
+  "mention": "note"
+ },
+ "andreessen-2023": {
+  "short": "Andreessen 2023",
+  "full": "Andreessen, Marc. 2023. “The Techno-Optimist Manifesto.” Andreessen Horowitz. https://a16z.com/the-techno-optimist-manifesto/.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the venture capitalist Marc Andreessen",
+  "name": "Andreessen"
+ },
+ "natale-2016": {
+  "short": "Natale 2016",
+  "full": "Natale, Simone. 2016. “There Are No Old Media.” <i>Journal of Communication</i> 66 (4): 585–603. https://doi.org/10.1111/jcom.12235.",
+  "pages": [],
+  "mention": "note"
+ },
+ "natale-2021": {
+  "short": "Natale 2021",
+  "full": "Natale, Simone. 2021. <i>Deceitful Media: Artificial Intelligence and Social Life after the Turing Test</i>. New York: Oxford University Press.",
+  "pages": [],
+  "mention": "note"
+ },
+ "chun-2016": {
+  "short": "Chun 2016",
+  "full": "Chun, Wendy Hui Kyong. 2016. <i>Updating to Remain the Same: Habitual New Media</i>. Cambridge, MA: MIT Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the media theorist Wendy Hui Kyong Chun",
+  "name": "Chun"
+ },
+ "emerson-2020": {
+  "short": "Emerson 2020",
+  "full": "Emerson, Lori. 2020. “Interfaced.” In <i>Further Reading</i>, edited by Matthew Rubery and Leah Price, 350–62. Oxford: Oxford University Press.",
+  "pages": [
+   [
+    350,
+    351
+   ],
+   [
+    361,
+    362
+   ]
+  ],
+  "mention": "note"
+ },
+ "murray-1997": {
+  "short": "Murray 1997",
+  "full": "Murray, Janet H. 1997. <i>Hamlet on the Holodeck: The Future of Narrative in Cyberspace</i>. Cambridge, MA: MIT Press.",
+  "pages": [
+   [
+    67,
+    67
+   ]
+  ],
+  "mention": "introduce",
+  "intro": "the digital media scholar Janet Murray",
+  "name": "Murray"
+ },
+ "bogost-2007": {
+  "short": "Bogost 2007",
+  "full": "Bogost, Ian. 2007. <i>Persuasive Games: The Expressive Power of Videogames</i>. Cambridge, MA: MIT Press.",
+  "pages": [
+   [
+    4,
+    4
+   ]
+  ],
+  "mention": "introduce",
+  "intro": "the game designer and scholar Ian Bogost",
+  "name": "Bogost"
+ },
+ "chatterjee-2022": {
+  "short": "Chatterjee 2022",
+  "full": "Chatterjee, Anjan. 2022. “Art in an Age of Artificial Intelligence.” <i>Frontiers in Psychology</i> 13: 1024449. https://doi.org/10.3389/fpsyg.2022.1024449.",
+  "pages": [],
+  "mention": "note"
+ },
+ "peters-2016": {
+  "short": "Peters 2016",
+  "full": "Peters, John Durham. 2016. <i>The Marvelous Clouds: Toward a Philosophy of Elemental Media</i>. Chicago: University of Chicago Press.",
+  "pages": [
+   [
+    13,
+    14
+   ]
+  ],
+  "mention": "introduce",
+  "intro": "the media philosopher John Durham Peters",
+  "name": "Peters"
  }
 }

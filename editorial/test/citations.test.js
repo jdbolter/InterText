@@ -149,3 +149,17 @@ test('each listed work is marked with how to mention it, and introductions happe
   // a reader naming him does not count as the text introducing him
   assert.equal(introducedIds([{ role: 'user', content: 'What about Bürger?' }], refs).size, 0);
 });
+
+test('a writer with two works is introduced once (H-014)', () => {
+  const { introducedIds } = require('../../api/lib/citations');
+  const refs = {
+    'greenberg-1939': { mention: 'introduce', intro: 'the influential art critic Clement Greenberg', name: 'Greenberg' },
+    'greenberg-1960': { mention: 'introduce', intro: 'the influential art critic Clement Greenberg', name: 'Greenberg' },
+    'burger-1984': { mention: 'introduce', intro: 'the German literary theorist Peter Bürger', name: 'Bürger' },
+  };
+  const done = introducedIds([{ role: 'assistant', content: 'Kitsch loots a tradition [[CITE:greenberg-1939]].' }], refs);
+  assert.ok(done.has('greenberg-1939'));
+  assert.ok(done.has('greenberg-1960'));
+  assert.ok(!done.has('burger-1984'));
+});
+

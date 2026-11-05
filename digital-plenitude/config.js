@@ -203,7 +203,9 @@ Return only the revised reply, with no preface or comment.`,
 
   // H-003, extended 2026-10-31: works the text may cite by name, one file per section (null: none). Ordinary readings only.
   libraryListsDir: path.join(__dirname, 'source_texts', 'library-lists'),
-  libraryLists: ['section-1.md', 'section-2.md', 'section-3.md', 'section-4.md', 'section-5.md', 'section-6.md', 'section-7.md'],
+  libraryLists: ['section-1.md', 'section-2.md', 'section-3.md', 'section-4.md', 'section-5.md', 'section-6.md', 'section-7.md',
+    // H-014: chapter 2 (Jay, 2026-11-05)
+    'section-8.md', 'section-9.md', 'section-10.md', 'section-11.md', 'section-12.md', 'section-13.md', 'section-14.md', 'section-15.md'],
   libraryPreamble: `WORKS THAT MAY BE CITED BY NAME
 
 Other writers are evidence. Below are books and articles you have read, each with its id in square brackets, what it says and its pages. When you draw on one, mention it as its entry says and put a marker straight after the point it supports: [[CITE:id]], or [[CITE:id|pages]] with pages taken from its entry, as in "Bürger argued that shock, once the public expects it, is consumed [[CITE:burger-1984|80–81]]." The marker becomes a numbered note that holds the full reference, so the sentence carries at most the writer's name and nothing more of the citation. Rely on each work no further than what is written of it here. Their views stay theirs, attributed and weighed, apart from your own voice. When a writer reached a conclusion from the opposite side, say so. Bring a writer in only when the work bears on the reader's point; most replies need none.`,

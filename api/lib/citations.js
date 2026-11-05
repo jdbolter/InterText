@@ -144,6 +144,12 @@ function introducedIds(messages, references) {
     if (ref.mention !== 'introduce') continue;
     if (said.includes(`[[CITE:${id}`) || (ref.name && said.includes(ref.name))) done.add(id);
   }
+  // H-014: a writer with several works (Greenberg 1939 and 1960, McLuhan 1962 and 1964) is
+  // introduced once: once any of their works counts as introduced, all of them do.
+  const names = new Set([...done].map(id => references[id] && references[id].name).filter(Boolean));
+  for (const [id, ref] of Object.entries(references || {})) {
+    if (ref.mention === 'introduce' && ref.name && names.has(ref.name)) done.add(id);
+  }
   return done;
 }
 
