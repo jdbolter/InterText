@@ -642,5 +642,43 @@
   "mention": "introduce",
   "intro": "the media philosopher John Durham Peters",
   "name": "Peters"
+ },
+ "csikszentmihalyi-1991": {
+  "short": "Csikszentmihalyi 1991",
+  "full": "Csikszentmihalyi, Mihaly. 1991. <i>Flow: The Psychology of Optimal Experience</i>. New York: HarperPerennial.",
+  "pages": [
+   [
+    4,
+    4
+   ]
+  ],
+  "mention": "introduce",
+  "intro": "the psychologist Mihaly Csikszentmihalyi",
+  "name": "Csikszentmihalyi"
+ },
+ "gunkel-2016": {
+  "short": "Gunkel 2016",
+  "full": "Gunkel, David J. 2016. <i>Of Remixology: Ethics and Aesthetics after Remix</i>. Cambridge, MA: MIT Press.",
+  "pages": [],
+  "mention": "note"
+ },
+ "van-dijck-2018": {
+  "short": "van Dijck, Poell, and de Waal 2018",
+  "full": "van Dijck, José, Thomas Poell, and Martijn de Waal. 2018. <i>The Platform Society: Public Values in a Connective World</i>. New York: Oxford University Press.",
+  "pages": [],
+  "mention": "note"
+ },
+ "keen-2007": {
+  "short": "Keen 2007",
+  "full": "Keen, Andrew. 2007. <i>The Cult of the Amateur: How Today’s Internet Is Killing Our Culture</i>. New York: Doubleday/Currency.",
+  "pages": [
+   [
+    16,
+    16
+   ]
+  ],
+  "mention": "introduce",
+  "intro": "the writer Andrew Keen",
+  "name": "Keen"
  }
 }
