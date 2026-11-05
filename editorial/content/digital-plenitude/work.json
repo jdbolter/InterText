@@ -93,6 +93,24 @@
       "title": "Forgetting (Popular) Modernism",
       "order": 15,
       "package": "sections/forgetting-popular-modernism/section.json"
+    },
+    {
+      "id": "dichotomies",
+      "title": "Dichotomies",
+      "order": 16,
+      "package": "sections/dichotomies/section.json"
+    },
+    {
+      "id": "rise-of-popular-modernism",
+      "title": "The Rise of Popular Modernism",
+      "order": 17,
+      "package": "sections/rise-of-popular-modernism/section.json"
+    },
+    {
+      "id": "describing-the-plenitude",
+      "title": "Describing the Plenitude",
+      "order": 18,
+      "package": "sections/describing-the-plenitude/section.json"
     }
   ]
 }

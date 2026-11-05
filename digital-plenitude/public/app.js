@@ -28,12 +28,14 @@ const CONTINUE_MESSAGE = 'Continue reading from where we have reached in this se
 const SECTION_NUMERALS = [
   'I', 'II', 'III', 'IV', 'V', 'VI', 'VII',
   'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII',
+  'I', 'II', 'III',
 ];
 
 // H-014: must match config.chapters (number, title, firstSection); a test checks this.
 const CHAPTERS = [
   { number: 1, title: 'The Great Divide', firstSection: 0 },
   { number: 2, title: 'Popular Modernism', firstSection: 7 },
+  { number: 3, title: 'Dichotomies', firstSection: 15 },
 ];
 
 function chapterOf(idx) {
@@ -58,6 +60,9 @@ const SECTION_TITLES = [
   'Steve Jobs',
   'The Future as Popular Modernist Kitsch',
   'Forgetting (Popular) Modernism',
+  'Dichotomies',
+  'The Rise of Popular Modernism',
+  'Describing the Plenitude',
 ];
 
 function priorSectionSummaries(activeSection) {
@@ -89,6 +94,7 @@ const SECTION_IMAGES = [
   null,
   null,
   null, null, null, null, null, null, null, null, // H-014: chapter 2
+  null, null, null, // H-015: chapter 3
 ];
 
 // Flat lookup map for inline image tokens
@@ -128,6 +134,13 @@ const SECTION_INTROS = [
   `<p>Aboard the Starship <em>Enterprise</em>, in the <em>Star Trek</em> of the 1960s, the furniture parodies mid-century modern design, war and poverty on Earth are things of the past, and everyone fits into spandex jumpsuits. Silly and endearing, <em>Star Trek</em> is progressive modernism in a popular idiom. From Fritz Lang&rsquo;s <em>Metropolis</em> (1927) on, science fiction has often turned the modernist fascination with technology into a popular vision of the future. Artificial intelligence, from Alan Turing&rsquo;s paper of 1950 to Ray Kurzweil&rsquo;s &ldquo;singularity,&rdquo; promised the same future in the language of science, and these visions have barely changed since the science fiction pulps of the 1930s.</p>`,
 
   `<p>In Ridley Scott&rsquo;s <em>Alien</em> (1979), a Hollywood monster film plays out on a spaceship from the world of <em>Star Trek</em>; in his <em>Blade Runner</em> (1982), film noir moves into a dystopian modernist future. This is popular postmodernism, combining fragments of modernism with popular genres and tropes. For decades, popular postmodernism coexisted with popular modernism in our media culture. Steve Jobs continued to insist on modernist principles throughout the 1990s and 2000s and produced the wildly successful iPhones and iPads. Ultimately, however, with no mainstream left, there could be no avant-garde, and the counterculture became business culture. Popular modernism was what modernism became on its way to dissolution.</p>`,
+
+  // H-015: chapter 3 (drafts for Jay's approval).
+  `<p>During the 2012 presidential campaign, <em>Rolling Stone</em> reported that Mitt Romney, one of the wealthiest men ever to be a major candidate, liked the Beach Boys and country music. Nobody was surprised. Before the 1950s, to be rich and well educated was to acknowledge, at least, the value of classical music and high art. Today the economic and cultural elites have split apart, and in place of a single hierarchy of the arts there is a collection of communities, for rock, folk, jazz, classical music and rap, each with its own standards, living in peaceful coexistence or mutual ignorance. This is the culture into which digital media were born.</p>`,
+
+  `<p>The computer scientist Alan Kay believed the computer could be a &ldquo;personal dynamic medium&rdquo; for everyone, children above all; Steve Jobs wanted the Macintosh to be &ldquo;the computer for the rest of us.&rdquo; Both were children of the 1960s, and they defined the digital medium in popular modernist terms. Popular modernism did not share elite modernism&rsquo;s fate. It diffused through our media culture with four elements: a fascination with the new, a partial break with the hierarchy of the arts, a fascination with technology, and a preoccupation with style. As the great divide closed, art and design came to name the creativity in all of us, judged by the standards of each community.</p>`,
+
+  `<p>The music video <em>Gangnam Style</em>, by the Korean K-pop musician Psy, has been watched more than three billion times on YouTube, and it meant something different to Korean fans, to other Asian viewers and to Western ones. No single practice, not networks, remix, social media or video games, can describe a culture like this, for each has its millions of outsiders. What can describe it are a few pairs of opposed values, each the two ends of a spectrum: catharsis and flow, originality and remix, procedurality and the spontaneous, simulation and history.</p>`,
 ];
 
 // ── Consent dialog ──

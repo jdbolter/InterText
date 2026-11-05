@@ -641,6 +641,54 @@
             "superseded": 0,
             "rejected": 0
           }
+        },
+        {
+          "id": "dichotomies",
+          "title": "Dichotomies",
+          "order": 16,
+          "package": "sections/dichotomies/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/dichotomies.json",
+          "versionId": "dp-dichotomies-v001",
+          "passageCount": 4,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "rise-of-popular-modernism",
+          "title": "The Rise of Popular Modernism",
+          "order": 17,
+          "package": "sections/rise-of-popular-modernism/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/rise-of-popular-modernism.json",
+          "versionId": "dp-rise-of-popular-modernism-v001",
+          "passageCount": 7,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "describing-the-plenitude",
+          "title": "Describing the Plenitude",
+          "order": 18,
+          "package": "sections/describing-the-plenitude/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/describing-the-plenitude.json",
+          "versionId": "dp-describing-the-plenitude-v001",
+          "passageCount": 7,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
         }
       ]
     }

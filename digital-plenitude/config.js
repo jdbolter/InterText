@@ -30,6 +30,10 @@ module.exports = {
     'section-13.md',
     'section-14.md',
     'section-15.md',
+    // H-015: chapter 3, Dichotomies.
+    'section-16.md',
+    'section-17.md',
+    'section-18.md',
   ],
 
   sectionNames: [
@@ -48,6 +52,9 @@ module.exports = {
     "Steve Jobs",
     "The Future as Popular Modernist Kitsch",
     "Forgetting (Popular) Modernism",
+    "Dichotomies",
+    "The Rise of Popular Modernism",
+    "Describing the Plenitude",
   ],
 
   sectionIntros: [
@@ -81,6 +88,13 @@ module.exports = {
     `Aboard the Starship Enterprise, in the Star Trek of the 1960s, the furniture parodies mid-century modern design, war and poverty on Earth are things of the past, and everyone fits into spandex jumpsuits. Silly and endearing, Star Trek is progressive modernism in a popular idiom. From Fritz Lang’s Metropolis (1927) on, science fiction has often turned the modernist fascination with technology into a popular vision of the future. Artificial intelligence, from Alan Turing’s paper of 1950 to Ray Kurzweil’s “singularity,” promised the same future in the language of science, and these visions have barely changed since the science fiction pulps of the 1930s.`,
 
     `In Ridley Scott’s Alien (1979), a Hollywood monster film plays out on a spaceship from the world of Star Trek; in his Blade Runner (1982), film noir moves into a dystopian modernist future. This is popular postmodernism, combining fragments of modernism with popular genres and tropes. For decades, popular postmodernism coexisted with popular modernism in our media culture. Steve Jobs continued to insist on modernist principles throughout the 1990s and 2000s and produced the wildly successful iPhones and iPads. Ultimately, however, with no mainstream left, there could be no avant-garde, and the counterculture became business culture. Popular modernism was what modernism became on its way to dissolution.`,
+
+    // H-015: chapter 3. Drafted by Claude, 2026-11-05, for Jay's approval (vault: drafts/chapter-3-boxes.md).
+    `During the 2012 presidential campaign, Rolling Stone reported that Mitt Romney, one of the wealthiest men ever to be a major candidate, liked the Beach Boys and country music. Nobody was surprised. Before the 1950s, to be rich and well educated was to acknowledge, at least, the value of classical music and high art. Today the economic and cultural elites have split apart, and in place of a single hierarchy of the arts there is a collection of communities, for rock, folk, jazz, classical music and rap, each with its own standards, living in peaceful coexistence or mutual ignorance. This is the culture into which digital media were born.`,
+
+    `The computer scientist Alan Kay believed the computer could be a “personal dynamic medium” for everyone, children above all; Steve Jobs wanted the Macintosh to be “the computer for the rest of us.” Both were children of the 1960s, and they defined the digital medium in popular modernist terms. Popular modernism did not share elite modernism’s fate. It diffused through our media culture with four elements: a fascination with the new, a partial break with the hierarchy of the arts, a fascination with technology, and a preoccupation with style. As the great divide closed, art and design came to name the creativity in all of us, judged by the standards of each community.`,
+
+    `The music video Gangnam Style, by the Korean K-pop musician Psy, has been watched more than three billion times on YouTube, and it meant something different to Korean fans, to other Asian viewers and to Western ones. No single practice, not networks, remix, social media or video games, can describe a culture like this, for each has its millions of outsiders. What can describe it are a few pairs of opposed values, each the two ends of a spectrum: catharsis and flow, originality and remix, procedurality and the spontaneous, simulation and history.`,
   ],
 
   sectionImagePrompts: [
@@ -98,6 +112,7 @@ module.exports = {
     null,
     null,
     null, null, null, null, null, null, null, null, // H-014: chapter 2
+    null, null, null, // H-015: chapter 3
   ],
 
   // H-003: rewritten so that no noun names the material the model holds (H-002's "section" came back 69 times).
@@ -175,6 +190,7 @@ Return only the revised reply, with no preface or comment.`,
   chapters: [
     { number: 1, title: 'The Great Divide', firstSection: 0, point: "The great divide between elite art and popular culture, which educated and moneyed elites could enforce across the whole culture in the nineteenth and twentieth centuries, is dissolving. It no longer holds for the culture as a whole, though traces of it survive in particular institutions and communities, and the boundaries are fluid. What is taking its place is not a consensus but the diverse judgments of many communities, each free to treat its own art as central and none able to impose that view on the rest. This is the media plenitude, and digital media have given it an ideal framework." },
     { number: 2, title: 'Popular Modernism', firstSection: 7, point: "From the 1960s on, musicians, media theorists and technologists carried the fragments of elite modernism into popular culture: formal innovation, the progressive faith that design and technology can remake society, and the avant-garde's wish to merge art and life. They kept modernism's rhetoric of revolution, now attached to media and technology instead of art, and forgot most of the history behind it. That rhetoric still frames how digital media are sold and discussed. But in the media plenitude it is one strand among many, and no \"ism\" can again give the culture a single story. Popular modernism is what modernism became on its way to dissolution." },
+    { number: 3, title: 'Dichotomies', firstSection: 15, point: "Chapter 3 takes stock of the argument so far. From the 1950s the hierarchy of the arts broke down into a collection of communities, each with its own standards, and economic and cultural elites split apart. Modernism, the dominant paradigm at that moment, shattered, and popular modernism carried its fragments into the culture in which digital media were born. No single characteristic can describe that culture, but four pairs of opposed values delineate large parts of it: catharsis and flow, originality and remix, procedurality and the organic or spontaneous, simulation and history. Each pair is a spectrum, not a choice, and in each the newer, fashionable term remains in creative tension with the older one." }, // H-015: draft, for Jay's approval
   ],
   sectionPoints: [
     "JAY-Z's Picasso Baby catches the divide in the act of dissolving: a rapper claims the status of a modern-day Picasso in a white-box gallery, art-world figures and fans join in with delight, and yet the reactions split by community. What is taking the divide's place is not a consensus about art but the judgments of many communities, none of which can enforce its definition of art across the culture.",
@@ -192,6 +208,10 @@ Return only the revised reply, with no preface or comment.`,
     "Jobs joined the progressive modernism of Bauhaus and European design to McLuhan's rhetoric and to the youth culture of the 1960s, and he put modernist design in the hands of tens of millions of computer users. His insistence on closed, totally designed systems could bring order to the plenitude only within Apple's products and their communities of users.",
     "The modernist fascination with technology became a popular vision of the future, from Metropolis to Star Trek, and an intellectual programme in artificial intelligence, from Turing to Kurzweil's singularity. Its promises, progressive modernism in a popular idiom, have barely changed since the science fiction pulps, as the current rhetoric around artificial general intelligence (AGI) shows.",
     "Popular postmodernism followed popular modernism as postmodernism followed modernism, but neither replaced the other: their fragments coexist in the plenitude, and no dominant cultural story, and no new \"ism\", can name the whole. Without a mainstream there can be no avant-garde; the counterculture, as Thomas Frank showed, became business culture.",
+    // H-015: chapter 3 (drafts, for Jay's approval).
+    "Since the eighteenth century the hierarchy of the arts had aligned cultural with economic elites; from the 1950s it broke down, leaving communities that coexist peacefully or ignore one another, while the wealthy no longer need to prefer high art. Digital media did not cause the breakdown, but they were born into its cultural matrix, shaped by popular modernism, and they now give a culture of communities an ideal medium with no single centre.",
+    "Popular modernism did not share elite modernism's fate: it diffused through media culture as the rhetorical foundation of digital media. Its four elements are the importance of the new, a break with the hierarchy of the arts that is only partial (popular forms seek to join the elite rather than flatten it), a fascination with technology, now focused on procedurality, and a preoccupation with style. As the great divide closed, art and design came to stand for a universal creativity that can be measured only by the standards of some community, and that leveling is the source of the plenitude's energy.",
+    "No single practice (networks, remix, social media, video games) can characterize the whole media culture, because each defines communities with millions of outsiders. Instead, four dichotomies delineate large parts of it: catharsis and flow, originality and remix, procedurality and the organic or spontaneous, simulation and history. They are the endpoints of spectra, not rigid categories, and though one term in each pair seems to stand for the media future, its counterpart does not disappear.",
   ],
 
   // H-003: replaces "Current section" in the system prompt.
