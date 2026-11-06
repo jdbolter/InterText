@@ -111,7 +111,12 @@ module.exports = {
     ],
     null,
     null,
-    null, null, null, null, null, null, null, null, // H-014: chapter 2
+    null, null, null, // H-014: chapter 2
+    // H-017: section 11, the bed-in photograph (the book's figure 2.1).
+    [
+      { id: 'lennon-ono-bed-in', prompt: "A photograph of John Lennon and Yoko Ono's bed-in for peace at the Amsterdam Hilton in 1969 is available, the couple in bed under hand-lettered signs reading HAIR PEACE and BED PEACE. When discussing the bed-in, embed the token [[IMAGE:lennon-ono-bed-in]] at the natural point in your response." },
+    ],
+    null, null, null, null,
     null, null,
     // H-017: the diagram of the four spectrums (Jay, 2026-11-06).
     [

@@ -93,7 +93,12 @@ const SECTION_IMAGES = [
   ],
   null,
   null,
-  null, null, null, null, null, null, null, null, // H-014: chapter 2
+  null, null, null, // H-014: chapter 2
+  // H-017: section 11, the book's figure 2.1 (CC BY-SA 3.0 NL, credited under the picture).
+  [
+    { id: 'lennon-ono-bed-in', src: '../images/fig-2-1-lennon-ono-bed-in.jpg', alt: 'John Lennon and Yoko Ono in bed at the Amsterdam Hilton, 1969, under hand-lettered signs reading HAIR PEACE and BED PEACE', credit: 'John Lennon and Yoko Ono, “Bed-in for Peace,” Amsterdam Hilton, 1969. Photograph: Nationaal Archief (National Archive of the Netherlands), CC BY-SA 3.0 NL.', creditUrl: 'https://creativecommons.org/licenses/by-sa/3.0/nl/deed.en' },
+  ],
+  null, null, null, null,
   null, null,
   // H-017: the diagram of the four spectrums, shown at full width.
   [
@@ -384,8 +389,28 @@ function appendGuideResponse(text, notes = null) {
         const img = document.createElement('img');
         img.src = imgData.src;
         img.alt = imgData.alt;
-        img.className = imgData.figure ? 'response-figure' : 'response-image';
-        body.appendChild(img);
+        if (imgData.credit) {
+          // H-017: a picture whose licence asks for credit carries it underneath.
+          const figure = document.createElement('figure');
+          figure.className = imgData.figure ? 'response-figure' : 'response-image';
+          const caption = document.createElement('figcaption');
+          caption.className = 'image-credit';
+          caption.textContent = imgData.credit + ' ';
+          if (imgData.creditUrl) {
+            const a = document.createElement('a');
+            a.href = imgData.creditUrl;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.textContent = 'Licence';
+            caption.appendChild(a);
+          }
+          figure.appendChild(img);
+          figure.appendChild(caption);
+          body.appendChild(figure);
+        } else {
+          img.className = imgData.figure ? 'response-figure' : 'response-image';
+          body.appendChild(img);
+        }
       }
     }
   });

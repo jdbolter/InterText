@@ -517,6 +517,25 @@ header h1 {
   margin: 1.25rem 0 1.5rem;
 }
 
+figure.response-image img,
+figure.response-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.image-credit {
+  margin-top: 0.35rem;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.image-credit a {
+  color: var(--muted);
+}
+
 .response-image {
   float: right;
   width: 50%;
