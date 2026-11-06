@@ -33,6 +33,7 @@ const {
   stripWebTokens,
   webUsed,
 } = require('./lib/citations');
+const { applyMediaTokens, mediaPromptText } = require('./lib/media');
 
 const client = new Anthropic();
 
@@ -84,6 +85,7 @@ module.exports = async function handler(req, res) {
     history,
     sectionIndex = 0,
     shownImages = [],
+    shownMedia = [],
     textId,
     action,
     sectionHistory = null,
@@ -230,6 +232,8 @@ module.exports = async function handler(req, res) {
               .filter(({ id }) => !shownImages.includes(id))
               .map(({ prompt }) => prompt)
               .join('\n\n') || null,
+            // H-018: the section's checked videos, images and pages not yet shown.
+            mediaPromptText(config, idx, shownMedia),
             sectionLabelLine(config, sectionName, idx),
             mainLineText(config, idx),
             // H-005: the citing rule, only where the section has a fund of citable works.
@@ -371,6 +375,10 @@ module.exports = async function handler(req, res) {
       notes = { library: checked.library, web: webUsed(text, webSources) };
     }
 
+    // H-018: only items on the section's media list survive, once each.
+    const mediaApplied = applyMediaTokens(text, config, idx);
+    text = mediaApplied.text;
+
     if (!markers && citations.length > 0) {
       text += '\n\nSources: ' + citations.slice(0, 5).map(c => `[${c.title}](${c.url})`).join(' · ');
     }
@@ -380,6 +388,7 @@ module.exports = async function handler(req, res) {
       ...(editorialResult ? { editorial: editorialResult } : {}),
       ...(revision ? { revision, usage: response.usage || null } : {}),
       ...(notes ? { notes } : {}),
+      ...(mediaApplied.media ? { media: mediaApplied.media } : {}),
     });
   } catch (err) {
     console.error(err);

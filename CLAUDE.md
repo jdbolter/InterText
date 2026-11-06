@@ -54,6 +54,16 @@ The proofs' chapters 1 and 2, fifteen sections. Its `config.js` carries everythi
       never named).
   - The model writes `[[CITE:id|pages]]`. The server checks it. Web citations become `[[WEB:k]]`. The page
     (`shared/citation-notes.js`) numbers the notes and shows the references.
+- **Media lists (H-018).** Videos, images and web pages a reply may show, one checked list per section in
+  `source_texts/media-lists/section-N.json` (`mediaListsDir`). Each item says when to use it.
+  - The model writes `[[MEDIA:id]]` on a line of its own; `api/lib/media.js` keeps only listed items, one per reply,
+    and returns them as `media`. The revision pass must keep the marker.
+  - The page (`shared/media-items.js`) plays a video whose embedding was checked (youtube-nocookie or Vimeo), shows an
+    image whose licence was cleared with its credit, and shows everything else, or an image that fails to load, as a
+    card that opens a new tab.
+  - **Keeping the lists:** `npm run media -- add | bulk | check | search | list` (`scripts/media.js`). It needs open
+    network (YouTube and Vimeo oEmbed, Commons, the Met, the Art Institute), so it runs in Jay's own terminal. An item
+    is never listed by hand from memory: the script's check is its basis.
 - **Chapters (H-014).** One work in chapters: `chapters` lists `{ number, title, firstSection, point }`, and a
   section belongs to the last chapter starting at or before it. Chapter 1 is sections 1 to 7; chapter 2, *Popular
   Modernism*, sections 8 to 15. The page's `CHAPTERS` in `public/app.js` must match (a test checks it); the contents

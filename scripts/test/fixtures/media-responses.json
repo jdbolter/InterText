@@ -1,0 +1,44 @@
+[
+  { "match": "oembed?format=json&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DEMBEDOK0001", "status": 200,
+    "body": { "title": "Sample Video Title", "author_name": "Sample Channel", "type": "video", "provider_name": "YouTube", "html": "<iframe></iframe>" } },
+  { "match": "oembed?format=json&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DEMBEDOFF001", "status": 401, "body": "Unauthorized" },
+  { "match": "oembed?format=json&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DREMOVED0001", "status": 404, "body": "Not Found" },
+  { "match": "commons.wikimedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search", "status": 200,
+    "body": { "query": { "pages": [
+      { "title": "File:Second result.jpg", "index": 2, "imageinfo": [{ "mime": "image/jpeg", "descriptionurl": "https://commons.wikimedia.org/wiki/File:Second_result.jpg", "extmetadata": { "LicenseShortName": { "value": "CC BY-NC 2.0" } } }] },
+      { "title": "File:First result.jpg", "index": 1, "imageinfo": [{ "mime": "image/jpeg", "descriptionurl": "https://commons.wikimedia.org/wiki/File:First_result.jpg", "extmetadata": { "LicenseShortName": { "value": "CC BY-SA 3.0 nl" }, "Artist": { "value": "<a href=\"x\">Eric Koch</a>" } } }] }
+    ] } } },
+  { "match": "titles=File%3AFree%20sample.jpg", "status": 200,
+    "body": { "query": { "pages": [{ "title": "File:Free sample.jpg", "imageinfo": [{
+      "url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Free_sample.jpg",
+      "thumburl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Free_sample.jpg/1280px-Free_sample.jpg",
+      "thumbwidth": 1280, "thumbheight": 853, "width": 3000, "height": 2000, "mime": "image/jpeg",
+      "extmetadata": {
+        "ObjectName": { "value": "Free sample" },
+        "Artist": { "value": "<a href=\"https://www.wikidata.org/wiki/Q1\">Eric Koch</a> / Anefo" },
+        "LicenseShortName": { "value": "CC BY-SA 3.0 nl" },
+        "LicenseUrl": { "value": "https://creativecommons.org/licenses/by-sa/3.0/nl/deed.en" },
+        "AttributionRequired": { "value": "true" }
+      } }] }] } } },
+  { "match": "en.wikipedia.org/w/api.php", "status": 200,
+    "body": { "query": { "pages": [{ "title": "File:Nonfree sample.jpg", "imageinfo": [{
+      "url": "https://upload.wikimedia.org/wikipedia/en/c/cd/Nonfree_sample.jpg", "mime": "image/jpeg", "width": 300, "height": 300,
+      "extmetadata": { "LicenseShortName": { "value": "Fair use" }, "NonFree": { "value": "true" } } }] }] } } },
+  { "match": "titles=File%3ANo%20such%20file.jpg", "status": 200,
+    "body": { "query": { "pages": [{ "title": "File:No such file.jpg", "missing": true }] } } },
+  { "match": "collectionapi.metmuseum.org/public/collection/v1/objects/111111", "status": 200,
+    "body": { "objectID": 111111, "isPublicDomain": true, "primaryImage": "https://images.metmuseum.org/CRDImages/ep/original/sample.jpg",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ep/web-large/sample.jpg", "title": "Sample Painting",
+      "artistDisplayName": "Sample Artist", "objectDate": "1889", "objectURL": "https://www.metmuseum.org/art/collection/search/111111" } },
+  { "match": "collectionapi.metmuseum.org/public/collection/v1/objects/222222", "status": 200,
+    "body": { "objectID": 222222, "isPublicDomain": false, "primaryImage": "", "primaryImageSmall": "", "title": "Later Work",
+      "artistDisplayName": "Living Artist", "objectDate": "1990", "objectURL": "https://www.metmuseum.org/art/collection/search/222222" } },
+  { "match": "api.artic.edu/api/v1/artworks/27992", "status": 200,
+    "body": { "data": { "id": 27992, "title": "A Sample Sunday", "artist_display": "Sample Painter\nFrench, 1859-1891", "date_display": "1884-86",
+      "image_id": "sample-image-id", "is_public_domain": true, "thumbnail": { "alt_text": "A park by a river" } },
+      "config": { "iiif_url": "https://www.artic.edu/iiif/2" } } },
+  { "match": "example.org/alive", "status": 200,
+    "body": "<html><head><title>Ignored</title><meta property=\"og:title\" content=\"A Living Page\"></head><body></body></html>" },
+  { "match": "example.org/gone", "status": 404, "body": "<html><title>Not found</title></html>" },
+  { "match": "example.org/refuses", "status": 403, "body": "<html><title>Forbidden</title></html>" }
+]

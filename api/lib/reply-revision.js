@@ -7,7 +7,7 @@ const { thinkingOff } = require('./text-extras');
 // `revision` in its config is unchanged.
 
 // Every marker the reader's interface turns into something else: images and citations.
-const MARKER_TOKEN = /\[\[(?:IMAGE|CITE|WEB):[^\]]+\]\]/g;
+const MARKER_TOKEN = /\[\[(?:IMAGE|CITE|WEB|MEDIA):[^\]]+\]\]/g;
 
 function revisionConfig(config) {
   const r = config && config.revision;

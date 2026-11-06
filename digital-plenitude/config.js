@@ -235,6 +235,9 @@ Return only the revised reply, with no preface or comment.`,
   referencesFile: path.join(__dirname, 'source_texts', 'references.json'),
 
   // H-003, extended 2026-10-31: works the text may cite by name, one file per section (null: none). Ordinary readings only.
+  // H-018: one checked list of videos, images and web pages per section
+  // (source_texts/media-lists/section-N.json, kept with npm run media).
+  mediaListsDir: path.join(__dirname, 'source_texts', 'media-lists'),
   libraryListsDir: path.join(__dirname, 'source_texts', 'library-lists'),
   libraryLists: ['section-1.md', 'section-2.md', 'section-3.md', 'section-4.md', 'section-5.md', 'section-6.md', 'section-7.md',
     // H-014: chapter 2 (Jay, 2026-11-05)

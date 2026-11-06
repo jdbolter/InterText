@@ -1,0 +1,16 @@
+# H-018: items to add with   npm run media -- bulk digital-plenitude/source_texts/media-lists/candidates.txt
+# One per line:  section | address | when a reply should use it | id (optional)
+# The script checks each address (embedding, licence, link) and writes section-N.json.
+# Lines starting with # are skipped. Run it again after editing: items already listed are updated, not doubled.
+
+5 | https://www.youtube.com/watch?v=SSulycqZH-U | when the reply discusses John Cage's Water Walk or his appearance on the game show I've Got a Secret | cage-water-walk
+
+# Still to find (paste the address in place of the description, then remove the #):
+# 1 | <JAY-Z, "Picasso Baby: A Performance Art Film" (2013)> | when the reply discusses JAY-Z's performance at Pace Gallery or Abramović's part in it | picasso-baby
+# 2 | <What's Opera, Doc? (1957), a clip> | when the reply discusses cartoons that borrow from opera | whats-opera-doc
+# 12 | <Annie Hall (1977), the McLuhan scene> | when the reply discusses McLuhan as a figure of popular culture | annie-hall-mcluhan
+# 12 | <John Lennon and Marshall McLuhan, interview (1969)> | when the reply discusses Lennon and McLuhan together | lennon-mcluhan
+# 13 | <Apple, "1984" (1984)> | when the reply discusses the Macintosh's launch or Apple's advertising | apple-1984
+# 13 | <Apple, "Think Different" (1997)> | when the reply discusses Jobs's return to Apple or its use of modernist heroes | think-different
+# 13 | <Steve Jobs introduces the iPhone, Macworld 2007> | when the reply discusses the iPhone | iphone-2007
+# 11 | <a Commons photograph of the bed-in: try  npm run media -- search "Bed-In for Peace Amsterdam 1969"> | ...

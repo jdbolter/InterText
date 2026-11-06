@@ -7,6 +7,7 @@ const readerHistory = document.getElementById('reader-history');
 let history = [];
 let sectionIndex = 0;
 let shownImages = new Set();
+let shownMedia = new Set(); // H-018
 let saveConsent = false;
 // Which text this session reads when not contributing: the collectively-evolved
 // edition as it stands today, or the untouched original. Contributing always means
@@ -357,7 +358,7 @@ function renderText(container, text) {
   if (last < text.length) container.appendChild(document.createTextNode(text.slice(last)));
 }
 
-function appendGuideResponse(text, notes = null) {
+function appendGuideResponse(text, notes = null, media = null) {
   const turn = document.createElement('div');
   turn.className = 'turn';
 
@@ -368,10 +369,19 @@ function appendGuideResponse(text, notes = null) {
   const body = document.createElement('div');
   body.className = 'turn-body';
 
-  // Split on [[IMAGE:id]] tokens; odd-indexed parts are image ids
-  const parts = text.split(/\[\[IMAGE:([^\]]+)\]\]/);
+  // Split on [[IMAGE:id]] and [[MEDIA:id]] tokens; parts come in threes: text, kind, id
+  const parts = text.split(/\[\[(IMAGE|MEDIA):([^\]]+)\]\]/);
   parts.forEach((part, i) => {
-    if (i % 2 === 0) {
+    if (i % 3 === 1) return;
+    if (i % 3 === 2 && parts[i - 1] === 'MEDIA') {
+      const item = media && media[part.trim()];
+      if (item) {
+        shownMedia.add(item.id);
+        body.appendChild(MediaItems.render(item));
+      }
+      return;
+    }
+    if (i % 3 === 0) {
       part.split(/\n\n+/).forEach(para => {
         const trimmed = para.trim();
         if (trimmed) {
@@ -509,7 +519,7 @@ async function send() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message: text, history: readingEdition === 'original' ? history : [], sectionIndex: activeSection,
-          shownImages: Array.from(shownImages), textId: 'digital-plenitude', edition: readingEdition,
+          shownImages: Array.from(shownImages), shownMedia: Array.from(shownMedia), textId: 'digital-plenitude', edition: readingEdition,
           presentedFundEntryIds: Array.from(presentedFundEntryIds.get(activeSection) || []),
           ...(readingEdition !== 'original'
             ? {
@@ -560,7 +570,7 @@ async function send() {
             { role: 'assistant', content: CitationNotes.plainReply(data.response, data.notes) }
           );
         }
-        appendGuideResponse(data.response, data.notes);
+        appendGuideResponse(data.response, data.notes, data.media);
       }
       if (continuing && data.sectionComplete === true) completedSections.add(activeSection);
       if (data.response) break;
