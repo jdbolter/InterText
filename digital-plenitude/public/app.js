@@ -94,7 +94,11 @@ const SECTION_IMAGES = [
   null,
   null,
   null, null, null, null, null, null, null, null, // H-014: chapter 2
-  null, null, null, // H-015: chapter 3
+  null, null,
+  // H-017: the diagram of the four spectrums, shown at full width.
+  [
+    { id: 'spectrums', src: '../images/spectrums.svg', alt: 'Four spectrums in contemporary media culture: catharsis and flow, originality and remix, the organic or spontaneous and procedurality or datafication, history and simulation, with tradition on one side and the media future on the other', figure: true },
+  ],
 ];
 
 // Flat lookup map for inline image tokens
@@ -380,7 +384,7 @@ function appendGuideResponse(text, notes = null) {
         const img = document.createElement('img');
         img.src = imgData.src;
         img.alt = imgData.alt;
-        img.className = 'response-image';
+        img.className = imgData.figure ? 'response-figure' : 'response-image';
         body.appendChild(img);
       }
     }

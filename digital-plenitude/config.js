@@ -112,7 +112,11 @@ module.exports = {
     null,
     null,
     null, null, null, null, null, null, null, null, // H-014: chapter 2
-    null, null, null, // H-015: chapter 3
+    null, null,
+    // H-017: the diagram of the four spectrums (Jay, 2026-11-06).
+    [
+      { id: 'spectrums', prompt: 'A diagram of the four spectrums is available: catharsis and flow (response), originality and remix (making), the organic or spontaneous and procedurality or datafication (process), history and simulation (time), with the values of tradition on one side and those of the media future on the other. When you set out the four pairs together, embed the token [[IMAGE:spectrums]] on a line of its own after the paragraph that names them, and let your prose explain them.' },
+    ],
   ],
 
   // H-003: rewritten so that no noun names the material the model holds (H-002's "section" came back 69 times).
@@ -135,6 +139,8 @@ When the reader challenges an idea, answer as an essay answers an objection, at 
 You may go beyond 2019 and may question your own ideas, provided the new direction grows from the argument you hold. Name what carries it: a later writer, the work's own later thinking, or something that has happened since.
 
 The first time a person appears in the conversation, say in a few words who they are; in every later reply, the surname alone is enough.
+
+Write in prose paragraphs, which are all the page can show. When a figure is available, embed its token where it belongs and let the prose carry the explanation. The plural of spectrum, in this work, is spectrums.
 
 Use web search for what you do not hold: current events, recent works, and outside sources the reader asks about. The names, dates and details you already hold are authoritative, and an outside detail never alters them. Whatever you draw from a search reaches the reader as a numbered note added to your sentence, so the reply itself carries no list of sources or links, and the source's author or publication is named in the sentence only when the reader needs to know who said it.
 
@@ -179,6 +185,7 @@ You receive the argument here, in brief, what the reader has been shown so far (
 - Do not repeat what the work's earlier replies have already said. Where the draft reuses a phrase, an example or a closing sentence from them, put it in fresh words or let it go, and end on a thought the earlier replies have not ended on. The book's own formulas (such as "almost, but not quite, vanished") appear at most once in a conversation.
 - Apart from such repetition, keep every idea, example, name, date, figure, quotation and citation with its page that the draft contains, and add none.
 - Keep anything in double square brackets exactly as it is, in the same place.
+- Keep the reply in prose paragraphs. Where the draft sets something out as a table, a list or a diagram drawn in characters, put it into sentences. The plural of spectrum is spectrums.
 - Keep the reply to two or three short paragraphs and never more than 250 words: count them. When the draft runs longer, or the introductions above add words, keep what answers the reader and bears on the point, and let lesser detail go.
 
 Return only the revised reply, with no preface or comment.`,
@@ -212,7 +219,7 @@ Return only the revised reply, with no preface or comment.`,
     // H-015: chapter 3 (drafts, for Jay's approval).
     "Since the eighteenth century the hierarchy of the arts had aligned cultural with economic elites; from the 1950s it broke down, leaving communities that coexist peacefully or ignore one another, while the wealthy no longer need to prefer high art. Digital media did not cause the breakdown, but they were born into its cultural matrix, shaped by popular modernism, and they now give a culture of communities an ideal medium with no single centre.",
     "Popular modernism did not share elite modernism's fate: it diffused through media culture as the rhetorical foundation of digital media. Its four elements are the importance of the new, a break with the hierarchy of the arts that is only partial (popular forms seek to join the elite rather than flatten it), a fascination with technology, now focused on procedurality, and a preoccupation with style. As the great divide closed, art and design came to stand for a universal creativity that can be measured only by the standards of some community, and that leveling is the source of the plenitude's energy.",
-    "No single practice (networks, remix, social media, video games) can characterize the whole media culture, because each defines communities with millions of outsiders. Instead, four dichotomies, offered as partial characterizations and paths through a vast networked culture, delineate large parts of it: catharsis and flow, originality and remix, procedurality and the organic or spontaneous, simulation and history. They are the endpoints of spectra, not rigid categories, and though one term in each pair seems to stand for the media future, its counterpart does not disappear.",
+    "No single practice (networks, remix, social media, video games) can characterize the whole media culture, because each defines communities with millions of outsiders. Instead, four dichotomies, offered as partial characterizations and paths through a vast networked culture, delineate large parts of it: catharsis and flow, originality and remix, procedurality and the organic or spontaneous, simulation and history. They are the endpoints of spectrums, not rigid categories, and though one term in each pair seems to stand for the media future, its counterpart does not disappear.",
   ],
 
   // H-003: replaces "Current section" in the system prompt.

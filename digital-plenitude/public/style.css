@@ -509,6 +509,14 @@ header h1 {
   margin: 0.25rem 0 1rem 1.5rem;
 }
 
+.response-figure { /* H-017: diagrams at full width, below the paragraph that introduces them */
+  display: block;
+  clear: both;
+  width: 100%;
+  height: auto;
+  margin: 1.25rem 0 1.5rem;
+}
+
 .response-image {
   float: right;
   width: 50%;
