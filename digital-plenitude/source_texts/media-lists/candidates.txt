@@ -6,7 +6,7 @@
 5 | https://www.youtube.com/watch?v=SSulycqZH-U | when the reply discusses John Cage's Water Walk or his appearance on the game show I've Got a Secret | cage-water-walk
 
 # Still to find (paste the address in place of the description, then remove the #):
-# 1 | <JAY-Z, "Picasso Baby: A Performance Art Film" (2013)> | when the reply discusses JAY-Z's performance at Pace Gallery or Abramović's part in it | picasso-baby
+1 | https://youtu.be/67m0ng6fKQE | when the reply discusses JAY-Z's performance at Pace Gallery or Abramović's part in it | picasso-baby
 # 2 | <What's Opera, Doc? (1957), a clip> | when the reply discusses cartoons that borrow from opera | whats-opera-doc
 # 12 | <Annie Hall (1977), the McLuhan scene> | when the reply discusses McLuhan as a figure of popular culture | annie-hall-mcluhan
 # 12 | <John Lennon and Marshall McLuhan, interview (1969)> | when the reply discusses Lennon and McLuhan together | lennon-mcluhan

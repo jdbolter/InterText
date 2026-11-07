@@ -1,0 +1,19 @@
+{
+  "section": 1,
+  "items": [
+    {
+      "id": "picasso-baby",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=67m0ng6fKQE",
+      "title": "JAŸ-Z - Picasso Baby: A Performance Art Film",
+      "source": "JayZVEVO on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "67m0ng6fKQE"
+      },
+      "when": "when the reply discusses JAY-Z's performance at Pace Gallery or Abramović's part in it",
+      "status": "ok",
+      "checked": "2026-11-06"
+    }
+  ]
+}
