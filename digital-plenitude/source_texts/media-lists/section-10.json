@@ -1,0 +1,27 @@
+{
+  "section": 10,
+  "items": [
+    {
+      "id": "sgt-pepper-s-lonely-hearts-club",
+      "kind": "image",
+      "url": "https://commons.wikimedia.org/wiki/File:Sgt._Pepper's_Lonely_Hearts_Club_Band_album_art.jpg",
+      "title": "Sgt. Pepper's Lonely Hearts Club Band album art",
+      "source": "Wikimedia Commons",
+      "credit": "Sgt. Pepper's Lonely Hearts Club Band album art. Peter Blake / Parlophone , Capitol Records. Public domain, via Wikimedia Commons.",
+      "licence": {
+        "name": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Sgt._Pepper's_Lonely_Hearts_Club_Band_album_art.jpg",
+        "cleared": true
+      },
+      "embed": {
+        "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Sgt._Pepper%27s_Lonely_Hearts_Club_Band_album_art.jpg/1280px-Sgt._Pepper%27s_Lonely_Hearts_Club_Band_album_art.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "width": 1280,
+        "height": 1280,
+        "alt": "Album art of Sgt. Pepper's Lonely Hearts Club Band by the Beatles"
+      },
+      "when": "when the reply discusses Sgt. Pepper's Lonely Hearts Club Band or the Beatles' albums as modernist art",
+      "status": "ok",
+      "checked": "2026-11-08"
+    }
+  ]
+}
