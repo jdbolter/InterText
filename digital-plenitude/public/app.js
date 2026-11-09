@@ -30,6 +30,7 @@ const SECTION_NUMERALS = [
   'I', 'II', 'III', 'IV', 'V', 'VI', 'VII',
   'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII',
   'I', 'II', 'III',
+  'I', 'II', 'III', 'IV', 'V',
 ];
 
 // H-014: must match config.chapters (number, title, firstSection); a test checks this.
@@ -37,6 +38,7 @@ const CHAPTERS = [
   { number: 1, title: 'The Great Divide', firstSection: 0 },
   { number: 2, title: 'Popular Modernism', firstSection: 7 },
   { number: 3, title: 'Dichotomies', firstSection: 15 },
+  { number: 4, title: 'Catharsis', firstSection: 18 },
 ];
 
 function chapterOf(idx) {
@@ -64,6 +66,11 @@ const SECTION_TITLES = [
   'Dichotomies',
   'The Rise of Popular Modernism',
   'Describing the Plenitude',
+  'Catharsis',
+  'Fragmented Stories',
+  'The Cinema of Immersion',
+  'Catharsis in Video Games',
+  'The Past and Future of Catharsis',
 ];
 
 function priorSectionSummaries(activeSection) {
@@ -105,6 +112,7 @@ const SECTION_IMAGES = [
   [
     { id: 'spectrums', src: '../images/spectrums.svg', alt: 'Four spectrums in contemporary media culture: catharsis and flow, originality and remix, the organic or spontaneous and procedurality or datafication, history and simulation, with tradition on one side and the media future on the other', figure: true },
   ],
+  null, null, null, null, null, // chapter 4
 ];
 
 // Flat lookup map for inline image tokens
@@ -151,6 +159,17 @@ const SECTION_INTROS = [
   `<p>Alan Kay and Steve Jobs, among the early creators of digital media technologies, were children of the 1960s. Kay believed the computer could be a &ldquo;personal dynamic medium&rdquo; for everyone, children above all; Jobs wanted the Macintosh to be &ldquo;the computer for the rest of us.&rdquo; Both defined the digital medium in popular modernist terms. Popular modernism did not share elite modernism&rsquo;s fate. It diffused through our media culture with four elements: the importance of the new, a partial break with the hierarchy of the arts, a fascination with technology, and a preoccupation with style. As the great divide closed, art and design came to name the creativity in all of us, judged by the standards of each community.</p>`,
 
   `<p>The music video <em>Gangnam Style</em>, by the Korean K-pop musician Psy, has been watched more than three billion times on YouTube, and it meant something different to Korean fans, to other Asian viewers and to Western ones. And there remain millions more people to whom the video means nothing. No single practice and form can fully characterize contemporary media culture&mdash;not remix, rap, video games, or even social media. Instead, the following chapters offer partial characterizations, paths through our vast networked culture. They describe that culture in terms of opposing values: catharsis and flow, originality and remix, procedurality and the spontaneous, simulation and history.</p>`,
+
+  // Chapter 4 (drafts for Jay's approval).
+  `<p>It is often said that we are living in a second Golden Age of Television. <em>Mad Men</em>, <em>Downton Abbey</em> and <em>Game of Thrones</em> tell long stories about characters their viewers come to care about, and David Carr wrote in the <em>New York Times</em> that such shows had become &ldquo;much more like books.&rdquo; Their aesthetic is the oldest in popular narrative: catharsis, a story of conflict and resolution that leads us to identify with the characters and feel an emotional release. It shaped the Victorian novel and Hollywood film. But catharsis is not universal, and the avant-garde, from Brecht on, rejected it.</p>`,
+
+  `<p>In <em>Skyfall</em> (2012), James Bond drives his old 1960s Aston Martin home to the family estate in Scotland, loses M, his boss and mentor, and the series resets itself, all in two hours, between chases, fights and betrayals. Cathartic storytelling survives in fragments: moments of identification sewn into a remix of genres, stories scattered across media in alternate reality games, nested story arcs in transmedia franchises from <em>The Matrix</em> to Marvel, and the long, tangled ending of <em>Lost</em>. Character remains at the centre even when realism does not.</p>`,
+
+  `<p>In November 2015 the <em>New York Times</em> gave a million of its subscribers a strange piece of cardboard: a Google Cardboard viewer for watching 360-degree video on a smartphone. The filmmaker Chris Milk calls VR video &ldquo;the ultimate empathy machine,&rdquo; a medium that moves its viewers to sympathy and identification as no other can. His is a classic claim of remediation: VR film does better what film always meant to do. But VR film is more film than VR. It offers no interaction beyond looking around, and the viewer remains a viewer.</p>`,
+
+  `<p>In <em>Gone Home</em> (2013) you return to your family&rsquo;s house in Oregon and find it empty. There is nothing to kill and no points to win: you read notes and listen to a journal until you understand that your sister has left home to live with the girl she loves. Some video games, often small independent ones like <em>Gone Home</em> and <em>What Remains of Edith Finch</em>, can move their players as a short story does. They do it by borrowing the techniques of film and television, and the interaction has little to do with the emotion. Cathartic games remain a small genre in the plenitude of games.</p>`,
+
+  `<p>&ldquo;We&rsquo;ll always have Paris,&rdquo; Bogart tells Bergman at the end of <em>Casablanca</em>. Hollywood drama has long looked back, and the second Golden Age of Television has made nostalgia a defining motif, from <em>Mad Men</em> to <em>Downton Abbey</em>. Psychologists and philosophers from Jerome Bruner to Steven Pinker treat this kind of storytelling as a human universal. It is not: it was perfected in the novels, plays and films of the past two centuries, and it is not what Aristotle meant. Catharsis is a modern genre. Its audience is ageing, and an alternative has gained in status through video games.</p>`,
 ];
 
 // ── Consent dialog ──

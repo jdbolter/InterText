@@ -689,6 +689,86 @@
             "superseded": 0,
             "rejected": 0
           }
+        },
+        {
+          "id": "catharsis",
+          "title": "Catharsis",
+          "order": 19,
+          "package": "sections/catharsis/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/catharsis.json",
+          "versionId": "dp-catharsis-v001",
+          "passageCount": 7,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "fragmented-stories",
+          "title": "Fragmented Stories",
+          "order": 20,
+          "package": "sections/fragmented-stories/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/fragmented-stories.json",
+          "versionId": "dp-fragmented-stories-v001",
+          "passageCount": 4,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "cinema-of-immersion",
+          "title": "The Cinema of Immersion",
+          "order": 21,
+          "package": "sections/cinema-of-immersion/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/cinema-of-immersion.json",
+          "versionId": "dp-cinema-of-immersion-v001",
+          "passageCount": 4,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "catharsis-in-video-games",
+          "title": "Catharsis in Video Games",
+          "order": 22,
+          "package": "sections/catharsis-in-video-games/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/catharsis-in-video-games.json",
+          "versionId": "dp-catharsis-in-video-games-v001",
+          "passageCount": 7,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "past-and-future-of-catharsis",
+          "title": "The Past and Future of Catharsis",
+          "order": 23,
+          "package": "sections/past-and-future-of-catharsis/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/past-and-future-of-catharsis.json",
+          "versionId": "dp-past-and-future-of-catharsis-v001",
+          "passageCount": 2,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
         }
       ]
     }

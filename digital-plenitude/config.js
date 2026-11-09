@@ -34,6 +34,12 @@ module.exports = {
     'section-16.md',
     'section-17.md',
     'section-18.md',
+    // Chapter 4, Catharsis (2026-11-09).
+    'section-19.md',
+    'section-20.md',
+    'section-21.md',
+    'section-22.md',
+    'section-23.md',
   ],
 
   sectionNames: [
@@ -55,6 +61,11 @@ module.exports = {
     "Dichotomies",
     "The Rise of Popular Modernism",
     "Describing the Plenitude",
+    "Catharsis",
+    "Fragmented Stories",
+    "The Cinema of Immersion",
+    "Catharsis in Video Games",
+    "The Past and Future of Catharsis",
   ],
 
   sectionIntros: [
@@ -95,6 +106,17 @@ module.exports = {
     `Alan Kay and Steve Jobs, among the early creators of digital media technologies, were children of the 1960s. Kay believed the computer could be a “personal dynamic medium” for everyone, children above all; Jobs wanted the Macintosh to be “the computer for the rest of us.” Both defined the digital medium in popular modernist terms. Popular modernism did not share elite modernism’s fate. It diffused through our media culture with four elements: the importance of the new, a partial break with the hierarchy of the arts, a fascination with technology, and a preoccupation with style. As the great divide closed, art and design came to name the creativity in all of us, judged by the standards of each community.`,
 
     `The music video Gangnam Style, by the Korean K-pop musician Psy, has been watched more than three billion times on YouTube, and it meant something different to Korean fans, to other Asian viewers and to Western ones. And there remain millions more people to whom the video means nothing. No single practice and form can fully characterize contemporary media culture—not remix, rap, video games, or even social media. Instead, the following chapters offer partial characterizations, paths through our vast networked culture. They describe that culture in terms of opposing values: catharsis and flow, originality and remix, procedurality and the spontaneous, simulation and history.`,
+
+    // Chapter 4. Drafted by Claude, 2026-11-09, for Jay's approval (vault: drafts/chapter-4-plan.md).
+    `It is often said that we are living in a second Golden Age of Television. Mad Men, Downton Abbey and Game of Thrones tell long stories about characters their viewers come to care about, and David Carr wrote in the New York Times that such shows had become “much more like books.” Their aesthetic is the oldest in popular narrative: catharsis, a story of conflict and resolution that leads us to identify with the characters and feel an emotional release. It shaped the Victorian novel and Hollywood film. But catharsis is not universal, and the avant-garde, from Brecht on, rejected it.`,
+
+    `In Skyfall (2012), James Bond drives his old 1960s Aston Martin home to the family estate in Scotland, loses M, his boss and mentor, and the series resets itself, all in two hours, between chases, fights and betrayals. Cathartic storytelling survives in fragments: moments of identification sewn into a remix of genres, stories scattered across media in alternate reality games, nested story arcs in transmedia franchises from The Matrix to Marvel, and the long, tangled ending of Lost. Character remains at the centre even when realism does not.`,
+
+    `In November 2015 the New York Times gave a million of its subscribers a strange piece of cardboard: a Google Cardboard viewer for watching 360-degree video on a smartphone. The filmmaker Chris Milk calls VR video “the ultimate empathy machine,” a medium that moves its viewers to sympathy and identification as no other can. His is a classic claim of remediation: VR film does better what film always meant to do. But VR film is more film than VR. It offers no interaction beyond looking around, and the viewer remains a viewer.`,
+
+    `In Gone Home (2013) you return to your family’s house in Oregon and find it empty. There is nothing to kill and no points to win: you read notes and listen to a journal until you understand that your sister has left home to live with the girl she loves. Some video games, often small independent ones like Gone Home and What Remains of Edith Finch, can move their players as a short story does. They do it by borrowing the techniques of film and television, and the interaction has little to do with the emotion. Cathartic games remain a small genre in the plenitude of games.`,
+
+    `“We’ll always have Paris,” Bogart tells Bergman at the end of Casablanca. Hollywood drama has long looked back, and the second Golden Age of Television has made nostalgia a defining motif, from Mad Men to Downton Abbey. Psychologists and philosophers from Jerome Bruner to Steven Pinker treat this kind of storytelling as a human universal. It is not: it was perfected in the novels, plays and films of the past two centuries, and it is not what Aristotle meant. Catharsis is a modern genre. Its audience is ageing, and an alternative has gained in status through video games.`,
   ],
 
   sectionImagePrompts: [
@@ -122,6 +144,7 @@ module.exports = {
     [
       { id: 'spectrums', prompt: 'A diagram of the four spectrums is available: catharsis and flow (response), originality and remix (making), the organic or spontaneous and procedurality or datafication (process), history and simulation (time), with the values of tradition on one side and those of the media future on the other. When you set out the four pairs together, embed the token [[IMAGE:spectrums]] on a line of its own after the paragraph that names them, and let your prose explain them.' },
     ],
+    null, null, null, null, null, // chapter 4
   ],
 
   // H-003: rewritten so that no noun names the material the model holds (H-002's "section" came back 69 times).
@@ -204,6 +227,7 @@ Return only the revised reply, with no preface or comment.`,
     { number: 1, title: 'The Great Divide', firstSection: 0, point: "The great divide between elite art and popular culture, which educated and moneyed elites could enforce across the whole culture in the nineteenth and twentieth centuries, is dissolving. It no longer holds for the culture as a whole, though traces of it survive in particular institutions and communities, and the boundaries are fluid. What is taking its place is not a consensus but the diverse judgments of many communities, each free to treat its own art as central and none able to impose that view on the rest. This is the media plenitude, and digital media have given it an ideal framework." },
     { number: 2, title: 'Popular Modernism', firstSection: 7, point: "From the 1960s on, musicians, media theorists and technologists carried the fragments of elite modernism into popular culture: formal innovation, the progressive faith that design and technology can remake society, and the avant-garde's wish to merge art and life. They kept modernism's rhetoric of revolution, now attached to media and technology instead of art, and forgot most of the history behind it. That rhetoric still frames how digital media are sold and discussed. But in the media plenitude it is one strand among many, and no \"ism\" can again give the culture a single story. Popular modernism is what modernism became on its way to dissolution." },
     { number: 3, title: 'Dichotomies', firstSection: 15, point: "From the 1950s the hierarchy of the arts broke down into a collection of communities, each with its own standards, and economic and cultural elites split apart. Modernism, the dominant paradigm at that moment, shattered, and popular modernism carried its fragments into the culture in which digital media were born. No single characteristic can describe that culture, but four pairs of opposed values delineate large parts of it: catharsis and flow, originality and remix, procedurality and the organic or spontaneous, simulation and history. Each pair is a spectrum, not a choice, and in each the newer, fashionable term remains in creative tension with the older one." }, // H-015: draft, for Jay's approval
+    { number: 4, title: 'Catharsis', firstSection: 18, point: "Catharsis, a story of conflict and resolution that leads an audience to identify with its characters and feel an emotional release, shaped the Victorian novel, melodrama, Hollywood film and television drama. It remains strong in the second Golden Age of Television, in transmedia franchises, in VR film and even in some video games, which borrow its techniques from film. But it is not universal: it is a modern style, perfected over the last two centuries and rejected by the avant-garde, and it has become nostalgic, both in its themes and in its longing for a time when serious drama dominated the culture. Its audience is ageing, and a popular alternative, flow, has gained in status, above all through video games." },
   ],
   sectionPoints: [
     "JAY-Z's Picasso Baby catches the divide in the act of dissolving: a rapper claims the status of a modern-day Picasso in a white-box gallery, art-world figures and fans join in with delight, and yet the reactions split by community. What is taking the divide's place is not a consensus about art but the judgments of many communities, none of which can enforce its definition of art across the culture.",
@@ -225,6 +249,12 @@ Return only the revised reply, with no preface or comment.`,
     "Since the eighteenth century the hierarchy of the arts had aligned cultural with economic elites; from the 1950s it broke down, leaving communities that coexist peacefully or ignore one another, while the wealthy no longer need to prefer high art. Digital media did not cause the breakdown, but they were born into its cultural matrix, shaped by popular modernism, and they now give a culture of communities an ideal medium with no single centre.",
     "Popular modernism did not share elite modernism's fate: it diffused through media culture as the rhetorical foundation of digital media. Its four elements are the importance of the new, a break with the hierarchy of the arts that is only partial (popular forms seek to join the elite rather than flatten it), a fascination with technology, now focused on procedurality, and a preoccupation with style. As the great divide closed, art and design came to stand for a universal creativity that can be measured only by the standards of some community, and that leveling is the source of the plenitude's energy.",
     "No single practice (networks, remix, social media, video games) can characterize the whole media culture, because each defines communities with millions of outsiders. Instead, four dichotomies, offered as partial characterizations and paths through a vast networked culture, delineate large parts of it: catharsis and flow, originality and remix, procedurality and the organic or spontaneous, simulation and history. They are the endpoints of spectrums, not rigid categories, and though one term in each pair seems to stand for the media future, its counterpart does not disappear.",
+    // Chapter 4 (drafts, for Jay's approval).
+    "Catharsis in popular drama is a story of conflict and resolution that leads the viewer to identify with the main characters and feel an emotional release. It defined Victorian fiction, melodrama and the Golden Ages of Hollywood film and television, and it still underlies prestige television drama. But it is not what Aristotle meant, the avant-garde from Brecht on rejected it, and its audience is growing older, though in the plenitude fewer does not mean few.",
+    "Cathartic storytelling survives by fragmenting. Bond films sew cathartic moments into a remix of chases, fights and betrayals; alternate reality games scatter a story across media and puzzles and lose catharsis along the way; transmedia franchises from The Matrix to the Marvel Universe nest many story arcs and moments of catharsis; and the ending of Lost is a nostalgic remix of Hollywood gestures. Character stays at the centre even when realism does not.",
+    "360-degree or VR video is the digital form closest to film. Chris Milk calls it an empathy machine that moves its viewers to sympathy and identification more powerfully than any earlier medium, a classic claim of remediation: VR film does better what film always meant to do. But it is more film than VR: it offers no interaction beyond looking around, and the viewer remains a viewer.",
+    "Some video games achieve catharsis, often independent games such as Gone Home, That Dragon, Cancer and What Remains of Edith Finch, which read like short fiction, and even some violent ones such as The Last of Us. They do it by borrowing the techniques of film and television, while the interaction has little to do with the emotional engagement; interactivity and coherent storytelling are hard to combine. So cathartic games remain a small genre within the plenitude of video games.",
+    "Catharsis is a modern genre, not a universal human practice: the psychological storytelling that Bruner, Dennett, Pinker and others take to be universal was perfected in the novels, plays and films of the last two centuries. It is also nostalgic, in its themes and in its longing for a time when serious drama dominated media culture. It can still reach younger audiences, as Harry Potter shows, but a popular alternative has gained in status, above all through video games.",
   ],
 
   // H-003: replaces "Current section" in the system prompt.

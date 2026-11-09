@@ -111,6 +111,36 @@
       "title": "Describing the Plenitude",
       "order": 18,
       "package": "sections/describing-the-plenitude/section.json"
+    },
+    {
+      "id": "catharsis",
+      "title": "Catharsis",
+      "order": 19,
+      "package": "sections/catharsis/section.json"
+    },
+    {
+      "id": "fragmented-stories",
+      "title": "Fragmented Stories",
+      "order": 20,
+      "package": "sections/fragmented-stories/section.json"
+    },
+    {
+      "id": "cinema-of-immersion",
+      "title": "The Cinema of Immersion",
+      "order": 21,
+      "package": "sections/cinema-of-immersion/section.json"
+    },
+    {
+      "id": "catharsis-in-video-games",
+      "title": "Catharsis in Video Games",
+      "order": 22,
+      "package": "sections/catharsis-in-video-games/section.json"
+    },
+    {
+      "id": "past-and-future-of-catharsis",
+      "title": "The Past and Future of Catharsis",
+      "order": 23,
+      "package": "sections/past-and-future-of-catharsis/section.json"
     }
   ]
 }

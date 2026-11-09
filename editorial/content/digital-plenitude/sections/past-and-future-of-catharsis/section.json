@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "editionId": "digital-plenitude-proofs",
+  "versionId": "dp-past-and-future-of-catharsis-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-09T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "digital-plenitude/source_texts/sections/section-23.md"
+  },
+  "spineFile": "spine.md",
+  "fundEntries": [],
+  "changeSummary": "Structural package of the proofs' chapter 4, section 5 (The Past and Future of Catharsis); one passage per paragraph; no initial fund entries."
+}

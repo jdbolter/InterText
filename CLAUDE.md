@@ -66,7 +66,7 @@ The proofs' chapters 1 and 2, fifteen sections. Its `config.js` carries everythi
     is never listed by hand from memory: the script's check is its basis.
 - **Chapters (H-014).** One work in chapters: `chapters` lists `{ number, title, firstSection, point }`, and a
   section belongs to the last chapter starting at or before it. Chapter 1 is sections 1 to 7; chapter 2, *Popular
-  Modernism*, sections 8 to 15. The page's `CHAPTERS` in `public/app.js` must match (a test checks it); the contents
+  Modernism*, sections 8 to 15; chapter 3, *Dichotomies*, 16 to 18; chapter 4, *Catharsis*, 19 to 23. The page's `CHAPTERS` in `public/app.js` must match (a test checks it); the contents
   list is built from it, grouped by chapter, and numerals start again in each chapter.
 - **The argument in brief:** `sectionPoints` and each chapter's `point`. Before every reply, the model gets the point
   for the section and for its chapter, and states it as a claim, never as "the main line" (H-013).
