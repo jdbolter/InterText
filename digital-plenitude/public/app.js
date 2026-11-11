@@ -32,6 +32,10 @@ const SECTION_NUMERALS = [
   'I', 'II', 'III',
   'I', 'II', 'III', 'IV', 'V',
   'I', 'II', 'III', 'IV', 'V', 'VI',
+  'I', 'II', 'III', 'IV', 'V',
+  'I', 'II', 'III', 'IV', 'V', 'VI',
+  'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII',
+  'I',
 ];
 
 // H-014: must match config.chapters (number, title, firstSection); a test checks this.
@@ -41,7 +45,16 @@ const CHAPTERS = [
   { number: 3, title: 'Dichotomies', firstSection: 15 },
   { number: 4, title: 'Catharsis', firstSection: 18 },
   { number: 5, title: 'Flow', firstSection: 23 },
+  { number: 6, title: 'Remix and Originality', firstSection: 29 },
+  { number: 7, title: 'Procedurality, History, and Simulation', firstSection: 34 },
+  { number: 8, title: 'Social Media and the Politics of Flow', firstSection: 40 },
+  { number: 9, title: 'Conclusion', firstSection: 48, label: 'Conclusion' },
 ];
+
+// A chapter with a label (the Conclusion) is headed by the label alone.
+function chapterHeading(chapter) {
+  return chapter.label || `Chapter ${chapter.number}: ${chapter.title}`;
+}
 
 function chapterOf(idx) {
   let found = CHAPTERS[0];
@@ -79,6 +92,26 @@ const SECTION_TITLES = [
   'Our Time Traveler',
   'The Spectrum of Catharsis and Flow',
   'The Popular Avant-Garde',
+  "Remix and Originality",
+  "Remix Culture",
+  "Good Musicians Copy; Great Musicians Remix",
+  "Remix and Modernism",
+  "Playing in the Plenitude",
+  "Datafication",
+  "The Procedural and the Mechanical",
+  "Video Games: Procedures to Save the World",
+  "History and Simulation",
+  "Strong and Weak Narratives",
+  "The Procedural Divide",
+  "Social Media and the Politics of Flow",
+  "Flow and the Not So New Narcissism",
+  "The Performance of Identity",
+  "Social Media and Weak Stories",
+  "Digital Identity and Identity Politics",
+  "Social Media and Collective Action",
+  "Anonymous",
+  "Weak Narrative and American Politics",
+  "Conclusion",
 ];
 
 function priorSectionSummaries(activeSection) {
@@ -128,6 +161,11 @@ const SECTION_IMAGES = [
   ],
   [
     { id: 'three-aesthetics', src: '../images/fig-5-5-three-aesthetics.png', alt: "A triangle with catharsis, flow and reflection at its corners: Titanic and Casablanca near catharsis; Bejeweled and Music for Airports near flow; Un Chien Andalou, Ulysses, Untitled-Game and Super Mario Clouds toward reflection; Mother Courage, Passage, Scary Movie, Toy Story, Lost, The Matrix and Edith Finch in the interior", figure: true },
+  ],
+  null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, // chapters 6 to 8 and the Conclusion: sections 30 to 48
+  // Jay's diagram 9.1, shown at full width.
+  [
+    { id: 'dichotomies', src: '../images/fig-9-1-dichotomies.png', alt: "Four dichotomies of our media culture, the traditional term on the left and the newer on the right: catharsis and flow; originality and remix; the organic or spontaneous and procedurality or datafication; history and simulation", figure: true },
   ],
 ];
 
@@ -199,6 +237,46 @@ const SECTION_INTROS = [
   `<p>The <em>Matrix</em> and <em>Star Wars</em> films are cathartic; the <em>Matrix</em> and <em>Star Wars</em> video games offer flow; and many of the same people enjoy both. Catharsis and flow do not neatly divide old media from new, or older audiences from younger. They appear within a single medium, they blend in a single experience, and the media industry combines them in its transmedia franchises. They are better understood as the two ends of a scale, with a classic film like <em>Casablanca</em> at one end, a puzzle game like <em>Bejeweled</em> at the other, and most of our media somewhere in between.</p>`,
 
   `<p>In 2002 the artist Cory Arcangel hacked <em>Super Mario Bros.</em>, removing almost everything but the white clouds drifting across a blue sky. There was nothing left to play. Avant-garde games like <em>Super Mario Clouds</em> deny the player both flow and catharsis and ask instead what a game is: they call for reflection, the aim of twentieth-century modern art against the immersion of popular forms. Today reflection, too, has become popular, in Pixar&rsquo;s films and in hip-hop&rsquo;s remix. Catharsis, flow and reflection make a triangle, and our media culture fills its interior with hybrids.</p>`,
+
+  `<p>In 1998 JAY-Z&rsquo;s &ldquo;Hard Knock Life&rdquo; set his own struggle for recognition as a rapper over a chorus sampled from the Broadway musical <em>Annie</em>. Rap grew in the 1970s from African American communities that combined the rapper&rsquo;s verbal art with the DJ&rsquo;s sampling of records, and its foundation, remix, was open to everything: rappers were featured in one another&rsquo;s songs, and by the 2000s hip-hop and R&B had become hard to tell apart. Remix has not produced a single style but a proliferation of them. And rap is flow music: the word names the interplay of the rapper&rsquo;s rhymes and the beat.</p>`,
+
+  `<p>In the film <em>Downfall</em> (2004), Hitler screams at his generals in his bunker as the Russians close in on Berlin. A few years later the scene became the source of hundreds of parodies on YouTube, each keeping the German dialogue and changing the subtitles so that Hitler rages at something else: an iPod without a camera, a soccer transfer, even the parodies themselves. The <em>Downfall</em> videos are a meme, made by repetition and variation, and remix is how memes spread. As Lawrence Lessig argues, remix has become a means of expression for millions of amateurs. In remix culture, no one cares who had the idea first.</p>`,
+
+  `<p>In 2000 the heavy metal band Metallica sued Napster, the file-sharing service, and its drummer Lars Ulrich told the U.S. Senate that copying the band&rsquo;s songs was theft: &ldquo;My band authored the music … We should decide what happens to it.&rdquo; A band born in rock rebellion was defending the modernist idea of the artist as sole creator and owner of the work. Today remixers answer that &ldquo;everything is a remix&rdquo; and claim a right to sample. Remix measures creativity by skillful borrowing and refashioning, as postmodern art did. Even T. S. Eliot praised the mature poet who steals, but he expected the theft to become a unique work of art.</p>`,
+
+  `<p>Gregg Gillis, who records as Girl Talk, built his album <em>Night Ripper</em> from between two and two and a half hundred samples of popular songs, without permission for any of them. At his concerts, hundreds of fans dance ecstatically to music they recognize in fragments. Gillis has no interest in the avant-garde tradition, and yet he achieves what the avant-garde of the 1910s and 1920s wanted and failed to achieve: art integrated into the everyday life of its audience. Remix ignores the modern distinctions between art and craft, original and copy, artist and audience. It is popular postmodernism, and it is most like the historical avant-garde precisely when it is not trying to be.</p>`,
+
+  `<p>At a Girl Talk concert the audience dances with hands raised, enveloped in sampled music that could go on forever. Remix is playing in the plenitude. In a culture of fragments, why not piece fragments together into new configurations? Remix takes samples from anywhere, and digital media and the Internet make almost everything available. Where modernism prized the individual artist&rsquo;s contribution to a tradition, remix celebrates the wealth of traditions it draws on, playing with many rather than advancing one. And remix culture is flow culture: repetitive, procedural, generating memes that always have one more variation.</p>`,
+
+  `<p>An early-morning city park would surprise our time traveler from 1960: joggers of every age and fitness, many wearing trackers that record each step and heartbeat. Gary Wolf and Kevin Kelly of <em>Wired</em> called this the &ldquo;Quantified Self.&rdquo; Our media culture has embraced numbers: daily polls in election seasons, stock reports and box office grosses, ranked lists of the hundred best films and novels. Viktor Mayer-Schönberger and Kenneth Cukier call it datafication. Institutions have long classified us invisibly, but now millions take part willingly, filling in profiles and ratings. Not everyone welcomes it: <em>Moneyball</em> celebrates the statisticians, and <em>Trouble with the Curve</em> the old scout&rsquo;s instinct.</p>`,
+
+  `<p>In Chaplin&rsquo;s <em>Modern Times</em> (1936), the Tramp, mesmerized by his repetitive work on the assembly line, falls onto the conveyor and is swallowed by the giant gears of the machine. Thirty years later, in <em>2001: A Space Odyssey</em>, the threatening machine is HAL, whose depths are gleaming rows of memory modules running an invisible program. Between the two, the electronic computer had changed what a machine is. The game designer and scholar Ian Bogost calls the computer&rsquo;s operation procedurality: a programmable machine can become any number of machines, and each program reconfigures its users too, who must become part of the procedure to use it.</p>`,
+
+  `<p>The player of <em>Candy Crush Saga</em> works against a move counter to get the candies in the right places, like Chaplin&rsquo;s Tramp at the assembly line, except that she experiences it as play rather than alienating labor. Video games are procedural: characters are sets of parameters, and the event loop inserts the player so seamlessly into the procedure that she wants it to go on. Games train us for digital culture. For the game designer Jane McGonigal, they can do more: &ldquo;Very big games,&rdquo; she writes, are &ldquo;the best hope we have for solving the most complex problems of our time.&rdquo; Games are salvational for her, as art was for the avant-garde.</p>`,
+
+  `<p>In Sid Meier&rsquo;s <em>Civilization</em>, you lead a people from 4000 BC to the near future, building cities, researching technologies and fighting wars, and you may build the Eiffel Tower in Beijing. When the game ends, you can play again as the same civilization or another, make different choices and reach a different outcome. History never allows that: it moves in one direction and cannot be called back. Video games, like scientific simulations, can always be rerun, and their players live in a perpetual present whose future can be reimagined. This paradigm of simulation now exists beside the historical sensibility in our media culture.</p>`,
+
+  `<p>In Gonzalo Frasca&rsquo;s game <em>September 12</em> (2003), you fire missiles at terrorists in a small Middle Eastern town, but each strike kills civilians and turns their mourners into terrorists. You can never win. The game makes its argument about the war on terror through its procedures, what Ian Bogost calls procedural rhetoric. Games can be political. But they rarely tell strong narratives, stories of conflict that move confidently toward resolution, as novels and films do. Their narratives are weak: repetitive, without a clear end. And the great political ideologies of the last two centuries were strong narratives.</p>`,
+
+  `<p>One of the great fault lines in our media culture runs through three keywords: datafication, procedurality and simulation. On one side are communities that still see each person as part of a historical process, connected to the past by coherent stories; they prefer novels and films, and the strong political narratives of liberal democracy or socialism. On the other are communities at home with procedural interfaces and games, for whom simulation replaces history and the present can always be replayed. To believe that games can solve our problems is to leave history, and politics, out of the procedural equation.</p>`,
+
+  `<p>Only a couple of decades ago, economic and cultural elites controlled publishing and broadcasting. Today Facebook, Instagram, Twitter and the other social media platforms give billions of people the chance to publish whatever they like, and what most of them publish is themselves: what they are doing, what they see, bits of their lives. For critics such as Andrew Keen, this is &ldquo;the sheer noise of a hundred million bloggers all simultaneously talking about themselves.&rdquo; For enthusiasts, it is liberation for those who never had a voice. Either way, social media make everyone who takes part into an author who must style a persona.</p>`,
+
+  `<p>In 1976 Tom Wolfe called the 1970s the &ldquo;Me Decade,&rdquo; with its New Age spirituality, health fads and meditation, the beat that goes &ldquo;Me … Me … Me.&rdquo; Two years later Christopher Lasch described a culture of narcissism, turning from politics to self-examination. Today critics blame Facebook and YouTube for a new narcissism, but the complaint is not new. In the same decade, the psychologist Mihaly Csikszentmihalyi defined flow, a secular version of the Me generation&rsquo;s spirituality and a therapy for individuals in a society without shared values. Flow and catharsis, weak and strong narrative, now reach beyond entertainment into social and political life.</p>`,
+
+  `<p>At a high school football game in 2010, the researcher danah boyd noticed that the teenagers shared their phones with the friends beside them, while their parents stared into their own devices, barely looking up when a touchdown was scored. Social media do not simply isolate the young; they extend their social lives. But each Facebook page is also a performance: a face presented to a networked audience, built from posts, photos and comments that trickle into friends&rsquo; feeds over the years. This is identity as remix, fluid and fragmentary, so that the same person can present one self to friends and another to an admissions officer.</p>`,
+
+  `<p>Aaron Sorkin&rsquo;s film <em>The Social Network</em> (2010) explains the rise of Facebook in Hollywood terms, through the complicated and flawed humanity of Mark Zuckerberg. But being on Facebook calls for a different kind of storytelling. The stories in a News Feed are weak narratives: repetitive, fragmentary, without a sense of an ending, flowing up the screen as fast as you and your friends post them. Every platform invites you to tell your own story, so that the whole network becomes a vast selfie. Social networking is flow punctuated by catharsis, and your participation is never meant to end.</p>`,
+
+  `<p>In 2016 the <em>Wall Street Journal</em> published &ldquo;Blue Feed, Red Feed,&rdquo; a page that showed side by side what liberal and conservative Facebook users saw on topics such as guns and abortion: two completely different political worlds. Eli Pariser had warned of such filter bubbles. Users want filters to navigate the plenitude, and the algorithms that profile them for advertisers serve politics just as well. Donald Trump&rsquo;s campaign showed how social media merge the personal and the political: his identity politics centered not on race or history but on one individual, himself. Digital media did not create America&rsquo;s separate information communities, but they intensify them.</p>`,
+
+  `<p>In 2001 protesters in the Philippines, summoned by text messages, helped oust President Joseph Estrada; Howard Rheingold called them a smart mob. A decade later, Facebook and Twitter were credited with the uprisings of the Arab Spring, and Egypt tried to shut off the Internet. Clay Shirky saw a &ldquo;marriage of technology and human generosity.&rdquo; It is more like a temporary liaison. The collective actions of social media, from flash mobs to Occupy Wall Street, are intense but short-lived, their stories simple or fragmentary. Social media bring the same weak narrative and flow to collective politics that they bring to individual identity.</p>`,
+
+  `<p>4chan&rsquo;s /b/ board is a flow of anonymous images, cats and naked bodies, replaced almost every second: the weakest of narratives. From it came Anonymous. In 2008, when the Church of Scientology tried to have an embarrassing Tom Cruise video removed from YouTube, Anonymous flooded the church&rsquo;s websites, and protesters in Guy Fawkes masks gathered outside its offices around the world. Its members drifted from pranks into hacktivism without a political program, defending above all the free flow of information. WikiLeaks under Julian Assange followed a similar logic of disclosure for disclosure&rsquo;s sake. This is the politics of flow.</p>`,
+
+  `<p>During the 2016 campaign, Donald Trump could fire off a tweet in response to a morning news show and hear the same show report it minutes later. In place of an overarching story, he offered emotional story fragments, rearranged from week to week. The Democratic Convention, by contrast, was a procedural masterpiece of cathartic narrative, building night by night to its crescendos. American politics has become a contest between an older narrative politics and a politics of flow. A candidate without traditional qualifications is the political version of the breakdown of elitism in the arts, and social media provide the matrix.</p>`,
+
+  `<p>Suppose our time traveler could go the other way, into the future. Many forecasters have imagined what she would find: a world remade by virtual reality, artificial intelligence or the culture of remix. But no single technology or practice is likely to dominate. In each of the dichotomies of our media culture, catharsis and flow, originality and remix, the organic and the procedural, history and simulation, the older term is not disappearing. Multiplicity is our future, and it is no danger to art or entertainment, where each of us can find a corner of the plenitude. Politics is different: decisions are collective, and the politics of flow threatens the shared story democracy depends on.</p>`,
 ];
 
 // ── Consent dialog ──
@@ -239,7 +317,7 @@ function buildToc() {
     const head = document.createElement('button');
     head.className = 'toc-chapter-title';
     head.type = 'button';
-    head.textContent = `Chapter ${chapter.number}: ${chapter.title}`;
+    head.textContent = chapterHeading(chapter);
     head.addEventListener('click', () => group.classList.toggle('open'));
     const list = document.createElement('div');
     list.className = 'toc-sections';
@@ -358,7 +436,7 @@ function appendSectionBreak(idx, scroll = true) {
   if (chapter) {
     const chapterHead = document.createElement('div');
     chapterHead.className = 'chapter-heading';
-    chapterHead.textContent = `Chapter ${chapter.number}: ${chapter.title}`;
+    chapterHead.textContent = chapterHeading(chapter);
     el.appendChild(chapterHead);
   }
 

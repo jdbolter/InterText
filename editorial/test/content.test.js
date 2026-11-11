@@ -197,7 +197,7 @@ test('buildAll writes a portable editor index and validated section snapshot', (
   try {
     const index = buildAll({ contentRoot, outputRoot });
     assert.equal(index.works.length, 5);
-    assert.equal(index.works.flatMap(work => work.sections).length, 52); // H-014: chapter 2 adds 8; H-015: chapter 3 adds 3; chapter 4 adds 5; chapter 5 adds 6
+    assert.equal(index.works.flatMap(work => work.sections).length, 72); // H-014: chapter 2 adds 8; H-015: chapter 3 adds 3; chapter 4 adds 5; chapter 5 adds 6; chapters 6 to 9 add 20
     const proofs = index.works.find(work => work.id === 'digital-plenitude');
     assert.ok(proofs.sections.every(section => section.readiness === 'packaged'));
     assert.ok(proofs.sections.every(section => section.fundCounts.accepted === 0 && section.fundCounts.candidate === 0));
@@ -308,7 +308,7 @@ test('digital-plenitude: the chapters the page shows match config.chapters (H-01
   const app = fs.readFileSync(path.join(root, 'digital-plenitude', 'public', 'app.js'), 'utf8');
   const block = app.slice(app.indexOf('const CHAPTERS = ['), app.indexOf('];', app.indexOf('const CHAPTERS = [')) + 2);
   const shown = new Function(`${block}; return CHAPTERS;`)();
-  assert.deepEqual(shown, config.chapters.map(({ number, title, firstSection }) => ({ number, title, firstSection })));
+  assert.deepEqual(shown, config.chapters.map(({ number, title, firstSection, label }) => (label ? { number, title, firstSection, label } : { number, title, firstSection })));
   assert.equal(config.chapters[0].firstSection, 0);
   assert.ok(config.chapters.every(ch => typeof ch.point === 'string' && ch.point.trim()));
   assert.equal(config.sectionPoints.length, config.sectionNames.length);
@@ -327,7 +327,7 @@ test('digital-plenitude chapter 2: the original edition keeps the proofs; the sp
   assert.match(spine('future-as-kitsch'), /Allen Newell[\s\S]*C-3PO[\s\S]*Levandowski/);
   assert.match(spine('lennon-ono-political-modernists'), /after he met Ono were nonsongs/);
   assert.match(spine('forgetting-popular-modernism'), /Fredric Jameson/);
-  for (let n = 8; n <= 29; n += 1) assert.doesNotMatch(read(n), /⟦|\[\^|\u0001/);
+  for (let n = 8; n <= 49; n += 1) assert.doesNotMatch(read(n), /⟦|\[\^|\u0001/);
   // H-015: chapter 3.
   assert.match(read(17), /Jay-Z claims/);
   assert.match(spine('rise-of-popular-modernism'), /JAY-Z claims/);
@@ -349,4 +349,23 @@ test('digital-plenitude chapter 2: the original edition keeps the proofs; the sp
   assert.match(read(29), /\[Figure 5\.3, not shown:[^\n]*\]\n\n[^\n]*\n\n\[Figure 5\.4, not shown:/);
   assert.match(read(29), /horror\.\n\n\[Figure 5\.5: Three aesthetics/);
   assert.match(read(22), /\[Figure 4\.1, not shown: Giant Sparrow, \*What Remains of Edith Finch\* \(2015\)/);
+});
+
+test('digital-plenitude chapters 6 to 9: built, with the Conclusion headed by its label and figure 9.1 shown', () => {
+  const config = require(path.join(root, 'digital-plenitude', 'config.js'));
+  const { sectionLabelLine, mainLineStatement } = require(path.join(root, 'api', 'lib', 'text-extras.js'));
+  const read = n => fs.readFileSync(path.join(root, 'digital-plenitude', 'source_texts', 'sections', `section-${n}.md`), 'utf8');
+  assert.equal(config.sectionNames.length, 49);
+  assert.deepEqual(config.chapters.slice(5).map(ch => ch.firstSection), [29, 34, 40, 48]);
+  assert.match(read(30), /^## Remix and Originality/);
+  assert.match(read(35), /^## Datafication/);
+  assert.match(read(49), /^## Conclusion/);
+  assert.match(read(49), /\[Figure 9\.1/);
+  assert.equal(sectionLabelLine(config, 'Conclusion', 48), 'Now under discussion: Conclusion (Conclusion)');
+  assert.match(mainLineStatement(config, 48), /The Conclusion as a whole: /);
+  assert.match(mainLineStatement(config, 30), /Chapter 6, Remix and Originality, as a whole: /);
+  assert.equal(config.sectionImagePrompts[48][0].id, 'dichotomies');
+  const app = fs.readFileSync(path.join(root, 'digital-plenitude', 'public', 'app.js'), 'utf8');
+  assert.match(app, /fig-9-1-dichotomies\.png/);
+  assert.ok(fs.existsSync(path.join(root, 'digital-plenitude', 'images', 'fig-9-1-dichotomies.png')));
 });

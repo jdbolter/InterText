@@ -865,6 +865,326 @@
             "superseded": 0,
             "rejected": 0
           }
+        },
+        {
+          "id": "remix-and-originality",
+          "title": "Remix and Originality",
+          "order": 30,
+          "package": "sections/remix-and-originality/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/remix-and-originality.json",
+          "versionId": "dp-remix-and-originality-v001",
+          "passageCount": 5,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "remix-culture",
+          "title": "Remix Culture",
+          "order": 31,
+          "package": "sections/remix-culture/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/remix-culture.json",
+          "versionId": "dp-remix-culture-v001",
+          "passageCount": 7,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "good-musicians-remix",
+          "title": "Good Musicians Copy; Great Musicians Remix",
+          "order": 32,
+          "package": "sections/good-musicians-remix/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/good-musicians-remix.json",
+          "versionId": "dp-good-musicians-remix-v001",
+          "passageCount": 8,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "remix-and-modernism",
+          "title": "Remix and Modernism",
+          "order": 33,
+          "package": "sections/remix-and-modernism/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/remix-and-modernism.json",
+          "versionId": "dp-remix-and-modernism-v001",
+          "passageCount": 8,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "playing-in-the-plenitude",
+          "title": "Playing in the Plenitude",
+          "order": 34,
+          "package": "sections/playing-in-the-plenitude/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/playing-in-the-plenitude.json",
+          "versionId": "dp-playing-in-the-plenitude-v001",
+          "passageCount": 5,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "datafication",
+          "title": "Datafication",
+          "order": 35,
+          "package": "sections/datafication/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/datafication.json",
+          "versionId": "dp-datafication-v001",
+          "passageCount": 13,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "procedural-and-mechanical",
+          "title": "The Procedural and the Mechanical",
+          "order": 36,
+          "package": "sections/procedural-and-mechanical/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/procedural-and-mechanical.json",
+          "versionId": "dp-procedural-and-mechanical-v001",
+          "passageCount": 10,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "video-games-procedures",
+          "title": "Video Games: Procedures to Save the World",
+          "order": 37,
+          "package": "sections/video-games-procedures/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/video-games-procedures.json",
+          "versionId": "dp-video-games-procedures-v001",
+          "passageCount": 9,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "history-and-simulation",
+          "title": "History and Simulation",
+          "order": 38,
+          "package": "sections/history-and-simulation/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/history-and-simulation.json",
+          "versionId": "dp-history-and-simulation-v001",
+          "passageCount": 10,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "strong-and-weak-narratives",
+          "title": "Strong and Weak Narratives",
+          "order": 39,
+          "package": "sections/strong-and-weak-narratives/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/strong-and-weak-narratives.json",
+          "versionId": "dp-strong-and-weak-narratives-v001",
+          "passageCount": 6,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "procedural-divide",
+          "title": "The Procedural Divide",
+          "order": 40,
+          "package": "sections/procedural-divide/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/procedural-divide.json",
+          "versionId": "dp-procedural-divide-v001",
+          "passageCount": 2,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "social-media-politics-of-flow",
+          "title": "Social Media and the Politics of Flow",
+          "order": 41,
+          "package": "sections/social-media-politics-of-flow/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/social-media-politics-of-flow.json",
+          "versionId": "dp-social-media-politics-of-flow-v001",
+          "passageCount": 3,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "not-so-new-narcissism",
+          "title": "Flow and the Not So New Narcissism",
+          "order": 42,
+          "package": "sections/not-so-new-narcissism/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/not-so-new-narcissism.json",
+          "versionId": "dp-not-so-new-narcissism-v001",
+          "passageCount": 5,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "performance-of-identity",
+          "title": "The Performance of Identity",
+          "order": 43,
+          "package": "sections/performance-of-identity/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/performance-of-identity.json",
+          "versionId": "dp-performance-of-identity-v001",
+          "passageCount": 7,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "social-media-weak-stories",
+          "title": "Social Media and Weak Stories",
+          "order": 44,
+          "package": "sections/social-media-weak-stories/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/social-media-weak-stories.json",
+          "versionId": "dp-social-media-weak-stories-v001",
+          "passageCount": 5,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "digital-identity-identity-politics",
+          "title": "Digital Identity and Identity Politics",
+          "order": 45,
+          "package": "sections/digital-identity-identity-politics/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/digital-identity-identity-politics.json",
+          "versionId": "dp-digital-identity-identity-politics-v001",
+          "passageCount": 9,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "social-media-collective-action",
+          "title": "Social Media and Collective Action",
+          "order": 46,
+          "package": "sections/social-media-collective-action/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/social-media-collective-action.json",
+          "versionId": "dp-social-media-collective-action-v001",
+          "passageCount": 5,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "anonymous",
+          "title": "Anonymous",
+          "order": 47,
+          "package": "sections/anonymous/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/anonymous.json",
+          "versionId": "dp-anonymous-v001",
+          "passageCount": 10,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "weak-narrative-american-politics",
+          "title": "Weak Narrative and American Politics",
+          "order": 48,
+          "package": "sections/weak-narrative-american-politics/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/weak-narrative-american-politics.json",
+          "versionId": "dp-weak-narrative-american-politics-v001",
+          "passageCount": 5,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "conclusion",
+          "title": "Conclusion",
+          "order": 49,
+          "package": "sections/conclusion/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/conclusion.json",
+          "versionId": "dp-conclusion-v001",
+          "passageCount": 9,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
         }
       ]
     }

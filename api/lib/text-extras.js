@@ -53,9 +53,11 @@ function sectionLabelLine(config, sectionName, sectionIndex) {
     ? config.sectionLabel.trim()
     : DEFAULT_SECTION_LABEL;
   const chapter = chapterFor(config, sectionIndex);
-  return chapter
-    ? `${label}: ${sectionName} (chapter ${chapter.number}, ${chapter.title})`
-    : `${label}: ${sectionName}`;
+  if (!chapter) return `${label}: ${sectionName}`;
+  // A chapter with a label (the Conclusion) is named by the label alone.
+  return chapter.label
+    ? `${label}: ${sectionName} (${chapter.label})`
+    : `${label}: ${sectionName} (chapter ${chapter.number}, ${chapter.title})`;
 }
 
 // H-009: the main line of the argument at this point (a section statement, and one for the
@@ -70,7 +72,9 @@ function mainLineStatement(config, sectionIndex) {
     ? (typeof inChapter.point === 'string' ? inChapter.point.trim() : '')
     : (typeof config.chapterPoint === 'string' ? config.chapterPoint.trim() : '');
   if (!point && !chapter) return null;
-  const chapterLabel = inChapter ? `Chapter ${inChapter.number}, ${inChapter.title}, as a whole` : 'The chapter as a whole';
+  const chapterLabel = !inChapter ? 'The chapter as a whole'
+    : inChapter.label ? `The ${inChapter.label} as a whole`
+      : `Chapter ${inChapter.number}, ${inChapter.title}, as a whole`;
   return [
     point ? `The argument here, in brief: ${point}` : null,
     chapter ? `${chapterLabel}: ${chapter}` : null,

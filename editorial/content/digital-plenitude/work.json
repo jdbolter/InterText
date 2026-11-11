@@ -177,6 +177,126 @@
       "title": "The Popular Avant-Garde",
       "order": 29,
       "package": "sections/popular-avant-garde/section.json"
+    },
+    {
+      "id": "remix-and-originality",
+      "title": "Remix and Originality",
+      "order": 30,
+      "package": "sections/remix-and-originality/section.json"
+    },
+    {
+      "id": "remix-culture",
+      "title": "Remix Culture",
+      "order": 31,
+      "package": "sections/remix-culture/section.json"
+    },
+    {
+      "id": "good-musicians-remix",
+      "title": "Good Musicians Copy; Great Musicians Remix",
+      "order": 32,
+      "package": "sections/good-musicians-remix/section.json"
+    },
+    {
+      "id": "remix-and-modernism",
+      "title": "Remix and Modernism",
+      "order": 33,
+      "package": "sections/remix-and-modernism/section.json"
+    },
+    {
+      "id": "playing-in-the-plenitude",
+      "title": "Playing in the Plenitude",
+      "order": 34,
+      "package": "sections/playing-in-the-plenitude/section.json"
+    },
+    {
+      "id": "datafication",
+      "title": "Datafication",
+      "order": 35,
+      "package": "sections/datafication/section.json"
+    },
+    {
+      "id": "procedural-and-mechanical",
+      "title": "The Procedural and the Mechanical",
+      "order": 36,
+      "package": "sections/procedural-and-mechanical/section.json"
+    },
+    {
+      "id": "video-games-procedures",
+      "title": "Video Games: Procedures to Save the World",
+      "order": 37,
+      "package": "sections/video-games-procedures/section.json"
+    },
+    {
+      "id": "history-and-simulation",
+      "title": "History and Simulation",
+      "order": 38,
+      "package": "sections/history-and-simulation/section.json"
+    },
+    {
+      "id": "strong-and-weak-narratives",
+      "title": "Strong and Weak Narratives",
+      "order": 39,
+      "package": "sections/strong-and-weak-narratives/section.json"
+    },
+    {
+      "id": "procedural-divide",
+      "title": "The Procedural Divide",
+      "order": 40,
+      "package": "sections/procedural-divide/section.json"
+    },
+    {
+      "id": "social-media-politics-of-flow",
+      "title": "Social Media and the Politics of Flow",
+      "order": 41,
+      "package": "sections/social-media-politics-of-flow/section.json"
+    },
+    {
+      "id": "not-so-new-narcissism",
+      "title": "Flow and the Not So New Narcissism",
+      "order": 42,
+      "package": "sections/not-so-new-narcissism/section.json"
+    },
+    {
+      "id": "performance-of-identity",
+      "title": "The Performance of Identity",
+      "order": 43,
+      "package": "sections/performance-of-identity/section.json"
+    },
+    {
+      "id": "social-media-weak-stories",
+      "title": "Social Media and Weak Stories",
+      "order": 44,
+      "package": "sections/social-media-weak-stories/section.json"
+    },
+    {
+      "id": "digital-identity-identity-politics",
+      "title": "Digital Identity and Identity Politics",
+      "order": 45,
+      "package": "sections/digital-identity-identity-politics/section.json"
+    },
+    {
+      "id": "social-media-collective-action",
+      "title": "Social Media and Collective Action",
+      "order": 46,
+      "package": "sections/social-media-collective-action/section.json"
+    },
+    {
+      "id": "anonymous",
+      "title": "Anonymous",
+      "order": 47,
+      "package": "sections/anonymous/section.json"
+    },
+    {
+      "id": "weak-narrative-american-politics",
+      "title": "Weak Narrative and American Politics",
+      "order": 48,
+      "package": "sections/weak-narrative-american-politics/section.json"
+    },
+    {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "order": 49,
+      "package": "sections/conclusion/section.json"
     }
   ]
 }

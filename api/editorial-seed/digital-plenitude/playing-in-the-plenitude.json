@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "workId": "digital-plenitude",
+  "sectionId": "playing-in-the-plenitude",
+  "sectionOrder": 34,
+  "title": "Playing in the Plenitude",
+  "editionId": "digital-plenitude-proofs",
+  "versionId": "dp-playing-in-the-plenitude-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-11T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "digital-plenitude/source_texts/sections/section-34.md"
+  },
+  "spine": [
+    {
+      "id": "playing-in-the-plenitude-p01",
+      "markdown": "Remix is hard to place in the history of our media culture precisely because it is itself a mashup of many practices, forms of music, photography, film, and video. It is a popular and amateur practice of millions or hundreds of millions. It is also a technique used by professional musicians and video editors. It seems to continue the modernist and popular modernist traditions of the political and formal avant-garde, and yet it also seems to have nothing to do with those traditions. In other words, remix is a perfect reflection of the current media culture, about which every possible generalization is partly, but only partly, true."
+    },
+    {
+      "id": "playing-in-the-plenitude-p02",
+      "markdown": "Remix is about playing in the plenitude. It is perfectly at home in a media culture in which traditional hierarchies have broken down. If we have a culture of fragments, then why not make a practice of piecing together fragments into new configurations? You can take samples from anywhere. As Navas (2012) points out, a skillful DJ could take samples from “uncool” mainstream traditions and make them work for a sophisticated audience (132). Two decades ago JAY-Z sampled from a Broadway musical to create a hip-hop classic. The fact that so much music and video material of all kinds is now available in digital form gives remixers more freedom than before. Digital formats, along with the connectivity of the Internet, expand the field of remix almost infinitely. Digital networking flattens out our media culture. The assertion of copyright is an attempt to maintain hierarchies, to fence off materials and remove them from the remixer’s palette. Everything that counts as remix speaks to a rejection of notions of hierarchy, propriety, and ownership."
+    },
+    {
+      "id": "playing-in-the-plenitude-p03",
+      "markdown": "Just as flow and catharsis are creative opposites in our media culture today, we can see remix and originality as creative opposites as well, dividing and defining the practices of various communities of creators and consumers. Remix is original in its notion of derivation; it reimagines the very notion of originality (Navas, Gallagher, and burrough 2015b; Sonvilla-Weiss 2015; Campanelli 2015). In so doing, it reverses the modernist relationship between the individual and the tradition. Whereas modernism emphasized the individual artist’s unique contribution to a well-defined tradition, remix emphasizes the wealth of the media traditions from which the individual musician or video editor draws. Samples are fragments from an inexhaustible reservoir of media. Remix can draw happily from numerous traditions without trying to make sense of any of them. In this respect, remix is more original than modernism or popular modernism, both of which were conscious of their place in the history of art or entertainment. Like elite modernism in the first half of the century, popular modernism in the 1960s was trying to move its art forward. The Beatles, Brian Wilson, and Frank Zappa were trying to take rock music further, to expand or redefine rock itself, just as elite painters from Picasso to Pollock were trying to develop the art of painting. Remix does not further a tradition; it plays in and with many traditions. Remix recalls some of the techniques of the avant-garde from the twentieth century, but it puts these techniques to a different use. Remix is playful no matter how serious some of its subject matter may be; the avant-gardes of the twentieth century were ultimately serious about redefining the place of art in our society no matter how playful they appeared to be."
+    },
+    {
+      "id": "playing-in-the-plenitude-p04",
+      "markdown": "A Girl Talk concert is highly participatory. The audience dances or moves rhythmically, hands raised, enveloped by the music and lights and surrounded by the bodies of fellow listeners. We have become used to this mass participation in rock and popular concerts, although certain genres of music, such as techno and dance remix, inspire particularly ecstatic participation. The participation is strongest when the music is repetitive, electronically produced or reproduced through sampling. The mechanical nature of the music seems to call out to the audience to respond with their own repetitive and often mechanical gestures—to lose themselves in the music and to become part of a music machine, just as Eminem advised in “Lose Yourself.” The whole world of remix music, as hip-hop performers have long known, is flow music. The avant-garde dance music of Girl Talk, like all sampled dance music and like rap, could go on forever."
+    },
+    {
+      "id": "playing-in-the-plenitude-p05",
+      "markdown": "Remix culture is therefore flow culture. Remix is repetitive and iterative. The repetition occurs either within a single remix, as with rap music, or within a genre, such as the *Downfall* videos. Successful videos are generative: they become memes. There is always another Hitler *Downfall* video that can be made; always another movie trailer parody. And these videos are consumed on YouTube, where each one is linked to a half-dozen others and users turn watching into a flow experience. Digital media are essential to contemporary remix, and in digital media repetition is expressed through procedures. What we see in the concerts of Girl Talk and countless other DJs is the use of digitally encoded algorithms to play with samples in an inexhaustible variety of configurations. Remix today is procedural play, a celebration not only of the wealth of materials, but also of the procedural character of the digital technologies that make those materials available to be deployed."
+    }
+  ],
+  "fundEntries": [],
+  "changeSummary": "Structural package of the proofs' chapter 6, section 5 (Playing in the Plenitude); one passage per paragraph; no initial fund entries."
+}
