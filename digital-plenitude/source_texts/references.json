@@ -544,7 +544,28 @@
  "schrank-2014": {
   "short": "Schrank 2014",
   "full": "Schrank, Brian. 2014. <i>Avant-Garde Videogames: Playing with Technoculture</i>. Cambridge, MA: MIT Press.",
-  "pages": [],
+  "pages": [
+   [
+    33,
+    33
+   ],
+   [
+    50,
+    50
+   ],
+   [
+    53,
+    53
+   ],
+   [
+    179,
+    179
+   ],
+   [
+    193,
+    193
+   ]
+  ],
   "mention": "introduce",
   "intro": "the game designer and scholar Brian Schrank",
   "name": "Schrank"
@@ -650,6 +671,18 @@
    [
     4,
     4
+   ],
+   [
+    6,
+    6
+   ],
+   [
+    103,
+    106
+   ],
+   [
+    108,
+    113
    ]
   ],
   "mention": "introduce",
@@ -974,5 +1007,170 @@
   "mention": "introduce",
   "intro": "the psychologist Steven Pinker",
   "name": "Pinker"
+ },
+ "watercutter-2014": {
+  "short": "Watercutter 2014",
+  "full": "Watercutter, Angela. 2014. “<i>Edge of Tomorrow</i> Is the Best Videogame You Can’t Play.” <i>Wired</i>, June 6.",
+  "pages": [],
+  "mention": "note"
+ },
+ "morris-2016": {
+  "short": "Morris 2016",
+  "full": "Morris, Chris. 2016. “Level Up! Video Game Industry Revenues Soar in 2015.” <i>Fortune</i>, February 16.",
+  "pages": [],
+  "mention": "note"
+ },
+ "mcgonigal-2017": {
+  "short": "McGonigal 2017",
+  "full": "McGonigal, Jane. 2017. “Gaming Can Make a Better World.” TED talk. https://www.ted.com/talks/jane_mcgonigal_gaming_can_make_a_better_world.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the game designer Jane McGonigal",
+  "name": "McGonigal"
+ },
+ "schell-2008": {
+  "short": "Schell 2008",
+  "full": "Schell, Jesse. 2008. <i>The Art of Game Design: A Book of Lenses</i>. Amsterdam: Elsevier/Morgan Kaufmann.",
+  "pages": [
+   [
+    118,
+    119
+   ]
+  ],
+  "mention": "introduce",
+  "intro": "the game designer Jesse Schell",
+  "name": "Schell"
+ },
+ "chen-2007": {
+  "short": "Chen 2007",
+  "full": "Chen, Jenova. 2007. “Flow in Games (and Everything Else).” <i>Communications of the ACM</i> 50 (4): 31–34.",
+  "pages": [
+   [
+    32,
+    32
+   ]
+  ],
+  "mention": "introduce",
+  "intro": "the game designer Jenova Chen",
+  "name": "Chen"
+ },
+ "esa-2017": {
+  "short": "Entertainment Software Association 2017",
+  "full": "Entertainment Software Association. 2017. <i>Essential Facts about the Computer and Video Game Industry</i>. Washington, DC: Entertainment Software Association.",
+  "pages": [],
+  "mention": "note"
+ },
+ "danastasio-2017": {
+  "short": "D’Anastasio 2017",
+  "full": "D’Anastasio, Cecilia. 2017. “Study Shows Which Video Game Genres Women Play Most.” <i>Kotaku</i>, January 20.",
+  "pages": [],
+  "mention": "note"
+ },
+ "polaine-2005": {
+  "short": "Polaine 2005",
+  "full": "Polaine, Andy. 2005. “The Flow Principle in Interactivity.” Paper presented at the Second Australasian Conference on Interactive Entertainment, Sydney, November 23–25.",
+  "pages": [],
+  "mention": "note"
+ },
+ "smith-brenner-2012": {
+  "short": "Smith and Brenner 2012",
+  "full": "Smith, Aaron, and Joanna Brenner. 2012. “Twitter Use 2012.” Pew Research Center, May 31. https://www.pewresearch.org/internet/2012/05/31/twitter-use-2012/.",
+  "pages": [],
+  "mention": "note"
+ },
+ "carrier-2018": {
+  "short": "Carrier, Rosen and Rokkum 2018",
+  "full": "Carrier, L. M., L. D. Rosen, and J. N. Rokkum. 2018. “Productivity in Peril: Higher and Higher Rates of Technology Multitasking.” <i>Behavioral Scientist</i>, January 8.",
+  "pages": [],
+  "mention": "note"
+ },
+ "bull-2013": {
+  "short": "Bull 2013",
+  "full": "Bull, Michael. 2013. “iPod Use: An Urban Aesthetics of Sonic Ubiquity.” <i>Continuum: Journal of Media and Cultural Studies</i> 27 (4): 495–504.",
+  "pages": [
+   [
+    501,
+    501
+   ]
+  ],
+  "mention": "introduce",
+  "intro": "the sound studies scholar Michael Bull",
+  "name": "Bull"
+ },
+ "manovich-2001": {
+  "short": "Manovich 2001",
+  "full": "Manovich, Lev. 2001. <i>The Language of New Media</i>. Cambridge, MA: MIT Press.",
+  "pages": [
+   [
+    218,
+    218
+   ]
+  ],
+  "mention": "introduce",
+  "intro": "the media theorist Lev Manovich",
+  "name": "Manovich"
+ },
+ "manovich-2002": {
+  "short": "Manovich 2002",
+  "full": "Manovich, Lev, A. Kratky, et al. 2002. <i>Soft Cinema</i>. Book accompanying the installation at ZKM, Karlsruhe.",
+  "pages": [
+   [
+    3,
+    3
+   ]
+  ],
+  "mention": "introduce",
+  "intro": "the media theorist Lev Manovich",
+  "name": "Manovich"
+ },
+ "boyd-2014": {
+  "short": "boyd 2014",
+  "full": "boyd, danah. 2014. <i>It’s Complicated: The Social Life of Networked Teens</i>. New Haven, CT: Yale University Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the social media researcher danah boyd",
+  "name": "boyd"
+ },
+ "engberg-2014": {
+  "short": "Engberg 2014",
+  "full": "Engberg, Maria. 2014. “Polyaesthetic Sights and Sounds: Analyzing the Aesthetics of <i>The Fantastic Flying Books of Mr. Morris Lessmore</i>, <i>Upgrade Soul</i>, and <i>The Vampyre of Time and Memory</i>.” <i>SoundEffects</i> 4 (1): 22–40.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the digital aesthetics scholar Maria Engberg",
+  "name": "Engberg"
+ },
+ "flomenbaum-2015": {
+  "short": "Flomenbaum 2015",
+  "full": "Flomenbaum, A. 2015. “Accenture Report: 87% of Consumers Use Second Screen Device While Watching TV.” <i>Adweek</i>, April 20.",
+  "pages": [],
+  "mention": "note"
+ },
+ "shirky-2008": {
+  "short": "Shirky 2008",
+  "full": "Shirky, Clay. 2008. <i>Here Comes Everybody: The Power of Organizing without Organizations</i>. New York: Penguin Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the writer Clay Shirky",
+  "name": "Shirky"
+ },
+ "shirky-2010": {
+  "short": "Shirky 2010",
+  "full": "Shirky, Clay. 2010. <i>Cognitive Surplus: Creativity and Generosity in a Connected Age</i>. New York: Penguin Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the writer Clay Shirky",
+  "name": "Shirky"
+ },
+ "wardrip-fruin-2020": {
+  "short": "Wardrip-Fruin 2020",
+  "full": "Wardrip-Fruin, Noah. 2020. <i>How Pac-Man Eats</i>. Cambridge, MA: MIT Press.",
+  "pages": [],
+  "mention": "note"
+ },
+ "reese-2016": {
+  "short": "Reese 2016",
+  "full": "Reese, N. 2016. “An Exhibition That Proves Video Games Can Be Art.” <i>New York Times Style Magazine</i>, February 10.",
+  "pages": [],
+  "mention": "note"
  }
 }

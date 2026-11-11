@@ -317,7 +317,9 @@ Return only the revised reply, with no preface or comment.`,
     // H-015: chapter 3 (Jay, 2026-11-05)
     'section-16.md', 'section-17.md', 'section-18.md',
     // Chapter 4 (2026-11-11).
-    'section-19.md', 'section-20.md', 'section-21.md', 'section-22.md', 'section-23.md'],
+    'section-19.md', 'section-20.md', 'section-21.md', 'section-22.md', 'section-23.md',
+    // Chapter 5 (2026-11-11).
+    'section-24.md', 'section-25.md', 'section-26.md', 'section-27.md', 'section-28.md', 'section-29.md'],
   libraryPreamble: `WORKS THAT MAY BE CITED BY NAME
 
 Other writers are evidence. Below are books and articles you have read, each with its id in square brackets, what it says and its pages. When you draw on one, mention it as its entry says and put a marker straight after the point it supports: [[CITE:id]], or [[CITE:id|pages]] with pages taken from its entry, as in "Bürger argued that shock, once the public expects it, is consumed [[CITE:burger-1984|80–81]]." The marker becomes a numbered note that holds the full reference, so the sentence carries at most the writer's name and nothing more of the citation. Rely on each work no further than what is written of it here. Their views stay theirs, attributed and weighed, apart from your own voice. When a writer reached a conclusion from the opposite side, say so. Bring a writer in only when the work bears on the reader's point; most replies need none.`,
