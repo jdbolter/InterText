@@ -14,6 +14,7 @@ InterText/
 ├── EDITORIAL-ARCHITECTURE.md — editorial data model and implementation handoff
 ├── package.json
 ├── vercel.json
+├── digital-plenitude/   — The Digital Plenitude (MIT Press 2019), in chapters (textId: 'digital-plenitude'); see CLAUDE.md
 ├── uncanny/             — "The Uncanny Double" essay (textId: 'uncanny')
 ├── plenitude/           — "Plenitude" essay on cultural hierarchy (textId: 'plenitude')
 ├── remediation/         — chapter on immediacy, hypermediacy, and remediation (textId: 'remediation')
@@ -23,11 +24,12 @@ InterText/
         └── sections/   — section files loaded by the API
 ```
 
-Model in use: `claude-sonnet-5` for the guide and editorial passes. The synthetic
+Model in use: `claude-sonnet-5-5` for *The Digital Plenitude*'s text and revision pass (`claude-sonnet-5` for the older texts). The synthetic
 reader uses OpenAI (default `gpt-5.6-terra`) so guide and reader are separate models.
 
 ## The texts
 
+- **digital-plenitude** — *The Digital Plenitude* as one work in chapters, read in conversation with the text, which speaks as the book; the only work on the landing page. Chapters 1 to 3 are live, chapter 4 is on branch `h001-digital-plenitude`. Library lists and citations, media lists (`npm run media`), and the evolving edition as spine and fund. See `CLAUDE.md`, the technical map; the editorial record is in the Intertext-Author vault (`projects/digital-plenitude/STATE.md`).
 - **uncanny** — conversation about an essay on the uncanny in film, literature, and digital media. Readers converse with an AI guide that reveals the argument section by section. See `uncanny/CLAUDE.md` for setup, run instructions, and the general engine architecture (KV storage, adding a text, etc.) — it's the canonical reference doc for the shared engine.
 - **plenitude** — companion essay on the collapse of cultural hierarchy and the rise of media plenitude. See `plenitude/CLAUDE.md`.
 - **remediation** — a chapter on transparent immediacy, hypermediacy, and the ways media refashion one another. See `remediation/CLAUDE.md`.
