@@ -339,5 +339,7 @@ test('digital-plenitude chapter 2: the original edition keeps the proofs; the sp
   assert.match(spine('fragmented-stories'), /in particular Jordan Weisman and Elan Lee/);
   assert.match(spine('catharsis-in-video-games'), /from Boston to Salt Lake City/);
   assert.match(spine('catharsis-in-video-games'), /seventeen-year-old sister Samantha/);
+  assert.match(spine('cinema-of-immersion'), /collaborated with the \*Times\* on \*The Displaced\*/);
+  assert.match(read(21), /Collaborating with the \*Times\*/);
   assert.match(read(22), /\[Figure 4\.1, not shown: Giant Sparrow, \*What Remains of Edith Finch\* \(2015\)/);
 });
