@@ -680,5 +680,299 @@
   "mention": "introduce",
   "intro": "the writer Andrew Keen",
   "name": "Keen"
+ },
+ "henrickson-2025": {
+  "short": "Henrickson 2025",
+  "full": "Henrickson, Leah. 2025. <i>Digital Storytelling: An Introduction</i>. Cambridge: Polity.",
+  "pages": [
+   [
+    2,
+    2
+   ],
+   [
+    10,
+    10
+   ],
+   [
+    17,
+    17
+   ],
+   [
+    83,
+    85
+   ],
+   [
+    91,
+    91
+   ],
+   [
+    96,
+    96
+   ]
+  ],
+  "mention": "introduce",
+  "intro": "the digital media scholar Leah Henrickson",
+  "name": "Henrickson"
+ },
+ "leitch-2008": {
+  "short": "Leitch 2008",
+  "full": "Leitch, Thomas. 2008. “Adaptation Studies at a Crossroads.” <i>Adaptation</i> 1 (1): 63–77.",
+  "pages": [
+   [
+    63,
+    65
+   ],
+   [
+    76,
+    76
+   ]
+  ],
+  "mention": "note"
+ },
+ "heilig-1955": {
+  "short": "Heilig 1955",
+  "full": "Heilig, Morton L. 1992. “El Cine del Futuro: The Cinema of the Future.” <i>Presence: Teleoperators and Virtual Environments</i> 1 (3): 279–294. First published 1955.",
+  "pages": [
+   [
+    279,
+    280
+   ]
+  ],
+  "mention": "introduce",
+  "intro": "the filmmaker and inventor Morton Heilig",
+  "name": "Heilig"
+ },
+ "rogers-2013": {
+  "short": "Rogers 2013",
+  "full": "Rogers, Ariel. 2013. <i>Cinematic Appeals: The Experience of New Movie Technologies</i>. New York: Columbia University Press.",
+  "pages": [],
+  "mention": "note"
+ },
+ "mateas-stern-2005": {
+  "short": "Mateas and Stern 2005",
+  "full": "Mateas, Michael, and Andrew Stern. 2005. <i>Façade: A One-Act Interactive Drama</i>. Computer game. Procedural Arts.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the designers Michael Mateas and Andrew Stern",
+  "name": "Mateas and Stern"
+ },
+ "flanagan-2009": {
+  "short": "Flanagan 2009",
+  "full": "Flanagan, Mary. 2009. <i>Critical Play: Radical Game Design</i>. Cambridge, MA: MIT Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the artist and game designer Mary Flanagan",
+  "name": "Flanagan"
+ },
+ "wu-2025": {
+  "short": "Wu et al. 2025",
+  "full": "Wu, H., W. Wu, T. Xu, J. Zhang, and H. Zhao. 2025. “Towards Enhanced Immersion and Agency for LLM-based Interactive Drama.” Preprint, arXiv. https://doi.org/10.48550/arXiv.2502.17878.",
+  "pages": [],
+  "mention": "note"
+ },
+ "mcgonigal-2011": {
+  "short": "McGonigal 2011",
+  "full": "McGonigal, Jane. 2011. <i>Reality Is Broken: Why Games Make Us Better and How They Can Change the World</i>. New York: Penguin Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the game designer Jane McGonigal",
+  "name": "McGonigal"
+ },
+ "sicart-2014": {
+  "short": "Sicart 2014",
+  "full": "Sicart, Miguel. 2014. <i>Play Matters</i>. Cambridge, MA: MIT Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the game scholar Miguel Sicart",
+  "name": "Sicart"
+ },
+ "thorburn-2003": {
+  "short": "Thorburn, Jenkins and Seawell 2003",
+  "full": "Thorburn, David, Henry Jenkins, and Brad Seawell, eds. 2003. <i>Rethinking Media Change: The Aesthetics of Transition</i>. Cambridge, MA: MIT Press.",
+  "pages": [],
+  "mention": "note"
+ },
+ "carr-2014": {
+  "short": "Carr 2014",
+  "full": "Carr, David. 2014. “Barely Keeping Up in TV’s New Golden Age.” <i>New York Times</i>, March 9. https://www.nytimes.com/2014/03/10/business/media/fenced-in-by-televisions-excess-of-excellence.html.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the New York Times media columnist David Carr",
+  "name": "Carr"
+ },
+ "thompson-1996": {
+  "short": "Thompson 1996",
+  "full": "Thompson, Robert J. 1996. <i>Television’s Second Golden Age: From Hill Street Blues to ER</i>. New York: Syracuse University Press.",
+  "pages": [],
+  "mention": "note"
+ },
+ "field-1984": {
+  "short": "Field 1984",
+  "full": "Field, Syd. 1984. <i>Screenplay: The Foundations of Screenwriting</i>. New York: Delta Trade Paperbacks.",
+  "pages": [],
+  "mention": "note"
+ },
+ "decker-1998": {
+  "short": "Decker 1998",
+  "full": "Decker, Dan. 1998. <i>Anatomy of a Screenplay</i>. Chicago: Dan Decker Books.",
+  "pages": [],
+  "mention": "note"
+ },
+ "curran-2001": {
+  "short": "Curran 2001",
+  "full": "Curran, A. 2001. “Brecht’s Criticisms of Aristotle’s Aesthetics of Tragedy.” <i>Journal of Aesthetics and Art Criticism</i> 59 (2): 167–184.",
+  "pages": [],
+  "mention": "note"
+ },
+ "boal-1979": {
+  "short": "Boal 1979",
+  "full": "Boal, Augusto. 1979. <i>Theater of the Oppressed</i>. New York: Urizen Books.",
+  "pages": [
+   [
+    103,
+    103
+   ]
+  ],
+  "mention": "introduce",
+  "intro": "the Brazilian stage director and activist Augusto Boal",
+  "name": "Boal"
+ },
+ "adgate-2015": {
+  "short": "Adgate 2015",
+  "full": "Adgate, Brad. 2015. “What ‘Mad Men’ Was and Wasn’t.” <i>Forbes</i>, May 17.",
+  "pages": [],
+  "mention": "note"
+ },
+ "rose-2011": {
+  "short": "Rose 2011",
+  "full": "Rose, Frank. 2011. <i>The Art of Immersion: How the Digital Generation Is Remaking Hollywood, Madison Avenue, and the Way We Tell Stories</i>. New York: W. W. Norton.",
+  "pages": [
+   [
+    11,
+    11
+   ]
+  ],
+  "mention": "introduce",
+  "intro": "the journalist Frank Rose",
+  "name": "Rose"
+ },
+ "milk-2015b": {
+  "short": "Milk 2015b",
+  "full": "Milk, Chris. 2015b. “How Virtual Reality Can Create the Ultimate Empathy Machine.” TED talk. https://www.ted.com/talks/chris_milk_how_virtual_reality_can_create_the_ultimate_empathy_machine.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the filmmaker Chris Milk",
+  "name": "Milk"
+ },
+ "milk-2015a": {
+  "short": "Milk 2015a",
+  "full": "Milk, Chris. 2015a. <i>Clouds over Sidra</i>. 360-degree film.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the filmmaker Chris Milk",
+  "name": "Milk"
+ },
+ "johnson-2015": {
+  "short": "Johnson 2015",
+  "full": "Johnson, E. 2015. “Virtual Reality Is ‘The Last Medium,’ Says Filmmaker and Vrse CEO Chris Milk (Q&A).” <i>Recode</i>, October 1.",
+  "pages": [],
+  "mention": "note"
+ },
+ "engberg-bolter-2017": {
+  "short": "Engberg and Bolter 2017",
+  "full": "Engberg, Maria, and Jay David Bolter. 2017. “Mobile Cinematics.” In <i>Compact Cinematics: The Moving Image in the Age of Bit-Sized Media</i>, edited by M. Poulaki and P. Hesselberth, 165–173. New York: Bloomsbury.",
+  "pages": [],
+  "mention": "own"
+ },
+ "morganti-2013": {
+  "short": "Morganti 2013",
+  "full": "Morganti, Emily. 2013. “Gone Home (review).” <i>Adventure Gamers</i>, August 16.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the reviewer Emily Morganti",
+  "name": "Morganti"
+ },
+ "webster-2017": {
+  "short": "Webster 2017",
+  "full": "Webster, Andrew. 2017. “<i>What Remains of Edith Finch</i> Is the Game Equivalent of a Haunting Short Story Collection.” <i>The Verge</i>, April 25.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the reviewer Andrew Webster",
+  "name": "Webster"
+ },
+ "moriarty-2013": {
+  "short": "Moriarty 2013",
+  "full": "Moriarty, C. (producer). 2013. “<i>The Last of Us</i> (review).” <i>IGN</i>. Video.",
+  "pages": [],
+  "mention": "note"
+ },
+ "ryan-2006": {
+  "short": "Ryan 2006",
+  "full": "Ryan, Marie-Laure. 2006. <i>Avatars of Story</i>. Minneapolis: University of Minnesota Press.",
+  "pages": [
+   [
+    107,
+    122
+   ]
+  ],
+  "mention": "introduce",
+  "intro": "the narrative theorist Marie-Laure Ryan",
+  "name": "Ryan"
+ },
+ "bogost-2017": {
+  "short": "Bogost 2017",
+  "full": "Bogost, Ian. 2017. “Video Games Are Better without Stories.” <i>The Atlantic</i>, April 25.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the game designer and scholar Ian Bogost",
+  "name": "Bogost"
+ },
+ "bruner-1985": {
+  "short": "Bruner 1985",
+  "full": "Bruner, Jerome. 1985. <i>Actual Minds, Possible Worlds</i>. Cambridge, MA: Harvard University Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the psychologist Jerome Bruner",
+  "name": "Bruner"
+ },
+ "bruner-2004": {
+  "short": "Bruner 2004",
+  "full": "Bruner, Jerome. 2004. “Life as Narrative.” <i>Social Research</i> 71 (3): 691–710.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the psychologist Jerome Bruner",
+  "name": "Bruner"
+ },
+ "dennett-1988": {
+  "short": "Dennett 1988",
+  "full": "Dennett, Daniel. 1988. “Why Everyone Is a Novelist.” <i>Times Literary Supplement</i> 4459 (September 16–22): 1016, 1028–1029.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the philosopher Daniel Dennett",
+  "name": "Dennett"
+ },
+ "boyd-2009": {
+  "short": "Boyd 2009",
+  "full": "Boyd, Brian. 2009. <i>On the Origin of Stories: Evolution, Cognition, and Fiction</i>. Cambridge, MA: Belknap Press of Harvard University Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the literary scholar Brian Boyd",
+  "name": "Boyd"
+ },
+ "dutton-2009": {
+  "short": "Dutton 2009",
+  "full": "Dutton, Denis. 2009. <i>The Art Instinct: Beauty, Pleasure, and Human Evolution</i>. New York: Bloomsbury Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the philosopher Denis Dutton",
+  "name": "Dutton"
+ },
+ "pinker-1995": {
+  "short": "Pinker 1995",
+  "full": "Pinker, Steven. 1995. <i>The Language Instinct</i>. New York: HarperPerennial.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the psychologist Steven Pinker",
+  "name": "Pinker"
  }
 }
