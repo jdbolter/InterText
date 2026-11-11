@@ -197,7 +197,7 @@ test('buildAll writes a portable editor index and validated section snapshot', (
   try {
     const index = buildAll({ contentRoot, outputRoot });
     assert.equal(index.works.length, 5);
-    assert.equal(index.works.flatMap(work => work.sections).length, 46); // H-014: chapter 2 adds 8; H-015: chapter 3 adds 3; chapter 4 adds 5
+    assert.equal(index.works.flatMap(work => work.sections).length, 52); // H-014: chapter 2 adds 8; H-015: chapter 3 adds 3; chapter 4 adds 5; chapter 5 adds 6
     const proofs = index.works.find(work => work.id === 'digital-plenitude');
     assert.ok(proofs.sections.every(section => section.readiness === 'packaged'));
     assert.ok(proofs.sections.every(section => section.fundCounts.accepted === 0 && section.fundCounts.candidate === 0));
@@ -327,7 +327,7 @@ test('digital-plenitude chapter 2: the original edition keeps the proofs; the sp
   assert.match(spine('future-as-kitsch'), /Allen Newell[\s\S]*C-3PO[\s\S]*Levandowski/);
   assert.match(spine('lennon-ono-political-modernists'), /after he met Ono were nonsongs/);
   assert.match(spine('forgetting-popular-modernism'), /Fredric Jameson/);
-  for (let n = 8; n <= 23; n += 1) assert.doesNotMatch(read(n), /⟦|\[\^|\u0001/);
+  for (let n = 8; n <= 29; n += 1) assert.doesNotMatch(read(n), /⟦|\[\^|\u0001/);
   // H-015: chapter 3.
   assert.match(read(17), /Jay-Z claims/);
   assert.match(spine('rise-of-popular-modernism'), /JAY-Z claims/);
@@ -341,5 +341,12 @@ test('digital-plenitude chapter 2: the original edition keeps the proofs; the sp
   assert.match(spine('catharsis-in-video-games'), /seventeen-year-old sister Samantha/);
   assert.match(spine('cinema-of-immersion'), /collaborated with the \*Times\* on \*The Displaced\*/);
   assert.match(read(21), /Collaborating with the \*Times\*/);
+  // Chapter 5: no untitled opening; several figures in a section; Jay's diagrams shown.
+  assert.match(read(24), /^## From Catharsis to Flow\n/);
+  assert.match(spine('games-and-flow'), /women over eighteen make up 31 percent/);
+  assert.match(read(25), /31 percent of all gamers are women/);
+  assert.match(read(28), /\[Figure 5\.2: Flow and catharsis:/);
+  assert.match(read(29), /\[Figure 5\.3, not shown:[^\n]*\]\n\n[^\n]*\n\n\[Figure 5\.4, not shown:/);
+  assert.match(read(29), /horror\.\n\n\[Figure 5\.5: Three aesthetics/);
   assert.match(read(22), /\[Figure 4\.1, not shown: Giant Sparrow, \*What Remains of Edith Finch\* \(2015\)/);
 });

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "editionId": "digital-plenitude-proofs",
+  "versionId": "dp-popular-avant-garde-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-11T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "digital-plenitude/source_texts/sections/section-29.md"
+  },
+  "spineFile": "spine.md",
+  "fundEntries": [],
+  "changeSummary": "Structural package of the proofs' chapter 5, section 6 (The Popular Avant-Garde); one passage per paragraph; no initial fund entries. Jay's corrections of 2026-11-11 applied to the spine (the original edition keeps the proofs): \"*Finnegan’s Wake*\"; \"a preliminary of sorting through\"; \"(Cubism, Abstract Expressionism, Surrealism, and so on)\"."
+}

@@ -141,6 +141,42 @@
       "title": "The Past and Future of Catharsis",
       "order": 23,
       "package": "sections/past-and-future-of-catharsis/section.json"
+    },
+    {
+      "id": "from-catharsis-to-flow",
+      "title": "From Catharsis to Flow",
+      "order": 24,
+      "package": "sections/from-catharsis-to-flow/section.json"
+    },
+    {
+      "id": "games-and-flow",
+      "title": "Games and Flow",
+      "order": 25,
+      "package": "sections/games-and-flow/section.json"
+    },
+    {
+      "id": "flow-culture",
+      "title": "Flow Culture",
+      "order": 26,
+      "package": "sections/flow-culture/section.json"
+    },
+    {
+      "id": "our-time-traveler",
+      "title": "Our Time Traveler",
+      "order": 27,
+      "package": "sections/our-time-traveler/section.json"
+    },
+    {
+      "id": "spectrum-of-catharsis-and-flow",
+      "title": "The Spectrum of Catharsis and Flow",
+      "order": 28,
+      "package": "sections/spectrum-of-catharsis-and-flow/section.json"
+    },
+    {
+      "id": "popular-avant-garde",
+      "title": "The Popular Avant-Garde",
+      "order": 29,
+      "package": "sections/popular-avant-garde/section.json"
     }
   ]
 }

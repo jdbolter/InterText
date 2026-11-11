@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "editionId": "digital-plenitude-proofs",
+  "versionId": "dp-from-catharsis-to-flow-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-11T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "digital-plenitude/source_texts/sections/section-24.md"
+  },
+  "spineFile": "spine.md",
+  "fundEntries": [],
+  "changeSummary": "Structural package of the proofs' chapter 5, section 1 (From Catharsis to Flow); one passage per paragraph; no initial fund entries. Jay's corrections of 2026-11-11 applied to the spine (the original edition keeps the proofs): \"has to, come to end,\"; \"non-Western forms such the Gamelan music\"; \"inviting others singers themselves\"; \"You- Tube\"; \"In 2015, revenues for video games sales totaled $23.5 billion\"."
+}

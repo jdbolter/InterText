@@ -40,6 +40,13 @@ module.exports = {
     'section-21.md',
     'section-22.md',
     'section-23.md',
+    // Chapter 5, Flow (2026-11-11).
+    'section-24.md',
+    'section-25.md',
+    'section-26.md',
+    'section-27.md',
+    'section-28.md',
+    'section-29.md',
   ],
 
   sectionNames: [
@@ -66,6 +73,12 @@ module.exports = {
     "The Cinema of Immersion",
     "Catharsis in Video Games",
     "The Past and Future of Catharsis",
+    "From Catharsis to Flow",
+    "Games and Flow",
+    "Flow Culture",
+    "Our Time Traveler",
+    "The Spectrum of Catharsis and Flow",
+    "The Popular Avant-Garde",
   ],
 
   sectionIntros: [
@@ -117,6 +130,19 @@ module.exports = {
     `In Gone Home (2013) you return to your family’s house in Oregon and find it empty. There is nothing to kill and no points to win: you read notes and listen to a journal until you understand that your sister has left home to live with the girl she loves. Some video games strive for catharsis: independent games like Gone Home and What Remains of Edith Finch, and mainstream ones like The Last of Us, later made into an HBO series. Their power to move the player comes from techniques borrowed from film and television, and the interaction has little to do with the emotion. Cathartic games remain a limited genre within the plenitude of video games.`,
 
     `“We’ll always have Paris,” Bogart tells Bergman at the end of Casablanca. Hollywood drama has long looked back, and the second Golden Age of Television has made nostalgia a defining motif, from Mad Men to The Crown. Psychologists and philosophers from Jerome Bruner to Steven Pinker treat this kind of storytelling as a human universal. It is not: it was perfected in the novels, plays and films of the past two centuries, and it is not what Aristotle meant when he first applied the term to Greek tragedy. Catharsis is a modern aesthetic. It can still reach younger audiences, as the Harry Potter franchise showed, but its audience is aging, and an alternative has been gaining in status through video games.`,
+
+    // Chapter 5. Drafted by Claude, 2026-11-11, for Jay's approval (vault: drafts/chapter-5-plan.md).
+    `When Edge of Tomorrow came out in 2014, Wired called it “the best videogame you can’t play.” Its hero, Bill Cage, dies in combat with aliens and wakes up again on the previous day, over and over, improving with each repetition as a player improves with replay. But in the end he breaks out of the loop, and the film resolves itself in Hollywood fashion. Catharsis has to come to an end. Video games offer something else, which millions now prefer: flow, the pleasure of losing oneself in an activity, and the possibility that the moment might go on forever.`,
+
+    `In her TED talk, the game designer Jane McGonigal shows a gamer about to achieve an “epic win”: a sense of urgency, a little fear, and “deep, deep focus on tackling a really difficult problem.” Whatever we think of her hope that games can change the world, the intensity is real. It is what the psychologist Mihaly Csikszentmihalyi called flow, and game designers cultivate it deliberately, keeping play in a narrow channel between boredom and anxiety. Flow is as important to video games as catharsis is to Hollywood film, and games show how readily all digital media lend themselves to it.`,
+
+    `The first YouTube video, posted in 2005, shows one of the site’s founders standing in front of the elephants at the San Diego Zoo. Within a few years YouTube, Facebook and Twitter had made possible a participatory flow culture that now reaches billions: one video leading to the next, a stream of messages with no need ever to end. Flow activities, once ranked below art, rose in status as the hierarchy of the arts broke down. And flow has its own kind of identity: not the dramatic arc of a life, but a self kept within bounds, in the channels a platform provides.`,
+
+    `A time traveler from 1960 would have known flow. She could have played tennis, sat through Andy Warhol’s eight-hour film Empire, or watched television’s continuous succession of programs and advertisements. What would surprise her is a young person watching YouTube videos while tweeting, scrolling a newsfeed and streaming music, all at once, and the fact that most of what flows past was made by other ordinary users. User-generated content shows popular modernism’s ambivalence: a rejection of elitism, which some read as collective intelligence and others as the entrepreneurial American dream.`,
+
+    `The Matrix and Star Wars films are cathartic; the Matrix and Star Wars video games offer flow; and many of the same people enjoy both. Catharsis and flow do not divide old media from new, or older audiences from younger. They appear within a single medium, they blend in a single experience, and the media industry combines them in its transmedia franchises. They are better understood as the two ends of a scale, with a classic film like Casablanca at one end, a puzzle game like Bejeweled at the other, and most of our media somewhere in between.`,
+
+    `In 2002 the artist Cory Arcangel hacked Super Mario Bros., removing almost everything but the white clouds drifting across a blue sky. There was nothing left to play. Avant-garde games like Super Mario Clouds deny the player both flow and catharsis and ask instead what a game is: they call for reflection, the aim of twentieth-century modern art against the immersion of popular forms. Today reflection, too, has become popular, in Pixar’s films and in hip-hop’s remix. Catharsis, flow and reflection make a triangle, and our media culture fills its interior with hybrids.`,
   ],
 
   sectionImagePrompts: [
@@ -145,6 +171,14 @@ module.exports = {
       { id: 'spectrums', prompt: 'A diagram of the four spectrums is available: catharsis and flow (response), originality and remix (making), the organic or spontaneous and procedurality or datafication (process), history and simulation (time), with the values of tradition on one side and those of the media future on the other. When you set out the four pairs together, embed the token [[IMAGE:spectrums]] on a line of its own after the paragraph that names them, and let your prose explain them.' },
     ],
     null, null, null, null, null, // chapter 4
+    null, null, null, null, // chapter 5: sections 24 to 27
+    // Jay's diagrams 5.2 and 5.5, freed 2026-11-06.
+    [
+      { id: 'flow-and-catharsis', prompt: "A diagram of the spectrum of catharsis and flow is available: a horizontal scale from catharsis to flow, with Titanic, Casablanca, Downton Abbey and The West Wing near the catharsis end; The Matrix, Skyfall, Edge of Tomorrow and Lost toward the middle; second-screen television and YouTube at the middle; Gone Home, Edith Finch and I Love Bees beyond it; and Facebook, Music for Airports, “Lose Yourself,” Twitter and Bejeweled toward flow. When you place works between catharsis and flow, embed the token [[IMAGE:flow-and-catharsis]] on a line of its own after the paragraph that does so, and let your prose explain it." },
+    ],
+    [
+      { id: 'three-aesthetics', prompt: "A diagram of the three aesthetics is available: a triangle with catharsis, flow and reflection at its corners, with Titanic and Casablanca near catharsis, Bejeweled and Music for Airports near flow, Un Chien Andalou, Ulysses, Untitled-Game and Super Mario Clouds toward reflection, and Mother Courage, Passage, Scary Movie, Toy Story, Lost, The Matrix and Edith Finch in the interior. When you set out catharsis, flow and reflection together, embed the token [[IMAGE:three-aesthetics]] on a line of its own after the paragraph that names them, and let your prose explain it." },
+    ],
   ],
 
   // H-003: rewritten so that no noun names the material the model holds (H-002's "section" came back 69 times).
@@ -228,6 +262,7 @@ Return only the revised reply, with no preface or comment.`,
     { number: 2, title: 'Popular Modernism', firstSection: 7, point: "From the 1960s on, musicians, media theorists and technologists carried the fragments of elite modernism into popular culture: formal innovation, the progressive faith that design and technology can remake society, and the avant-garde's wish to merge art and life. They kept modernism's rhetoric of revolution, now attached to media and technology instead of art, and forgot most of the history behind it. That rhetoric still frames how digital media are sold and discussed. But in the media plenitude it is one strand among many, and no \"ism\" can again give the culture a single story. Popular modernism is what modernism became on its way to dissolution." },
     { number: 3, title: 'Dichotomies', firstSection: 15, point: "From the 1950s the hierarchy of the arts broke down into a collection of communities, each with its own standards, and economic and cultural elites split apart. Modernism, the dominant paradigm at that moment, shattered, and popular modernism carried its fragments into the culture in which digital media were born. No single characteristic can describe that culture, but four pairs of opposed values delineate large parts of it: catharsis and flow, originality and remix, procedurality and the organic or spontaneous, simulation and history. Each pair is a spectrum, not a choice, and in each the newer, fashionable term remains in creative tension with the older one." }, // H-015: draft, for Jay's approval
     { number: 4, title: 'Catharsis', firstSection: 18, point: "Catharsis is an aesthetic of tension and resolution, and it can shape the experience of music as well as of narrative. In narrative media, from the novel and melodrama to Hollywood film and television drama, it takes the form of a story of conflict and resolution that leads the audience to identify with the main characters and feel an emotional release in the end. Catharsis remains the favored style in the second Golden Age of Television, in transmedia franchises, in VR film and even in some video games, which borrow the technique from film. But it is not universal. Catharsis is a modern style, perfected over the last two centuries and rejected by the avant-garde, and it has become nostalgic, both in its themes and in its longing for a time when serious drama dominated the culture. Its audience is aging, and a popular alternative, flow, has gained in status, above all through video games." },
+    { number: 5, title: 'Flow', firstSection: 23, point: "Flow is an aesthetic of engagement that wants to go on indefinitely: a state in which, as the psychologist Mihaly Csikszentmihalyi put it, people are so involved in an activity that nothing else seems to matter. Where catharsis must come to an end, flow seeks to continue. It is the principal pleasure of video games and of social media, from Tetris to the endless feeds of YouTube and Twitter, and it has a long history in sports, games, meditation and the avant-garde, from Cage and Warhol to Eno and Glass. The breakdown of the hierarchy of the arts has given flow experiences a status beside catharsis that they never had before. Catharsis and flow are the endpoints of a spectrum, and the spectrum opens into a triangle when reflection, the aim of the twentieth-century avant-garde, is added as a third pole. Today reflection, too, has become popular entertainment." },
   ],
   sectionPoints: [
     "JAY-Z's Picasso Baby catches the divide in the act of dissolving: a rapper claims the status of a modern-day Picasso in a white-box gallery, art-world figures and fans join in with delight, and yet the reactions split by community. What is taking the divide's place is not a consensus about art but the judgments of many communities, none of which can enforce its definition of art across the culture.",
@@ -255,6 +290,13 @@ Return only the revised reply, with no preface or comment.`,
     "VR video (often called Cinematic VR, CVR) is the digital form closest to film. In his 2015 TED talk, Chris Milk called VR an empathy machine that can move its viewers to sympathy and identification more powerfully than any earlier medium, a classic claim of remediation: that VR does better what film always meant to do. But CVR is at least as much film as VR: it offers no interaction beyond looking around, and the viewer remains a viewer.",
     "Some video games strive for catharsis. There are cathartic indie games such as Gone Home, That Dragon, Cancer and What Remains of Edith Finch. There are cathartic mainstream games, such as The Last of Us, which was later made into a compelling HBO series. The cathartic quality of such games comes from techniques borrowed from film and television, while the interaction has little to do with the emotional engagement. Interactivity and coherent storytelling are challenging to combine. So cathartic games remain a limited genre within the plenitude of video games.",
     "Catharsis is a modern aesthetic, not a universal human value: the psychological storytelling that Bruner, Dennett, Pinker and others take to be universal was perfected in the novels, plays and films of the last two centuries. It is also nostalgic, in its themes and in its longing for a time when serious drama dominated media culture. It can still reach younger audiences, as the Harry Potter franchise showed, but a popular alternative has been gaining in status, above all through video games.",
+    // Chapter 5 (drafts, for Jay's approval).
+    "Catharsis must come to an end; flow wants to go on forever. Edge of Tomorrow, which Wired called the best video game you can't play, borrows a game's replay and then resolves it in Hollywood fashion. Millions now prefer the flow of games and social media, the state of complete involvement that Csikszentmihalyi described, here extended to more passive experiences such as watching one video after another. Music shows both aesthetics and their mixture: the cathartic music of the nineteenth century against the flow of gamelan, Glass, Eno's ambient music and hip-hop.",
+    "Flow is as important to video games as catharsis is to Hollywood film. Shooters, platformers and puzzle games draw the player into a potentially endless loop, and designers deliberately keep play in the flow channel between boredom and anxiety. Games have gained economic and cultural status, a diverse audience and an academic discipline, and they show how all digital media lend themselves to flow: the user becomes part of the program's event loop.",
+    "Flow culture flourishes in digital media and appeals especially, though not only, to the young. Portable music players, and then social media from blogs to YouTube, Twitter and Snapchat, each offer a different version of flow; YouTube realizes what Manovich called database cinema. Flow activities rose in status as the hierarchy of the arts broke down. And flow is therapeutic: the identity it constructs on social media is homeostatic, keeping itself within bounds rather than joining a larger historical drama.",
+    "A time traveler from 1960 would have known flow from sports and games, from the avant-garde of Cage and Warhol, and from the flow of television that Raymond Williams described. What would surprise her is the polyaesthetic flow of young people moving among many channels at once, and the fact that much of what flows is made by ordinary users. User-generated content shows popular modernism's ambivalence: a rejection of elitism, read either as collective intelligence or as the entrepreneurial American dream.",
+    "Catharsis and flow are not a simple contrast between old and new media or between older and younger audiences. Both appear within the same medium, they blend in the same experience, and transmedia franchises combine them, cathartic films beside flowing games. They are the endpoints of a scale, from Casablanca to Bejeweled, on which most media forms find a place.",
+    "Some games violate flow altogether: the avant-garde games that Brian Schrank describes, from Super Mario Clouds to Passage, move players to ask what a game is. They suggest a third aesthetic, reflection, which twentieth-century modern art pursued against the immersion of popular forms. Today reflection, too, has become popular entertainment, in Pixar's films, the Scary Movie series and hip-hop's remix, so the spectrum opens into a triangle of catharsis, flow and reflection whose interior is crowded with hybrids. What is disappearing is only the division between elite and popular forms.",
   ],
 
   // H-003: replaces "Current section" in the system prompt.

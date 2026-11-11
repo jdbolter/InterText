@@ -769,6 +769,102 @@
             "superseded": 0,
             "rejected": 0
           }
+        },
+        {
+          "id": "from-catharsis-to-flow",
+          "title": "From Catharsis to Flow",
+          "order": 24,
+          "package": "sections/from-catharsis-to-flow/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/from-catharsis-to-flow.json",
+          "versionId": "dp-from-catharsis-to-flow-v001",
+          "passageCount": 9,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "games-and-flow",
+          "title": "Games and Flow",
+          "order": 25,
+          "package": "sections/games-and-flow/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/games-and-flow.json",
+          "versionId": "dp-games-and-flow-v001",
+          "passageCount": 5,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "flow-culture",
+          "title": "Flow Culture",
+          "order": 26,
+          "package": "sections/flow-culture/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/flow-culture.json",
+          "versionId": "dp-flow-culture-v001",
+          "passageCount": 9,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "our-time-traveler",
+          "title": "Our Time Traveler",
+          "order": 27,
+          "package": "sections/our-time-traveler/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/our-time-traveler.json",
+          "versionId": "dp-our-time-traveler-v001",
+          "passageCount": 7,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "spectrum-of-catharsis-and-flow",
+          "title": "The Spectrum of Catharsis and Flow",
+          "order": 28,
+          "package": "sections/spectrum-of-catharsis-and-flow/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/spectrum-of-catharsis-and-flow.json",
+          "versionId": "dp-spectrum-of-catharsis-and-flow-v001",
+          "passageCount": 3,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "popular-avant-garde",
+          "title": "The Popular Avant-Garde",
+          "order": 29,
+          "package": "sections/popular-avant-garde/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/popular-avant-garde.json",
+          "versionId": "dp-popular-avant-garde-v001",
+          "passageCount": 13,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
         }
       ]
     }

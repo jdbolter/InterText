@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "editionId": "digital-plenitude-proofs",
+  "versionId": "dp-our-time-traveler-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-11T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "digital-plenitude/source_texts/sections/section-27.md"
+  },
+  "spineFile": "spine.md",
+  "fundEntries": [],
+  "changeSummary": "Structural package of the proofs' chapter 5, section 4 (Our Time Traveler); one passage per paragraph; no initial fund entries. Jay's corrections of 2026-11-11 applied to the spine (the original edition keeps the proofs): \"You- Tube\"; \"their life stores\"."
+}

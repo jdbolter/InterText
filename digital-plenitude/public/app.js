@@ -31,6 +31,7 @@ const SECTION_NUMERALS = [
   'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII',
   'I', 'II', 'III',
   'I', 'II', 'III', 'IV', 'V',
+  'I', 'II', 'III', 'IV', 'V', 'VI',
 ];
 
 // H-014: must match config.chapters (number, title, firstSection); a test checks this.
@@ -39,6 +40,7 @@ const CHAPTERS = [
   { number: 2, title: 'Popular Modernism', firstSection: 7 },
   { number: 3, title: 'Dichotomies', firstSection: 15 },
   { number: 4, title: 'Catharsis', firstSection: 18 },
+  { number: 5, title: 'Flow', firstSection: 23 },
 ];
 
 function chapterOf(idx) {
@@ -71,6 +73,12 @@ const SECTION_TITLES = [
   'The Cinema of Immersion',
   'Catharsis in Video Games',
   'The Past and Future of Catharsis',
+  'From Catharsis to Flow',
+  'Games and Flow',
+  'Flow Culture',
+  'Our Time Traveler',
+  'The Spectrum of Catharsis and Flow',
+  'The Popular Avant-Garde',
 ];
 
 function priorSectionSummaries(activeSection) {
@@ -113,6 +121,14 @@ const SECTION_IMAGES = [
     { id: 'spectrums', src: '../images/spectrums.svg', alt: 'Four spectrums in contemporary media culture: catharsis and flow, originality and remix, the organic or spontaneous and procedurality or datafication, history and simulation, with tradition on one side and the media future on the other', figure: true },
   ],
   null, null, null, null, null, // chapter 4
+  null, null, null, null, // chapter 5: sections 24 to 27
+  // Jay's diagrams 5.2 and 5.5, shown at full width.
+  [
+    { id: 'flow-and-catharsis', src: '../images/fig-5-2-flow-and-catharsis.png', alt: "A scale from catharsis to flow, with Titanic, Casablanca, Downton Abbey and The West Wing near catharsis; The Matrix, Skyfall, Edge of Tomorrow and Lost toward the middle; second-screen television and YouTube at the middle; Gone Home, Edith Finch and I Love Bees beyond; and Facebook, Music for Airports, Lose Yourself, Twitter and Bejeweled toward flow", figure: true },
+  ],
+  [
+    { id: 'three-aesthetics', src: '../images/fig-5-5-three-aesthetics.png', alt: "A triangle with catharsis, flow and reflection at its corners: Titanic and Casablanca near catharsis; Bejeweled and Music for Airports near flow; Un Chien Andalou, Ulysses, Untitled-Game and Super Mario Clouds toward reflection; Mother Courage, Passage, Scary Movie, Toy Story, Lost, The Matrix and Edith Finch in the interior", figure: true },
+  ],
 ];
 
 // Flat lookup map for inline image tokens
@@ -170,6 +186,19 @@ const SECTION_INTROS = [
   `<p>In <em>Gone Home</em> (2013) you return to your family&rsquo;s house in Oregon and find it empty. There is nothing to kill and no points to win: you read notes and listen to a journal until you understand that your sister has left home to live with the girl she loves. Some video games strive for catharsis: independent games like <em>Gone Home</em> and <em>What Remains of Edith Finch</em>, and mainstream ones like <em>The Last of Us</em>, later made into an HBO series. Their power to move the player comes from techniques borrowed from film and television, and the interaction has little to do with the emotion. Cathartic games remain a limited genre within the plenitude of video games.</p>`,
 
   `<p>&ldquo;We&rsquo;ll always have Paris,&rdquo; Bogart tells Bergman at the end of <em>Casablanca</em>. Hollywood drama has long looked back, and the second Golden Age of Television has made nostalgia a defining motif, from <em>Mad Men</em> to <em>The Crown</em>. Psychologists and philosophers from Jerome Bruner to Steven Pinker treat this kind of storytelling as a human universal. It is not: it was perfected in the novels, plays and films of the past two centuries, and it is not what Aristotle meant when he first applied the term to Greek tragedy. Catharsis is a modern aesthetic. It can still reach younger audiences, as the Harry Potter franchise showed, but its audience is aging, and an alternative has been gaining in status through video games.</p>`,
+
+  // Chapter 5 (drafts for Jay's approval).
+  `<p>When <em>Edge of Tomorrow</em> came out in 2014, <em>Wired</em> called it &ldquo;the best videogame you can&rsquo;t play.&rdquo; Its hero, Bill Cage, dies in combat with aliens and wakes up again on the previous day, over and over, improving with each repetition as a player improves with replay. But in the end he breaks out of the loop, and the film resolves itself in Hollywood fashion. Catharsis has to come to an end. Video games offer something else, which millions now prefer: flow, the pleasure of losing oneself in an activity, and the possibility that the moment might go on forever.</p>`,
+
+  `<p>In her TED talk, the game designer Jane McGonigal shows a gamer about to achieve an &ldquo;epic win&rdquo;: a sense of urgency, a little fear, and &ldquo;deep, deep focus on tackling a really difficult problem.&rdquo; Whatever we think of her hope that games can change the world, the intensity is real. It is what the psychologist Mihaly Csikszentmihalyi called flow, and game designers cultivate it deliberately, keeping play in a narrow channel between boredom and anxiety. Flow is as important to video games as catharsis is to Hollywood film, and games show how readily all digital media lend themselves to it.</p>`,
+
+  `<p>The first YouTube video, posted in 2005, shows one of the site&rsquo;s founders standing in front of the elephants at the San Diego Zoo. Within a few years YouTube, Facebook and Twitter had made possible a participatory flow culture that now reaches billions: one video leading to the next, a stream of messages with no need ever to end. Flow activities, once ranked below art, rose in status as the hierarchy of the arts broke down. And flow has its own kind of identity: not the dramatic arc of a life, but a self kept within bounds, in the channels a platform provides.</p>`,
+
+  `<p>A time traveler from 1960 would have known flow. She could have played tennis, sat through Andy Warhol&rsquo;s eight-hour film <em>Empire</em>, or watched television&rsquo;s continuous succession of programs and advertisements. What would surprise her is a young person watching YouTube videos while tweeting, scrolling a newsfeed and streaming music, all at once, and the fact that most of what flows past was made by other ordinary users. User-generated content shows popular modernism&rsquo;s ambivalence: a rejection of elitism, which some read as collective intelligence and others as the entrepreneurial American dream.</p>`,
+
+  `<p>The <em>Matrix</em> and <em>Star Wars</em> films are cathartic; the <em>Matrix</em> and <em>Star Wars</em> video games offer flow; and many of the same people enjoy both. Catharsis and flow do not divide old media from new, or older audiences from younger. They appear within a single medium, they blend in a single experience, and the media industry combines them in its transmedia franchises. They are better understood as the two ends of a scale, with a classic film like <em>Casablanca</em> at one end, a puzzle game like <em>Bejeweled</em> at the other, and most of our media somewhere in between.</p>`,
+
+  `<p>In 2002 the artist Cory Arcangel hacked <em>Super Mario Bros.</em>, removing almost everything but the white clouds drifting across a blue sky. There was nothing left to play. Avant-garde games like <em>Super Mario Clouds</em> deny the player both flow and catharsis and ask instead what a game is: they call for reflection, the aim of twentieth-century modern art against the immersion of popular forms. Today reflection, too, has become popular, in Pixar&rsquo;s films and in hip-hop&rsquo;s remix. Catharsis, flow and reflection make a triangle, and our media culture fills its interior with hybrids.</p>`,
 ];
 
 // ── Consent dialog ──
