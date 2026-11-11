@@ -1,0 +1,5 @@
+[boyd-2014] boyd, It's Complicated (2014). From the publisher's description and the work's own use (cite only for these points): at a high school football game in 2010 the teenagers shared their phones with friends while their parents stared into their own; teens integrate social media into their social lives and present different identities to different audiences, as a young applicant's MySpace page was designed for survival in his neighborhood. Use: social media as an extension of social life and identity as performance.
+
+[turkle-2011] Turkle, Alone Together (2011). From the work's own use (cite only for this point): we expect more from technology and less from each other. Use: the darker view, set beside boyd's.
+
+[haidt-2024] Haidt, The Anxious Generation (2024). From the publisher's description (cite only for these points): adolescent mental health worsened sharply in the early 2010s, and Haidt attributes it to the replacement of a play-based by a phone-based childhood. Use: a later critic on the young and social media, arguing from the opposite side to boyd; the work does not cite him.

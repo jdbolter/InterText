@@ -430,7 +430,12 @@ Return only the revised reply, with no preface or comment.`,
     // Chapter 4 (2026-11-11).
     'section-19.md', 'section-20.md', 'section-21.md', 'section-22.md', 'section-23.md',
     // Chapter 5 (2026-11-11).
-    'section-24.md', 'section-25.md', 'section-26.md', 'section-27.md', 'section-28.md', 'section-29.md'],
+    'section-24.md', 'section-25.md', 'section-26.md', 'section-27.md', 'section-28.md', 'section-29.md',
+    // Chapters 6 to 8 and the Conclusion (drafts, 2026-11-11, for Jay's review).
+    'section-30.md', 'section-31.md', 'section-32.md', 'section-33.md', 'section-34.md',
+    'section-35.md', 'section-36.md', 'section-37.md', 'section-38.md', 'section-39.md', 'section-40.md',
+    'section-41.md', 'section-42.md', 'section-43.md', 'section-44.md', 'section-45.md', 'section-46.md', 'section-47.md', 'section-48.md',
+    'section-49.md'],
   libraryPreamble: `WORKS THAT MAY BE CITED BY NAME
 
 Other writers are evidence. Below are books and articles you have read, each with its id in square brackets, what it says and its pages. When you draw on one, mention it as its entry says and put a marker straight after the point it supports: [[CITE:id]], or [[CITE:id|pages]] with pages taken from its entry, as in "Bürger argued that shock, once the public expects it, is consumed [[CITE:burger-1984|80–81]]." The marker becomes a numbered note that holds the full reference, so the sentence carries at most the writer's name and nothing more of the citation. Rely on each work no further than what is written of it here. Their views stay theirs, attributed and weighed, apart from your own voice. When a writer reached a conclusion from the opposite side, say so. Bring a writer in only when the work bears on the reader's point; most replies need none.`,

@@ -1172,5 +1172,509 @@
   "full": "Reese, N. 2016. “An Exhibition That Proves Video Games Can Be Art.” <i>New York Times Style Magazine</i>, February 10.",
   "pages": [],
   "mention": "note"
+ },
+ "mcleod-2015": {
+  "short": "McLeod 2015",
+  "full": "McLeod, Kembrew. 2015. “An Oral History of Sampling: From Turntables to Mashups.” In <i>The Routledge Companion to Remix Studies</i>, ed. Eduardo Navas, Owen Gallagher, and xtine burrough, 83–95. New York: Routledge.",
+  "pages": [
+   [
+    83,
+    83
+   ]
+  ],
+  "mention": "note"
+ },
+ "brewster-broughton-2006": {
+  "short": "Brewster and Broughton 2006",
+  "full": "Brewster, Bill, and Frank Broughton. 2006. <i>Last Night a DJ Saved My Life: The History of the Disc Jockey</i>. New York: Grove Press.",
+  "pages": [
+   [
+    226,
+    288
+   ]
+  ],
+  "mention": "note"
+ },
+ "navas-2012": {
+  "short": "Navas 2012",
+  "full": "Navas, Eduardo. 2012. <i>Remix Theory: The Aesthetics of Sampling</i>. Vienna and New York: Springer.",
+  "pages": [
+   [
+    132,
+    132
+   ]
+  ],
+  "mention": "introduce",
+  "intro": "the remix theorist Eduardo Navas",
+  "name": "Navas"
+ },
+ "navas-2015": {
+  "short": "Navas, Gallagher, and burrough 2015",
+  "full": "Navas, Eduardo, Owen Gallagher, and xtine burrough, eds. 2015. <i>The Routledge Companion to Remix Studies</i>. New York: Routledge.",
+  "pages": [],
+  "mention": "note"
+ },
+ "lessig-2004": {
+  "short": "Lessig 2004",
+  "full": "Lessig, Lawrence. 2004. <i>Free Culture: How Big Media Uses Technology and the Law to Lock Down Culture and Control Creativity</i>. New York: Penguin Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the legal scholar Lawrence Lessig",
+  "name": "Lessig"
+ },
+ "lessig-2007": {
+  "short": "Lessig 2007",
+  "full": "Lessig, Lawrence. 2007. “Laws That Choke Creativity.” TED talk. http://www.ted.com/talks/larry_lessig_says_the_law_is_strangling_creativity.html.",
+  "pages": [],
+  "mention": "note"
+ },
+ "shifman-2014": {
+  "short": "Shifman 2014",
+  "full": "Shifman, Limor. 2014. <i>Memes in Digital Culture</i>. Cambridge, MA: MIT Press.",
+  "pages": [
+   [
+    2,
+    2
+   ],
+   [
+    55,
+    55
+   ]
+  ],
+  "mention": "introduce",
+  "intro": "the communication scholar Limor Shifman",
+  "name": "Shifman"
+ },
+ "jenkins-1992": {
+  "short": "Jenkins 1992",
+  "full": "Jenkins, Henry. 1992. <i>Textual Poachers: Television Fans and Participatory Culture</i>. New York: Routledge.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the media scholar Henry Jenkins",
+  "name": "Jenkins"
+ },
+ "ulrich-2000": {
+  "short": "Ulrich 2000",
+  "full": "Ulrich, Lars. 2000. “Nobody Else Works for Free: Why Should Musicians?” <i>The Globe and Mail</i>.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "Metallica's drummer Lars Ulrich",
+  "name": "Ulrich"
+ },
+ "right2remix-2017": {
+  "short": "Right2Remix.org 2017",
+  "full": "Right2Remix.org. 2017. “Manifesto.” https://right2remix.org/-01-manifest.",
+  "pages": [],
+  "mention": "note"
+ },
+ "sonvilla-weiss-2015": {
+  "short": "Sonvilla-Weiss 2015",
+  "full": "Sonvilla-Weiss, Stefan. 2015. “Good Artists Copy; Great Artists Steal.” In <i>The Routledge Companion to Remix Studies</i>, ed. Eduardo Navas, Owen Gallagher, and xtine burrough, 54–67. New York: Routledge.",
+  "pages": [
+   [
+    57,
+    57
+   ],
+   [
+    64,
+    64
+   ]
+  ],
+  "mention": "note"
+ },
+ "eliot-1921": {
+  "short": "Eliot 1921",
+  "full": "Eliot, T. S. 1921. “Philip Massinger.” In <i>The Sacred Wood</i>. www.bartleby.com/200/sw11.html.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the poet and critic T. S. Eliot",
+  "name": "Eliot"
+ },
+ "boon-2010": {
+  "short": "Boon 2010",
+  "full": "Boon, Marcus. 2010. <i>In Praise of Copying</i>. Cambridge, MA: Harvard University Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the literary scholar Marcus Boon",
+  "name": "Boon"
+ },
+ "sinnreich-2010": {
+  "short": "Sinnreich 2010",
+  "full": "Sinnreich, Aram. 2010. <i>Mashed Up: Music, Technology, and the Rise of Configurable Culture</i>. Amherst: University of Massachusetts Press.",
+  "pages": [
+   [
+    68,
+    68
+   ]
+  ],
+  "mention": "introduce",
+  "intro": "the media scholar Aram Sinnreich",
+  "name": "Sinnreich"
+ },
+ "watercutter-2008": {
+  "short": "Watercutter 2008",
+  "full": "Watercutter, Angela. 2008. “Mashup DJ Girl Talk Deconstructs Samples from <i>Feed the Animals</i>.” <i>Wired</i>, August 18.",
+  "pages": [],
+  "mention": "note"
+ },
+ "krieger-2015": {
+  "short": "Krieger 2015",
+  "full": "Krieger, J. M. 2015. “The Politics of John Lennon’s ‘Imagine’: Contextualizing the Roles of Mashups and New Media in Political Protest.” In <i>The Routledge Companion to Remix Studies</i>, ed. Eduardo Navas, Owen Gallagher, and xtine burrough, 373–385. New York: Routledge.",
+  "pages": [],
+  "mention": "note"
+ },
+ "conti-2015": {
+  "short": "Conti 2015",
+  "full": "Conti, Olivia. 2015. “Political Remix Videos as a Vernacular Discourse.” In <i>The Routledge Companion to Remix Studies</i>, ed. Eduardo Navas, Owen Gallagher, and xtine burrough, 345–357. New York: Routledge.",
+  "pages": [],
+  "mention": "note"
+ },
+ "peverini-2015": {
+  "short": "Peverini 2015",
+  "full": "Peverini, Paolo. 2015. “Remix Practices and Activism: A Semiotic Analysis of Creative Dissent.” In <i>The Routledge Companion to Remix Studies</i>, ed. Eduardo Navas, Owen Gallagher, and xtine burrough, 332–345. New York: Routledge.",
+  "pages": [],
+  "mention": "note"
+ },
+ "campanelli-2015": {
+  "short": "Campanelli 2015",
+  "full": "Campanelli, Vito. 2015. “Toward a Remix Culture: An Existential Perspective.” In <i>The Routledge Companion to Remix Studies</i>, ed. Eduardo Navas, Owen Gallagher, and xtine burrough, 68–82. New York: Routledge.",
+  "pages": [],
+  "mention": "note"
+ },
+ "wolf-2009": {
+  "short": "Wolf 2009",
+  "full": "Wolf, Gary. 2009. “Know Thyself: Tracking Every Facet of Life, from Sleep to Mood to Pain, 24/7/365.” <i>Wired</i>, June 22.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the Wired writer Gary Wolf",
+  "name": "Wolf"
+ },
+ "lupton-2016": {
+  "short": "Lupton 2016",
+  "full": "Lupton, Deborah. 2016. <i>The Quantified Self: A Sociology of Self-Tracking</i>. Cambridge: Polity Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the sociologist Deborah Lupton",
+  "name": "Lupton"
+ },
+ "mayer-schonberger-cukier-2013": {
+  "short": "Mayer-Schönberger and Cukier 2013",
+  "full": "Mayer-Schönberger, Viktor, and Kenneth Cukier. 2013. <i>Big Data: A Revolution That Will Transform How We Live, Work, and Think</i>. Boston: Houghton Mifflin Harcourt.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the legal scholar Viktor Mayer-Schönberger and the journalist Kenneth Cukier",
+  "name": "Mayer-Schönberger and Cukier"
+ },
+ "bowker-star-1999": {
+  "short": "Bowker and Star 1999",
+  "full": "Bowker, Geoffrey C., and Susan Leigh Star. 1999. <i>Sorting Things Out: Classification and Its Consequences</i>. Cambridge, MA: MIT Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the information scholars Geoffrey Bowker and Susan Leigh Star",
+  "name": "Bowker and Star"
+ },
+ "van-dijck-2014": {
+  "short": "van Dijck 2014",
+  "full": "van Dijck, José. 2014. “Datafication, Dataism and Dataveillance: Big Data between Scientific Paradigm and Ideology.” <i>Surveillance and Society</i> 12 (2): 197–208.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the media scholar José van Dijck",
+  "name": "van Dijck"
+ },
+ "kaplan-2018": {
+  "short": "Kaplan 2018",
+  "full": "Kaplan, Sarah. 2018. “Congress Quashed Research into Gun Violence. Since Then, 600,000 People Have Been Shot.” <i>New York Times</i>, March 12.",
+  "pages": [],
+  "mention": "note"
+ },
+ "rosenberg-2018": {
+  "short": "Rosenberg, Confessore, and Cadwalladr 2018",
+  "full": "Rosenberg, Matthew, Nicholas Confessore, and Carole Cadwalladr. 2018. “How Trump Consultants Exploited the Facebook Data of Millions.” <i>New York Times</i>, March 17.",
+  "pages": [],
+  "mention": "note"
+ },
+ "goldberg-2001": {
+  "short": "Goldberg 2001",
+  "full": "Goldberg, RoseLee. 2001. <i>Performance Art: From Futurism to the Present</i>. London: Thames and Hudson.",
+  "pages": [
+   [
+    111,
+    113
+   ]
+  ],
+  "mention": "note"
+ },
+ "bogost-2006": {
+  "short": "Bogost 2006",
+  "full": "Bogost, Ian. 2006. <i>Unit Operations: An Approach to Videogame Criticism</i>. Cambridge, MA: MIT Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the game designer and scholar Ian Bogost",
+  "name": "Bogost"
+ },
+ "carr-2010": {
+  "short": "Carr 2010",
+  "full": "Carr, Nicholas. 2010. <i>The Shallows: What the Internet Is Doing to Our Brains</i>. New York: W. W. Norton.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the critic of digital culture Nicholas Carr",
+  "name": "Carr"
+ },
+ "johnson-2006": {
+  "short": "Johnson 2006",
+  "full": "Johnson, Steven. 2006. <i>Everything Bad Is Good for You: How Today’s Popular Culture Is Actually Making Us Smarter</i>. New York: Riverhead Books.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the popular media writer Steven Johnson",
+  "name": "Johnson"
+ },
+ "levy-1997": {
+  "short": "Lévy 1997",
+  "full": "Lévy, Pierre. 1997. <i>Collective Intelligence: Mankind’s Emerging World in Cyberspace</i>. New York: Plenum Trade.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the French media philosopher Pierre Lévy",
+  "name": "Lévy"
+ },
+ "edwards-2007": {
+  "short": "Edwards 2007",
+  "full": "Edwards, Benj. 2007. “The History of Civilization.” <i>Gamasutra</i>, July 18.",
+  "pages": [],
+  "mention": "note"
+ },
+ "aarseth-2004": {
+  "short": "Aarseth 2004",
+  "full": "Aarseth, Espen. 2004. “Genre Trouble: Narrativism and the Art of Simulation.” In <i>First Person: New Media as Story, Performance, and Game</i>, ed. Noah Wardrip-Fruin and Pat Harrigan, 45–55. Cambridge, MA: MIT Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the game scholar Espen Aarseth",
+  "name": "Aarseth"
+ },
+ "baudrillard-1994": {
+  "short": "Baudrillard 1994",
+  "full": "Baudrillard, Jean. 1994. <i>Simulacra and Simulation</i>. Ann Arbor: University of Michigan Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the philosopher Jean Baudrillard",
+  "name": "Baudrillard"
+ },
+ "murray-2004": {
+  "short": "Murray 2004",
+  "full": "Murray, Janet. 2004. “From Game-Story to Cyberdrama.” In <i>First Person: New Media as Story, Performance, and Game</i>, ed. Noah Wardrip-Fruin and Pat Harrigan, 2–11. Cambridge, MA: MIT Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the digital media scholar Janet Murray",
+  "name": "Murray"
+ },
+ "mchale-2001": {
+  "short": "McHale 2001",
+  "full": "McHale, Brian. 2001. “Weak Narrativity: The Case of Avant-Garde Narrative Poetry.” <i>Narrative</i> 9 (2): 161–167.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the literary scholar Brian McHale",
+  "name": "McHale"
+ },
+ "engberg-2011": {
+  "short": "Engberg 2011",
+  "full": "Engberg, Maria. 2011. “Writing on the World: Augmented Reading Environments.” <i>Sprache und Literatur</i> 108 (2): 67–78.",
+  "pages": [],
+  "mention": "note"
+ },
+ "parkin-2014": {
+  "short": "Parkin 2014",
+  "full": "Parkin, Simon. 2014. “Gamergate: A Scandal Erupts in the Video-Game Community.” <i>The New Yorker</i>, October 17.",
+  "pages": [],
+  "mention": "note"
+ },
+ "klein-2016": {
+  "short": "Klein 2016",
+  "full": "Klein, Ezra. 2016. “Elon Musk Believes We Are Probably Characters in Some Advanced Civilization’s Video Game.” <i>Vox</i>, June 2.",
+  "pages": [],
+  "mention": "note"
+ },
+ "bauerlein-2011": {
+  "short": "Bauerlein 2011",
+  "full": "Bauerlein, Mark, ed. 2011. <i>The Digital Divide: Arguments For and Against Facebook, Google, Texting, and the Age of Social Networking</i>. New York: Penguin.",
+  "pages": [],
+  "mention": "note"
+ },
+ "turkle-2011": {
+  "short": "Turkle 2011",
+  "full": "Turkle, Sherry. 2011. <i>Alone Together: Why We Expect More from Technology and Less from Each Other</i>. New York: Basic Books.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the psychologist Sherry Turkle",
+  "name": "Turkle"
+ },
+ "foer-2017": {
+  "short": "Foer 2017",
+  "full": "Foer, Franklin. 2017. <i>World Without Mind: The Existential Threat of Big Tech</i>. New York: Penguin.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the journalist Franklin Foer",
+  "name": "Foer"
+ },
+ "judt-2005": {
+  "short": "Judt 2005",
+  "full": "Judt, Tony. 2005. <i>Postwar: A History of Europe since 1945</i>. New York: Penguin Press.",
+  "pages": [
+   [
+    395,
+    395
+   ]
+  ],
+  "mention": "introduce",
+  "intro": "the historian Tony Judt",
+  "name": "Judt"
+ },
+ "brooks-2016": {
+  "short": "Brooks 2016",
+  "full": "Brooks, Arthur C. 2016. “Narcissism Is Increasing. So You’re Not So Special.” <i>New York Times</i>, February 14.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "Arthur C. Brooks, then president of the American Enterprise Institute",
+  "name": "Brooks"
+ },
+ "firestone-2012": {
+  "short": "Firestone 2012",
+  "full": "Firestone, Lisa. 2012. “Is Social Media to Blame for the Rise in Narcissism?” <i>Psychology Today</i>, November 29.",
+  "pages": [],
+  "mention": "note"
+ },
+ "marwick-boyd-2010": {
+  "short": "Marwick and boyd 2010",
+  "full": "Marwick, Alice E., and danah boyd. 2010. “I Tweet Honestly, I Tweet Passionately: Twitter Users, Context Collapse, and the Imagined Audience.” <i>New Media and Society</i> 13 (1): 114–133.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the social media researchers Alice Marwick and danah boyd",
+  "name": "Marwick and boyd"
+ },
+ "rettberg-2014": {
+  "short": "Rettberg 2014",
+  "full": "Rettberg, Jill Walker. 2014. <i>Seeing Ourselves Through Technology: How We Use Selfies, Blogs and Wearable Devices to See and Shape Ourselves</i>. New York: Palgrave Macmillan.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the digital culture scholar Jill Walker Rettberg",
+  "name": "Rettberg"
+ },
+ "crenshaw-1991": {
+  "short": "Crenshaw 1991",
+  "full": "Crenshaw, Kimberlé. 1991. “Mapping the Margins: Intersectionality, Identity Politics, and Violence against Women of Color.” <i>Stanford Law Review</i> 43 (6): 1241–1299.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the legal scholar Kimberlé Crenshaw",
+  "name": "Crenshaw"
+ },
+ "lopez-2017": {
+  "short": "Lopez 2017",
+  "full": "Lopez, German. 2017. “The Battle over Identity Politics, Explained.” <i>Vox</i>, August 17.",
+  "pages": [],
+  "mention": "note"
+ },
+ "pariser-2011": {
+  "short": "Pariser 2011",
+  "full": "Pariser, Eli. 2011. <i>The Filter Bubble: How the New Personalized Web Is Changing What We Read and How We Think</i>. London: Penguin Books.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the activist and writer Eli Pariser",
+  "name": "Pariser"
+ },
+ "fowler-keegan-2016": {
+  "short": "Fowler and Keegan 2016",
+  "full": "Fowler, G. A., and J. Keegan. 2016. “Blue Feed, Red Feed.” <i>Wall Street Journal</i>, May 19.",
+  "pages": [],
+  "mention": "note"
+ },
+ "thompson-vogelstein-2018": {
+  "short": "Thompson and Vogelstein 2018",
+  "full": "Thompson, Nicholas, and Fred Vogelstein. 2018. “Inside the Two Years That Shook Facebook—and the World.” <i>Wired</i>, February 12.",
+  "pages": [],
+  "mention": "note"
+ },
+ "rheingold-2002": {
+  "short": "Rheingold 2002",
+  "full": "Rheingold, Howard. 2002. <i>Smart Mobs: The Next Social Revolution</i>. Cambridge, MA: Perseus Publishing.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the writer Howard Rheingold",
+  "name": "Rheingold"
+ },
+ "howard-hussain-2013": {
+  "short": "Howard and Hussain 2013",
+  "full": "Howard, Philip N., and Muzammil M. Hussain. 2013. <i>Democracy’s Fourth Wave? Digital Media and the Arab Spring</i>. Oxford: Oxford University Press.",
+  "pages": [],
+  "mention": "note"
+ },
+ "shirky-2010b": {
+  "short": "Shirky 2010b",
+  "full": "Shirky, Clay. 2010. “How Cognitive Surplus Will Change the World.” TED talk, June.",
+  "pages": [],
+  "mention": "note"
+ },
+ "olson-2012": {
+  "short": "Olson 2012",
+  "full": "Olson, Parmy. 2012. <i>We Are Anonymous: Inside the Hacker World of LulzSec, Anonymous, and the Global Cyber Insurgency</i>. New York: Little, Brown.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the journalist Parmy Olson",
+  "name": "Olson"
+ },
+ "coleman-2014": {
+  "short": "Coleman 2014",
+  "full": "Coleman, Gabriella. 2014. <i>Hacker, Hoaxer, Whistleblower, Spy: The Many Faces of Anonymous</i>. New York: Verso.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the anthropologist Gabriella Coleman",
+  "name": "Coleman"
+ },
+ "raley-2009": {
+  "short": "Raley 2009",
+  "full": "Raley, Rita. 2009. <i>Tactical Media</i>. Minneapolis: University of Minnesota Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the media scholar Rita Raley",
+  "name": "Raley"
+ },
+ "caryl-2010": {
+  "short": "Caryl 2010",
+  "full": "Caryl, Christian. 2010. “WikiLeaks in the Moral Void.” <i>The New York Review of Books</i>, December 7.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the journalist Christian Caryl",
+  "name": "Caryl"
+ },
+ "hochschild-2016": {
+  "short": "Hochschild 2016",
+  "full": "Hochschild, Arlie Russell. 2016. <i>Strangers in Their Own Land: Anger and Mourning on the American Right</i>. New York: The New Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the sociologist Arlie Russell Hochschild",
+  "name": "Hochschild"
+ },
+ "skocpol-williamson-2012": {
+  "short": "Skocpol and Williamson 2012",
+  "full": "Skocpol, Theda, and Vanessa Williamson. 2012. <i>The Tea Party and the Remaking of Republican Conservatism</i>. Oxford: Oxford University Press.",
+  "pages": [],
+  "mention": "introduce",
+  "intro": "the political scientists Theda Skocpol and Vanessa Williamson",
+  "name": "Skocpol and Williamson"
+ },
+ "pew-2014": {
+  "short": "Pew Research Center 2014",
+  "full": "Pew Research Center. 2014. “Political Polarization.” <i>FactTank: News in the Numbers</i>. http://www.pewresearch.org/packages/political-polarization/.",
+  "pages": [],
+  "mention": "note"
+ },
+ "bump-2018": {
+  "short": "Bump 2018",
+  "full": "Bump, Philip. 2018. “All the Ways Trump’s Campaign Was Aided by Facebook, Ranked by Importance.” <i>Washington Post</i>, March 22.",
+  "pages": [],
+  "mention": "note"
+ },
+ "pearce-2016": {
+  "short": "Pearce 2016",
+  "full": "Pearce, Adam. 2016. “Trump Has Spent a Fraction of What Clinton Has on Ads.” <i>New York Times</i>, October 21.",
+  "pages": [],
+  "mention": "note"
  }
 }

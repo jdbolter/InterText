@@ -1,0 +1,5 @@
+[mcleod-2015] McLeod, "An Oral History of Sampling" (2015). From the work's own use (cite only for this point): rap and hip-hop have their roots in the vibrant but economically depressed African American cultures of North America in the 1960s and 1970s. Use: where remix began.
+
+[brewster-broughton-2006] Brewster and Broughton, Last Night a DJ Saved My Life (2006). From the work's own use (cite only for this point): the African American inner cities, above all in New York, combined MCing, the verbal rapping, with DJing, the scratching or sampling of vinyl records, to make a new musical form (pp. 226–288). Use: rap's two elements, the rapper's verse and the DJ's sampling.
+
+[csikszentmihalyi-1991] Csikszentmihalyi, Flow (1991). From a summary and the book's own reading: flow is a state of involvement so complete that nothing else seems to matter, pursued for its own sake (p. 4). Use: the game community's term, which rap uses for the interplay of the rapper's rhymes and the beat; rap is flow music.
