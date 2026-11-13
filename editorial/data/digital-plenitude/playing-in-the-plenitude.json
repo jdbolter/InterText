@@ -7,7 +7,7 @@
   "editionId": "digital-plenitude-proofs",
   "versionId": "dp-playing-in-the-plenitude-v001",
   "parentVersionId": null,
-  "createdAt": "2026-11-11T00:00:00Z",
+  "createdAt": "2026-11-13T00:00:00Z",
   "source": {
     "type": "authored",
     "path": "digital-plenitude/source_texts/sections/section-34.md"
@@ -19,7 +19,7 @@
     },
     {
       "id": "playing-in-the-plenitude-p02",
-      "markdown": "Remix is about playing in the plenitude. It is perfectly at home in a media culture in which traditional hierarchies have broken down. If we have a culture of fragments, then why not make a practice of piecing together fragments into new configurations? You can take samples from anywhere. As Navas (2012) points out, a skillful DJ could take samples from “uncool” mainstream traditions and make them work for a sophisticated audience (132). Two decades ago JAY-Z sampled from a Broadway musical to create a hip-hop classic. The fact that so much music and video material of all kinds is now available in digital form gives remixers more freedom than before. Digital formats, along with the connectivity of the Internet, expand the field of remix almost infinitely. Digital networking flattens out our media culture. The assertion of copyright is an attempt to maintain hierarchies, to fence off materials and remove them from the remixer’s palette. Everything that counts as remix speaks to a rejection of notions of hierarchy, propriety, and ownership."
+      "markdown": "Remix is about playing in the plenitude. It is perfectly at home in a media culture in which traditional hierarchies have broken down. If we have a culture of fragments, then why not make a practice of piecing together fragments into new configurations? You can take samples from anywhere. As Navas (2012) points out, a skillful DJ could take samples from “uncool” mainstream traditions and make them work for a sophisticated audience (132). In 1998 JAY-Z sampled from a Broadway musical to create a hip-hop classic. The fact that so much music and video material of all kinds is now available in digital form gives remixers more freedom than before. Digital formats, along with the connectivity of the Internet, expand the field of remix almost infinitely. Digital networking flattens out our media culture. The assertion of copyright is an attempt to maintain hierarchies, to fence off materials and remove them from the remixer’s palette. Everything that counts as remix speaks to a rejection of notions of hierarchy, propriety, and ownership."
     },
     {
       "id": "playing-in-the-plenitude-p03",
@@ -35,5 +35,5 @@
     }
   ],
   "fundEntries": [],
-  "changeSummary": "Structural package of the proofs' chapter 6, section 5 (Playing in the Plenitude); one passage per paragraph; no initial fund entries."
+  "changeSummary": "Structural package of the proofs' chapter 6, section 5 (Playing in the Plenitude); one passage per paragraph; no initial fund entries. Jay's corrections of 2026-11-13 applied to the spine (the original edition keeps the proofs): \"You- Tube\"; \"Two decades ago JAY-Z sampled\"."
 }

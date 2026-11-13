@@ -7,7 +7,7 @@
   "editionId": "digital-plenitude-proofs",
   "versionId": "dp-remix-and-originality-v001",
   "parentVersionId": null,
-  "createdAt": "2026-11-11T00:00:00Z",
+  "createdAt": "2026-11-13T00:00:00Z",
   "source": {
     "type": "authored",
     "path": "digital-plenitude/source_texts/sections/section-30.md"
@@ -15,7 +15,7 @@
   "spine": [
     {
       "id": "remix-and-originality-p01",
-      "markdown": "To understand remix in our contemporary media culture, we must begin with rap music and hip-hop culture. They have roots in vibrant but economically depressed African American cultures of North America in the 1960s and1970s (McLeod 2015). The African American inner cities, particularly in New York, put together the elements of MCing (the verbal rapping) with DJing (the “scratching” or sampling of vinyl records) to make this new musical form (Brewster and Broughton 2006, 226–288). Musicians/rappers from the 1970s to the 1990s created an enormous range of variations on this theme both by remixing different genres of popular music and by making use of increasingly sophisticated remix machines—analogue remixers that consisted of one, or often two, turntables, programmable drum machines, and digital samplers and synthesizers. The generations of rappers performing over these sound washes continued to change and expand their subject matter."
+      "markdown": "To understand remix in our contemporary media culture, we must begin with rap music and hip-hop culture. They have roots in vibrant but economically depressed African American cultures of North America in the 1960s and 1970s (McLeod 2015). The African American inner cities, particularly in New York, put together the elements of MCing (the verbal rapping) with DJing (the “scratching” or sampling of vinyl records) to make this new musical form (Brewster and Broughton 2006, 226–288). Musicians/rappers from the 1970s to the 1990s created an enormous range of variations on this theme both by remixing different genres of popular music and by making use of increasingly sophisticated remix machines—analogue remixers that consisted of one, or often two, turntables, programmable drum machines, and digital samplers and synthesizers. The generations of rappers performing over these sound washes continued to change and expand their subject matter."
     },
     {
       "id": "remix-and-originality-p02",
@@ -35,5 +35,5 @@
     }
   ],
   "fundEntries": [],
-  "changeSummary": "Structural package of the proofs' chapter 6, section 1 (Remix and Originality); one passage per paragraph; no initial fund entries."
+  "changeSummary": "Structural package of the proofs' chapter 6, section 1 (Remix and Originality); one passage per paragraph; no initial fund entries. Jay's corrections of 2026-11-13 applied to the spine (the original edition keeps the proofs): \"in the 1960s and1970s\"; \"You- Tube\"."
 }
