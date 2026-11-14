@@ -24,6 +24,32 @@ first.
 - **To deploy,** Jay runs `git checkout main && git merge --ff-only h001-digital-plenitude && git push origin main`.
 - **The live site and local `npm run dev` share one KV database** when `.env.local` has the KV settings.
 
+## The reader's page (`digital-plenitude/public/`, H-019)
+- The reading runs down the left: a running head (title; chapter and section) stays at the top, and the reader's
+  own words stand in the reading above the reply they drew ("You"), set in from the margin. The right column holds
+  the contents list (all chapters; the open chapter shows its sections; visited and finished sections marked),
+  References beneath it, and the input dock at the foot: `Go on` becomes `Send` when there is text; Enter does the
+  same; `Finish reading` beside it.
+- Narrow screens (under 960px): one column, the contents as a sheet opened from the running head (`Contents`), the
+  dock pinned to the bottom. The page sets `--dock-height` so the reading keeps room for it.
+- A failed turn shows "Try again" and keeps the reader's words in place. The composing indicator is the text's
+  label and three dots where the reply will appear.
+- `synthetic-reader/lib/publicContent.js` runs `app.js` under a DOM stand-in to read the titles and boxes; load-time
+  code added to the page must run under it (a test loads the real page).
+
+## The prompt and the calls (H-020)
+- **Order and caching:** `api/lib/system-prompt.js` puts what stays the same through a section first (the text's
+  instructions, the passage, the library list), marks the last of those for caching, and puts what changes from
+  turn to turn after it (continuation instructions, images and media not yet shown, the writers introduced so far,
+  the fund). Anything added to the prompt goes in the right half: a per-turn line placed before the passage would
+  break the cache on every call. The revision pass gets the passage as a cached system block too.
+- **Introductions (H-008):** each library entry carries its manner once; one per-turn line names the writers
+  already introduced (`introducedLine`).
+- **Length:** a draft over `config.revision.wordLimit` (250) is handed to the editor with its count and the excess.
+- **Notes** follow the punctuation they sit beside (`checkCitations`). `api/lib/words.js` counts the words a reader
+  sees.
+- `api/chat.js` makes its Anthropic client on first use; a test puts a stand-in in its place with `setClient`.
+
 ## Models (as of 2026-11-02)
 - **Replies, the revision pass and evolution** run on `claude-sonnet-5-5`, the default for every text (`textModel`).
 - **Sonnet 5.5 does not support forced tool calls** (`tool_choice` "tool"/"any"). The older works' editorial path
@@ -96,7 +122,11 @@ The proofs' chapters 1 and 2, fifteen sections. Its `config.js` carries everythi
 ## Synthetic readers
 - **Running a reader.** `npm run synthetic-reader -- --text digital-plenitude --edition original --section N
   --profile <p> --turns N --out <dir> [--base-url …]` needs the local server running and the OpenAI key.
-- **Profiles:** `curious`, `skeptical`, `collaborative`, and `general` (the target reader, who reads for the argument).
+- **Profiles:** `curious`, `skeptical`, `collaborative`, `general` (the target reader, who reads for the argument,
+  in plain spoken sentences) and `student` (H-021: an undergraduate reading an assigned chapter, no web search).
+- **Measuring a round:** `npm run reading-report -- <dir>` (H-021) reads a round's `session.json` files and prints
+  words per reply and how many run over the limit, notes per reply, self-reference, repeats, the reader's private
+  reflections, revisions applied, and the cache share. `--json` for data.
 - **Output.** Transcripts show notes, and the draft before revision.
 - **Reading rounds** are run from scripts in the vault (`projects/digital-plenitude/readings/run-*.sh`) and measured
   there by a blind judge.
