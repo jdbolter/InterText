@@ -4,7 +4,7 @@
 
 [pariser-2011] Pariser, The Filter Bubble (2011). From the work's own use (cite only for this point): personalized filtering on the web shows each user what agrees with them, enclosing them in a filter bubble. Use: the filters users want and the bubbles they produce.
 
-[fowler-keegan-2016] Fowler and Keegan, "Blue Feed, Red Feed" (Wall Street Journal, 2016). From the work's own use (cite only for this point): a page that set side by side what liberal and conservative Facebook users saw on the same topics. Use: the polarization of America's information communities.
+[fowler-keegan-2016] Keegan, "Blue Feed, Red Feed" (Wall Street Journal interactive page, May 18, 2016). From the work's own use (cite only for this point): a page that set side by side what liberal and conservative Facebook users saw on the same topics. Use: the polarization of America's information communities.
 
 [thompson-vogelstein-2018] Thompson and Vogelstein, "Inside the Two Years That Shook Facebook" (2018). From the work's own use (cite only for this point): Facebook failed to understand how many of its users got their news solely or mainly from it. Use: the platform's political naivety in 2016.
 

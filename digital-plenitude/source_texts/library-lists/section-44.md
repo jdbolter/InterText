@@ -1,4 +1,4 @@
-[marwick-boyd-2010] Marwick and boyd, "I Tweet Honestly, I Tweet Passionately" (2010). From the work's own use (cite only for these points): posting a video or creating a channel makes one a broadcaster who may become a microcelebrity, and Twitter users write for a "networked audience." Use: social media as self-presentation to an audience.
+[marwick-boyd-2010] Marwick and boyd, "I Tweet Honestly, I Tweet Passionately" (2011; first published online July 7, 2010). From the work's own use (cite only for these points): posting a video or creating a channel makes one a broadcaster who may become a microcelebrity, and Twitter users write for a "networked audience." Use: social media as self-presentation to an audience.
 
 [rettberg-2014] Rettberg, Seeing Ourselves Through Technology (2014). From the work's own use (cite only for this point): the selfie has become a much-studied phenomenon of self-representation. Use: the network as a vast selfie.
 

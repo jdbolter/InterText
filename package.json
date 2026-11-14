@@ -20,7 +20,7 @@
     "@anthropic-ai/sdk": "^0.39.0",
     "@upstash/redis": "^1.38.0",
     "openai": "^5.23.2",
-    "vercel": "^59.11.7"
+    "vercel": "^65.16.0"
   },
   "devDependencies": {
     "ajv": "^8.6.3"

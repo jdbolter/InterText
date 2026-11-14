@@ -1,4 +1,4 @@
-[pew-2014] Pew Research Center, "Political Polarization" (2014). From the work's own use (cite only for this point): polarization in Congress, which began in the 1970s, matches a polarization of the electorate into red and blue. Use: greater ideological coherence and polarization.
+[pew-2014] Pew Research Center, "Political Polarization in the American Public" (June 12, 2014). From the report: it documents growing ideological consistency and partisan division among the American public. Use: polarization of the electorate; it does not by itself establish that political narratives have become less coherent.
 
 [skocpol-williamson-2012] Skocpol and Williamson, The Tea Party and the Remaking of Republican Conservatism (2012). From the work's own use (cite only for this point): Tea Party Republicans affected to hate the federal government yet saw Social Security and Medicare as justified entitlements. Use: party narratives less consistent than their polarization suggests.
 

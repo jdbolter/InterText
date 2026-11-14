@@ -6,7 +6,7 @@
 
 [bowker-star-1999] Bowker and Star, Sorting Things Out (1999). From the work's own use: the late nineteenth century already saw "the development of myriad systems of classification and standardization of modern industrial and scientific institutions." Use: the long history of invisible classification, before people took part in it knowingly.
 
-[van-dijck-2014] van Dijck, "Datafication, Dataism and Dataveillance" (2014). From the work's own use (cite only for this point): large portions of the population enter into datafication knowingly, and their participation establishes it as a cultural paradigm. Use: datafication as willing participation.
+[van-dijck-2014] van Dijck, "Datafication, Dataism and Dataveillance" (2014). From the article: van Dijck examines how datafication becomes accepted as a way of understanding social life, while questioning its assumptions and the trust placed in corporations and government agencies. Use: participation in datafication does not necessarily imply informed consent to how data are collected or used.
 
 [van-dijck-2018] van Dijck, Poell and de Waal, The Platform Society (2018). From the publisher's description (cite only for these points): platforms have become an organizing structure of Western societies, not merely services. Use: a later account of the data-gathering platforms the section describes.
 
