@@ -13,7 +13,8 @@
     "test": "node --test synthetic-reader/test/*.test.js editorial/test/*.test.js scripts/test/*.test.js",
     "check-models": "node --env-file-if-exists=.env.local scripts/check-models.js",
     "evolved": "node --env-file-if-exists=.env.local scripts/evolved.js",
-    "media": "node scripts/media.js"
+    "media": "node scripts/media.js",
+    "reading-report": "node scripts/reading-report.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",

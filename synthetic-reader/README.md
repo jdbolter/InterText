@@ -104,7 +104,8 @@ is meant to be committed).
 ```
 --text <id>            plenitude | uncanny | blood-on-the-wall   (default: plenitude)
 --section <n>          1-based section number to start in         (default: 1)
---profile <id>         curious | skeptical | collaborative        (default: curious)
+--profile <id>         curious | skeptical | collaborative |
+                        general | student                         (default: curious)
 --turns <n>             maximum turns before the run stops itself (default: 10)
 --edition <name>        evolving | original | editorial-spine |
                         editorial-fund                            (default: evolving)
@@ -137,9 +138,14 @@ static editorial browser on port 4173 cannot serve `/api/chat`.
 
 ## Reader profiles
 
-Three are included out of the box (`lib/profiles.js`): **curious** (curious
-nonspecialist), **skeptical** (skeptical academic), and **collaborative**
-(knowledgeable reader and constructive editorial partner). The collaborative reader
+Five are included out of the box (`lib/profiles.js`): **curious** (curious
+nonspecialist), **skeptical** (skeptical academic), **collaborative**
+(knowledgeable reader and constructive editorial partner), **general** (H-006: the
+educated general reader *The Digital Plenitude* is written for, who reads for the
+argument and does not nitpick; since H-021 told to write one to three plain,
+spoken sentences) and **student** (H-021: an undergraduate reading an assigned
+chapter, who asks what terms mean, says the argument back to check it, and reads
+with no web search). The collaborative reader
 attends to argument and evidence, but also to prose quality, rhythm, transitions,
 economy, and forward movement. It does not assume that every claim needs more
 evidence or allow minor issues to stall the passage.
@@ -160,7 +166,7 @@ to display knowledge, and to keep the passage moving. When web research material
 informs a message, the reader should name the source and include its URL so it remains
 visible in the transcript and any later evolution preview.
 
-The **curious** profile does not receive the search tool. This preserves the behavior
+The **curious** and **student** profiles do not receive the search tool. This preserves the behavior
 of a nonspecialist responding only from the reading experience and ordinary prior
 knowledge. Web results never expose the guide's hidden instructions or raw source
 files, and they are not sent to the guide unless the reader chooses to mention them
@@ -169,6 +175,22 @@ in a normal reader message. Search calls can add latency and API cost.
 To add a profile, add an entry to `PROFILES` in `lib/profiles.js` with an `id`,
 `name`, `description`, `allowWebSearch`, and a paragraph of `instructions` describing
 how that reader behaves.
+
+## Measuring a round (H-021)
+
+```
+npm run reading-report -- <dir> [<dir> …] [--limit 250] [--json]
+```
+
+reads every `session.json` under the directories given (a round's folder, as the
+vault's `readings/run-*.sh` scripts write it) and prints one line per run and a
+total: replies (to messages / Return turns); words per reply and how many run over
+the limit; notes per reply (and web notes); replies in which the text speaks of its
+own argument, section or "main line"; seven-word runs and closing sentences repeated
+across a run's replies; the reader's private understanding, interest and confusion;
+how many replies the revision pass rewrote, and why it did not; and the share of the
+calls' input tokens read from the prompt cache. `--json` gives the same figures as
+data. It counts generated text and never quotes it.
 
 ## What gets recorded
 
