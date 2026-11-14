@@ -355,8 +355,15 @@ function markTocActive(idx) {
     group.classList.toggle('open', group.dataset.chapter === current);
     group.classList.toggle('current', group.dataset.chapter === current);
   });
+  // Keep the active section in view within the list itself, without moving anything else.
+  const toc = document.getElementById('toc');
   const active = document.querySelector('.toc-item.active');
-  if (active && typeof active.scrollIntoView === 'function') active.scrollIntoView({ block: 'nearest' });
+  if (toc && active && typeof active.getBoundingClientRect === 'function') {
+    const box = toc.getBoundingClientRect();
+    const item = active.getBoundingClientRect();
+    if (item.top < box.top) toc.scrollTop -= box.top - item.top + 16;
+    else if (item.bottom > box.bottom) toc.scrollTop += item.bottom - box.bottom + 16;
+  }
   updateRunningPosition(idx);
 }
 
