@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>A conversation about the Digital Plenitude (proofs edition)</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="../../shared/citation-notes.css">
@@ -28,42 +28,47 @@
           <span class="consent-btn-caption">No — read it exactly as first written, before any reader's changes.</span>
         </button>
       </div>
+      <p class="consent-how">Read by pressing Enter, which carries the text on; type at any time to ask, object or add to what it says.</p>
     </div>
   </div>
 
   <div id="layout">
 
-    <div id="left-col">
-      <header>
-        <h1>A conversation about the Digital Plenitude (proofs edition)</h1>
+    <main id="left-col">
+      <header id="running-head">
+        <div class="head-inner">
+          <h1>The Digital Plenitude <span class="head-edition">proofs edition</span></h1>
+          <div id="running-position" aria-live="polite"></div>
+          <button id="contents-toggle" type="button" aria-expanded="false" aria-controls="side">Contents</button>
+        </div>
       </header>
-      <div id="intro"></div>
-      <div id="conversation"></div>
-    </div>
+      <div id="conversation" aria-live="polite"></div>
+    </main>
 
-    <div id="right-col">
-
+    <aside id="side" aria-label="Contents and references">
+      <button id="side-close" type="button" aria-label="Close the contents">Close</button>
       <nav id="toc" aria-label="Chapters and sections"></nav>
-
       <details id="references" hidden>
         <summary>References <span id="references-count">0</span></summary>
         <ol id="references-list"></ol>
       </details>
-      <div id="input-panel">
-        <div id="reader-history"></div>
-        <div id="input-area">
-          <span class="input-prompt" aria-hidden="true">&gt;</span>
-          <textarea id="message-input" rows="2" aria-label="Your questions or comments" placeholder="Type your questions or comments here, or just hit Enter to continue."></textarea>
-        </div>
-      </div>
+    </aside>
 
-      <div id="finish-bar">
-        <button id="finish-btn">Finish reading</button>
+    <div id="dock">
+      <div id="input-area">
+        <span class="input-prompt" aria-hidden="true">&gt;</span>
+        <textarea id="message-input" rows="1" aria-label="Your questions or comments" placeholder="Ask or comment here, or simply go on."></textarea>
       </div>
-
+      <div id="dock-row">
+        <button id="finish-btn" type="button">Finish reading</button>
+        <span id="dock-hint" aria-hidden="true"></span>
+        <button id="go-btn" type="button" aria-label="Go on">Go on</button>
+      </div>
     </div>
 
   </div>
+
+  <div id="side-scrim" hidden></div>
 
   <div id="farewell">
     <div id="farewell-dialog">

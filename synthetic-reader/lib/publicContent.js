@@ -31,7 +31,22 @@ const REQUIRED_GLOBALS = ['SECTION_NUMERALS', 'SECTION_TITLES', 'SECTION_INTROS'
 // goal is only to let app.js's top-level statements run to completion, not to
 // simulate the UI.
 function makeStubElement() {
-  const store = { classList: { add() {}, remove() {}, toggle() {}, contains: () => false }, dataset: {}, style: {} };
+  // `style` answers any call too (`style.setProperty(...)`), while keeping values that are set.
+  const style = new Proxy({}, {
+    get: (target, prop) => (prop in target ? target[prop] : () => {}),
+    set: (target, prop, value) => { target[prop] = value; return true; },
+  });
+  const store = {
+    classList: { add() {}, remove() {}, toggle() {}, contains: () => false },
+    dataset: {},
+    style,
+    // Plain values the page reads at load time (an input's text, an element's height).
+    value: '',
+    placeholder: '',
+    textContent: '',
+    offsetHeight: 0,
+    hidden: false,
+  };
   return new Proxy(store, {
     get(target, prop) {
       if (prop in target) return target[prop];
@@ -48,8 +63,12 @@ function makeStubElement() {
 function makeDocumentStub() {
   return {
     getElementById: () => makeStubElement(),
+    querySelector: () => null,
     querySelectorAll: () => [],
     createElement: () => makeStubElement(),
+    createTextNode: () => makeStubElement(),
+    body: makeStubElement(),
+    documentElement: makeStubElement(),
     addEventListener() {},
   };
 }
@@ -79,7 +98,15 @@ function extractPublicSectionData(textEntry) {
   const pattern = new RegExp(`^const (${EXPOSED.join('|')}) = `, 'gm');
   const rewritten = source.replace(pattern, 'globalThis.$1 = ');
 
-  const sandbox = { document: makeDocumentStub(), console: { error() {}, log() {}, warn() {} } };
+  const sandbox = {
+    document: makeDocumentStub(),
+    console: { error() {}, log() {}, warn() {} },
+    getComputedStyle: () => ({ overflowY: 'auto', getPropertyValue: () => '' }),
+  };
+  // The page also reaches `window` (resize listeners, innerHeight); the sandbox stands in for it.
+  sandbox.window = sandbox;
+  sandbox.innerHeight = 800;
+  sandbox.addEventListener = () => {};
   vm.createContext(sandbox);
   try {
     vm.runInContext(rewritten, sandbox, { filename: textEntry.appJsPath, timeout: 5000 });

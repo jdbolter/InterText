@@ -3,12 +3,18 @@
 :root {
   --text: #1a1a1a;
   --muted: #666;
+  --faint: #c0bdb6;
   --border: #ddd;
   --bg: #fafaf8;
+  --bg-dock: #f4f3ee;
   --reader-label: #999;
   --guide-label: #444;
-  --line: 65ch;
+  --rule: #333;
+  --line: 36.5rem; /* 65ch of Georgia at 18px (585px), in a unit every font shares */
   --right-col: 25rem;
+  --sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --serif: Georgia, 'Times New Roman', serif;
+  --dock-height: 7.5rem; /* a guess, replaced by the script once the dock is laid out */
 }
 
 html, body {
@@ -17,11 +23,16 @@ html, body {
 }
 
 body {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--serif);
   font-size: 18px;
   line-height: 1.7;
   color: var(--text);
   background: var(--bg);
+}
+
+button {
+  font: inherit;
+  color: inherit;
 }
 
 /* ── Consent overlay ── */
@@ -36,18 +47,19 @@ body {
   justify-content: center;
   z-index: 100;
   padding: 2rem;
+  overflow-y: auto;
 }
 
 #consent-dialog {
   background: var(--bg);
-  border: 2px solid #333;
+  border: 2px solid var(--rule);
   padding: 3rem 3.5rem;
   max-width: 40rem;
   width: 100%;
 }
 
 .consent-kicker {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: var(--sans);
   font-size: 0.63rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -82,13 +94,14 @@ body {
   background: none;
   border: 1px solid var(--border);
   padding: 0.85rem 1.1rem;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--serif);
   text-align: left;
   cursor: pointer;
   transition: border-color 0.2s, background 0.2s;
 }
 
-.consent-btn:hover {
+.consent-btn:hover,
+.consent-btn:focus-visible {
   border-color: var(--guide-label);
   background: rgba(0, 0, 0, 0.02);
 }
@@ -109,20 +122,36 @@ body {
   font-style: italic;
 }
 
-/* ── Two-column layout ── */
+.consent-how {
+  margin-top: 1.75rem;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* ── Layout: the reading on the left; contents above the input on the right ── */
 
 #layout {
   display: grid;
-  grid-template-columns: 1fr var(--right-col);
+  grid-template-columns: minmax(0, 1fr) var(--right-col);
+  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "reading side"
+    "reading dock";
   height: 100vh;
+  height: 100dvh;
 }
 
 #left-col {
+  grid-area: reading;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
-  padding: 0 2rem 2rem;
+  padding: 0 2rem 3rem;
+  scroll-padding-top: 4.5rem;
 }
 
 #left-col > * {
@@ -130,32 +159,95 @@ body {
   max-width: var(--line);
 }
 
-#right-col {
+#side {
+  grid-area: side;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  position: sticky;
-  top: 0;
   border-left: 1px solid var(--guide-label);
 }
 
-/* ── TOC — top of right column ── */
+#dock {
+  grid-area: dock;
+  border-left: 1px solid var(--guide-label);
+}
+
+/* ── The running head: the work's title and where the reader is ── */
+
+#running-head {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  max-width: none;
+  display: flex;
+  justify-content: center;
+  padding: 1.1rem 0 0.7rem;
+  background: var(--bg);
+  box-shadow: 0 1px 0 var(--border);
+  font-family: var(--sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.head-inner {
+  width: 100%;
+  max-width: var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 1.25rem;
+}
+
+.head-inner > * {
+  width: 100%;
+}
+
+#running-head h1 {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.head-edition {
+  color: var(--muted);
+  font-weight: 400;
+  margin-left: 0.5em;
+}
+
+#running-position {
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--muted);
+  min-height: 1.2em;
+}
+
+#running-position .pos-section {
+  color: var(--text);
+}
+
+#contents-toggle,
+#side-close {
+  display: none;
+}
+
+/* ── Contents, top of the right column ── */
 
 #toc {
-  flex-shrink: 0;
+  flex: 1 1 auto;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
-  padding: 2.5rem 1.5rem 1.5rem;
-  max-height: 55vh; /* H-014: with several chapters the list may scroll */
+  gap: 1rem;
+  padding: 2.25rem 1.5rem 1.25rem;
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 /* H-014: chapters in the contents list; only the open chapter shows its sections. */
 .toc-chapter {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.75rem;
 }
 
 .toc-chapter-title {
@@ -164,15 +256,18 @@ body {
   padding: 0;
   cursor: pointer;
   text-align: left;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 0.8rem;
+  font-family: var(--sans);
+  font-size: 0.78rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #999;
+  line-height: 1.4;
 }
 
 .toc-chapter-title::before {
   content: '\25B8\00A0';
+  display: inline-block;
+  width: 1.1em;
 }
 
 .toc-chapter.open .toc-chapter-title::before {
@@ -186,8 +281,8 @@ body {
 .toc-sections {
   display: none;
   flex-direction: column;
-  gap: 1.1rem;
-  padding-left: 0.2rem;
+  gap: 0.9rem;
+  padding: 0.15rem 0 0.35rem 0.2rem;
 }
 
 .toc-chapter.open .toc-sections {
@@ -203,21 +298,31 @@ body {
   padding: 0;
   cursor: pointer;
   text-align: left;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: var(--sans);
   font-size: 1.125rem; /* 2026-11-01 (Jay): the size of the body text (18px) */
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #c0bdb6;
+  color: var(--faint);
   line-height: 1.4;
   transition: color 0.2s;
 }
 
-.toc-item:hover {
+.toc-item:hover,
+.toc-item:focus-visible {
   color: #999;
+  outline: none;
+}
+
+.toc-item.visited {
+  color: #9b978f;
 }
 
 .toc-item.active {
   color: var(--guide-label);
+}
+
+.toc-item:disabled {
+  cursor: default;
 }
 
 .toc-num {
@@ -226,46 +331,52 @@ body {
   min-width: 1.1em;
 }
 
-/* ── Input panel — middle of right column ── */
-
-#input-panel {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  padding: 1.25rem 1.5rem 1.25rem;
-  border-top: 1px solid var(--guide-label);
+.toc-item.complete .toc-num::after {
+  content: '\00B7';
+  margin-left: 0.15em;
 }
 
-#reader-history {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
+/* ── References, under the contents ── */
 
-.reader-entry {
+#references {
   flex-shrink: 0;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 0.97rem;
-  line-height: 1.6;
-  color: var(--guide-label);
-  font-style: italic;
+  border-top: 1px solid var(--border);
+  margin: 0;
+  padding: 0.8rem 1.5rem;
+}
+
+#references summary {
+  list-style: none;
+}
+
+#references summary::-webkit-details-marker {
+  display: none;
+}
+
+#references summary::before {
+  content: '\25B8\00A0';
+}
+
+#references[open] summary::before {
+  content: '\25BE\00A0';
+}
+
+#references-list {
+  max-height: 11rem;
+}
+
+/* ── The dock: the reader's own words go in here ── */
+
+#dock {
+  flex-shrink: 0;
+  padding: 0.9rem 1.5rem 0.9rem;
+  border-top: 1px solid var(--guide-label);
+  background: var(--bg-dock);
 }
 
 #input-area {
-  margin-top: 1rem;
-  padding-left: 1.1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  flex-shrink: 0;
   position: relative;
+  padding-left: 1.1rem;
 }
 
 .input-prompt {
@@ -290,8 +401,9 @@ body {
 }
 
 #message-input {
+  display: block;
   width: 100%;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--serif);
   font-size: 0.97rem;
   line-height: 1.6;
   color: var(--text);
@@ -301,8 +413,8 @@ body {
   padding: 0.4rem 0;
   resize: none;
   outline: none;
-  min-height: 2.8rem;
-  max-height: 8rem;
+  min-height: 2.35rem;
+  max-height: 11rem;
   overflow-y: auto;
 }
 
@@ -311,20 +423,35 @@ body {
   opacity: 1;
 }
 
-/* ── Finish bar — bottom of right column, never scrolls ── */
-
-#finish-bar {
-  flex-shrink: 0;
-  padding: 1rem 1.5rem;
-  border-top: 1px solid var(--border);
+#message-input[aria-busy="true"] {
+  color: var(--muted);
 }
 
-#finish-btn {
-  width: 100%;
+#dock-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  padding-left: 1.1rem;
+  font-family: var(--sans);
+  font-size: 0.63rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+#dock-hint {
+  flex: 1;
+}
+
+#finish-btn,
+#go-btn {
+  flex-shrink: 0;
   background: none;
-  border: 1px solid var(--border);
-  padding: 0.55rem 1rem;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  border: 1px solid transparent;
+  padding: 0.35rem 0.7rem;
+  margin-left: -0.7rem;
+  font-family: var(--sans);
   font-size: 0.63rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -333,12 +460,28 @@ body {
   transition: color 0.2s, border-color 0.2s;
 }
 
-#finish-btn:hover:not(:disabled) {
-  color: var(--text);
-  border-color: var(--guide-label);
+#go-btn {
+  margin-left: 0;
+  border-color: var(--border);
+  color: var(--guide-label);
 }
 
-#finish-btn:disabled {
+#go-btn.has-text {
+  border-color: var(--guide-label);
+  color: var(--text);
+}
+
+#finish-btn:hover:not(:disabled),
+#go-btn:hover:not(:disabled),
+#finish-btn:focus-visible,
+#go-btn:focus-visible {
+  color: var(--text);
+  border-color: var(--guide-label);
+  outline: none;
+}
+
+#finish-btn:disabled,
+#go-btn:disabled {
   cursor: default;
   opacity: 0.5;
 }
@@ -359,7 +502,7 @@ body {
 
 #farewell-dialog {
   background: var(--bg);
-  border: 2px solid #333;
+  border: 2px solid var(--rule);
   padding: 3rem 3.5rem;
   max-width: 40rem;
   width: 100%;
@@ -381,60 +524,25 @@ body {
   font-size: 0.63rem;
   color: var(--muted);
   margin-top: 1.75rem;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: var(--sans);
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-/* ── Left column content ── */
-
-header {
-  padding: 3rem 0 0.5rem;
-  flex-shrink: 0;
-}
-
-/* 2026-11-01 (Jay): the main title and the section title share one larger, darker size,
-   to keep the reader oriented. */
-header h1 {
-  font-size: 1.125rem;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text);
-}
-
-#intro {
-  padding: 1.5rem 1rem 2rem;
-  font-size: 1.05rem;
-  line-height: 1.85;
-  color: var(--text);
-  border: 2px solid #333;
-  flex-shrink: 0;
-  transition: opacity 0.5s ease, max-height 0.5s ease, padding 0.5s ease;
-  overflow: hidden;
-  max-height: 40rem;
-}
-
-#intro.is-hiding {
-  opacity: 0;
-  max-height: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-}
+/* ── The reading ── */
 
 #conversation {
   flex: 1;
-  padding: 0 0 2rem;
+  padding: 0.5rem 0 2rem;
 }
 
 .turn {
   margin-bottom: 2rem;
-  scroll-margin-top: 1.5rem;
+  scroll-margin-top: 4.5rem;
 }
 
 .turn-label {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: var(--sans);
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -455,6 +563,27 @@ header h1 {
   margin-bottom: 0;
 }
 
+/* The reader's own words, set in from the margin and in italic, so that a conversation
+   reads back as one: the question above the answer it drew. */
+.turn-reader {
+  margin: 0 0 1.5rem;
+  padding-left: 1.25rem;
+  border-left: 1px solid var(--faint);
+}
+
+.turn-reader .turn-label {
+  color: var(--reader-label);
+}
+
+.turn-reader .turn-body {
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--guide-label);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
 .turn-sources {
   font-size: 0.78rem;
   color: var(--muted);
@@ -462,7 +591,7 @@ header h1 {
 }
 
 .system-message {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--sans);
   font-size: 0.75rem;
   letter-spacing: 0.06em;
   color: var(--muted);
@@ -470,14 +599,34 @@ header h1 {
   margin: 1rem 0;
 }
 
+.system-message button {
+  background: none;
+  border: none;
+  padding: 0 0.2em;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: uppercase;
+  color: var(--guide-label);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+
 .section-break {
   margin: 2.5rem 0 2rem;
   padding-top: 2rem;
   border-top: 1px solid var(--border);
+  scroll-margin-top: 3.5rem;
+}
+
+.section-break:first-child {
+  margin-top: 1.25rem;
+  padding-top: 0;
+  border-top: none;
 }
 
 .chapter-heading {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: var(--sans);
   font-size: 0.85rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -489,7 +638,7 @@ header h1 {
   display: flex;
   align-items: baseline;
   gap: 0.6rem;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: var(--sans);
   font-size: 1.125rem;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -500,6 +649,14 @@ header h1 {
 
 .section-break-num {
   opacity: 0.7;
+}
+
+.section-break-intro {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--text);
+  border: 2px solid var(--rule);
+  padding: 1.5rem 1.25rem 1.75rem;
 }
 
 .section-image {
@@ -526,7 +683,7 @@ figure.response-figure img {
 
 .image-credit {
   margin-top: 0.35rem;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: var(--sans);
   font-size: 0.72rem;
   line-height: 1.4;
   color: var(--muted);
@@ -543,27 +700,31 @@ figure.response-figure img {
   margin: 0.25rem 0 1rem 1.5rem;
 }
 
-.section-break-intro {
-  font-size: 1.05rem;
-  line-height: 1.85;
-  color: var(--text);
-  border: 2px solid #333;
-  padding: 1.5rem 1rem 2rem;
-}
-
+/* The text composing: its label, and three slow dots where the reply will appear. */
 .thinking {
-  display: flex;
-  align-items: center;
   margin-bottom: 2rem;
 }
 
-.thinking-spinner {
-  width: 16px;
-  height: 16px;
-  border: 1.5px solid var(--border);
-  border-top-color: var(--guide-label);
+.thinking-dots {
+  display: inline-flex;
+  gap: 0.3rem;
+  padding-top: 0.5rem;
+}
+
+.thinking-dots span {
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  animation: spin 0.75s linear infinite;
+  background: var(--faint);
+  animation: breathe 1.4s ease-in-out infinite;
+}
+
+.thinking-dots span:nth-child(2) { animation-delay: 0.2s; }
+.thinking-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes breathe {
+  0%, 80%, 100% { opacity: 0.35; transform: translateY(0); }
+  40% { opacity: 1; transform: translateY(-2px); }
 }
 
 .farewell-spinner {
@@ -580,49 +741,8 @@ figure.response-figure img {
   to { transform: rotate(360deg); }
 }
 
-/* ── Responsive ── */
-
-@media (max-width: 960px) {
-  html, body {
-    overflow: auto;
-  }
-
-  #layout {
-    display: block;
-    height: auto;
-    min-height: 100vh;
-  }
-
-  #left-col {
-    overflow-y: visible;
-    padding: 0 1rem 1rem;
-    height: auto;
-  }
-
-  #right-col {
-    position: static;
-    height: auto;
-    border-left: none;
-    border-top: 1px solid var(--border);
-  }
-
-  #toc {
-    display: none;
-  }
-
-  #input-panel {
-    flex: none;
-    height: auto;
-    border-top: none;
-  }
-
-  #reader-history {
-    max-height: 10rem;
-  }
-
-  #finish-bar {
-    position: static;
-  }
+@media (prefers-reduced-motion: reduce) {
+  .thinking-dots span, .farewell-spinner { animation-duration: 3s; }
 }
 
 /* ── H-018: media items in replies ── */
@@ -711,7 +831,7 @@ figure.response-figure img {
 .media-card-kind,
 .media-card-source,
 .media-card-note {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: var(--sans);
   font-size: 0.72rem;
   line-height: 1.4;
   color: var(--muted);
@@ -725,4 +845,176 @@ figure.response-figure img {
 .media-card-title {
   font-size: 1rem;
   line-height: 1.35;
+}
+
+/* ── Narrow screens: one column, the contents as a sheet, the dock pinned below ── */
+
+@media (max-width: 960px) {
+  html, body {
+    height: auto;
+    overflow: visible;
+  }
+
+  #layout {
+    display: block;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  #left-col {
+    overflow-y: visible;
+    padding: 0 1.1rem calc(var(--dock-height) + 2rem);
+    height: auto;
+  }
+
+  #running-head {
+    padding: 0.8rem 0 0.6rem;
+  }
+
+  .head-inner {
+    gap: 0.2rem 0.75rem;
+  }
+
+  .head-inner h1 {
+    width: auto;
+    flex: 1 1 auto;
+    font-size: 0.72rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .head-edition {
+    display: none;
+  }
+
+  #running-position {
+    order: 3;
+    font-size: 0.66rem;
+  }
+
+  #side-close {
+    display: block;
+    align-self: flex-end;
+    margin: 0.6rem 1.25rem 0;
+    background: none;
+    border: 1px solid var(--border);
+    padding: 0.3rem 0.6rem;
+    font-family: var(--sans);
+    font-size: 0.63rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--guide-label);
+    cursor: pointer;
+  }
+
+  #contents-toggle {
+    display: inline-block;
+    order: 2;
+    width: auto;
+    flex: 0 0 auto;
+    background: none;
+    border: 1px solid var(--border);
+    padding: 0.3rem 0.6rem;
+    font-family: var(--sans);
+    font-size: 0.63rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--guide-label);
+    cursor: pointer;
+  }
+
+  #contents-toggle[aria-expanded="true"] {
+    border-color: var(--guide-label);
+    color: var(--text);
+  }
+
+  #side {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(22rem, 88vw);
+    background: var(--bg);
+    border-left: 1px solid var(--guide-label);
+    box-shadow: -8px 0 24px rgba(0, 0, 0, 0.08);
+    transform: translateX(102%);
+    transition: transform 0.25s ease;
+    z-index: 60;
+    padding-top: 0.5rem;
+  }
+
+  body.contents-open #side {
+    transform: none;
+  }
+
+  #side-scrim {
+    position: fixed;
+    inset: 0;
+    background: rgba(250, 250, 248, 0.55);
+    z-index: 55;
+  }
+
+  #toc {
+    padding: 1rem 1.25rem 1rem;
+  }
+
+  .toc-item {
+    font-size: 1rem;
+  }
+
+  #references {
+    padding: 0.7rem 1.25rem calc(0.7rem + env(safe-area-inset-bottom));
+  }
+
+  #dock {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    border-left: none;
+    padding: 0.6rem 1rem calc(0.55rem + env(safe-area-inset-bottom));
+    box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.05);
+  }
+
+  #message-input {
+    font-size: 1rem; /* 16px and up keeps iOS from zooming the page on focus */
+    max-height: 7rem;
+  }
+
+  #dock-hint {
+    display: none;
+  }
+
+  #dock-row {
+    justify-content: flex-end;
+    margin-top: 0.25rem;
+  }
+
+  .turn-reader {
+    padding-left: 0.9rem;
+  }
+
+  .turn,
+  .thinking,
+  .system-message {
+    scroll-margin-bottom: calc(var(--dock-height) + 1rem);
+  }
+
+  .section-break-intro {
+    padding: 1.1rem 1rem 1.25rem;
+    font-size: 1rem;
+  }
+
+  #consent-dialog,
+  #farewell-dialog {
+    padding: 1.75rem 1.4rem;
+  }
+
+  #consent-overlay,
+  #farewell {
+    padding: 1rem;
+    align-items: flex-start;
+  }
 }

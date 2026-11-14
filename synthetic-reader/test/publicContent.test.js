@@ -7,6 +7,9 @@ const { extractPublicSectionData } = require('../lib/publicContent');
 const { TEXTS } = require('../lib/textRegistry');
 
 test('extracts the correct section count for each known text', () => {
+  // digital-plenitude's page does more at load time (running head, dock, contents sheet);
+  // the harness's DOM stand-in must let all of it run.
+  assert.equal(extractPublicSectionData(TEXTS['digital-plenitude']).sections.length, 49);
   assert.equal(extractPublicSectionData(TEXTS.plenitude).sections.length, 7);
   assert.equal(extractPublicSectionData(TEXTS.uncanny).sections.length, 5);
   assert.equal(extractPublicSectionData(TEXTS['blood-on-the-wall']).sections.length, 4);

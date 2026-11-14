@@ -1,8 +1,8 @@
 const conv = document.getElementById('conversation');
 const input = document.getElementById('message-input');
-const intro = document.getElementById('intro');
-const leftCol = document.getElementById('left-col');
-const readerHistory = document.getElementById('reader-history');
+const goBtn = document.getElementById('go-btn');
+const finishBtn = document.getElementById('finish-btn');
+const runningPosition = document.getElementById('running-position');
 
 let history = [];
 let sectionIndex = 0;
@@ -21,6 +21,7 @@ const editorialVersionIds = new Map();
 const presentedFundEntryIds = new Map();
 const contributionSessionId = `intertext-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
 const completedSections = new Set();
+const visitedSections = new Set();
 let sending = false;
 let endShown = false;
 const CONTINUE_MESSAGE = 'Continue reading from where we have reached in this section.';
@@ -299,9 +300,8 @@ document.getElementById('consent-original').addEventListener('click', () => choo
 
 // ── Initialise first section ──
 
-intro.innerHTML = SECTION_INTROS[sectionIndex];
-intro.classList.add('is-hiding');
 appendSectionBreak(0, false);
+visitedSections.add(0);
 
 // ── TOC navigation ──
 
@@ -345,13 +345,37 @@ function buildToc() {
 
 function markTocActive(idx) {
   document.querySelectorAll('.toc-item').forEach(el => {
-    el.classList.toggle('active', Number(el.dataset.section) === idx);
+    const n = Number(el.dataset.section);
+    el.classList.toggle('active', n === idx);
+    el.classList.toggle('visited', visitedSections.has(n) && n !== idx);
+    el.classList.toggle('complete', completedSections.has(n));
   });
   const current = String(chapterOf(idx).number);
   document.querySelectorAll('.toc-chapter').forEach(group => {
     group.classList.toggle('open', group.dataset.chapter === current);
     group.classList.toggle('current', group.dataset.chapter === current);
   });
+  const active = document.querySelector('.toc-item.active');
+  if (active && typeof active.scrollIntoView === 'function') active.scrollIntoView({ block: 'nearest' });
+  updateRunningPosition(idx);
+}
+
+// The running head says where the reader is: the chapter, and the section's numeral and title.
+function updateRunningPosition(idx) {
+  if (!runningPosition) return;
+  runningPosition.textContent = '';
+  const chapter = chapterOf(idx);
+  const where = document.createElement('span');
+  where.className = 'pos-chapter';
+  where.textContent = chapter.label ? chapter.label : `Chapter ${chapter.number}`;
+  runningPosition.appendChild(where);
+  if (!chapter.label || SECTION_TITLES[idx] !== chapterHeading(chapter)) {
+    runningPosition.appendChild(document.createTextNode(' · '));
+    const section = document.createElement('span');
+    section.className = 'pos-section';
+    section.textContent = `${SECTION_NUMERALS[idx]} ${SECTION_TITLES[idx]}`;
+    runningPosition.appendChild(section);
+  }
 }
 
 buildToc();
@@ -361,20 +385,56 @@ function selectSection(newIdx) {
   saveCurrentSection();
   sectionHistoryStart = contributionHistory.length;
   sectionIndex = newIdx;
+  visitedSections.add(newIdx);
   markTocActive(newIdx);
-  intro.innerHTML = SECTION_INTROS[sectionIndex];
   appendSectionBreak(sectionIndex);
 }
 
 document.querySelectorAll('.toc-item').forEach(item => {
   item.addEventListener('click', () => {
-    if (!sending) selectSection(Number(item.dataset.section));
+    if (sending) return;
+    closeContents();
+    selectSection(Number(item.dataset.section));
+    focusInput();
   });
 });
 
+// ── Contents on a narrow screen: a sheet opened from the running head ──
+
+const contentsToggle = document.getElementById('contents-toggle');
+const sideScrim = document.getElementById('side-scrim');
+
+function openContents() {
+  document.body.classList.add('contents-open');
+  contentsToggle.setAttribute('aria-expanded', 'true');
+  sideScrim.hidden = false;
+}
+
+function closeContents() {
+  if (!document.body.classList.contains('contents-open')) return;
+  document.body.classList.remove('contents-open');
+  contentsToggle.setAttribute('aria-expanded', 'false');
+  sideScrim.hidden = true;
+}
+
+contentsToggle.addEventListener('click', () => {
+  if (document.body.classList.contains('contents-open')) closeContents(); else openContents();
+});
+sideScrim.addEventListener('click', closeContents);
+document.getElementById('side-close').addEventListener('click', closeContents);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContents(); });
+
+// On a narrow screen the dock is pinned over the page; the page keeps room for it.
+function measureDock() {
+  const dock = document.getElementById('dock');
+  if (dock) document.documentElement.style.setProperty('--dock-height', `${dock.offsetHeight}px`);
+}
+window.addEventListener('resize', measureDock);
+measureDock();
+
 // ── Finish button ──
 
-document.getElementById('finish-btn').addEventListener('click', async () => {
+finishBtn.addEventListener('click', async () => {
   if (saveConsent) {
     showFarewellSaving();
     await saveCurrentSection();
@@ -562,26 +622,46 @@ function appendGuideResponse(text, notes = null, media = null) {
 function revealResponse(el) {
   const pane = document.getElementById('left-col');
   const scrolls = pane && getComputedStyle(pane).overflowY !== 'visible';
-  const viewHeight = scrolls ? pane.clientHeight : window.innerHeight;
+  // On a narrow screen the window scrolls and the dock covers the bottom of it.
+  const dock = document.getElementById('dock');
+  const covered = scrolls ? 0 : (dock ? dock.offsetHeight : 0);
+  const viewHeight = (scrolls ? pane.clientHeight : window.innerHeight) - covered;
   const fits = el.getBoundingClientRect().height <= viewHeight * 0.9;
   el.scrollIntoView({ behavior: 'smooth', block: fits ? 'end' : 'start' });
 }
 
+// The reader's words take their place in the reading, above the reply they draw, so
+// that the conversation reads back as one (2026-11-14; before, they stood apart in the
+// right-hand pane).
 function appendReaderMessage(text) {
-  const entry = document.createElement('div');
-  entry.className = 'reader-entry';
-  entry.textContent = text;
-  readerHistory.appendChild(entry);
-  readerHistory.scrollTop = readerHistory.scrollHeight;
+  const turn = document.createElement('div');
+  turn.className = 'turn turn-reader';
+  const label = document.createElement('div');
+  label.className = 'turn-label';
+  label.textContent = 'You';
+  const body = document.createElement('div');
+  body.className = 'turn-body';
+  body.textContent = text;
+  turn.appendChild(label);
+  turn.appendChild(body);
+  conv.appendChild(turn);
+  return turn;
 }
 
 function showThinking() {
   const el = document.createElement('div');
   el.className = 'thinking';
   el.id = 'thinking';
-  const spinner = document.createElement('div');
-  spinner.className = 'thinking-spinner';
-  el.appendChild(spinner);
+  el.setAttribute('aria-label', 'The text is composing a reply');
+  const label = document.createElement('div');
+  label.className = 'turn-label';
+  label.textContent = 'The text';
+  const dots = document.createElement('div');
+  dots.className = 'thinking-dots';
+  dots.setAttribute('aria-hidden', 'true');
+  for (let i = 0; i < 3; i += 1) dots.appendChild(document.createElement('span'));
+  el.appendChild(label);
+  el.appendChild(dots);
   conv.appendChild(el);
   el.scrollIntoView({ behavior: 'smooth', block: 'end' });
 }
@@ -591,10 +671,18 @@ function removeThinking() {
   if (el) el.remove();
 }
 
-function appendSystemMessage(text) {
+function appendSystemMessage(text, { retry = null } = {}) {
   const el = document.createElement('div');
   el.className = 'system-message';
   el.textContent = text;
+  if (retry) {
+    el.appendChild(document.createTextNode(' '));
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.textContent = 'Try again';
+    btn.addEventListener('click', () => { el.remove(); retry(); });
+    el.appendChild(btn);
+  }
   conv.appendChild(el);
   el.scrollIntoView({ behavior: 'smooth', block: 'end' });
 }
@@ -604,24 +692,42 @@ function updateCaretMarker() {
   input.parentElement.classList.toggle('show-caret', input.value === '' && input.placeholder === '');
 }
 
+// The button beside the input says what Enter would do: go on, or send what is written.
+function updateGoButton() {
+  const hasText = input.value.trim().length > 0;
+  goBtn.textContent = hasText ? 'Send' : 'Go on';
+  goBtn.setAttribute('aria-label', hasText ? 'Send your message' : 'Go on reading');
+  goBtn.classList.toggle('has-text', hasText);
+}
+
+function fitInput() {
+  input.style.height = 'auto';
+  input.style.height = input.scrollHeight + 'px';
+  measureDock();
+}
+
 // ── Send ──
 
 function setSending(value) {
   sending = value;
   document.querySelectorAll('.toc-item').forEach(el => { el.disabled = value; });
-  document.getElementById('finish-btn').disabled = value;
+  finishBtn.disabled = value;
+  goBtn.disabled = value;
   input.setAttribute('aria-busy', String(value));
 }
 
-async function send() {
+// `given` repeats a turn that failed: its words are already in the reading.
+async function send(given = null) {
   if (sending) return;
-  const text = input.value.trim();
+  const text = (given === null ? input.value : given).trim();
   const continuing = !text;
   input.value = '';
   input.placeholder = '';
   updateCaretMarker();
-  input.style.height = 'auto';
-  if (!continuing) appendReaderMessage(text);
+  updateGoButton();
+  fitInput();
+  closeContents();
+  if (!continuing && given === null) appendReaderMessage(text);
   input.focus();
   setSending(true);
   showThinking();
@@ -698,12 +804,18 @@ async function send() {
         }
         appendGuideResponse(data.response, data.notes, data.media);
       }
-      if (continuing && data.sectionComplete === true) completedSections.add(activeSection);
+      if (continuing && data.sectionComplete === true) {
+        completedSections.add(activeSection);
+        markTocActive(sectionIndex);
+      }
       if (data.response) break;
     }
   } catch (err) {
-    appendSystemMessage('Could not continue the conversation. Please try again.');
-    if (!continuing && !input.value) input.value = text;
+    // The reader's words stay in the reading; one press tries the same turn again.
+    const attempt = continuing ? '' : text;
+    appendSystemMessage(continuing ? 'The text could not go on just now.' : 'The text could not reply just now.', {
+      retry: () => send(attempt),
+    });
   } finally {
     removeThinking();
     setSending(false);
@@ -719,12 +831,15 @@ input.addEventListener('keydown', e => {
   }
 });
 
+goBtn.addEventListener('click', () => send());
+
 input.addEventListener('input', () => {
   // This hint is only for the first use, not each newly cleared draft.
   if (input.value.length > 0) input.placeholder = '';
   updateCaretMarker();
-  const atLatest = readerHistory.scrollTop + readerHistory.clientHeight >= readerHistory.scrollHeight - 2;
-  input.style.height = 'auto';
-  input.style.height = input.scrollHeight + 'px';
-  if (atLatest) readerHistory.scrollTop = readerHistory.scrollHeight;
+  updateGoButton();
+  fitInput();
 });
+
+updateGoButton();
+markTocActive(sectionIndex);
