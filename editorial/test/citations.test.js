@@ -5,6 +5,7 @@ const assert = require('node:assert/strict');
 
 const {
   annotateLibraryList,
+  introducedLine,
   checkCitations,
   citationMarkersOn,
   dropWrittenSourceList,
@@ -48,7 +49,7 @@ test('markers survive only for works in the section fund; bad pages are dropped'
   const { text, library } = checkCitations(
     'Shock is consumed [[CITE:burger-1984|80-81]]. Levine [[CITE:levine-1988|12]]. Krauss [[CITE:krauss-1981|47]]. Ghost [[CITE:nobody-2000]].',
     { allowedIds, references });
-  assert.equal(text, 'Shock is consumed[[CITE:burger-1984|80–81]]. Levine[[CITE:levine-1988]]. Krauss. Ghost.');
+  assert.equal(text, 'Shock is consumed.[[CITE:burger-1984|80–81]] Levine.[[CITE:levine-1988]] Krauss. Ghost.');
   assert.deepEqual(Object.keys(library).sort(), ['burger-1984', 'levine-1988']);
   assert.equal(library['burger-1984'].short, 'Bürger 1984');
 });
@@ -135,19 +136,28 @@ test('each listed work is marked with how to mention it, and introductions happe
     'levine-1988': { short: 'Levine 1988', full: 'x', pages: [] },
   };
   const fund = 'PREAMBLE\n\n[burger-1984] Bürger, ...\n\n[pautz-2002] Pautz, ...\n\n[bolter-2022] Bolter, ...\n\n[levine-1988] Levine, ...';
-  const fresh = annotateLibraryList(fund, refs, introducedIds([], refs));
-  assert.match(fresh, /\[burger-1984\] \(Not yet introduced: on first mention, "the German literary theorist Peter Bürger"; afterwards simply "Bürger"\.\) Bürger/);
+  const fresh = annotateLibraryList(fund, refs);
+  assert.match(fresh, /\[burger-1984\] \(Introduce on first mention as "the German literary theorist Peter Bürger"; once introduced, simply "Bürger"\.\) Bürger/);
   assert.match(fresh, /\[pautz-2002\] \(Cite by note only:/);
   assert.match(fresh, /\[bolter-2022\] \(The work's own later thinking:/);
   assert.match(fresh, /\[levine-1988\] Levine/, 'no mention field: unchanged');
   assert.deepEqual([...listIds(fresh)], ['burger-1984', 'pautz-2002', 'bolter-2022', 'levine-1988']);
+  // the list is the same from turn to turn (so it can be cached); the per-turn line says who is introduced
+  assert.equal(introducedLine(introducedIds([], refs), refs), null);
   // once the text has cited him (or named him), he is introduced
   for (const said of ['Shock is consumed[[CITE:burger-1984|80–81]].', 'As Bürger argued, shock is consumed.']) {
-    const later = annotateLibraryList(fund, refs, introducedIds([{ role: 'user', content: 'Bürger?' }, { role: 'assistant', content: said }], refs));
-    assert.match(later, /\[burger-1984\] \(Already introduced in this conversation: simply "Bürger"\.\)/);
+    const done = introducedIds([{ role: 'user', content: 'Bürger?' }, { role: 'assistant', content: said }], refs);
+    assert.equal(introducedLine(done, refs), 'Writers already introduced in this conversation, so named by surname alone from now on: Bürger.');
   }
   // a reader naming him does not count as the text introducing him
   assert.equal(introducedIds([{ role: 'user', content: 'What about Bürger?' }], refs).size, 0);
+});
+
+test('a note number follows the punctuation it sits beside (2026-11-14)', () => {
+  const references = { 'burger-1984': { short: 'Bürger 1984', full: 'x', pages: [[80, 81]] } };
+  const allowedIds = new Set(['burger-1984']);
+  const out = checkCitations('Shock is consumed [[CITE:burger-1984|80–81]]. Then [[CITE:burger-1984]][[WEB:1]], and so on[[CITE:burger-1984]]', { allowedIds, references });
+  assert.equal(out.text, 'Shock is consumed.[[CITE:burger-1984|80–81]] Then,[[CITE:burger-1984]][[WEB:1]] and so on[[CITE:burger-1984]]');
 });
 
 test('a writer with two works is introduced once (H-014)', () => {

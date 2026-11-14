@@ -28,14 +28,21 @@ const {
   dropWrittenSourceList,
   listIds,
   introducedIds,
+  introducedLine,
   loadReferences,
   markWebCitations,
   stripWebTokens,
   webUsed,
 } = require('./lib/citations');
+const { systemBlocks } = require('./lib/system-prompt');
 const { applyMediaTokens, mediaPromptText } = require('./lib/media');
 
-const client = new Anthropic();
+// The client is made on first use, and a test may put a stand-in in its place (setClient).
+let client = null;
+function getClient() {
+  if (!client) client = new Anthropic();
+  return client;
+}
 
 const ALLOWED_TEXT_IDS = ['uncanny', 'plenitude', 'blood-on-the-wall', 'remediation', 'digital-plenitude'];
 const configCache = {};
@@ -203,15 +210,49 @@ module.exports = async function handler(req, res) {
   });
   // H-003: a section's fund of citable works, for ordinary readings only.
   const rawLibraryList = loadLibraryList(config, idx, { editorial: toolDelivery });
-  // H-008: each listed work marked with how to mention it now (introduce, already introduced,
-  // note only, the work's own), judged from everything the text has said so far.
+  // H-008: each listed work carries how it is mentioned (introduced on first mention, note only,
+  // the work's own); a line before the reply names the writers introduced so far (2026-11-14).
   const libraryListText = rawLibraryList && citationMarkersOn(config)
-    ? annotateLibraryList(rawLibraryList, loadReferences(config), introducedIds(
-      [...(Array.isArray(history) ? history : []), ...(Array.isArray(sectionHistory) ? sectionHistory : [])],
-      loadReferences(config)))
+    ? annotateLibraryList(rawLibraryList, loadReferences(config))
     : rawLibraryList;
+  const introducedSoFar = rawLibraryList && citationMarkersOn(config)
+    ? introducedLine(introducedIds(
+      [...(Array.isArray(history) ? history : []), ...(Array.isArray(sectionHistory) ? sectionHistory : [])],
+      loadReferences(config)), loadReferences(config))
+    : null;
+
+  // 2026-11-14: the prompt is ordered so that what stays the same through a section comes first
+  // and is cached (the instructions, the passage, the library list), and what changes from turn
+  // to turn comes after it (see api/lib/system-prompt.js).
+  const system = systemBlocks({
+    stable: [
+      config.behavioralInstructions,
+      // H-005: the citing rule, only where the section has a fund of citable works.
+      libraryListText && typeof config.libraryInstruction === 'string' ? config.libraryInstruction : null,
+      sectionLabelLine(config, sectionName, idx),
+      mainLineText(config, idx),
+      `The reader has just been shown this framing before their first message: "${config.sectionIntros[idx]}"`,
+      editorialReading ? editorialReading.instructions : null,
+      editorialReading ? editorialReading.memoryInstructions : null,
+    ],
+    passage: promptedSectionText,
+    library: libraryListText,
+    perTurn: [
+      continuationInstructions,
+      (config.sectionImagePrompts[idx] || [])
+        .filter(({ id }) => !shownImages.includes(id))
+        .map(({ prompt }) => prompt)
+        .join('\n\n') || null,
+      // H-018: the section's checked videos, images and pages not yet shown.
+      mediaPromptText(config, idx, shownMedia),
+      introducedSoFar,
+      editorialReading && priorSectionMemory ? priorSectionMemory : null,
+      editorialFundText,
+    ],
+  });
 
   try {
+    const client = getClient();
     const response = await client.messages.create({
       // Editorial readings force a tool call, which needs a model that supports it (see editorialModel).
       model: toolDelivery ? editorialModel(config) : textModel(config),
@@ -224,33 +265,7 @@ module.exports = async function handler(req, res) {
       // Sonnet 5 runs adaptive thinking by default when this is omitted (Sonnet 4.6 didn't) —
       // pinned explicitly so behavior doesn't shift silently on a future model swap.
       thinking: { type: 'adaptive' },
-      system: [
-        { type: 'text', text: [
-            config.behavioralInstructions,
-            continuationInstructions,
-            (config.sectionImagePrompts[idx] || [])
-              .filter(({ id }) => !shownImages.includes(id))
-              .map(({ prompt }) => prompt)
-              .join('\n\n') || null,
-            // H-018: the section's checked videos, images and pages not yet shown.
-            mediaPromptText(config, idx, shownMedia),
-            sectionLabelLine(config, sectionName, idx),
-            mainLineText(config, idx),
-            // H-005: the citing rule, only where the section has a fund of citable works.
-            libraryListText && typeof config.libraryInstruction === 'string' ? config.libraryInstruction : null,
-            `The reader has just been shown this framing before their first message: "${config.sectionIntros[idx]}"`,
-            editorialReading ? editorialReading.instructions : null,
-            editorialReading ? editorialReading.memoryInstructions : null,
-          ].filter(Boolean).join('\n\n') },
-        { type: 'text', text: promptedSectionText, cache_control: { type: 'ephemeral' } },
-        ...(libraryListText ? [{ type: 'text', text: libraryListText }] : []),
-        ...(editorialReading && priorSectionMemory
-          ? [{ type: 'text', text: priorSectionMemory }]
-          : []),
-        ...(editorialFundText
-          ? [{ type: 'text', text: editorialFundText }]
-          : []),
-      ],
+      system,
       // Keep the two editorial conditions controlled: neither may acquire new
       // substantive material from web search. Ordinary/evolving readings retain
       // the existing bounded search capability.
@@ -395,3 +410,5 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ error: 'API error' });
   }
 };
+
+module.exports.setClient = (c) => { client = c; };

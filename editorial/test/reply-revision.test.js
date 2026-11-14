@@ -23,7 +23,7 @@ test('revision is off unless a text configures model and instructions', () => {
   assert.equal(revisionConfig({}), null);
   assert.equal(revisionConfig({ revision: { model: 'm' } }), null);
   assert.equal(revisionConfig({ revision: { instructions: 'x' } }), null);
-  assert.deepEqual(revisionConfig({ revision: { model: 'm', instructions: ' x ' } }), { model: 'm', instructions: 'x', maxTokens: 1500, thinking: { type: 'disabled' } });
+  assert.deepEqual(revisionConfig({ revision: { model: 'm', instructions: ' x ' } }), { model: 'm', instructions: 'x', maxTokens: 1500, wordLimit: 250, thinking: { type: 'disabled' } });
 });
 
 test('the revision message carries the reader and the draft; Return turns are named as such', () => {
@@ -106,4 +106,26 @@ test('editorial readings by markers: fund markers and the private memory are rea
   const byTool = prepareVersionedReading({ sectionPackage: seed });
   assert.match(byTool.instructions, /required private delivery tool/, 'the older works keep the tool');
   assert.equal(require('../../digital-plenitude/config').editorialDelivery, 'markers');
+});
+
+test('a draft over the limit is handed over with its count and the excess (2026-11-14)', () => {
+  const { draftHeading } = require('../../api/lib/reply-revision');
+  const { countWords } = require('../../api/lib/words');
+  assert.equal(countWords('One two [[CITE:burger-1984|80–81]] three. [[MEDIA:x]]'), 3);
+  assert.equal(draftHeading('one two three', 250), 'THE DRAFT REPLY');
+  const long = Array(260).fill('word').join(' ');
+  assert.equal(draftHeading(long, 250), 'THE DRAFT REPLY (260 words, 10 over the limit of 250: return at most 250 words)');
+  assert.match(buildRevisionMessage({ readerMessage: 'q', draft: long, wordLimit: 250 }), /10 over the limit/);
+  assert.equal(buildRevisionMessage({ readerMessage: 'q', draft: 'd', wordLimit: 250 }), "THE READER'S WORDS\nq\n\nTHE DRAFT REPLY\nd");
+});
+
+test('the section goes to the editor as a cached system block, not in every message (2026-11-14)', async () => {
+  const config = { revision: { model: 'claude-sonnet-5-5', instructions: 'Revise.' } };
+  const calls = [];
+  await reviseReply({ client: fakeClient('Revised.', calls), config, readerMessage: 'q', draft: 'Draft.', sectionText: 'Section.' });
+  assert.deepEqual(calls[0].system, [
+    { type: 'text', text: 'Revise.' },
+    { type: 'text', text: 'WHAT THE WORK HOLDS FOR THIS SECTION (for reference; the reader has not read it)\nSection.', cache_control: { type: 'ephemeral' } },
+  ]);
+  assert.doesNotMatch(calls[0].messages[0].content, /WHAT THE WORK HOLDS/);
 });

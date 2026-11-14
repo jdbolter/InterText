@@ -91,18 +91,23 @@ function preparePackageReading({
     ? `This request is part of ${experimentLabel}.`
     : 'This is the current reader-shaped edition of the work.';
 
+  // The instructions say the same thing on every turn of a section (so the prompt's prefix can be
+  // cached); what changes from turn to turn, which entries were presented, travels with the fund.
   return {
     sectionPackage,
     sectionText: formatSpine(sectionPackage),
-    instructions: `${contextLabel} The narrative spine below is the authoritative route through the section. Its passage markers are private editorial identifiers: never quote or mention them to the reader.
+    instructions: `${contextLabel} The narrative spine is the authoritative route through the section. Its passage markers are private editorial identifiers: never quote or mention them to the reader.
 
 Speak as the work's own intelligence. Do not refer to the spine, fund, entries, sources, versions, editorial decisions, "the account," or the essay's rhetorical machinery. Preserve the larger claim and proportion of the section when answering a narrow objection. A reader's continued disagreement does not by itself require another concession or longer answer.
 
-Optional fund entries are possibilities, not a checklist. Select an entry only when it directly helps this reader at this moment without interrupting the spine's rhythm or forward movement. Do not expose entry titles, IDs, statuses, anchors, source notes, or the existence of a fund. An anchor identifies where an entry becomes contextually relevant; do not use an entry before the reader has encountered the people or concepts it presupposes. ${priorNote}
+Optional fund entries are possibilities, not a checklist. Select an entry only when it directly helps this reader at this moment without interrupting the spine's rhythm or forward movement. Do not expose entry titles, IDs, statuses, anchors, source notes, or the existence of a fund. An anchor identifies where an entry becomes contextually relevant; do not use an entry before the reader has encountered the people or concepts it presupposes.
 
 ${delivery === 'markers' ? MARKER_DELIVERY_INSTRUCTIONS : 'Return the response through the required private delivery tool. In usedFundEntryIds, list every newly offered entry whose language, distinctive example, factual detail, or conceptual refinement materially informed the visible response. Do not list an entry merely because it was available. The tool call is private and only its response field will be shown to the reader.'}`,
     memoryInstructions: delivery === 'markers' ? MARKER_MEMORY_INSTRUCTIONS : SECTION_MEMORY_INSTRUCTIONS,
-    fundText: `OPTIONAL EDITORIAL FUND — PRIVATE TO THE GUIDE\n\n${offeredText}`,
+    // A section whose fund holds nothing usable sends no fund block at all.
+    fundText: selectableEntries.length > 0
+      ? `OPTIONAL EDITORIAL FUND — PRIVATE TO THE TEXT\n\n${priorNote}\n\n${offeredText}`
+      : null,
     offeredFundEntryIds: offeredEntries.map(entry => entry.id),
     alreadyPresentedFundEntryIds: knownPresentedIds,
   };

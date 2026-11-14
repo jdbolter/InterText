@@ -72,7 +72,9 @@ function checkCitations(text, { allowedIds, references }) {
   });
   const tidy = checked
     .replace(/[ \t]+(\[\[(?:CITE|WEB):)/g, '$1') // a marker sits against its word
-    .replace(/[ \t]+([.,;:])/g, '$1'); // and a dropped marker leaves no gap before punctuation
+    .replace(/[ \t]+([.,;:])/g, '$1') // and a dropped marker leaves no gap before punctuation
+    // 2026-11-14: a note number follows the punctuation it sits beside, as in print ("office.¹").
+    .replace(/((?:\[\[(?:CITE|WEB):[^\]]+\]\])+)([.,;:!?]+)/g, '$2$1');
   return { text: tidy, library };
 }
 
@@ -132,8 +134,10 @@ function plainCitations(text, references) {
 //   mention: 'introduce' (with intro, e.g. "the German literary theorist Peter Bürger", and name, "Bürger"),
 //   mention: 'note'  (the point in the text's own sentence, the author unnamed, the note carrying the source),
 //   mention: 'own'   (the author's own later work: its ideas stated as the work's own, never named).
-// Before each reply the fund is marked, entry by entry, with what to do in this conversation, so the
-// model never has to remember whom it has already introduced.
+// Each entry carries its manner once, in the list (which then stays the same from turn to turn and can
+// be cached); a separate line before each reply names the writers already introduced in this
+// conversation (2026-11-14; until then the list itself was re-annotated every turn), so the model never
+// has to remember whom it has already introduced.
 function introducedIds(messages, references) {
   const done = new Set();
   const said = (Array.isArray(messages) ? messages : [])
@@ -153,7 +157,7 @@ function introducedIds(messages, references) {
   return done;
 }
 
-function mentionNote(ref, introduced) {
+function mentionNote(ref) {
   if (!ref || !ref.mention) return '';
   if (ref.mention === 'own') {
     return '(The work\'s own later thinking: state its ideas as your own, never naming the author or the work, and add the marker.) ';
@@ -162,17 +166,26 @@ function mentionNote(ref, introduced) {
     return '(Cite by note only: state the point in your own sentence, add the marker, and leave the author unnamed.) ';
   }
   if (ref.mention === 'introduce' && ref.intro && ref.name) {
-    return introduced
-      ? `(Already introduced in this conversation: simply "${ref.name}".) `
-      : `(Not yet introduced: on first mention, "${ref.intro}"; afterwards simply "${ref.name}".) `;
+    return `(Introduce on first mention as "${ref.intro}"; once introduced, simply "${ref.name}".) `;
   }
   return '';
 }
 
-function annotateLibraryList(fundText, references, introduced) {
+function annotateLibraryList(fundText, references) {
   if (!fundText) return fundText;
   return String(fundText).replace(/^\[([a-z0-9-]+)\] /gm, (whole, id) =>
-    `${whole}${mentionNote(references && references[id], introduced && introduced.has(id))}`);
+    `${whole}${mentionNote(references && references[id])}`);
+}
+
+// The per-turn line: who has been introduced so far, by surname. Null when no one has.
+function introducedLine(introduced, references) {
+  const names = [];
+  for (const id of introduced || []) {
+    const ref = references && references[id];
+    if (ref && ref.name && !names.includes(ref.name)) names.push(ref.name);
+  }
+  if (names.length === 0) return null;
+  return `Writers already introduced in this conversation, so named by surname alone from now on: ${names.join(', ')}.`;
 }
 
 module.exports = {
@@ -180,6 +193,7 @@ module.exports = {
   WEB_TOKEN,
   annotateLibraryList,
   introducedIds,
+  introducedLine,
   checkCitations,
   citationMarkersOn,
   clearReferenceCache,
