@@ -17,7 +17,7 @@ const chatClient = require('./lib/chatClient');
 const { createReader } = require('./lib/openaiReader');
 const { runSession } = require('./lib/session');
 const { writeRun } = require('./lib/transcript');
-const { loadEditorialSection } = require('../api/lib/editorial-reading');
+const { loadEditorialSection } = require('../api/_lib/editorial-reading');
 
 const DEFAULT_OUT_DIR = path.join(__dirname, 'output');
 

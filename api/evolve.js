@@ -2,15 +2,15 @@ const Anthropic = require('@anthropic-ai/sdk');
 const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
-const { evolveEditorialSection } = require('./lib/editorial-evolution');
-const { editorialModel, textModel, thinkingOff } = require('./lib/text-extras');
-const { citationMarkersOn, loadReferences, plainCitations } = require('./lib/citations');
-const { formatSpine } = require('./lib/editorial-package');
+const { evolveEditorialSection } = require('./_lib/editorial-evolution');
+const { editorialModel, textModel, thinkingOff } = require('./_lib/text-extras');
+const { citationMarkersOn, loadReferences, plainCitations } = require('./_lib/citations');
+const { formatSpine } = require('./_lib/editorial-package');
 const {
   ensureSectionInitialized,
   loadCurrentSection,
   publishSectionVersion,
-} = require('./lib/editorial-store');
+} = require('./_lib/editorial-store');
 
 const client = new Anthropic();
 

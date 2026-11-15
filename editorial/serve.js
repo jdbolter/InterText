@@ -3,12 +3,12 @@
 const fs = require('fs');
 const http = require('http');
 const path = require('path');
-const { createAuthorRevision } = require('../api/lib/editorial-author');
+const { createAuthorRevision } = require('../api/_lib/editorial-author');
 const {
   ensureSectionInitialized,
   loadCurrentSection,
   publishSectionVersion,
-} = require('../api/lib/editorial-store');
+} = require('../api/_lib/editorial-store');
 const {
   listProposalBundles,
   loadProposalBundle,

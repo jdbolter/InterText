@@ -23,6 +23,10 @@ first.
 - Work happens on `h002-digital-plenitude` (from 2026-11-14; `h001-digital-plenitude` holds the work before H-019).
   `main` is what Vercel deploys (project `inter-text`). On 2026-11-14 `main`, `h002-digital-plenitude` and their
   `origin` copies were all at `93ce598`.
+- **Vercel's Hobby plan allows 12 serverless functions, and every `.js` file under `api/` counts as one** unless its
+  name or its folder's starts with an underscore. Only `api/chat.js` and `api/evolve.js` are functions; the helper
+  modules live in `api/_lib/` for that reason (H-023). Never add a `.js` file to `api/` outside `_lib/`. A deploy that
+  fails with "No more than 12 Serverless Functions" means a file broke this rule.
 - **To deploy,** Jay runs `git checkout main && git merge --ff-only h002-digital-plenitude && git push origin main`.
 - **The live site and local `npm run dev` share one KV database** when `.env.local` has the KV settings.
 
@@ -40,7 +44,7 @@ first.
   code added to the page must run under it (a test loads the real page).
 
 ## The prompt and the calls (H-020)
-- **Order and caching:** `api/lib/system-prompt.js` puts what stays the same through a section first (the text's
+- **Order and caching:** `api/_lib/system-prompt.js` puts what stays the same through a section first (the text's
   instructions, the passage, the library list), marks the last of those for caching, and puts what changes from
   turn to turn after it (continuation instructions, images and media not yet shown, the writers introduced so far,
   the fund). Anything added to the prompt goes in the right half: a per-turn line placed before the passage would
@@ -48,7 +52,7 @@ first.
 - **Introductions (H-008):** each library entry carries its manner once; one per-turn line names the writers
   already introduced (`introducedLine`).
 - **Length:** a draft over `config.revision.wordLimit` (250) is handed to the editor with its count and the excess.
-- **Notes** follow the punctuation they sit beside (`checkCitations`). `api/lib/words.js` counts the words a reader
+- **Notes** follow the punctuation they sit beside (`checkCitations`). `api/_lib/words.js` counts the words a reader
   sees.
 - `api/chat.js` makes its Anthropic client on first use; a test puts a stand-in in its place with `setClient`.
 
@@ -84,7 +88,7 @@ The whole book: the proofs' nine chapters, 49 sections. Its `config.js` carries 
     (`shared/citation-notes.js`) numbers the notes and shows the references.
 - **Media lists (H-018).** Videos, images and web pages a reply may show, one checked list per section in
   `source_texts/media-lists/section-N.json` (`mediaListsDir`). Each item says when to use it.
-  - The model writes `[[MEDIA:id]]` on a line of its own; `api/lib/media.js` keeps only listed items, one per reply,
+  - The model writes `[[MEDIA:id]]` on a line of its own; `api/_lib/media.js` keeps only listed items, one per reply,
     and returns them as `media`. The revision pass must keep the marker.
   - The page (`shared/media-items.js`) plays a video whose embedding was checked (youtube-nocookie or Vimeo), shows an
     image whose licence was cleared with its credit, and shows everything else, or an image that fails to load, as a
@@ -116,7 +120,7 @@ The whole book: the proofs' nine chapters, 49 sections. Its `config.js` carries 
   none exists. It delivers by markers: `[[FUND:id]]` after a sentence an entry informs, and a private
   `[[MEMORY: …]]` line. The server reads and removes both. The reading then goes through the whole pipeline above.
 - **Evolution.** When a contributing reader finishes, `api/evolve.js` runs the two editorial passes (proposal, then
-  review) in `api/lib/editorial-evolution.js`, by checked JSON (`structured: 'json'`), and publishes an immutable
+  review) in `api/_lib/editorial-evolution.js`, by checked JSON (`structured: 'json'`), and publishes an immutable
   child version.
   - Corrections and proportionate changes go into the spine.
   - Optional material goes into the fund, anchored to a passage.

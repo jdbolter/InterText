@@ -8,7 +8,7 @@ const {
   continuationUserMessage,
   openingSectionText,
   resolveFirstContinuation,
-} = require('../../api/lib/reading-continuation');
+} = require('../../api/_lib/reading-continuation');
 
 test('an opening continuation requires an explicit flag and an empty section history', () => {
   assert.equal(resolveFirstContinuation({

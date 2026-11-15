@@ -12,7 +12,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { countWords, proseOf } = require('../api/lib/words');
+const { countWords, proseOf } = require('../api/_lib/words');
 
 const DEFAULT_LIMIT = 250;
 // Phrases by which the text would be speaking about itself rather than the world (H-013 found

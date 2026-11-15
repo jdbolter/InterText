@@ -4,9 +4,9 @@
 const Anthropic = require('@anthropic-ai/sdk');
 const crypto = require('crypto');
 const path = require('path');
-const { evolveEditorialSection } = require('../api/lib/editorial-evolution');
-const { validateRuntimePackage } = require('../api/lib/editorial-package');
-const { loadCurrentSection } = require('../api/lib/editorial-store');
+const { evolveEditorialSection } = require('../api/_lib/editorial-evolution');
+const { validateRuntimePackage } = require('../api/_lib/editorial-package');
+const { loadCurrentSection } = require('../api/_lib/editorial-store');
 const { loadSessionFile } = require('../synthetic-reader/lib/sessionFile');
 const { parseProposalArgs, HELP } = require('./lib/proposal-args');
 const { writeProposalBundle } = require('./lib/proposal-store');
@@ -37,7 +37,7 @@ async function createSessionProposal({ rootDir = process.cwd(), options, client 
   // --model names another.
   const textConfig = require(path.join(rootDir, data.meta.textId, 'config.js'));
   const byJson = textConfig.editorialDelivery === 'markers';
-  if (byJson && !options.modelGiven) options.model = require('../api/lib/text-extras').textModel(textConfig);
+  if (byJson && !options.modelGiven) options.model = require('../api/_lib/text-extras').textModel(textConfig);
   const result = await evolveEditorialSection({
     client,
     sectionPackage: current.sectionPackage,

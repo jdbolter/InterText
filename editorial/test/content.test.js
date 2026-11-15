@@ -353,7 +353,7 @@ test('digital-plenitude chapter 2: the original edition keeps the proofs; the sp
 
 test('digital-plenitude chapters 6 to 9: built, with the Conclusion headed by its label and figure 9.1 shown', () => {
   const config = require(path.join(root, 'digital-plenitude', 'config.js'));
-  const { sectionLabelLine, mainLineStatement } = require(path.join(root, 'api', 'lib', 'text-extras.js'));
+  const { sectionLabelLine, mainLineStatement } = require(path.join(root, 'api', '_lib', 'text-extras.js'));
   const read = n => fs.readFileSync(path.join(root, 'digital-plenitude', 'source_texts', 'sections', `section-${n}.md`), 'utf8');
   assert.equal(config.sectionNames.length, 49);
   assert.deepEqual(config.chapters.slice(5).map(ch => ch.firstSection), [29, 34, 40, 48]);

@@ -18,9 +18,9 @@ const {
   plainCitations,
   stripWebTokens,
   webUsed,
-} = require('../../api/lib/citations');
-const { checkRevision } = require('../../api/lib/reply-revision');
-const { clearLibraryListCache, loadLibraryList } = require('../../api/lib/text-extras');
+} = require('../../api/_lib/citations');
+const { checkRevision } = require('../../api/_lib/reply-revision');
+const { clearLibraryListCache, loadLibraryList } = require('../../api/_lib/text-extras');
 const { renderDraftMarkers, renderWithNotes } = require('../../synthetic-reader/lib/notes');
 
 const references = {
@@ -161,7 +161,7 @@ test('a note number follows the punctuation it sits beside (2026-11-14)', () => 
 });
 
 test('a writer with two works is introduced once (H-014)', () => {
-  const { introducedIds } = require('../../api/lib/citations');
+  const { introducedIds } = require('../../api/_lib/citations');
   const refs = {
     'greenberg-1939': { mention: 'introduce', intro: 'the influential art critic Clement Greenberg', name: 'Greenberg' },
     'greenberg-1960': { mention: 'introduce', intro: 'the influential art critic Clement Greenberg', name: 'Greenberg' },

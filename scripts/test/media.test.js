@@ -8,7 +8,7 @@ const path = require('path');
 
 const lib = require('../media-lib');
 const { addItem } = require('../media');
-const media = require('../../api/lib/media');
+const media = require('../../api/_lib/media');
 const { stripImageTokens } = require('../../synthetic-reader/lib/session');
 
 const fixtures = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures', 'media-responses.json'), 'utf8'));
@@ -166,7 +166,7 @@ test('the reply keeps one listed item, on its own line, and the page is given it
 }));
 
 test('the revision pass must keep media markers, and transcripts note them', () => {
-  const src = fs.readFileSync(path.join(__dirname, '..', '..', 'api', 'lib', 'reply-revision.js'), 'utf8');
+  const src = fs.readFileSync(path.join(__dirname, '..', '..', 'api', '_lib', 'reply-revision.js'), 'utf8');
   assert.match(src, /IMAGE\|CITE\|WEB\|MEDIA/);
   assert.strictEqual(stripImageTokens('a [[MEDIA:clip]] b'), 'a [A media item appears here: clip.] b');
 });

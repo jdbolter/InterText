@@ -10,17 +10,17 @@ const {
   isEditorialEdition,
   prepareEditorialReading,
   prepareVersionedReading,
-} = require('./lib/editorial-reading');
-const { loadCurrentSection } = require('./lib/editorial-store');
+} = require('./_lib/editorial-reading');
+const { loadCurrentSection } = require('./_lib/editorial-store');
 const {
   buildContinuationInstructions,
   continuationUserMessage,
   normalizeContinueHistory,
   openingSectionText,
   resolveFirstContinuation,
-} = require('./lib/reading-continuation');
-const { editorialModel, loadLibraryList, mainLineStatement, mainLineText, sectionLabelLine, textModel } = require('./lib/text-extras');
-const { reviseReply, shownToReader } = require('./lib/reply-revision');
+} = require('./_lib/reading-continuation');
+const { editorialModel, loadLibraryList, mainLineStatement, mainLineText, sectionLabelLine, textModel } = require('./_lib/text-extras');
+const { reviseReply, shownToReader } = require('./_lib/reply-revision');
 const {
   annotateLibraryList,
   checkCitations,
@@ -33,9 +33,9 @@ const {
   markWebCitations,
   stripWebTokens,
   webUsed,
-} = require('./lib/citations');
-const { systemBlocks } = require('./lib/system-prompt');
-const { applyMediaTokens, mediaPromptText } = require('./lib/media');
+} = require('./_lib/citations');
+const { systemBlocks } = require('./_lib/system-prompt');
+const { applyMediaTokens, mediaPromptText } = require('./_lib/media');
 
 // The client is made on first use, and a test may put a stand-in in its place (setClient).
 let client = null;
@@ -223,7 +223,7 @@ module.exports = async function handler(req, res) {
 
   // 2026-11-14: the prompt is ordered so that what stays the same through a section comes first
   // and is cached (the instructions, the passage, the library list), and what changes from turn
-  // to turn comes after it (see api/lib/system-prompt.js).
+  // to turn comes after it (see api/_lib/system-prompt.js).
   const system = systemBlocks({
     stable: [
       config.behavioralInstructions,

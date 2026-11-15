@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { validateRuntimePackage } = require('../../api/lib/editorial-package');
+const { validateRuntimePackage } = require('../../api/_lib/editorial-package');
 
 const PROPOSAL_ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 

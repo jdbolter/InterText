@@ -7,7 +7,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const path = require('path');
 
-const { systemBlocks, joinParts } = require('../../api/lib/system-prompt');
+const { systemBlocks, joinParts } = require('../../api/_lib/system-prompt');
 
 test('stable blocks first, the cache marker on the last of them, the per-turn text after', () => {
   const blocks = systemBlocks({

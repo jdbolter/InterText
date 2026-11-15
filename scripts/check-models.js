@@ -4,7 +4,7 @@
 // Prints OK or the API's error for each; costs a fraction of a cent.
 
 const Anthropic = require('@anthropic-ai/sdk');
-const { DEFAULT_EDITORIAL_MODEL, DEFAULT_TEXT_MODEL, thinkingOff } = require('../api/lib/text-extras');
+const { DEFAULT_EDITORIAL_MODEL, DEFAULT_TEXT_MODEL, thinkingOff } = require('../api/_lib/text-extras');
 
 const client = new Anthropic();
 const model = DEFAULT_TEXT_MODEL;

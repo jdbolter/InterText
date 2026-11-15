@@ -12,11 +12,11 @@ const {
   editorialModel,
   textModel,
   thinkingOff,
-} = require('../../api/lib/text-extras');
+} = require('../../api/_lib/text-extras');
 const {
   buildContinuationInstructions,
   continuationUserMessage,
-} = require('../../api/lib/reading-continuation');
+} = require('../../api/_lib/reading-continuation');
 
 test('section label falls back to "Current section" and honours sectionLabel', () => {
   assert.equal(sectionLabelLine({}, 'Shocking Art'), 'Current section: Shocking Art');
@@ -136,7 +136,7 @@ test('editorial readings and evolution stay on a model that supports forced tool
 });
 
 test('chapters: a section finds its chapter, label and chapter point (H-014)', () => {
-  const { chapterFor, mainLineStatement } = require('../../api/lib/text-extras');
+  const { chapterFor, mainLineStatement } = require('../../api/_lib/text-extras');
   const config = {
     sectionLabel: 'Now under discussion',
     sectionPoints: ['One.', 'Two.', 'Three.'],

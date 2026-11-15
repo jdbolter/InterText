@@ -402,10 +402,10 @@ Settled direction for this revision: model-selected integration or omission; sea
   publish an immutable child of the live head; otherwise it displays the local seed.
   Start with
   `npm run editorial-preview`, then open `http://127.0.0.1:4173`.
-- `api/lib/editorial-evolution.js` and `api/lib/editorial-store.js`: structured
+- `api/_lib/editorial-evolution.js` and `api/_lib/editorial-store.js`: structured
   two-pass editing, hard validation guards, version loading, idempotent seed
   initialization, and atomic immutable publication.
-- `api/lib/editorial-reading.js` and the synthetic-reader session/transcript modules
+- `api/_lib/editorial-reading.js` and the synthetic-reader session/transcript modules
   implement the explicit local Section 5 comparison path. They supply the spine and,
   in the fund condition, the still-candidate entries; used-entry IDs are carried per
   section through a required private delivery tool and written to both transcript

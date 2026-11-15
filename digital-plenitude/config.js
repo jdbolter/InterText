@@ -301,7 +301,7 @@ Text: The Met decides what hangs in the Met, and its curators' judgment still ca
 Reader: Surely prestige still matters more than traffic.
 Text: Prestige matters most to those who confer it and those who seek it. Artists who post to deviantART count views, favourites and comments, and many of them never seek a curator's notice at all. Two currencies now circulate side by side, with no fixed rate of exchange between them.`,
 
-  // H-002, reworded by H-003: replaces the shared continuation paragraph (api/lib/reading-continuation.js) for this text only.
+  // H-002, reworded by H-003: replaces the shared continuation paragraph (api/_lib/reading-continuation.js) for this text only.
   // 2026-11-14: "below" became "you hold", since these lines now come after the passage in the prompt (H-020).
   continuationVoice: `Carry the conversation forward with the next ideas you hold and their concrete details, in the same voice, as a natural passage of two or three short paragraphs, at most 250 words. A brief link to the reader's interests may lead in. The passage then moves on through what remains and ends on an idea about the world.`,
 

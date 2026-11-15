@@ -5,8 +5,8 @@ const assert = require('node:assert/strict');
 const path = require('path');
 const { Readable } = require('stream');
 
-const { createAuthorRevision } = require('../../api/lib/editorial-author');
-const { loadSeedSection, validateRuntimePackage } = require('../../api/lib/editorial-package');
+const { createAuthorRevision } = require('../../api/_lib/editorial-author');
+const { loadSeedSection, validateRuntimePackage } = require('../../api/_lib/editorial-package');
 const { createEditorialHandler } = require('../serve');
 
 const ROOT = path.join(__dirname, '..', '..');

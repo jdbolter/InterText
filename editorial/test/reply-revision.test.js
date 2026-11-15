@@ -9,11 +9,11 @@ const {
   checkRevision,
   revisionConfig,
   reviseReply,
-} = require('../../api/lib/reply-revision');
+} = require('../../api/_lib/reply-revision');
 const {
   continuationUserMessage,
   normalizeContinueHistory,
-} = require('../../api/lib/reading-continuation');
+} = require('../../api/_lib/reading-continuation');
 
 function fakeClient(reply, calls = []) {
   return { messages: { create: async (req) => { calls.push(req); if (reply instanceof Error) throw reply; return { content: [{ type: 'text', text: reply }], usage: { input_tokens: 10, output_tokens: 5 } }; } } };
@@ -93,8 +93,8 @@ test('the editor sees the main line, what the reader has been shown, and the sec
 });
 
 test('editorial readings by markers: fund markers and the private memory are read and removed (H-011)', () => {
-  const { extractMarkerDelivery, prepareVersionedReading } = require('../../api/lib/editorial-reading');
-  const { loadSeedSection } = require('../../api/lib/editorial-package');
+  const { extractMarkerDelivery, prepareVersionedReading } = require('../../api/_lib/editorial-reading');
+  const { loadSeedSection } = require('../../api/_lib/editorial-package');
   const out = extractMarkerDelivery('One point [[FUND:e1]]. Two[[FUND:e1]][[FUND:unoffered]].\n\n[[MEMORY: Pace covered.]]', ['e1', 'e2']);
   assert.deepEqual(out, { text: 'One point. Two.', usedFundEntryIds: ['e1'], sectionSummary: 'Pace covered.' });
   assert.equal(extractMarkerDelivery('No markers.', []).sectionSummary, null);
@@ -109,8 +109,8 @@ test('editorial readings by markers: fund markers and the private memory are rea
 });
 
 test('a draft over the limit is handed over with its count and the excess (2026-11-14)', () => {
-  const { draftHeading } = require('../../api/lib/reply-revision');
-  const { countWords } = require('../../api/lib/words');
+  const { draftHeading } = require('../../api/_lib/reply-revision');
+  const { countWords } = require('../../api/_lib/words');
   assert.equal(countWords('One two [[CITE:burger-1984|80–81]] three. [[MEDIA:x]]'), 3);
   assert.equal(draftHeading('one two three', 250), 'THE DRAFT REPLY');
   const long = Array(260).fill('word').join(' ');

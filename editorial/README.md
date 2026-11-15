@@ -164,7 +164,7 @@ writes for packaged sections through `/api/evolve`.
 
 The local guide and synthetic-reader harness can now read a package when explicitly
 invoked with `--edition editorial-spine` or `--edition editorial-fund`. That path is
-implemented in `api/lib/editorial-reading.js`, `api/chat.js`, and
+implemented in `api/_lib/editorial-reading.js`, `api/chat.js`, and
 `synthetic-reader/lib/session.js`. Guide prose and fund-use IDs return through a
 required private structured tool; experiments stop at the packaged-section boundary.
 It is an experiment-only path: the normal public reader never requests those edition

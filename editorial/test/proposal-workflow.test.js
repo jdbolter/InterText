@@ -6,8 +6,8 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
-const { createAuthorRevision } = require('../../api/lib/editorial-author');
-const { loadSeedSection, validateRuntimePackage } = require('../../api/lib/editorial-package');
+const { createAuthorRevision } = require('../../api/_lib/editorial-author');
+const { loadSeedSection, validateRuntimePackage } = require('../../api/_lib/editorial-package');
 const { parseProposalArgs } = require('../lib/proposal-args');
 const {
   listProposalBundles,
@@ -119,8 +119,8 @@ test('publishing a reviewed draft preserves model provenance and records proposa
 });
 
 test('editorial evolution by checked JSON, for models that cannot be forced to call a tool (H-011)', async () => {
-  const { evolveEditorialSection, parseJsonObject } = require('../../api/lib/editorial-evolution');
-  const { loadSeedSection } = require('../../api/lib/editorial-package');
+  const { evolveEditorialSection, parseJsonObject } = require('../../api/_lib/editorial-evolution');
+  const { loadSeedSection } = require('../../api/_lib/editorial-package');
   assert.deepEqual(parseJsonObject('Here it is:\n```json\n{"decision":"no-change"}\n```'), { decision: 'no-change' });
   assert.throws(() => parseJsonObject('no object'), /no JSON object/);
   const calls = [];
