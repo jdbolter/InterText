@@ -20,8 +20,10 @@ first.
   list of how writers are introduced are Jay's. Agents draft them for his approval.
 
 ## Branches and deployment
-- Work happens on `h001-digital-plenitude`. `main` is what Vercel deploys (project `inter-text`).
-- **To deploy,** Jay runs `git checkout main && git merge --ff-only h001-digital-plenitude && git push origin main`.
+- Work happens on `h002-digital-plenitude` (from 2026-11-14; `h001-digital-plenitude` holds the work before H-019).
+  `main` is what Vercel deploys (project `inter-text`). On 2026-11-14 `main`, `h002-digital-plenitude` and their
+  `origin` copies were all at `93ce598`.
+- **To deploy,** Jay runs `git checkout main && git merge --ff-only h002-digital-plenitude && git push origin main`.
 - **The live site and local `npm run dev` share one KV database** when `.env.local` has the KV settings.
 
 ## The reader's page (`digital-plenitude/public/`, H-019)
@@ -58,7 +60,7 @@ first.
 - **`npm run check-models`** tries each kind of call against the real API.
 
 ## *The Digital Plenitude* (`digital-plenitude/`)
-The proofs' chapters 1 and 2, fifteen sections. Its `config.js` carries everything specific to it:
+The whole book: the proofs' nine chapters, 49 sections. Its `config.js` carries everything specific to it:
 
 - **The voice and model**
   - `behavioralInstructions`: the text speaks as the work about the world, in the third person. It answers the
@@ -92,14 +94,20 @@ The proofs' chapters 1 and 2, fifteen sections. Its `config.js` carries everythi
     is never listed by hand from memory: the script's check is its basis.
 - **Chapters (H-014).** One work in chapters: `chapters` lists `{ number, title, firstSection, point }`, and a
   section belongs to the last chapter starting at or before it. Chapter 1 is sections 1 to 7; chapter 2, *Popular
-  Modernism*, sections 8 to 15; chapter 3, *Dichotomies*, 16 to 18; chapter 4, *Catharsis*, 19 to 23. The page's `CHAPTERS` in `public/app.js` must match (a test checks it); the contents
+  Modernism*, sections 8 to 15; chapter 3, *Dichotomies*, 16 to 18; chapter 4, *Catharsis*, 19 to 23;
+  chapter 5, *Flow*, 24 to 29; chapter 6, *Remix and Originality*, 30 to 34; chapter 7, *Procedurality, History, and
+  Simulation*, 35 to 40; chapter 8, *Social Media and the Politics of Flow*, 41 to 48; chapter 9, the Conclusion
+  (carries a `label`, not "Chapter 9"), section 49. The page's `CHAPTERS` in `public/app.js` must match (a test checks it); the contents
   list is built from it, grouped by chapter, and numerals start again in each chapter.
 - **The argument in brief:** `sectionPoints` and each chapter's `point`. Before every reply, the model gets the point
   for the section and for its chapter, and states it as a claim, never as "the main line" (H-013).
 - **Evolution**
   - `synthesisInstructions`: used only for dry-run previews of the old whole-section rewrite.
   - `editorialDelivery: 'markers'`: the text's editorial path runs without forced tools (H-011).
-- **The opening boxes:** `sectionIntros` must match `SECTION_INTROS` in `public/app.js`; a test checks this.
+- **The opening boxes:** `sectionIntros` must match `SECTION_INTROS` in `public/app.js`; a test checks this. The boxes,
+  chapter points and section points of all nine chapters are Jay's; those for sections 35 to 49 were approved by him
+  on 2026-11-14 (H-022). A synthetic reader reads them from these two files, so a reading round's text is the text
+  of the commit it names.
 
 ## The evolving edition (spine and fund, H-011)
 - **The package.** `editorial/content/digital-plenitude/` holds a spine passage for each paragraph and empty funds.
