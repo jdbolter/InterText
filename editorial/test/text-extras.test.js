@@ -125,7 +125,9 @@ test('the main line is handed to the model only when a text has one (H-009)', ()
   const text = mainLineText(config, 0);
   assert.match(text, /^The argument here, in brief: The divide has almost vanished\.$/m);
   assert.match(text, /^The chapter as a whole: The plenitude\.$/m);
-  assert.match(text, /state this point in your opening paragraph, right after the direct answer/);
+  assert.match(text, /for you to steer by, not to announce/);
+  assert.match(text, /only when the message bears on it/);
+  assert.doesNotMatch(text, /state this point in your opening paragraph/, 'H-024: the point is not announced in every reply');
   assert.doesNotMatch(mainLineText(config, 1), /at this point/, 'a section without a statement still gets the chapter');
 });
 

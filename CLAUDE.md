@@ -104,7 +104,8 @@ The whole book: the proofs' nine chapters, 49 sections. Its `config.js` carries 
   (carries a `label`, not "Chapter 9"), section 49. The page's `CHAPTERS` in `public/app.js` must match (a test checks it); the contents
   list is built from it, grouped by chapter, and numerals start again in each chapter.
 - **The argument in brief:** `sectionPoints` and each chapter's `point`. Before every reply, the model gets the point
-  for the section and for its chapter, and states it as a claim, never as "the main line" (H-013).
+  for the section and for its chapter. It steers the reply and is stated only when the reader's message bears on it,
+  as a claim, never as "the main line" (H-013; no longer announced in every reply, H-024).
 - **Evolution**
   - `synthesisInstructions`: used only for dry-run previews of the old whole-section rewrite.
   - `editorialDelivery: 'markers'`: the text's editorial path runs without forced tools (H-011).

@@ -81,12 +81,13 @@ function mainLineStatement(config, sectionIndex) {
   ].filter(Boolean).join('\n');
 }
 
-// H-010: the main line is named plainly in the opening paragraph of a reply to the reader, right
-// after the direct answer (Jay: the point should be announced, not buried at the end).
+// H-010: the main line was named in the opening paragraph of every reply to the reader. H-024 (Jay,
+// 2026-11-15): that made the replies abrupt and repetitive; the line now steers, and a reply states it
+// only when the reader's message bears on it.
 function mainLineText(config, sectionIndex) {
   const statement = mainLineStatement(config, sectionIndex);
   if (!statement) return null;
-  return `${statement}\nWhen you answer a message from the reader, state this point in your opening paragraph, right after the direct answer, as a claim about culture and media in words fresh to this reply, and let the rest of the reply bear on it. The statement above is for you to steer by: the reply says the point itself, and never calls it a main line, a thesis or an argument.`;
+  return `${statement}\nThe statement above is for you to steer by, not to announce. Answer the reader's message on its own terms first. State the point in the reply only when the message bears on it or a claim would otherwise stand without its reason, and then as a claim about culture and media in words fresh to this reply; a reply that follows the reader's question with a case or a distinction serves the argument without repeating it. Never call it a main line, a thesis or an argument.`;
 }
 
 const libraryListCache = new Map();
