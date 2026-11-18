@@ -39,8 +39,7 @@ test('a short phrase reused inside an unrelated new paragraph is not matched aga
   // with the closing quote mark stranded, unmarked, between them. Confirmed
   // against the prior implementation: this exact input tripped it; smaller
   // invented examples did not reliably reproduce it, so this uses the real
-  // Plenitude section 1 text and a real evolution of it (see
-  // INTERTEXT-DESIGN-NOTES.md §13 and the earlier session that surfaced this).
+  // Plenitude section 1 text and a real evolution of it.
   const original = [
     '## The Great Divide',
     '',
