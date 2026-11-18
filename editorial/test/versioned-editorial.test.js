@@ -9,9 +9,9 @@ const {
   evolveEditorialSection,
   validateProposal,
   validateReview,
-} = require('../../api/lib/editorial-evolution');
-const { loadSeedSection } = require('../../api/lib/editorial-package');
-const { prepareVersionedReading } = require('../../api/lib/editorial-reading');
+} = require('../../api/_lib/editorial-evolution');
+const { loadSeedSection } = require('../../api/_lib/editorial-package');
+const { prepareVersionedReading } = require('../../api/_lib/editorial-reading');
 const {
   INITIALIZE_SCRIPT,
   PUBLISH_SCRIPT,
@@ -20,7 +20,7 @@ const {
   publishSectionVersion,
   sectionHeadKey,
   sectionVersionKey,
-} = require('../../api/lib/editorial-store');
+} = require('../../api/_lib/editorial-store');
 
 const ROOT = path.join(__dirname, '..', '..');
 

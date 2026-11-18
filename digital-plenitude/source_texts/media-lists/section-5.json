@@ -1,0 +1,19 @@
+{
+  "section": 5,
+  "items": [
+    {
+      "id": "cage-water-walk",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=SSulycqZH-U",
+      "title": "John Cage - Water Walk",
+      "source": "holotone on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "SSulycqZH-U"
+      },
+      "when": "when the reply discusses John Cage's Water Walk or his appearance on the game show I've Got a Secret",
+      "status": "ok",
+      "checked": "2026-11-06"
+    }
+  ]
+}

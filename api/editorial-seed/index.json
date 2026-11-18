@@ -396,6 +396,797 @@
           }
         }
       ]
+    },
+    {
+      "id": "digital-plenitude",
+      "title": "The Digital Plenitude (proofs edition)",
+      "order": 5,
+      "sections": [
+        {
+          "id": "great-divide",
+          "title": "The Great Divide",
+          "order": 1,
+          "package": "sections/great-divide/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/great-divide.json",
+          "versionId": "dp-great-divide-v002",
+          "passageCount": 3,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "philadelphia-orchestra-story",
+          "title": "The Philadelphia (Orchestra) Story",
+          "order": 2,
+          "package": "sections/philadelphia-orchestra-story/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/philadelphia-orchestra-story.json",
+          "versionId": "dp-philadelphia-orchestra-story-v001",
+          "passageCount": 6,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "class-in-america",
+          "title": "Class in America",
+          "order": 3,
+          "package": "sections/class-in-america/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/class-in-america.json",
+          "versionId": "dp-class-in-america-v001",
+          "passageCount": 3,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "case-of-music",
+          "title": "The Case of Music",
+          "order": 4,
+          "package": "sections/case-of-music/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/case-of-music.json",
+          "versionId": "dp-case-of-music-v002",
+          "passageCount": 8,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "shocking-art",
+          "title": "Shocking Art",
+          "order": 5,
+          "package": "sections/shocking-art/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/shocking-art.json",
+          "versionId": "dp-shocking-art-v001",
+          "passageCount": 11,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "art-as-special-interest",
+          "title": "Art as a Special Interest",
+          "order": 6,
+          "package": "sections/art-as-special-interest/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/art-as-special-interest.json",
+          "versionId": "dp-art-as-special-interest-v001",
+          "passageCount": 16,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "communities-and-creativity",
+          "title": "Communities and Creativity",
+          "order": 7,
+          "package": "sections/communities-and-creativity/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/communities-and-creativity.json",
+          "versionId": "dp-communities-and-creativity-v001",
+          "passageCount": 9,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "popular-modernism",
+          "title": "Popular Modernism",
+          "order": 8,
+          "package": "sections/popular-modernism/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/popular-modernism.json",
+          "versionId": "dp-popular-modernism-v001",
+          "passageCount": 10,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "formal-progressive-avant-garde",
+          "title": "Popular Modernism: Formal, Progressive and Avant-Garde",
+          "order": 9,
+          "package": "sections/formal-progressive-avant-garde/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/formal-progressive-avant-garde.json",
+          "versionId": "dp-formal-progressive-avant-garde-v001",
+          "passageCount": 6,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "popular-music-formal-modernism",
+          "title": "Popular Music and Formal Modernism",
+          "order": 10,
+          "package": "sections/popular-music-formal-modernism/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/popular-music-formal-modernism.json",
+          "versionId": "dp-popular-music-formal-modernism-v001",
+          "passageCount": 8,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "lennon-ono-political-modernists",
+          "title": "John Lennon and Yoko Ono as Political Modernists",
+          "order": 11,
+          "package": "sections/lennon-ono-political-modernists/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/lennon-ono-political-modernists.json",
+          "versionId": "dp-lennon-ono-political-modernists-v001",
+          "passageCount": 7,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "mcluhan-popular-modernism",
+          "title": "McLuhan and Popular Modernism",
+          "order": 12,
+          "package": "sections/mcluhan-popular-modernism/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/mcluhan-popular-modernism.json",
+          "versionId": "dp-mcluhan-popular-modernism-v001",
+          "passageCount": 7,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "steve-jobs",
+          "title": "Steve Jobs",
+          "order": 13,
+          "package": "sections/steve-jobs/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/steve-jobs.json",
+          "versionId": "dp-steve-jobs-v001",
+          "passageCount": 9,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "future-as-kitsch",
+          "title": "The Future as Popular Modernist Kitsch",
+          "order": 14,
+          "package": "sections/future-as-kitsch/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/future-as-kitsch.json",
+          "versionId": "dp-future-as-kitsch-v001",
+          "passageCount": 3,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "forgetting-popular-modernism",
+          "title": "Forgetting (Popular) Modernism",
+          "order": 15,
+          "package": "sections/forgetting-popular-modernism/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/forgetting-popular-modernism.json",
+          "versionId": "dp-forgetting-popular-modernism-v001",
+          "passageCount": 5,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "dichotomies",
+          "title": "Dichotomies",
+          "order": 16,
+          "package": "sections/dichotomies/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/dichotomies.json",
+          "versionId": "dp-dichotomies-v001",
+          "passageCount": 4,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "rise-of-popular-modernism",
+          "title": "The Rise of Popular Modernism",
+          "order": 17,
+          "package": "sections/rise-of-popular-modernism/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/rise-of-popular-modernism.json",
+          "versionId": "dp-rise-of-popular-modernism-v001",
+          "passageCount": 7,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "describing-the-plenitude",
+          "title": "Describing the Plenitude",
+          "order": 18,
+          "package": "sections/describing-the-plenitude/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/describing-the-plenitude.json",
+          "versionId": "dp-describing-the-plenitude-v001",
+          "passageCount": 7,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "catharsis",
+          "title": "Catharsis",
+          "order": 19,
+          "package": "sections/catharsis/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/catharsis.json",
+          "versionId": "dp-catharsis-v001",
+          "passageCount": 7,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "fragmented-stories",
+          "title": "Fragmented Stories",
+          "order": 20,
+          "package": "sections/fragmented-stories/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/fragmented-stories.json",
+          "versionId": "dp-fragmented-stories-v001",
+          "passageCount": 4,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "cinema-of-immersion",
+          "title": "The Cinema of Immersion",
+          "order": 21,
+          "package": "sections/cinema-of-immersion/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/cinema-of-immersion.json",
+          "versionId": "dp-cinema-of-immersion-v001",
+          "passageCount": 4,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "catharsis-in-video-games",
+          "title": "Catharsis in Video Games",
+          "order": 22,
+          "package": "sections/catharsis-in-video-games/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/catharsis-in-video-games.json",
+          "versionId": "dp-catharsis-in-video-games-v001",
+          "passageCount": 7,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "past-and-future-of-catharsis",
+          "title": "The Past and Future of Catharsis",
+          "order": 23,
+          "package": "sections/past-and-future-of-catharsis/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/past-and-future-of-catharsis.json",
+          "versionId": "dp-past-and-future-of-catharsis-v001",
+          "passageCount": 2,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "from-catharsis-to-flow",
+          "title": "From Catharsis to Flow",
+          "order": 24,
+          "package": "sections/from-catharsis-to-flow/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/from-catharsis-to-flow.json",
+          "versionId": "dp-from-catharsis-to-flow-v001",
+          "passageCount": 9,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "games-and-flow",
+          "title": "Games and Flow",
+          "order": 25,
+          "package": "sections/games-and-flow/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/games-and-flow.json",
+          "versionId": "dp-games-and-flow-v001",
+          "passageCount": 5,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "flow-culture",
+          "title": "Flow Culture",
+          "order": 26,
+          "package": "sections/flow-culture/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/flow-culture.json",
+          "versionId": "dp-flow-culture-v001",
+          "passageCount": 9,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "our-time-traveler",
+          "title": "Our Time Traveler",
+          "order": 27,
+          "package": "sections/our-time-traveler/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/our-time-traveler.json",
+          "versionId": "dp-our-time-traveler-v001",
+          "passageCount": 7,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "spectrum-of-catharsis-and-flow",
+          "title": "The Spectrum of Catharsis and Flow",
+          "order": 28,
+          "package": "sections/spectrum-of-catharsis-and-flow/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/spectrum-of-catharsis-and-flow.json",
+          "versionId": "dp-spectrum-of-catharsis-and-flow-v001",
+          "passageCount": 3,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "popular-avant-garde",
+          "title": "The Popular Avant-Garde",
+          "order": 29,
+          "package": "sections/popular-avant-garde/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/popular-avant-garde.json",
+          "versionId": "dp-popular-avant-garde-v001",
+          "passageCount": 13,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "remix-and-originality",
+          "title": "Remix and Originality",
+          "order": 30,
+          "package": "sections/remix-and-originality/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/remix-and-originality.json",
+          "versionId": "dp-remix-and-originality-v001",
+          "passageCount": 5,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "remix-culture",
+          "title": "Remix Culture",
+          "order": 31,
+          "package": "sections/remix-culture/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/remix-culture.json",
+          "versionId": "dp-remix-culture-v001",
+          "passageCount": 7,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "good-musicians-remix",
+          "title": "Good Musicians Copy; Great Musicians Remix",
+          "order": 32,
+          "package": "sections/good-musicians-remix/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/good-musicians-remix.json",
+          "versionId": "dp-good-musicians-remix-v001",
+          "passageCount": 8,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "remix-and-modernism",
+          "title": "Remix and Modernism",
+          "order": 33,
+          "package": "sections/remix-and-modernism/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/remix-and-modernism.json",
+          "versionId": "dp-remix-and-modernism-v001",
+          "passageCount": 8,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "playing-in-the-plenitude",
+          "title": "Playing in the Plenitude",
+          "order": 34,
+          "package": "sections/playing-in-the-plenitude/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/playing-in-the-plenitude.json",
+          "versionId": "dp-playing-in-the-plenitude-v001",
+          "passageCount": 5,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "datafication",
+          "title": "Datafication",
+          "order": 35,
+          "package": "sections/datafication/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/datafication.json",
+          "versionId": "dp-datafication-v001",
+          "passageCount": 13,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "procedural-and-mechanical",
+          "title": "The Procedural and the Mechanical",
+          "order": 36,
+          "package": "sections/procedural-and-mechanical/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/procedural-and-mechanical.json",
+          "versionId": "dp-procedural-and-mechanical-v001",
+          "passageCount": 10,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "video-games-procedures",
+          "title": "Video Games: Procedures to Save the World",
+          "order": 37,
+          "package": "sections/video-games-procedures/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/video-games-procedures.json",
+          "versionId": "dp-video-games-procedures-v001",
+          "passageCount": 9,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "history-and-simulation",
+          "title": "History and Simulation",
+          "order": 38,
+          "package": "sections/history-and-simulation/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/history-and-simulation.json",
+          "versionId": "dp-history-and-simulation-v001",
+          "passageCount": 10,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "strong-and-weak-narratives",
+          "title": "Strong and Weak Narratives",
+          "order": 39,
+          "package": "sections/strong-and-weak-narratives/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/strong-and-weak-narratives.json",
+          "versionId": "dp-strong-and-weak-narratives-v001",
+          "passageCount": 6,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "procedural-divide",
+          "title": "The Procedural Divide",
+          "order": 40,
+          "package": "sections/procedural-divide/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/procedural-divide.json",
+          "versionId": "dp-procedural-divide-v001",
+          "passageCount": 2,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "social-media-politics-of-flow",
+          "title": "Social Media and the Politics of Flow",
+          "order": 41,
+          "package": "sections/social-media-politics-of-flow/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/social-media-politics-of-flow.json",
+          "versionId": "dp-social-media-politics-of-flow-v001",
+          "passageCount": 3,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "not-so-new-narcissism",
+          "title": "Flow and the Not So New Narcissism",
+          "order": 42,
+          "package": "sections/not-so-new-narcissism/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/not-so-new-narcissism.json",
+          "versionId": "dp-not-so-new-narcissism-v001",
+          "passageCount": 5,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "performance-of-identity",
+          "title": "The Performance of Identity",
+          "order": 43,
+          "package": "sections/performance-of-identity/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/performance-of-identity.json",
+          "versionId": "dp-performance-of-identity-v001",
+          "passageCount": 7,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "social-media-weak-stories",
+          "title": "Social Media and Weak Stories",
+          "order": 44,
+          "package": "sections/social-media-weak-stories/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/social-media-weak-stories.json",
+          "versionId": "dp-social-media-weak-stories-v001",
+          "passageCount": 5,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "digital-identity-identity-politics",
+          "title": "Digital Identity and Identity Politics",
+          "order": 45,
+          "package": "sections/digital-identity-identity-politics/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/digital-identity-identity-politics.json",
+          "versionId": "dp-digital-identity-identity-politics-v001",
+          "passageCount": 9,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "social-media-collective-action",
+          "title": "Social Media and Collective Action",
+          "order": 46,
+          "package": "sections/social-media-collective-action/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/social-media-collective-action.json",
+          "versionId": "dp-social-media-collective-action-v001",
+          "passageCount": 5,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "anonymous",
+          "title": "Anonymous",
+          "order": 47,
+          "package": "sections/anonymous/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/anonymous.json",
+          "versionId": "dp-anonymous-v001",
+          "passageCount": 10,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "weak-narrative-american-politics",
+          "title": "Weak Narrative and American Politics",
+          "order": 48,
+          "package": "sections/weak-narrative-american-politics/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/weak-narrative-american-politics.json",
+          "versionId": "dp-weak-narrative-american-politics-v001",
+          "passageCount": 5,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "conclusion",
+          "title": "Conclusion",
+          "order": 49,
+          "package": "sections/conclusion/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/digital-plenitude/conclusion.json",
+          "versionId": "dp-conclusion-v001",
+          "passageCount": 9,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        }
+      ]
     }
   ]
 }

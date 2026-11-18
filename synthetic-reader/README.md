@@ -1,318 +1,114 @@
 # synthetic-reader
 
-A CLI-only testing harness that drives InterText's real `/api/chat` conversation
-endpoint with a simulated reader — an OpenAI model role-playing one of a few reader
-personas — instead of a human. It never touches the reader-facing web interface,
-and the reading command (`synthetic-reader`) never calls `/api/evolve` at all — a
-run can't modify production or evolving text data. A separate, explicit follow-up
-command, `synthetic-reader-evolve`, *does* call the evolve endpoint, but only in a
-dry-run mode that never reads or writes the live database — see "Previewing an
-evolution" below.
+A CLI-only harness that drives InterText's real `/api/chat` endpoint with a simulated reader: an OpenAI model playing one of several reader personas. It never touches the reader's web page. The reading command (`synthetic-reader`) never calls `/api/evolve`, so a run cannot change the evolving text. A separate command, `synthetic-reader-evolve`, calls it only in dry-run mode, which never reads or writes the database.
 
-## Why this exists
+## Why it exists
 
-InterText's guide voice is served by Anthropic's Claude ("the Text model"). This
-harness uses a *different* provider (OpenAI) to play the reader, so the two roles
-are never the same model talking to itself. The simulated reader sees what a real
-reader would see on screen — the table of contents, a section's opening passage,
-and the conversation so far — never `config.js`'s instructions, the raw essay text,
-or anything else hidden from a human reader. The knowledgeable profiles may also
-consult public web sources, as explained below. See
-`lib/publicContent.js` for how that's enforced (it reads only from a text's public
-`app.js`, never its config module or source-text folder).
+The text is served by Anthropic's Claude. The reader is played by a different provider so that the two roles are never one model talking to itself. The simulated reader sees what a real reader sees: the table of contents, a section's boxed opening and the conversation so far. It never sees `config.js`, the instructions, or the section files. `lib/publicContent.js` enforces this by reading titles and boxes only from a text's public `app.js`, run under a DOM stand-in. The knowledgeable profiles may also consult public web sources.
 
-### Current use: an editorial loop
+## An editorial loop
 
-The immediate purpose of the harness is not only to test whether the application
-works. It is to help improve the quality and structure of the authored text itself,
-currently with particular attention to *Plenitude*. Repeated readings by different
-profiles make it possible to look for patterns such as:
-
-- confusion about a claim, transition, example, or implied audience;
-- repetition, loss of momentum, premature stopping, or unproductive detours;
-- objections the text does not yet recognize or answer adequately;
-- section boundaries that do not match the reader's experience of the argument;
-- places where the guide overexplains, substitutes commentary for the text, or gives
-  the reader too little room to participate; and
-- passages that remain compelling and intelligible across different reader profiles.
-
-The working cycle is:
+The harness is an instrument for improving the authored work and the reading experience, not only for testing the software. Repeated readings by different profiles show where a claim, transition or example is confusing; where the text repeats itself, loses momentum or stops early; which objections it does not answer; where section boundaries fail the argument; where the voice overexplains or gives the reader too little room; and what holds across profiles. The cycle:
 
 1. Run comparable sessions against a known edition and section.
-2. Read the transcripts and private reflections across profiles and repeated runs.
-3. Form an editorial hypothesis rather than treating any single model response as a
-   verdict or score.
-4. Manually revise the source prose, section boundaries, public introductions, or
-   guide instructions as the evidence warrants.
-5. Rerun the same conditions and compare the reading experience.
+2. Read the transcripts and private reflections across profiles and runs.
+3. Form an editorial hypothesis rather than treating any one reply as a verdict or score.
+4. Revise the source prose, section boundaries, introductions or instructions as the evidence warrants.
+5. Rerun the same conditions and compare.
 
-`synthetic-reader-evolve` can additionally show how the existing automated synthesis
-process would rewrite a section in response to one saved conversation. That preview
-is useful evidence, but it is distinct from the broader editorial loop: improving the
-manuscript may require cutting, reordering, joining or splitting sections, changing
-the argument, or changing the relationship between text and reader rather than
-accepting an automatically evolved version.
+A simulated reader argues from the text's own terms more than a person does, and has no lived experience to bring. The readings find assumptions, overstatements, repetition and gaps; they cannot show how real readers understand or respond, and are not a substitute for human testing.
 
-In a later phase, this harness may also help prepare for human user testing: it can
-surface hypotheses, exercise likely interaction paths, and make comparisons more
-systematic before involving people. It cannot establish how actual readers understand
-or experience the work, and should not be presented as a replacement for that testing.
-
-### Spine-and-fund testing
-
-The Section 5 experiment showed a limitation in full-section synthesis: detailed
-additions may be accurate and supportive while damaging the balance and rhythm of the
-continuous essay. The editorial representation therefore separates a concise
-narrative spine from a fund of optional material the guide can select for different
-readers. The generic schema, packages for all 16 sections across the three works, and
-local author editor are now implemented under `editorial/`; see root
-`EDITORIAL-ARCHITECTURE.md`.
-
-The guide and synthetic reader can consume any local package through
-two explicit experiment-only editions:
-
-- `editorial-spine` gives the guide the packaged spine and no fund entries.
-- `editorial-fund` gives it the identical spine plus any candidates as optional
-  material (four in *Plenitude*, Section 5), records which entries it reports using through a required structured
-  delivery tool, and does not offer a used entry as
-  new material again later in that section.
-
-These modes do not read or write KV, do not call `/api/evolve`, and are not exposed in
-the public reader UI. Guide-side web search and outside substantive examples are
-disabled in both conditions so fund availability is the intended experimental
-difference. `--edition evolving` retains its old meaning, and
-`synthetic-reader-evolve` remains the separate nonpersistent full-section rewrite.
-
-## Quick start (live session)
+## Quick start
 
 You need:
-1. **The InterText server running locally**: `npm run dev` from the project root (or wherever `--base-url` points). This command explicitly injects `.env.local` into the Vercel process so the API can resolve the current KV edition rather than silently falling back to its bundled seed.
-2. **An OpenAI API key**: add `OPENAI_API_KEY=sk-...` to `.env.local` at the project root — the same file that already holds `ANTHROPIC_API_KEY` and the KV vars. Both `npm run dev` and `npm run synthetic-reader` explicitly load this file. (An `export OPENAI_API_KEY=...` in your shell, or an inline prefix, still overrides the file if you want to use a different key for one run.)
 
-Then, from the project root:
+1. **The server running locally:** `npm run dev` from the project root (or wherever `--base-url` points). It loads `.env.local`, so the API reads the current KV edition instead of falling back to the bundled seed.
+2. **An OpenAI key:** `OPENAI_API_KEY=…` in `.env.local`. A key exported in the shell overrides it for one run.
 
 ```bash
-npm run synthetic-reader -- --profile curious --section 1 --turns 10
+npm run synthetic-reader -- --text digital-plenitude --profile curious --section 1 --turns 10
 ```
 
-This reads Plenitude, section 1, as a curious nonspecialist, for up to 10 turns,
-and writes a transcript to `synthetic-reader/output/` (git-ignored — nothing here
-is meant to be committed).
+The run writes a timestamped folder under `synthetic-reader/output/` (gitignored).
 
 ## Options
 
 ```
---text <id>            plenitude | uncanny | blood-on-the-wall   (default: plenitude)
---section <n>          1-based section number to start in         (default: 1)
---profile <id>         curious | skeptical | collaborative        (default: curious)
---turns <n>             maximum turns before the run stops itself (default: 10)
---edition <name>        evolving | original | editorial-spine |
-                        editorial-fund                            (default: evolving)
---base-url <url>        where the InterText server is running     (default: http://localhost:3000)
---reader-model <name>   overrides OPENAI_READER_MODEL for this run
---out <dir>             where to write the transcript              (default: synthetic-reader/output)
--h, --help              show usage
+--text <id>            plenitude | uncanny | remediation | digital-plenitude | blood-on-the-wall
+                                                                    (default: plenitude)
+--section <n>          1-based section to start in                  (default: 1)
+--profile <id>         curious | skeptical | collaborative | general | student
+                                                                    (default: curious)
+--turns <n>            maximum turns before the run stops itself    (default: 10)
+--edition <name>       evolving | original | editorial-spine | editorial-fund
+                                                                    (default: evolving)
+--base-url <url>       where the InterText server is running        (default: http://localhost:3000)
+--reader-model <name>  overrides OPENAI_READER_MODEL for this run
+--out <dir>            where to write the run's folder              (default: synthetic-reader/output)
+-h, --help
 ```
 
-`--edition original` exercises the same "read the original, unaffected by any
-reader's evolution" path a human reader gets from the entry consent screen's third
-option (see the root `INTERTEXT-DESIGN-NOTES.md`, §3, and `uncanny/CLAUDE.md`,
-"Entry Consent"). The harness never contributes and never sends anything to
-`/api/evolve`, so unlike a real "Contribute" reader it doesn't need a separate
-consent flag — every synthetic run behaves like a non-contributing reader choosing
-between those two editions.
+- `evolving` reads the current edition a *Read the current text* reader gets; `original` reads the untouched authored text. The harness never contributes, so every run behaves like a non-contributing reader.
+- `editorial-spine` and `editorial-fund` are the experiment editions (see `EDITORIAL-ARCHITECTURE.md`): the package's spine with and without fund entries, web search off, no KV, one packaged section. They need the `npm run dev` server; the editor on port 4173 cannot serve `/api/chat`. The CLI fails clearly for a section with no package.
 
-The editorial editions support all three text IDs and all 16 sections, although only
-*Plenitude*, Section 5 initially has fund entries.
-The CLI fails clearly for any section without a package rather than silently switching to a different text.
-They require the local `npm run dev` server from this branch. The
-static editorial browser on port 4173 cannot serve `/api/chat`.
+## Environment
 
-## Environment variables
-
-| Variable              | Required | Default          | Notes                                   |
-|------------------------|:--------:|------------------|------------------------------------------|
-| `OPENAI_API_KEY`       | yes      | —                | Never printed, logged, or written to disk. |
-| `OPENAI_READER_MODEL`  | no       | `gpt-5.6-terra`  | Overridable per run with `--reader-model`. |
+| Variable | Required | Default | Notes |
+|---|:-:|---|---|
+| `OPENAI_API_KEY` | yes | none | never printed, logged or written to disk |
+| `OPENAI_READER_MODEL` | no | `gpt-5.6-terra` | overridable per run with `--reader-model` |
 
 ## Reader profiles
 
-Three are included out of the box (`lib/profiles.js`): **curious** (curious
-nonspecialist), **skeptical** (skeptical academic), and **collaborative**
-(knowledgeable reader and constructive editorial partner). The collaborative reader
-attends to argument and evidence, but also to prose quality, rhythm, transitions,
-economy, and forward movement. It does not assume that every claim needs more
-evidence or allow minor issues to stall the passage.
+Each profile in `lib/profiles.js` is a natural-language persona given to the reader model as instructions, separate from any prompt in InterText's own configs, so the model decides in character what such a reader would do each turn. Shared framing lives in `lib/openaiReader.js`.
 
-Each profile is a natural-language persona given to the OpenAI model as its own
-instructions — a wholly separate prompt from anything in InterText's own `config.js`
-files — so the model decides in character what a reader like that would actually do
-each turn, rather than the harness scripting fixed behavior.
+| Profile | Persona | Web search |
+|---|---|:-:|
+| `curious` | nonspecialist who follows closely, asks clarifying questions, brings in general reading and experience | no |
+| `skeptical` | academic in an adjacent field who notices unsupported claims and asks for evidence and counterexamples | yes |
+| `collaborative` | knowledgeable reader who wants the work stronger, attentive to prose, rhythm and movement, and does not reflexively ask for evidence | yes |
+| `general` | the educated general reader the book is written for, who reads for the argument, rarely nitpicks, and writes one to three plain spoken sentences | yes |
+| `student` | second-year undergraduate with the chapter assigned, who asks what terms mean and says the argument back to check it | no |
 
-### Research access
+Search is bounded: at most two search calls per turn, used to test a consequential claim, find primary evidence or check a comparison, and not on every turn. When research informs a message, the reader names the source and URL so it stays visible in the transcript. Search results never expose the text's instructions or source files.
 
-The **skeptical** and **collaborative** profiles have optional live web search. The
-model decides whether to use it, with at most two search-tool calls per turn. Their
-instructions encourage selective research when it can test a factual claim, locate
-primary evidence, identify a genuinely useful source, or clarify a historical
-comparison. They are explicitly told not to search every turn or use citations merely
-to display knowledge, and to keep the passage moving. When web research materially
-informs a message, the reader should name the source and include its URL so it remains
-visible in the transcript and any later evolution preview.
+To add a profile, add an entry to `PROFILES` in `lib/profiles.js` with `id`, `name`, `description`, `allowWebSearch` and `instructions`, and list it in the usage text and tests.
 
-The **curious** profile does not receive the search tool. This preserves the behavior
-of a nonspecialist responding only from the reading experience and ordinary prior
-knowledge. Web results never expose the guide's hidden instructions or raw source
-files, and they are not sent to the guide unless the reader chooses to mention them
-in a normal reader message. Search calls can add latency and API cost.
+## What is recorded
 
-To add a profile, add an entry to `PROFILES` in `lib/profiles.js` with an `id`,
-`name`, `description`, `allowWebSearch`, and a paragraph of `instructions` describing
-how that reader behaves.
+Each turn the reader chooses one structured action: `message`, `continue` (Return with nothing typed), `navigate` (to another section) or `finish`; and writes a private reflection (`understanding`, `confusion`, `interest`, a free-text note). The reflection goes in the transcript and is never sent to `/api/chat`; a test asserts this.
 
-## What gets recorded
+A run folder contains:
 
-Each turn, the reader model chooses one structured action —
-`message` (send something), `continue` (press Return with nothing typed),
-`navigate` (jump to a different section), or `finish` (end the session) — plus a
-private reflection: `understanding`, `confusion`, `interest`, and a free-text
-`note`. The private reflection is written to the transcript in full, but it is
-**never** included in anything sent to `/api/chat` — the Text model only ever sees
-what an actual reader's browser would send it. `lib/session.js`'s
-`private reflections are recorded but never sent in any request body` test asserts
-exactly this.
+- `session.json`: the run's metadata, every turn and reflection, the stop reason, `contributionsBySection`, and for editorial editions `fundPresentationsBySection` and, per turn, what was offered, what the text reported using, the package version, and whether its delivery was valid.
+- `transcript.md`: the same laid out for reading, with reflections, notes, and the draft before revision.
 
-A run produces a timestamped folder under `synthetic-reader/output/` (or `--out`)
-containing:
-- `session.json` — full structured record: run metadata, every turn, every private
-  reflection, the final stop reason, `contributionsBySection`, and (for the fund
-  experiment) `fundPresentationsBySection`. Each editorial turn separately records
-  what was offered, what the guide reported using, the package version, and whether
-  its required private delivery tool was valid.
-- `transcript.md` — the same information laid out for a human to skim, with private
-  reflections and editorial presentation metadata visible for comparison.
-
-For editorial runs, the guide must return every response through a private structured
-tool containing the visible prose, used-entry IDs, and section-completion state. The
-API rejects a missing or invalid call and shows only the prose to the simulated reader.
-The report is constrained to entries actually offered, although the transcript should
-still be read when judging whether the model classified its use accurately.
-
-## Running the spine/fund comparison
-
-Start the application API in one terminal:
+## Measuring a round
 
 ```bash
-npm run dev
+npm run reading-report -- <dir> [<dir> …] [--limit 250] [--json]
 ```
 
-Then run a matched pair in another terminal:
-
-```bash
-npm run synthetic-reader -- --text plenitude --section 5 --profile collaborative --turns 15 --edition editorial-spine
-npm run synthetic-reader -- --text plenitude --section 5 --profile collaborative --turns 15 --edition editorial-fund
-```
-
-Repeat with `curious` and `skeptical`. Read each pair for selection, comprehension,
-momentum, repetition, overload, prerequisite timing, and whether leaving the fund
-unused was sometimes the strongest choice. Model behavior is stochastic; repeat an
-important or anomalous condition rather than treating one transcript as a score.
-
-The first completed collaborative pair is preserved in
-`editorial/content/plenitude/sections/shocking-art/provenance/2026-09-18-collaborative-comparison/`.
-The guide used two candidates and left two unused. The fund reading lasted longer and
-produced useful refinements, but also circled the same historical distinction for many
-turns. A single skeptical `editorial-fund` run is preserved in
-`editorial/content/plenitude/sections/shocking-art/provenance/2026-09-19-skeptical-fund/`.
-It used one prior collaborative candidate and raised several possible spine and source
-revisions, but did not add fund entries automatically. Its skeptical `editorial-spine`
-comparison is preserved in
-`editorial/content/plenitude/sections/shocking-art/provenance/2026-09-20-skeptical-spine/`.
-The spine reader reached a similar methodological narrowing without optional material
-and finished after 11 rather than 15 turns. Curious pairs are still needed before
-drawing condition-level conclusions or changing selection policy. Each run starts from the current compiled package; the guide's
-per-session record of presented entries resets for the next run, while the package
-remains unchanged until an explicit editorial change is made and rebuilt.
+reads every `session.json` under the directories and prints a line per run and a total: replies (to messages and Return turns); words per reply and how many run over the limit; notes per reply; replies in which the text speaks of its own argument or section; seven-word runs and closing sentences repeated across a run; the reader's private understanding, interest and confusion; how many replies the revision pass rewrote and why it did not; and the share of input tokens read from the prompt cache. It counts generated text and never quotes it.
 
 ## Previewing an evolution
 
-After reading a transcript and deciding a session is worth exploring further:
-
 ```bash
-npm run synthetic-reader-evolve -- --session synthetic-reader/output/<run-folder>
+npm run synthetic-reader-evolve -- --session synthetic-reader/output/<run-folder> [--section <n>]
 ```
 
-This takes that session's actual recorded contributions for a section (defaulting
-to the section the reading started in — pass `--section <n>` to pick a different
-one) and sends them through the **real** `synthesisInstructions` prompt and model —
-the exact same code path a real "Contribute" reader's session hits — but with
-`dryRun: true`, which makes `api/evolve.js` skip its KV read/write entirely.
-Concretely:
-- **The baseline is always the pristine authored text**, never whatever's currently
-  live in production — so different sessions and profiles are evolving against the
-  same fixed starting point and are actually comparable to each other, not to a
-  moving target that depends on real reader traffic.
-- **Nothing is persisted, ever**, regardless of how the synthesis turns out.
-- Writes a self-contained, timestamped subfolder next to that session's own
-  `session.json` — `evolve-<timestamp>/original.md`, `evolved.md`, and
-  `evolve.json` (model, word counts, timestamps). Each attempt gets its own
-  subfolder rather than overwriting the last one, since the synthesis call isn't
-  deterministic — running it twice on the same session can genuinely produce two
-  different revisions, and that variance is worth being able to see.
+sends a session's recorded contributions for a section through the config's `synthesisInstructions` and model with `dryRun: true`, so `api/evolve.js` skips KV entirely. The baseline is always the pristine authored text, so sessions are comparable with one another. Nothing is persisted. Each attempt writes its own `evolve-<timestamp>/` folder (`original.md`, `evolved.md`, `evolve.json`) beside the session, since the rewrite is not deterministic. A section with no recorded contributions is reported, not sent. To see what the editorial passes would do to a session, use `npm run editorial-propose` (see `editorial/README.md`).
 
-If the session has no recorded contributions for the requested section (e.g. a
-run in which the reader only ever pressed Return), it says so and lists which
-sections (if any) do have contributions, rather than sending an empty conversation
-to the synthesis prompt.
+Only `lib/evolveClient.js` and `evolve-cli.js` may reference the evolve endpoint, and every call they make must include `dryRun: true`; a repository-wide test enforces both.
 
-Only `lib/evolveClient.js` and `evolve-cli.js` are allowed to reference the evolve
-endpoint at all — enforced by a repo-wide test — and every call they make is
-checked to literally include `dryRun: true`. The main reading path (`chatClient.js`,
-`session.js`, the `synthetic-reader` command) remains structurally incapable of
-reaching that endpoint, exactly as before.
+## Tests
 
-## Offline tests (no live API calls, no running server)
+`npm test` runs `synthetic-reader/test/` with Node's test runner, with no API key, server or network. It covers argument parsing, the action schema, the profiles, the public-content extractor (against the real `app.js` files, read-only), the HTTP client's error handling, the OpenAI wrapper (against a fake client, including the retry on an invalid action), the session state machine, the transcript writer, the session-file loader, the dry-run evolve client, and the guard that keeps the evolve endpoint out of everything else.
 
-```bash
-npm test
-```
+## What the harness never does
 
-This runs `synthetic-reader/test/` under Node's built-in test runner. It covers:
-argument parsing and validation for both commands, the reader-action JSON Schema
-and its per-action validation rules, all three profiles, the section-metadata
-extractor (against the real `app.js` files — this is the one place these tests
-touch the real repo, and only ever reads, never writes), the HTTP client's error
-handling (server unreachable, non-2xx, non-JSON — via a stubbed `fetch`), the
-OpenAI reader wrapper (via a fake client with a scripted `.responses.create`,
-including the retry-on-invalid-action path and 401/404 error wrapping), the full
-session state machine (message/continue/navigate/finish, section auto-advance,
-image-token handling, per-section contribution tracking, and graceful recovery
-from a mid-run request failure — via a scripted fake reader and a recording fake
-chat client), the transcript writer (including the evolve-preview file writer),
-the session-file loader used by `synthetic-reader-evolve`, the dry-run evolve
-client, and a repository-wide guard asserting no implementation file under
-`synthetic-reader/` mentions the evolve endpoint except the two files that
-deliberately implement the dry-run preview — and that every call they make is
-checked to actually be dry-run.
-
-None of this needs `OPENAI_API_KEY`, a running server, or network access.
-
-## Running a live session
-
-1. From the project root: `npm run dev` (leave it running).
-2. Make sure `OPENAI_API_KEY` is in `.env.local` (see "Quick start" above) — or `export OPENAI_API_KEY=sk-...` in your shell for a one-off override.
-3. `npm run synthetic-reader -- --profile collaborative --text plenitude --section 5 --turns 15 --edition editorial-fund`
-4. Read the printed per-turn summary as it runs, then open the written `transcript.md` under `synthetic-reader/output/`.
-5. Optionally, preview an evolution from that session: `npm run synthetic-reader-evolve -- --session synthetic-reader/output/<run-folder>` (see "Previewing an evolution" above).
-
-If the server isn't running, or the API key is missing/invalid, the harness fails
-fast with a specific, actionable message rather than a stack trace — see
-`lib/env.js` and `lib/chatClient.js`.
-
-## What this harness will never do
-
-- Let the `synthetic-reader` reading command call `/api/evolve`, under any flag or code path (enforced by a repo-wide test, not just by convention) — evolution is only ever reachable via the separate `synthetic-reader-evolve` command.
-- Let *any* evolve-endpoint call, from either command, actually persist anything — `synthetic-reader-evolve` always sends `dryRun: true`, which `api/evolve.js` guarantees skips its KV read and write entirely (also enforced by a repo-wide test).
-- Send a reader's private reflection to `/api/chat` or `/api/evolve`.
-- Read a text's `config.js` or `source_texts/` to build the reader model's context — only the same `public/app.js` a browser loads.
-- Modify anything under a text's `public/` folder — this is a read-only consumer of the existing web interface.
+- Call `/api/evolve` from the reading command, under any flag or path.
+- Let any evolve call persist anything.
+- Send a private reflection to `/api/chat` or `/api/evolve`.
+- Read a text's `config.js` or `source_texts/` to build the reader's context.
+- Modify a text's `public/` folder.

@@ -151,3 +151,19 @@ test('curious reader receives no web-search tool', async () => {
   assert.equal(client.calls[0].tool_choice, undefined);
   assert.equal(client.calls[0].max_tool_calls, undefined);
 });
+
+// H-002: a text that names its voice (textRegistry `voiceLabel`) changes the harness's wording.
+test('voiceLabel renames the voice in framing, reply prefix and schema; absent, nothing changes', () => {
+  const { forVoice, schemaForVoice, ROLE_FRAMING, buildInput } = require('../lib/openaiReader');
+  const { READER_ACTION_JSON_SCHEMA } = require('../lib/actionSchema');
+  assert.equal(forVoice(ROLE_FRAMING, null), ROLE_FRAMING);
+  assert.equal(schemaForVoice(null), READER_ACTION_JSON_SCHEMA);
+  const framed = forVoice(ROLE_FRAMING, 'Text');
+  assert.doesNotMatch(framed, /guide/i);
+  assert.match(framed, /whose replies appear marked "Text:"/);
+  assert.doesNotMatch(JSON.stringify(schemaForVoice('Text')), /guide/i);
+  const ctx = { ...sampleVisibleContext(), voiceLabel: 'Text' };
+  const input = buildInput(ctx);
+  assert.ok(input.some((m) => typeof m.content === 'string' && m.content.startsWith('Text:')));
+  assert.ok(!input.some((m) => typeof m.content === 'string' && m.content.startsWith('Guide:')));
+});

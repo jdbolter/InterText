@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "editionId": "digital-plenitude-proofs",
+  "versionId": "dp-games-and-flow-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-11T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "digital-plenitude/source_texts/sections/section-25.md"
+  },
+  "spineFile": "spine.md",
+  "fundEntries": [],
+  "changeSummary": "Structural package of the proofs' chapter 5, section 2 (Games and Flow); one passage per paragraph; no initial fund entries. Jay's corrections of 2026-11-11 applied to the spine (the original edition keeps the proofs): \"It is the sense engagement\"; \"(such as the *Super Mario Brothers* series)\"; \"You- Tube\"; \"In fact, 31 percent of all gamers are women,\"."
+}

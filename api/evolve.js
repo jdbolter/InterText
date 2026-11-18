@@ -2,17 +2,19 @@ const Anthropic = require('@anthropic-ai/sdk');
 const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
-const { evolveEditorialSection } = require('./lib/editorial-evolution');
-const { formatSpine } = require('./lib/editorial-package');
+const { evolveEditorialSection } = require('./_lib/editorial-evolution');
+const { editorialModel, textModel, thinkingOff } = require('./_lib/text-extras');
+const { citationMarkersOn, loadReferences, plainCitations } = require('./_lib/citations');
+const { formatSpine } = require('./_lib/editorial-package');
 const {
   ensureSectionInitialized,
   loadCurrentSection,
   publishSectionVersion,
-} = require('./lib/editorial-store');
+} = require('./_lib/editorial-store');
 
 const client = new Anthropic();
 
-const ALLOWED_TEXT_IDS = ['uncanny', 'plenitude', 'blood-on-the-wall', 'remediation'];
+const ALLOWED_TEXT_IDS = ['uncanny', 'plenitude', 'blood-on-the-wall', 'remediation', 'digital-plenitude'];
 const configCache = {};
 const sectionCache = {};
 
@@ -108,6 +110,9 @@ module.exports = async function handler(req, res) {
             sectionPackage: currentPackage,
             conversationHistory,
             sessionId: contributionSessionId,
+            // H-011: a text that reads by markers also evolves on its own model, by checked JSON.
+            model: config.editorialDelivery === 'markers' ? textModel(config) : editorialModel(config),
+            structured: config.editorialDelivery === 'markers' ? 'json' : 'tool',
           });
 
           if (!result.changed) {
@@ -172,8 +177,15 @@ module.exports = async function handler(req, res) {
   const evolved = isDryRun ? {} : await readEvolved(textId);
   const currentText = isDryRun ? sections[idx] : (evolved[idx] ?? sections[idx]);
 
+  // H-007: the voice is named as the text names it (digital-plenitude: "Text"), and any
+  // citation markers still in the history become the book's author-date style.
+  const voiceName = typeof config.voiceName === 'string' && config.voiceName.trim() ? config.voiceName.trim() : 'Guide';
+  const references = citationMarkersOn(config) ? loadReferences(config) : null;
   const conversationTranscript = conversationHistory
-    .map(m => `${m.role === 'user' ? 'Reader' : 'Guide'}: ${m.content}`)
+    .map(m => {
+      const content = references ? plainCitations(m.content, references) : m.content;
+      return `${m.role === 'user' ? 'Reader' : voiceName}: ${content}`;
+    })
     .join('\n\n');
 
   try {
@@ -191,9 +203,11 @@ module.exports = async function handler(req, res) {
     const maxTokens = Math.min(8192, Math.round(wordLimit * 4));
 
     const response = await client.messages.create({
-      model: 'claude-sonnet-5',
+      // H-007: the text's model (claude-sonnet-5-5 by default), with thinking off in that
+      // model's own way.
+      model: textModel(config),
       max_tokens: maxTokens,
-      thinking: { type: 'disabled' },
+      thinking: thinkingOff(textModel(config)),
       system: systemPrompt,
       messages: [
         {

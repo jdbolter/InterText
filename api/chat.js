@@ -5,22 +5,46 @@ const {
   EDITORIAL_DELIVERY_TOOL,
   buildEditorialDeliveryTool,
   extractEditorialDelivery,
+  extractMarkerDelivery,
   formatPriorSectionSummaries,
   isEditorialEdition,
   prepareEditorialReading,
   prepareVersionedReading,
-} = require('./lib/editorial-reading');
-const { loadCurrentSection } = require('./lib/editorial-store');
+} = require('./_lib/editorial-reading');
+const { loadCurrentSection } = require('./_lib/editorial-store');
 const {
   buildContinuationInstructions,
   continuationUserMessage,
+  normalizeContinueHistory,
   openingSectionText,
   resolveFirstContinuation,
-} = require('./lib/reading-continuation');
+} = require('./_lib/reading-continuation');
+const { editorialModel, loadLibraryList, mainLineStatement, mainLineText, sectionLabelLine, textModel } = require('./_lib/text-extras');
+const { reviseReply, shownToReader } = require('./_lib/reply-revision');
+const {
+  annotateLibraryList,
+  checkCitations,
+  citationMarkersOn,
+  dropWrittenSourceList,
+  listIds,
+  introducedIds,
+  introducedLine,
+  loadReferences,
+  markWebCitations,
+  stripWebTokens,
+  webUsed,
+} = require('./_lib/citations');
+const { systemBlocks } = require('./_lib/system-prompt');
+const { applyMediaTokens, mediaPromptText } = require('./_lib/media');
 
-const client = new Anthropic();
+// The client is made on first use, and a test may put a stand-in in its place (setClient).
+let client = null;
+function getClient() {
+  if (!client) client = new Anthropic();
+  return client;
+}
 
-const ALLOWED_TEXT_IDS = ['uncanny', 'plenitude', 'blood-on-the-wall', 'remediation'];
+const ALLOWED_TEXT_IDS = ['uncanny', 'plenitude', 'blood-on-the-wall', 'remediation', 'digital-plenitude'];
 const configCache = {};
 const sectionCache = {};
 
@@ -68,6 +92,7 @@ module.exports = async function handler(req, res) {
     history,
     sectionIndex = 0,
     shownImages = [],
+    shownMedia = [],
     textId,
     action,
     sectionHistory = null,
@@ -95,6 +120,11 @@ module.exports = async function handler(req, res) {
   const idx = Math.max(0, Math.min(Math.floor(sectionIndex), sections.length - 1));
   let editorialReading = null;
   let sectionText;
+  // H-011: a text whose model cannot be forced to call a tool reads its editorial packages by
+  // markers in the prose, and its editorial readings go through the same pipeline as ordinary
+  // ones (revision pass, citation notes, main line, introductions).
+  // (The local editorial-spine/editorial-fund experiments keep their forced-tool delivery.)
+  const markerDelivery = config.editorialDelivery === 'markers' && !isEditorialEdition(edition);
   if (isEditorialEdition(edition)) {
     try {
       editorialReading = prepareEditorialReading({
@@ -118,6 +148,7 @@ module.exports = async function handler(req, res) {
         editorialReading = prepareVersionedReading({
           sectionPackage: versioned.sectionPackage,
           presentedFundEntryIds,
+          delivery: markerDelivery ? 'markers' : 'tool',
         });
         sectionText = editorialReading.sectionText;
       }
@@ -148,25 +179,83 @@ module.exports = async function handler(req, res) {
   const promptedSectionText = firstContinuation ? openingSectionText(sectionText) : sectionText;
   // Keep the opening deterministic: optional material can enter on later turns,
   // once the guide has a real section cursor and has reached the relevant anchor.
+  const toolDelivery = Boolean(editorialReading) && !markerDelivery;
+  const fullPipeline = !editorialReading || markerDelivery;
   const offeredFundEntryIds = editorialReading && !firstContinuation
     ? editorialReading.offeredFundEntryIds
     : [];
   const editorialFundText = editorialReading && !firstContinuation
     ? editorialReading.fundText
     : null;
+  // H-005: citation markers, for ordinary readings of a text that turns them on.
+  const markers = fullPipeline && citationMarkersOn(config);
+  function withoutWebMarkers(msgs) {
+    if (!markers) return msgs;
+    return msgs.map(m => (m && m.role === 'assistant' && typeof m.content === 'string'
+      ? { ...m, content: stripWebTokens(m.content) }
+      : m));
+  }
   const messages = [
-    ...(Array.isArray(context) ? context : []),
-    { role: 'user', content: continuing ? continuationUserMessage(firstContinuation) : message.trim() }
+    ...(Array.isArray(context)
+      ? (toolDelivery ? context : withoutWebMarkers(normalizeContinueHistory(context, config.continuationWording)))
+      : []),
+    { role: 'user', content: continuing ? continuationUserMessage(firstContinuation, toolDelivery ? null : config.continuationWording) : message.trim() }
   ];
   const continuationInstructions = buildContinuationInstructions({
     continuing,
     firstContinuation,
-    editorialReading: Boolean(editorialReading),
+    editorialReading: toolDelivery,
+    continuationVoice: config.continuationVoice,
+    wording: config.continuationWording,
+  });
+  // H-003: a section's fund of citable works, for ordinary readings only.
+  const rawLibraryList = loadLibraryList(config, idx, { editorial: toolDelivery });
+  // H-008: each listed work carries how it is mentioned (introduced on first mention, note only,
+  // the work's own); a line before the reply names the writers introduced so far (2026-11-14).
+  const libraryListText = rawLibraryList && citationMarkersOn(config)
+    ? annotateLibraryList(rawLibraryList, loadReferences(config))
+    : rawLibraryList;
+  const introducedSoFar = rawLibraryList && citationMarkersOn(config)
+    ? introducedLine(introducedIds(
+      [...(Array.isArray(history) ? history : []), ...(Array.isArray(sectionHistory) ? sectionHistory : [])],
+      loadReferences(config)), loadReferences(config))
+    : null;
+
+  // 2026-11-14: the prompt is ordered so that what stays the same through a section comes first
+  // and is cached (the instructions, the passage, the library list), and what changes from turn
+  // to turn comes after it (see api/_lib/system-prompt.js).
+  const system = systemBlocks({
+    stable: [
+      config.behavioralInstructions,
+      // H-005: the citing rule, only where the section has a fund of citable works.
+      libraryListText && typeof config.libraryInstruction === 'string' ? config.libraryInstruction : null,
+      sectionLabelLine(config, sectionName, idx),
+      mainLineText(config, idx),
+      `The reader has just been shown this framing before their first message: "${config.sectionIntros[idx]}"`,
+      editorialReading ? editorialReading.instructions : null,
+      editorialReading ? editorialReading.memoryInstructions : null,
+    ],
+    passage: promptedSectionText,
+    library: libraryListText,
+    perTurn: [
+      continuationInstructions,
+      (config.sectionImagePrompts[idx] || [])
+        .filter(({ id }) => !shownImages.includes(id))
+        .map(({ prompt }) => prompt)
+        .join('\n\n') || null,
+      // H-018: the section's checked videos, images and pages not yet shown.
+      mediaPromptText(config, idx, shownMedia),
+      introducedSoFar,
+      editorialReading && priorSectionMemory ? priorSectionMemory : null,
+      editorialFundText,
+    ],
   });
 
   try {
+    const client = getClient();
     const response = await client.messages.create({
-      model: 'claude-sonnet-5',
+      // Editorial readings force a tool call, which needs a model that supports it (see editorialModel).
+      model: toolDelivery ? editorialModel(config) : textModel(config),
       // 2048 was too tight: adaptive thinking can consume the whole budget on a hard
       // turn, leaving no tokens for the actual reply and forcing the empty-completion
       // 502 below — confirmed in practice by several consecutive real turns. Response
@@ -176,31 +265,11 @@ module.exports = async function handler(req, res) {
       // Sonnet 5 runs adaptive thinking by default when this is omitted (Sonnet 4.6 didn't) —
       // pinned explicitly so behavior doesn't shift silently on a future model swap.
       thinking: { type: 'adaptive' },
-      system: [
-        { type: 'text', text: [
-            config.behavioralInstructions,
-            continuationInstructions,
-            (config.sectionImagePrompts[idx] || [])
-              .filter(({ id }) => !shownImages.includes(id))
-              .map(({ prompt }) => prompt)
-              .join('\n\n') || null,
-            `Current section: ${sectionName}`,
-            `The reader has just been shown this framing before their first message: "${config.sectionIntros[idx]}"`,
-            editorialReading ? editorialReading.instructions : null,
-            editorialReading ? editorialReading.memoryInstructions : null,
-          ].filter(Boolean).join('\n\n') },
-        { type: 'text', text: promptedSectionText, cache_control: { type: 'ephemeral' } },
-        ...(editorialReading && priorSectionMemory
-          ? [{ type: 'text', text: priorSectionMemory }]
-          : []),
-        ...(editorialFundText
-          ? [{ type: 'text', text: editorialFundText }]
-          : []),
-      ],
+      system,
       // Keep the two editorial conditions controlled: neither may acquire new
       // substantive material from web search. Ordinary/evolving readings retain
       // the existing bounded search capability.
-      ...(editorialReading
+      ...(toolDelivery
         ? {
             tools: [buildEditorialDeliveryTool(offeredFundEntryIds)],
             tool_choice: {
@@ -228,9 +297,10 @@ module.exports = async function handler(req, res) {
       }
     });
     let text;
+    let webSources = [];
     let editorialResult = null;
     let sectionComplete;
-    if (editorialReading) {
+    if (toolDelivery) {
       let delivery;
       try {
         delivery = extractEditorialDelivery(response.content, offeredFundEntryIds);
@@ -250,9 +320,31 @@ module.exports = async function handler(req, res) {
         trackingMethod: 'required-tool',
       };
     } else {
-      text = postBlocks.map(b => b.text).join('');
+      if (markers) {
+        const marked = markWebCitations(postBlocks);
+        text = marked.text;
+        webSources = marked.web;
+      } else {
+        text = postBlocks.map(b => b.text).join('');
+      }
       sectionComplete = continuing && !firstContinuation && /\[\[SECTION_COMPLETE\]\]/.test(text);
       text = text.replace(/\[\[SECTION_COMPLETE\]\]/g, '').trim();
+      if (markers) text = dropWrittenSourceList(text);
+      if (editorialReading) {
+        // H-011: fund markers and the private section memory are read and removed here,
+        // before the revision pass and before anyone sees the reply.
+        const delivered = extractMarkerDelivery(text, offeredFundEntryIds);
+        text = delivered.text;
+        editorialResult = {
+          edition,
+          packageVersionId: editorialReading.sectionPackage.versionId,
+          offeredFundEntryIds,
+          usedFundEntryIds: delivered.usedFundEntryIds,
+          ...(delivered.sectionSummary ? { sectionSummary: delivered.sectionSummary } : {}),
+          trackingComplete: true,
+          trackingMethod: 'markers',
+        };
+      }
     }
 
     // An empty completion (e.g. thinking consuming the whole max_tokens budget on a
@@ -264,16 +356,59 @@ module.exports = async function handler(req, res) {
       return res.status(502).json({ error: 'Empty completion' });
     }
 
-    if (citations.length > 0) {
+    // H-004b: an optional second pass rewrites the draft into the text's voice
+    // (ordinary readings only). The draft is returned beside it for measurement.
+    let revision = null;
+    if (fullPipeline && text.trim()) {
+      const draft = text;
+      const revised = await reviseReply({
+        client,
+        config,
+        readerMessage: continuing ? '' : message,
+        continuing,
+        draft,
+        // H-010: what the reader has been shown, the section the work holds, the main line
+        shown: shownToReader({ intro: config.sectionIntros && config.sectionIntros[idx], history: context }),
+        sectionText,
+        mainLine: continuing ? null : mainLineStatement(config, idx),
+      });
+      if (revised.reason !== 'not configured') {
+        revision = { draft, applied: revised.applied, model: revised.model, ...(revised.reason ? { reason: revised.reason } : {}), usage: revised.usage || null };
+        text = revised.text;
+      }
+    }
+
+    // H-005: keep only markers for works in this section's fund (and pages its entry
+    // gives), and return the notes; the interface numbers them and shows the references.
+    let notes = null;
+    if (markers) {
+      const checked = checkCitations(text, {
+        allowedIds: listIds(libraryListText),
+        references: loadReferences(config),
+      });
+      text = checked.text;
+      notes = { library: checked.library, web: webUsed(text, webSources) };
+    }
+
+    // H-018: only items on the section's media list survive, once each.
+    const mediaApplied = applyMediaTokens(text, config, idx);
+    text = mediaApplied.text;
+
+    if (!markers && citations.length > 0) {
       text += '\n\nSources: ' + citations.slice(0, 5).map(c => `[${c.title}](${c.url})`).join(' · ');
     }
     return res.status(200).json({
       response: text,
       ...(continuing ? { sectionComplete } : {}),
       ...(editorialResult ? { editorial: editorialResult } : {}),
+      ...(revision ? { revision, usage: response.usage || null } : {}),
+      ...(notes ? { notes } : {}),
+      ...(mediaApplied.media ? { media: mediaApplied.media } : {}),
     });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: 'API error' });
   }
 };
+
+module.exports.setClient = (c) => { client = c; };

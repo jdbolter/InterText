@@ -1,6 +1,6 @@
 'use strict';
 
-const DEFAULT_MODEL = 'claude-sonnet-5';
+const DEFAULT_MODEL = 'claude-sonnet-5'; // forced tool calls are not supported on claude-sonnet-5-5
 
 const HELP = `Usage: npm run editorial-propose -- --session <path> [options]
 
@@ -28,7 +28,7 @@ function parseProposalArgs(argv) {
     if (argument === '-h' || argument === '--help') return { help: true };
     if (argument === '--session') options.session = next(argument);
     else if (argument === '--section') options.section = Number(next(argument));
-    else if (argument === '--model') options.model = next(argument);
+    else if (argument === '--model') { options.model = next(argument); options.modelGiven = true; }
     else throw new Error(`Unknown option "${argument}". Run with --help for usage.`);
     index += 1;
   }

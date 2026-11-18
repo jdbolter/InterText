@@ -11,11 +11,14 @@
 'use strict';
 
 const defaultChatClient = require('./chatClient');
+const { renderDraftMarkers, renderWithNotes } = require('./notes');
 
 const IMAGE_TOKEN_RE = /\[\[IMAGE:([^\]]+)\]\]/g;
 
 function stripImageTokens(text) {
-  return text.replace(IMAGE_TOKEN_RE, '[An image appears here.]');
+  // H-018: a media item (video, image or link card) is noted the same way.
+  return text.replace(IMAGE_TOKEN_RE, '[An image appears here.]')
+    .replace(/\[\[MEDIA:([^\]]+)\]\]/g, '[A media item appears here: $1.]');
 }
 
 function extractImageIds(text) {
@@ -24,6 +27,19 @@ function extractImageIds(text) {
   IMAGE_TOKEN_RE.lastIndex = 0;
   while ((m = IMAGE_TOKEN_RE.exec(text)) !== null) ids.push(m[1]);
   return ids;
+}
+
+// H-004b: when the server revised the reply, keep the draft beside it (and the token
+// usage of both calls) so a reading round can measure what the second pass changed.
+function recordRevision(data, turnRecord) {
+  if (!data || !data.revision) return;
+  turnRecord.revision = {
+    draft: typeof data.revision.draft === 'string' ? renderDraftMarkers(stripImageTokens(data.revision.draft), data.notes) : null,
+    applied: data.revision.applied === true,
+    model: data.revision.model || null,
+    ...(data.revision.reason ? { reason: data.revision.reason } : {}),
+    usage: { reply: data.usage || null, revision: data.revision.usage || null },
+  };
 }
 
 /**
@@ -47,6 +63,8 @@ async function runSession(opts) {
   let sectionIndex = startSectionIndex;
   const history = [];
   const sectionHistories = new Map();
+  // H-005: citation notes are numbered through the whole session, as in the interface.
+  const noteCounter = { n: 0 };
   const sectionSummaries = new Map();
   // Mirrors app.js's contributionHistory: only actual reader contributions
   // ('message' turns), scoped per section — never continuation turns, since
@@ -56,6 +74,7 @@ async function runSession(opts) {
   const sectionContributions = new Map();
   const completedSections = new Set();
   const shownImages = new Set();
+  const shownMedia = new Set();
   const presentedFundEntriesBySection = new Map();
   const editorialVersionIdsBySection = new Map();
   const visibleTranscript = [];
@@ -129,6 +148,7 @@ async function runSession(opts) {
   function buildVisibleContext() {
     return {
       workTitle: textEntry.displayTitle,
+      voiceLabel: textEntry.voiceLabel || null,
       tableOfContents: sections.map((s) => ({ number: s.number, title: s.title })),
       currentSection: { number: currentSection().number, title: currentSection().title },
       transcript: visibleTranscript.slice(),
@@ -168,7 +188,7 @@ async function runSession(opts) {
           message: action.message,
           history: edition === 'original' ? history : [],
           sectionIndex,
-          shownImages: Array.from(shownImages),
+          shownImages: Array.from(shownImages), shownMedia: Array.from(shownMedia),
           textId: textEntry.id,
           edition,
           ...versionedReadingState(),
@@ -177,10 +197,12 @@ async function runSession(opts) {
         const responseText = data.response || '';
         recordHistoryTurn(action.message, responseText, true);
         extractImageIds(responseText).forEach((id) => shownImages.add(id));
+        Object.keys(data.media || {}).forEach((id) => shownMedia.add(id));
         turnRecord.readerMessage = action.message;
         // Record and display what the reader actually saw, not the server's raw
         // [[IMAGE:id]] token — that's an internal rendering instruction, never prose.
-        turnRecord.guideResponse = stripImageTokens(responseText);
+        turnRecord.guideResponse = renderWithNotes(stripImageTokens(responseText), data.notes, noteCounter);
+        recordRevision(data, turnRecord);
         visibleTranscript.push({ type: 'guide', text: turnRecord.guideResponse });
       } else if (action.action === 'continue') {
         let advanced = false;
@@ -206,7 +228,7 @@ async function runSession(opts) {
             message: '',
             history: edition === 'original' ? history : [],
             sectionIndex,
-            shownImages: Array.from(shownImages),
+            shownImages: Array.from(shownImages), shownMedia: Array.from(shownMedia),
             textId: textEntry.id,
             edition,
             action: 'continue',
@@ -222,7 +244,9 @@ async function runSession(opts) {
             const responseText = data.response;
             recordHistoryTurn('Continue reading from where we have reached in this section.', responseText);
             extractImageIds(responseText).forEach((id) => shownImages.add(id));
-            turnRecord.guideResponse = stripImageTokens(responseText);
+        Object.keys(data.media || {}).forEach((id) => shownMedia.add(id));
+            turnRecord.guideResponse = renderWithNotes(stripImageTokens(responseText), data.notes, noteCounter);
+            recordRevision(data, turnRecord);
             visibleTranscript.push({ type: 'guide', text: turnRecord.guideResponse });
             break;
           }

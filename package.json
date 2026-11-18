@@ -10,13 +10,17 @@
     "editorial-propose": "node --env-file-if-exists=.env.local editorial/propose-session.js",
     "synthetic-reader": "node --env-file-if-exists=.env.local synthetic-reader/cli.js",
     "synthetic-reader-evolve": "node --env-file-if-exists=.env.local synthetic-reader/evolve-cli.js",
-    "test": "node --test synthetic-reader/test/*.test.js editorial/test/*.test.js"
+    "test": "node --test synthetic-reader/test/*.test.js editorial/test/*.test.js scripts/test/*.test.js",
+    "check-models": "node --env-file-if-exists=.env.local scripts/check-models.js",
+    "evolved": "node --env-file-if-exists=.env.local scripts/evolved.js",
+    "media": "node scripts/media.js",
+    "reading-report": "node scripts/reading-report.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
     "@upstash/redis": "^1.38.0",
     "openai": "^5.23.2",
-    "vercel": "^59.11.7"
+    "vercel": "^65.16.0"
   },
   "devDependencies": {
     "ajv": "^8.6.3"

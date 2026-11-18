@@ -64,11 +64,12 @@ test('all editorial work manifests match the current text configs', () => {
   const discovered = discoverWorks(contentRoot);
   assert.deepEqual(discovered.map(({ work }) => work.id).sort(), [
     'blood-on-the-wall',
+    'digital-plenitude',
     'plenitude',
     'remediation',
     'uncanny',
   ]);
-  assert.deepEqual(discovered.map(({ work }) => work.order), [1, 2, 3, 4]);
+  assert.deepEqual(discovered.map(({ work }) => work.order), [1, 2, 3, 4, 5]);
 
   for (const { work } of discovered) {
     const config = require(path.join(root, work.id, 'config.js'));
@@ -195,8 +196,11 @@ test('buildAll writes a portable editor index and validated section snapshot', (
   const outputRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'intertext-editorial-'));
   try {
     const index = buildAll({ contentRoot, outputRoot });
-    assert.equal(index.works.length, 4);
-    assert.equal(index.works.flatMap(work => work.sections).length, 23);
+    assert.equal(index.works.length, 5);
+    assert.equal(index.works.flatMap(work => work.sections).length, 72); // H-014: chapter 2 adds 8; H-015: chapter 3 adds 3; chapter 4 adds 5; chapter 5 adds 6; chapters 6 to 9 add 20
+    const proofs = index.works.find(work => work.id === 'digital-plenitude');
+    assert.ok(proofs.sections.every(section => section.readiness === 'packaged'));
+    assert.ok(proofs.sections.every(section => section.fundCounts.accepted === 0 && section.fundCounts.candidate === 0));
     const plenitude = index.works.find(work => work.id === 'plenitude');
     assert.ok(plenitude.sections.every(section => section.readiness === 'packaged'));
     const uncanny = index.works.find(work => work.id === 'uncanny');
@@ -219,14 +223,10 @@ test('buildAll writes a portable editor index and validated section snapshot', (
   }
 });
 
-test('reader home page orders Plenitude, Uncanny, then Remediation and hides Blood on the Wall', () => {
+test('reader home page offers only The Digital Plenitude for now (Jay, 2026-11-02)', () => {
   const homepage = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
-  const plenitude = homepage.indexOf('href="plenitude/public/index.html"');
-  const uncanny = homepage.indexOf('href="uncanny/public/index.html"');
-  const remediation = homepage.indexOf('href="remediation/public/index.html"');
-  const blood = homepage.indexOf('href="blood-on-the-wall/public/index.html"');
-  assert.ok(plenitude >= 0 && plenitude < uncanny && uncanny < remediation);
-  assert.equal(blood, -1);
+  const cards = [...homepage.matchAll(/<a class="card" href="([^"]+)"/g)].map(m => m[1]);
+  assert.deepEqual(cards, ['digital-plenitude/public/index.html']);
 });
 
 test('public readers carry compact cross-section memory and restore per-section history', () => {
@@ -278,4 +278,94 @@ test('author editor is generic, loads the generated index, and exposes versioned
 test('unauthenticated editorial workspace is excluded from Vercel deployments', () => {
   const vercelIgnore = fs.readFileSync(path.join(root, '.vercelignore'), 'utf8');
   assert.match(vercelIgnore, /^editorial\/$/m);
+});
+
+test('Vercel functions include the generated editorial runtime seed', () => {
+  const vercelConfig = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8'));
+  assert.equal(vercelConfig.functions['api/chat.js'].includeFiles, 'api/editorial-seed/**');
+  assert.equal(vercelConfig.functions['api/evolve.js'].includeFiles, 'api/editorial-seed/**');
+});
+
+test('digital-plenitude: the introductions the page shows match the ones the model is told about', () => {
+  // H-006: the boxes live in app.js (what the reader sees) and in config.js (what the model is told
+  // the reader saw). They must say the same thing.
+  const config = require(path.join(root, 'digital-plenitude', 'config.js'));
+  const app = fs.readFileSync(path.join(root, 'digital-plenitude', 'public', 'app.js'), 'utf8');
+  const block = app.slice(app.indexOf('const SECTION_INTROS = ['), app.indexOf('];', app.indexOf('const SECTION_INTROS = [')));
+  const shown = [...block.matchAll(/`([\s\S]*?)`/g)].map(m => m[1]);
+  const plain = s => s
+    .replace(/<[^>]+>/g, '')
+    .replace(/&mdash;/g, '—').replace(/&rsquo;/g, '’').replace(/&lsquo;/g, '‘')
+    .replace(/&ldquo;/g, '“').replace(/&rdquo;/g, '”').replace(/&amp;/g, '&')
+    .replace(/[’‘]/g, "'").replace(/[“”]/g, '"')
+    .replace(/\s+/g, ' ').trim();
+  assert.equal(shown.length, config.sectionIntros.length);
+  shown.forEach((html, i) => assert.equal(plain(html), plain(config.sectionIntros[i]), `section ${i + 1} introduction`));
+});
+
+test('digital-plenitude: the chapters the page shows match config.chapters (H-014)', () => {
+  const config = require(path.join(root, 'digital-plenitude', 'config.js'));
+  const app = fs.readFileSync(path.join(root, 'digital-plenitude', 'public', 'app.js'), 'utf8');
+  const block = app.slice(app.indexOf('const CHAPTERS = ['), app.indexOf('];', app.indexOf('const CHAPTERS = [')) + 2);
+  const shown = new Function(`${block}; return CHAPTERS;`)();
+  assert.deepEqual(shown, config.chapters.map(({ number, title, firstSection, label }) => (label ? { number, title, firstSection, label } : { number, title, firstSection })));
+  assert.equal(config.chapters[0].firstSection, 0);
+  assert.ok(config.chapters.every(ch => typeof ch.point === 'string' && ch.point.trim()));
+  assert.equal(config.sectionPoints.length, config.sectionNames.length);
+  const numerals = new Function(`${app.slice(app.indexOf('const SECTION_NUMERALS = ['), app.indexOf('];', app.indexOf('const SECTION_NUMERALS = [')) + 2)}; return SECTION_NUMERALS;`)();
+  assert.equal(numerals.length, config.sectionNames.length);
+  assert.equal(numerals[config.chapters[1].firstSection], 'I');
+});
+
+test('digital-plenitude chapter 2: the original edition keeps the proofs; the spine carries the corrections (H-014)', () => {
+  const read = n => fs.readFileSync(path.join(root, 'digital-plenitude', 'source_texts', 'sections', `section-${n}.md`), 'utf8');
+  const spine = id => fs.readFileSync(path.join(contentRoot, 'digital-plenitude', 'sections', id, 'spine.md'), 'utf8');
+  assert.match(read(13), /Jony Ives/);
+  assert.doesNotMatch(spine('steve-jobs'), /Ives/);
+  assert.match(spine('steve-jobs'), /Jony Ive,/);
+  assert.match(read(14), /Alan Newell/);
+  assert.match(spine('future-as-kitsch'), /Allen Newell[\s\S]*C-3PO[\s\S]*Levandowski/);
+  assert.match(spine('lennon-ono-political-modernists'), /after he met Ono were nonsongs/);
+  assert.match(spine('forgetting-popular-modernism'), /Fredric Jameson/);
+  for (let n = 8; n <= 49; n += 1) assert.doesNotMatch(read(n), /⟦|\[\^|\u0001/);
+  // H-015: chapter 3.
+  assert.match(read(17), /Jay-Z claims/);
+  assert.match(spine('rise-of-popular-modernism'), /JAY-Z claims/);
+  assert.match(spine('describing-the-plenitude'), /even in the United States/);
+  assert.match(read(18), /\[Figure 3\.1, not shown: Some dichotomies[^\]]*catharsis \/ flow/);
+  // Chapter 4: the original keeps the proofs; the spine has Jay's corrections (2026-11-09).
+  assert.match(read(19), /Edward R\. Morrow/);
+  assert.match(spine('catharsis'), /Edward R\. Murrow/);
+  assert.match(spine('fragmented-stories'), /in particular Jordan Weisman and Elan Lee/);
+  assert.match(spine('catharsis-in-video-games'), /from Boston to Salt Lake City/);
+  assert.match(spine('catharsis-in-video-games'), /seventeen-year-old sister Samantha/);
+  assert.match(spine('cinema-of-immersion'), /collaborated with the \*Times\* on \*The Displaced\*/);
+  assert.match(read(21), /Collaborating with the \*Times\*/);
+  // Chapter 5: no untitled opening; several figures in a section; Jay's diagrams shown.
+  assert.match(read(24), /^## From Catharsis to Flow\n/);
+  assert.match(spine('games-and-flow'), /women over eighteen make up 31 percent/);
+  assert.match(read(25), /31 percent of all gamers are women/);
+  assert.match(read(28), /\[Figure 5\.2: Flow and catharsis:/);
+  assert.match(read(29), /\[Figure 5\.3, not shown:[^\n]*\]\n\n[^\n]*\n\n\[Figure 5\.4, not shown:/);
+  assert.match(read(29), /horror\.\n\n\[Figure 5\.5: Three aesthetics/);
+  assert.match(read(22), /\[Figure 4\.1, not shown: Giant Sparrow, \*What Remains of Edith Finch\* \(2015\)/);
+});
+
+test('digital-plenitude chapters 6 to 9: built, with the Conclusion headed by its label and figure 9.1 shown', () => {
+  const config = require(path.join(root, 'digital-plenitude', 'config.js'));
+  const { sectionLabelLine, mainLineStatement } = require(path.join(root, 'api', '_lib', 'text-extras.js'));
+  const read = n => fs.readFileSync(path.join(root, 'digital-plenitude', 'source_texts', 'sections', `section-${n}.md`), 'utf8');
+  assert.equal(config.sectionNames.length, 49);
+  assert.deepEqual(config.chapters.slice(5).map(ch => ch.firstSection), [29, 34, 40, 48]);
+  assert.match(read(30), /^## Remix and Originality/);
+  assert.match(read(35), /^## Datafication/);
+  assert.match(read(49), /^## Conclusion/);
+  assert.match(read(49), /\[Figure 9\.1/);
+  assert.equal(sectionLabelLine(config, 'Conclusion', 48), 'Now under discussion: Conclusion (Conclusion)');
+  assert.match(mainLineStatement(config, 48), /The Conclusion as a whole: /);
+  assert.match(mainLineStatement(config, 30), /Chapter 6, Remix and Originality, as a whole: /);
+  assert.equal(config.sectionImagePrompts[48][0].id, 'dichotomies');
+  const app = fs.readFileSync(path.join(root, 'digital-plenitude', 'public', 'app.js'), 'utf8');
+  assert.match(app, /fig-9-1-dichotomies\.png/);
+  assert.ok(fs.existsSync(path.join(root, 'digital-plenitude', 'images', 'fig-9-1-dichotomies.png')));
 });

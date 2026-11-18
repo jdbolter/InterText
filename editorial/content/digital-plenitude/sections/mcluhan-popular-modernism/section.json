@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "editionId": "digital-plenitude-proofs",
+  "versionId": "dp-mcluhan-popular-modernism-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-04T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "digital-plenitude/source_texts/sections/section-12.md"
+  },
+  "spineFile": "spine.md",
+  "fundEntries": [],
+  "changeSummary": "Structural package of the proofs' chapter 2, section 5 (McLuhan and Popular Modernism); one passage per paragraph; no initial fund entries."
+}

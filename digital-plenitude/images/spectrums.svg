@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 392" width="680" height="392" role="img" aria-labelledby="t d">
+  <title id="t">Four spectrums in contemporary media culture</title>
+  <desc id="d">Four pairs of opposed values, each the two ends of a spectrum, with the value of tradition on the left and that of the media future on the right: response, from catharsis (film) to flow (video games); making, from originality (modernism) to remix (samples); process, from the organic or spontaneous to procedurality and datafication; time, from history (once only) to simulation (replayable).</desc>
+  <style>
+    .cat { font: 600 11px 'Helvetica Neue', Helvetica, Arial, sans-serif; letter-spacing: .14em; fill: #666; }
+    .head { font: 11px 'Helvetica Neue', Helvetica, Arial, sans-serif; letter-spacing: .12em; fill: #999; }
+    .pole { font: 19px Georgia, 'Times New Roman', serif; fill: #1a1a1a; }
+    .gloss { font: italic 13px Georgia, 'Times New Roman', serif; fill: #666; }
+    .bar { stroke: #444; stroke-width: 1.3; }
+    .tick { fill: #444; }
+    .rule { stroke: #ddd; stroke-width: 1; }
+  </style>
+  <rect width="680" height="392" fill="#fafaf8"/>
+  <text class="head" x="190" y="34">TRADITION</text>
+  <text class="head" x="650" y="34" text-anchor="end">MEDIA FUTURE</text>
+  <g id="rows">
+    <!-- row helper: category at x=24, left pole ends near x=300, arrow 310..470, right pole from 480 -->
+    <g transform="translate(0,70)">
+      <text class="cat" x="24" y="6">RESPONSE</text>
+      <text class="pole" x="190" y="6">catharsis</text><text class="gloss" x="190" y="26">film</text>
+      <line class="bar" x1="320" y1="0" x2="472" y2="0"/><path class="tick" d="M314 0 l9 -5 v10z M478 0 l-9 -5 v10z"/>
+      <text class="pole" x="650" y="6" text-anchor="end">flow</text><text class="gloss" x="650" y="26" text-anchor="end">video games</text>
+    </g>
+    <line class="rule" x1="24" y1="118" x2="656" y2="118"/>
+    <g transform="translate(0,160)">
+      <text class="cat" x="24" y="6">MAKING</text>
+      <text class="pole" x="190" y="6">originality</text><text class="gloss" x="190" y="26">modernism</text>
+      <line class="bar" x1="320" y1="0" x2="472" y2="0"/><path class="tick" d="M314 0 l9 -5 v10z M478 0 l-9 -5 v10z"/>
+      <text class="pole" x="650" y="6" text-anchor="end">remix</text><text class="gloss" x="650" y="26" text-anchor="end">samples</text>
+    </g>
+    <line class="rule" x1="24" y1="208" x2="656" y2="208"/>
+    <g transform="translate(0,250)">
+      <text class="cat" x="24" y="6">PROCESS</text>
+      <text class="pole" x="190" y="-4">organic /</text><text class="pole" x="190" y="18">spontaneous</text>
+      <line class="bar" x1="320" y1="0" x2="472" y2="0"/><path class="tick" d="M314 0 l9 -5 v10z M478 0 l-9 -5 v10z"/>
+      <text class="pole" x="650" y="-4" text-anchor="end">procedurality /</text><text class="pole" x="650" y="18" text-anchor="end">datafication</text>
+    </g>
+    <line class="rule" x1="24" y1="298" x2="656" y2="298"/>
+    <g transform="translate(0,340)">
+      <text class="cat" x="24" y="6">TIME</text>
+      <text class="pole" x="190" y="6">history</text><text class="gloss" x="190" y="26">once only</text>
+      <line class="bar" x1="320" y1="0" x2="472" y2="0"/><path class="tick" d="M314 0 l9 -5 v10z M478 0 l-9 -5 v10z"/>
+      <text class="pole" x="650" y="6" text-anchor="end">simulation</text><text class="gloss" x="650" y="26" text-anchor="end">replayable</text>
+    </g>
+  </g>
+</svg>

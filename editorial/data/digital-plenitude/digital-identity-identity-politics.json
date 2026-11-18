@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "workId": "digital-plenitude",
+  "sectionId": "digital-identity-identity-politics",
+  "sectionOrder": 45,
+  "title": "Digital Identity and Identity Politics",
+  "editionId": "digital-plenitude-proofs",
+  "versionId": "dp-digital-identity-identity-politics-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-11T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "digital-plenitude/source_texts/sections/section-45.md"
+  },
+  "spine": [
+    {
+      "id": "digital-identity-identity-politics-p01",
+      "markdown": "Trump’s unexpected success in the 2016 election suggests that Twitter can be a forum for a new kind of politics. This media celebrity has shown how the presentation of self and politics can merge in digital media as easily as on television, which has dominated American politics for decades. Trump has perfected a form of identity politics different in important ways from what the left thinks of as identity politics. For the left, identity politics is a variation on traditional politics. It is based on a particular reading of history—notably the history of race and gender and the ways in which women or people of color have been systematically oppressed or marginalized. This politics of identity is a collection of stories of tragedy or injustice with an expected future of triumph. It is highly cathartic, demanding that we find our place in that collection. A more nuanced version of identity politics is provided by the idea of intersectionality (Crenshaw 1991). Individuals may be more aptly identified through the intersection of race, gender, and other categories: women of color face forms of discrimination different from those of black men and white women; disabled black men face different obstacles than disabled whites and able-bodied blacks. Thus, the stories of any individual may be a shifting interplay of different classifications, different identities, although they are still ultimately stories of the struggle for social justice."
+    },
+    {
+      "id": "digital-identity-identity-politics-p02",
+      "markdown": "Trump’s identity politics is quite different. His is not the alt-right’s narrative, which is in fact an inversion of the crudest form of the left’s identity politics. The alt-right simply (and implausibly) flips the roles, so that in their story white males are being marginalized and must reassert their position as the champions of Western culture. This story is relatively coherent and can be quite elaborate, as it updates fascist narratives of the first half of the twentieth century. It can spin out a reading of the whole history of the West as one of encounters with other (inferior) cultures and races in order to define white, Western (and ultimately American) identity. The white-nationalist site www.stormfront.org, for example, employs conventions of more benign social networking sites (forums, FAQs, calendars, links to other nationalist sites) to build and sustain a community around a narrative of white identity (Statzel 2008). In fact, it is not just fascists in the twentieth century or the alt-right today who have practiced white identity politics; it has been a thread of mainstream American politics for many decades (Lopez 2017). But the current radical version has certainly been emboldened by Trump’s populist victory."
+    },
+    {
+      "id": "digital-identity-identity-politics-p03",
+      "markdown": "In an important sense, however, Trump’s own identity politics does not center explicitly on race or history, but rather on the individual, and indeed one individual, himself. He is not only the Twitter president, but the Facebook president (his page has over twenty-four million total likes), showing by his own example how a political persona (the decisive businessman who is at the same time champion of the working class) can be generated out of the same process of self-definition that has made Facebook so popular for two billion individuals. Trump has succeeded in uniting the personal and political dimensions of social media in himself. In this respect, of course, Trump is simply following the lead of autocrats and demagogues throughout history. On a humbler scale, American media figures (such as talk radio hosts Rush Limbaugh and Sean Hannity) have been uniting the personal and political for decades. Trump has transferred the formula from radio and cable television to Twitter. In doing so, he has made apparent what was perhaps always latent in social media. For any user of Facebook and Twitter, social, political, and personal identity can easily merge. All these forms of identity in social media are composed of potential fragments, texts and images, likes and often strong dislikes."
+    },
+    {
+      "id": "digital-identity-identity-politics-p04",
+      "markdown": "The ways in which social media such as Facebook, together with search engines such as Google, define their users’ online identities and target them accordingly have facilitated Trump’s task. These services did not develop targeting techniques for political purposes but for advertising. Facebook, Google, and other digital services, after all, exist to make money, and user profiles enable them to direct ads to groups of users most likely to buy something. Users themselves initiate these profiles: the profile is essential to the procedural identity that each user creates, for example, for her Facebook account. Algorithms that track users’ online activities vastly expand and enhance the profiles. How well these techniques work may be open for debate, but it is clear that the business community is willing to pay to have their ads delivered to target groups, contributing to the vast wealth of Facebook and Google."
+    },
+    {
+      "id": "digital-identity-identity-politics-p05",
+      "markdown": "Digital profiling and targeting are not only about money, however. They are also an important expression of the proceduralization of culture (discussed in chapter 7) in which hundreds of millions of users now willingly participate. They are the techniques that have evolved for participating in the media plenitude. Users clearly need and want ways to navigate and manage all the available material. They want filters—both ones that they establish themselves and ones that algorithms provide for them. The filters include the websites they choose to visit, the social media platforms they join, the people they connect to on these services, and obviously, the voluntary digital filters, such as email spam filters. All such choices help to define the communities they belong to. The algorithmic filters function surreptitiously to reinforce and modify these choices. All these techniques, but particularly the surreptitious ones, have led to concern about filter bubbles."
+    },
+    {
+      "id": "digital-identity-identity-politics-p06",
+      "markdown": "Media critic Eli Pariser articulated this concern several years ago in a TED talk (2011a) and subsequent book in 2011 (2011b). Pariser was troubled specifically by information coming from Facebook’s newsfeed and Google searches, tailored to user profiles. He realized, for example, that Facebook was editing out all the posts from conservative friends, making his newsfeed into a liberal filter bubble. During and after the 2016 election, Facebook faced growing criticism for the naive ways in which it treated the political dimension of its service, failing to understand how many of its users were getting their news solely or predominantly from this social media site (Thompson and Vogelstein 2018). *Wall Street Journal* reporter Jon Keegan demonstrated how radically filtered Facebook’s newsfeed could become in a web page entitled “Blue Feed, Red Feed” (Fowler and Keegan 2016). With literal buttons for each of a number of “hot button” topics such as abortion and guns, the page shows in two columns how users could inhabit completely different political worlds. As of 2018, the site was still active, documenting a flow of political stories that are always changing and always the same (figure 8.2)."
+    },
+    {
+      "id": "digital-identity-identity-politics-p07",
+      "markdown": "[Figure 8.2, not shown: “Blue Feed Red Feed”: A site that illustrates the polarization of American political life (http://graphics.wsj.com/blue-feed-red-feed/#/guns).]"
+    },
+    {
+      "id": "digital-identity-identity-politics-p08",
+      "markdown": "Zuckerberg and his team thought of their algorithms as facilitating the perfect flow of information that his Facebook users would want. To them, it made perfect sense that your online profile should define both the communities you aspire to belong to and the information that would sustain your participation in those communities. They did not realize that this mechanism was perfectly suited to the politics of flow, in which some of these siloed communities would receive a diet of conspiracy theories and misinformation. But if they were naive, it would be equally naive to assume that their digital technologies brought about the siloing of American political life. Even before the rise of the Internet, America was never a perfect public sphere in which various points of view were debated in newspapers, radio, and television. We have to acknowledge that people were always choosing among various information channels. In the heyday of newspapers in the nineteenth century and first half of the twentieth century, there were several papers available, at least in the large cities, and each paper might favor the outlook of a political party or meet the needs of different economic classes. Digital media today intensify and encourage a trend toward separate information communities that has always existed."
+    },
+    {
+      "id": "digital-identity-identity-politics-p09",
+      "markdown": "Our media plenitude is vastly larger and more ramified than in the era of newspapers and earlier electric media. Its size and complexity make the need for filtering more important, as does the way in which digital identity is being used to define communities. In this environment, identity can always be mobilized for a kind of identity politics by the Trump political organization, by Russian hackers, and by many other groups with political agendas. The seeming apolitical acts of filling out your Facebook profile, visiting a website, or making online purchases can engage you in the new politics of flow."
+    }
+  ],
+  "fundEntries": [],
+  "changeSummary": "Structural package of the proofs' chapter 8, section 5 (Digital Identity and Identity Politics); one passage per paragraph; no initial fund entries."
+}

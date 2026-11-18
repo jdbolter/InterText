@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "workId": "digital-plenitude",
+  "sectionId": "popular-avant-garde",
+  "sectionOrder": 29,
+  "title": "The Popular Avant-Garde",
+  "editionId": "digital-plenitude-proofs",
+  "versionId": "dp-popular-avant-garde-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-11T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "digital-plenitude/source_texts/sections/section-29.md"
+  },
+  "spine": [
+    {
+      "id": "popular-avant-garde-p01",
+      "markdown": "The world of video games is vast, a plenitude in itself, and it even includes applications that violate the most basic rules of gameplay, including flow. In 2002, Cory Arcangel hacked *Super Mario Bros.*, one of the most successful series of platform games originally designed for the Nintendo game console, to produce *Super Mario Clouds.* In the original game, the player manipulates the diminutive Mario so that he hops over obstacles from surface to surface collecting coins along the way. Arcangel’s hack removed almost all the graphics. All that remained was a background consisting of a few white clouds rolling across the blue sky. The flow of the original game was completely disrupted, because there was nothing left to engage the player (figure 5.3)."
+    },
+    {
+      "id": "popular-avant-garde-p02",
+      "markdown": "[Figure 5.3, not shown: Cory Arcangel, *Super Mario Clouds* (2002–ongoing). Handmade hacked Super Mario Bros. Cartridge, Nintendo NES video game system. Screenshot. © Cory Arcangel.]"
+    },
+    {
+      "id": "popular-avant-garde-p03",
+      "markdown": "For many, perhaps most, in the mainstream game community, *Super Mario Clouds* was not a video game at all. In *Avant-garde Videogames*, however, Brian Schrank (2014) described numerous examples of games that, like *Super Mario Clouds*, violate the expectations of the player. *Untitled Game*, created by a pair of internet artists under the collective name of JODI, is a series of mods (modifications) of the *Quake* game engine (Schrank 2014, 53). The original *Quake* (1996) was a classic fully 3-D, first-person shooter, and JODI’s mods deconstruct the flow of the original. One mod, for example, transforms *Quake*’s graphics into what look like the snow and distorted patterns on a black-and-white television screen (figure 5.4)."
+    },
+    {
+      "id": "popular-avant-garde-p04",
+      "markdown": "[Figure 5.4, not shown: JODI, *Untitled Game*, screenshot. Reprinted with permission.]"
+    },
+    {
+      "id": "popular-avant-garde-p05",
+      "markdown": "Jeff Minter’s *Space Giraffe* (2007) is almost impossible to play because the player is overwhelmed by extraneous graphics, which Schrank (2014) describes as “fire flowers and ‘sparkling grunts’” (50), to the point that the player cannot achieve any of the ostensible goals. Some video games, such as Adam Cadre’s “text adventure” *Photopia* (1998), present stunted or disrupted stories that do not obey cause and effect (Schrank 2014, 179). Jason Rohrer’s *Passage* (2007) works the opposite kind of disruption: “The player can walk any path in *Passage*, but she will always die in five minutes, in a gentle, morose irony” (Schrank 2014, 193)."
+    },
+    {
+      "id": "popular-avant-garde-p06",
+      "markdown": "Schrank’s point is that there are video game designers today who are extending the work of the modernist avant-garde of the twentieth century. We can add that their ambiguous position in relation to the world of video games today resembles that of avant-garde artists in the twentieth-century world of art. They constitute a minority, and many in the mainstream game community (those who work in studios like Electronic Arts and produce games for millions of players) deny that this avant-garde is making games at all. Sometimes these game-like artifacts are exhibited in galleries, and their creators want to be accepted by the art community. They may or may not succeed, by the way. The art world is still skeptical of digital art in general and certainly digital art deriving from the popular medium of games. However, MoMA has a video game collection in Applied Design, and the game designer Porpentine has had her game *With Those We Love Alive* on display at the Whitney Biennial 2017. Some makers of “art games” want to maintain their position within the games community. Jason Rohrer sees himself as a game designer who is also an artist, not as an artist who makes games. A *New York Times* article entitled “An Exhibition That Proves Video Games Can Be Art” notes that Rohrer became the first video game creator to have a solo show at a significant museum (Reese 2016). In any case, the video games that Schrank describes have different effects on their audience than mainstream games do. They do not conduct the player into the flow zone between anxiety and boredom, nor do they allow the player to lose herself in a storyworld. Instead, as Schrank put it, they move the player to ask herself what a video game is and what it means to play one. Such games suggest that we need to consider the experience of “reflection” as a third term along with catharsis and flow. Ironically, and this too was Schrank’s point, video games that are reflective share this goal with the elite art of the twentieth century."
+    },
+    {
+      "id": "popular-avant-garde-p07",
+      "markdown": "In the twentieth century, both flow and catharsis were generally associated with popular entertainment, not art. The aesthetics of catharsis and flow are different approaches to seizing and holding the viewer’s attention. Csikszentmihalyi regarded complete engagement as the definition of a true flow experience, and even the low-intensity flow experiences offered by social media or channel surfing are exercises in the economy of attention. Catharsis too is engagement—for example, when a filmgoer is absorbed in following out the fate of the main character with whom she identifies. We recognize the aesthetics of immersion in popular film, television, and fiction: the movie that the audience does not want to end (but it must end), the page-turner that the reader cannot put down, and the addictive television series. Immersion in compelling narrative forms has been a characteristic of popular twentieth-century forms, and for that very reason it was generally rejected by experimental and elite art throughout the twentieth century."
+    },
+    {
+      "id": "popular-avant-garde-p08",
+      "markdown": "We can take this as one definition of “modern art” in the twentieth century: that it rejects transparency and the immersion of the viewer in a storyworld. Avant-garde painting rejected immersion and in some cases representation itself. Early in the twentieth century, most of the important artists and styles (Cubism, Futurism, Surrealism, and so on) were already deconstructing the illusion of three-dimensional space. By the midcentury, Abstract Expressionists such as Pollock and Rothko were offering canvasses in which there were no recognizable figures or representations at all. This was art, Clement Greenberg (1960) stated in “Modernist Painting,” that “call[s] attention to art.” Elite literature was inventing ways of telling stories that were reflective and called attention to their own medium—Joyce’s *Ulysses* and *Finnegans Wake*, for example. We have already mentioned how Bertolt Brecht rejected what he called the popular theater of his day, which aimed at catharsis. Almost all experimental theater of the twentieth century followed Brecht in this rejection. It was the same with avant-garde filmmakers, from Buñuel and Man Ray in the 1920s to Stan Brakhage and Hollis Frampton at midcentury. Throughout the period, elite art was supposed to call on the viewer to be reflective rather than fall into the play’s, story’s, or painting’s immersive embrace."
+    },
+    {
+      "id": "popular-avant-garde-p09",
+      "markdown": "In the era of high modernism, reflective art was understood in opposition to the aesthetics and politics of mainstream culture. For Greenberg (1939) a work was either avant-garde or kitsch, which in practice meant that serious art was difficult and appealed to an elite, while popular entertainment appealed to the masses because it was easily understood and sentimental. But in today’s media culture, these oppositions make little sense. Immersion remains a goal of many Hollywood films and television dramas, but other films and television series are also reflective: they call attention to themselves as part of a genre (noir, romance, horror) or as part of our complex media culture. This is especially true of comedies. Live-action or even animated comedies are often filled with references to earlier films, to television, to pop music, or to political or celebrity figures. There is nothing elitist about Pixar’s wildly successful animated films from *Toy Story* (1995) to the present. They manage to appeal to adults with sophisticated allusions, while providing young children with immersive experiences. The *Scary Movie* series, which began in 2000 and has grossed close to a billion dollars, began as a parody of other horror franchises, such as *Scream* and *I Know What You Did Last Summer*. In the series (up to *Scary Movie 5* by 2013), the network of references grew to encompass more and more films and pop-cultural phenomena and celebrities, including of course earlier films in the franchise. The practice of remix in hip-hop music, discussed in chapter 6, is reflective while at the same time providing a flow experience: listeners who are familiar with hip-hop music can recognize the various quoted tracks that are put together in a new whole always supported by the relentless rhythms that make the music flow. Music videos are another popular modernist form, because they often borrow film techniques that were once regarded as avant-garde. Such videos are reflective for their enormously large community today in the same way Man Ray’s films were for his tiny avant-garde community in the 1920s."
+    },
+    {
+      "id": "popular-avant-garde-p10",
+      "markdown": "In all these cases, the avant-garde experience of reflection has become popular entertainment. For the makers of these popular films and music remixes—and unlike the elite modernists of the past—aesthetic purity means little. They are popular modernists, not modernists. Hip-hop music flows. The *Toy Story* films are filled with in-jokes and references to earlier film and television genres, and yet they remain sentimental “buddy films” about the relationships among the personified toys. Even the *Scary Movie* films can sometimes achieve a passing cathartic thrill of horror."
+    },
+    {
+      "id": "popular-avant-garde-p11",
+      "markdown": "[Figure 5.5: Three aesthetics: Flow, catharsis, and reflection: reflection; Un Chien Andalou; Ulysses / Untitled-Game; Super Mario Clouds; Mother Courage; Passage; Scary Movie; Toy Story; Lost; The Matrix / Music for; Airports; Edith Finch; Bejeweled; Titanic / Casablanca; catharsis / flow.]"
+    },
+    {
+      "id": "popular-avant-garde-p12",
+      "markdown": "To visualize this aspect of our media culture, we need to add a second dimension to the diagram and make a triangle, with flow, catharsis, and reflection as aesthetic ideals at the vertices (figure 5.5). In the digital plenitude today, almost any point in the interior of the triangle is occupied by some media form. Our current media culture creates hybrids easily and eagerly. The flourishing space in the interior of the triangle offers little evidence that the aesthetics of either catharsis or reflection will disappear. The only thing that is disappearing is the clear division between elite and popular forms."
+    },
+    {
+      "id": "popular-avant-garde-p13",
+      "markdown": "Once again, the dichotomy of flow and catharsis is not adequate to describe our media plenitude. It is a starting point, a preliminary sorting of the complex creativity of millions of media producers and consumers. The dichotomy becomes a spectrum, and the spectrum opens into a second dimension when we add reflection as a third pole. The dichotomies in the following chapters open up to become spectra in a similar way."
+    }
+  ],
+  "fundEntries": [],
+  "changeSummary": "Structural package of the proofs' chapter 5, section 6 (The Popular Avant-Garde); one passage per paragraph; no initial fund entries. Jay's corrections of 2026-11-11 applied to the spine (the original edition keeps the proofs): \"*Finnegan’s Wake*\"; \"a preliminary of sorting through\"; \"(Cubism, Abstract Expressionism, Surrealism, and so on)\"."
+}

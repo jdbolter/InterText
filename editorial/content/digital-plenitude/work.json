@@ -1,0 +1,302 @@
+{
+  "schemaVersion": 1,
+  "id": "digital-plenitude",
+  "title": "The Digital Plenitude (proofs edition)",
+  "order": 5,
+  "sections": [
+    {
+      "id": "great-divide",
+      "title": "The Great Divide",
+      "order": 1,
+      "package": "sections/great-divide/section.json"
+    },
+    {
+      "id": "philadelphia-orchestra-story",
+      "title": "The Philadelphia (Orchestra) Story",
+      "order": 2,
+      "package": "sections/philadelphia-orchestra-story/section.json"
+    },
+    {
+      "id": "class-in-america",
+      "title": "Class in America",
+      "order": 3,
+      "package": "sections/class-in-america/section.json"
+    },
+    {
+      "id": "case-of-music",
+      "title": "The Case of Music",
+      "order": 4,
+      "package": "sections/case-of-music/section.json"
+    },
+    {
+      "id": "shocking-art",
+      "title": "Shocking Art",
+      "order": 5,
+      "package": "sections/shocking-art/section.json"
+    },
+    {
+      "id": "art-as-special-interest",
+      "title": "Art as a Special Interest",
+      "order": 6,
+      "package": "sections/art-as-special-interest/section.json"
+    },
+    {
+      "id": "communities-and-creativity",
+      "title": "Communities and Creativity",
+      "order": 7,
+      "package": "sections/communities-and-creativity/section.json"
+    },
+    {
+      "id": "popular-modernism",
+      "title": "Popular Modernism",
+      "order": 8,
+      "package": "sections/popular-modernism/section.json"
+    },
+    {
+      "id": "formal-progressive-avant-garde",
+      "title": "Popular Modernism: Formal, Progressive and Avant-Garde",
+      "order": 9,
+      "package": "sections/formal-progressive-avant-garde/section.json"
+    },
+    {
+      "id": "popular-music-formal-modernism",
+      "title": "Popular Music and Formal Modernism",
+      "order": 10,
+      "package": "sections/popular-music-formal-modernism/section.json"
+    },
+    {
+      "id": "lennon-ono-political-modernists",
+      "title": "John Lennon and Yoko Ono as Political Modernists",
+      "order": 11,
+      "package": "sections/lennon-ono-political-modernists/section.json"
+    },
+    {
+      "id": "mcluhan-popular-modernism",
+      "title": "McLuhan and Popular Modernism",
+      "order": 12,
+      "package": "sections/mcluhan-popular-modernism/section.json"
+    },
+    {
+      "id": "steve-jobs",
+      "title": "Steve Jobs",
+      "order": 13,
+      "package": "sections/steve-jobs/section.json"
+    },
+    {
+      "id": "future-as-kitsch",
+      "title": "The Future as Popular Modernist Kitsch",
+      "order": 14,
+      "package": "sections/future-as-kitsch/section.json"
+    },
+    {
+      "id": "forgetting-popular-modernism",
+      "title": "Forgetting (Popular) Modernism",
+      "order": 15,
+      "package": "sections/forgetting-popular-modernism/section.json"
+    },
+    {
+      "id": "dichotomies",
+      "title": "Dichotomies",
+      "order": 16,
+      "package": "sections/dichotomies/section.json"
+    },
+    {
+      "id": "rise-of-popular-modernism",
+      "title": "The Rise of Popular Modernism",
+      "order": 17,
+      "package": "sections/rise-of-popular-modernism/section.json"
+    },
+    {
+      "id": "describing-the-plenitude",
+      "title": "Describing the Plenitude",
+      "order": 18,
+      "package": "sections/describing-the-plenitude/section.json"
+    },
+    {
+      "id": "catharsis",
+      "title": "Catharsis",
+      "order": 19,
+      "package": "sections/catharsis/section.json"
+    },
+    {
+      "id": "fragmented-stories",
+      "title": "Fragmented Stories",
+      "order": 20,
+      "package": "sections/fragmented-stories/section.json"
+    },
+    {
+      "id": "cinema-of-immersion",
+      "title": "The Cinema of Immersion",
+      "order": 21,
+      "package": "sections/cinema-of-immersion/section.json"
+    },
+    {
+      "id": "catharsis-in-video-games",
+      "title": "Catharsis in Video Games",
+      "order": 22,
+      "package": "sections/catharsis-in-video-games/section.json"
+    },
+    {
+      "id": "past-and-future-of-catharsis",
+      "title": "The Past and Future of Catharsis",
+      "order": 23,
+      "package": "sections/past-and-future-of-catharsis/section.json"
+    },
+    {
+      "id": "from-catharsis-to-flow",
+      "title": "From Catharsis to Flow",
+      "order": 24,
+      "package": "sections/from-catharsis-to-flow/section.json"
+    },
+    {
+      "id": "games-and-flow",
+      "title": "Games and Flow",
+      "order": 25,
+      "package": "sections/games-and-flow/section.json"
+    },
+    {
+      "id": "flow-culture",
+      "title": "Flow Culture",
+      "order": 26,
+      "package": "sections/flow-culture/section.json"
+    },
+    {
+      "id": "our-time-traveler",
+      "title": "Our Time Traveler",
+      "order": 27,
+      "package": "sections/our-time-traveler/section.json"
+    },
+    {
+      "id": "spectrum-of-catharsis-and-flow",
+      "title": "The Spectrum of Catharsis and Flow",
+      "order": 28,
+      "package": "sections/spectrum-of-catharsis-and-flow/section.json"
+    },
+    {
+      "id": "popular-avant-garde",
+      "title": "The Popular Avant-Garde",
+      "order": 29,
+      "package": "sections/popular-avant-garde/section.json"
+    },
+    {
+      "id": "remix-and-originality",
+      "title": "Remix and Originality",
+      "order": 30,
+      "package": "sections/remix-and-originality/section.json"
+    },
+    {
+      "id": "remix-culture",
+      "title": "Remix Culture",
+      "order": 31,
+      "package": "sections/remix-culture/section.json"
+    },
+    {
+      "id": "good-musicians-remix",
+      "title": "Good Musicians Copy; Great Musicians Remix",
+      "order": 32,
+      "package": "sections/good-musicians-remix/section.json"
+    },
+    {
+      "id": "remix-and-modernism",
+      "title": "Remix and Modernism",
+      "order": 33,
+      "package": "sections/remix-and-modernism/section.json"
+    },
+    {
+      "id": "playing-in-the-plenitude",
+      "title": "Playing in the Plenitude",
+      "order": 34,
+      "package": "sections/playing-in-the-plenitude/section.json"
+    },
+    {
+      "id": "datafication",
+      "title": "Datafication",
+      "order": 35,
+      "package": "sections/datafication/section.json"
+    },
+    {
+      "id": "procedural-and-mechanical",
+      "title": "The Procedural and the Mechanical",
+      "order": 36,
+      "package": "sections/procedural-and-mechanical/section.json"
+    },
+    {
+      "id": "video-games-procedures",
+      "title": "Video Games: Procedures to Save the World",
+      "order": 37,
+      "package": "sections/video-games-procedures/section.json"
+    },
+    {
+      "id": "history-and-simulation",
+      "title": "History and Simulation",
+      "order": 38,
+      "package": "sections/history-and-simulation/section.json"
+    },
+    {
+      "id": "strong-and-weak-narratives",
+      "title": "Strong and Weak Narratives",
+      "order": 39,
+      "package": "sections/strong-and-weak-narratives/section.json"
+    },
+    {
+      "id": "procedural-divide",
+      "title": "The Procedural Divide",
+      "order": 40,
+      "package": "sections/procedural-divide/section.json"
+    },
+    {
+      "id": "social-media-politics-of-flow",
+      "title": "Social Media and the Politics of Flow",
+      "order": 41,
+      "package": "sections/social-media-politics-of-flow/section.json"
+    },
+    {
+      "id": "not-so-new-narcissism",
+      "title": "Flow and the Not So New Narcissism",
+      "order": 42,
+      "package": "sections/not-so-new-narcissism/section.json"
+    },
+    {
+      "id": "performance-of-identity",
+      "title": "The Performance of Identity",
+      "order": 43,
+      "package": "sections/performance-of-identity/section.json"
+    },
+    {
+      "id": "social-media-weak-stories",
+      "title": "Social Media and Weak Stories",
+      "order": 44,
+      "package": "sections/social-media-weak-stories/section.json"
+    },
+    {
+      "id": "digital-identity-identity-politics",
+      "title": "Digital Identity and Identity Politics",
+      "order": 45,
+      "package": "sections/digital-identity-identity-politics/section.json"
+    },
+    {
+      "id": "social-media-collective-action",
+      "title": "Social Media and Collective Action",
+      "order": 46,
+      "package": "sections/social-media-collective-action/section.json"
+    },
+    {
+      "id": "anonymous",
+      "title": "Anonymous",
+      "order": 47,
+      "package": "sections/anonymous/section.json"
+    },
+    {
+      "id": "weak-narrative-american-politics",
+      "title": "Weak Narrative and American Politics",
+      "order": 48,
+      "package": "sections/weak-narrative-american-politics/section.json"
+    },
+    {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "order": 49,
+      "package": "sections/conclusion/section.json"
+    }
+  ]
+}

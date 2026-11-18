@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "editionId": "digital-plenitude-proofs",
+  "versionId": "dp-performance-of-identity-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-11T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "digital-plenitude/source_texts/sections/section-43.md"
+  },
+  "spineFile": "spine.md",
+  "fundEntries": [],
+  "changeSummary": "Structural package of the proofs' chapter 8, section 3 (The Performance of Identity); one passage per paragraph; no initial fund entries."
+}

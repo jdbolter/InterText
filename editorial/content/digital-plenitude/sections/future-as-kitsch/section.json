@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "editionId": "digital-plenitude-proofs",
+  "versionId": "dp-future-as-kitsch-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-04T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "digital-plenitude/source_texts/sections/section-14.md"
+  },
+  "spineFile": "spine.md",
+  "fundEntries": [],
+  "changeSummary": "Structural package of the proofs' chapter 2, section 7 (The Future as Popular Modernist Kitsch); one passage per paragraph; no initial fund entries. Jay's corrections of 2026-11-04 applied to the spine (the original edition keeps the proofs): \"the iPad creation of Jobs and Ives\"; \"*Star Trek Discovery*\"; \"Alan Newell\"; \"humanoid look of C3P0\"; \"Anthony Levandoski\"."
+}

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "editionId": "digital-plenitude-proofs",
+  "versionId": "dp-strong-and-weak-narratives-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-11T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "digital-plenitude/source_texts/sections/section-39.md"
+  },
+  "spineFile": "spine.md",
+  "fundEntries": [],
+  "changeSummary": "Structural package of the proofs' chapter 7, section 5 (Strong and Weak Narratives); one passage per paragraph; no initial fund entries."
+}

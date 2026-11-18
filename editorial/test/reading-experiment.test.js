@@ -14,7 +14,7 @@ const {
   normalizePriorSectionSummaries,
   prepareEditorialReading,
   prepareVersionedReading,
-} = require('../../api/lib/editorial-reading');
+} = require('../../api/_lib/editorial-reading');
 
 const ROOT = path.join(__dirname, '..', '..');
 

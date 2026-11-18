@@ -6,7 +6,7 @@ const path = require('path');
 const {
   ensureSectionInitialized,
   loadCurrentSection,
-} = require('../api/lib/editorial-store');
+} = require('../api/_lib/editorial-store');
 
 function parseArgs(argv) {
   const args = { command: argv[0], textId: null, section: null, out: null };

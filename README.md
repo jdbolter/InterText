@@ -1,140 +1,104 @@
 # InterText
 
-A platform for AI-mediated interactive reading experiences. Each text lives in its own folder with a config file; a shared generic API engine serves all of them.
+A platform for AI-mediated interactive reading. A reader converses with a text that speaks as the work itself: it answers questions, takes up objections, and carries the reading on at a press of Return. Each text lives in its own folder with a config file and its source sections; two generic serverless functions serve every text. A reader who contributes can shape the edition that later readers receive, through an editorial layer that keeps each section's narrative spine apart from a fund of optional material.
 
-```
-InterText/
-├── index.html          — landing page (cards linking to each text)
-├── api/
-│   ├── chat.js         — generic Vercel serverless function (config-driven by textId)
-│   └── evolve.js       — generic Vercel serverless function (config-driven by textId)
-├── editorial/          — local spine-and-fund data, schemas, build, tests, and editor
-├── CURRENT-DESIGN.md  — present design, proposed changes, and open choices
-├── INTERTEXT-DESIGN-NOTES.md — history of the design discussion
-├── EDITORIAL-ARCHITECTURE.md — editorial data model and implementation handoff
-├── package.json
-├── vercel.json
-├── uncanny/             — "The Uncanny Double" essay (textId: 'uncanny')
-├── plenitude/           — "Plenitude" essay on cultural hierarchy (textId: 'plenitude')
-├── remediation/         — chapter on immediacy, hypermediacy, and remediation (textId: 'remediation')
-└── blood-on-the-wall/   — counterfactual Cold War history (retained, hidden from landing page)
-    ├── config.js       — all text-specific content
-    └── source_texts/
-        └── sections/   — section files loaded by the API
-```
+## Quick start
 
-Model in use: `claude-sonnet-5` for the guide and editorial passes. The synthetic
-reader uses OpenAI (default `gpt-5.6-terra`) so guide and reader are separate models.
-
-## The texts
-
-- **uncanny** — conversation about an essay on the uncanny in film, literature, and digital media. Readers converse with an AI guide that reveals the argument section by section. See `uncanny/CLAUDE.md` for setup, run instructions, and the general engine architecture (KV storage, adding a text, etc.) — it's the canonical reference doc for the shared engine.
-- **plenitude** — companion essay on the collapse of cultural hierarchy and the rise of media plenitude. See `plenitude/CLAUDE.md`.
-- **remediation** — a chapter on transparent immediacy, hypermediacy, and the ways media refashion one another. See `remediation/CLAUDE.md`.
-- **blood-on-the-wall** — a counterfactual narrative history (JFK assassinated in Berlin, 1963) told by a historian who has never known any other timeline. Its files and direct reader remain intact, but it is currently omitted from the landing-page reading list. See `blood-on-the-wall/CLAUDE.md`.
-
-All four share the same conversational pattern: an AI guide voice per section, plus an opt-in "evolve" step where a reader's conversation can rewrite the section for future readers (see `api/evolve.js` and each config's `synthesisInstructions`). Before reading begins, every text offers the same three-way entry choice — contribute (read and possibly shape the evolving edition), read the current evolving edition without contributing, or read the untouched original — and the same blank-Return continuation (an empty Enter keeps reading instead of requiring a question). The first blank Return treats the boxed opening as a prologue and begins at the first section passage; later Returns use that section's conversation as the reading cursor. See `uncanny/CLAUDE.md`, "Entry Consent" and "Reading On," for how these work; they're identical across all four texts.
-
-## Synthetic reader: editorial development and testing
-
-`synthetic-reader/` is a CLI-only harness that drives the real `/api/chat` endpoint
-with an OpenAI model role-playing a reader (curious, skeptical, or collaborative),
-instead of a human. It never touches the web interface, and the reading
-command never calls `/api/evolve` — a separate `synthetic-reader-evolve` command
-can preview what a session's real contributions would do to a section, but only in
-a dry-run mode that never reads or writes the live database. See
-`synthetic-reader/README.md` for setup and usage; quick start:
-
-```bash
-npm run synthetic-reader -- --profile curious --section 1 --turns 10
-npm run synthetic-reader-evolve -- --session synthetic-reader/output/<run-folder>
-```
-
-The current priority is to use repeated synthetic readings as an **editorial
-instrument**, especially for *Plenitude*. Transcripts and private reader reflections
-can reveal where the argument becomes unclear, repetitive, unconvincing, or difficult
-to enter; where pacing or section boundaries fail; and where the relationship between
-the text and the reader needs to change. Those observations can guide manual revision
-of the authored source, section structure, introductions, and guide behavior, followed
-by another controlled round of readings. The dry-run evolution command is one way to
-explore a possible revision, not the only or necessarily preferred editorial outcome.
-
-The same harness may later help prepare and refine questions for human user testing,
-but synthetic readers are not substitutes for observing what actual readers understand,
-feel, and do. See `synthetic-reader/README.md`, "Current use: an editorial loop," and
-`INTERTEXT-DESIGN-NOTES.md`, §10.
-
-The skeptical and collaborative profiles may selectively search the public web for
-evidence and sources; the curious nonspecialist remains grounded only in what a reader
-sees and already knows. Research access is bounded and intended to test consequential
-claims, not to reward citation-heavy responses.
-
-## Editorial workspace: spine and fund
-
-The newer editorial architecture separates a section's **narrative spine** from a
-**fund** of optional clarifications, examples, qualifications, counterarguments,
-evidence, and extensions. This preserves useful material accumulated through readings
-without requiring every detail to enter the continuous essay or every reader's path.
-
-A universal local schema, validated build, and author-editing workspace are implemented
-under `editorial/`. All four works and all 23 current sections are faithfully
-packaged as stable spine passages. *Plenitude*, Section 5 is the developed example,
-with fund material accumulated through reader experiments; the other twenty-two sections
-begin with empty funds and unchanged authored prose.
-
-The guide and synthetic-reader harness can consume those packages in two
-explicit, nonpublishing experiment modes: `editorial-spine` and `editorial-fund`.
-The latter offers candidate entries selectively and records which ones the guide
-reports actually using. Neither mode reads or writes the live evolved-text database.
-The first matched collaborative pair is complete and preserved with the Section 5
-package; it used two of four candidates and showed both useful refinement and a risk
-of prolonged, repetitive qualification. A skeptical fund/spine comparison is also
-preserved; both conditions exposed the same central evidentiary weakness, while the
-spine-only reader finished sooner. Curious pairs remain.
+Requires Node.js 22 or later.
 
 ```bash
 npm install
-npm test
-npm run editorial-preview
 ```
 
-Open `http://127.0.0.1:4173`. No API keys, Vercel login, or database connection are
-needed to view the bundled seed. When KV variables are present, the workspace displays
-the shared live head and can publish direct author edits as immutable child versions.
-If port 4173 is already occupied, reuse and refresh the existing current server, stop
-the old process, or choose another port as described in
-[`editorial/README.md`](editorial/README.md#if-port-4173-is-already-in-use).
-The local editor can revise spine prose and all editorial fund fields, add fund entries,
-assign optional thread membership and order, and accept, reject, supersede, or return
-entries to candidate status. It preserves passage and entry identity, protects existing
-provenance, and refuses to publish over a newer head.
+Put the keys in `.env.local` at the project root (never committed):
 
-For every section of all four works, the ordinary current-edition reader loads its
-versioned package and only its accepted fund entries. A contributing save runs separate
-proposal and review passes, publishes any approved operations as an immutable child
-version, and atomically advances the head. A reader already in the section stays pinned
-to its starting version; the next reading receives the new one. During a reading, the
-guide privately maintains a compact memory for each visited section. Later requests
-carry the current section's conversation and the other sections' summaries instead of
-the complete accumulated transcript; returning to a section restores its own history.
+| Variable | Used for |
+|---|---|
+| `ANTHROPIC_API_KEY` | the text's replies, the revision pass and editorial passes |
+| `OPENAI_API_KEY` | the synthetic readers only |
+| `KV_REST_API_URL`, `KV_REST_API_TOKEN` | the Vercel KV (Upstash) database that holds the evolving edition |
 
-Start with `CURRENT-DESIGN.md` for the present design and proposed changes. Read
-`EDITORIAL-ARCHITECTURE.md` for the full data model, database proposal, verified
-implementation boundary, and next experiment; read `editorial/README.md` for exact
-handoff and content-authoring instructions. `INTERTEXT-DESIGN-NOTES.md` preserves the
-history of the design discussion.
+```bash
+npm run dev      # Vercel dev server on http://localhost:3000, with .env.local loaded
+npm test         # offline test suite; run before every commit
+```
 
-## Adding a new text
+Open `http://localhost:3000/` for the landing page, or a text directly at `http://localhost:3000/<text-id>/public/index.html`. With the KV variables set, local development reads and writes the same database as the live site. Without them a reading uses the bundled seed (`api/editorial-seed/`) and a contribution cannot be saved.
 
-See the "Adding a New Text" section in `uncanny/CLAUDE.md` for the step-by-step pattern.
+## Layout
 
-## Future work
+```
+InterText/
+├── index.html                landing page (offers digital-plenitude)
+├── api/
+│   ├── chat.js               serverless function: one reading turn (config-driven by textId)
+│   ├── evolve.js             serverless function: a contributing reader's editorial update
+│   ├── _lib/                 helpers (citations, media, prompt, revision pass, editorial store and passes)
+│   └── editorial-seed/       generated baseline packages, bundled into the functions
+├── shared/                   page code shared by texts (citation notes, media items)
+├── editorial/                spine-and-fund packages, schema, build, local author editor, KV tools
+├── synthetic-reader/         CLI harness: a simulated reader drives /api/chat
+├── scripts/                  reading-report, media lists, model check, evolved-store tool
+├── digital-plenitude/        The Digital Plenitude (config.js, source_texts/, public/, images/)
+├── uncanny/  plenitude/  remediation/  blood-on-the-wall/    older texts, same structure
+├── vercel.json  .vercelignore  package.json
+└── CLAUDE.md                 working notes for a Claude session
+```
 
-**Generate alternate-history texts from timeline JSON instead of hand-written source markdown.** `blood-on-the-wall` is the first of what could be a category of counterfactual-history texts. Its section text is currently hand-written markdown, same as uncanny/plenitude. But these histories are actually generated by a separate repo, **Monte Carlo Fiction**, which produces JSON timeline files (structured event data) and then renders them into prose.
+Every text folder holds `config.js` (everything specific to the text: sections, introductions, the voice's instructions, images), `source_texts/` (the section files the API loads), and `public/` (the reader's page). The four older texts share one page design with per-text data; `digital-plenitude` has its own page (running head, contents by chapter, citation notes and media items from `shared/`).
 
-Idea: skip hand-authoring a canonical markdown section per text, and instead drop the JSON timeline file into this app directly, with the model doing the JSON → prose rendering. Two things to work out before implementing:
+## The texts
 
-- **Rendering should happen once, not per chat turn.** Render each section from its JSON slice a single time (a "compile" step, essentially reusing the pattern `api/evolve.js` already implements) and cache that output as the canonical `sections[idx]` text. Everything downstream — word limits, the evolve length guard, the historian persona in `chat.js` — then keeps working unchanged, because it still just sees prose.
-- **Section boundaries need to be decided.** The JSON timeline is presumably a flat list of events with no built-in notion of "4 sections for the reader UI." Needs either manual date-range groupings in `config.js`, or a boundary marker added to the Monte Carlo Fiction timeline format itself. (Confirmed with Jay: this chunking step would need to happen regardless of the rendering approach.)
+| textId | Work | Sections | Status |
+|---|---|---|---|
+| `digital-plenitude` | *The Digital Plenitude*, the whole book in nine chapters | 49 | the one text on the landing page; replies on `claude-sonnet-5-5` with a revision pass, library lists and citations, media lists |
+| `plenitude` | essay on the collapse of cultural hierarchy | 7 | runs at its own address |
+| `uncanny` | essay on the uncanny in film, literature and digital media | 5 | runs at its own address |
+| `remediation` | chapter on immediacy, hypermediacy and remediation | 7 | runs at its own address |
+| `blood-on-the-wall` | counterfactual Cold War history (JFK killed in Berlin, 1963) | 4 | runs at its own address |
 
-This would make the JSON the single source of truth for a given alternate history (shared with Monte Carlo Fiction) rather than a hand-copied duplicate, and could make the per-reader "evolve" step more interesting — rewrites could in principle fold back into structured timeline data rather than just prose.
+The older four use the same engine, entry choices, Return continuation and section packages, without the newer mechanisms (revision pass, library lists and citations, media lists, chapters). Their replies run on the default model; their editorial path forces a tool call, so it runs on `claude-sonnet-5` (see `CLAUDE.md`).
+
+## How a reading works
+
+1. **Entry.** The reader chooses *Contribute* (read the evolving edition and let the conversation inform later editions), *Read the current text* (the same edition, nothing saved), or *Read the original* (the untouched authored text).
+2. **Turns.** The page sends each message, or an empty Return, to `/api/chat` with the section index. The function loads the section (current KV version, or the seed), builds a cached prompt, and calls the model. For `digital-plenitude` a second call revises the draft into the text's voice, and the server then checks citations and media markers.
+3. **Contribution.** When a contributing reader finishes, `/api/evolve` runs a proposal pass and an independent review pass over the conversation and publishes any approved change as a new immutable section version.
+
+The design is in [`CURRENT-DESIGN.md`](CURRENT-DESIGN.md); the data model, storage and editorial passes are in [`EDITORIAL-ARCHITECTURE.md`](EDITORIAL-ARCHITECTURE.md).
+
+## Commands
+
+| Command | Purpose |
+|---|---|
+| `npm run dev` | local server on port 3000 |
+| `npm test` | editorial, synthetic-reader and script tests |
+| `npm run editorial-build` | validate `editorial/content/` and write `editorial/data/` and `api/editorial-seed/` |
+| `npm run editorial-preview` | build, then serve the author editor at `http://127.0.0.1:4173` |
+| `npm run editorial-kv -- status\|init\|export --text <id> --section <n>` | inspect, initialize or export a section's shared version |
+| `npm run editorial-propose -- --session <run-folder>` | run the two editorial passes on a synthetic reading without publishing |
+| `npm run synthetic-reader -- …` | run a simulated reader (see `synthetic-reader/README.md`) |
+| `npm run reading-report -- <dir>` | measure a round of synthetic readings |
+| `npm run media -- add\|bulk\|check\|search\|list` | maintain the media lists (needs open network) |
+| `npm run check-models` | try each kind of model call against the real API |
+| `npm run evolved -- show\|reset --text <id>` | the legacy whole-section store (no text uses it now) |
+
+## Deployment
+
+Vercel project `inter-text`; `main` is what it deploys. `vercel.json` bundles `api/editorial-seed/**` into both functions, and `.vercelignore` excludes `editorial/` (the author editor and its manuscript and provenance data stay local). The Hobby plan allows 12 serverless functions and every `.js` file under `api/` counts unless its name or folder starts with an underscore, so only `chat.js` and `evolve.js` live directly in `api/` and all helpers are in `api/_lib/`. Environment variables are set in the Vercel dashboard.
+
+## Adding a text
+
+1. Create `<id>/config.js`, `<id>/source_texts/sections/section-N.md`, and `<id>/public/` (copy another text's `index.html`, `style.css` and `app.js` and change the per-text data and the `textId`).
+2. Add the id to `ALLOWED_TEXT_IDS` in `api/chat.js` and `api/evolve.js`, and to `synthetic-reader/lib/textRegistry.js`.
+3. Create `editorial/content/<id>/work.json` and a package for every section (see `editorial/README.md`), then run `npm run editorial-build && npm test`. The tests compare each manifest with the text's `config.js`.
+4. Add a card to `index.html` if the text is to be offered.
+
+## Documentation
+
+- [`CURRENT-DESIGN.md`](CURRENT-DESIGN.md): what InterText is and how a reader experiences it.
+- [`EDITORIAL-ARCHITECTURE.md`](EDITORIAL-ARCHITECTURE.md): spine and fund, packages, storage, the editorial passes, the reading modes.
+- [`editorial/README.md`](editorial/README.md): the author editor and editorial commands.
+- [`synthetic-reader/README.md`](synthetic-reader/README.md): the simulated-reader harness.
+- [`CLAUDE.md`](CLAUDE.md): working rules and the technical map of `digital-plenitude`.
+- Per-text notes in `<text>/CLAUDE.md` for the older texts.

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "workId": "digital-plenitude",
+  "sectionId": "strong-and-weak-narratives",
+  "sectionOrder": 39,
+  "title": "Strong and Weak Narratives",
+  "editionId": "digital-plenitude-proofs",
+  "versionId": "dp-strong-and-weak-narratives-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-11T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "digital-plenitude/source_texts/sections/section-39.md"
+  },
+  "spine": [
+    {
+      "id": "strong-and-weak-narratives-p01",
+      "markdown": "This is not to say that games cannot be political or ideological. Ian Bogost (2006) has also written that “all simulations are subjective representations that communicate ideology” (180). Video games in particular can embody what he has called “procedural rhetoric” as a new way of making arguments through processes themselves (Bogost 2007, chap. 1). What does this look like? In 2003 game designer Gonzalo Frasca created a video game entitled *September 12* (figure 7.4)*.* It was a simple Flash game, which depicts a small, stereotypical town in the Middle East. The inhabitants walk mechanically up and down among buildings on the gridded streets, and among them are a few terrorist figures with white headdresses and rifles. As the player, you direct missile strikes on the terrorists. The problem is that your missiles kill civilians as well, and these deaths anger other civilians and turn them into terrorists. You can never eliminate the terrorists because the collateral damage always ends up generating more than you kill. The starting screen message makes it clear that the game is overtly political: “This is a simple model you can use to explore some aspects of the war on terror.” In fact *September 12* explores only one aspect of the war on terror: the futility of a traditional approach to so-called asymmetrical war. It makes this point procedurally, by having you as the player enact the futile attempt to eliminate violence through violence."
+    },
+    {
+      "id": "strong-and-weak-narratives-p02",
+      "markdown": "This is procedural rhetoric, and it is practiced in a growing number of political games, such as the ones that Bogost (2007, chap. 2) describes: *A Force More Powerful*, *Antiwargame*, *New York Defender*, *Kabul Kaboom*, *Darfur Is Dying*, *Madrid*, and others. And geopolitics is not the only sphere for procedural rhetoric: there are games to persuade the player to live sustainably, eat healthier foods, exercise more often, or monitor her medical conditions. Although the overwhelming majority of games have no rhetorical purpose, some do. The diversity and popularity of video games have produced whole genres and communities devoted to “serious games,” whose procedural rhetoric aims for political, social, or personal improvement. Games for Change (www.gamesforchange.org) is an organization that promotes such games. If you can think of some perceived social issue, personal problem, or even historical controversy, there is a good chance that a video game (or five) has been created to address it. The Iranian Revolution? There is *1979 Revolution: Black Friday*. Famine in war-ravaged areas of the world? Play the Facebook game entitled *Food Force* from the United Nations World Food Programme. Dyscalculia (difficulty in learning basic mathematics)? The online game *Meister Cody* can teach you (www.meistercody.com/en/talasia). The Israeli-Palestinian conflict? Numerous video games deal with this politically volatile subject. *Global Conflict Palestine* attempts to acquaint players with the complexity of the issues. *PeaceMaker: Israeli Palestine Conflict* gives the player a chance to effect a mutually agreeable settlement of the conflict. *The Liberation of Palestine*, in contrast, is completely and violently partisan. Such partisan games seek to evoke strong responses in their players; theirs is the rhetoric of a swift punch, not an elaborately reasoned argument."
+    },
+    {
+      "id": "strong-and-weak-narratives-p03",
+      "markdown": "[Figure 7.4, not shown: Gonzalo Frasca and Sofia Battegazzore, *September 12*, a video game with a political message. Reprinted by permission.]"
+    },
+    {
+      "id": "strong-and-weak-narratives-p04",
+      "markdown": "That video games can sometimes provoke strong emotional responses does not mean that they do so in the Hollywood style. The game scholar Espen Aarseth (2004) has written: “Simulation is the hermeneutic Other of narrative, the alternative mode of discourse, bottom up and emergent where stories are top-down and preplanned. In simulations, knowledge and experience [are] created by the player’s actions and strategies, rather than recreated by a writer or moviemaker” (52). Video games are different from films and novels. Many have no story to tell: puzzle games are not stories about anything, and even games of skill that feature human or animal figures usually are not narrative. Is there really a story to platform games such as the *Super Mario* series? Other first-person shooter or action adventure games do have storylines or back stories, but these are often told in cinematic “cut scenes,” while the bulk of the interactive game involves killing enemies. Some games (*Gone Home*, *What Remains of Edith Finch*, and others discussed in chapter 4) embody narratives of the kind that we expect in Hollywood films or for that matter European or Indian films. But games more often aim for flow experiences that can go on for as long as possible. Conventional novels and films move instead to a defined and cathartic ending."
+    },
+    {
+      "id": "strong-and-weak-narratives-p05",
+      "markdown": "We can put this another way. Conventional novels and films are *strong narratives*—stories of conflict that move confidently towards a resolution. *Weak narratives* lack the qualities of traditional Hollywood films or popular novels. The conflict may be clear, but it is not clear where it leads except to repetition. Weak narratives have been associated with postmodern fiction, which is to say fiction that speaks to a sophisticated and relatively small community of authors and readers who used to be understood as our culture’s literary elite (McHale 2001). When they have narrative at all, then, video games are usually weak narratives, as are other forms of expressive digital media (Engberg 2011). The very form of the video game (its procedurality, interactivity, and replayability) offers the player other pleasures than the experience of watching a film."
+    },
+    {
+      "id": "strong-and-weak-narratives-p06",
+      "markdown": "There are cultural and even political implications to the growing importance of weak narrative in our media culture. Political thinking of the nineteenth and twentieth centuries was characterized by strong narratives: Marxism, fascism, American liberalism. These political ideologies all had simple, coherent stories to tell in which history moves forward to the triumph of a particular class or people—stories that are marked by a sense of historical inevitability. It is possible to simulate the workers revolution, perhaps, but it would not make a very good game. There are video games that are strongly partisan if not ideological (e.g., *The Liberation of Palestine*), but there is a sense in which this is working against the form. Game cultures today may be strongly ideological: for example, the Gamergate controversy unmasked (as if it needed unmasking) the strong sexism of gamer culture (Parkin 2014). But the ideological positions they represent are seldom coherent, not like the great political narratives of the past two centuries. (In the case of Gamergate, the vulgar attacks on female game makers and critics did not rise as narrative even to the level of the conspiracy theories of neo- Nazis. There was no historical vision there, not even a perverted one.) For video game cultures, simulation replaces history, and the individual’s sense of being caught up in history is replaced by a feeling of a simulated present and future in which everything is possible."
+    }
+  ],
+  "fundEntries": [],
+  "changeSummary": "Structural package of the proofs' chapter 7, section 5 (Strong and Weak Narratives); one passage per paragraph; no initial fund entries."
+}

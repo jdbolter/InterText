@@ -8,7 +8,7 @@ const {
   continuationUserMessage,
   openingSectionText,
   resolveFirstContinuation,
-} = require('../../api/lib/reading-continuation');
+} = require('../../api/_lib/reading-continuation');
 
 test('an opening continuation requires an explicit flag and an empty section history', () => {
   assert.equal(resolveFirstContinuation({
@@ -72,4 +72,18 @@ test('later continuations use the conversation as their cursor', () => {
   assert.match(instructions, /exchanges below as the reading cursor/);
   assert.match(instructions, /\[\[SECTION_COMPLETE\]\]/);
   assert.equal(buildContinuationInstructions({ continuing: false }), null);
+});
+
+// H-002: a text may replace the shared continuation paragraph with its own.
+test('continuationVoice replaces only the voice paragraph', () => {
+  const base = buildContinuationInstructions({ continuing: true, firstContinuation: false, editorialReading: false });
+  const own = buildContinuationInstructions({
+    continuing: true, firstContinuation: false, editorialReading: false,
+    continuationVoice: 'Carry the section forward.',
+  });
+  assert.match(base, /Present the current text directly/);
+  assert.doesNotMatch(own, /Present the current text directly/);
+  assert.match(own, /Carry the section forward\./);
+  assert.match(own, /exchanges below as the reading cursor/);
+  assert.match(own, /\[\[SECTION_COMPLETE\]\]/);
 });

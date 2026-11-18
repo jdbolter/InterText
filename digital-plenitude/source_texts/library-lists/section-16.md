@@ -1,0 +1,11 @@
+[shiner-2001] Shiner, The Invention of Art (2001). The book itself calls him Larry Shiner. Before the eighteenth century there was no general distinction between the arts and crafts; the fine arts came to be defined by inspiration and genius, the crafts by skill, rules and use (p. 5). In the nineteenth century art became a sacred calling, the revelation of a higher truth with power to redeem (pp. 194–212). Use: the special, quasi-religious status of the high arts that this section says the culture lost.
+
+[levine-1988] Levine, Highbrow/Lowbrow (1988). From the publisher's description (cite only for these points): the American categories of high and low, treated as natural, took shape only around the turn of the twentieth century, when concert halls, opera houses and museums were organised to serve separate, elite publics. The book itself calls him "Laurence Levine"; the author is Lawrence W. Levine. Use: when cultural and economic hierarchies were aligned.
+
+[bourdieu-1984] Bourdieu, Distinction (1984). From the publisher's description (cite only for this point): judgements of taste are socially structured, and distinctions of taste reproduce distinctions of class. Use: the alignment of taste with class that the section says has broken; a billionaire who prefers rap no longer surprises anyone.
+
+[jenkins-2006] Jenkins, Convergence Culture (2006). From the publisher's description (cite only for these points): convergence is cultural as much as technical, as audiences act across media and with one another. Use: the communities of interest that the Internet connects.
+
+[chun-2021] Chun, Discriminating Data (2021). From the publisher's description (cite only for this general point): recommender systems group people with others like them, so that the clusters of the digital world are partly made by algorithms built on "homophily". Use: a challenge to the picture of communities that coexist by choice.
+
+[bolter-2022] Bolter, "The Condition of Reading in a Digital Media Culture" (2022). Later work by the book's own author, carrying this argument on; its ideas are the work's own. To its users the web appears flat, without centre or periphery, a working image for a culture without a universally agreed centre or a single canon (pp. 38–39). Use: a plenitude that, like the Internet, has no single centre.

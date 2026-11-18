@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 720" width="1600" height="720" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8a5a00"/></marker>
+    <style>
+      .box{fill:#fff;stroke:#333;stroke-width:2}
+      .t{font-size:22px;fill:#111;font-weight:700}
+      .s{font-size:18px;fill:#333}
+      .ln{stroke:#333;stroke-width:2.2;fill:none}
+      .gold{stroke:#8a5a00;stroke-width:2.2;fill:none;stroke-dasharray:9 7}
+      .lab{font-size:17px;fill:#333;font-style:italic}
+    </style>
+  </defs>
+  <rect width="1600" height="720" fill="#fff"/>
+
+  <!-- Row A: reader characters, revisions, the author -->
+  <rect class="box" x="40" y="40" width="290" height="170" rx="10" style="fill:#f4efe6"/>
+  <text class="t" x="185" y="76" text-anchor="middle">Reader characters</text>
+  <text class="s" x="62" y="110">• general: the target reader</text>
+  <text class="s" x="62" y="136">• collaborative</text>
+  <text class="s" x="62" y="162">• curious</text>
+  <text class="s" x="62" y="188">• skeptical</text>
+
+  <rect class="box" x="420" y="40" width="670" height="170" rx="12" style="fill:#f7f7f7"/>
+  <text class="t" x="755" y="78" text-anchor="middle">Revisions to the system</text>
+  <text class="s" x="755" y="112" text-anchor="middle">prompts, section summaries and openings, library lists;</text>
+  <text class="s" x="755" y="138" text-anchor="middle">optionally, the conversation as a contribution to the</text>
+  <text class="s" x="755" y="164" text-anchor="middle">evolving edition, published only with the author's approval</text>
+
+  <rect class="box" x="1180" y="40" width="380" height="170" rx="10" style="fill:#f4efe6"/>
+  <text class="t" x="1370" y="76" text-anchor="middle">The author</text>
+  <text class="s" x="1370" y="108" text-anchor="middle">reads the transcripts and the</text>
+  <text class="s" x="1370" y="132" text-anchor="middle">judge's report, records verdicts</text>
+  <text class="s" x="1370" y="156" text-anchor="middle">and decides what to change</text>
+
+  <path class="gold" d="M1176,125 L1094,125" marker-end="url(#ag)"/>
+
+  <!-- Row B: the reading -->
+  <rect class="box" x="40" y="290" width="290" height="160" rx="12" style="fill:#f4efe6"/>
+  <text class="t" x="185" y="328" text-anchor="middle">Synthetic reader</text>
+  <text class="s" x="185" y="362" text-anchor="middle">a second LLM, from a</text>
+  <text class="s" x="185" y="386" text-anchor="middle">different company, plays</text>
+  <text class="s" x="185" y="410" text-anchor="middle">a reader character</text>
+  <path class="ln" d="M185,210 L185,286" marker-end="url(#a)"/>
+
+  <rect class="box" x="420" y="290" width="300" height="160" rx="12" style="fill:#eef3f8"/>
+  <text class="t" x="570" y="328" text-anchor="middle">InterText</text>
+  <text class="s" x="570" y="362" text-anchor="middle">the system of Fig. 1,</text>
+  <text class="s" x="570" y="386" text-anchor="middle">speaking as the book,</text>
+  <text class="s" x="570" y="410" text-anchor="middle">section by section</text>
+  <path class="ln" d="M334,350 L416,350" marker-end="url(#a)"/>
+  <path class="ln" d="M416,395 L334,395" marker-end="url(#a)"/>
+  <text class="lab" x="375" y="338" text-anchor="middle">dialogue</text>
+
+  <path class="ln" d="M570,210 L570,286" marker-end="url(#a)"/>
+  <text class="lab" x="586" y="244">next round of</text>
+  <text class="lab" x="586" y="266">synthetic readings</text>
+
+  <rect class="box" x="810" y="290" width="280" height="160" rx="10"/>
+  <text class="t" x="950" y="328" text-anchor="middle">Transcript</text>
+  <text class="s" x="950" y="362" text-anchor="middle">the full conversation,</text>
+  <text class="s" x="950" y="386" text-anchor="middle">turn by turn</text>
+  <path class="ln" d="M724,370 L806,370" marker-end="url(#a)"/>
+
+  <rect class="box" x="1180" y="290" width="380" height="160" rx="10" style="fill:#eef3f8"/>
+  <text class="t" x="1370" y="326" text-anchor="middle">Model judge</text>
+  <text class="s" x="1370" y="358" text-anchor="middle">reads the transcripts against</text>
+  <text class="s" x="1370" y="382" text-anchor="middle">the criteria, blind to which</text>
+  <text class="s" x="1370" y="406" text-anchor="middle">version of the system</text>
+  <text class="s" x="1370" y="430" text-anchor="middle">produced them</text>
+  <path class="ln" d="M1094,370 L1176,370" marker-end="url(#a)"/>
+  <path class="ln" d="M1370,290 L1370,214" marker-end="url(#a)"/>
+
+  <!-- Row C: criteria -->
+  <rect class="box" x="40" y="530" width="1520" height="150" rx="10"/>
+  <text class="t" x="800" y="566" text-anchor="middle">Criteria (the purposes of the prompts)</text>
+  <text class="s" x="80" y="606">• quality of the prose</text>
+  <text class="s" x="80" y="636">• flow of the argument</text>
+  <text class="s" x="580" y="606">• drift from the original</text>
+  <text class="s" x="580" y="636">• pacing to the reader's questions</text>
+  <text class="s" x="1080" y="606">• the author's tone; LLM tics</text>
+  <text class="s" x="1080" y="636">• citations from the library only</text>
+  <path class="ln" d="M1370,530 L1370,454" marker-end="url(#a)"/>
+</svg>

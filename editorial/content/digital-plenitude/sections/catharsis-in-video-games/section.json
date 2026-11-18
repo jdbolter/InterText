@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "editionId": "digital-plenitude-proofs",
+  "versionId": "dp-catharsis-in-video-games-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-09T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "digital-plenitude/source_texts/sections/section-22.md"
+  },
+  "spineFile": "spine.md",
+  "fundEntries": [],
+  "changeSummary": "Structural package of the proofs' chapter 4, section 4 (Catharsis in Video Games); one passage per paragraph; no initial fund entries. Jay's corrections of 2026-11-09 applied to the spine (the original edition keeps the proofs): \"Cormack McCarthy\"; \"*The Brothers: A Tale of Two Sons*\"; \"*What Remains of Edith Finch* (2015)\"; \"your eighteen-year-old sister Samantha\"; \"*Gone Home* received mixed reviews\"; \"a post-apocalyptic role-playing game\"; \"from Austin to Salt Lake City\"."
+}

@@ -1,0 +1,7 @@
+[jenkins-2006] Jenkins, Convergence Culture (2006). From the publisher's description (cite only for these points): transmedia storytelling, as in The Matrix, unfolds across several media, each contributing; corporate and grassroots media sometimes cooperate and sometimes conflict. Use: the section's own source for The Matrix as transmedia, and for the fans who extend it.
+
+[henrickson-2025] Henrickson, Digital Storytelling (2025). A transmedia story draws on a range of media environments and asks its audience to track down and reassemble dispersed content, building a story world (p. 96). Use: alternate reality games and transmedia franchises as stories in fragments that the audience puts together.
+
+[leitch-2008] Leitch, "Adaptation Studies at a Crossroads" (2008). Adaptation studies rejects fidelity to the source in principle but still privileges literature in practice (pp. 63–65); the field should study how adaptations play with their sources (p. 76). Use: the chain of remediations from novel to film to television series (MASH, Batman), judged as play with a source rather than as fidelity to it.
+
+[rose-2011] Rose, The Art of Immersion (2011). From the work's own use: Jordan Weisman and Elan Lee's "line of thought evolved into the notion of a deconstructed narrative. They could write a story, fabricate the evidence that would have existed had it been real, and then throw the story out and get an online audience to reconstruct it" (p. 11). Use: the first alternate reality games.

@@ -27,6 +27,15 @@ const TEXTS = {
     guideLabel: 'Guide',
     appJsPath: path.join(PROJECT_ROOT, 'remediation', 'public', 'app.js'),
   },
+  'digital-plenitude': {
+    id: 'digital-plenitude',
+    displayTitle: 'A conversation about the Digital Plenitude (proofs edition)',
+    guideLabel: 'Guide',
+    // H-002: what the reader and the harness call the voice. Absent for other texts,
+    // which keep the harness's original "guide" wording exactly.
+    voiceLabel: 'Text',
+    appJsPath: path.join(PROJECT_ROOT, 'digital-plenitude', 'public', 'app.js'),
+  },
   'blood-on-the-wall': {
     id: 'blood-on-the-wall',
     displayTitle: 'Blood on the Wall',

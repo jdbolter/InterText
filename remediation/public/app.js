@@ -220,7 +220,7 @@ function renderText(container, text) {
   if (last < text.length) container.appendChild(document.createTextNode(text.slice(last)));
 }
 
-function appendGuideResponse(text) {
+function appendGuideResponse(text, notes = null) {
   const turn = document.createElement('div');
   turn.className = 'turn';
 
@@ -240,7 +240,7 @@ function appendGuideResponse(text) {
         if (trimmed) {
           const p = document.createElement('p');
           if (trimmed.startsWith('Sources: ')) p.className = 'turn-sources';
-          renderText(p, trimmed);
+          CitationNotes.renderParagraph(p, trimmed, notes, renderText);
           body.appendChild(p);
         }
       });
@@ -387,8 +387,14 @@ async function send() {
         history.push(...turns);
         sectionHistories.set(activeSection, [...(sectionHistories.get(activeSection) || []), ...turns]);
         // Reading on is navigation, not a reader intervention for synthesis.
-        if (!continuing) contributionHistory.push(...turns);
-        appendGuideResponse(data.response);
+        if (!continuing) {
+          // H-007: citation markers become plain author-date for synthesis (see shared/citation-notes.js).
+          contributionHistory.push(
+            { role: 'user', content: text },
+            { role: 'assistant', content: CitationNotes.plainReply(data.response, data.notes) }
+          );
+        }
+        appendGuideResponse(data.response, data.notes);
       }
       if (continuing && data.sectionComplete === true) completedSections.add(activeSection);
       if (data.response) break;

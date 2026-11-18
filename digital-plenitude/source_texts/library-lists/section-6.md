@@ -1,0 +1,21 @@
+[shiner-2001] Shiner, The Invention of Art (2001). The book itself calls him Larry Shiner. Before the eighteenth century there was no general distinction between the arts and crafts; the fine arts came to be defined by inspiration and genius, the crafts by skill, rules and use (p. 5). In the nineteenth century art became a sacred calling, the revelation of a higher truth (pp. 194–212). The modern system was complete by the later nineteenth century (p. 217). Shiner registers recent crossings between fine art, craft and popular forms (pp. 281, 286–288). Use: the history of art as a special category; the plenitude's argument holds that he was wrong about one thing, that the system still governs culture as a whole.
+
+[burger-1984] Bürger, Theory of the Avant-Garde (1984). The historical avant-garde attacked art as an institution, not a rival style (pp. 20–22); when later artists repeated its gestures, the institution of art absorbed them (pp. 57–58). Use: art as an institution, the frame within which the art community still decides what counts.
+
+[danto-1997] Danto, After the End of Art (1997). From a summary (cite only for these points): after the end of modernism's master narrative, anything can be art (p. 47); painting became one medium among many (p. 136). Use: the art world's own theory of its open boundary, and why it spends so much energy deciding what is art.
+
+[greenberg-1939] Greenberg, "Avant-Garde and Kitsch" (1939). From a summary (cite only for these points): the avant-garde and kitsch arrived together, kitsch being commercial culture that loots a mature tradition's discoveries and turns them into formula. Use: the origin of the category that the art world applies to Kinkade.
+
+[macdonald-1962] Macdonald, "Masscult and Midcult" (1960; page numbers from its 1962 printing in Against the American Grain). Masscult is not failed art but non-art, made for the market (pp. 4–7). Midcult pretends to respect High Culture's standards while watering them down (pp. 37–40), and the postwar boom in museums and orchestras was passive consumption (pp. 58–61). Use: the "middle-brow" network of cafés and art fairs, seen by its fiercest critic; say that he wrote against it.
+
+[hirsch-1987] Hirsch, Kett and Trefil, Cultural Literacy (1987). From the publisher's account (cite only for these points): reading depends on shared background knowledge; schools should teach a common core; the book lists nearly 5,000 items that literate Americans were said to know. Use: the attempt to restore a common cultural ground, which the plenitude's argument holds has failed.
+
+[benjamin-1936] Benjamin, "The Work of Art in the Age of Mechanical Reproduction" (1936). Mechanical reproduction of art is historically new, unlike imitation by hand (section I), and concepts such as genius and eternal value lend themselves to Fascist use (preface). Use: the critic who accepted film conditionally; also the vocabulary of genius that the Oscars and the American Film Institute still borrow.
+
+[bennett-1995] Bennett, The Birth of the Museum (1995). From the publisher's description (cite only for this point): the museum shaped its visitors' conduct as part of modern government. Use: the civic mission once claimed for the museum, beside today's blockbuster exhibitions.
+
+[zryd-2006] Zryd, "The Academy and the Avant-Garde" (2006). From the abstract (cite only for this point): universities materially sustained North American avant-garde film in the 1970s and 1980s, with jobs, distribution, criticism and new audiences. Use: how scholars and institutions worked to make film a serious art.
+
+[steyerl-2009] Steyerl, "In Defense of the Poor Image" (e-flux, 2009). From the essay's summary (cite only for these points): images are ranked by resolution in a hierarchy that reflects conservative ideas of authorship; poor images circulate outside institutions, and should be judged by their velocity and spread. Use: deviantART's images and the web's, beside the museum's; a later voice for the other side of the boundary.
+
+[park-2024] Park, "The Work of Art in the Age of Generative AI" (2024). From the abstract (cite only for these points): generative AI democratizes artistic expression, as mechanical reproduction did, while creating new dependencies. Use: a development after 2019 that extends "art as creative expression" to anyone with a prompt.

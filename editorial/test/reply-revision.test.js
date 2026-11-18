@@ -1,0 +1,131 @@
+'use strict';
+
+const test = require('node:test');
+const assert = require('node:assert/strict');
+
+const {
+  buildRevisionMessage,
+  shownToReader,
+  checkRevision,
+  revisionConfig,
+  reviseReply,
+} = require('../../api/_lib/reply-revision');
+const {
+  continuationUserMessage,
+  normalizeContinueHistory,
+} = require('../../api/_lib/reading-continuation');
+
+function fakeClient(reply, calls = []) {
+  return { messages: { create: async (req) => { calls.push(req); if (reply instanceof Error) throw reply; return { content: [{ type: 'text', text: reply }], usage: { input_tokens: 10, output_tokens: 5 } }; } } };
+}
+
+test('revision is off unless a text configures model and instructions', () => {
+  assert.equal(revisionConfig({}), null);
+  assert.equal(revisionConfig({ revision: { model: 'm' } }), null);
+  assert.equal(revisionConfig({ revision: { instructions: 'x' } }), null);
+  assert.deepEqual(revisionConfig({ revision: { model: 'm', instructions: ' x ' } }), { model: 'm', instructions: 'x', maxTokens: 1500, wordLimit: 250, thinking: { type: 'disabled' } });
+});
+
+test('the revision message carries the reader and the draft; Return turns are named as such', () => {
+  assert.equal(buildRevisionMessage({ readerMessage: ' Why? ', draft: 'Because. ' }),
+    "THE READER'S WORDS\nWhy?\n\nTHE DRAFT REPLY\nBecause.");
+  assert.match(buildRevisionMessage({ continuing: true, draft: 'On.' }), /asked the work to go on/);
+});
+
+test('a revision is rejected if empty, if it drops or adds an image token, or if it emits the marker', () => {
+  const draft = 'A [[IMAGE:olmstead]] B';
+  assert.equal(checkRevision(draft, '  ').ok, false);
+  assert.equal(checkRevision(draft, 'A B').ok, false);
+  assert.equal(checkRevision(draft, 'A [[IMAGE:olmstead]] [[IMAGE:kandinsky]]').ok, false);
+  assert.equal(checkRevision(draft, 'A [[IMAGE:olmstead]] [[SECTION_COMPLETE]]').ok, false);
+  assert.deepEqual(checkRevision(draft, ' Revised [[IMAGE:olmstead]]. '), { ok: true, text: 'Revised [[IMAGE:olmstead]].' });
+});
+
+test('reviseReply uses the configured model with thinking off, and falls back to the draft on failure', async () => {
+  const config = { revision: { model: 'claude-sonnet-5-5', instructions: 'Revise.' } };
+  const calls = [];
+  const ok = await reviseReply({ client: fakeClient('Revised.', calls), config, readerMessage: 'q', draft: 'Draft.' });
+  assert.equal(ok.text, 'Revised.');
+  assert.equal(ok.applied, true);
+  assert.equal(calls[0].model, 'claude-sonnet-5-5');
+  assert.deepEqual(calls[0].thinking, { type: 'between_tools' }, 'Sonnet 5.5 turns thinking off this way');
+  assert.equal(calls[0].system, 'Revise.');
+  const failed = await reviseReply({ client: fakeClient(new Error('boom')), config, readerMessage: 'q', draft: 'Draft.' });
+  assert.deepEqual([failed.text, failed.applied], ['Draft.', false]);
+  assert.match(failed.reason, /^revision call failed: boom/);
+  const empty = await reviseReply({ client: fakeClient(''), config, readerMessage: 'q', draft: 'Draft.' });
+  assert.deepEqual([empty.text, empty.applied, empty.reason], ['Draft.', false, 'empty revision']);
+  const off = await reviseReply({ client: fakeClient('x'), config: {}, readerMessage: 'q', draft: 'Draft.' });
+  assert.deepEqual([off.text, off.applied], ['Draft.', false]);
+});
+
+test('old Return-turn messages in the history take the text\'s own wording', () => {
+  const wording = { continueMessage: 'Go on.', openingContinueMessage: 'Go on from the boxed opening.' };
+  const history = [
+    { role: 'user', content: continuationUserMessage(true) },
+    { role: 'assistant', content: 'a' },
+    { role: 'user', content: continuationUserMessage(false) },
+    { role: 'assistant', content: 'b' },
+    { role: 'user', content: 'Continue reading from where we have reached in this section, please' },
+  ];
+  const out = normalizeContinueHistory(history, wording);
+  assert.deepEqual(out.map(m => m.content), ['Go on from the boxed opening.', 'a', 'Go on.', 'b', 'Continue reading from where we have reached in this section, please']);
+  assert.equal(normalizeContinueHistory(history, null), history, 'no wording: history untouched');
+  assert.equal(history[0].content, continuationUserMessage(true), 'the input is not mutated');
+});
+
+test('digital-plenitude configures the revision pass on claude-sonnet-5-5; plenitude does not', () => {
+  assert.equal(revisionConfig(require('../../digital-plenitude/config')).model, 'claude-sonnet-5-5');
+  assert.deepEqual(revisionConfig(require('../../digital-plenitude/config')).thinking, { type: 'between_tools' });
+  assert.equal(revisionConfig(require('../../plenitude/config')), null);
+});
+
+test('the editor sees the main line, what the reader has been shown, and the section (H-010)', () => {
+  const shown = shownToReader({
+    intro: 'In 2013, JAY-Z performed at Pace.',
+    history: [{ role: 'user', content: 'q' }, { role: 'assistant', content: 'First reply.' }, { role: 'assistant', content: '  ' }],
+  });
+  assert.equal(shown, '[The opening box]\nIn 2013, JAY-Z performed at Pace.\n\n[The text\'s reply 1]\nFirst reply.');
+  const msg = buildRevisionMessage({ readerMessage: 'Is he avant-garde?', draft: 'Draft.', shown, sectionText: 'Section.', mainLine: 'The divide has almost vanished.' });
+  const order = ['THE ARGUMENT HERE, IN BRIEF', 'WHAT THE READER HAS BEEN SHOWN SO FAR', 'WHAT THE WORK HOLDS FOR THIS SECTION', "THE READER'S WORDS", 'THE DRAFT REPLY'].map(h => msg.indexOf(h));
+  assert.ok(order.every((v, i) => v >= 0 && (i === 0 || v > order[i - 1])), 'all five parts, in order');
+  assert.equal(buildRevisionMessage({ readerMessage: 'q', draft: 'd' }), "THE READER'S WORDS\nq\n\nTHE DRAFT REPLY\nd", 'without context: as before');
+});
+
+test('editorial readings by markers: fund markers and the private memory are read and removed (H-011)', () => {
+  const { extractMarkerDelivery, prepareVersionedReading } = require('../../api/_lib/editorial-reading');
+  const { loadSeedSection } = require('../../api/_lib/editorial-package');
+  const out = extractMarkerDelivery('One point [[FUND:e1]]. Two[[FUND:e1]][[FUND:unoffered]].\n\n[[MEMORY: Pace covered.]]', ['e1', 'e2']);
+  assert.deepEqual(out, { text: 'One point. Two.', usedFundEntryIds: ['e1'], sectionSummary: 'Pace covered.' });
+  assert.equal(extractMarkerDelivery('No markers.', []).sectionSummary, null);
+  const seed = loadSeedSection({ textId: 'digital-plenitude', sectionIndex: 0 });
+  const byMarkers = prepareVersionedReading({ sectionPackage: seed, delivery: 'markers' });
+  assert.match(byMarkers.instructions, /\[\[FUND:entry-id\]\]/);
+  assert.doesNotMatch(byMarkers.instructions, /delivery tool/);
+  assert.match(byMarkers.memoryInstructions, /\[\[MEMORY: \.\.\.\]\]/);
+  const byTool = prepareVersionedReading({ sectionPackage: seed });
+  assert.match(byTool.instructions, /required private delivery tool/, 'the older works keep the tool');
+  assert.equal(require('../../digital-plenitude/config').editorialDelivery, 'markers');
+});
+
+test('a draft over the limit is handed over with its count and the excess (2026-11-14)', () => {
+  const { draftHeading } = require('../../api/_lib/reply-revision');
+  const { countWords } = require('../../api/_lib/words');
+  assert.equal(countWords('One two [[CITE:burger-1984|80–81]] three. [[MEDIA:x]]'), 3);
+  assert.equal(draftHeading('one two three', 250), 'THE DRAFT REPLY');
+  const long = Array(260).fill('word').join(' ');
+  assert.equal(draftHeading(long, 250), 'THE DRAFT REPLY (260 words, 10 over the limit of 250: return at most 250 words)');
+  assert.match(buildRevisionMessage({ readerMessage: 'q', draft: long, wordLimit: 250 }), /10 over the limit/);
+  assert.equal(buildRevisionMessage({ readerMessage: 'q', draft: 'd', wordLimit: 250 }), "THE READER'S WORDS\nq\n\nTHE DRAFT REPLY\nd");
+});
+
+test('the section goes to the editor as a cached system block, not in every message (2026-11-14)', async () => {
+  const config = { revision: { model: 'claude-sonnet-5-5', instructions: 'Revise.' } };
+  const calls = [];
+  await reviseReply({ client: fakeClient('Revised.', calls), config, readerMessage: 'q', draft: 'Draft.', sectionText: 'Section.' });
+  assert.deepEqual(calls[0].system, [
+    { type: 'text', text: 'Revise.' },
+    { type: 'text', text: 'WHAT THE WORK HOLDS FOR THIS SECTION (for reference; the reader has not read it)\nSection.', cache_control: { type: 'ephemeral' } },
+  ]);
+  assert.doesNotMatch(calls[0].messages[0].content, /WHAT THE WORK HOLDS/);
+});

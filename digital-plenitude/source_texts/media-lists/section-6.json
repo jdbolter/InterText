@@ -1,0 +1,15 @@
+{
+  "section": 6,
+  "items": [
+    {
+      "id": "kinkade-site",
+      "kind": "link",
+      "url": "https://www.thomaskinkade.com/",
+      "title": "Thomas Kinkade Studios - Limited Edition Paintings, Wall Art & Decor",
+      "source": "thomaskinkade.com",
+      "when": "when the reply discusses Thomas Kinkade, his audience, or kitsch as the art world's judgement",
+      "status": "ok",
+      "checked": "2026-11-08"
+    }
+  ]
+}
