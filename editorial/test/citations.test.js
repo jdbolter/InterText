@@ -92,7 +92,6 @@ test('the synthetic reader sees numbered notes, counted through the session', ()
 test('digital-plenitude: every fund entry has a reference, and every fund page lies within it', () => {
   const config = require('../../digital-plenitude/config');
   assert.equal(citationMarkersOn(config), true);
-  assert.equal(citationMarkersOn(require('../../plenitude/config')), false);
   const refs = loadReferences(config);
   clearLibraryListCache();
   for (const idx of [0, 1, 2, 3, 4, 5, 6]) {

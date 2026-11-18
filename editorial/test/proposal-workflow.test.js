@@ -15,7 +15,8 @@ const {
   writeProposalBundle,
 } = require('../lib/proposal-store');
 
-const ROOT = path.join(__dirname, '..', '..');
+// A frozen set of packaged sections (see fixture-root/README.md).
+const ROOT = path.join(__dirname, 'fixture-root');
 
 function sectionOne() {
   return loadSeedSection({ rootDir: ROOT, textId: 'plenitude', sectionIndex: 0 });
@@ -128,7 +129,7 @@ test('editorial evolution by checked JSON, for models that cannot be forced to c
   const client = { messages: { create: async (req) => { calls.push(req); return { content: [{ type: 'text', text: replies.shift() }] }; } } };
   const result = await evolveEditorialSection({
     client,
-    sectionPackage: loadSeedSection({ textId: 'digital-plenitude', sectionIndex: 0 }),
+    sectionPackage: loadSeedSection({ rootDir: path.join(__dirname, '..', '..'), textId: 'digital-plenitude', sectionIndex: 0 }),
     conversationHistory: [{ role: 'user', content: 'q' }, { role: 'assistant', content: 'a' }],
     sessionId: 's',
     model: 'claude-sonnet-5-5',

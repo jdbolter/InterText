@@ -34,7 +34,7 @@ The text conducts a reading but makes no permanent decision during it. When a co
 
 ## The author's tools
 
-A local, unauthenticated editor (`npm run editorial-preview`) shows every section of every text, lets the author edit spine prose and every fund field, add entries, set status, sources and threads, and publish an author revision as a new version. A synthetic reading can be run through the editorial passes without publishing (`npm run editorial-propose`) and reviewed in the editor. The editor is excluded from deployment.
+A local, unauthenticated editor (`npm run editorial-preview`) shows every section of the text, lets the author edit spine prose and every fund field, add entries, set status, sources and threads, and publish an author revision as a new version. A synthetic reading can be run through the editorial passes without publishing (`npm run editorial-propose`) and reviewed in the editor. The editor is excluded from deployment.
 
 ## Synthetic readers
 

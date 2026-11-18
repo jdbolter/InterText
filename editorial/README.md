@@ -1,6 +1,6 @@
 # Editorial workspace
 
-The spine-and-fund packages for every text, their schema and build, the local author editor, and the tools that publish to or read from the shared KV database. The model is described in [`EDITORIAL-ARCHITECTURE.md`](../EDITORIAL-ARCHITECTURE.md); the design in [`CURRENT-DESIGN.md`](../CURRENT-DESIGN.md).
+The spine-and-fund packages for the text, their schema and build, the local author editor, and the tools that publish to or read from the shared KV database. The model is described in [`EDITORIAL-ARCHITECTURE.md`](../EDITORIAL-ARCHITECTURE.md); the design in [`CURRENT-DESIGN.md`](../CURRENT-DESIGN.md).
 
 ## Start
 

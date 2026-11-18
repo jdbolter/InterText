@@ -40,24 +40,18 @@ InterText/
 ├── synthetic-reader/         CLI harness: a simulated reader drives /api/chat
 ├── scripts/                  reading-report, media lists, model check, evolved-store tool
 ├── digital-plenitude/        The Digital Plenitude (config.js, source_texts/, public/, images/)
-├── uncanny/  plenitude/  remediation/  blood-on-the-wall/    older texts, same structure
 ├── vercel.json  .vercelignore  package.json
 └── CLAUDE.md                 working notes for a Claude session
 ```
 
-Every text folder holds `config.js` (everything specific to the text: sections, introductions, the voice's instructions, images), `source_texts/` (the section files the API loads), and `public/` (the reader's page). The four older texts share one page design with per-text data; `digital-plenitude` has its own page (running head, contents by chapter, citation notes and media items from `shared/`).
+A text folder holds `config.js` (everything specific to the text: sections, introductions, the voice's instructions, images), `source_texts/` (the section files the API loads), and `public/` (the reader's page). `digital-plenitude` has its own page (running head, contents by chapter, citation notes and media items from `shared/`).
 
 ## The texts
 
 | textId | Work | Sections | Status |
 |---|---|---|---|
-| `digital-plenitude` | *The Digital Plenitude*, the whole book in nine chapters | 49 | the one text on the landing page; replies on `claude-sonnet-5-5` with a revision pass, library lists and citations, media lists |
-| `plenitude` | essay on the collapse of cultural hierarchy | 7 | runs at its own address |
-| `uncanny` | essay on the uncanny in film, literature and digital media | 5 | runs at its own address |
-| `remediation` | chapter on immediacy, hypermediacy and remediation | 7 | runs at its own address |
-| `blood-on-the-wall` | counterfactual Cold War history (JFK killed in Berlin, 1963) | 4 | runs at its own address |
+| `digital-plenitude` | *The Digital Plenitude*, the whole book in nine chapters | 49 | the text on the landing page; replies on `claude-sonnet-5-5` with a revision pass, library lists and citations, media lists |
 
-The older four use the same engine, entry choices, Return continuation and section packages, without the newer mechanisms (revision pass, library lists and citations, media lists, chapters). Their replies run on the default model; their editorial path forces a tool call, so it runs on `claude-sonnet-5` (see `CLAUDE.md`).
 
 ## How a reading works
 
@@ -89,7 +83,7 @@ Vercel project `inter-text`; `main` is what it deploys. `vercel.json` bundles `a
 
 ## Adding a text
 
-1. Create `<id>/config.js`, `<id>/source_texts/sections/section-N.md`, and `<id>/public/` (copy another text's `index.html`, `style.css` and `app.js` and change the per-text data and the `textId`).
+1. Create `<id>/config.js`, `<id>/source_texts/sections/section-N.md`, and `<id>/public/` (start from `digital-plenitude/public/` and change the per-text data and the `textId`).
 2. Add the id to `ALLOWED_TEXT_IDS` in `api/chat.js` and `api/evolve.js`, and to `synthetic-reader/lib/textRegistry.js`.
 3. Create `editorial/content/<id>/work.json` and a package for every section (see `editorial/README.md`), then run `npm run editorial-build && npm test`. The tests compare each manifest with the text's `config.js`.
 4. Add a card to `index.html` if the text is to be offered.
@@ -101,4 +95,3 @@ Vercel project `inter-text`; `main` is what it deploys. `vercel.json` bundles `a
 - [`editorial/README.md`](editorial/README.md): the author editor and editorial commands.
 - [`synthetic-reader/README.md`](synthetic-reader/README.md): the simulated-reader harness.
 - [`CLAUDE.md`](CLAUDE.md): working rules and the technical map of `digital-plenitude`.
-- Per-text notes in `<text>/CLAUDE.md` for the older texts.

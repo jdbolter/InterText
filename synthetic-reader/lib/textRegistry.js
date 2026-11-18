@@ -9,38 +9,13 @@ const path = require('path');
 const PROJECT_ROOT = path.join(__dirname, '..', '..');
 
 const TEXTS = {
-  plenitude: {
-    id: 'plenitude',
-    displayTitle: 'A conversation about the Digital Plenitude',
-    guideLabel: 'Guide',
-    appJsPath: path.join(PROJECT_ROOT, 'plenitude', 'public', 'app.js'),
-  },
-  uncanny: {
-    id: 'uncanny',
-    displayTitle: 'A conversation about the uncanny',
-    guideLabel: 'Guide',
-    appJsPath: path.join(PROJECT_ROOT, 'uncanny', 'public', 'app.js'),
-  },
-  remediation: {
-    id: 'remediation',
-    displayTitle: 'A conversation about remediation',
-    guideLabel: 'Guide',
-    appJsPath: path.join(PROJECT_ROOT, 'remediation', 'public', 'app.js'),
-  },
   'digital-plenitude': {
     id: 'digital-plenitude',
     displayTitle: 'A conversation about the Digital Plenitude (proofs edition)',
     guideLabel: 'Guide',
-    // H-002: what the reader and the harness call the voice. Absent for other texts,
-    // which keep the harness's original "guide" wording exactly.
+    // What the reader and the harness call the voice.
     voiceLabel: 'Text',
     appJsPath: path.join(PROJECT_ROOT, 'digital-plenitude', 'public', 'app.js'),
-  },
-  'blood-on-the-wall': {
-    id: 'blood-on-the-wall',
-    displayTitle: 'Blood on the Wall',
-    guideLabel: 'Historian',
-    appJsPath: path.join(PROJECT_ROOT, 'blood-on-the-wall', 'public', 'app.js'),
   },
 };
 

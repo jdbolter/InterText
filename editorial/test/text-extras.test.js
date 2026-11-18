@@ -98,19 +98,10 @@ test('digital-plenitude wiring: label, funds for sections 1 and 5, wording, mark
   }
 });
 
-test('plenitude, the old text, sends exactly what it sent before', () => {
-  const config = require('../../plenitude/config');
-  clearLibraryListCache();
-  assert.equal(sectionLabelLine(config, 'X'), 'Current section: X');
-  assert.equal(loadLibraryList(config, 0), null);
-  assert.equal(config.continuationWording, undefined);
-});
-
 test('the reply model defaults to claude-sonnet-5-5 for every text (H-007)', () => {
   assert.equal(textModel({}), 'claude-sonnet-5-5');
   assert.equal(textModel({ model: ' ' }), 'claude-sonnet-5-5');
   assert.equal(textModel(require('../../digital-plenitude/config')), 'claude-sonnet-5-5');
-  assert.equal(textModel(require('../../plenitude/config')), 'claude-sonnet-5-5');
   assert.equal(textModel({ model: 'claude-sonnet-5' }), 'claude-sonnet-5', 'a text can still pin the older model');
 });
 
@@ -133,7 +124,6 @@ test('the main line is handed to the model only when a text has one (H-009)', ()
 
 test('editorial readings and evolution stay on a model that supports forced tool calls', () => {
   assert.equal(editorialModel({}), 'claude-sonnet-5');
-  assert.equal(editorialModel(require('../../plenitude/config')), 'claude-sonnet-5');
   assert.equal(editorialModel({ editorialModel: 'm' }), 'm');
 });
 

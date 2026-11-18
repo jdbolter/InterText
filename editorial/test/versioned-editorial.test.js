@@ -22,7 +22,8 @@ const {
   sectionVersionKey,
 } = require('../../api/_lib/editorial-store');
 
-const ROOT = path.join(__dirname, '..', '..');
+// A frozen set of packaged sections (see fixture-root/README.md).
+const ROOT = path.join(__dirname, 'fixture-root');
 
 class FakeRedis {
   constructor() {

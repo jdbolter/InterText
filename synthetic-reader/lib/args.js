@@ -8,7 +8,7 @@ const { listProfileIds } = require('./profiles');
 const { DEFAULT_BASE_URL } = require('./env');
 
 const DEFAULTS = {
-  text: 'plenitude',
+  text: 'digital-plenitude',
   section: 1,
   profile: 'curious',
   turns: 10,

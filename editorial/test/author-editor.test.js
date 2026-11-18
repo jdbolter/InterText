@@ -9,7 +9,8 @@ const { createAuthorRevision } = require('../../api/_lib/editorial-author');
 const { loadSeedSection, validateRuntimePackage } = require('../../api/_lib/editorial-package');
 const { createEditorialHandler } = require('../serve');
 
-const ROOT = path.join(__dirname, '..', '..');
+// A frozen set of packaged sections (see fixture-root/README.md).
+const ROOT = path.join(__dirname, 'fixture-root');
 
 function seed() {
   return loadSeedSection({ rootDir: ROOT, textId: 'plenitude', sectionIndex: 4 });

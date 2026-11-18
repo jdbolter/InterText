@@ -16,7 +16,8 @@ const {
   prepareVersionedReading,
 } = require('../../api/_lib/editorial-reading');
 
-const ROOT = path.join(__dirname, '..', '..');
+// A frozen set of packaged sections (see fixture-root/README.md).
+const ROOT = path.join(__dirname, 'fixture-root');
 
 test('recognizes only the two local editorial experiment editions', () => {
   assert.equal(isEditorialEdition('editorial-spine'), true);
@@ -24,54 +25,19 @@ test('recognizes only the two local editorial experiment editions', () => {
   assert.equal(isEditorialEdition('original'), false);
 });
 
-test('loads every generated Plenitude package by stable section order', () => {
+test('loads every fixture package by stable section order', () => {
   const expected = [
     ['great-divide', 4, 0],
     ['philadelphia-symphony-story', 8, 0],
     ['class-in-america', 2, 0],
     ['case-of-music', 7, 0],
     ['shocking-art', 10, 4],
-    ['art-as-special-interest', 17, 0],
-    ['communities-and-creativity', 8, 0],
   ];
   expected.forEach(([sectionId, passageCount, fundCount], sectionIndex) => {
     const section = loadEditorialSection({ rootDir: ROOT, textId: 'plenitude', sectionIndex });
     assert.equal(section.sectionId, sectionId);
     assert.equal(section.spine.length, passageCount);
     assert.equal(section.fundEntries.length, fundCount);
-  });
-});
-
-test('loads every generated Blood on the Wall package by stable section order', () => {
-  const expected = [
-    ['shot-heard-in-berlin', 2],
-    ['graduated-pressure', 2],
-    ['fog-of-distrust', 2],
-    ['files-break-open', 2],
-  ];
-  expected.forEach(([sectionId, passageCount], sectionIndex) => {
-    const section = loadEditorialSection({ rootDir: ROOT, textId: 'blood-on-the-wall', sectionIndex });
-    assert.equal(section.sectionId, sectionId);
-    assert.equal(section.spine.length, passageCount);
-    assert.equal(section.fundEntries.length, 0);
-  });
-});
-
-test('loads every generated Remediation package by stable section order', () => {
-  const expected = [
-    ['two-logics', 8],
-    ['perspective-and-automaticity', 9],
-    ['photorealism-and-real', 7],
-    ['windowed-interface', 6],
-    ['genealogy-of-hypermediacy', 19],
-    ['repurposing-and-remediation', 4],
-    ['rivalry-and-refashioning', 8],
-  ];
-  expected.forEach(([sectionId, passageCount], sectionIndex) => {
-    const section = loadEditorialSection({ rootDir: ROOT, textId: 'remediation', sectionIndex });
-    assert.equal(section.sectionId, sectionId);
-    assert.equal(section.spine.length, passageCount);
-    assert.equal(section.fundEntries.length, 0);
   });
 });
 

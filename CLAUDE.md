@@ -13,8 +13,6 @@ first.
   **Jay pushes**, never the session.
 - **Keys** live in `.env.local` (Anthropic, OpenAI, the Vercel KV database). Never print or view their values.
 - **Run `npm test` before every commit.** It is quick, and every new mechanism has tests.
-- **The older texts.** `plenitude`, `uncanny`, `remediation` and `blood-on-the-wall` run at their own addresses, but
-  only `digital-plenitude` is offered on the landing page.
 - **Agents draft, Jay approves.** The text's prose, its instructions, introductions, library lists, main lines and the
   list of how writers are introduced are Jay's. Agents draft them for his approval.
 
@@ -55,7 +53,7 @@ first.
 
 ## Models
 - **Replies, the revision pass and evolution** run on `claude-sonnet-5-5`, the default for every text (`textModel`).
-- **Sonnet 5.5 does not support forced tool calls** (`tool_choice` "tool"/"any"). The older works' editorial path
+- **Sonnet 5.5 does not support forced tool calls** (`tool_choice` "tool"/"any"). The experiment editions' editorial path
   forces a tool, so it stays on `claude-sonnet-5` (`editorialModel`).
 - **Thinking off is set per model:** `{type:'between_tools'}` on 5.5, `{type:'disabled'}` on 5 (`thinkingOff`).
 - **`npm run check-models`** tries each kind of call against the real API.

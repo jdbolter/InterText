@@ -44,7 +44,7 @@ function getClient() {
   return client;
 }
 
-const ALLOWED_TEXT_IDS = ['uncanny', 'plenitude', 'blood-on-the-wall', 'remediation', 'digital-plenitude'];
+const ALLOWED_TEXT_IDS = ['digital-plenitude'];
 const configCache = {};
 const sectionCache = {};
 

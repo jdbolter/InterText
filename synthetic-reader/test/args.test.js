@@ -8,7 +8,7 @@ const { parseArgs } = require('../lib/args');
 test('applies defaults with no arguments', () => {
   const opts = parseArgs([]);
   assert.equal(opts.help, false);
-  assert.equal(opts.text, 'plenitude');
+  assert.equal(opts.text, 'digital-plenitude');
   assert.equal(opts.section, 1);
   assert.equal(opts.profile, 'curious');
   assert.equal(opts.turns, 10);

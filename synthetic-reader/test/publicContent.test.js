@@ -10,14 +10,10 @@ test('extracts the correct section count for each known text', () => {
   // digital-plenitude's page does more at load time (running head, dock, contents sheet);
   // the harness's DOM stand-in must let all of it run.
   assert.equal(extractPublicSectionData(TEXTS['digital-plenitude']).sections.length, 49);
-  assert.equal(extractPublicSectionData(TEXTS.plenitude).sections.length, 7);
-  assert.equal(extractPublicSectionData(TEXTS.uncanny).sections.length, 5);
-  assert.equal(extractPublicSectionData(TEXTS['blood-on-the-wall']).sections.length, 4);
-  assert.equal(extractPublicSectionData(TEXTS.remediation).sections.length, 7);
 });
 
 test('each section has a plain-text intro with no leftover markup or entities', () => {
-  const { sections } = extractPublicSectionData(TEXTS.plenitude);
+  const { sections } = extractPublicSectionData(TEXTS['digital-plenitude']);
   for (const s of sections) {
     assert.equal(typeof s.title, 'string');
     assert.ok(s.title.length > 0);
@@ -29,7 +25,7 @@ test('each section has a plain-text intro with no leftover markup or entities', 
 });
 
 test('section numbers are 1-based and sequential', () => {
-  const { sections } = extractPublicSectionData(TEXTS.uncanny);
+  const { sections } = extractPublicSectionData(TEXTS['digital-plenitude']);
   sections.forEach((s, i) => assert.equal(s.number, i + 1));
 });
 

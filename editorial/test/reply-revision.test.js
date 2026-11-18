@@ -74,10 +74,9 @@ test('old Return-turn messages in the history take the text\'s own wording', () 
   assert.equal(history[0].content, continuationUserMessage(true), 'the input is not mutated');
 });
 
-test('digital-plenitude configures the revision pass on claude-sonnet-5-5; plenitude does not', () => {
+test('digital-plenitude configures the revision pass on claude-sonnet-5-5', () => {
   assert.equal(revisionConfig(require('../../digital-plenitude/config')).model, 'claude-sonnet-5-5');
   assert.deepEqual(revisionConfig(require('../../digital-plenitude/config')).thinking, { type: 'between_tools' });
-  assert.equal(revisionConfig(require('../../plenitude/config')), null);
 });
 
 test('the editor sees the main line, what the reader has been shown, and the section (H-010)', () => {
