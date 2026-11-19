@@ -91,6 +91,7 @@ Vercel project `inter-text`; `main` is what it deploys. `vercel.json` bundles `a
 ## Documentation
 
 - [`CURRENT-DESIGN.md`](CURRENT-DESIGN.md): what InterText is and how a reader experiences it.
+- [`PROMPTS.md`](PROMPTS.md): what each model call contains, in what order, and which file supplies each part.
 - [`EDITORIAL-ARCHITECTURE.md`](EDITORIAL-ARCHITECTURE.md): spine and fund, packages, storage, the editorial passes, the reading modes.
 - [`editorial/README.md`](editorial/README.md): the author editor and editorial commands.
 - [`synthetic-reader/README.md`](synthetic-reader/README.md): the simulated-reader harness.
