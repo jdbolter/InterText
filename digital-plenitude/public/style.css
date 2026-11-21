@@ -746,8 +746,9 @@ button {
 }
 
 /* The opening box: the first page of the section, with a red drop cap and an ornament to close it. */
+/* The opening passage at the size of the replies (Jay, 2026-11-21). */
 .section-break-intro {
-  font-size: 1.08rem;
+  font-size: 1em;
   font-weight: 460;
   line-height: 1.7;
   color: var(--text);
@@ -1218,10 +1219,6 @@ figure.response-figure img {
 
   .section-break-header {
     font-size: 1.7rem;
-  }
-
-  .section-break-intro {
-    font-size: 1.02rem;
   }
 
   #consent-dialog,
