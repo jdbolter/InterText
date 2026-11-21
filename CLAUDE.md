@@ -17,17 +17,26 @@ first.
   list of how writers are introduced are Jay's. Agents draft them for his approval.
 
 ## Branches and deployment
-- Work happens on `h002-digital-plenitude`. `main` is what Vercel deploys (project `inter-text`).
+- Work happens on `dev`, or on a branch from it for a larger change (`dev-UI` for the interface, H-030); such a
+  branch is merged back into `dev`. `main` is what Vercel deploys (project `inter-text`). `h002-digital-plenitude`
+  is the older working branch and still holds the older texts (also tagged `archive/older-texts`).
 - **Vercel's Hobby plan allows 12 serverless functions, and every `.js` file under `api/` counts as one** unless its
   name or its folder's starts with an underscore. Only `api/chat.js` and `api/evolve.js` are functions; the helper
   modules live in `api/_lib/` for that reason. Never add a `.js` file to `api/` outside `_lib/`. A deploy that
   fails with "No more than 12 Serverless Functions" means a file broke this rule.
-- **To deploy,** Jay runs `git checkout main && git merge --ff-only h002-digital-plenitude && git push origin main`.
+- **To deploy,** Jay runs `git checkout main && git merge --ff-only dev && git push origin main`.
 - **The live site and local `npm run dev` share one KV database** when `.env.local` has the KV settings.
 
 ## The reader's page (`digital-plenitude/public/`)
+- **The look is the annotated book (H-030):** the reading is a printed page in EB Garamond (served from
+  `public/fonts/`, OFL), with red small capitals for labels and numerals and a drop cap opening each section; the
+  contents and the input sit on a dark cloth column. The look is all in `style.css`; markup and `app.js` are unchanged
+  by it. Alternatives considered (paper and ink, gallery, chapter colours) are kept in the vault,
+  `projects/digital-plenitude/design/interface-alternatives/`.
 - The reading runs down the left: a running head (title; chapter and section) stays at the top, and the reader's
-  own words stand in the reading above the reply they drew ("You"), set in from the margin. The right column holds
+  own words ("You", blue-black italic) stand in the margin beside the reply they drew, tied to it by a leader line,
+  on screens 1280px and wider; narrower, they stand in the reading above the reply, set in with a rule. Each element
+  of the reading clears the margin at its end, so notes cannot drift past their replies. The right column holds
   the contents list (all chapters; the open chapter shows its sections; visited and finished sections marked),
   References beneath it, and the input dock at the foot: `Go on` becomes `Send` when there is text; Enter does the
   same; `Finish reading` beside it.
