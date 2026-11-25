@@ -11,7 +11,7 @@ const PROJECT_ROOT = path.join(__dirname, '..', '..');
 const TEXTS = {
   'digital-plenitude': {
     id: 'digital-plenitude',
-    displayTitle: 'A conversation about the Digital Plenitude (proofs edition)',
+    displayTitle: 'A conversation about the Digital Plenitude',
     guideLabel: 'Guide',
     // What the reader and the harness call the voice.
     voiceLabel: 'Text',
