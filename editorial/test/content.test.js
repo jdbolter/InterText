@@ -81,10 +81,11 @@ test('buildAll writes a portable editor index and validated section snapshot', (
   }
 });
 
-test('reader home page offers The Digital Plenitude', () => {
+test('reader home page offers The Digital Plenitude, then the paper that describes the system (H-032)', () => {
   const homepage = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
-  const cards = [...homepage.matchAll(/<a class="card" href="([^"]+)"/g)].map(m => m[1]);
-  assert.deepEqual(cards, ['digital-plenitude/public/index.html']);
+  const cards = [...homepage.matchAll(/<a class="[^"]*\bcard\b[^"]*" href="([^"]+)"/g)].map(m => m[1]);
+  assert.deepEqual(cards, ['digital-plenitude/public/index.html', 'intertext-paper/public/index.html']);
+  for (const href of cards) assert.ok(fs.existsSync(path.join(root, href)), href);
 });
 
 test('public readers carry compact cross-section memory and restore per-section history', () => {
