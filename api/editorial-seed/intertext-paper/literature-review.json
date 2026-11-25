@@ -30,7 +30,7 @@
         "literature-review-p02"
       ],
       "kind": "qualification",
-      "status": "candidate",
+      "status": "accepted",
       "useWhen": "A reader asks whether any other book changes over time, or mentions The Living Book of AI.",
       "thread": null,
       "sourceStatus": "verified",
@@ -55,7 +55,7 @@
         "literature-review-p01"
       ],
       "kind": "clarification",
-      "status": "candidate",
+      "status": "accepted",
       "useWhen": "A reader asks how InterText differs from asking a chatbot about a book, or from Ask this Book.",
       "thread": null,
       "sourceStatus": "verified",
@@ -74,5 +74,5 @@
       "markdown": "In most conversational reading systems a model answers questions about a book it has been given, and the book itself\nstays on the shelf beside the conversation. In InterText the text speaks as the work: it answers in the work's own\nvoice, in the third person, about the world the work describes, and the reader meets the argument through the\nconversation rather than beside it. The reader is never shown the base text as such; what the reader reads is the\nconversation."
     }
   ],
-  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), as candidates for Jay's approval."
+  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), approved by Jay and accepted, 2026-11-25."
 }

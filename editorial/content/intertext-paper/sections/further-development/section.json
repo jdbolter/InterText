@@ -17,7 +17,7 @@
         "further-development-p02"
       ],
       "kind": "extension",
-      "status": "candidate",
+      "status": "accepted",
       "markdownFile": "fund/threads-as-paths.md",
       "useWhen": "A reader asks what new forms of reading the system might offer.",
       "thread": null,
@@ -42,7 +42,7 @@
         "further-development-p02"
       ],
       "kind": "extension",
-      "status": "candidate",
+      "status": "accepted",
       "markdownFile": "fund/an-editor-online.md",
       "useWhen": "A reader asks how an author would manage an evolving text in practice, or how others could use the system.",
       "thread": null,
@@ -61,5 +61,5 @@
       }
     }
   ],
-  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), as candidates for Jay's approval."
+  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), approved by Jay and accepted, 2026-11-25."
 }

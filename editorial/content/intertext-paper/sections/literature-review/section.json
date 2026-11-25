@@ -17,7 +17,7 @@
         "literature-review-p02"
       ],
       "kind": "qualification",
-      "status": "candidate",
+      "status": "accepted",
       "markdownFile": "fund/evolving-through-its-author.md",
       "useWhen": "A reader asks whether any other book changes over time, or mentions The Living Book of AI.",
       "thread": null,
@@ -42,7 +42,7 @@
         "literature-review-p01"
       ],
       "kind": "clarification",
-      "status": "candidate",
+      "status": "accepted",
       "markdownFile": "fund/a-text-that-speaks-as-itself.md",
       "useWhen": "A reader asks how InterText differs from asking a chatbot about a book, or from Ask this Book.",
       "thread": null,
@@ -61,5 +61,5 @@
       }
     }
   ],
-  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), as candidates for Jay's approval."
+  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), approved by Jay and accepted, 2026-11-25."
 }

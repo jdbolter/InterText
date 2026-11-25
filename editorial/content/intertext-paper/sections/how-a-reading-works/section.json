@@ -17,7 +17,7 @@
         "how-a-reading-works-p02"
       ],
       "kind": "clarification",
-      "status": "candidate",
+      "status": "accepted",
       "markdownFile": "fund/three-ways-in.md",
       "useWhen": "A reader asks how a reading begins, what contributing means, or whether the original can still be read.",
       "thread": null,
@@ -42,7 +42,7 @@
         "how-a-reading-works-p02"
       ],
       "kind": "clarification",
-      "status": "candidate",
+      "status": "accepted",
       "markdownFile": "fund/box-and-return.md",
       "useWhen": "A reader asks what the boxed passage is, what pressing Return does, or how a section ends.",
       "thread": null,
@@ -67,7 +67,7 @@
         "how-a-reading-works-p02"
       ],
       "kind": "clarification",
-      "status": "candidate",
+      "status": "accepted",
       "markdownFile": "fund/sections-and-memory.md",
       "useWhen": "A reader asks whether they can skip around, or how the text remembers what was said earlier.",
       "thread": null,
@@ -96,7 +96,7 @@
         "how-a-reading-works-p02"
       ],
       "kind": "example",
-      "status": "candidate",
+      "status": "accepted",
       "markdownFile": "fund/the-annotated-book.md",
       "useWhen": "A reader asks about the design of the reading page or why it looks like a book.",
       "thread": null,
@@ -116,7 +116,7 @@
         "how-a-reading-works-p03"
       ],
       "kind": "clarification",
-      "status": "candidate",
+      "status": "accepted",
       "markdownFile": "fund/the-spine-is-the-text.md",
       "useWhen": "A reader asks what the spine contains, or whether the reader ever sees the author's text itself.",
       "thread": null,
@@ -145,7 +145,7 @@
         "how-a-reading-works-p03"
       ],
       "kind": "clarification",
-      "status": "candidate",
+      "status": "accepted",
       "markdownFile": "fund/points-as-well-as-text.md",
       "useWhen": "A reader asks why the text needs summaries of the argument when it already holds the full text, or what keeps replies on course.",
       "thread": null,
@@ -170,7 +170,7 @@
         "how-a-reading-works-p03"
       ],
       "kind": "clarification",
-      "status": "candidate",
+      "status": "accepted",
       "markdownFile": "fund/why-spine-and-fund.md",
       "useWhen": "A reader asks why the material is split into a spine and a fund, or why readers' additions do not simply go into the text.",
       "thread": null,
@@ -195,7 +195,7 @@
         "how-a-reading-works-p03"
       ],
       "kind": "clarification",
-      "status": "candidate",
+      "status": "accepted",
       "markdownFile": "fund/what-the-fund-holds.md",
       "useWhen": "A reader asks what goes into the fund or how the text decides to use it.",
       "thread": null,
@@ -224,7 +224,7 @@
         "how-a-reading-works-p03"
       ],
       "kind": "clarification",
-      "status": "candidate",
+      "status": "accepted",
       "markdownFile": "fund/the-library-and-its-notes.md",
       "useWhen": "A reader asks how the text decides what it may cite, or how hallucinated references are prevented.",
       "thread": null,
@@ -253,7 +253,7 @@
         "how-a-reading-works-p03"
       ],
       "kind": "clarification",
-      "status": "candidate",
+      "status": "accepted",
       "markdownFile": "fund/checked-media.md",
       "useWhen": "A reader asks how the text shows images or videos, or whether it can show one.",
       "thread": null,
@@ -282,7 +282,7 @@
         "how-a-reading-works-p03"
       ],
       "kind": "clarification",
-      "status": "candidate",
+      "status": "accepted",
       "markdownFile": "fund/web-search.md",
       "useWhen": "A reader asks whether the text knows about recent events or can look things up.",
       "thread": null,
@@ -307,7 +307,7 @@
         "how-a-reading-works-p04"
       ],
       "kind": "clarification",
-      "status": "candidate",
+      "status": "accepted",
       "markdownFile": "fund/what-each-call-receives.md",
       "useWhen": "A reader asks what goes into the prompt, or how much of the text the model sees at once.",
       "thread": null,
@@ -332,7 +332,7 @@
         "how-a-reading-works-p04"
       ],
       "kind": "clarification",
-      "status": "candidate",
+      "status": "accepted",
       "markdownFile": "fund/the-revision-pass.md",
       "useWhen": "A reader asks what the second pass changes, or why a reply needs revising at all.",
       "thread": null,
@@ -361,7 +361,7 @@
         "how-a-reading-works-p04"
       ],
       "kind": "clarification",
-      "status": "candidate",
+      "status": "accepted",
       "markdownFile": "fund/one-voice.md",
       "useWhen": "A reader asks who is speaking, whether a passage came from the author, a reader or the model, or how the text handles an objection.",
       "thread": null,
@@ -386,7 +386,7 @@
         "how-a-reading-works-p04"
       ],
       "kind": "clarification",
-      "status": "candidate",
+      "status": "accepted",
       "markdownFile": "fund/which-models.md",
       "useWhen": "A reader asks which models InterText uses, or how the parts of a reply are kept private.",
       "thread": null,
@@ -409,5 +409,5 @@
       }
     }
   ],
-  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), as candidates for Jay's approval."
+  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), approved by Jay and accepted, 2026-11-25."
 }

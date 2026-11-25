@@ -69,7 +69,8 @@ test('buildAll writes a portable editor index and validated section snapshot', (
     assert.equal(index.works.flatMap(work => work.sections).length, 55);
     const paper = index.works.find(work => work.id === 'intertext-paper');
     assert.ok(paper.sections.every(section => section.readiness === 'packaged'));
-    assert.ok(paper.sections.every(section => section.fundCounts.accepted === 0));
+    assert.equal(paper.sections.reduce((n, section) => n + section.fundCounts.accepted, 0), 34);
+    assert.ok(paper.sections.every(section => section.fundCounts.candidate === 0));
     const proofs = index.works.find(work => work.id === 'digital-plenitude');
     assert.ok(proofs.sections.every(section => section.readiness === 'packaged'));
     assert.ok(proofs.sections.every(section => section.fundCounts.accepted === 0 && section.fundCounts.candidate === 0));

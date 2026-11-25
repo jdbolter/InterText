@@ -34,7 +34,7 @@
         "synthetic-readers-p02"
       ],
       "kind": "clarification",
-      "status": "candidate",
+      "status": "accepted",
       "useWhen": "A reader asks why the synthetic readers use a different model from the text.",
       "thread": null,
       "sourceStatus": "verified",
@@ -59,7 +59,7 @@
         "synthetic-readers-p01"
       ],
       "kind": "clarification",
-      "status": "candidate",
+      "status": "accepted",
       "useWhen": "A reader asks whether the synthetic readers have access to the author's text or the instructions.",
       "thread": null,
       "sourceStatus": "verified",
@@ -84,7 +84,7 @@
         "synthetic-readers-p02"
       ],
       "kind": "clarification",
-      "status": "candidate",
+      "status": "accepted",
       "useWhen": "A reader asks what the profiles are or how they differ.",
       "thread": null,
       "sourceStatus": "verified",
@@ -109,7 +109,7 @@
         "synthetic-readers-p01"
       ],
       "kind": "clarification",
-      "status": "candidate",
+      "status": "accepted",
       "useWhen": "A reader asks how a synthetic reader decides what to do, or what is recorded.",
       "thread": null,
       "sourceStatus": "verified",
@@ -134,7 +134,7 @@
         "synthetic-readers-p02"
       ],
       "kind": "evidence",
-      "status": "candidate",
+      "status": "accepted",
       "useWhen": "A reader asks how the synthetic readings are evaluated, or what is counted.",
       "thread": null,
       "sourceStatus": "verified",
@@ -159,7 +159,7 @@
         "synthetic-readers-p02"
       ],
       "kind": "clarification",
-      "status": "candidate",
+      "status": "accepted",
       "useWhen": "A reader asks how one version of the system is compared with another.",
       "thread": null,
       "sourceStatus": "not-required",
@@ -179,7 +179,7 @@
         "synthetic-readers-p03"
       ],
       "kind": "clarification",
-      "status": "candidate",
+      "status": "accepted",
       "useWhen": "A reader asks how the synthetic readings feed back into the text.",
       "thread": null,
       "sourceStatus": "verified",
@@ -208,7 +208,7 @@
         "synthetic-readers-p03"
       ],
       "kind": "qualification",
-      "status": "candidate",
+      "status": "accepted",
       "useWhen": "A reader asks whether synthetic readers can stand in for people.",
       "thread": null,
       "sourceStatus": "verified",
@@ -233,7 +233,7 @@
         "synthetic-readers-p02"
       ],
       "kind": "extension",
-      "status": "candidate",
+      "status": "accepted",
       "useWhen": "A reader asks how the effect of the fund can be tested.",
       "thread": null,
       "sourceStatus": "verified",
@@ -252,5 +252,5 @@
       "markdown": "Two experimental editions, used only by the synthetic readers, give the text the spine alone or the spine with the fund,\nwith web search off and no outside examples, so that the availability of the fund is the only difference between them.\nThey show whether and how the text draws on optional material when it has it."
     }
   ],
-  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), as candidates for Jay's approval."
+  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), approved by Jay and accepted, 2026-11-25."
 }

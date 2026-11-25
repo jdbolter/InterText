@@ -2,7 +2,7 @@ const path = require('path');
 
 // H-001 (project intertext-paper): the DH2027 paper "InterText: An AI-supported system for interactive reading" as an InterText.
 // The spine is the paper (Jay's prose). The section points, the chapter point, the opening boxes, the voice's
-// instructions and the library descriptions are drafts by a Claude session (2026-11-25) for Jay's approval.
+// instructions and the library descriptions were drafted by a Claude session and approved by Jay, 2026-11-25.
 module.exports = {
   model: 'claude-sonnet-5-5',
   voiceName: 'Text',
@@ -15,7 +15,7 @@ module.exports = {
   sectionNames: ["Introduction", "Literature Review", "How a Reading Works", "A Text That Evolves", "Synthetic Readers", "Further Development"],
 
   // What the reader is shown in the opening box. The page's SECTION_INTROS (public/app.js) must say the same.
-  // Drafts for Jay's approval.
+  // Drafted by a Claude session; approved by Jay, 2026-11-25.
   sectionIntros: [
     "In 1992 the novelist Robert Coover announced the end of books: hypertext, he argued, would free readers from the fixed line of the printed page. Three decades later the most successful hypertext is Wikipedia, whose articles are still fixed pages joined by links. Large language models make a different change possible. A text can now answer its reader, take up an objection, and change what it says next. Literary theorists from Stanley Fish to Wolfgang Iser argued that meaning is made in the act of reading. InterText puts that idea to work.",
     "In December 2025 Amazon added Ask this Book to the Kindle app, so that a reader can stop and question the book in hand. Google's Gemini and a growing number of other systems do the same, and some writers have gone further, handing part of the writing itself to a model, an approach Hannes Bajohr and Luciano Floridi call distant writing. In every case the text stays as it was. The reader can question the book but not change it, and the next reader receives the same book. InterText asks what happens when a text grows with each reading.",
@@ -79,7 +79,7 @@ module.exports = {
   ],
 
   // The argument in brief for each section, handed to the model before every reply; never shown to the reader.
-  // Drafts for Jay's approval.
+  // Drafted by a Claude session; approved by Jay, 2026-11-25.
   sectionPoints: [
     "Decades of hypertext settled into a conservative form, fixed units of text joined by links; large language models now make it possible to redefine the roles of author and reader, an idea reader-response critics such as Fish and Iser explored, and InterText is one such redefinition.",
     "Distant writing hands part of the writing to a model, and conversational reading lets readers question a fixed text; in none of these systems does the reader take part in the evolution of the text, and InterText's distinction is a text that grows with each reading.",

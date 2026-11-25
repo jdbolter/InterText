@@ -823,8 +823,8 @@
           "versionId": "ip-literature-review-v001",
           "passageCount": 2,
           "fundCounts": {
-            "candidate": 2,
-            "accepted": 0,
+            "candidate": 0,
+            "accepted": 2,
             "superseded": 0,
             "rejected": 0
           }
@@ -839,8 +839,8 @@
           "versionId": "ip-how-a-reading-works-v001",
           "passageCount": 4,
           "fundCounts": {
-            "candidate": 15,
-            "accepted": 0,
+            "candidate": 0,
+            "accepted": 15,
             "superseded": 0,
             "rejected": 0
           }
@@ -855,8 +855,8 @@
           "versionId": "ip-a-text-that-evolves-v001",
           "passageCount": 2,
           "fundCounts": {
-            "candidate": 6,
-            "accepted": 0,
+            "candidate": 0,
+            "accepted": 6,
             "superseded": 0,
             "rejected": 0
           }
@@ -871,8 +871,8 @@
           "versionId": "ip-synthetic-readers-v001",
           "passageCount": 3,
           "fundCounts": {
-            "candidate": 9,
-            "accepted": 0,
+            "candidate": 0,
+            "accepted": 9,
             "superseded": 0,
             "rejected": 0
           }
@@ -887,8 +887,8 @@
           "versionId": "ip-further-development-v001",
           "passageCount": 2,
           "fundCounts": {
-            "candidate": 2,
-            "accepted": 0,
+            "candidate": 0,
+            "accepted": 2,
             "superseded": 0,
             "rejected": 0
           }
