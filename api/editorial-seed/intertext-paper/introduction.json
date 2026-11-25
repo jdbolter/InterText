@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "workId": "intertext-paper",
+  "sectionId": "introduction",
+  "sectionOrder": 1,
+  "title": "Introduction",
+  "editionId": "intertext-paper",
+  "versionId": "ip-introduction-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-25T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "intertext-paper/source_texts/sections/section-1.md"
+  },
+  "spine": [
+    {
+      "id": "introduction-p01",
+      "markdown": "Digital humanists and creators have been exploring new forms of narrative or discursive writing and reading since the early days of hypertext (Bolter 1991, 2001; Landow 1992; Joyce 1995; Coover 1992; Murray 1997). Although there have been many experiments over the decades, what has predominated is a hybrid and frankly conservative form in which static units of text are connected through hyperlinks, e.g. Wikipedia. In the past few years, however, LLMs have matured and now give us an opportunity to redefine the roles of human author and reader (Antonini et al. 2025; Bolter 2026)—an idea that literary theorists have been exploring at least since Stanley Fish and Wolfgang Iser in the 1970s (Fish 1970, 1980; Iser 1974, 1978). InterText offers one possible redefinition in a digitally mediated system."
+    }
+  ],
+  "fundEntries": [],
+  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), as candidates for Jay's approval."
+}

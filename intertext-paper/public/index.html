@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>InterText: An AI-supported system for interactive reading</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../../shared/citation-notes.css">
+</head>
+<body>
+
+  <div id="consent-overlay">
+    <div id="consent-dialog">
+      <p class="consent-kicker">Before you begin</p>
+      <p class="consent-body">What you are about to read has already been shaped, in part, by the readers who came before you. When a conversation opens up the argument, takes it somewhere the text hadn't gone, or surfaces a connection it hadn't made, that exchange can be folded back into the essay itself. You can choose to be part of that. If you agree, your conversation today will be used to enrich the sections you engage with — anonymously, as one contribution among many to a text that continues to evolve with its readers.</p>
+      <p class="consent-body">If you'd rather not contribute, you can still read freely — either the text as it stands today, or the version as it was first written. Either way, nothing about your visit will change what the next reader finds.</p>
+      <div id="consent-buttons">
+        <button id="consent-contribute" class="consent-btn consent-btn-primary">
+          <span class="consent-btn-title">Contribute</span>
+          <span class="consent-btn-caption">Yes, let my conversation become part of the collective.</span>
+        </button>
+        <button id="consent-current" class="consent-btn">
+          <span class="consent-btn-title">Read the current text</span>
+          <span class="consent-btn-caption">No — read it as previous readers have already shaped it.</span>
+        </button>
+        <button id="consent-original" class="consent-btn">
+          <span class="consent-btn-title">Read the original</span>
+          <span class="consent-btn-caption">No — read it exactly as first written, before any reader's changes.</span>
+        </button>
+      </div>
+      <p class="consent-how">Read by pressing Enter, which carries the text on; type at any time to ask, object or add to what it says.</p>
+    </div>
+  </div>
+
+  <div id="layout">
+
+    <main id="left-col">
+      <header id="running-head">
+        <div class="head-inner">
+          <h1>InterText: An AI-supported system for interactive reading</h1>
+          <div id="running-position" aria-live="polite"></div>
+          <button id="contents-toggle" type="button" aria-expanded="false" aria-controls="side">Contents</button>
+        </div>
+      </header>
+      <div id="conversation" aria-live="polite"></div>
+    </main>
+
+    <aside id="side" aria-label="Contents and references">
+      <button id="side-close" type="button" aria-label="Close the contents">Close</button>
+      <nav id="toc" aria-label="Chapters and sections"></nav>
+      <details id="references" hidden>
+        <summary>References <span id="references-count">0</span></summary>
+        <ol id="references-list"></ol>
+      </details>
+    </aside>
+
+    <div id="dock">
+      <div id="input-area">
+        <span class="input-prompt" aria-hidden="true">&gt;</span>
+        <textarea id="message-input" rows="1" aria-label="Your questions or comments" placeholder="Ask or comment here, or simply go on."></textarea>
+      </div>
+      <div id="dock-row">
+        <button id="finish-btn" type="button">Finish reading</button>
+        <span id="dock-hint" aria-hidden="true"></span>
+        <button id="go-btn" type="button" aria-label="Go on">Go on</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="side-scrim" hidden></div>
+
+  <div id="farewell">
+    <div id="farewell-dialog">
+      <div id="farewell-saving">
+        <div class="farewell-spinner"></div>
+        <p class="farewell-body">The text is being configured to reflect your contribution. This may take a few minutes. Please leave this window open until the operation is complete.</p>
+      </div>
+      <div id="farewell-done" style="display:none">
+        <p class="farewell-body">Thank you for reading.</p>
+        <p class="farewell-sub">Close this window whenever you are ready.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../shared/citation-notes.js"></script>
+  <script src="../../shared/media-items.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

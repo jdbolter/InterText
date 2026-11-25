@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "workId": "intertext-paper",
+  "sectionId": "literature-review",
+  "sectionOrder": 2,
+  "title": "Literature Review",
+  "editionId": "intertext-paper",
+  "versionId": "ip-literature-review-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-25T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "intertext-paper/source_texts/sections/section-2.md"
+  },
+  "spine": [
+    {
+      "id": "literature-review-p01",
+      "markdown": "There is a growing body of theoretical work and practical applications in the use of LLMs to reimagine writing (Rockwell, Farinola, and Bradley 2026; Roncaglia et al. 2026; Crocetti and Lee 2026; Liu et al. 2026; Lo et al. 2024; Baron 2026). Hannes Bajohr, Luciano Floridi and others have proposed the concept of distant writing (Bajohr 2024; Floridi 2025, 2027), which Floridi argues is the counterpart of distant reading (Moretti 2013). In distant writing, a human author delegates some autonomy to an LLM in creating the text. Some current examples produce static text that is read in the traditional linear fashion by the reader (Bajohr 2023; Marchine, aka Stephen Marche, n.d., Allado-McDowell 2020). Other applications generate text dynamically (Stiles 2025). In some systems, readers enter into dialogue with a model that has absorbed one or more traditional, authored texts, e,g, Gemini Notebook, Rebind, Kindle's \"Ask this Book,” “The Living Book of AI,” and “Talk to TR” (Johnson and Houghteling 2026; Lovejoy 2025; Masera 2026; Wang et al. 2026)."
+    },
+    {
+      "id": "literature-review-p02",
+      "markdown": "For all their innovations, none of the above applications include the reader in the evolution of the text, none allow the text to grow with each reading. By enabling the text to evolve in response to its readers, InterText proposes a different balance between traditional authorship and reader participation."
+    }
+  ],
+  "fundEntries": [
+    {
+      "id": "evolving-through-its-author",
+      "title": "A book that evolves through its author",
+      "anchors": [
+        "literature-review-p02"
+      ],
+      "kind": "qualification",
+      "status": "candidate",
+      "useWhen": "A reader asks whether any other book changes over time, or mentions The Living Book of AI.",
+      "thread": null,
+      "sourceStatus": "verified",
+      "sources": [
+        {
+          "title": "Masera, \"Why a Book about AI Has to Keep Rewriting Itself\" (The Living Book of AI)",
+          "url": "https://francescomasera.substack.com/p/why-a-book-about-ai-has-to-keep-rewriting"
+        }
+      ],
+      "provenance": {
+        "type": "imported",
+        "sessionId": null,
+        "turns": [],
+        "artifactPath": null
+      },
+      "markdown": "The Living Book of AI also changes, but through its author. Francesco Masera chooses a subject each week and passes it\nthrough a series of AI-assisted desks for drafting, editing, fact-checking and images; the Italian edition is updated\ncontinuously and the English one once a year, and at each new edition he decides which updates enter print. Readers'\nquestions do not alter it. The difference from InterText lies in who moves the text: there the author, on a schedule;\nhere the readers, in conversation, under rules the author sets."
+    },
+    {
+      "id": "a-text-that-speaks-as-itself",
+      "title": "Questioning a book and a book that answers",
+      "anchors": [
+        "literature-review-p01"
+      ],
+      "kind": "clarification",
+      "status": "candidate",
+      "useWhen": "A reader asks how InterText differs from asking a chatbot about a book, or from Ask this Book.",
+      "thread": null,
+      "sourceStatus": "verified",
+      "sources": [
+        {
+          "title": "InterText design (CURRENT-DESIGN.md)",
+          "url": "https://github.com/jdbolter/Intertext-public/blob/main/CURRENT-DESIGN.md"
+        }
+      ],
+      "provenance": {
+        "type": "imported",
+        "sessionId": null,
+        "turns": [],
+        "artifactPath": "CURRENT-DESIGN.md"
+      },
+      "markdown": "In most conversational reading systems a model answers questions about a book it has been given, and the book itself\nstays on the shelf beside the conversation. In InterText the text speaks as the work: it answers in the work's own\nvoice, in the third person, about the world the work describes, and the reader meets the argument through the\nconversation rather than beside it. The reader is never shown the base text as such; what the reader reads is the\nconversation."
+    }
+  ],
+  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), as candidates for Jay's approval."
+}

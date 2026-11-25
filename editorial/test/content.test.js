@@ -23,8 +23,8 @@ function normalize(text) {
 
 test('all editorial work manifests match the current text configs', () => {
   const discovered = discoverWorks(contentRoot);
-  assert.deepEqual(discovered.map(({ work }) => work.id), ['digital-plenitude']);
-  assert.deepEqual(discovered.map(({ work }) => work.order), [1]);
+  assert.deepEqual(discovered.map(({ work }) => work.id), ['digital-plenitude', 'intertext-paper']);
+  assert.deepEqual(discovered.map(({ work }) => work.order), [1, 2]);
 
   for (const { work } of discovered) {
     const config = require(path.join(root, work.id, 'config.js'));
@@ -65,8 +65,11 @@ test('buildAll writes a portable editor index and validated section snapshot', (
   const outputRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'intertext-editorial-'));
   try {
     const index = buildAll({ contentRoot, outputRoot });
-    assert.equal(index.works.length, 1);
-    assert.equal(index.works.flatMap(work => work.sections).length, 49);
+    assert.equal(index.works.length, 2);
+    assert.equal(index.works.flatMap(work => work.sections).length, 55);
+    const paper = index.works.find(work => work.id === 'intertext-paper');
+    assert.ok(paper.sections.every(section => section.readiness === 'packaged'));
+    assert.ok(paper.sections.every(section => section.fundCounts.accepted === 0));
     const proofs = index.works.find(work => work.id === 'digital-plenitude');
     assert.ok(proofs.sections.every(section => section.readiness === 'packaged'));
     assert.ok(proofs.sections.every(section => section.fundCounts.accepted === 0 && section.fundCounts.candidate === 0));
@@ -84,7 +87,7 @@ test('reader home page offers The Digital Plenitude', () => {
 });
 
 test('public readers carry compact cross-section memory and restore per-section history', () => {
-  for (const workId of ['digital-plenitude']) {
+  for (const workId of ['digital-plenitude', 'intertext-paper']) {
     const app = fs.readFileSync(path.join(root, workId, 'public', 'app.js'), 'utf8');
     const style = fs.readFileSync(path.join(root, workId, 'public', 'style.css'), 'utf8');
     assert.match(app, /const sectionSummaries = new Map\(\)/);
@@ -209,3 +212,52 @@ test('digital-plenitude chapters 6 to 9: built, with the Conclusion headed by it
   assert.match(app, /fig-9-1-dichotomies\.png/);
   assert.ok(fs.existsSync(path.join(root, 'digital-plenitude', 'images', 'fig-9-1-dichotomies.png')));
 });
+
+// H-001 (project intertext-paper): the DH2027 paper as an InterText.
+for (const textId of ['intertext-paper']) {
+  test(`${textId}: the introductions and chapters the page shows match config.js`, () => {
+    const config = require(path.join(root, textId, 'config.js'));
+    const app = fs.readFileSync(path.join(root, textId, 'public', 'app.js'), 'utf8');
+    const slice = name => app.slice(app.indexOf(`const ${name} = `), app.indexOf('];', app.indexOf(`const ${name} = `)) + 2);
+    const shown = [...slice('SECTION_INTROS').matchAll(/`([\s\S]*?)`/g)].map(m => m[1]);
+    const plain = s => s
+      .replace(/<[^>]+>/g, '')
+      .replace(/&mdash;/g, '—').replace(/&rsquo;/g, '’').replace(/&lsquo;/g, '‘')
+      .replace(/&ldquo;/g, '“').replace(/&rdquo;/g, '”').replace(/&amp;/g, '&')
+      .replace(/[’‘]/g, "'").replace(/[“”]/g, '"')
+      .replace(/\s+/g, ' ').trim();
+    assert.equal(shown.length, config.sectionIntros.length);
+    shown.forEach((html, i) => assert.equal(plain(html), plain(config.sectionIntros[i]), `section ${i + 1} introduction`));
+    const chapters = new Function(`${slice('CHAPTERS')}; return CHAPTERS;`)();
+    assert.deepEqual(chapters, config.chapters.map(({ number, title, firstSection, label }) => (label ? { number, title, firstSection, label } : { number, title, firstSection })));
+    assert.ok(config.chapters.every(ch => typeof ch.point === 'string' && ch.point.trim()));
+    assert.equal(config.sectionPoints.length, config.sectionNames.length);
+    const titles = new Function(`${slice('SECTION_TITLES')}; return SECTION_TITLES;`)();
+    assert.deepEqual(titles, config.sectionNames);
+    const numerals = new Function(`${slice('SECTION_NUMERALS')}; return SECTION_NUMERALS;`)();
+    assert.equal(numerals.length, config.sectionNames.length);
+  });
+
+  test(`${textId}: every image the model may embed is on the page and in the images folder`, () => {
+    const config = require(path.join(root, textId, 'config.js'));
+    const app = fs.readFileSync(path.join(root, textId, 'public', 'app.js'), 'utf8');
+    const ids = config.sectionImagePrompts.flatMap(list => (list || []).map(item => item.id));
+    assert.ok(ids.length > 0);
+    for (const id of ids) {
+      const m = app.match(new RegExp(`id: "${id}", src: "\\.\\./images/([^"]+)"`));
+      assert.ok(m, `${id} is on the page`);
+      assert.ok(fs.existsSync(path.join(root, textId, 'images', m[1])), `${m[1]} exists`);
+    }
+  });
+
+  test(`${textId}: the spine is the paper, passage for passage`, () => {
+    const config = require(path.join(root, textId, 'config.js'));
+    const work = JSON.parse(fs.readFileSync(path.join(contentRoot, textId, 'work.json'), 'utf8'));
+    work.sections.forEach((section, i) => {
+      const file = fs.readFileSync(path.join(config.sectionsDir, config.sectionFiles[i]), 'utf8').replace(/^## .*\n/, '');
+      const spine = fs.readFileSync(path.join(contentRoot, textId, 'sections', section.id, 'spine.md'), 'utf8')
+        .replace(/<!-- intertext:passage [a-z0-9-]+ -->/g, '');
+      assert.equal(normalize(spine), normalize(file), section.id);
+    });
+  });
+}

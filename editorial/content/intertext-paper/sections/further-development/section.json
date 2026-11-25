@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "editionId": "intertext-paper",
+  "versionId": "ip-further-development-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-25T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "intertext-paper/source_texts/sections/section-6.md"
+  },
+  "spineFile": "spine.md",
+  "fundEntries": [
+    {
+      "id": "threads-as-paths",
+      "title": "Threads through the fund",
+      "anchors": [
+        "further-development-p02"
+      ],
+      "kind": "extension",
+      "status": "candidate",
+      "markdownFile": "fund/threads-as-paths.md",
+      "useWhen": "A reader asks what new forms of reading the system might offer.",
+      "thread": null,
+      "sourceStatus": "verified",
+      "sources": [
+        {
+          "title": "InterText design (CURRENT-DESIGN.md)",
+          "url": "https://github.com/jdbolter/Intertext-public/blob/main/CURRENT-DESIGN.md"
+        }
+      ],
+      "provenance": {
+        "type": "imported",
+        "sessionId": null,
+        "turns": [],
+        "artifactPath": "CURRENT-DESIGN.md"
+      }
+    },
+    {
+      "id": "an-editor-online",
+      "title": "An author's editor online",
+      "anchors": [
+        "further-development-p02"
+      ],
+      "kind": "extension",
+      "status": "candidate",
+      "markdownFile": "fund/an-editor-online.md",
+      "useWhen": "A reader asks how an author would manage an evolving text in practice, or how others could use the system.",
+      "thread": null,
+      "sourceStatus": "verified",
+      "sources": [
+        {
+          "title": "InterText editorial architecture (EDITORIAL-ARCHITECTURE.md)",
+          "url": "https://github.com/jdbolter/Intertext-public/blob/main/EDITORIAL-ARCHITECTURE.md"
+        }
+      ],
+      "provenance": {
+        "type": "imported",
+        "sessionId": null,
+        "turns": [],
+        "artifactPath": "EDITORIAL-ARCHITECTURE.md"
+      }
+    }
+  ],
+  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), as candidates for Jay's approval."
+}

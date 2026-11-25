@@ -1,0 +1,1239 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* H-030: the annotated book. The reading is a printed page in EB Garamond; the reader's words stand in the margin as
+   notes in blue-black italic, tied by a leader line to the reply they drew; the contents and the input sit on the
+   book's cloth cover. The fonts are served from public/fonts (SIL Open Font License, public/fonts/OFL.txt). The
+   look it replaced and the alternatives considered are kept in the vault:
+   projects/digital-plenitude/design/interface-alternatives/. */
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('fonts/eb-garamond-latin-wght-normal.woff2') format('woff2');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('fonts/eb-garamond-latin-wght-italic.woff2') format('woff2');
+  font-weight: 400 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --text: #14120f;          /* ink */
+  --muted: #6b6457;
+  --faint: #b8ad97;
+  --border: #e2d8c3;
+  --bg: #f7f1e3;            /* the page */
+  --bg-dock: #1f2b45;
+  --rubric: #a3341f;        /* red, as in a rubricated book: labels, numerals, the drop cap */
+  --hand: #2d4a8a;          /* the reader's ink: blue-black */
+  --cloth: #1f2b45;         /* the cover: contents and input */
+  --cloth-text: #efe6cf;
+  --gilt: #d9b56a;
+  --slip: #fbf7ec;          /* the slip the reader writes on */
+  --reader-label: var(--hand);
+  --guide-label: #6b6457;   /* used by shared/citation-notes.css */
+  --rule: #14120f;
+  --line: 36rem;            /* the text column */
+  --gap: 2.5rem;            /* between the text column and the margin */
+  --margin: 15rem;          /* the margin, where the reader's notes stand */
+  --right-col: 24rem;
+  --serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
+  --sans: var(--serif);     /* the furniture is set in the same face, in small capitals */
+  --cloth-weave: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.018) 0 2px, transparent 2px 5px);
+  --dock-height: 7.5rem; /* a guess, replaced by the script once the dock is laid out */
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* Small capitals for the furniture: labels, numerals, buttons. */
+.consent-kicker,
+.chapter-heading,
+.turn-label,
+.toc-chapter-title {
+  font-variant: small-caps;
+  text-transform: lowercase;
+}
+
+/* ── Consent overlay: the book's first page ── */
+
+#consent-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(31, 43, 69, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+#consent-dialog {
+  background: var(--bg);
+  padding: 3rem 3.5rem;
+  max-width: 42rem;
+  width: 100%;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+  outline: 1px solid var(--rubric);
+  outline-offset: -14px;
+}
+
+.consent-kicker {
+  font-size: 1rem;
+  letter-spacing: 0.16em;
+  color: var(--rubric);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.consent-body {
+  font-size: 1.05rem;
+  font-weight: 460;
+  line-height: 1.65;
+  text-align: justify;
+  hyphens: auto;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.consent-body:last-of-type {
+  margin-bottom: 0;
+}
+
+#consent-buttons {
+  margin-top: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.consent-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  width: 100%;
+  background: var(--slip);
+  border: 1px solid var(--border);
+  padding: 0.8rem 1.1rem;
+  font-family: var(--serif);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.consent-btn:hover,
+.consent-btn:focus-visible {
+  border-color: var(--rubric);
+  background: #fffdf6;
+}
+
+.consent-btn-primary {
+  border: 1.5px solid var(--rubric);
+}
+
+.consent-btn-title {
+  font-size: 1.05rem;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  color: var(--text);
+}
+
+.consent-btn-primary .consent-btn-title {
+  color: var(--rubric);
+}
+
+.consent-btn-caption {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.consent-how {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  font-style: italic;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ── Layout: the reading on the left; contents above the input on the right ── */
+
+#layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--right-col);
+  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "reading side"
+    "reading dock";
+  height: 100vh;
+  height: 100dvh;
+}
+
+#left-col {
+  grid-area: reading;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  padding: 0 2rem 3rem;
+  scroll-padding-top: 4.5rem;
+  background: var(--bg);
+  box-shadow: inset -14px 0 18px -14px rgba(60, 40, 10, 0.25); /* the page curving into the binding */
+}
+
+#left-col > * {
+  width: 100%;
+  max-width: var(--line);
+}
+
+#side {
+  grid-area: side;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--cloth) var(--cloth-weave);
+  color: var(--cloth-text);
+}
+
+#dock {
+  grid-area: dock;
+}
+
+/* ── The running head, as in a printed book: the title on the left, where the reader is on the right ── */
+
+#running-head {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  max-width: none;
+  display: flex;
+  justify-content: center;
+  padding: 1.2rem 0 0.6rem;
+  background: var(--bg);
+}
+
+.head-inner {
+  width: 100%;
+  max-width: var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.2rem 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--text);
+}
+
+#running-head h1 {
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  color: var(--text);
+}
+
+.head-edition {
+  font-style: normal;
+  font-weight: 400;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  color: var(--rubric);
+  margin-left: 0.5em;
+}
+
+#running-position {
+  font-size: 0.95rem;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  min-height: 1.2em;
+}
+
+#running-position .pos-section {
+  color: var(--text);
+}
+
+#contents-toggle,
+#side-close {
+  display: none;
+}
+
+/* ── Contents, top of the right column, on the cloth ── */
+
+#toc {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2.25rem 1.75rem 1.25rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+#toc::before {
+  content: 'Contents';
+  display: block;
+  text-align: center;
+  font-variant: small-caps;
+  text-transform: lowercase;
+  letter-spacing: 0.2em;
+  font-size: 1.15rem;
+  color: var(--gilt);
+  border-top: 1px solid rgba(217, 181, 106, 0.5);
+  border-bottom: 1px solid rgba(217, 181, 106, 0.5);
+  padding: 0.3rem 0;
+  margin-bottom: 0.4rem;
+}
+
+/* H-014: chapters in the contents list; only the open chapter shows its sections. */
+.toc-chapter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.toc-chapter-title {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--serif);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  color: rgba(239, 230, 207, 0.6);
+  line-height: 1.4;
+}
+
+.toc-chapter-title:hover,
+.toc-chapter-title:focus-visible {
+  color: var(--cloth-text);
+  outline: none;
+}
+
+.toc-chapter.current .toc-chapter-title {
+  color: var(--gilt);
+}
+
+.toc-sections {
+  display: none;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 0.1rem 0 0.35rem 0.2rem;
+}
+
+.toc-chapter.open .toc-sections {
+  display: flex;
+}
+
+.toc-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: rgba(239, 230, 207, 0.5);
+  line-height: 1.35;
+  transition: color 0.2s;
+}
+
+.toc-item:hover,
+.toc-item:focus-visible {
+  color: var(--cloth-text);
+  outline: none;
+}
+
+.toc-item.visited {
+  color: rgba(239, 230, 207, 0.8);
+}
+
+.toc-item.active {
+  color: #fff;
+  font-style: italic;
+}
+
+.toc-item:disabled {
+  cursor: default;
+}
+
+.toc-num {
+  flex-shrink: 0;
+  min-width: 1.6em;
+  font-style: normal;
+  font-variant: small-caps;
+  color: var(--gilt);
+  opacity: 0.85;
+}
+
+.toc-item.complete .toc-num::after {
+  content: '\00B7';
+  margin-left: 0.15em;
+}
+
+/* ── References, under the contents ── */
+
+#references {
+  flex-shrink: 0;
+  border-top: 1px solid rgba(217, 181, 106, 0.35);
+  margin: 0;
+  padding: 0.8rem 1.75rem;
+  color: var(--cloth-text);
+  font-size: 0.85rem;
+}
+
+#references summary {
+  list-style: none;
+}
+
+#references summary::-webkit-details-marker {
+  display: none;
+}
+
+#references summary::before {
+  content: '\25B8\00A0';
+}
+
+#references[open] summary::before {
+  content: '\25BE\00A0';
+}
+
+#references-list {
+  max-height: 11rem;
+}
+
+/* ── The dock: a slip on the cover, where the reader writes ── */
+
+#dock {
+  flex-shrink: 0;
+  padding: 0.6rem 1.5rem 1rem;
+  background: var(--cloth) var(--cloth-weave);
+}
+
+#input-area {
+  position: relative;
+  padding: 0.35rem 0.9rem 0.35rem 1.6rem;
+  background: var(--slip);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.input-prompt {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.7rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--hand);
+  pointer-events: none;
+}
+
+/* When focused, the textarea supplies its own caret. */
+#input-area.show-caret:not(:focus-within)::before {
+  content: '';
+  position: absolute;
+  top: 0.8rem;
+  left: 1.6rem;
+  height: 1.1rem;
+  border-left: 1px solid var(--text);
+  pointer-events: none;
+}
+
+/* What the reader types is already in the italic it will have in the margin. */
+#message-input {
+  display: block;
+  width: 100%;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--hand);
+  caret-color: var(--text);
+  background: transparent;
+  border: none;
+  padding: 0.4rem 0;
+  resize: none;
+  outline: none;
+  min-height: 2.35rem;
+  max-height: 11rem;
+  overflow-y: auto;
+}
+
+#message-input::placeholder {
+  color: rgba(45, 74, 138, 0.5);
+  opacity: 1;
+}
+
+#message-input[aria-busy="true"] {
+  color: var(--muted);
+}
+
+#dock-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.6rem;
+  font-family: var(--serif);
+  font-size: 0.9rem;
+  color: rgba(239, 230, 207, 0.7);
+}
+
+#dock-hint {
+  flex: 1;
+}
+
+#finish-btn,
+#go-btn {
+  flex-shrink: 0;
+  background: none;
+  border: 1px solid transparent;
+  padding: 0.3rem 0.7rem;
+  margin-left: -0.7rem;
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: rgba(239, 230, 207, 0.75);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+#go-btn {
+  margin-left: 0;
+  padding: 0.3rem 1rem;
+  background: var(--gilt);
+  border-color: var(--gilt);
+  color: var(--cloth);
+  font-style: normal;
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+}
+
+#go-btn.has-text {
+  background: var(--slip);
+  border-color: var(--slip);
+  color: var(--hand);
+}
+
+#finish-btn:hover:not(:disabled),
+#finish-btn:focus-visible {
+  color: #fff;
+  outline: none;
+}
+
+#go-btn:hover:not(:disabled),
+#go-btn:focus-visible {
+  filter: brightness(1.08);
+  outline: 2px solid rgba(239, 230, 207, 0.5);
+  outline-offset: 2px;
+}
+
+#finish-btn:disabled,
+#go-btn:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+/* ── Farewell screen ── */
+
+#farewell {
+  position: fixed;
+  inset: 0;
+  background: rgba(31, 43, 69, 0.88);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 2rem;
+}
+
+#farewell-dialog {
+  background: var(--bg);
+  padding: 3rem 3.5rem;
+  max-width: 40rem;
+  width: 100%;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+  outline: 1px solid var(--rubric);
+  outline-offset: -14px;
+}
+
+#farewell-saving {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.farewell-body {
+  font-size: 1.05rem;
+  font-weight: 460;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+.farewell-sub {
+  font-size: 1rem;
+  font-variant: small-caps;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  color: var(--rubric);
+  margin-top: 1.5rem;
+}
+
+/* ── The reading ── */
+
+#conversation {
+  flex: 1;
+  padding: 0.5rem 0 2rem;
+}
+
+.turn {
+  margin-bottom: 1.6rem;
+  scroll-margin-top: 4.5rem;
+}
+
+.turn-label {
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.1rem;
+  color: var(--rubric);
+}
+
+/* The text's replies are the body of the page: darker and a touch heavier than regular (Jay, 2026-11-21),
+   justified, later paragraphs indented rather than spaced. */
+.turn-body {
+  line-height: 1.6;
+  font-weight: 460;
+  text-align: justify;
+  hyphens: auto;
+  overflow: hidden;
+}
+
+.turn-body p {
+  margin-bottom: 0;
+}
+
+.turn-body p + p {
+  text-indent: 1.5em;
+}
+
+/* The reader's own words: italic, in blue-black ink. On a wide screen they stand in the margin (below); otherwise
+   they stay in the reading, set in from the margin with a rule, above the reply they drew. */
+.turn-reader {
+  margin: 0 0 1.25rem;
+  padding: 0.1rem 0 0.2rem 0.9rem;
+  border-left: 1.5px solid var(--hand);
+}
+
+.turn-reader .turn-label {
+  font-variant: normal;
+  text-transform: none;
+  font-style: italic;
+  letter-spacing: 0;
+  font-size: 0.9rem;
+  color: var(--hand);
+  opacity: 0.75;
+}
+
+.turn-reader .turn-body {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.12rem;
+  line-height: 1.45;
+  text-align: left;
+  hyphens: manual;
+  color: var(--hand);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.turn-sources {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.4em;
+}
+
+.system-message {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--muted);
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.system-message button {
+  background: none;
+  border: none;
+  padding: 0 0.2em;
+  font: inherit;
+  font-style: normal;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  color: var(--rubric);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+
+/* ── Chapter and section openings ── */
+
+.section-break {
+  margin: 2.5rem 0 2rem;
+  padding-top: 1.5rem;
+  scroll-margin-top: 3.5rem;
+}
+
+.section-break:first-child {
+  margin-top: 1.25rem;
+  padding-top: 0;
+}
+
+.chapter-heading {
+  font-size: 1.15rem;
+  letter-spacing: 0.14em;
+  color: var(--rubric);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.section-break-header {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-size: 2.1rem;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+
+.section-break-num {
+  font-style: normal;
+  font-variant: small-caps;
+  font-size: 1.4rem;
+  color: var(--rubric);
+}
+
+/* The opening box: the first page of the section, with a red drop cap and an ornament to close it. */
+/* The opening passage at the size of the replies (Jay, 2026-11-21). */
+.section-break-intro {
+  font-size: 1em;
+  font-weight: 460;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.section-break-intro p + p {
+  margin-top: 0.6em;
+}
+
+.section-break-intro > p:first-child::first-letter {
+  float: left;
+  font-size: 3.6em;
+  line-height: 0.82;
+  padding: 0.06em 0.08em 0 0;
+  font-weight: 500;
+  color: var(--rubric);
+}
+
+.section-break-intro::after {
+  content: '\2042';
+  display: block;
+  text-align: center;
+  color: var(--rubric);
+  margin-top: 1.2rem;
+  font-size: 1.1rem;
+}
+
+.section-image {
+  float: right;
+  width: 50%;
+  height: auto;
+  margin: 0.25rem 0 1rem 1.5rem;
+}
+
+.response-figure { /* H-017: diagrams at full width, below the paragraph that introduces them */
+  display: block;
+  clear: both;
+  width: 100%;
+  height: auto;
+  margin: 1.25rem 0 1.5rem;
+}
+
+figure.response-image img,
+figure.response-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.image-credit {
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  font-style: italic;
+  line-height: 1.4;
+  text-align: left;
+  color: var(--muted);
+}
+
+.image-credit a {
+  color: var(--muted);
+}
+
+.response-image {
+  float: right;
+  width: 50%;
+  height: auto;
+  margin: 0.25rem 0 1rem 1.5rem;
+}
+
+/* The text composing: its label, and three slow dots where the reply will appear. */
+.thinking {
+  margin-bottom: 2rem;
+}
+
+.thinking-dots {
+  display: inline-flex;
+  gap: 0.3rem;
+  padding-top: 0.5rem;
+}
+
+.thinking-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--rubric);
+  animation: breathe 1.4s ease-in-out infinite;
+}
+
+.thinking-dots span:nth-child(2) { animation-delay: 0.2s; }
+.thinking-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes breathe {
+  0%, 80%, 100% { opacity: 0.35; transform: translateY(0); }
+  40% { opacity: 1; transform: translateY(-2px); }
+}
+
+.farewell-spinner {
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--border);
+  border-top-color: var(--rubric);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+  margin-bottom: 2rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thinking-dots span, .farewell-spinner { animation-duration: 3s; }
+}
+
+/* ── Citation notes (shared/citation-notes.css), in the book's face ──
+   That file loads after this one, so these rules are scoped to #layout to take precedence. */
+
+#layout .note-marker,
+#layout .note-num,
+#layout .note-web {
+  font-family: var(--serif);
+}
+
+#layout .note-marker {
+  font-size: 0.75em;
+  color: var(--rubric);
+}
+
+#layout .note-card {
+  font-size: 0.88rem;
+  font-weight: 400;
+  text-align: left;
+  text-indent: 0;
+  border-left-color: var(--rubric);
+  background: #efe7d4;
+}
+
+#layout #references summary {
+  font-family: var(--serif);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  font-variant: small-caps;
+  text-transform: lowercase;
+  color: var(--gilt);
+}
+
+#layout #layout .reference-item {
+  color: var(--cloth-text);
+}
+
+/* ── H-018: media items in replies ── */
+
+.media-video,
+.media-image {
+  clear: both;
+  margin: 1.25rem 0 1.5rem;
+}
+
+.media-video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #111;
+}
+
+.media-video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.media-image img {
+  display: block;
+  max-width: 100%;
+  max-height: 70vh;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+}
+
+.media-card {
+  clear: both;
+  display: flex;
+  align-items: stretch;
+  margin: 1.25rem 0 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--slip);
+  color: var(--text);
+  text-align: left;
+  text-decoration: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.media-card:hover,
+.media-card:focus-visible {
+  border-color: var(--rubric);
+  box-shadow: 0 2px 10px rgba(60, 40, 10, 0.1);
+}
+
+.media-card-panel {
+  flex: 0 0 6.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #2c3b5c, var(--cloth));
+}
+
+.media-card-video { background: linear-gradient(135deg, #a3341f, #5e1d12); }
+.media-card-image { background: linear-gradient(135deg, #5b6b45, #2f3a22); }
+
+.media-card-glyph {
+  width: 2.75rem;
+  height: 2.75rem;
+  fill: rgba(255, 255, 255, 0.88);
+  stroke: rgba(255, 255, 255, 0.88);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.media-card-link .media-card-glyph { fill: none; }
+
+.media-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.75rem 1rem;
+  min-width: 0;
+}
+
+.media-card-kind,
+.media-card-source,
+.media-card-note {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.media-card-kind {
+  font-variant: small-caps;
+  text-transform: lowercase;
+  letter-spacing: 0.08em;
+  color: var(--rubric);
+}
+
+.media-card-title {
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+/* ── Wide screens: the reader's words in the margin ──
+   The page widens to hold a margin beside the text column. Each note floats out into the margin at the point where
+   it was written, so it stands level with the reply below it; its margin box has no width inside the text column, so
+   it never pushes the text aside. Each element of the reading ends below any note beside it, so notes cannot drift
+   down past their replies when several come close together. */
+
+@media (min-width: 1280px) {
+  #left-col > * {
+    max-width: calc(var(--line) + var(--gap) + var(--margin));
+  }
+
+  .head-inner {
+    max-width: calc(var(--line) + var(--gap) + var(--margin));
+  }
+
+  #conversation {
+    padding-right: calc(var(--gap) + var(--margin));
+  }
+
+  /* Each reply, opening and message ends below any note beside it, so the next note starts level with its own reply. */
+  #conversation > :not(.turn-reader)::after {
+    content: '';
+    display: block;
+    clear: right;
+  }
+
+  #conversation > .turn-reader {
+    float: right;
+    clear: right;
+    position: relative;
+    width: var(--margin);
+    margin: 1.75rem calc(-1 * (var(--gap) + var(--margin))) 0.75rem 0; /* level with the reply's first line, below its label */
+  }
+
+  /* The leader line from the note back to the reply. */
+  #conversation > .turn-reader::before {
+    content: '';
+    position: absolute;
+    top: 1rem;
+    left: calc(-1 * var(--gap) + 1rem);
+    width: calc(var(--gap) - 1rem);
+    border-top: 1.5px dotted var(--hand);
+  }
+
+  #conversation > .turn-reader::after {
+    content: '';
+    position: absolute;
+    top: calc(1rem - 3px);
+    left: calc(-1 * var(--gap) + 0.75rem);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--hand);
+  }
+}
+
+/* ── Narrow screens: one column, the contents as a sheet, the dock pinned below ── */
+
+@media (max-width: 960px) {
+  html, body {
+    height: auto;
+    overflow: visible;
+  }
+
+  body {
+    font-size: 19px;
+  }
+
+  #layout {
+    display: block;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  #left-col {
+    overflow-y: visible;
+    padding: 0 1.1rem calc(var(--dock-height) + 2rem);
+    height: auto;
+    box-shadow: none;
+  }
+
+  #running-head {
+    padding: 0.8rem 0 0.4rem;
+  }
+
+  .head-inner {
+    gap: 0.2rem 0.75rem;
+  }
+
+  .head-inner h1 {
+    width: auto;
+    flex: 1 1 auto;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .head-edition {
+    display: none;
+  }
+
+  #running-position {
+    order: 3;
+    width: 100%;
+    font-size: 0.85rem;
+  }
+
+  #side-close {
+    display: block;
+    align-self: flex-end;
+    margin: 0.6rem 1.25rem 0;
+    background: none;
+    border: 1px solid rgba(217, 181, 106, 0.5);
+    padding: 0.2rem 0.7rem;
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--cloth-text);
+    cursor: pointer;
+  }
+
+  #contents-toggle {
+    display: inline-block;
+    order: 2;
+    width: auto;
+    flex: 0 0 auto;
+    background: none;
+    border: 1px solid var(--border);
+    padding: 0.15rem 0.7rem;
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    letter-spacing: 0.08em;
+    color: var(--rubric);
+    cursor: pointer;
+  }
+
+  #contents-toggle[aria-expanded="true"] {
+    border-color: var(--rubric);
+  }
+
+  #side {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(22rem, 88vw);
+    box-shadow: -8px 0 24px rgba(0, 0, 0, 0.25);
+    transform: translateX(102%);
+    transition: transform 0.25s ease;
+    z-index: 60;
+    padding-top: 0.5rem;
+  }
+
+  body.contents-open #side {
+    transform: none;
+  }
+
+  #side-scrim {
+    position: fixed;
+    inset: 0;
+    background: rgba(31, 43, 69, 0.4);
+    z-index: 55;
+  }
+
+  #toc {
+    padding: 1rem 1.25rem 1rem;
+  }
+
+  .toc-item {
+    font-size: 1rem;
+  }
+
+  #references {
+    padding: 0.7rem 1.25rem calc(0.7rem + env(safe-area-inset-bottom));
+  }
+
+  #dock {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    padding: 0.6rem 1rem calc(0.55rem + env(safe-area-inset-bottom));
+    box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.2);
+  }
+
+  #message-input {
+    font-size: 1.05rem; /* 16px and up keeps iOS from zooming the page on focus */
+    max-height: 7rem;
+  }
+
+  #dock-hint {
+    display: none;
+  }
+
+  #dock-row {
+    justify-content: flex-end;
+    margin-top: 0.4rem;
+  }
+
+  .turn-body {
+    text-align: left;
+  }
+
+  .turn,
+  .thinking,
+  .system-message {
+    scroll-margin-bottom: calc(var(--dock-height) + 1rem);
+  }
+
+  .section-break-header {
+    font-size: 1.7rem;
+  }
+
+  #consent-dialog,
+  #farewell-dialog {
+    padding: 2rem 1.6rem;
+    outline-offset: -8px;
+  }
+
+  .consent-body {
+    text-align: left;
+  }
+
+  #consent-overlay,
+  #farewell {
+    padding: 1rem;
+    align-items: flex-start;
+  }
+}

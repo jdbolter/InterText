@@ -1,0 +1,1 @@
+[sun-2025] Sun et al., "Drama Llama" (2025). An LLM-powered storylets framework for authorable responsiveness in interactive narrative. Use: a comparable balance between authorial control and responsiveness. No pages are given for it.

@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 1,
+  "editionId": "intertext-paper",
+  "versionId": "ip-a-text-that-evolves-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-25T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "intertext-paper/source_texts/sections/section-4.md"
+  },
+  "spineFile": "spine.md",
+  "fundEntries": [
+    {
+      "id": "the-proposal-pass",
+      "title": "The proposal",
+      "anchors": [
+        "a-text-that-evolves-p01"
+      ],
+      "kind": "clarification",
+      "status": "candidate",
+      "markdownFile": "fund/the-proposal-pass.md",
+      "useWhen": "A reader asks what happens to a conversation after a contributing reader finishes.",
+      "thread": null,
+      "sourceStatus": "verified",
+      "sources": [
+        {
+          "title": "InterText editorial architecture (EDITORIAL-ARCHITECTURE.md)",
+          "url": "https://github.com/jdbolter/Intertext-public/blob/main/EDITORIAL-ARCHITECTURE.md"
+        }
+      ],
+      "provenance": {
+        "type": "imported",
+        "sessionId": null,
+        "turns": [],
+        "artifactPath": "EDITORIAL-ARCHITECTURE.md"
+      }
+    },
+    {
+      "id": "the-review-pass",
+      "title": "The review and the checks",
+      "anchors": [
+        "a-text-that-evolves-p01"
+      ],
+      "kind": "clarification",
+      "status": "candidate",
+      "markdownFile": "fund/the-review-pass.md",
+      "useWhen": "A reader asks who or what decides whether a contribution changes the text, or how bad contributions are kept out.",
+      "thread": null,
+      "sourceStatus": "verified",
+      "sources": [
+        {
+          "title": "InterText editorial architecture (EDITORIAL-ARCHITECTURE.md)",
+          "url": "https://github.com/jdbolter/Intertext-public/blob/main/EDITORIAL-ARCHITECTURE.md"
+        }
+      ],
+      "provenance": {
+        "type": "imported",
+        "sessionId": null,
+        "turns": [],
+        "artifactPath": "EDITORIAL-ARCHITECTURE.md"
+      }
+    },
+    {
+      "id": "statuses",
+      "title": "Candidate, accepted, superseded, rejected",
+      "anchors": [
+        "a-text-that-evolves-p01"
+      ],
+      "kind": "clarification",
+      "status": "candidate",
+      "markdownFile": "fund/statuses.md",
+      "useWhen": "A reader asks what happens to material that is not accepted, or whether anything is ever deleted.",
+      "thread": null,
+      "sourceStatus": "verified",
+      "sources": [
+        {
+          "title": "InterText editorial architecture (EDITORIAL-ARCHITECTURE.md)",
+          "url": "https://github.com/jdbolter/Intertext-public/blob/main/EDITORIAL-ARCHITECTURE.md"
+        }
+      ],
+      "provenance": {
+        "type": "imported",
+        "sessionId": null,
+        "turns": [],
+        "artifactPath": "EDITORIAL-ARCHITECTURE.md"
+      }
+    },
+    {
+      "id": "versions",
+      "title": "Versions",
+      "anchors": [
+        "a-text-that-evolves-p02"
+      ],
+      "kind": "clarification",
+      "status": "candidate",
+      "markdownFile": "fund/versions.md",
+      "useWhen": "A reader asks how versions are kept, or whether a change can affect a reading in progress.",
+      "thread": null,
+      "sourceStatus": "verified",
+      "sources": [
+        {
+          "title": "InterText editorial architecture (EDITORIAL-ARCHITECTURE.md)",
+          "url": "https://github.com/jdbolter/Intertext-public/blob/main/EDITORIAL-ARCHITECTURE.md"
+        }
+      ],
+      "provenance": {
+        "type": "imported",
+        "sessionId": null,
+        "turns": [],
+        "artifactPath": "EDITORIAL-ARCHITECTURE.md"
+      }
+    },
+    {
+      "id": "the-author-keeps-a-hand",
+      "title": "What the author controls",
+      "anchors": [
+        "a-text-that-evolves-p02"
+      ],
+      "kind": "clarification",
+      "status": "candidate",
+      "markdownFile": "fund/the-author-keeps-a-hand.md",
+      "useWhen": "A reader asks how the author keeps control of a text that readers change, or who is the author of an evolved text.",
+      "thread": null,
+      "sourceStatus": "verified",
+      "sources": [
+        {
+          "title": "InterText design (CURRENT-DESIGN.md)",
+          "url": "https://github.com/jdbolter/Intertext-public/blob/main/CURRENT-DESIGN.md"
+        },
+        {
+          "title": "InterText editorial architecture (EDITORIAL-ARCHITECTURE.md)",
+          "url": "https://github.com/jdbolter/Intertext-public/blob/main/EDITORIAL-ARCHITECTURE.md"
+        }
+      ],
+      "provenance": {
+        "type": "imported",
+        "sessionId": null,
+        "turns": [],
+        "artifactPath": "CURRENT-DESIGN.md"
+      }
+    },
+    {
+      "id": "current-limits",
+      "title": "What the editorial tools cannot yet do",
+      "anchors": [
+        "a-text-that-evolves-p02"
+      ],
+      "kind": "qualification",
+      "status": "candidate",
+      "markdownFile": "fund/current-limits.md",
+      "useWhen": "A reader asks about the limits of the current system or what an author cannot yet do.",
+      "thread": null,
+      "sourceStatus": "verified",
+      "sources": [
+        {
+          "title": "InterText design (CURRENT-DESIGN.md)",
+          "url": "https://github.com/jdbolter/Intertext-public/blob/main/CURRENT-DESIGN.md"
+        }
+      ],
+      "provenance": {
+        "type": "imported",
+        "sessionId": null,
+        "turns": [],
+        "artifactPath": "CURRENT-DESIGN.md"
+      }
+    }
+  ],
+  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), as candidates for Jay's approval."
+}

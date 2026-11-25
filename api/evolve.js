@@ -14,7 +14,7 @@ const {
 
 const client = new Anthropic();
 
-const ALLOWED_TEXT_IDS = ['digital-plenitude'];
+const ALLOWED_TEXT_IDS = ['digital-plenitude', 'intertext-paper'];
 const configCache = {};
 const sectionCache = {};
 

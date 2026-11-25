@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "intertext-paper",
+  "title": "InterText: An AI-supported system for interactive reading",
+  "order": 2,
+  "sections": [
+    {
+      "id": "introduction",
+      "title": "Introduction",
+      "order": 1,
+      "package": "sections/introduction/section.json"
+    },
+    {
+      "id": "literature-review",
+      "title": "Literature Review",
+      "order": 2,
+      "package": "sections/literature-review/section.json"
+    },
+    {
+      "id": "how-a-reading-works",
+      "title": "How a Reading Works",
+      "order": 3,
+      "package": "sections/how-a-reading-works/section.json"
+    },
+    {
+      "id": "a-text-that-evolves",
+      "title": "A Text That Evolves",
+      "order": 4,
+      "package": "sections/a-text-that-evolves/section.json"
+    },
+    {
+      "id": "synthetic-readers",
+      "title": "Synthetic Readers",
+      "order": 5,
+      "package": "sections/synthetic-readers/section.json"
+    },
+    {
+      "id": "further-development",
+      "title": "Further Development",
+      "order": 6,
+      "package": "sections/further-development/section.json"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "workId": "intertext-paper",
+  "sectionId": "further-development",
+  "sectionOrder": 6,
+  "title": "Further Development",
+  "editionId": "intertext-paper",
+  "versionId": "ip-further-development-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-25T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "intertext-paper/source_texts/sections/section-6.md"
+  },
+  "spine": [
+    {
+      "id": "further-development-p01",
+      "markdown": "The next step will be to test InterText with human readers. It will admittedly be an uphill battle to convince human readers to change their reading practice significantly. The success of the e-reader, for example, was precisely that it did not require significant change to the linear experience of reading (Baron 2015)."
+    },
+    {
+      "id": "further-development-p02",
+      "markdown": "Anticipated further developments include:\n\n- Improved prompts to guide the flow of the argument;\n- Making the system more inclusive, e.g. by allowing readers to contribute by name and send comments to the author or other readers."
+    }
+  ],
+  "fundEntries": [
+    {
+      "id": "threads-as-paths",
+      "title": "Threads through the fund",
+      "anchors": [
+        "further-development-p02"
+      ],
+      "kind": "extension",
+      "status": "candidate",
+      "useWhen": "A reader asks what new forms of reading the system might offer.",
+      "thread": null,
+      "sourceStatus": "verified",
+      "sources": [
+        {
+          "title": "InterText design (CURRENT-DESIGN.md)",
+          "url": "https://github.com/jdbolter/Intertext-public/blob/main/CURRENT-DESIGN.md"
+        }
+      ],
+      "provenance": {
+        "type": "imported",
+        "sessionId": null,
+        "turns": [],
+        "artifactPath": "CURRENT-DESIGN.md"
+      },
+      "markdown": "A fund entry can already carry a named thread and a place in its order, so that related entries form a sequence. The\ntext does not yet offer such a thread to the reader as a path, but it could: a line of examples, an objection pursued\nthrough several sections, or a series of contributions from readers."
+    },
+    {
+      "id": "an-editor-online",
+      "title": "An author's editor online",
+      "anchors": [
+        "further-development-p02"
+      ],
+      "kind": "extension",
+      "status": "candidate",
+      "useWhen": "A reader asks how an author would manage an evolving text in practice, or how others could use the system.",
+      "thread": null,
+      "sourceStatus": "verified",
+      "sources": [
+        {
+          "title": "InterText editorial architecture (EDITORIAL-ARCHITECTURE.md)",
+          "url": "https://github.com/jdbolter/Intertext-public/blob/main/EDITORIAL-ARCHITECTURE.md"
+        }
+      ],
+      "provenance": {
+        "type": "imported",
+        "sessionId": null,
+        "turns": [],
+        "artifactPath": "EDITORIAL-ARCHITECTURE.md"
+      },
+      "markdown": "The author's editor is kept off the public site until it has authentication and a policy for the manuscript and\nprovenance data it holds. An online editor would let an author follow an evolving text as it changes, and would let\nother authors adapt their own texts for the system, which is designed to carry more than one."
+    }
+  ],
+  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), as candidates for Jay's approval."
+}

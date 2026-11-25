@@ -791,6 +791,109 @@
           }
         }
       ]
+    },
+    {
+      "id": "intertext-paper",
+      "title": "InterText: An AI-supported system for interactive reading",
+      "order": 2,
+      "sections": [
+        {
+          "id": "introduction",
+          "title": "Introduction",
+          "order": 1,
+          "package": "sections/introduction/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/intertext-paper/introduction.json",
+          "versionId": "ip-introduction-v001",
+          "passageCount": 1,
+          "fundCounts": {
+            "candidate": 0,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "literature-review",
+          "title": "Literature Review",
+          "order": 2,
+          "package": "sections/literature-review/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/intertext-paper/literature-review.json",
+          "versionId": "ip-literature-review-v001",
+          "passageCount": 2,
+          "fundCounts": {
+            "candidate": 2,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "how-a-reading-works",
+          "title": "How a Reading Works",
+          "order": 3,
+          "package": "sections/how-a-reading-works/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/intertext-paper/how-a-reading-works.json",
+          "versionId": "ip-how-a-reading-works-v001",
+          "passageCount": 4,
+          "fundCounts": {
+            "candidate": 15,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "a-text-that-evolves",
+          "title": "A Text That Evolves",
+          "order": 4,
+          "package": "sections/a-text-that-evolves/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/intertext-paper/a-text-that-evolves.json",
+          "versionId": "ip-a-text-that-evolves-v001",
+          "passageCount": 2,
+          "fundCounts": {
+            "candidate": 6,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "synthetic-readers",
+          "title": "Synthetic Readers",
+          "order": 5,
+          "package": "sections/synthetic-readers/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/intertext-paper/synthetic-readers.json",
+          "versionId": "ip-synthetic-readers-v001",
+          "passageCount": 3,
+          "fundCounts": {
+            "candidate": 9,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        },
+        {
+          "id": "further-development",
+          "title": "Further Development",
+          "order": 6,
+          "package": "sections/further-development/section.json",
+          "readiness": "packaged",
+          "packageUrl": "data/intertext-paper/further-development.json",
+          "versionId": "ip-further-development-v001",
+          "passageCount": 2,
+          "fundCounts": {
+            "candidate": 2,
+            "accepted": 0,
+            "superseded": 0,
+            "rejected": 0
+          }
+        }
+      ]
     }
   ]
 }

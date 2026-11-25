@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "workId": "intertext-paper",
+  "sectionId": "a-text-that-evolves",
+  "sectionOrder": 4,
+  "title": "A Text That Evolves",
+  "editionId": "intertext-paper",
+  "versionId": "ip-a-text-that-evolves-v001",
+  "parentVersionId": null,
+  "createdAt": "2026-11-25T00:00:00Z",
+  "source": {
+    "type": "authored",
+    "path": "intertext-paper/source_texts/sections/section-4.md"
+  },
+  "spine": [
+    {
+      "id": "a-text-that-evolves-p01",
+      "markdown": "Intertext thus offers two features that distinguish it from most existing systems:\n\n- With the exception of opening section vignettes, there is no canonical text. Instead, the text takes shape in interaction with the reader.\n- With the reader’s permission, the system evaluates and absorbs their material into the spine or fund."
+    },
+    {
+      "id": "a-text-that-evolves-p02",
+      "markdown": "The text thus evolves with each reader and each reading. The goal is to facilitate a collaborative text that nevertheless maintains a degree of authorial guidance and control (Compare the interactive narrative authoring system Drama Llama, Sun et al. 2025)"
+    }
+  ],
+  "fundEntries": [
+    {
+      "id": "the-proposal-pass",
+      "title": "The proposal",
+      "anchors": [
+        "a-text-that-evolves-p01"
+      ],
+      "kind": "clarification",
+      "status": "candidate",
+      "useWhen": "A reader asks what happens to a conversation after a contributing reader finishes.",
+      "thread": null,
+      "sourceStatus": "verified",
+      "sources": [
+        {
+          "title": "InterText editorial architecture (EDITORIAL-ARCHITECTURE.md)",
+          "url": "https://github.com/jdbolter/Intertext-public/blob/main/EDITORIAL-ARCHITECTURE.md"
+        }
+      ],
+      "provenance": {
+        "type": "imported",
+        "sessionId": null,
+        "turns": [],
+        "artifactPath": "EDITORIAL-ARCHITECTURE.md"
+      },
+      "markdown": "When a contributing reader finishes a section, a first pass of the model compares the conversation with the current\nspine and fund. It may propose no change, revisions to spine passages, new fund entries, revisions or replacements of\nexisting entries, or sources attached to them. Corrections and changes in proportion to the main movement go into the\nspine; optional material goes into the fund."
+    },
+    {
+      "id": "the-review-pass",
+      "title": "The review and the checks",
+      "anchors": [
+        "a-text-that-evolves-p01"
+      ],
+      "kind": "clarification",
+      "status": "candidate",
+      "useWhen": "A reader asks who or what decides whether a contribution changes the text, or how bad contributions are kept out.",
+      "thread": null,
+      "sourceStatus": "verified",
+      "sources": [
+        {
+          "title": "InterText editorial architecture (EDITORIAL-ARCHITECTURE.md)",
+          "url": "https://github.com/jdbolter/Intertext-public/blob/main/EDITORIAL-ARCHITECTURE.md"
+        }
+      ],
+      "provenance": {
+        "type": "imported",
+        "sessionId": null,
+        "turns": [],
+        "artifactPath": "EDITORIAL-ARCHITECTURE.md"
+      },
+      "markdown": "A separate call reviews every proposed change for fidelity, relevance, duplication, prose and rhythm, proportion, the\nneed for sources, and whether an entry is anchored at a point in the section where what it presupposes has already been\nintroduced. It may accept an addition, hold it as a candidate that readers do not see, or reject it, and it may not\naccept material whose facts still need verification. Structural checks then reject invented source links, unstable\npassage identifiers, excessive growth and invalid anchors. If nothing survives, the section is unchanged."
+    },
+    {
+      "id": "statuses",
+      "title": "Candidate, accepted, superseded, rejected",
+      "anchors": [
+        "a-text-that-evolves-p01"
+      ],
+      "kind": "clarification",
+      "status": "candidate",
+      "useWhen": "A reader asks what happens to material that is not accepted, or whether anything is ever deleted.",
+      "thread": null,
+      "sourceStatus": "verified",
+      "sources": [
+        {
+          "title": "InterText editorial architecture (EDITORIAL-ARCHITECTURE.md)",
+          "url": "https://github.com/jdbolter/Intertext-public/blob/main/EDITORIAL-ARCHITECTURE.md"
+        }
+      ],
+      "provenance": {
+        "type": "imported",
+        "sessionId": null,
+        "turns": [],
+        "artifactPath": "EDITORIAL-ARCHITECTURE.md"
+      },
+      "markdown": "Every fund entry has a status. A candidate is under evaluation and never offered to readers; an accepted entry is\noffered to the text; a superseded entry has been replaced by another; a rejected entry is kept as a record of a\ndecision. Entries are not deleted. Each also records whether its sources are needed, needed but missing, or supplied,\nand where it came from: an authored text, a reader's session, the author's editor or a model's proposal."
+    },
+    {
+      "id": "versions",
+      "title": "Versions",
+      "anchors": [
+        "a-text-that-evolves-p02"
+      ],
+      "kind": "clarification",
+      "status": "candidate",
+      "useWhen": "A reader asks how versions are kept, or whether a change can affect a reading in progress.",
+      "thread": null,
+      "sourceStatus": "verified",
+      "sources": [
+        {
+          "title": "InterText editorial architecture (EDITORIAL-ARCHITECTURE.md)",
+          "url": "https://github.com/jdbolter/Intertext-public/blob/main/EDITORIAL-ARCHITECTURE.md"
+        }
+      ],
+      "provenance": {
+        "type": "imported",
+        "sessionId": null,
+        "turns": [],
+        "artifactPath": "EDITORIAL-ARCHITECTURE.md"
+      },
+      "markdown": "Approved changes become a new version of the section, stored as a complete snapshot that is never altered afterwards,\nwith a pointer to the current one. The pointer moves only if the version it replaces is still current, so two\ncontributions arriving together cannot overwrite each other. A reader already in a section stays on the version they\nbegan with; the next reader receives the new one. Snapshots can be exported, so the database is working state rather\nthan the archive."
+    },
+    {
+      "id": "the-author-keeps-a-hand",
+      "title": "What the author controls",
+      "anchors": [
+        "a-text-that-evolves-p02"
+      ],
+      "kind": "clarification",
+      "status": "candidate",
+      "useWhen": "A reader asks how the author keeps control of a text that readers change, or who is the author of an evolved text.",
+      "thread": null,
+      "sourceStatus": "verified",
+      "sources": [
+        {
+          "title": "InterText design (CURRENT-DESIGN.md)",
+          "url": "https://github.com/jdbolter/Intertext-public/blob/main/CURRENT-DESIGN.md"
+        },
+        {
+          "title": "InterText editorial architecture (EDITORIAL-ARCHITECTURE.md)",
+          "url": "https://github.com/jdbolter/Intertext-public/blob/main/EDITORIAL-ARCHITECTURE.md"
+        }
+      ],
+      "provenance": {
+        "type": "imported",
+        "sessionId": null,
+        "turns": [],
+        "artifactPath": "CURRENT-DESIGN.md"
+      },
+      "markdown": "Routine editorial decisions are the model's, but the rules are the author's. The author writes or approves the\nstatements of each section's argument, the opening boxes, the library lists and the media lists, and sets the policy\nthe editorial passes follow. A local editor lets the author read every section, edit the spine's prose and every field\nof a fund entry, add entries, set their status, and publish an author's revision as a new version. Every entry keeps\nits provenance, so the mixture of hands in an evolved text is recorded."
+    },
+    {
+      "id": "current-limits",
+      "title": "What the editorial tools cannot yet do",
+      "anchors": [
+        "a-text-that-evolves-p02"
+      ],
+      "kind": "qualification",
+      "status": "candidate",
+      "useWhen": "A reader asks about the limits of the current system or what an author cannot yet do.",
+      "thread": null,
+      "sourceStatus": "verified",
+      "sources": [
+        {
+          "title": "InterText design (CURRENT-DESIGN.md)",
+          "url": "https://github.com/jdbolter/Intertext-public/blob/main/CURRENT-DESIGN.md"
+        }
+      ],
+      "provenance": {
+        "type": "imported",
+        "sessionId": null,
+        "turns": [],
+        "artifactPath": "CURRENT-DESIGN.md"
+      },
+      "markdown": "The author's editor runs only on the author's own machine, with no authenticated version online. It cannot yet compare\nor restore versions or browse the full history of updates, though a version can be exported from the command line. A\nfund entry may belong to a named thread with an order, but the text does not yet present such a thread to the reader\nas a path through the material."
+    }
+  ],
+  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), as candidates for Jay's approval."
+}

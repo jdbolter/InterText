@@ -1,0 +1,262 @@
+{
+  "allado-mcdowell-2020": {
+    "short": "Allado-McDowell 2020",
+    "full": "Allado-McDowell, K. 2020. <i>Pharmako-AI</i>. Cosmogenesis.",
+    "pages": [],
+    "mention": "introduce",
+    "intro": "the writer K Allado-McDowell",
+    "name": "Allado-McDowell"
+  },
+  "antonini-2025": {
+    "short": "Antonini et al. 2025",
+    "full": "Antonini, Alessio, Lucia Lupi, Mariusz Pisarski, and Sam Brooker. 2025. “Literary Hypertext, AI, and Google’s New Web: An Aesthetics Discussion.” In <i>Proceedings of the 36th ACM Conference on Hypertext and Social Media</i>, 127–136. https://doi.org/10.1145/3720553.3746678.",
+    "pages": [],
+    "mention": "note"
+  },
+  "argyle-2023": {
+    "short": "Argyle et al. 2023",
+    "full": "Argyle, Lisa P., Ethan C. Busby, Nancy Fulda, Joshua R. Gubler, Christopher Rytting, and David Wingate. 2023. “Out of One, Many: Using Language Models to Simulate Human Samples.” <i>Political Analysis</i> 31 (3): 337–351.",
+    "pages": [],
+    "mention": "note"
+  },
+  "bajohr-2024": {
+    "short": "Bajohr 2024",
+    "full": "Bajohr, Hannes. 2024. “Writing at a Distance: Notes on Authorship and Artificial Intelligence.” <i>German Studies Review</i> 47 (1): 65–82. https://doi.org/10.1353/gsr.2024.0004.",
+    "pages": [],
+    "mention": "introduce",
+    "intro": "the literary scholar Hannes Bajohr",
+    "name": "Bajohr"
+  },
+  "bajohr-2023": {
+    "short": "Bajohr 2023",
+    "full": "Bajohr, Hannes. 2023. <i>(Berlin, Miami)</i>. Berlin: Rohstoff.",
+    "pages": [],
+    "mention": "introduce",
+    "intro": "the literary scholar Hannes Bajohr",
+    "name": "Bajohr"
+  },
+  "baron-2015": {
+    "short": "Baron 2015",
+    "full": "Baron, Naomi S. 2015. <i>Words Onscreen: The Fate of Reading in a Digital World</i>. New York: Oxford University Press.",
+    "pages": [],
+    "mention": "introduce",
+    "intro": "the linguist Naomi Baron",
+    "name": "Baron"
+  },
+  "baron-2026": {
+    "short": "Baron 2026",
+    "full": "Baron, Naomi S. 2026. <i>Reader Bot: What Happens When AI Reads and Why It Matters</i>. Stanford, CA: Stanford University Press.",
+    "pages": [],
+    "mention": "introduce",
+    "intro": "the linguist Naomi Baron",
+    "name": "Baron"
+  },
+  "bolter-1991": {
+    "short": "Bolter 1991",
+    "full": "Bolter, Jay David. 1991. <i>Writing Space: The Computer, Hypertext, and the History of Writing</i>. Hillsdale, NJ: Lawrence Erlbaum.",
+    "pages": [],
+    "mention": "own"
+  },
+  "bolter-2001": {
+    "short": "Bolter 2001",
+    "full": "Bolter, Jay David. 2001. <i>Writing Space: Computers, Hypertext, and the Remediation of Print</i>. 2nd ed. Mahwah, NJ: Lawrence Erlbaum.",
+    "pages": [],
+    "mention": "own"
+  },
+  "bolter-2019": {
+    "short": "Bolter 2019",
+    "full": "Bolter, Jay David. 2019. <i>The Digital Plenitude: The Decline of Elite Culture and the Rise of New Media</i>. Cambridge, MA: MIT Press.",
+    "pages": [],
+    "mention": "own"
+  },
+  "bolter-2026": {
+    "short": "Bolter 2026",
+    "full": "Bolter, Jay David. 2026. “Generative AI and the Future of Hypertext.” Keynote, 37th ACM Conference on Hypertext (HT ’26), London, September.",
+    "pages": [],
+    "mention": "own"
+  },
+  "coover-1992": {
+    "short": "Coover 1992",
+    "full": "Coover, Robert. 1992. “The End of Books.” <i>New York Times Book Review</i>, June 21.",
+    "pages": [],
+    "mention": "introduce",
+    "intro": "the novelist Robert Coover",
+    "name": "Coover"
+  },
+  "crocetti-lee-2026": {
+    "short": "Crocetti and Lee 2026",
+    "full": "Crocetti, Giancarlo, and Bokyung Lee. 2026. “Preserving Cultural Memory Through Conversational AI: A Framework for a More Faithful Representation of Historical Figures in Digital Humanities.” In <i>Digital Humanities 2026: Book of Abstracts</i>, edited by Song-yi Jung et al., 803–809. Daejeon: ADHO. https://doi.org/10.5281/zenodo.22656106.",
+    "pages": [],
+    "mention": "note"
+  },
+  "fish-1970": {
+    "short": "Fish 1970",
+    "full": "Fish, Stanley. 1970. “Literature in the Reader: Affective Stylistics.” <i>New Literary History</i> 2 (1): 123–162.",
+    "pages": [],
+    "mention": "introduce",
+    "intro": "the literary theorist Stanley Fish",
+    "name": "Fish"
+  },
+  "fish-1980": {
+    "short": "Fish 1980",
+    "full": "Fish, Stanley. 1980. <i>Is There a Text in This Class? The Authority of Interpretive Communities</i>. Cambridge, MA: Harvard University Press.",
+    "pages": [],
+    "mention": "introduce",
+    "intro": "the literary theorist Stanley Fish",
+    "name": "Fish"
+  },
+  "floridi-2025": {
+    "short": "Floridi 2025",
+    "full": "Floridi, Luciano. 2025. “Distant Writing: Literary Production in the Age of Artificial Intelligence.” <i>Minds and Machines</i> 35 (3): 30. https://doi.org/10.1007/s11023-025-09732-1.",
+    "pages": [],
+    "mention": "introduce",
+    "intro": "the philosopher Luciano Floridi",
+    "name": "Floridi"
+  },
+  "floridi-2027": {
+    "short": "Floridi 2027",
+    "full": "Floridi, Luciano. 2027. <i>Encounters with AI: An Experiment in Distant Writing</i>. New York: Columbia University Press. Forthcoming.",
+    "pages": [],
+    "mention": "introduce",
+    "intro": "the philosopher Luciano Floridi",
+    "name": "Floridi"
+  },
+  "freeman-2026": {
+    "short": "Freeman 2026",
+    "full": "Freeman, W. C. 2026. <i>The Ships of Thespis: Literary Characters Rebuilt Part by Part</i>. Browser demonstration. https://colinfizgig.github.io/ships-of-thespis/.",
+    "pages": [],
+    "mention": "note"
+  },
+  "hamalainen-2023": {
+    "short": "Hämäläinen, Tavast, and Kunnari 2023",
+    "full": "Hämäläinen, Perttu, Mikke Tavast, and Anton Kunnari. 2023. “Evaluating Large Language Models in Generating Synthetic HCI Research Data: A Case Study.” In <i>Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems</i>, 1–19. https://doi.org/10.1145/3544548.3580688.",
+    "pages": [],
+    "mention": "note"
+  },
+  "iser-1974": {
+    "short": "Iser 1974",
+    "full": "Iser, Wolfgang. 1974. <i>The Implied Reader: Patterns of Communication in Prose Fiction from Bunyan to Beckett</i>. Baltimore: Johns Hopkins University Press.",
+    "pages": [],
+    "mention": "introduce",
+    "intro": "the literary theorist Wolfgang Iser",
+    "name": "Iser"
+  },
+  "iser-1978": {
+    "short": "Iser 1978",
+    "full": "Iser, Wolfgang. 1978. <i>The Act of Reading: A Theory of Aesthetic Response</i>. Baltimore: Johns Hopkins University Press.",
+    "pages": [],
+    "mention": "introduce",
+    "intro": "the literary theorist Wolfgang Iser",
+    "name": "Iser"
+  },
+  "johnson-houghteling-2026": {
+    "short": "Johnson and Houghteling 2026",
+    "full": "Johnson, Steven, and Will Houghteling. 2026. “Expert Intelligence: A New Way for You to Engage with Trusted Content.” <i>Google Blog</i>, August 27. https://blog.google/innovation-and-ai/products/gemini-notebook/expert-intelligence-leading-sources/.",
+    "pages": [],
+    "mention": "note"
+  },
+  "joyce-1995": {
+    "short": "Joyce 1995",
+    "full": "Joyce, Michael. 1995. <i>Of Two Minds: Hypertext Pedagogy and Poetics</i>. Ann Arbor: University of Michigan Press.",
+    "pages": [],
+    "mention": "introduce",
+    "intro": "the hypertext novelist Michael Joyce",
+    "name": "Joyce"
+  },
+  "landow-1992": {
+    "short": "Landow 1992",
+    "full": "Landow, George P. 1992. <i>Hypertext: The Convergence of Contemporary Critical Theory and Technology</i>. Baltimore: Johns Hopkins University Press.",
+    "pages": [],
+    "mention": "introduce",
+    "intro": "the literary scholar George Landow",
+    "name": "Landow"
+  },
+  "liu-2026": {
+    "short": "Liu et al. 2026",
+    "full": "Liu, Sophia, Sarah Abowitz, Yijun Liu, Sarah Sterman, Shm Garanganao Almeda, and Max Kreminski. 2026. “Creative Reading: Scaffolding Reading for Transformation.” In <i>Proceedings of the 37th ACM Conference on Hypertext (HT ’26)</i>. https://doi.org/10.1145/3800935.3830891.",
+    "pages": [],
+    "mention": "note"
+  },
+  "lo-2024": {
+    "short": "Lo et al. 2024",
+    "full": "Lo, Kyle, Joseph Chee Chang, Andrew Head, Jonathan Bragg, Amy X. Zhang, et al. 2024. “The Semantic Reader Project: Augmenting Scholarly Documents through AI-Powered Interactive Reading Interfaces.” <i>Communications of the ACM</i> 67 (10). https://doi.org/10.1145/3659096.",
+    "pages": [],
+    "mention": "note"
+  },
+  "lovejoy-2025": {
+    "short": "Lovejoy 2025",
+    "full": "Lovejoy, Ben. 2025. “Kindle Ask This Book AI-Powered Feature Launches in iOS App.” <i>9to5Mac</i>, December 15.",
+    "pages": [],
+    "mention": "note"
+  },
+  "marchine": {
+    "short": "Marchine n.d.",
+    "full": "Marchine, Aidan [Stephen Marche]. n.d. <i>Death of an Author: A Novella</i>. Pushkin Industries.",
+    "pages": [],
+    "mention": "introduce",
+    "intro": "the writer Stephen Marche, writing as Aidan Marchine",
+    "name": "Marche"
+  },
+  "masera-2026": {
+    "short": "Masera 2026",
+    "full": "Masera, Francesco. 2026. “Why a Book about AI Has to Keep Rewriting Itself.” <i>The Living Book of AI</i> (Substack), August 12. https://francescomasera.substack.com/p/why-a-book-about-ai-has-to-keep-rewriting.",
+    "pages": [],
+    "mention": "introduce",
+    "intro": "the writer Francesco Masera",
+    "name": "Masera"
+  },
+  "moretti-2013": {
+    "short": "Moretti 2013",
+    "full": "Moretti, Franco. 2013. <i>Distant Reading</i>. London: Verso.",
+    "pages": [],
+    "mention": "introduce",
+    "intro": "the literary historian Franco Moretti",
+    "name": "Moretti"
+  },
+  "murray-1997": {
+    "short": "Murray 1997",
+    "full": "Murray, Janet H. 1997. <i>Hamlet on the Holodeck: The Future of Narrative in Cyberspace</i>. New York: Free Press.",
+    "pages": [],
+    "mention": "introduce",
+    "intro": "the media scholar Janet Murray",
+    "name": "Murray"
+  },
+  "park-2023": {
+    "short": "Park et al. 2023",
+    "full": "Park, Joon Sung, Joseph O’Brien, Carrie Jun Cai, Meredith Ringel Morris, Percy Liang, and Michael S. Bernstein. 2023. “Generative Agents: Interactive Simulacra of Human Behavior.” In <i>Proceedings of UIST ’23</i>. https://doi.org/10.1145/3586183.3606763.",
+    "pages": [],
+    "mention": "note"
+  },
+  "rockwell-2026": {
+    "short": "Rockwell, Farinola, and Bradley 2026",
+    "full": "Rockwell, Geoffrey, Augustine Farinola, and John Bradley. 2026. “Integrating AI into Voyant: From ELIZA to Large Language Models in the Spyral Notebook Environment.” In <i>Digital Humanities 2026: Book of Abstracts</i>, edited by Song-yi Jung et al., 716–717. Daejeon: ADHO. https://doi.org/10.5281/zenodo.22656106.",
+    "pages": [],
+    "mention": "note"
+  },
+  "roncaglia-2026": {
+    "short": "Roncaglia et al. 2026",
+    "full": "Roncaglia, Gino, Ludovica Mastrobattista, Elena Ranfa, Lorenzo Picca, and Francesco Leonetti. 2026. “Augmented Reading: Comparing Human Behaviors and Large Language Models in Reading Experience.” In <i>Digital Humanities 2026: Book of Abstracts</i>, edited by Song-yi Jung et al. Daejeon: ADHO. https://doi.org/10.5281/zenodo.22656106.",
+    "pages": [],
+    "mention": "note"
+  },
+  "stiles-2025": {
+    "short": "Stiles 2025",
+    "full": "Stiles, Sasha. 2025. <i>Words Beyond Words</i>. Generative language system and regenerative poem. Presented with ICONIC at Art Basel, Basel, June 19–22, 2025.",
+    "pages": [],
+    "mention": "introduce",
+    "intro": "the poet and artist Sasha Stiles",
+    "name": "Stiles"
+  },
+  "sun-2025": {
+    "short": "Sun et al. 2025",
+    "full": "Sun, Yuqian, Phoebe J. Wang, John Joon Young Chung, Melissa Roemmele, and Taewook Kim. 2025. “Drama Llama: An LLM-Powered Storylets Framework for Authorable Responsiveness in Interactive Narrative.” Preprint, arXiv:2501.09099.",
+    "pages": [],
+    "mention": "note"
+  },
+  "wang-2026": {
+    "short": "Wang et al. 2026",
+    "full": "Wang, Pengce, Lucia Ronchi Darre, Matt Briney, et al. 2026. “The Living Library: Transforming Archival Collections into Conversational Knowledge Systems—Lessons from the Theodore Roosevelt Presidential Library.” Preprint, arXiv:2609.09368.",
+    "pages": [],
+    "mention": "note"
+  }
+}

@@ -10,6 +10,7 @@ test('extracts the correct section count for each known text', () => {
   // digital-plenitude's page does more at load time (running head, dock, contents sheet);
   // the harness's DOM stand-in must let all of it run.
   assert.equal(extractPublicSectionData(TEXTS['digital-plenitude']).sections.length, 49);
+  assert.equal(extractPublicSectionData(TEXTS['intertext-paper']).sections.length, 6);
 });
 
 test('each section has a plain-text intro with no leftover markup or entities', () => {
