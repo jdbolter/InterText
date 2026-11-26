@@ -146,7 +146,8 @@ edition label (H-031). Its `config.js` carries everything specific to it:
   figures as local images in `intertext-paper/images/` (`sectionImagePrompts`). Fig. 1, the reader's page, shows a
   *Digital Plenitude* reading; Jay keeps it.
 - **The title** mirrors the paper's and follows it if the paper's changes.
-- **Destination:** the public repo (Intertext-Public), once that carries the current engine and interface.
+- **Also in the public repo** (Intertext-Public, H-035), without Fig. 1, which shows *The Digital Plenitude*; a
+  screenshot of this text's own page is to replace it there. A change here is copied there.
 
 ## The evolving edition (spine and fund)
 - **The package.** `editorial/content/digital-plenitude/` holds a spine passage for each paragraph and empty funds.
