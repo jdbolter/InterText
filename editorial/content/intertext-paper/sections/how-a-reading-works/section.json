@@ -37,14 +37,14 @@
     },
     {
       "id": "box-and-return",
-      "title": "The boxed opening and the Return key",
+      "title": "The opening vignette and the Return key",
       "anchors": [
         "how-a-reading-works-p02"
       ],
       "kind": "clarification",
       "status": "accepted",
       "markdownFile": "fund/box-and-return.md",
-      "useWhen": "A reader asks what the boxed passage is, what pressing Return does, or how a section ends.",
+      "useWhen": "A reader asks what the opening passage of a section is, what pressing Return does, or how a section ends.",
       "thread": null,
       "sourceStatus": "verified",
       "sources": [

@@ -58,13 +58,13 @@
     },
     {
       "id": "box-and-return",
-      "title": "The boxed opening and the Return key",
+      "title": "The opening vignette and the Return key",
       "anchors": [
         "how-a-reading-works-p02"
       ],
       "kind": "clarification",
       "status": "accepted",
-      "useWhen": "A reader asks what the boxed passage is, what pressing Return does, or how a section ends.",
+      "useWhen": "A reader asks what the opening passage of a section is, what pressing Return does, or how a section ends.",
       "thread": null,
       "sourceStatus": "verified",
       "sources": [
@@ -79,7 +79,7 @@
         "turns": [],
         "artifactPath": "CURRENT-DESIGN.md"
       },
-      "markdown": "Each section opens with a short boxed passage written for the reader, which sets a scene and states the section's thesis in brief. The reader may then type a question or comment, which receives an answer, or simply press Return, which carries the reading forward with the next ideas the text holds. The first Return treats the box as a prologue and begins with the first passage; later ones resume where the conversation has reached. When the section's material is exhausted, the text says so, and a further Return moves on to the next section."
+      "markdown": "Each section opens with a short vignette written for the reader, which sets a scene and states the section's thesis in brief. Apart from these vignettes, the reader never sees a fixed text. The reader may then type a question or comment, which receives an answer, or simply press Return, which carries the reading forward with the next ideas the text holds. The first Return treats the vignette as a prologue and begins with the first passage; later ones resume where the conversation has reached. When the section's material is exhausted, the text says so, and a further Return moves on to the next section."
     },
     {
       "id": "sections-and-memory",
@@ -344,7 +344,7 @@
         "turns": [],
         "artifactPath": "PROMPTS.md"
       },
-      "markdown": "Each reply begins as a call to the model whose prompt puts first what stays the same throughout a section: the rules for the voice, the rule for citations, the name of the section, the statement of its argument, the opening box, the author's text for the section and its list of references. These parts are reused from turn to turn. After them comes what changes: instructions for a Return, the images not yet shown, the writers already introduced, brief summaries of other sections the reader has visited, and the units of the fund that are on offer. The conversation so far follows."
+      "markdown": "Each reply begins as a call to the model whose prompt puts first what stays the same throughout a section: the rules for the voice, the rule for citations, the name of the section, the statement of its argument, the opening vignette, the author's text for the section and its list of references. These parts are reused from turn to turn. After them comes what changes: instructions for a Return, the images not yet shown, the writers already introduced, brief summaries of other sections the reader has visited, and the units of the fund that are on offer. The conversation so far follows."
     },
     {
       "id": "the-revision-pass",

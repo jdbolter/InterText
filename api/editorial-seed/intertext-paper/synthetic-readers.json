@@ -75,7 +75,7 @@
         "turns": [],
         "artifactPath": "synthetic-reader/README.md"
       },
-      "markdown": "A synthetic reader sees what a human reader sees: the table of contents, the opening box of each section and the conversation so far. It never sees the instructions, the author's text or the fund. The titles and boxes it reads are taken from the reader's page itself, so the synthetic reader cannot be given anything that the page does not show."
+      "markdown": "A synthetic reader sees what a human reader sees: the table of contents, the opening vignette of each section and the conversation so far. It never sees the instructions, the author's text or the fund. The titles and vignettes it reads are taken from the reader's page itself, so the synthetic reader cannot be given anything that the page does not show."
     },
     {
       "id": "the-five-profiles",
@@ -199,7 +199,7 @@
         "turns": [],
         "artifactPath": "synthetic-reader/README.md"
       },
-      "markdown": "The synthetic readings serve as an editorial instrument as well as a test of the software. Comparable readings are run on the same edition and section; the transcripts and private reflections are read across the different profiles; an editorial hypothesis is formed rather than treating any single reply as a verdict; the author's text, the section boundaries, the opening boxes or the instructions are revised as the evidence warrants; and the readings are run again. Synthetic readings never change the published text."
+      "markdown": "The synthetic readings serve as an editorial instrument as well as a test of the software. Comparable readings are run on the same edition and section; the transcripts and private reflections are read across the different profiles; an editorial hypothesis is formed rather than treating any single reply as a verdict; the author's text, the section boundaries, the opening vignettes or the instructions are revised as the evidence warrants; and the readings are run again. Synthetic readings never change the published text."
     },
     {
       "id": "limits-of-synthetic-readers",
