@@ -143,11 +143,10 @@ edition label (H-031). Its `config.js` carries everything specific to it:
   is reading through InterText; it never describes its own reply. Nothing from *The Digital Plenitude* enters beyond
   what the paper itself says.
 - **Library and figures.** The paper's references, without pages (`references.json`, per-section lists); Jay's three
-  figures as local images in `intertext-paper/images/` (`sectionImagePrompts`). Fig. 1, the reader's page, shows a
-  *Digital Plenitude* reading; Jay keeps it.
+  figures as local images in `intertext-paper/images/` (`sectionImagePrompts`). Fig. 1 is a screenshot of this
+  text's own reader's page (2026-11-26), the same in the public repo.
 - **The title** mirrors the paper's and follows it if the paper's changes.
-- **Also in the public repo** (Intertext-Public, H-035), without Fig. 1, which shows *The Digital Plenitude*; a
-  screenshot of this text's own page is to replace it there. A change here is copied there.
+- **Also in the public repo** (Intertext-Public, H-035). A change here is copied there.
 
 ## The evolving edition (spine and fund)
 - **The package.** `editorial/content/digital-plenitude/` holds a spine passage for each paragraph and empty funds.

@@ -70,7 +70,7 @@ const SECTION_IMAGES = [
   null,
   null,
   [
-    { id: "readers-page", src: "../images/fig-1-readers-page.png", alt: "InterText's reader's page: the reading set as a printed page on the left, a reader's question in the margin beside the reply, and the contents and input on a dark column to the right", figure: true },
+    { id: "readers-page", src: "../images/fig-1-readers-page.png", alt: "InterText's reader's page for this paper: section III, How a Reading Works, set as a printed page, with a reader's question in the margin beside the reply it drew, the system diagram below it, and the contents of the six sections and the input on a dark column to the right", figure: true },
     { id: "system-overview", src: "../images/fig-2-system-overview.svg", alt: "Diagram of the InterText system: the author's original text feeds the interactive book (opening vignettes, points, spine, fund, library, media); system prompts and web search feed a model that drafts and then revises each reply to the reader; contributing readers' conversations go to an editorial evaluation whose approved changes are published as a new version", figure: true },
   ],
   [
