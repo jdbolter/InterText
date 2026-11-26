@@ -9,7 +9,7 @@ A section is not one string that is rewritten and enlarged. Model-generated addi
 - **Narrative spine:** the concise, coherent route through the section, as ordered passages with stable IDs.
 - **Fund:** optional material (clarification, example, qualification, counterargument, evidence, extension) that the text may select for a particular reader and moment.
 
-The reader does not see the layers as apparatus; the text performs them as one voice. Every section of the text is packaged: all 49 sections of `digital-plenitude`.
+The reader does not see the layers as apparatus; the text performs them as one voice. Every section of every text is packaged: the 49 sections of `digital-plenitude` and the 6 of `intertext-paper`.
 
 ## Source format
 
@@ -87,7 +87,7 @@ A request carries the current section's conversation plus short private summarie
 
 **How the text reports its choices.** The text reports which offered entries it used, whether the section is complete, and a private summary of the section so far.
 
-- *Markers* (`editorialDelivery: 'markers'`, set in `digital-plenitude/config.js`): the text writes `[[FUND:id]]` after a sentence an entry informs and a private `[[MEMORY: …]]` line; the server reads and removes them, and the reply then goes through the whole pipeline (revision pass, citations, media). This is used because `claude-sonnet-5-5` does not support forced tool calls.
+- *Markers* (`editorialDelivery: 'markers'`, set in each text's `config.js`): the text writes `[[FUND:id]]` after a sentence an entry informs and a private `[[MEMORY: …]]` line; the server reads and removes them, and the reply then goes through the whole pipeline (revision pass, citations, media). This is used because `claude-sonnet-5-5` does not support forced tool calls.
 - *Forced tool* (the two experiment editions): the text must call a structured delivery tool carrying the prose, the IDs used and the completion flag; the API rejects a missing or malformed call, and IDs are validated against the entries actually offered. This runs on `claude-sonnet-5`.
 
 Either way the report is a model's own account of its use, so the visible prose is the final evidence.
@@ -102,7 +102,7 @@ Either way the report is a model's own account of its use, so the visible prose 
 4. **Structural checks** reject invented source URLs, unstable passage IDs, excessive growth, invalid anchors and the acceptance of unverified material.
 5. Approved operations become one child snapshot, published through the head transaction. If nothing survives, the head is unchanged. Corrections and proportionate changes go into the spine; optional material goes into the fund.
 
-For `digital-plenitude` both passes run on `claude-sonnet-5-5` and return checked JSON; a text that does not set `editorialDelivery: 'markers'` would run them on `claude-sonnet-5` with forced tools. Routine decisions are the model's; the author sets policy, inspects what was published, and edits or supersedes material in the editor.
+For both texts both passes run on `claude-sonnet-5-5` and return checked JSON; a text that does not set `editorialDelivery: 'markers'` would run them on `claude-sonnet-5` with forced tools. Routine decisions are the model's; the author sets policy, inspects what was published, and edits or supersedes material in the editor.
 
 A request with `dryRun: true` never reads or writes KV: it rewrites the section from the pristine text with the config's `synthesisInstructions`. Only `synthetic-reader-evolve` uses it.
 

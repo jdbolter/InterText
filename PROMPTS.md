@@ -1,7 +1,7 @@
 # How each prompt is built
 
 This document says what each call to a model contains, in what order, and which file supplies each part. It describes
-`digital-plenitude`, the only text. The prompt wording itself is not copied here: it lives in the files named below, so
+`digital-plenitude`; `intertext-paper` is built the same way from its own `config.js` and files. The prompt wording itself is not copied here: it lives in the files named below, so
 that it is read where it is edited. Part names such as `behavioralInstructions` are keys in `digital-plenitude/config.js`
 unless another file is named.
 

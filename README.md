@@ -29,7 +29,7 @@ Open `http://localhost:3000/` for the landing page, or a text directly at `http:
 
 ```
 InterText/
-├── index.html                landing page (offers digital-plenitude)
+├── index.html                landing page (The Digital Plenitude, then the paper that describes the system)
 ├── api/
 │   ├── chat.js               serverless function: one reading turn (config-driven by textId)
 │   ├── evolve.js             serverless function: a contributing reader's editorial update
@@ -40,23 +40,25 @@ InterText/
 ├── synthetic-reader/         CLI harness: a simulated reader drives /api/chat
 ├── scripts/                  reading-report, media lists, model check, evolved-store tool
 ├── digital-plenitude/        The Digital Plenitude (config.js, source_texts/, public/, images/)
+├── intertext-paper/          the DH2027 paper on InterText, as an InterText (the same layout)
 ├── vercel.json  .vercelignore  package.json
 └── CLAUDE.md                 working notes for a Claude session
 ```
 
-A text folder holds `config.js` (everything specific to the text: sections, introductions, the voice's instructions, images), `source_texts/` (the section files the API loads), and `public/` (the reader's page). `digital-plenitude` has its own page (running head, contents by chapter, citation notes and media items from `shared/`).
+A text folder holds `config.js` (everything specific to the text: sections, introductions, the voice's instructions, images), `source_texts/` (the section files the API loads), and `public/` (the reader's page). Each text has its own page (running head, contents by chapter, citation notes and media items from `shared/`); `intertext-paper/public/` began as a copy of `digital-plenitude/public/` with its own data, so a change to the page's look is made in both.
 
 ## The texts
 
 | textId | Work | Sections | Status |
 |---|---|---|---|
-| `digital-plenitude` | *The Digital Plenitude*, the whole book in nine chapters | 49 | the text on the landing page; replies on `claude-sonnet-5-5` with a revision pass, library lists and citations, media lists |
+| `digital-plenitude` | *The Digital Plenitude*, the whole book in nine chapters | 49 | the main entry on the landing page; replies on `claude-sonnet-5-5` with a revision pass, library lists and citations, media lists |
+| `intertext-paper` | *InterText: An AI-supported system for interactive reading*, the DH2027 paper | 6 | beneath it on the landing page, as the account of the system; the paper is the spine, and 34 fund entries drawn from this documentation answer questions about how the system works; the same pipeline |
 
 
 ## How a reading works
 
 1. **Entry.** The reader chooses *Contribute* (read the evolving edition and let the conversation inform later editions), *Read the current text* (the same edition, nothing saved), or *Read the original* (the untouched authored text).
-2. **Turns.** The page sends each message, or an empty Return, to `/api/chat` with the section index. The function loads the section (current KV version, or the seed), builds a cached prompt, and calls the model. For `digital-plenitude` a second call revises the draft into the text's voice, and the server then checks citations and media markers.
+2. **Turns.** The page sends each message, or an empty Return, to `/api/chat` with the section index. The function loads the section (current KV version, or the seed), builds a cached prompt, and calls the model. A second call revises the draft into the text's voice, and the server then checks citations and media markers.
 3. **Contribution.** When a contributing reader finishes, `/api/evolve` runs a proposal pass and an independent review pass over the conversation and publishes any approved change as a new immutable section version.
 
 The design is in [`CURRENT-DESIGN.md`](CURRENT-DESIGN.md); the data model, storage and editorial passes are in [`EDITORIAL-ARCHITECTURE.md`](EDITORIAL-ARCHITECTURE.md).
@@ -95,4 +97,4 @@ Vercel project `inter-text`; `main` is what it deploys. `vercel.json` bundles `a
 - [`EDITORIAL-ARCHITECTURE.md`](EDITORIAL-ARCHITECTURE.md): spine and fund, packages, storage, the editorial passes, the reading modes.
 - [`editorial/README.md`](editorial/README.md): the author editor and editorial commands.
 - [`synthetic-reader/README.md`](synthetic-reader/README.md): the simulated-reader harness.
-- [`CLAUDE.md`](CLAUDE.md): working rules and the technical map of `digital-plenitude`.
+- [`CLAUDE.md`](CLAUDE.md): working rules and the technical map of both texts.

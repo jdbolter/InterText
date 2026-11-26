@@ -34,7 +34,7 @@ The run writes a timestamped folder under `synthetic-reader/output/` (gitignored
 ## Options
 
 ```
---text <id>            digital-plenitude                            (default: digital-plenitude)
+--text <id>            digital-plenitude | intertext-paper          (default: digital-plenitude)
 --section <n>          1-based section to start in                  (default: 1)
 --profile <id>         curious | skeptical | collaborative | general | student
                                                                     (default: curious)

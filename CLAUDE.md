@@ -2,9 +2,10 @@
 
 InterText is Jay Bolter's interactive-reading app: a reader converses with a text that speaks as the work itself.
 This file orients a new session in this repo. The design is in `CURRENT-DESIGN.md` and `EDITORIAL-ARCHITECTURE.md`.
-The work on *The Digital Plenitude* is planned and recorded in Jay's vault, **Intertext-Author** (a sibling folder:
-`../Intertext-Author`), above all `projects/digital-plenitude/STATE.md`, `standing.md` and `handoff/`. Read those
-first.
+There are two texts: *The Digital Plenitude* (`digital-plenitude/`) and the DH2027 paper on InterText
+(`intertext-paper/`). Each is planned and recorded in Jay's vault, **Intertext-Author** (a sibling folder:
+`../Intertext-Author`), in its own project: `projects/digital-plenitude/` and `projects/intertext-paper/`, above all
+`STATE.md`, `standing.md` and `handoff/`. Hand-offs are numbered per project. Read those first.
 
 ## Working rules
 - **Changes come through hand-offs.** Changes to this repo are proposed in a vault hand-off (`handoff/H-0NN-*.md`)
@@ -27,7 +28,16 @@ first.
 - **To deploy,** Jay runs `git checkout main && git merge --ff-only dev && git push origin main`.
 - **The live site and local `npm run dev` share one KV database** when `.env.local` has the KV settings.
 
-## The reader's page (`digital-plenitude/public/`)
+## The landing page (`index.html`, H-032)
+In the annotated-book look. *The Digital Plenitude* is the main entry, opened on the first page of section 1 (its
+opening box in miniature) with "Begin reading"; beneath it, under "How does a text like this work?", the paper, with
+the system diagram, "The paper, in the same form" and "Ask the paper". Header: "InterText" and Jay's line "Texts that
+respond to their readers and evolve as they are read." A test checks both entries, in order.
+
+## The reader's page (`digital-plenitude/public/`, copied to `intertext-paper/public/`)
+- **Two copies.** `intertext-paper/public/` is a copy of `digital-plenitude/public/` (H-001 of intertext-paper) with
+  its own data in `app.js` (`CHAPTERS`, `SECTION_NUMERALS`, `SECTION_TITLES`, `SECTION_IMAGES`, `SECTION_INTROS`,
+  `textId`) and its own title in `index.html`. A change to the look or behaviour of the page is made in both.
 - **The look is the annotated book (H-030):** the reading is a printed page in EB Garamond (served from
   `public/fonts/`, OFL), with red small capitals for labels and numerals and a drop cap opening each section; the
   contents and the input sit on a dark cloth column. The look is all in `style.css`; markup and `app.js` are unchanged
@@ -68,7 +78,8 @@ first.
 - **`npm run check-models`** tries each kind of call against the real API.
 
 ## *The Digital Plenitude* (`digital-plenitude/`)
-The whole book: the proofs' nine chapters, 49 sections. Its `config.js` carries everything specific to it:
+The whole book: the proofs' nine chapters, 49 sections. The reader's page names it *The Digital Plenitude*, with no
+edition label (H-031). Its `config.js` carries everything specific to it:
 
 - **The voice and model**
   - `behavioralInstructions`: the text speaks as the work about the world, in the third person. It answers the
@@ -118,6 +129,24 @@ The whole book: the proofs' nine chapters, 49 sections. Its `config.js` carries 
 - **The opening boxes:** `sectionIntros` must match `SECTION_INTROS` in `public/app.js`; a test checks this. The boxes,
   chapter points and section points of all nine chapters are Jay's. A synthetic reader reads them from these two files, so a reading round's text is the text
   of the commit it names.
+
+## The DH2027 paper (`intertext-paper/`)
+"InterText: An AI-supported system for interactive reading", the paper submitted to DH2027, as an InterText (vault:
+`projects/intertext-paper/`, H-001). Six sections: the paper's five, with III divided into "How a Reading Works" and
+"A Text That Evolves"; one chapter, labelled "The paper", whose point is the paper's argument.
+- **The spine is the paper,** one passage per paragraph, unchanged apart from its figure references; a test checks
+  that spine and section files agree. When the paper changes, both change together.
+- **The fund is the documentation:** 34 entries drawn from `CURRENT-DESIGN`, `EDITORIAL-ARCHITECTURE`, `PROMPTS` and
+  `synthetic-reader/README`, accepted by Jay (2026-11-25), each sourced to the public repo's copy where there is one.
+  When the system changes, the entries that describe it change too.
+- **The voice** speaks as the paper about InterText in the third person; it may say once, when asked, that the reader
+  is reading through InterText; it never describes its own reply. Nothing from *The Digital Plenitude* enters beyond
+  what the paper itself says.
+- **Library and figures.** The paper's references, without pages (`references.json`, per-section lists); Jay's three
+  figures as local images in `intertext-paper/images/` (`sectionImagePrompts`). Fig. 1, the reader's page, shows a
+  *Digital Plenitude* reading; Jay keeps it.
+- **The title** mirrors the paper's and follows it if the paper's changes.
+- **Destination:** the public repo (Intertext-Public), once that carries the current engine and interface.
 
 ## The evolving edition (spine and fund)
 - **The package.** `editorial/content/digital-plenitude/` holds a spine passage for each paragraph and empty funds.

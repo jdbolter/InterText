@@ -10,6 +10,10 @@ InterText is a sustained reading of a whole work in which a text speaks as the w
 - **Sections.** The contents list stays on screen; the reader can move to any section. Each section's conversation is kept with it, and the text holds a short private memory of each section visited, so a long reading keeps its continuity without resending every turn.
 - **A single voice.** The text does not announce what came from the original, a fund entry, a reader or the model, and does not refer to its own argument, sections or editorial apparatus. It meets an objection as an essay does and acknowledges a real factual error plainly.
 
+## The texts
+
+Two texts are offered. The landing page opens on *The Digital Plenitude*, the whole book in nine chapters, and beneath it, under "How does a text like this work?", offers the DH2027 paper that describes the system (`intertext-paper`), read in the same form. The paper's six sections are its own five, with the system section divided in two; the paper is its spine, and its fund holds entries drawn from this documentation, so a reader can ask how a reply is made, what the fund is or how a text evolves and be answered from the system's own description. Both texts run the same pipeline, described below for *The Digital Plenitude*.
+
 ## The voice of *The Digital Plenitude*
 
 `digital-plenitude/config.js` carries the instructions. The text speaks as the work about the world, in the third person, in the register of a serious spoken discussion between equals. It answers the reader's question first and then widens to the ideas that frame it. Each section has a stated point, and each chapter has one; they steer the reply and are stated only when the reader's message bears on them. A claim is stated at the strength its evidence gives it, with its reach; a reply closes on something of its own, not on a summary or an antithesis; a point the reader makes well is granted in a plain clause.
@@ -18,6 +22,10 @@ Every draft goes through a revision pass that rewrites it into this voice. The p
 
 - **Citations.** For each section the text may cite only the works on that section's library list. It writes `[[CITE:id|pages]]`; the server checks the id and the pages against the list and the references file and drops anything not listed. The page numbers the notes and shows the references (Chicago author-date). Web sources found by search become numbered notes too. A writer is introduced, then named by surname; some are mentioned by note only; the author's own work is never named.
 - **Media.** A reply may show one listed video, image or web page by writing `[[MEDIA:id]]` on its own line. The page plays a video whose embedding was checked, shows an image whose licence was cleared with its credit, and shows anything else as a card that opens a new tab.
+
+## The voice of the paper
+
+`intertext-paper/config.js` adapts the same voice to a text whose subject is InterText itself. The text speaks as the paper, in the third person, about InterText, its readers, authors and models. When the reader's question invites it, a reply may say once that the reader is reading through InterText; it never describes itself or how it was produced. It describes the system as the paper and its fund do, and says that its testing so far has been with synthetic readers.
 
 ## How the work is organized
 
