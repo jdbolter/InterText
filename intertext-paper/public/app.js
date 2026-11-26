@@ -353,17 +353,28 @@ function appendSectionBreak(idx, scroll = true) {
   if (scroll) (thinking || el).scrollIntoView({ behavior: 'smooth', block: thinking ? 'end' : 'start' });
 }
 
+// H-034: a reply may carry Markdown links and italics (titles are set *between asterisks*). Both are rendered;
+// everything else stays plain text. An italic run needs a non-space after its opening asterisk and before its
+// closing one, so a lone asterisk is left as it is.
+const INLINE_MARKUP = /\[([^\]]+)\]\((https?:\/\/[^)]+)\)|\*(?=\S)([^*\n]+?)(?<=\S)\*/g;
+
 function renderText(container, text) {
-  const re = /\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g;
+  const re = new RegExp(INLINE_MARKUP.source, 'g');
   let last = 0, m;
   while ((m = re.exec(text)) !== null) {
     if (m.index > last) container.appendChild(document.createTextNode(text.slice(last, m.index)));
-    const a = document.createElement('a');
-    a.href = m[2];
-    a.textContent = m[1];
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    container.appendChild(a);
+    if (m[2]) {
+      const a = document.createElement('a');
+      a.href = m[2];
+      a.textContent = m[1];
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      container.appendChild(a);
+    } else {
+      const em = document.createElement('em');
+      em.textContent = m[3];
+      container.appendChild(em);
+    }
     last = re.lastIndex;
   }
   if (last < text.length) container.appendChild(document.createTextNode(text.slice(last)));

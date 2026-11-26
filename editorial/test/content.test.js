@@ -263,3 +263,24 @@ for (const textId of ['intertext-paper']) {
     });
   });
 }
+
+// H-034: titles a reply sets *between asterisks* appear in italics, on both reader's pages.
+for (const textId of ['digital-plenitude', 'intertext-paper']) {
+  test(`${textId}: a reply's *italics* and [links](url) are rendered, and a lone asterisk is left alone`, () => {
+    const app = fs.readFileSync(path.join(root, textId, 'public', 'app.js'), 'utf8');
+    const start = app.indexOf('const INLINE_MARKUP');
+    const end = app.indexOf('\n}\n', app.indexOf('function renderText')) + 2;
+    assert.ok(start > 0 && end > start);
+    class Node { constructor(tag) { this.tag = tag; this.kids = []; this.textContent = ''; } appendChild(c) { this.kids.push(c); } }
+    const document = { createTextNode: text => ({ text }), createElement: tag => new Node(tag) };
+    const renderText = new Function('document', `${app.slice(start, end)}; return renderText;`)(document);
+    const render = s => {
+      const p = new Node('p');
+      renderText(p, s);
+      return p.kids.map(k => (k.text !== undefined ? k.text : `<${k.tag}>${k.textContent}</${k.tag}>`)).join('');
+    };
+    assert.equal(render('what JAY-Z does in *Picasso Baby*, and'), 'what JAY-Z does in <em>Picasso Baby</em>, and');
+    assert.equal(render('[the site](https://example.org) and *Fantasia*'), '<a>the site</a> and <em>Fantasia</em>');
+    assert.equal(render('5 * 3 = 15'), '5 * 3 = 15');
+  });
+}
