@@ -54,7 +54,7 @@
         "turns": [],
         "artifactPath": "CURRENT-DESIGN.md"
       },
-      "markdown": "Before reading begins, the reader makes one choice among three paths. Contribute means reading the evolving edition and\nallowing the conversation to inform later versions. Read the current text gives the same edition with nothing saved.\nRead the original gives the untouched authored text, without any reader's changes. The choice is made once, and there\nis no view that compares editions during a reading."
+      "markdown": "Before reading begins, the reader chooses one of three paths. To contribute is to read the evolving edition and to allow the conversation to inform later versions of the text. To read the current text is to read the same edition without saving anything. To read the original is to read the text as the author first wrote it, without any reader's changes. The choice is made once, and there is no view that compares the editions during a reading."
     },
     {
       "id": "box-and-return",
@@ -79,7 +79,7 @@
         "turns": [],
         "artifactPath": "CURRENT-DESIGN.md"
       },
-      "markdown": "Each section opens with a short boxed passage written for the reader: a scene and the section's thesis in brief. A\nreader can then type a message, which gets an answer, or press Return with nothing typed, which carries the reading on\nwith the next ideas the text holds. The first Return treats the box as a prologue and begins at the first passage;\nlater Returns resume from where the conversation has reached. When a section's material is exhausted the text signals\ncompletion, and a further Return moves to the next section."
+      "markdown": "Each section opens with a short boxed passage written for the reader, which sets a scene and states the section's thesis in brief. The reader may then type a question or comment, which receives an answer, or simply press Return, which carries the reading forward with the next ideas the text holds. The first Return treats the box as a prologue and begins with the first passage; later ones resume where the conversation has reached. When the section's material is exhausted, the text says so, and a further Return moves on to the next section."
     },
     {
       "id": "sections-and-memory",
@@ -108,7 +108,7 @@
         "turns": [],
         "artifactPath": "CURRENT-DESIGN.md"
       },
-      "markdown": "The contents list stays on screen, and the reader can move to any section at any time. Each section keeps its own\nconversation. The text also keeps a short private summary of each section the reader has visited, so that a long\nreading keeps its continuity without sending the whole transcript with every turn."
+      "markdown": "The table of contents remains on screen, and the reader may move to any section at any time. Each section keeps its own conversation. The system also keeps a short private summary of each section the reader has visited, so that a long reading retains its continuity without the whole transcript being sent again with every turn."
     },
     {
       "id": "the-annotated-book",
@@ -128,7 +128,7 @@
         "turns": [],
         "artifactPath": "CLAUDE.md"
       },
-      "markdown": "The reader's page takes the form of an annotated book. The reading is set as a printed page in a Garamond typeface,\nwith red small capitals for labels and a drop cap opening each section. The reader's own words stand in the margin\nbeside the reply they drew, in italic, tied to it by a leader line, much as a reader's notes stand beside a printed\ntext; on narrow screens they stand above the reply instead. The contents and the input sit on a dark column to the\nright."
+      "markdown": "The reader's page is designed as an annotated book. The reading is set as a printed page in a Garamond typeface, with labels in red small capitals and a drop cap at the start of each section. The reader's own words appear in the margin beside the reply they prompted, in italic and joined to it by a fine line, much as a reader's notes stand beside a printed text. On narrow screens they appear above the reply instead. The contents and the space for typing sit in a dark column on the right."
     },
     {
       "id": "the-spine-is-the-text",
@@ -157,7 +157,7 @@
         "turns": [],
         "artifactPath": "EDITORIAL-ARCHITECTURE.md"
       },
-      "markdown": "The spine is the author's own text for the section, divided into passages, each with a stable identifier. It is the\nauthoritative route through the section, but the reader never sees it as such. When the reader presses Return, the\ntext retells the next passages in order, closely and often in the author's phrasing, compressed and joined to what\nthe conversation has already said. When the reader asks a question, the text draws on whatever in the spine bears on\nit and answers in new words."
+      "markdown": "The spine is the author's own text for each section, divided into passages. It is the authoritative route through the section, but the reader never sees it as such. When the reader presses Return, the system retells the next passages in order, closely and often in the author's own phrasing, though compressed and joined to what the conversation has already covered. When the reader asks a question, the system draws on whatever in the spine bears on it and answers in new words."
     },
     {
       "id": "points-as-well-as-text",
@@ -182,7 +182,7 @@
         "turns": [],
         "artifactPath": "PROMPTS.md"
       },
-      "markdown": "Besides the spine, each section and each larger division of the work carries a short statement of its argument,\nwritten or approved by the author and never shown to the reader. The full text supplies the material; the statement\nsupplies the direction. A section's text gives a passing example and its thesis roughly equal weight, and a model\nanswering a question about a detail tends to follow the detail. The statement tells it what is central. It steers\nevery reply, and it is stated only when the reader's message bears on it, in fresh words, as a claim."
+      "markdown": "Besides the spine, each section and each chapter carries a short statement of its argument, written or approved by the author and never shown to the reader. The full text supplies the material; the statement supplies the direction. A section gives a passing example and its central claim roughly equal weight, and a model answering a question about a detail tends to follow the detail. The statement tells the model what is central. It guides every reply, and it is stated only when the reader's question bears on it, in fresh words and as a claim."
     },
     {
       "id": "why-spine-and-fund",
@@ -207,7 +207,7 @@
         "turns": [],
         "artifactPath": "EDITORIAL-ARCHITECTURE.md"
       },
-      "markdown": "A section is not one string that is rewritten and enlarged. Additions written by a model can be intelligent and\nsupportive and still damage the balance and rhythm of a continuous essay, because a model tends to apply an argument\nto more cases and add more qualifications whether or not they belong in the main movement. So the concise route\nthrough the section, the spine, is kept apart from optional material, the fund, which the text may select for a\nparticular reader at a particular moment."
+      "markdown": "A section is not a single text that is rewritten and enlarged with each reading. Additions written by a model can be intelligent and supportive and still damage the balance and rhythm of a continuous essay, because a model tends to apply an argument to more cases and to add more qualifications, whether or not they belong in the main movement. The system therefore keeps the concise route through the section, the spine, apart from optional material, the fund, which the text may draw on for a particular reader at a particular moment."
     },
     {
       "id": "what-the-fund-holds",
@@ -236,7 +236,7 @@
         "turns": [],
         "artifactPath": "EDITORIAL-ARCHITECTURE.md"
       },
-      "markdown": "A fund entry is one of six kinds: a clarification, an example, a qualification, a counterargument, evidence or an\nextension. Each is anchored to the passage it belongs with and carries a short cue saying when it is useful. The fund\nis not a checklist: the text offers an entry only where it helps the reader's question without damaging the movement\nof the section, and leaving the fund unused is often right. Only entries accepted for publication ever reach readers."
+      "markdown": "The fund holds six kinds of material: clarifications, examples, qualifications, counterarguments, evidence and extensions. Each unit is attached to the passage it belongs with and carries a short note on when it is useful. The fund is not a checklist. The text draws on it only where it helps answer the reader's question without disturbing the movement of the section, and often it is right to leave the fund unused. Only units that have been accepted ever reach readers."
     },
     {
       "id": "the-library-and-its-notes",
@@ -265,7 +265,7 @@
         "turns": [],
         "artifactPath": "CURRENT-DESIGN.md"
       },
-      "markdown": "For each section the text may cite only the works on that section's library list, each described with what it says\nand its pages. When it draws on one, it writes a private marker with the work's identifier and pages; the server\nchecks the identifier and the pages against the list and drops anything not listed, and the page turns each surviving\nmarker into a numbered note with a full reference in Chicago author-date style. The list also says how each writer is\nto be mentioned: introduced and then named, cited by note only, or, for the author's own work, stated as the work's own\nthinking without a name."
+      "markdown": "For each section the text may cite only the works on that section's list of verified references, each described with what it says and, where known, its pages. When the text draws on one of these works, the citation is checked against the list, and anything not on it is dropped, so that an invented source cannot reach the reader. Each citation that survives appears as a numbered note with a full reference. The list also records how each writer is to be mentioned: introduced and then named, cited by note only, or, in the case of the author's own work, stated as the work's own thinking."
     },
     {
       "id": "checked-media",
@@ -294,7 +294,7 @@
         "turns": [],
         "artifactPath": "CURRENT-DESIGN.md"
       },
-      "markdown": "A reply may show one item from the section's checked list of videos, images and web pages, by writing a private token\non a line of its own. The server keeps only listed items, one per reply. The page plays a video only when its\nembedding has been checked, shows an image only when its licence has been cleared, with its credit beneath, and shows\nanything else as a card that opens in a new tab. Each item on the list says when it is worth showing, and the list is\nkept by a script that checks every item rather than from memory."
+      "markdown": "A reply may show one item from the section's list of images, videos and web pages. These are checked in advance: a video is played only if it can be embedded, an image is shown only if its licence allows, with its credit beneath, and anything else appears as a card that opens in a new tab. Each item on the list carries a note on when it is worth showing, and the list is maintained by a script that checks every item rather than from memory."
     },
     {
       "id": "web-search",
@@ -319,7 +319,7 @@
         "turns": [],
         "artifactPath": "PROMPTS.md"
       },
-      "markdown": "The text can search the web, at most five times in a turn, for what it does not hold: current events, recent work, or\nan outside source the reader asks about. Names, dates and details in the author's text remain authoritative, and an\noutside detail never alters them. Whatever the text draws from a search reaches the reader as a numbered note, so the\nreply carries no list of links."
+      "markdown": "The model can also search the web, a few times in a single turn, for what the text does not hold: recent events, recent work, or an outside source the reader asks about. The names, dates and details in the author's text remain authoritative, and nothing found outside alters them. Whatever the model draws from a search reaches the reader as a numbered note, so that the reply itself carries no list of links."
     },
     {
       "id": "what-each-call-receives",
@@ -344,7 +344,7 @@
         "turns": [],
         "artifactPath": "PROMPTS.md"
       },
-      "markdown": "Each reply begins as a call to the model whose prompt puts first what stays the same through a section: the\ninstructions for the voice, the rule for citations, the section's label, the argument in brief, the opening box, the\nsection's text and its library list. These are cached and reused from turn to turn. After them come what changes:\ninstructions for a Return turn, the images and media not yet shown, the writers already introduced, short summaries of\nother sections the reader has read, and the fund entries on offer. The conversation so far in the section follows as\nmessages."
+      "markdown": "Each reply begins as a call to the model whose prompt puts first what stays the same throughout a section: the rules for the voice, the rule for citations, the name of the section, the statement of its argument, the opening box, the author's text for the section and its list of references. These parts are reused from turn to turn. After them comes what changes: instructions for a Return, the images not yet shown, the writers already introduced, brief summaries of other sections the reader has visited, and the units of the fund that are on offer. The conversation so far follows."
     },
     {
       "id": "the-revision-pass",
@@ -373,7 +373,7 @@
         "turns": [],
         "artifactPath": "PROMPTS.md"
       },
-      "markdown": "The second call receives the draft together with the argument in brief, everything the reader has been shown so far,\nthe section's text and the reader's words. It returns the reply revised so that it answers the question in its opening\nparagraph, introduces anything the reader has not yet met, names people already met by surname alone, keeps each claim\nat the strength its evidence allows, cuts praise of the reader and repetition of earlier replies, and stays within 250\nwords. It may add no ideas and must keep every citation and media marker in place; if it changes one, the draft is used\ninstead."
+      "markdown": "The second pass receives the draft together with the statement of the argument, everything the reader has seen so far, the author's text for the section and the reader's words. It revises the reply so that it answers the question in its opening paragraph, introduces anything the reader has not yet met, keeps each claim at the strength its evidence allows, removes praise of the reader and repetition of earlier replies, and stays within 250 words. It may add no new ideas, and every citation must survive it unchanged; otherwise the draft is used instead."
     },
     {
       "id": "one-voice",
@@ -398,7 +398,7 @@
         "turns": [],
         "artifactPath": "CURRENT-DESIGN.md"
       },
-      "markdown": "The text speaks as the work, in the third person, in the register of a serious discussion between equals. It does not\nannounce whether a sentence came from the author's text, a fund entry, an earlier reader or the model. It answers the\nreader's question first and widens from there; it meets an objection as an essay does, granting in a plain clause what\nthe reader has right and narrowing a claim that was too broad; and it acknowledges a real factual error plainly. The\nreader is assumed to know only what has been shown in the conversation."
+      "markdown": "The text speaks as the work, in the third person and in the register of a serious discussion between equals. It does not say whether a sentence came from the author's text, a unit of the fund, an earlier reader or the model. It answers the reader's question first and then widens the answer; it meets an objection as an essay does, granting plainly what the reader has right and narrowing a claim that went too far; and it acknowledges a real factual error without fuss. The reader is assumed to know only what has appeared in the conversation."
     },
     {
       "id": "which-models",
@@ -427,8 +427,8 @@
         "turns": [],
         "artifactPath": "EDITORIAL-ARCHITECTURE.md"
       },
-      "markdown": "Replies, revisions and evolution all run on Anthropic's Claude Sonnet 5.5. Because that model cannot be compelled to\nanswer through a structured tool, the text reports its private choices with markers in its prose: which fund entries\nit used, whether the section is complete, and a private memory of the section so far. The server reads these markers\nand removes them before the reply goes on to the revision, the citation checks and the reader."
+      "markdown": "Replies, revisions and the evolution of the text are all produced by Anthropic's Claude Sonnet 5.5. Along with each reply the model also reports, privately, which units of the fund it used, whether the section is complete, and a short memory of the section so far. The system reads these reports and removes them before the reply is revised, its citations checked, and the result delivered to the reader."
     }
   ],
-  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), approved by Jay and accepted, 2026-11-25."
+  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), approved by Jay and accepted, 2026-11-25. Fund prose redrafted in the register of the paper (H-002, 2026-11-26), facts unchanged."
 }

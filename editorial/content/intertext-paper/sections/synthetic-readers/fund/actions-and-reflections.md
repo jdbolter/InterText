@@ -1,4 +1,1 @@
-Each turn the synthetic reader chooses one action: send a message, press Return, move to another section, or finish.
-It also writes a private reflection, rating its understanding, confusion and interest and adding a sentence or two of
-explanation. The reflection goes into the transcript and is never sent to the text. The transcript also keeps each
-reply's draft beside its revision.
+At each turn the synthetic reader chooses one action: to ask or comment, to press Return, to move to another section, or to finish. It also records a private reflection, rating its understanding, its confusion and its interest, with a sentence or two of explanation. These reflections are kept in the transcript and never sent to the text. The transcript also preserves the draft of each reply beside its revision.

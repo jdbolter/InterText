@@ -27,6 +27,10 @@ Every draft goes through a revision pass that rewrites it into this voice. The p
 
 `intertext-paper/config.js` adapts the same voice to a text whose subject is InterText itself. The text speaks as the paper, in the third person, about InterText, its readers, authors and models. When the reader's question invites it, a reply may say once that the reader is reading through InterText; it never describes itself or how it was produced. It describes the system as the paper and its fund do, and says that its testing so far has been with synthetic readers.
 
+## The author's style
+
+The system prompts name no author and impose no house style. A text may supply a style sample, a few passages of its author's prose chosen by the author; the revision pass is then told to bring each reply's sentences toward them, in length, rhythm, diction and the way a claim is qualified, and to take no content from them. The paper's InterText uses five passages of the paper. *The Digital Plenitude* uses none for now: its replies already retell the author's prose closely.
+
 ## How the work is organized
 
 Each section has two editorial layers, described in `EDITORIAL-ARCHITECTURE.md`:

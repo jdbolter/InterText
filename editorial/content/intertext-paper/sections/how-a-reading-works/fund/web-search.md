@@ -1,4 +1,1 @@
-The text can search the web, at most five times in a turn, for what it does not hold: current events, recent work, or
-an outside source the reader asks about. Names, dates and details in the author's text remain authoritative, and an
-outside detail never alters them. Whatever the text draws from a search reaches the reader as a numbered note, so the
-reply carries no list of links.
+The model can also search the web, a few times in a single turn, for what the text does not hold: recent events, recent work, or an outside source the reader asks about. The names, dates and details in the author's text remain authoritative, and nothing found outside alters them. Whatever the model draws from a search reaches the reader as a numbered note, so that the reply itself carries no list of links.

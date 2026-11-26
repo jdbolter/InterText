@@ -46,7 +46,7 @@
         "turns": [],
         "artifactPath": null
       },
-      "markdown": "The Living Book of AI also changes, but through its author. Francesco Masera chooses a subject each week and passes it\nthrough a series of AI-assisted desks for drafting, editing, fact-checking and images; the Italian edition is updated\ncontinuously and the English one once a year, and at each new edition he decides which updates enter print. Readers'\nquestions do not alter it. The difference from InterText lies in who moves the text: there the author, on a schedule;\nhere the readers, in conversation, under rules the author sets."
+      "markdown": "The Living Book of AI also changes over time, but the changes come from its author. Francesco Masera chooses a subject each week and passes it through a sequence of AI-assisted editorial desks for drafting, editing, fact-checking and images. The Italian edition is updated continuously and the English edition once a year, and Masera decides at each new edition which updates enter print. Readers' questions do not alter the text. The contrast with InterText lies in who moves the text: there the author, on a schedule; here the readers, in conversation, within rules that the author sets."
     },
     {
       "id": "a-text-that-speaks-as-itself",
@@ -71,8 +71,8 @@
         "turns": [],
         "artifactPath": "CURRENT-DESIGN.md"
       },
-      "markdown": "In most conversational reading systems a model answers questions about a book it has been given, and the book itself\nstays on the shelf beside the conversation. In InterText the text speaks as the work: it answers in the work's own\nvoice, in the third person, about the world the work describes, and the reader meets the argument through the\nconversation rather than beside it. The reader is never shown the base text as such; what the reader reads is the\nconversation."
+      "markdown": "In most conversational reading systems a model answers questions about a book it has been given, and the book itself remains on the shelf beside the conversation. InterText takes a different approach. The text speaks as the work, in the work's own voice and in the third person, about the world the work describes. The reader therefore meets the argument in the conversation itself rather than beside it, and never sees the base text as such."
     }
   ],
-  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), approved by Jay and accepted, 2026-11-25."
+  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), approved by Jay and accepted, 2026-11-25. Fund prose redrafted in the register of the paper (H-002, 2026-11-26), facts unchanged."
 }

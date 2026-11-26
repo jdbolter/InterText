@@ -50,7 +50,7 @@
         "turns": [],
         "artifactPath": "synthetic-reader/README.md"
       },
-      "markdown": "The text is written by Anthropic's Claude and the reader is played by an OpenAI model, so that the two roles are never\none model talking to itself. The synthetic reader drives the same reading endpoint a person's browser uses."
+      "markdown": "The text is written by Anthropic's Claude, while the synthetic reader is played by a model from OpenAI, so that the two roles are never one model in conversation with itself. The synthetic reader uses the same route into the system that a human reader's browser uses."
     },
     {
       "id": "only-what-a-person-sees",
@@ -75,7 +75,7 @@
         "turns": [],
         "artifactPath": "synthetic-reader/README.md"
       },
-      "markdown": "A synthetic reader sees what a person sees: the contents, each section's opening box and the conversation so far. It\nnever sees the instructions, the section files or the fund. The harness reads the titles and boxes from the reader's\npage itself, so the reader cannot be given anything the page does not show."
+      "markdown": "A synthetic reader sees what a human reader sees: the table of contents, the opening box of each section and the conversation so far. It never sees the instructions, the author's text or the fund. The titles and boxes it reads are taken from the reader's page itself, so the synthetic reader cannot be given anything that the page does not show."
     },
     {
       "id": "the-five-profiles",
@@ -100,7 +100,7 @@
         "turns": [],
         "artifactPath": "synthetic-reader/README.md"
       },
-      "markdown": "The curious reader is a nonspecialist who follows closely and asks for clarification. The skeptical reader is an\nacademic in a neighbouring field who notices unsupported claims and asks for evidence and counterexamples. The\ncollaborative reader wants the work to be stronger and attends to prose and movement. The general reader is the\neducated reader the work is written for, who reads for the argument and writes a few plain sentences. The student is an\nundergraduate with the reading assigned, who asks what terms mean and says the argument back to check it. Some may\nsearch the web, at most twice a turn, and must name what they found."
+      "markdown": "The curious reader is a nonspecialist who follows closely and asks for clarification. The skeptical reader is an academic in a neighbouring field who notices unsupported claims and asks for evidence and counterexamples. The collaborative reader wants the work to be stronger and attends to its prose and movement. The general reader is the educated reader for whom the work is written, who reads for the argument. The student has the reading assigned and asks what terms mean, restating the argument to check it. Some profiles may search the web, but only occasionally and always naming what they found."
     },
     {
       "id": "actions-and-reflections",
@@ -125,7 +125,7 @@
         "turns": [],
         "artifactPath": "synthetic-reader/README.md"
       },
-      "markdown": "Each turn the synthetic reader chooses one action: send a message, press Return, move to another section, or finish.\nIt also writes a private reflection, rating its understanding, confusion and interest and adding a sentence or two of\nexplanation. The reflection goes into the transcript and is never sent to the text. The transcript also keeps each\nreply's draft beside its revision."
+      "markdown": "At each turn the synthetic reader chooses one action: to ask or comment, to press Return, to move to another section, or to finish. It also records a private reflection, rating its understanding, its confusion and its interest, with a sentence or two of explanation. These reflections are kept in the transcript and never sent to the text. The transcript also preserves the draft of each reply beside its revision."
     },
     {
       "id": "measuring-a-round",
@@ -150,7 +150,7 @@
         "turns": [],
         "artifactPath": "synthetic-reader/README.md"
       },
-      "markdown": "A report on each round counts the words of every reply and how many exceed the limit, the notes per reply, the replies\nin which the text speaks of its own argument, phrases repeated between replies and closing sentences used more than\nonce, the readers' private ratings, how many revisions were applied, and the share of the prompt read from the cache.\nA separate count compares the replies' absolutes, hedges and closing formulas with the author's own prose. The counts\nsay how the prose sounds, not whether a claim is right."
+      "markdown": "Each round of readings is summarized in a report that counts the length of every reply and how often the limit is exceeded, the number of notes per reply, the replies in which the text speaks of its own argument, repeated phrases and closing sentences, the readers' private ratings, and how often the revision was applied. A separate count compares the replies' absolutes, hedges and closing formulas with the author's own prose. Such counts describe how the prose sounds; they do not show whether a claim is right."
     },
     {
       "id": "the-blind-judge",
@@ -170,7 +170,7 @@
         "turns": [],
         "artifactPath": null
       },
-      "markdown": "To compare versions of the system, a separate Claude agent reads replies from several rounds shuffled together and\nunlabelled, and answers the same questions of each, without knowing which version produced which reply. A key kept\napart from the judge then sorts the verdicts by round. The author reads the transcripts with the judge's report and the\ncounts, and decides what to change."
+      "markdown": "To compare one version of the system with another, a separate Claude agent reads replies from several rounds, shuffled together and unlabelled, and answers the same questions about each without knowing which version produced it. A key kept apart from the judge then sorts the verdicts by round. The author reads the transcripts together with the judge's report and the counts, and decides what to change."
     },
     {
       "id": "the-editorial-loop",
@@ -199,7 +199,7 @@
         "turns": [],
         "artifactPath": "synthetic-reader/README.md"
       },
-      "markdown": "The readings are an editorial instrument, not only a software test. Comparable sessions are run on a known edition and\nsection; the transcripts and private reflections are read across profiles; an editorial hypothesis is formed rather\nthan treating any one reply as a verdict; the author's text, the section boundaries, the boxes or the instructions are\nrevised as the evidence warrants; and the same conditions are run again. Synthetic runs never change the published\ntext: a preview of how the editor would evolve a section from a reading is never published."
+      "markdown": "The synthetic readings serve as an editorial instrument as well as a test of the software. Comparable readings are run on the same edition and section; the transcripts and private reflections are read across the different profiles; an editorial hypothesis is formed rather than treating any single reply as a verdict; the author's text, the section boundaries, the opening boxes or the instructions are revised as the evidence warrants; and the readings are run again. Synthetic readings never change the published text."
     },
     {
       "id": "limits-of-synthetic-readers",
@@ -224,7 +224,7 @@
         "turns": [],
         "artifactPath": "synthetic-reader/README.md"
       },
-      "markdown": "A simulated reader argues from the text's own terms more than a person does, and it has no lived experience to bring.\nThe readings find assumptions, overstatements, repetition and gaps. They cannot show how real readers understand or\nrespond, and they are no substitute for testing with people."
+      "markdown": "A synthetic reader argues on the text's own terms more than a human reader does, and it has no lived experience to bring to the reading. The synthetic readings reveal assumptions, overstatements, repetition and gaps. They cannot show how human readers will understand or respond, and they are no substitute for testing with human readers."
     },
     {
       "id": "controlled-editions",
@@ -249,8 +249,8 @@
         "turns": [],
         "artifactPath": "EDITORIAL-ARCHITECTURE.md"
       },
-      "markdown": "Two experimental editions, used only by the synthetic readers, give the text the spine alone or the spine with the fund,\nwith web search off and no outside examples, so that the availability of the fund is the only difference between them.\nThey show whether and how the text draws on optional material when it has it."
+      "markdown": "Two experimental editions, used only by the synthetic readers, give the text either the spine alone or the spine together with the fund, with web search turned off, so that the availability of the fund is the only difference between them. Comparing the two shows whether, and how, the text draws on optional material when it has it."
     }
   ],
-  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), approved by Jay and accepted, 2026-11-25."
+  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), approved by Jay and accepted, 2026-11-25. Fund prose redrafted in the register of the paper (H-002, 2026-11-26), facts unchanged."
 }

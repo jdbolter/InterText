@@ -1,2 +1,1 @@
-The text is written by Anthropic's Claude and the reader is played by an OpenAI model, so that the two roles are never
-one model talking to itself. The synthetic reader drives the same reading endpoint a person's browser uses.
+The text is written by Anthropic's Claude, while the synthetic reader is played by a model from OpenAI, so that the two roles are never one model in conversation with itself. The synthetic reader uses the same route into the system that a human reader's browser uses.

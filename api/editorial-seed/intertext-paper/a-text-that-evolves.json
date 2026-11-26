@@ -46,7 +46,7 @@
         "turns": [],
         "artifactPath": "EDITORIAL-ARCHITECTURE.md"
       },
-      "markdown": "When a contributing reader finishes a section, a first pass of the model compares the conversation with the current\nspine and fund. It may propose no change, revisions to spine passages, new fund entries, revisions or replacements of\nexisting entries, or sources attached to them. Corrections and changes in proportion to the main movement go into the\nspine; optional material goes into the fund."
+      "markdown": "When a contributing reader finishes a section, a first pass of the model compares the conversation with the current spine and fund. It may propose no change at all, a revision of passages in the spine, new units for the fund, revisions or replacements of existing units, or sources to support them. Corrections and changes in proportion to the main movement of the section belong in the spine; optional material belongs in the fund."
     },
     {
       "id": "the-review-pass",
@@ -71,7 +71,7 @@
         "turns": [],
         "artifactPath": "EDITORIAL-ARCHITECTURE.md"
       },
-      "markdown": "A separate call reviews every proposed change for fidelity, relevance, duplication, prose and rhythm, proportion, the\nneed for sources, and whether an entry is anchored at a point in the section where what it presupposes has already been\nintroduced. It may accept an addition, hold it as a candidate that readers do not see, or reject it, and it may not\naccept material whose facts still need verification. Structural checks then reject invented source links, unstable\npassage identifiers, excessive growth and invalid anchors. If nothing survives, the section is unchanged."
+      "markdown": "A separate pass then reviews each proposed change for its fidelity to the work, its relevance, duplication, the quality of its prose and rhythm, its proportion, and its need for sources, and checks that a unit is attached at a point where what it presupposes has already been introduced. The review may accept an addition, hold it as a candidate that readers do not see, or reject it, and it may not accept material whose facts still need to be verified. A further set of checks rejects invented sources and excessive growth. If nothing survives, the section remains as it was."
     },
     {
       "id": "statuses",
@@ -96,7 +96,7 @@
         "turns": [],
         "artifactPath": "EDITORIAL-ARCHITECTURE.md"
       },
-      "markdown": "Every fund entry has a status. A candidate is under evaluation and never offered to readers; an accepted entry is\noffered to the text; a superseded entry has been replaced by another; a rejected entry is kept as a record of a\ndecision. Entries are not deleted. Each also records whether its sources are needed, needed but missing, or supplied,\nand where it came from: an authored text, a reader's session, the author's editor or a model's proposal."
+      "markdown": "Every unit of the fund has a status. A candidate is under evaluation and is never offered to readers; an accepted unit is available to the text; a superseded unit has been replaced by another; a rejected unit is kept as a record of the decision. Nothing is deleted. Each unit also records whether it needs sources and has them, and where it came from: the author's text, a reader's conversation, the author's own editing, or a proposal by the model."
     },
     {
       "id": "versions",
@@ -121,7 +121,7 @@
         "turns": [],
         "artifactPath": "EDITORIAL-ARCHITECTURE.md"
       },
-      "markdown": "Approved changes become a new version of the section, stored as a complete snapshot that is never altered afterwards,\nwith a pointer to the current one. The pointer moves only if the version it replaces is still current, so two\ncontributions arriving together cannot overwrite each other. A reader already in a section stays on the version they\nbegan with; the next reader receives the new one. Snapshots can be exported, so the database is working state rather\nthan the archive."
+      "markdown": "Approved changes become a new version of the section, stored complete and never altered afterwards. A version replaces the current one only if that version is still current, so two contributions arriving together cannot overwrite each other. A reader already in a section stays with the version in which the reading began, and the next reader receives the new one. Versions can be exported, so that the record of the text does not depend on the database that serves it."
     },
     {
       "id": "the-author-keeps-a-hand",
@@ -150,7 +150,7 @@
         "turns": [],
         "artifactPath": "CURRENT-DESIGN.md"
       },
-      "markdown": "Routine editorial decisions are the model's, but the rules are the author's. The author writes or approves the\nstatements of each section's argument, the opening boxes, the library lists and the media lists, and sets the policy\nthe editorial passes follow. A local editor lets the author read every section, edit the spine's prose and every field\nof a fund entry, add entries, set their status, and publish an author's revision as a new version. Every entry keeps\nits provenance, so the mixture of hands in an evolved text is recorded."
+      "markdown": "Routine editorial decisions are left to the model, but the rules are the author's. The author writes or approves the statements of each section's argument, the opening boxes and the lists of references and media, and sets the policy that the editorial passes follow. A separate editor allows the author to read every section, revise the prose of the spine and any unit of the fund, add units, change their status, and publish the result as a new version. Every unit keeps a record of its origin, so the mixture of hands in an evolved text is preserved."
     },
     {
       "id": "current-limits",
@@ -175,8 +175,8 @@
         "turns": [],
         "artifactPath": "CURRENT-DESIGN.md"
       },
-      "markdown": "The author's editor runs only on the author's own machine, with no authenticated version online. It cannot yet compare\nor restore versions or browse the full history of updates, though a version can be exported from the command line. A\nfund entry may belong to a named thread with an order, but the text does not yet present such a thread to the reader\nas a path through the material."
+      "markdown": "The author's editor currently runs only on the author's own machine, and there is not yet a secure version online. It cannot compare or restore versions or show the full history of changes, although a version can be exported. Units of the fund may be grouped into a named sequence, but the text does not yet offer such a sequence to the reader as a path through the material."
     }
   ],
-  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), approved by Jay and accepted, 2026-11-25."
+  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), approved by Jay and accepted, 2026-11-25. Fund prose redrafted in the register of the paper (H-002, 2026-11-26), facts unchanged."
 }

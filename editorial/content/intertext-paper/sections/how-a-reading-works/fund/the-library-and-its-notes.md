@@ -1,6 +1,1 @@
-For each section the text may cite only the works on that section's library list, each described with what it says
-and its pages. When it draws on one, it writes a private marker with the work's identifier and pages; the server
-checks the identifier and the pages against the list and drops anything not listed, and the page turns each surviving
-marker into a numbered note with a full reference in Chicago author-date style. The list also says how each writer is
-to be mentioned: introduced and then named, cited by note only, or, for the author's own work, stated as the work's own
-thinking without a name.
+For each section the text may cite only the works on that section's list of verified references, each described with what it says and, where known, its pages. When the text draws on one of these works, the citation is checked against the list, and anything not on it is dropped, so that an invented source cannot reach the reader. Each citation that survives appears as a numbered note with a full reference. The list also records how each writer is to be mentioned: introduced and then named, cited by note only, or, in the case of the author's own work, stated as the work's own thinking.

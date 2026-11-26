@@ -1,6 +1,1 @@
-Each reply begins as a call to the model whose prompt puts first what stays the same through a section: the
-instructions for the voice, the rule for citations, the section's label, the argument in brief, the opening box, the
-section's text and its library list. These are cached and reused from turn to turn. After them come what changes:
-instructions for a Return turn, the images and media not yet shown, the writers already introduced, short summaries of
-other sections the reader has read, and the fund entries on offer. The conversation so far in the section follows as
-messages.
+Each reply begins as a call to the model whose prompt puts first what stays the same throughout a section: the rules for the voice, the rule for citations, the name of the section, the statement of its argument, the opening box, the author's text for the section and its list of references. These parts are reused from turn to turn. After them comes what changes: instructions for a Return, the images not yet shown, the writers already introduced, brief summaries of other sections the reader has visited, and the units of the fund that are on offer. The conversation so far follows.

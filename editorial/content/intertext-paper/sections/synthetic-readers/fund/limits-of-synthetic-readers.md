@@ -1,3 +1,1 @@
-A simulated reader argues from the text's own terms more than a person does, and it has no lived experience to bring.
-The readings find assumptions, overstatements, repetition and gaps. They cannot show how real readers understand or
-respond, and they are no substitute for testing with people.
+A synthetic reader argues on the text's own terms more than a human reader does, and it has no lived experience to bring to the reading. The synthetic readings reveal assumptions, overstatements, repetition and gaps. They cannot show how human readers will understand or respond, and they are no substitute for testing with human readers.

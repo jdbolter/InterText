@@ -1,5 +1,1 @@
-A report on each round counts the words of every reply and how many exceed the limit, the notes per reply, the replies
-in which the text speaks of its own argument, phrases repeated between replies and closing sentences used more than
-once, the readers' private ratings, how many revisions were applied, and the share of the prompt read from the cache.
-A separate count compares the replies' absolutes, hedges and closing formulas with the author's own prose. The counts
-say how the prose sounds, not whether a claim is right.
+Each round of readings is summarized in a report that counts the length of every reply and how often the limit is exceeded, the number of notes per reply, the replies in which the text speaks of its own argument, repeated phrases and closing sentences, the readers' private ratings, and how often the revision was applied. A separate count compares the replies' absolutes, hedges and closing formulas with the author's own prose. Such counts describe how the prose sounds; they do not show whether a claim is right.

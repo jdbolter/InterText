@@ -1,3 +1,1 @@
-A synthetic reader sees what a person sees: the contents, each section's opening box and the conversation so far. It
-never sees the instructions, the section files or the fund. The harness reads the titles and boxes from the reader's
-page itself, so the reader cannot be given anything the page does not show.
+A synthetic reader sees what a human reader sees: the table of contents, the opening box of each section and the conversation so far. It never sees the instructions, the author's text or the fund. The titles and boxes it reads are taken from the reader's page itself, so the synthetic reader cannot be given anything that the page does not show.

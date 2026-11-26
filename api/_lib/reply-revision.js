@@ -27,6 +27,22 @@ function revisionConfig(config) {
   };
 }
 
+// The author's prose as a model of style (intertext-paper H-002). A text may give `styleSample` in its
+// config: a few passages of its author's prose, chosen by the author, as a string or an array of strings.
+// The revision pass is then told to match their manner, never to borrow their content. Author-neutral:
+// each text supplies its own; a text without one is revised exactly as before.
+const STYLE_HEADING = "THE AUTHOR'S PROSE, AS A MODEL OF STYLE";
+const STYLE_INSTRUCTION = "The passages below were chosen by the work's author as a model of its prose. Revise the reply so that its sentences read as the author's would: match their length and rhythm, their diction and register, and the way they introduce, connect and qualify a claim. Take nothing else from them: no ideas, examples, facts or phrases that the draft does not already hold.";
+
+function styleSampleBlock(config) {
+  const raw = config && config.styleSample;
+  const passages = (Array.isArray(raw) ? raw : [raw])
+    .filter(p => typeof p === 'string' && p.trim())
+    .map(p => p.trim());
+  if (!passages.length) return null;
+  return `${STYLE_HEADING}\n${STYLE_INSTRUCTION}\n\n${passages.join('\n\n')}`;
+}
+
 // H-010: the editor also sees what the reader has been shown (the opening box and the text's
 // earlier replies), what the work holds for this section (for reference: the reader has not read
 // it), and the main line of the argument here. Each part is optional; without them the message
@@ -92,13 +108,18 @@ async function reviseReply({ client, config, readerMessage, continuing, draft, s
     const passage = sectionText && String(sectionText).trim()
       ? `WHAT THE WORK HOLDS FOR THIS SECTION (for reference; the reader has not read it)\n${String(sectionText).trim()}`
       : null;
+    // The author's style sample is the same for the whole text, so it sits with the instructions,
+    // before the cached passage.
+    const style = styleSampleBlock(config);
+    const stable = [{ type: 'text', text: rc.instructions }];
+    if (style) stable.push({ type: 'text', text: style });
     const response = await client.messages.create({
       model: rc.model,
       max_tokens: rc.maxTokens,
       thinking: rc.thinking,
       system: passage
-        ? [{ type: 'text', text: rc.instructions }, { type: 'text', text: passage, cache_control: { type: 'ephemeral' } }]
-        : rc.instructions,
+        ? [...stable, { type: 'text', text: passage, cache_control: { type: 'ephemeral' } }]
+        : (style ? stable : rc.instructions),
       messages: [{ role: 'user', content: buildRevisionMessage({ readerMessage, continuing, draft, shown, mainLine, wordLimit: rc.wordLimit }) }],
     });
     const revised = (response.content || [])
@@ -121,5 +142,6 @@ module.exports = {
   draftHeading,
   revisionConfig,
   reviseReply,
+  styleSampleBlock,
   shownToReader,
 };

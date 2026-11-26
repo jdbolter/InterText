@@ -1,4 +1,1 @@
-Every fund entry has a status. A candidate is under evaluation and never offered to readers; an accepted entry is
-offered to the text; a superseded entry has been replaced by another; a rejected entry is kept as a record of a
-decision. Entries are not deleted. Each also records whether its sources are needed, needed but missing, or supplied,
-and where it came from: an authored text, a reader's session, the author's editor or a model's proposal.
+Every unit of the fund has a status. A candidate is under evaluation and is never offered to readers; an accepted unit is available to the text; a superseded unit has been replaced by another; a rejected unit is kept as a record of the decision. Nothing is deleted. Each unit also records whether it needs sources and has them, and where it came from: the author's text, a reader's conversation, the author's own editing, or a proposal by the model.

@@ -46,7 +46,7 @@
         "turns": [],
         "artifactPath": "CURRENT-DESIGN.md"
       },
-      "markdown": "A fund entry can already carry a named thread and a place in its order, so that related entries form a sequence. The\ntext does not yet offer such a thread to the reader as a path, but it could: a line of examples, an objection pursued\nthrough several sections, or a series of contributions from readers."
+      "markdown": "Units of the fund can already be grouped into a named sequence. The text does not yet offer such a sequence to the reader as a path, but it could: a line of examples, an objection pursued across several sections, or a series of contributions from readers."
     },
     {
       "id": "an-editor-online",
@@ -71,8 +71,8 @@
         "turns": [],
         "artifactPath": "EDITORIAL-ARCHITECTURE.md"
       },
-      "markdown": "The author's editor is kept off the public site until it has authentication and a policy for the manuscript and\nprovenance data it holds. An online editor would let an author follow an evolving text as it changes, and would let\nother authors adapt their own texts for the system, which is designed to carry more than one."
+      "markdown": "The author's editor is kept off the public site until it can be secured and until there is a policy for the manuscript and the records of origin it holds. An editor available online would allow an author to follow an evolving text as it changes, and would allow other authors to adapt their own texts for the system, which is designed to carry more than one."
     }
   ],
-  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), approved by Jay and accepted, 2026-11-25."
+  "changeSummary": "Structural package of the DH2027 paper (H-001): one passage per paragraph of the paper, the paper's prose unchanged apart from its figure references. Fund entries drafted from the InterText documentation by a Claude session (2026-11-25), approved by Jay and accepted, 2026-11-25. Fund prose redrafted in the register of the paper (H-002, 2026-11-26), facts unchanged."
 }

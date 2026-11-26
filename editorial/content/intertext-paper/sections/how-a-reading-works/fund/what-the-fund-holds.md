@@ -1,4 +1,1 @@
-A fund entry is one of six kinds: a clarification, an example, a qualification, a counterargument, evidence or an
-extension. Each is anchored to the passage it belongs with and carries a short cue saying when it is useful. The fund
-is not a checklist: the text offers an entry only where it helps the reader's question without damaging the movement
-of the section, and leaving the fund unused is often right. Only entries accepted for publication ever reach readers.
+The fund holds six kinds of material: clarifications, examples, qualifications, counterarguments, evidence and extensions. Each unit is attached to the passage it belongs with and carries a short note on when it is useful. The fund is not a checklist. The text draws on it only where it helps answer the reader's question without disturbing the movement of the section, and often it is right to leave the fund unused. Only units that have been accepted ever reach readers.

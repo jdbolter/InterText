@@ -1,5 +1,1 @@
-Routine editorial decisions are the model's, but the rules are the author's. The author writes or approves the
-statements of each section's argument, the opening boxes, the library lists and the media lists, and sets the policy
-the editorial passes follow. A local editor lets the author read every section, edit the spine's prose and every field
-of a fund entry, add entries, set their status, and publish an author's revision as a new version. Every entry keeps
-its provenance, so the mixture of hands in an evolved text is recorded.
+Routine editorial decisions are left to the model, but the rules are the author's. The author writes or approves the statements of each section's argument, the opening boxes and the lists of references and media, and sets the policy that the editorial passes follow. A separate editor allows the author to read every section, revise the prose of the spine and any unit of the fund, add units, change their status, and publish the result as a new version. Every unit keeps a record of its origin, so the mixture of hands in an evolved text is preserved.

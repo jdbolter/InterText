@@ -63,6 +63,10 @@ respond to their readers and evolve as they are read." A test checks both entrie
   turn to turn after it (continuation instructions, images and media not yet shown, the writers introduced so far,
   the fund). Anything added to the prompt goes in the right half: a per-turn line placed before the passage would
   break the cache on every call. The revision pass gets the passage as a cached system block too.
+- **Style sample:** a text may give `styleSample` (passages of its author's prose, chosen by the author); the revision
+  pass then gets them, with one generic sentence, as a model of style (`styleSampleBlock` in `api/_lib/reply-revision.js`).
+  Author-neutral: the system names no author. `intertext-paper` gives five passages of the paper; `digital-plenitude`
+  none (intertext-paper H-002).
 - **Introductions:** each library entry carries its manner once; one per-turn line names the writers
   already introduced (`introducedLine`).
 - **Length:** a draft over `config.revision.wordLimit` (250) is handed to the editor with its count and the excess.
@@ -138,6 +142,8 @@ edition label (H-031). Its `config.js` carries everything specific to it:
   that spine and section files agree. When the paper changes, both change together.
 - **The fund is the documentation:** 34 entries drawn from `CURRENT-DESIGN`, `EDITORIAL-ARCHITECTURE`, `PROMPTS` and
   `synthetic-reader/README`, accepted by Jay (2026-11-25), each sourced to the public repo's copy where there is one.
+  Their prose was redrafted in the paper's register (H-002, 2026-11-26), so that the text has its author's manner to
+  retell, not the documentation's.
   When the system changes, the entries that describe it change too.
 - **The voice** speaks as the paper about InterText in the third person; it may say once, when asked, that the reader
   is reading through InterText; it never describes its own reply. Nothing from *The Digital Plenitude* enters beyond

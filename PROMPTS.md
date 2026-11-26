@@ -97,7 +97,7 @@ per-turn block. It has three parts, each replaceable per text and each replaced 
 
 After the draft, `reviseReply` in `api/_lib/reply-revision.js` makes a second call that rewrites the draft into the voice.
 
-**System prompt:** `revision.instructions`, then the section text again (the same text as block 2 of the draft, cached).
+**System prompt:** `revision.instructions`; then, if the text gives a `styleSample` in its `config.js`, the author's prose as a model of style (`styleSampleBlock`: a heading, one generic sentence telling the editor to match the passages' sentence length, rhythm, diction and way of qualifying a claim and to take nothing else from them, then the passages); then the section text again (the same text as block 2 of the draft, cached). The sample is author-supplied and per text; the system names no author. `intertext-paper` gives five passages of the paper; `digital-plenitude` gives none, so its call is unchanged.
 
 **Message**, in five labelled parts:
 

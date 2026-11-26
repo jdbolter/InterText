@@ -128,3 +128,30 @@ test('the section goes to the editor as a cached system block, not in every mess
   ]);
   assert.doesNotMatch(calls[0].messages[0].content, /WHAT THE WORK HOLDS/);
 });
+
+test('a text may give its author\'s prose as a model of style; without one the revision is unchanged (intertext-paper H-002)', async () => {
+  const { styleSampleBlock } = require('../../api/_lib/reply-revision');
+  const config = { revision: { model: 'claude-sonnet-5-5', instructions: 'Revise.' }, styleSample: ['First passage.', 'Second passage.'] };
+  const calls = [];
+  await reviseReply({ client: fakeClient('Revised.', calls), config, readerMessage: 'q', draft: 'Draft.', sectionText: 'Section.' });
+  assert.equal(calls[0].system.length, 3);
+  assert.deepEqual(calls[0].system[0], { type: 'text', text: 'Revise.' });
+  assert.match(calls[0].system[1].text, /^THE AUTHOR'S PROSE, AS A MODEL OF STYLE\n/);
+  assert.match(calls[0].system[1].text, /First passage\.\n\nSecond passage\.$/);
+  assert.match(calls[0].system[1].text, /Take nothing else from them/);
+  assert.equal(calls[0].system[1].cache_control, undefined);
+  assert.deepEqual(calls[0].system[2].cache_control, { type: 'ephemeral' });
+  // The style block names no author: the system stays author-neutral.
+  assert.doesNotMatch(styleSampleBlock(config), /Bolter|Jay/);
+  assert.equal(styleSampleBlock({}), null);
+  assert.equal(styleSampleBlock({ styleSample: ['  '] }), null);
+  assert.equal(styleSampleBlock({ styleSample: 'One passage.' }).endsWith('One passage.'), true);
+  // digital-plenitude gives no sample, so its revision call is exactly as before.
+  assert.equal(styleSampleBlock(require('../../digital-plenitude/config')), null);
+  // intertext-paper's sample is taken from the paper itself.
+  const paper = require('../../intertext-paper/config');
+  const sections = paper.sectionFiles.map(f => require('fs').readFileSync(require('path').join(paper.sectionsDir, f), 'utf8')).join('\n');
+  const passages = Array.isArray(paper.styleSample) ? paper.styleSample : [paper.styleSample];
+  assert.ok(passages.length >= 2);
+  for (const p of passages) assert.ok(sections.replace(/\s+/g, ' ').includes(p.replace(/\s+/g, ' ')), `sample is the paper's own: ${p.slice(0, 40)}`);
+});

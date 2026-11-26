@@ -1,4 +1,1 @@
-Replies, revisions and evolution all run on Anthropic's Claude Sonnet 5.5. Because that model cannot be compelled to
-answer through a structured tool, the text reports its private choices with markers in its prose: which fund entries
-it used, whether the section is complete, and a private memory of the section so far. The server reads these markers
-and removes them before the reply goes on to the revision, the citation checks and the reader.
+Replies, revisions and the evolution of the text are all produced by Anthropic's Claude Sonnet 5.5. Along with each reply the model also reports, privately, which units of the fund it used, whether the section is complete, and a short memory of the section so far. The system reads these reports and removes them before the reply is revised, its citations checked, and the result delivered to the reader.

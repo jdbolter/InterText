@@ -85,7 +85,7 @@ Vercel project `inter-text`; `main` is what it deploys. `vercel.json` bundles `a
 
 ## Adding a text
 
-1. Create `<id>/config.js`, `<id>/source_texts/sections/section-N.md`, and `<id>/public/` (start from `digital-plenitude/public/` and change the per-text data and the `textId`).
+1. Create `<id>/config.js`, `<id>/source_texts/sections/section-N.md`, and `<id>/public/` (start from `digital-plenitude/public/` and change the per-text data and the `textId`). Optionally give `styleSample` in `config.js`: a few passages of the author's prose, which the revision pass takes as its model of style.
 2. Add the id to `ALLOWED_TEXT_IDS` in `api/chat.js` and `api/evolve.js`, and to `synthetic-reader/lib/textRegistry.js`.
 3. Create `editorial/content/<id>/work.json` and a package for every section (see `editorial/README.md`), then run `npm run editorial-build && npm test`. The tests compare each manifest with the text's `config.js`.
 4. Add a card to `index.html` if the text is to be offered.

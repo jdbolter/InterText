@@ -1,4 +1,1 @@
-The author's editor runs only on the author's own machine, with no authenticated version online. It cannot yet compare
-or restore versions or browse the full history of updates, though a version can be exported from the command line. A
-fund entry may belong to a named thread with an order, but the text does not yet present such a thread to the reader
-as a path through the material.
+The author's editor currently runs only on the author's own machine, and there is not yet a secure version online. It cannot compare or restore versions or show the full history of changes, although a version can be exported. Units of the fund may be grouped into a named sequence, but the text does not yet offer such a sequence to the reader as a path through the material.
