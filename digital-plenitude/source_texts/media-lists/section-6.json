@@ -9,7 +9,32 @@
       "source": "thomaskinkade.com",
       "when": "when the reply discusses Thomas Kinkade, his audience, or kitsch as the art world's judgement",
       "status": "ok",
-      "checked": "2026-11-08"
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "salvator-mundi-sale",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=3orkmMlSpmI",
+      "title": "Leonardo da Vinci's 'Salvator Mundi' | 2017 World Auction Record | Christie's",
+      "source": "Christie's on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "3orkmMlSpmI"
+      },
+      "when": "when the reply discusses high art as a luxury market or record auction prices",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "ebert-video-games",
+      "kind": "link",
+      "url": "https://www.rogerebert.com/roger-ebert/video-games-can-never-be-art",
+      "title": "https://www.rogerebert.com/roger-ebert/video-games-can-never-be-art",
+      "source": "rogerebert.com",
+      "when": "when the reply discusses the debate over whether video games or other popular forms count as art",
+      "status": "unverified",
+      "checked": "2026-11-28",
+      "note": "The site answered 403 to the checker; a browser may still open it."
     }
   ]
 }

@@ -1,0 +1,19 @@
+{
+  "section": 2,
+  "items": [
+    {
+      "id": "fantasia-stokowski",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=5oWuvfBP8so",
+      "title": "Congratulations Mickey 1940 (HD)",
+      "source": "Blue Comet Productions on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "5oWuvfBP8so"
+      },
+      "when": "when the reply discusses Stokowski and Disney bringing the orchestra into popular film",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

@@ -9,7 +9,27 @@
       "source": "thomaskinkade.com",
       "when": "when the reply discusses Thomas Kinkade or communities built around one artist's work",
       "status": "ok",
-      "checked": "2026-11-08"
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "archive-of-our-own",
+      "kind": "link",
+      "url": "https://archiveofourown.org/",
+      "title": "Home | Archive of Our Own",
+      "source": "archiveofourown.org",
+      "when": "when the reply discusses fan communities that make, share and judge their own work",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "npr-ao3-hugo",
+      "kind": "link",
+      "url": "https://www.npr.org/transcripts/751861297",
+      "title": "'Archive Of Our Own' Fanfiction Website Is Up For A Hugo Award",
+      "source": "npr.org",
+      "when": "when the reply discusses such communities winning recognition from an established institution",
+      "status": "ok",
+      "checked": "2026-11-28"
     }
   ]
 }

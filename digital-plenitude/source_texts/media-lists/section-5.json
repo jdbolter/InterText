@@ -13,7 +13,43 @@
       },
       "when": "when the reply discusses John Cage's Water Walk or his appearance on the game show I've Got a Secret",
       "status": "ok",
-      "checked": "2026-11-06"
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "duchamp-fountain",
+      "kind": "image",
+      "url": "https://commons.wikimedia.org/wiki/File:Marcel_Duchamp%2C_1917%2C_Fountain%2C_photograph_by_Alfred_Stieglitz.jpg",
+      "title": "Fountain",
+      "source": "Wikimedia Commons",
+      "credit": "Fountain. Marcel Duchamp / Alfred Stieglitz. Public domain, via Wikimedia Commons.",
+      "licence": {
+        "name": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Marcel_Duchamp%2C_1917%2C_Fountain%2C_photograph_by_Alfred_Stieglitz.jpg",
+        "cleared": true
+      },
+      "embed": {
+        "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Marcel_Duchamp%2C_1917%2C_Fountain%2C_photograph_by_Alfred_Stieglitz.jpg/1280px-Marcel_Duchamp%2C_1917%2C_Fountain%2C_photograph_by_Alfred_Stieglitz.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "width": 1280,
+        "height": 1671,
+        "alt": "Marcel Duchamp , 1917, Fountain , photograph by Alfred Stieglitz at the 291 (Art Gallery) following the 1917 Society of Independent Artists exhibit, with entry tag visible. The backdrop is The Warrior"
+      },
+      "when": "when the reply discusses Duchamp's Fountain, the readymade, or the end of the shock of the new",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "safer-art-basel",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=HnQWNH4qOzM",
+      "title": "Morley Safer visits Art Basel | 60 Minutes Archive",
+      "source": "60 Minutes on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "HnQWNH4qOzM"
+      },
+      "when": "when the reply discusses the contemporary art market or art fairs as spectacle",
+      "status": "ok",
+      "checked": "2026-11-28"
     }
   ]
 }

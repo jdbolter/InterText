@@ -1,0 +1,19 @@
+{
+  "section": 3,
+  "items": [
+    {
+      "id": "grace-kelly-wedding",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=YiOKFzRHm14",
+      "title": "Grace Kelly Royal Wedding to Prince Rainer III (1956) | British Pathé",
+      "source": "British Pathé on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "YiOKFzRHm14"
+      },
+      "when": "when the reply discusses Philadelphia society becoming celebrity or royalty, or Grace Kelly",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}
