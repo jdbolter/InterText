@@ -1,0 +1,25 @@
+{
+  "section": 45,
+  "items": [
+    {
+      "id": "crenshaw-intersectionality-ted",
+      "kind": "link",
+      "url": "https://www.ted.com/talks/kimberle_crenshaw_the_urgency_of_intersectionality",
+      "title": "The urgency of intersectionality",
+      "source": "ted.com",
+      "when": "Use when the reader asks about intersectionality or Crenshaw's argument about overlapping race and gender bias (TEDWomen 2016).",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "trump-twitter",
+      "kind": "link",
+      "url": "https://en.wikipedia.org/wiki/Social_media_use_by_Donald_Trump",
+      "title": "Social media use by Donald Trump - Wikipedia",
+      "source": "en.wikipedia.org",
+      "when": "Use when the reader asks about Trump's use of Twitter in the 2016 campaign and what it showed about the politics of flow.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}
