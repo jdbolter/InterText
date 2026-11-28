@@ -1,0 +1,81 @@
+{
+  "section": 17,
+  "items": [
+    {
+      "id": "picasso-baby",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=67m0ng6fKQE",
+      "title": "JAŸ-Z - Picasso Baby: A Performance Art Film",
+      "source": "JayZVEVO on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "67m0ng6fKQE"
+      },
+      "when": "when the reply discusses Jay-Z claiming to be the new Picasso, or popular figures claiming elite artistic status",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "gangnam-style",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=9bZkp7q19f0",
+      "title": "PSY - GANGNAM STYLE(강남스타일) M/V",
+      "source": "officialpsy on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "9bZkp7q19f0"
+      },
+      "when": "when the reply discusses Gangnam Style, or style as a mark of popular media culture",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "wow-cinematic-trailer",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=vlVSJ0AvZe0",
+      "title": "World of Warcraft Cinematic Trailer",
+      "source": "World of Warcraft on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "vlVSJ0AvZe0"
+      },
+      "when": "when the reply discusses World of Warcraft or video game communities",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "jobs-macintosh-1984",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=4KkENSYkMgs",
+      "title": "Steve Jobs showcases Macintosh 24-JAN-1984",
+      "source": "solipsism1000 on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "4KkENSYkMgs"
+      },
+      "when": "when the reply discusses Jobs's introduction of the Macintosh, or the computer for the rest of us",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "kay-dynabook",
+      "kind": "link",
+      "url": "https://en.wikipedia.org/wiki/Dynabook",
+      "title": "Dynabook - Wikipedia",
+      "source": "en.wikipedia.org",
+      "when": "when the reply discusses Alan Kay, the Dynabook, or the computer as a personal medium for children",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "deviantart-about",
+      "kind": "link",
+      "url": "https://www.deviantart.com/about",
+      "title": "DeviantArt - The Largest Online Art Gallery and Community",
+      "source": "deviantart.com",
+      "when": "when the reply discusses deviantART, amateur art communities, or the artist in all of us",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "section": 30,
+  "items": [
+    {
+      "id": "jayz-hard-knock-life",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=lpZgKI97K1M",
+      "title": "JAŸ-Z - Hard Knock Life (Ghetto Anthem)",
+      "source": "JayZVEVO on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "lpZgKI97K1M"
+      },
+      "when": "The text discusses JAY-Z's \"Hard Knock Life\", its sample from the musical Annie, or his use of \"flow\".",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "blondie-rapture",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=pHCdS7O248g",
+      "title": "Blondie - Rapture (Official Music Video)",
+      "source": "BlondieVEVO on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "pHCdS7O248g"
+      },
+      "when": "The text mentions Blondie's \"Rapture\" as rap absorbed into mainstream pop.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

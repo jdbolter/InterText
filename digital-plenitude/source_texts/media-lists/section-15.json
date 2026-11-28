@@ -1,0 +1,19 @@
+{
+  "section": 15,
+  "items": [
+    {
+      "id": "blade-runner-opening",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=YaR5wVL9x2I",
+      "title": "Blade Runner - Opening Scene",
+      "source": "GibertFilms on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "YaR5wVL9x2I"
+      },
+      "when": "when the reply discusses Blade Runner, popular postmodernism, or the film's dystopian Los Angeles",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

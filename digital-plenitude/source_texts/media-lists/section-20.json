@@ -1,0 +1,33 @@
+{
+  "section": 20,
+  "items": [
+    {
+      "id": "skyfall-trailer",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=6kw1UVovByw",
+      "title": "SKYFALL - Official Trailer",
+      "source": "Sony Pictures Entertainment on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "6kw1UVovByw"
+      },
+      "when": "when the reply discusses the Bond franchise, Skyfall, or nostalgia in Bond films",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "matrix-trailer",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=nUEQNVV3Gfs",
+      "title": "The Matrix | 4K Trailer | Warner Bros. Entertainment",
+      "source": "Warner Bros. Entertainment on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "nUEQNVV3Gfs"
+      },
+      "when": "when the reply discusses The Matrix, transmedia storytelling, or franchises told across films and games",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

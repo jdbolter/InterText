@@ -1,0 +1,54 @@
+{
+  "section": 36,
+  "items": [
+    {
+      "id": "modern-times-gears",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=ZdvEGPt4s0Y",
+      "title": "Charlie Chaplin Swallowed by a Factory Machine - Modern Times (1936)",
+      "source": "Charlie Chaplin on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "ZdvEGPt4s0Y"
+      },
+      "when": "The text discusses Chaplin's Modern Times and the Tramp swallowed by the machine.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "metropolis-trailer",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=7PFNr-1svDk",
+      "title": "Metropolis (1927) - Official Theatrical Trailer",
+      "source": "Kino Lorber on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "7PFNr-1svDk"
+      },
+      "when": "The text discusses Fritz Lang's Metropolis and the human cost of mechanization.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "leger-ballet-mecanique",
+      "kind": "link",
+      "url": "https://www.moma.org/learn/moma_learning/fernand-leger-ballet-mecanique-1924/",
+      "title": "https://www.moma.org/learn/moma_learning/fernand-leger-ballet-mecanique-1924/",
+      "source": "moma.org",
+      "when": "The text discusses Léger's Ballet mécanique and the avant-garde fascination with the machine.",
+      "status": "unverified",
+      "checked": "2026-11-28",
+      "note": "The site answered 403 to the checker; a browser may still open it."
+    },
+    {
+      "id": "triadic-ballet",
+      "kind": "link",
+      "url": "https://www.openculture.com/2025/01/watch-an-avant-garde-bauhaus-ballet-in-brilliant-color-first-staged-in-1922.html",
+      "title": "Watch an Avant-Garde Bauhaus Ballet in Brilliant Color, First Staged in 1922",
+      "source": "openculture.com",
+      "when": "The text discusses Schlemmer's Triadic Ballet and the human figure made mechanical.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

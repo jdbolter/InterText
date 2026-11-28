@@ -1,0 +1,47 @@
+{
+  "section": 24,
+  "items": [
+    {
+      "id": "edge-of-tomorrow-trailer",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=FbtwPnwC7RU",
+      "title": "Edge of Tomorrow - HD Main Trailer - Official Warner Bros. UK",
+      "source": "Warner Bros. UK & Ireland on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "FbtwPnwC7RU"
+      },
+      "when": "The reader asks what the time-loop premise of Edge of Tomorrow looks like on screen.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "ravel-bolero",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=6NDwT6SCfk4",
+      "title": "Ravel : Boléro",
+      "source": "France Musique concerts on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "6NDwT6SCfk4"
+      },
+      "when": "The text discusses the repetition and slow build of Ravel's Boléro and the reader would benefit from hearing it.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "eno-airports-1-1",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=LKZ3fGR2SDY",
+      "title": "1/1 (Remastered 2004)",
+      "source": "Brian Eno - Topic on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "LKZ3fGR2SDY"
+      },
+      "when": "The reader asks what ambient music sounds like, or the text discusses Eno's Music for Airports.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "section": 35,
+  "items": [
+    {
+      "id": "wolf-quantified-self",
+      "kind": "link",
+      "url": "https://www.ted.com/talks/gary_wolf_the_quantified_self",
+      "title": "The quantified self",
+      "source": "ted.com",
+      "when": "The text discusses the Quantified Self and Gary Wolf's idea that tracking numbers leads to self-knowledge.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "moneyball-trailer",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=Xk6hBkOzCzQ",
+      "title": "Moneyball (2011) | Official HD Trailer",
+      "source": "CineClips on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "Xk6hBkOzCzQ"
+      },
+      "when": "The text uses Moneyball as an example of statistics replacing the scout's judgment.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "section": 40,
+  "items": [
+    {
+      "id": "mcgonigal-ted",
+      "kind": "link",
+      "url": "https://www.ted.com/talks/jane_mcgonigal_gaming_can_make_a_better_world",
+      "title": "Gaming can make a better world",
+      "source": "ted.com",
+      "when": "The text discusses McGonigal's belief that games as simulations can solve societal problems.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

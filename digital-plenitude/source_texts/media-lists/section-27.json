@@ -1,0 +1,30 @@
+{
+  "section": 27,
+  "items": [
+    {
+      "id": "eno-airports-1-1",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=LKZ3fGR2SDY",
+      "title": "1/1 (Remastered 2004)",
+      "source": "Brian Eno - Topic on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "LKZ3fGR2SDY"
+      },
+      "when": "The text discusses Eno and ambient music as a time-based experience.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "warhol-empire",
+      "kind": "link",
+      "url": "https://www.moma.org/collection/works/303039",
+      "title": "https://www.moma.org/collection/works/303039",
+      "source": "moma.org",
+      "when": "The text discusses Warhol's Empire, a single static shot of the Empire State Building lasting eight hours.",
+      "status": "unverified",
+      "checked": "2026-11-28",
+      "note": "The site answered 403 to the checker; a browser may still open it."
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "section": 21,
+  "items": [
+    {
+      "id": "milk-ted-empathy-machine",
+      "kind": "link",
+      "url": "https://www.ted.com/talks/chris_milk_how_virtual_reality_can_create_the_ultimate_empathy_machine",
+      "title": "How virtual reality can create the ultimate empathy machine",
+      "source": "ted.com",
+      "when": "when the reply discusses Chris Milk, VR as an empathy machine, or 360 video",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "clouds-over-sidra",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=FFnhMX6oR1Q",
+      "title": "Clouds Over Sidra - Video 360º - Oculus Rift",
+      "source": "EkosVR on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "FFnhMX6oR1Q"
+      },
+      "when": "when the reply discusses Clouds over Sidra or VR documentary",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

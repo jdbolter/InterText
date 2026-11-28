@@ -1,0 +1,35 @@
+{
+  "section": 32,
+  "items": [
+    {
+      "id": "ulrich-senate-testimony",
+      "kind": "link",
+      "url": "https://www.govinfo.gov/content/pkg/CHRG-106shrg74728/html/CHRG-106shrg74728.htm",
+      "title": "- MUSIC ON THE INTERNET: IS THERE AN UPSIDE TO DOWNLOADING?",
+      "source": "govinfo.gov",
+      "when": "The text discusses Metallica v. Napster and the reader wants Lars Ulrich's testimony to the Senate Judiciary Committee in his own words.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "lessig-ted",
+      "kind": "link",
+      "url": "https://www.ted.com/talks/lawrence_lessig_laws_that_choke_creativity",
+      "title": "Laws that choke creativity",
+      "source": "ted.com",
+      "when": "The text cites Lawrence Lessig on copyright and remix and the reader may want to hear his argument.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "right2remix",
+      "kind": "link",
+      "url": "https://right2remix.org",
+      "title": "rechtaufremix.org",
+      "source": "right2remix.org",
+      "when": "The text discusses the Right2Remix initiative and its call for a legal right to remix.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

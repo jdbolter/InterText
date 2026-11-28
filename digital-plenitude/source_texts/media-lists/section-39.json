@@ -1,0 +1,53 @@
+{
+  "section": 39,
+  "items": [
+    {
+      "id": "september-12",
+      "kind": "link",
+      "url": "http://www.newsgaming.com/games/index12.htm",
+      "title": "Newsgaming.com -- September 12th",
+      "source": "newsgaming.com",
+      "when": "The text discusses Gonzalo Frasca's September 12 and the reader may want to play it.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "darfur-is-dying",
+      "kind": "link",
+      "url": "https://en.wikipedia.org/wiki/Darfur_is_Dying",
+      "title": "Darfur is Dying - Wikipedia",
+      "source": "en.wikipedia.org",
+      "when": "The text lists Darfur Is Dying among Bogost's political games.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "gone-home-trailer",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=x5KJzLsyfBI",
+      "title": "Gone Home - Launch Trailer",
+      "source": "Fullbright on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "x5KJzLsyfBI"
+      },
+      "when": "The text names Gone Home as a game with a weak narrative.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "edith-finch-trailer",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=6VdKO7tqt08",
+      "title": "WHAT REMAINS OF EDITH FINCH | Xbox One Announcement Trailer",
+      "source": "Annapurna Interactive on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "6VdKO7tqt08"
+      },
+      "when": "The text names What Remains of Edith Finch as a game with a weak narrative.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

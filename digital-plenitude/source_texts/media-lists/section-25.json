@@ -1,0 +1,25 @@
+{
+  "section": 25,
+  "items": [
+    {
+      "id": "mcgonigal-ted",
+      "kind": "link",
+      "url": "https://www.ted.com/talks/jane_mcgonigal_gaming_can_make_a_better_world",
+      "title": "Gaming can make a better world",
+      "source": "ted.com",
+      "when": "The text discusses Jane McGonigal's argument that games can make a better world and the reader may want to watch the talk.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "csikszentmihalyi-ted",
+      "kind": "link",
+      "url": "https://www.ted.com/talks/mihaly_csikszentmihalyi_on_flow",
+      "title": "Flow, the secret to happiness",
+      "source": "ted.com",
+      "when": "The reader asks where the concept of flow comes from or what Csikszentmihalyi himself says about it.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

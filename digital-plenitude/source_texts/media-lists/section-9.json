@@ -1,0 +1,27 @@
+{
+  "section": 9,
+  "items": [
+    {
+      "id": "bauhaus-dessau",
+      "kind": "image",
+      "url": "https://commons.wikimedia.org/wiki/File:Bauhaus-Dessau_main_building.jpg",
+      "title": "Bauhaus-Dessau main building",
+      "source": "Wikimedia Commons",
+      "credit": "Bauhaus-Dessau main building. Public domain, via Wikimedia Commons.",
+      "licence": {
+        "name": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Bauhaus-Dessau_main_building.jpg",
+        "cleared": true
+      },
+      "embed": {
+        "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/Bauhaus-Dessau_main_building.jpg/1280px-Bauhaus-Dessau_main_building.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "width": 1280,
+        "height": 960,
+        "alt": "Bauhaus-Dessau main building"
+      },
+      "when": "when the reply discusses the Bauhaus, Gropius, or progressive modernist design",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

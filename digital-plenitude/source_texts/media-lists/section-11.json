@@ -1,0 +1,19 @@
+{
+  "section": 11,
+  "items": [
+    {
+      "id": "ono-cut-piece",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=-Y7R7WmdyXI",
+      "title": "Yoko Ono : \"Cut Piece, 1964/65 | Tate Britain",
+      "source": "Art Data on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "-Y7R7WmdyXI"
+      },
+      "when": "when the reply discusses Yoko Ono's Cut Piece, Fluxus, or Ono's performance work",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

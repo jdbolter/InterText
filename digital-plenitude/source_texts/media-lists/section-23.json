@@ -1,0 +1,33 @@
+{
+  "section": 23,
+  "items": [
+    {
+      "id": "casablanca-ending",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=zshafL-y5VE",
+      "title": "Casablanca | We'll Always Have Paris | Warner Bros. Rewind",
+      "source": "Warner Bros. Rewind on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "zshafL-y5VE"
+      },
+      "when": "when the reply discusses Casablanca, Hollywood nostalgia, or cathartic endings",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "mad-men-titles",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=uA0QTfZ4LPY",
+      "title": "Mad Men Title Sequence",
+      "source": "stevefullertv on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "uA0QTfZ4LPY"
+      },
+      "when": "when the reply discusses Mad Men or nostalgia in the second Golden Age of television",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

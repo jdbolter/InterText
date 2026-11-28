@@ -1,0 +1,29 @@
+{
+  "section": 43,
+  "items": [
+    {
+      "id": "boyd-its-complicated",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=gyALJuK3wig",
+      "title": "It�s Complicated: The Social Lives of Networked Teens",
+      "source": "Microsoft Research on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "gyALJuK3wig"
+      },
+      "when": "Use when the reader asks how teenagers manage self-presentation and privacy on social media, or about boyd's It's Complicated (a talk by boyd at Microsoft Research).",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "turkle-connected-but-alone",
+      "kind": "link",
+      "url": "https://www.ted.com/talks/sherry_turkle_connected_but_alone",
+      "title": "Connected, but alone?",
+      "source": "ted.com",
+      "when": "Use when the reader asks about Turkle's Alone Together, or whether constant connection leaves us lonelier (TED talk, 2012).",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "section": 46,
+  "items": [
+    {
+      "id": "frozen-grand-central",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=jwMj3PJDxuo",
+      "title": "Frozen Grand Central",
+      "source": "Improv Everywhere on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "jwMj3PJDxuo"
+      },
+      "when": "Use when the reader asks about flash mobs or staged collective action, as in Improv Everywhere's Frozen Grand Central (2008).",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "shirky-ted",
+      "kind": "link",
+      "url": "https://www.ted.com/talks/clay_shirky_how_social_media_can_make_history",
+      "title": "How social media can make history",
+      "source": "ted.com",
+      "when": "Use when the reader asks about Shirky's Here Comes Everybody or how social media enables collective action (TED talk, 2009).",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "world-without-oil",
+      "kind": "link",
+      "url": "https://en.wikipedia.org/wiki/World_Without_Oil",
+      "title": "World Without Oil - Wikipedia",
+      "source": "en.wikipedia.org",
+      "when": "Use when the reader asks about World Without Oil, McGonigal's alternate reality game about an oil shortage (2007).",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "superstruct",
+      "kind": "link",
+      "url": "https://en.wikipedia.org/wiki/Superstruct",
+      "title": "Superstruct - Wikipedia",
+      "source": "en.wikipedia.org",
+      "when": "Use when the reader asks about Superstruct, the multiplayer forecasting game (2008).",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

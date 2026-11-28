@@ -1,0 +1,29 @@
+{
+  "section": 34,
+  "items": [
+    {
+      "id": "girl-talk-still-here",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=VKqkcHvJN9k",
+      "title": "Girl Talk - \"Still Here\" — Feed the Animals (3 of 14)",
+      "source": "BunnyGreenhouse on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "VKqkcHvJN9k"
+      },
+      "when": "The text discusses Girl Talk concerts and participatory remix.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "downfall-parodies",
+      "kind": "link",
+      "url": "https://knowyourmeme.com/memes/hitlers-downfall-parodies",
+      "title": "Hitler's",
+      "source": "knowyourmeme.com",
+      "when": "The text mentions the Downfall videos as an example of repetitive, generative remix.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

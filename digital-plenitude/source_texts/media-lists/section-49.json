@@ -1,0 +1,25 @@
+{
+  "section": 49,
+  "items": [
+    {
+      "id": "picasso-baby",
+      "kind": "link",
+      "url": "https://en.wikipedia.org/wiki/Picasso_Baby",
+      "title": "Picasso Baby - Wikipedia",
+      "source": "en.wikipedia.org",
+      "when": "Use when the reader asks about JAY-Z being set beside Picasso, or about hip-hop and the art world (Picasso Baby: A Performance Art Film, Pace Gallery, 2013).",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "pewdiepie-50-million",
+      "kind": "link",
+      "url": "https://www.guinnessworldrecords.com/world-records/454671-first-youtuber-to-reach-50-million-subscribers",
+      "title": "First YouTuber to reach 50 million subscribers",
+      "source": "guinnessworldrecords.com",
+      "when": "Use when the reader asks about PewDiePie or the scale of YouTube celebrity (first channel to reach 50 million subscribers, December 2016).",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

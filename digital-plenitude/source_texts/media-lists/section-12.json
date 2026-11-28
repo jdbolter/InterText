@@ -1,0 +1,41 @@
+{
+  "section": 12,
+  "items": [
+    {
+      "id": "mcluhan-annie-hall",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=sXJ8tKRlW3E",
+      "title": "Woody Allen meets Marshall McLuhan",
+      "source": "Tralfaz666 on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "sXJ8tKRlW3E"
+      },
+      "when": "when the reply discusses McLuhan's fame, his cameo in Annie Hall, or his public image",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "mcluhan-television",
+      "kind": "image",
+      "url": "https://commons.wikimedia.org/wiki/File:Marshall_McLuhan_with_and_on_television.jpg",
+      "title": "Marshall McLuhan with and on television",
+      "source": "Wikimedia Commons",
+      "credit": "Marshall McLuhan with and on television. Gotfryd, Bernard, photographer. Public domain, via Wikimedia Commons.",
+      "licence": {
+        "name": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Marshall_McLuhan_with_and_on_television.jpg",
+        "cleared": true
+      },
+      "embed": {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/2/24/Marshall_McLuhan_with_and_on_television.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "width": 1280,
+        "height": 1503,
+        "alt": "Marshall McLuhan, half-length portrait, standing, leaning on television set on which his image appears"
+      },
+      "when": "when the reply discusses McLuhan and television, or McLuhan as a media celebrity",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

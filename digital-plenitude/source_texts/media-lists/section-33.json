@@ -1,0 +1,44 @@
+{
+  "section": 33,
+  "items": [
+    {
+      "id": "girl-talk-still-here",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=VKqkcHvJN9k",
+      "title": "Girl Talk - \"Still Here\" — Feed the Animals (3 of 14)",
+      "source": "BunnyGreenhouse on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "VKqkcHvJN9k"
+      },
+      "when": "The text discusses Girl Talk and the reader wants to see or hear what his samples sound like.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "feed-the-animals-breakdown",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=LiT9IAzyPLc",
+      "title": "Girl Talk Feed the Animals Mashupbreakdown",
+      "source": "delusionnnnn on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "LiT9IAzyPLc"
+      },
+      "when": "The text discusses the density of Girl Talk's samples in Feed the Animals and a visual breakdown helps.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "rip-remix-manifesto",
+      "kind": "link",
+      "url": "https://collection.nfb.ca/film/rip_a_remix_manifesto",
+      "title": "https://collection.nfb.ca/film/rip_a_remix_manifesto",
+      "source": "collection.nfb.ca",
+      "when": "The text discusses Brett Gaylor's RiP! A Remix Manifesto and the reader may want to watch the film.",
+      "status": "unverified",
+      "checked": "2026-11-28",
+      "note": "The site answered 500 to the checker; a browser may still open it."
+    }
+  ]
+}

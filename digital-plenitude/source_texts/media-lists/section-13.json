@@ -14,6 +14,20 @@
       "when": "when the reply discusses the iPhone or Jobs's launch of it at Macworld 2007",
       "status": "ok",
       "checked": "2026-11-28"
+    },
+    {
+      "id": "apple-1984",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=2zfqw8nhUwA",
+      "title": "Apple 1984 Super Bowl Commercial Introducing Macintosh Computer (HD)",
+      "source": "Robert Cole (RobertKCole) on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "2zfqw8nhUwA"
+      },
+      "when": "when the reply discusses the Macintosh launch, the 1984 Super Bowl commercial, or Ridley Scott's ad",
+      "status": "ok",
+      "checked": "2026-11-28"
     }
   ]
 }

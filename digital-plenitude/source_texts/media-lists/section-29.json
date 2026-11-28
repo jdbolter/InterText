@@ -1,0 +1,35 @@
+{
+  "section": 29,
+  "items": [
+    {
+      "id": "super-mario-clouds",
+      "kind": "link",
+      "url": "https://whitney.org/collection/works/20588",
+      "title": "Cory Arcangel | Super Mario Clouds",
+      "source": "whitney.org",
+      "when": "The text discusses Cory Arcangel's Super Mario Clouds, the hacked cartridge that erases everything but the clouds.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "jodi-untitled-game",
+      "kind": "link",
+      "url": "https://www.eai.org/titles/9872",
+      "title": "Electronic Arts Intermix: Untitled Game, JODI",
+      "source": "eai.org",
+      "when": "The text discusses JODI's Untitled Game, the Quake modifications.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "rohrer-passage",
+      "kind": "link",
+      "url": "https://hcsoftware.sourceforge.net/passage",
+      "title": "Passage: a Gamma256 video game by Jason Rohrer",
+      "source": "hcsoftware.sourceforge.net",
+      "when": "The text discusses Jason Rohrer's Passage and the reader may want to play it.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

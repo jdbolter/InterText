@@ -1,0 +1,19 @@
+{
+  "section": 38,
+  "items": [
+    {
+      "id": "civilization-vi-launch",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=5KdE0p2joJw",
+      "title": "CIVILIZATION VI Launch Trailer",
+      "source": "Sid Meier's Civilization on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "5KdE0p2joJw"
+      },
+      "when": "The text describes the Civilization series and the player building an empire.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

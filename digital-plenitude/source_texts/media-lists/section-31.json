@@ -1,0 +1,29 @@
+{
+  "section": 31,
+  "items": [
+    {
+      "id": "downfall-parodies",
+      "kind": "link",
+      "url": "https://knowyourmeme.com/memes/hitlers-downfall-parodies",
+      "title": "Hitler's",
+      "source": "knowyourmeme.com",
+      "when": "The text discusses the Downfall Hitler parody videos and the reader wants to know how the meme worked.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "scary-mary-poppins",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=2T5_0AGdFic",
+      "title": "THE ORIGINAL Scary 'Mary Poppins' Recut Trailer",
+      "source": "moviemker on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "2T5_0AGdFic"
+      },
+      "when": "The text discusses recut movie trailers; this is the original horror recut of Mary Poppins, used as an example of the genre.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

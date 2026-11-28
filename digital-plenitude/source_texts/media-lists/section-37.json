@@ -1,0 +1,43 @@
+{
+  "section": 37,
+  "items": [
+    {
+      "id": "modern-times-gears",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=ZdvEGPt4s0Y",
+      "title": "Charlie Chaplin Swallowed by a Factory Machine - Modern Times (1936)",
+      "source": "Charlie Chaplin on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "ZdvEGPt4s0Y"
+      },
+      "when": "The text compares Candy Crush to Chaplin's Tramp at the assembly line.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "mcgonigal-ted",
+      "kind": "link",
+      "url": "https://www.ted.com/talks/jane_mcgonigal_gaming_can_make_a_better_world",
+      "title": "Gaming can make a better world",
+      "source": "ted.com",
+      "when": "The text discusses McGonigal's Reality Is Broken and her claim that games can solve real problems.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "candy-crush-trailer",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=Tk8GKRFiAmU",
+      "title": "Candy Crush Saga - Official Trailer - Android",
+      "source": "Softonic on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "Tk8GKRFiAmU"
+      },
+      "when": "The text discusses Candy Crush Saga as a procedural puzzle game and the reader wants to see it.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

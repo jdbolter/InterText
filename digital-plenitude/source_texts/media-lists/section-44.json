@@ -1,0 +1,19 @@
+{
+  "section": 44,
+  "items": [
+    {
+      "id": "social-network-trailer",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=-hyOdGcTTPs",
+      "title": "The Social Network (2010) | Official HD Trailer",
+      "source": "CineClips on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "-hyOdGcTTPs"
+      },
+      "when": "Use when the reader asks about The Social Network (2010), Sorkin's script or how the film tells the story of Facebook (trailer; uploader not confirmed as Sony).",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

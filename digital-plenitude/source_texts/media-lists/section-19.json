@@ -1,0 +1,34 @@
+{
+  "section": 19,
+  "items": [
+    {
+      "id": "murrow-mccarthy",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=K8ljil075AY",
+      "title": "https://www.youtube.com/watch?v=K8ljil075AY",
+      "source": "YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "K8ljil075AY"
+      },
+      "when": "when the reply discusses the first Golden Age of television, live news, or Edward R. Murrow",
+      "status": "missing",
+      "checked": "2026-11-28",
+      "note": "YouTube answered 404: the video is private, removed or never existed."
+    },
+    {
+      "id": "casablanca-ending",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=zshafL-y5VE",
+      "title": "Casablanca | We'll Always Have Paris | Warner Bros. Rewind",
+      "source": "Warner Bros. Rewind on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "zshafL-y5VE"
+      },
+      "when": "when the reply discusses Casablanca, or a classic Hollywood cathartic ending",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

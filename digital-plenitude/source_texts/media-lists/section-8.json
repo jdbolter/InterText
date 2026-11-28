@@ -1,0 +1,19 @@
+{
+  "section": 8,
+  "items": [
+    {
+      "id": "iphone-2007",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=MnrJzXM7a6o",
+      "title": "Steve Jobs introduces iPhone in 2007",
+      "source": "John Schroter on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "MnrJzXM7a6o"
+      },
+      "when": "when the reply discusses Jobs's iPhone launch at Macworld 2007 or the rhetoric of revolutionary products",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "section": 22,
+  "items": [
+    {
+      "id": "gone-home-trailer",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=x5KJzLsyfBI",
+      "title": "Gone Home - Launch Trailer",
+      "source": "Fullbright on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "x5KJzLsyfBI"
+      },
+      "when": "when the reply discusses Gone Home or games that tell quiet domestic stories",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "edith-finch-trailer",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=6VdKO7tqt08",
+      "title": "WHAT REMAINS OF EDITH FINCH | Xbox One Announcement Trailer",
+      "source": "Annapurna Interactive on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "6VdKO7tqt08"
+      },
+      "when": "when the reply discusses What Remains of Edith Finch or games as collections of short stories",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "that-dragon-cancer",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=vlKCJlhJwxU",
+      "title": "That Dragon, Cancer - Official Release Trailer",
+      "source": "Numinous Games on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "vlKCJlhJwxU"
+      },
+      "when": "when the reply discusses That Dragon, Cancer, games as memoir, or emotional identification in games",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}

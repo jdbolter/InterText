@@ -22,6 +22,20 @@
       "when": "when the reply discusses Sgt. Pepper's Lonely Hearts Club Band or the Beatles' albums as modernist art",
       "status": "ok",
       "checked": "2026-11-28"
+    },
+    {
+      "id": "parker-gillespie-hot-house",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=aZBS1PvxVfA",
+      "title": "Charlie Parker & Dizzy Gillespie - Hot House (1952)",
+      "source": "Jazz Time with Jarvis X on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "aZBS1PvxVfA"
+      },
+      "when": "when the reply discusses bebop, Charlie Parker or Dizzy Gillespie, or jazz as serious modern music",
+      "status": "ok",
+      "checked": "2026-11-28"
     }
   ]
 }

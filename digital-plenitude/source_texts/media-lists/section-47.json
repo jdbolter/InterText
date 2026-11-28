@@ -1,0 +1,39 @@
+{
+  "section": 47,
+  "items": [
+    {
+      "id": "we-are-legion-trailer",
+      "kind": "link",
+      "url": "https://www.traileraddict.com/we-are-legion-the-story-of-hacktivists/feature-trailer",
+      "title": "We Are Legion: The Story of the Hacktivists Feature Trailer (2012)",
+      "source": "traileraddict.com",
+      "when": "Use when the reader asks about the documentary We Are Legion: The Story of the Hacktivists and the history of Anonymous.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "project-chanology",
+      "kind": "link",
+      "url": "https://en.wikipedia.org/wiki/Project_Chanology",
+      "title": "Project Chanology - Wikipedia",
+      "source": "en.wikipedia.org",
+      "when": "Use when the reader asks how Anonymous moved from imageboard jokes to protest, as in the 2008 campaign against Scientology and its Message to Scientology video.",
+      "status": "ok",
+      "checked": "2026-11-28"
+    },
+    {
+      "id": "v-for-vendetta-trailer",
+      "kind": "video",
+      "url": "https://www.youtube.com/watch?v=W8Zpy0gNs1A",
+      "title": "V for Vendetta (2005) – Trailer 2",
+      "source": "Ximboz on YouTube",
+      "embed": {
+        "provider": "youtube",
+        "videoId": "W8Zpy0gNs1A"
+      },
+      "when": "Use when the reader asks about V for Vendetta and the Guy Fawkes mask Anonymous adopted (trailer; uploader not confirmed as Warner).",
+      "status": "ok",
+      "checked": "2026-11-28"
+    }
+  ]
+}
